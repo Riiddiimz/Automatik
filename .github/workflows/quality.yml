@@ -1,0 +1,40 @@
+name: Vérification du projet
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Récupérer le dépôt
+        uses: actions/checkout@v4
+      - name: Installer Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Installer Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Vérifier la syntaxe Python
+        run: python -m py_compile scripts/update_veille.py
+      - name: Vérifier le JSON initial
+        run: python -m json.tool data/veille.json > /dev/null
+      - name: Vérifier la syntaxe JavaScript
+        run: node --check app.js
+      - name: Vérifier les fichiers essentiels
+        run: |
+          test -s index.html
+          test -s styles.css
+          test -s app.js
+          test -s scripts/update_veille.py
+          grep -q 'styles.css' index.html
+          grep -q 'app.js' index.html
