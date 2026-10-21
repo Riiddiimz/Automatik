@@ -1,0 +1,40 @@
+name: Actualiser la veille cyber
+
+on:
+  schedule:
+    - cron: "17 */6 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: update-cyber-watch
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Récupérer le dépôt
+        uses: actions/checkout@v4
+      - name: Installer Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Récupérer les flux officiels
+        run: python scripts/update_veille.py
+      - name: Vérifier le JSON généré
+        run: python -m json.tool data/veille.json > /dev/null
+      - name: Enregistrer les nouvelles données
+        run: |
+          if git diff --quiet -- data/veille.json; then
+            echo "Aucune modification de la veille."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/veille.json
+          git commit -m "chore: actualiser la veille cyber"
+          git push
