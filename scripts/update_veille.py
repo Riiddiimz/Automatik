@@ -85,35 +85,49 @@ def parse_rss(payload, source, label, limit=20):
 
 
 def main():
+    previous = {"fortinet": [], "cyber": [], "kev": []}
+    try:
+        previous = json.loads(OUT.read_text(encoding="utf-8"))
+    except (OSError, ValueError, json.JSONDecodeError):
+        # First run or invalid old data: continue with empty fallbacks.
+        pass
+
     data = {"generatedAt": datetime.now(timezone.utc).isoformat(), "fortinet": [], "cyber": [], "kev": [], "errors": []}
     for section, source, url in FEEDS:
         try:
             items = parse_rss(fetch(url), source, "PSIRT" if section == "fortinet" else source, limit=20)
-            data[section].extend(items)
             if not items:
-                data["errors"].append(f"{source}: flux accessible mais aucun élément RSS reconnu.")
+                raise ValueError("flux accessible mais aucun élément RSS reconnu")
+            data[section].extend(items)
         except (urllib.error.URLError, TimeoutError, ET.ParseError, OSError, ValueError) as exc:
             data["errors"].append(f"{source}: {type(exc).__name__}: {exc}")
+            # Keep the last known records from this specific feed instead of erasing them.
+            stale_items = [item for item in previous.get(section, []) if item.get("source") == source]
+            data[section].extend(stale_items)
+
     try:
         payload = json.loads(fetch(KEV_URL).decode("utf-8"))
-        data["kev"] = payload.get("vulnerabilities", [])[:100]
-        if not data["kev"]:
-            data["errors"].append("CISA KEV: aucun élément trouvé dans la réponse JSON.")
+        vulnerabilities = payload.get("vulnerabilities")
+        if not isinstance(vulnerabilities, list) or not vulnerabilities:
+            raise ValueError("réponse KEV invalide ou vide")
+        data["kev"] = vulnerabilities[:100]
     except (urllib.error.URLError, TimeoutError, OSError, ValueError, json.JSONDecodeError) as exc:
         data["errors"].append(f"CISA KEV: {type(exc).__name__}: {exc}")
+        # Keep the previous catalogue if the upstream endpoint fails temporarily.
+        data["kev"] = previous.get("kev", [])[:100]
+
     # Sort newest first while keeping records without dates at the end.
     for section in ("fortinet", "cyber"):
         data[section].sort(key=lambda item: item.get("date") or "", reverse=True)
     OUT.parent.mkdir(parents=True, exist_ok=True)
     OUT.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    if not data["fortinet"] and not data["cyber"] and not data["kev"]:
+        raise SystemExit("Aucune source n'a fourni de données et aucun cache précédent n'est disponible.")
     print(f"Écrit {OUT.relative_to(ROOT)} : {len(data['fortinet'])} avis Fortinet, {len(data['cyber'])} actualités, {len(data['kev'])} entrées KEV.")
     if data["errors"]:
-        print("Sources en erreur :")
+        print("Sources en erreur (les données précédentes sont conservées lorsqu'elles existent) :")
         for error in data["errors"]:
             print(f"- {error}")
-    # Don't fail the whole update because one external source is temporarily unavailable.
-    if not data["fortinet"] and not data["cyber"] and not data["kev"]:
-        raise SystemExit("Aucune source n'a fourni de données : le fichier n'a pas de contenu utile.")
 
 
 if __name__ == "__main__":
