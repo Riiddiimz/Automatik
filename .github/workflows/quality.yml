@@ -2,7 +2,7 @@ name: Vérification du projet
 
 on:
   push:
-    branches: ["main"]
+    branches: ["main", "fix/ci-tests-and-first-sync"]
   pull_request:
     branches: ["main"]
   workflow_dispatch:
