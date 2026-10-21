@@ -1,6 +1,11 @@
 name: Actualiser la veille cyber
 
 on:
+  push:
+    branches: ["main"]
+    paths:
+      - "scripts/update_veille.py"
+      - ".github/workflows/update-veille.yml"
   schedule:
     - cron: "17 */6 * * *"
   workflow_dispatch:
