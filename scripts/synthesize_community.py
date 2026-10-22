@@ -63,12 +63,12 @@ def extract_products(item: dict) -> list[str]:
     summary = item.get("summary", "")
     url = item.get("url", "")
     # The forum board slug is a better product signal than a mention in an article's body.
-    board_match = re.search(r"https?://community\\.fortinet\\.com/([a-z0-9]+)", url, re.I)
+    board_match = re.search(r"https?://community\\.fortinet\\.com/([^/]+)", url, re.I)
     board = board_match.group(1).lower() if board_match else ""
     board_aliases = {
         "fortigate": "FortiGate", "fortimanager": "FortiManager",
         "fortianalyzer": "FortiAnalyzer", "fortiauthenticator": "FortiAuthenticator",
-        "forticlient": "FortiClient", "forticlientems": "FortiClient EMS",
+        "forticlient-ems": "FortiClient EMS", "forticlientems": "FortiClient EMS", "forticlient": "FortiClient",
         "fortiswitch": "FortiSwitch", "fortiap": "FortiAP",
     }
     primary = next((name for slug, name in board_aliases.items() if board.startswith(slug)), None)
