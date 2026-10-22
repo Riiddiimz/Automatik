@@ -25,6 +25,8 @@ PRODUCT_ALIASES = {
     "FortiAuthenticator": (r"\bfortiauthenticator\b",),
     "FortiClient EMS": (r"\bforticlient\s*ems\b", r"\bfcems\b"),
     "FortiClient": (r"\bforticlient\b",),
+    "FortiSwitch": (r"\bfortiswitch\b",),
+    "FortiAP": (r"\bfortiap\b",),
 }
 VERSION_RE = re.compile(r"\b\d+\.\d+\.\d+\b")
 TAG_RE = re.compile(r"<[^>]+>")
@@ -80,7 +82,7 @@ def parse_feed(payload: bytes) -> list[dict]:
         text = f"{title} {summary}"
         products = [name for name, patterns in PRODUCT_ALIASES.items() if any(re.search(pattern, text, re.I) for pattern in patterns)]
         # The forum board identifies the primary product even when the article body mentions another device.
-        board = re.match(r"https?://community\\.fortinet\\.com/([^/]+)", link, re.I)
+        board = re.match(r"https?://community\.fortinet\.com/([^/]+)", link, re.I)
         if board:
             slug = board.group(1).lower()
             board_products = {
