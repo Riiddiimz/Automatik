@@ -26,7 +26,7 @@ jobs:
         with:
           python-version: "3.12"
       - name: Tester le collecteur
-        run: python -m unittest tests.test_collect_community -v
+        run: python -m unittest discover -s tests -p 'test_collect_community.py' -v
       - name: Collecter les sujets du forum
         run: python scripts/collect_community.py
       - name: Valider le JSON
