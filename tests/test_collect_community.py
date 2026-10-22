@@ -18,13 +18,16 @@ class CommunityFeedTests(unittest.TestCase):
           <item><title>FortiGate 7.4.12 VPN disconnects</title><link>https://community.fortinet.com/t5/FortiGate/abc</link><pubDate>Wed, 21 Oct 2026 08:00:00 GMT</pubDate><description><![CDATA[VPN drops after update &amp; reconnects]]></description></item>
           <item><title>Unrelated product issue</title><link>https://community.fortinet.com/t5/Other/abc</link><description>Something else</description></item>
           <item><title>FortiClient EMS issue</title><link>https://community.fortinet.com/t5/EMS/abc</link><description>EMS deployment fails</description></item>
+          <item><title>Preserving wireless clients across VLANs</title><link>https://community.fortinet.com/fortiap-5/wifi-roaming-issue</link><description>Layer 3 roaming feature</description></item>
         </channel></rss>"""
         items = collector.parse_feed(payload)
-        self.assertEqual(len(items), 2)
+        self.assertEqual(len(items), 3)
         gate = next(item for item in items if item["products"] == ["FortiGate"])
         self.assertEqual(gate["versions"], ["7.4.12"])
         self.assertIn("VPN drops", gate["summary"])
         self.assertEqual(gate["status"], "À vérifier")
+        ap = next(item for item in items if "FortiAP" in item["products"])
+        self.assertEqual(ap["products"], ["FortiAP"])
         ems = next(item for item in items if "FortiClient EMS" in item["products"])
         self.assertNotIn("FortiClient", ems["products"])
 
