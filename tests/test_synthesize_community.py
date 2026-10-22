@@ -50,6 +50,11 @@ class CommunitySynthesisTests(unittest.TestCase):
         self.assertTrue(synth.similar(saml_a, saml_b))
         self.assertTrue(synth.similar(vpn_a, vpn_b))
 
+    def test_password_policy_wording_variants_are_grouped(self):
+        a = {"title": "FortiGate password policy failure", "products": ["FortiGate"], "versionFamilies": ["7.4"]}
+        b = {"title": "FortiGate password complexity policy not working", "products": ["FortiGate"], "versionFamilies": ["7.4"]}
+        self.assertTrue(synth.similar(a, b))
+
     def test_unrelated_products_are_not_merged(self):
         a = {"title": "FortiGate VPN disconnects", "summary": "VPN disconnects after upgrade", "products": ["FortiGate"], "versionFamilies": ["7.4"]}
         b = {"title": "FortiManager VPN disconnects", "summary": "VPN disconnects after upgrade", "products": ["FortiManager"], "versionFamilies": ["7.4"]}
