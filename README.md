@@ -64,6 +64,7 @@ Le test navigateur est exécuté en CI avec Playwright et Chromium. Pour le repr
 - [Fortinet News & Research](https://www.fortinet.com/lat/rss-feeds)
 - [Fortinet Community](https://community.fortinet.com/)
 - [CISA Known Exploited Vulnerabilities](https://www.cisa.gov/known-exploited-vulnerabilities-catalog)
+- [CERT-FR / ANSSI](https://www.cert.ssi.gouv.fr/feed/)
 - [NIST National Vulnerability Database](https://nvd.nist.gov/)
 
 Les informations publiées par Automatik sont une aide à la veille, pas un avis de remédiation. Toujours vérifier la version exacte, le modèle concerné et les recommandations de l'éditeur avant d'agir.
