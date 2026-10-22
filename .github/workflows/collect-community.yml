@@ -7,6 +7,7 @@ on:
       - "scripts/collect_community.py"
       - "scripts/synthesize_community.py"
       - "tests/test_synthesize_community.py"
+      - "tests/test_collect_community.py"
       - ".github/workflows/collect-community.yml"
   schedule:
     - cron: "17 5 * * *"
