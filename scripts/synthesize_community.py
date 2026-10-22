@@ -102,7 +102,7 @@ def looks_like_problem(item: dict) -> bool:
         return False
     if ISSUE_RE.search(title):
         return True
-    return bool(re.search(r"\\b(known issue|known bug|bug id|regression|issue occurs|failure occurs|stops working|not working|broken after upgrade)\\b", summary[:1200], re.I))
+    return bool(re.search(r"\b(known issue|known bug|bug id|regression|issue occurs|failure occurs|stops working|not working|broken after upgrade)\b", summary[:1200], re.I))
 
 
 def title_tokens(item: dict) -> set[str]:
