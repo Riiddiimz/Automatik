@@ -88,6 +88,11 @@ def extract_versions(item: dict) -> tuple[list[str], list[str]]:
     text = " ".join([item.get("title", ""), item.get("summary", "")])
     # Remove complete IPv4 addresses before looking for dotted version numbers.
     text_without_ips = re.sub(r"\b(?:\d{1,3}\.){3}\d{1,3}\b", " ", text)
+    # Do not mistake versions printed by diagnostic utilities for Fortinet firmware.
+    text_without_ips = re.sub(
+        r"\b(?:dig|openssl|python|curl|wget|iperf3?|ping)\s+v?\d{1,2}\.\d{1,2}(?:\.\d{1,3})?\b",
+        " ", text_without_ips, flags=re.I,
+    )
     found = set(VERSION_CONTEXT_RE.findall(text_without_ips))
     # Capture companion versions only in a sentence that explicitly talks about
     # firmware/software versions, releases, builds, or an upgrade path.
