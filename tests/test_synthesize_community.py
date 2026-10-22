@@ -1,0 +1,40 @@
+import importlib.util
+import json
+from pathlib import Path
+import tempfile
+import unittest
+
+MODULE_PATH = Path(__file__).resolve().parents[1] / "scripts" / "synthesize_community.py"
+SPEC = importlib.util.spec_from_file_location("synthesize_community", MODULE_PATH)
+synth = importlib.util.module_from_spec(SPEC)
+SPEC.loader.exec_module(synth)
+
+
+class CommunitySynthesisTests(unittest.TestCase):
+    def test_versions_ignore_ip_addresses_and_keep_major_minor_family(self):
+        item = {"title": "DNS over TLS broken in Proxy Mode", "summary": "Issue in FortiOS version 7.6.4. IP 208.91.112.55; upgrade to 8.0.1."}
+        exact, families = synth.extract_versions(item)
+        self.assertIn("7.6.4", exact)
+        self.assertIn("8.0.1", exact)
+        self.assertNotIn("208.91.112", exact)
+        self.assertIn("7.6", families)
+        self.assertIn("8.0", families)
+
+    def test_similar_topics_are_grouped_once(self):
+        data = {"topics": [
+            {"title": "FortiGate DNS over TLS broken in Proxy Mode", "summary": "FortiOS 7.6.4 DNS over TLS fails.", "url": "https://community.fortinet.com/a", "products": ["FortiGate"], "date": "2026-10-22"},
+            {"title": "DNS over TLS fails in proxy mode on FortiGate", "summary": "FortiOS version 7.6.4 has broken DNS over TLS.", "url": "https://community.fortinet.com/b", "products": ["FortiGate"], "date": "2026-10-21"},
+        ]}
+        result = synth.synthesize(data)
+        self.assertEqual(result["incidentCount"], 1)
+        self.assertEqual(result["incidents"][0]["sourceCount"], 2)
+        self.assertEqual(result["incidents"][0]["versionFamilies"], ["7.6"])
+
+    def test_unrelated_products_are_not_merged(self):
+        a = {"title": "FortiGate VPN disconnects", "summary": "VPN disconnects after upgrade", "products": ["FortiGate"], "versionFamilies": ["7.4"]}
+        b = {"title": "FortiManager VPN disconnects", "summary": "VPN disconnects after upgrade", "products": ["FortiManager"], "versionFamilies": ["7.4"]}
+        self.assertFalse(synth.similar(a, b))
+
+
+if __name__ == "__main__":
+    unittest.main()
