@@ -86,8 +86,19 @@ def extract_products(item: dict) -> list[str]:
 
 def extract_versions(item: dict) -> tuple[list[str], list[str]]:
     text = " ".join([item.get("title", ""), item.get("summary", "")])
-    found = set(VERSION_CONTEXT_RE.findall(text))
-    found.update(BARE_VERSION_RE.findall(text))
+    # Remove complete IPv4 addresses before looking for dotted version numbers.
+    text_without_ips = re.sub(r"\b(?:\d{1,3}\.){3}\d{1,3}\b", " ", text)
+    found = set(VERSION_CONTEXT_RE.findall(text_without_ips))
+    # Capture companion versions only in a sentence that explicitly talks about
+    # firmware/software versions, releases, builds, or an upgrade path.
+    context = re.compile(
+        r"\b(fortios|fortigate|firmware|software|versions?|releases?|builds?|"
+        r"upgrade(?:d|s|ing)?(?:\s+to|\s+from)?|running)\b",
+        re.I,
+    )
+    for sentence in re.split(r"(?<=[.!?])\s+", text_without_ips):
+        if context.search(sentence):
+            found.update(BARE_VERSION_RE.findall(sentence))
     exact = sorted(found, key=lambda v: tuple(int(x) for x in v.split(".")))
     families = sorted({ ".".join(v.split(".")[:2]) for v in exact }, key=lambda v: tuple(int(x) for x in v.split(".")))
     return exact, families
