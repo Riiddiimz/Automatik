@@ -79,6 +79,19 @@ def parse_feed(payload: bytes) -> list[dict]:
             continue
         text = f"{title} {summary}"
         products = [name for name, patterns in PRODUCT_ALIASES.items() if any(re.search(pattern, text, re.I) for pattern in patterns)]
+        # The forum board identifies the primary product even when the article body mentions another device.
+        board = re.match(r"https?://community\\.fortinet\\.com/([^/]+)", link, re.I)
+        if board:
+            slug = board.group(1).lower()
+            board_products = {
+                "fortigate": "FortiGate", "fortimanager": "FortiManager",
+                "fortianalyzer": "FortiAnalyzer", "fortiauthenticator": "FortiAuthenticator",
+                "forticlient-ems": "FortiClient EMS", "forticlientems": "FortiClient EMS",
+                "forticlient": "FortiClient", "fortiswitch": "FortiSwitch", "fortiap": "FortiAP",
+            }
+            primary = next((product for prefix, product in board_products.items() if slug.startswith(prefix)), None)
+            if primary:
+                products = list(dict.fromkeys([primary] + [p for p in products if p in title]))
         if not products:
             continue
         if "FortiClient EMS" in products:
