@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-22T11:40:56.397594+00:00",
+  "generatedAt": "2026-10-22T11:41:22.598899+00:00",
   "fortinet": [
     {
       "source": "FortiGuard PSIRT",
@@ -170,6 +170,166 @@
       "url": "https://fortiguard.fortinet.com/outbreak-alert/atlassian-arbitrary-file-access",
       "date": "2026-10-19T07:00:00+00:00",
       "summary": "CVE-2026-21589 is a critical arbitrary file access vulnerability affecting multiple Atlassian Data Center products, including Bitbucket, Confluence, Jira Software, Jira Service Management, Bamboo, Crowd, Crucible, and Fisheye. The vulnerability allows an unauthenticated remote attacker to access specific files within an affected application's web root direct"
+    },
+    {
+      "source": "CERT-FR",
+      "label": "CERT-FR",
+      "title": "Multiples vulnérabilités dans le noyau Linux de Red Hat (16 octobre 2026)",
+      "url": "https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-1334/",
+      "date": "2026-10-16T00:00:00+00:00",
+      "summary": "De multiples vulnérabilités ont été découvertes dans le noyau Linux de Red Hat. Certaines d'entre elles permettent à un attaquant de provoquer une exécution de code arbitraire à distance, une élévation de privilèges et un déni de service à distance."
+    },
+    {
+      "source": "CERT-FR",
+      "label": "CERT-FR",
+      "title": "Multiples vulnérabilités dans les produits Microsoft (16 octobre 2026)",
+      "url": "https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-1332/",
+      "date": "2026-10-16T00:00:00+00:00",
+      "summary": "De multiples vulnérabilités ont été découvertes dans les produits Microsoft. Certaines d'entre elles permettent à un attaquant de provoquer une exécution de code arbitraire à distance, une élévation de privilèges et un déni de service à distance."
+    },
+    {
+      "source": "CERT-FR",
+      "label": "CERT-FR",
+      "title": "Multiples vulnérabilités dans le noyau Linux de SUSE (16 octobre 2026)",
+      "url": "https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-1335/",
+      "date": "2026-10-16T00:00:00+00:00",
+      "summary": "De multiples vulnérabilités ont été découvertes dans le noyau Linux de SUSE. Certaines d'entre elles permettent à un attaquant de provoquer une élévation de privilèges, un déni de service à distance et une atteinte à la confidentialité des données."
+    },
+    {
+      "source": "CERT-FR",
+      "label": "CERT-FR",
+      "title": "Multiples vulnérabilités dans les produits Mattermost (16 octobre 2026)",
+      "url": "https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-1328/",
+      "date": "2026-10-16T00:00:00+00:00",
+      "summary": "De multiples vulnérabilités ont été découvertes dans les produits Mattermost. Elles permettent à un attaquant de provoquer un problème de sécurité non spécifié par l'éditeur."
+    },
+    {
+      "source": "CERT-FR",
+      "label": "CERT-FR",
+      "title": "Multiples vulnérabilités dans les produits IBM (16 octobre 2026)",
+      "url": "https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-1336/",
+      "date": "2026-10-16T00:00:00+00:00",
+      "summary": "De multiples vulnérabilités ont été découvertes dans les produits IBM. Certaines d'entre elles permettent à un attaquant de provoquer une exécution de code arbitraire à distance, une élévation de privilèges et un déni de service à distance."
+    },
+    {
+      "source": "CERT-FR",
+      "label": "CERT-FR",
+      "title": "Multiples vulnérabilités dans le noyau Linux d'Ubuntu (16 octobre 2026)",
+      "url": "https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-1333/",
+      "date": "2026-10-16T00:00:00+00:00",
+      "summary": "De multiples vulnérabilités ont été découvertes dans le noyau Linux d'Ubuntu. Certaines d'entre elles permettent à un attaquant de provoquer une exécution de code arbitraire à distance, une élévation de privilèges et une atteinte à la confidentialité des données."
+    },
+    {
+      "source": "CERT-FR",
+      "label": "CERT-FR",
+      "title": "Multiples vulnérabilités dans Google Chrome (16 octobre 2026)",
+      "url": "https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-1329/",
+      "date": "2026-10-16T00:00:00+00:00",
+      "summary": "De multiples vulnérabilités ont été découvertes dans Google Chrome. Elles permettent à un attaquant de provoquer un problème de sécurité non spécifié par l'éditeur."
+    },
+    {
+      "source": "CERT-FR",
+      "label": "CERT-FR",
+      "title": "Multiples vulnérabilités dans Moxa AIG-302 Series (16 octobre 2026)",
+      "url": "https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-1327/",
+      "date": "2026-10-16T00:00:00+00:00",
+      "summary": "De multiples vulnérabilités ont été découvertes dans Moxa AIG-302 Series. Certaines d'entre elles permettent à un attaquant de provoquer une atteinte à la confidentialité des données, une atteinte à l'intégrité des données et un contournement de la politique de sécurité."
+    },
+    {
+      "source": "CERT-FR",
+      "label": "CERT-FR",
+      "title": "Multiples vulnérabilités dans Microsoft Office (16 octobre 2026)",
+      "url": "https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-1331/",
+      "date": "2026-10-16T00:00:00+00:00",
+      "summary": "De multiples vulnérabilités ont été découvertes dans Microsoft Office. Elles permettent à un attaquant de provoquer une exécution de code arbitraire à distance, une atteinte à la confidentialité des données et un contournement de la politique de sécurité."
+    },
+    {
+      "source": "CERT-FR",
+      "label": "CERT-FR",
+      "title": "Multiples vulnérabilités dans Traefik (16 octobre 2026)",
+      "url": "https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-1330/",
+      "date": "2026-10-16T00:00:00+00:00",
+      "summary": "De multiples vulnérabilités ont été découvertes dans Traefik. Elles permettent à un attaquant de provoquer une atteinte à la confidentialité des données et un contournement de la politique de sécurité."
+    },
+    {
+      "source": "CERT-FR",
+      "label": "CERT-FR",
+      "title": "Multiples vulnérabilités dans les produits Symfony (15 octobre 2026)",
+      "url": "https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-1324/",
+      "date": "2026-10-15T00:00:00+00:00",
+      "summary": "De multiples vulnérabilités ont été découvertes dans les produits Symfony. Elles permettent à un attaquant de provoquer un déni de service à distance."
+    },
+    {
+      "source": "CERT-FR",
+      "label": "CERT-FR",
+      "title": "Multiples vulnérabilités dans les produits Palo Alto Networks (15 octobre 2026)",
+      "url": "https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-1326/",
+      "date": "2026-10-15T00:00:00+00:00",
+      "summary": "De multiples vulnérabilités ont été découvertes dans les produits Palo Alto Networks. Certaines d'entre elles permettent à un attaquant de provoquer une exécution de code arbitraire à distance, une élévation de privilèges et un déni de service à distance. Palo Alto Networks indique que la..."
+    },
+    {
+      "source": "CERT-FR",
+      "label": "CERT-FR",
+      "title": "Multiples vulnérabilités dans Moodle (15 octobre 2026)",
+      "url": "https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-1318/",
+      "date": "2026-10-15T00:00:00+00:00",
+      "summary": "De multiples vulnérabilités ont été découvertes dans Moodle. Elles permettent à un attaquant de provoquer une injection de code indirecte à distance (XSS) et un contournement de la politique de sécurité."
+    },
+    {
+      "source": "CERT-FR",
+      "label": "CERT-FR",
+      "title": "Vulnérabilité dans les produits Microsoft (15 octobre 2026)",
+      "url": "https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-1323/",
+      "date": "2026-10-15T00:00:00+00:00",
+      "summary": "Une vulnérabilité a été découverte dans les produits Microsoft. Elle permet à un attaquant de provoquer une élévation de privilèges."
+    },
+    {
+      "source": "CERT-FR",
+      "label": "CERT-FR",
+      "title": "Multiples vulnérabilités dans Drupal (15 octobre 2026)",
+      "url": "https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-1321/",
+      "date": "2026-10-15T00:00:00+00:00",
+      "summary": "De multiples vulnérabilités ont été découvertes dans Drupal. Elles permettent à un attaquant de provoquer une exécution de code arbitraire à distance et une injection de code indirecte à distance (XSS)."
+    },
+    {
+      "source": "CERT-FR",
+      "label": "CERT-FR",
+      "title": "Multiples vulnérabilités dans les produits Juniper Networks (15 octobre 2026)",
+      "url": "https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-1322/",
+      "date": "2026-10-15T00:00:00+00:00",
+      "summary": "De multiples vulnérabilités ont été découvertes dans les produits Juniper Networks. Certaines d'entre elles permettent à un attaquant de provoquer une exécution de code arbitraire à distance, une élévation de privilèges et un déni de service à distance."
+    },
+    {
+      "source": "CERT-FR",
+      "label": "CERT-FR",
+      "title": "Multiples vulnérabilités dans Sonicwall Network Security Manager (15 octobre 2026)",
+      "url": "https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-1320/",
+      "date": "2026-10-15T00:00:00+00:00",
+      "summary": "De multiples vulnérabilités ont été découvertes dans Sonicwall Network Security Manager. Elles permettent à un attaquant de provoquer une exécution de code arbitraire à distance et un contournement de la politique de sécurité."
+    },
+    {
+      "source": "CERT-FR",
+      "label": "CERT-FR",
+      "title": "Vulnérabilité dans Cisco AsyncOS Software pour Secure Email Gateway (15 octobre 2026)",
+      "url": "https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-1325/",
+      "date": "2026-10-15T00:00:00+00:00",
+      "summary": "Une vulnérabilité a été découverte dans Cisco AsyncOS Software pour Secure Email Gateway. Elle permet à un attaquant de provoquer une exécution de code arbitraire à distance et une atteinte à l'intégrité des données. Cisco indique que la vulnérabilité CVE-2026-76519 est activement exploitée."
+    },
+    {
+      "source": "CERT-FR",
+      "label": "CERT-FR",
+      "title": "Vulnérabilité dans PostgreSQL psqlODBC (15 octobre 2026)",
+      "url": "https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-1319/",
+      "date": "2026-10-15T00:00:00+00:00",
+      "summary": "Une vulnérabilité a été découverte dans PostgreSQL psqlODBC. Elle permet à un attaquant de provoquer un déni de service à distance."
+    },
+    {
+      "source": "CERT-FR",
+      "label": "CERT-FR",
+      "title": "Incident de sécurité ciblant les contrôleurs à distance des installations de réfrigération (12 octobre 2026)",
+      "url": "https://www.cert.ssi.gouv.fr/alerte/CERTFR-2026-ALE-012/",
+      "date": "2026-10-12T00:00:00+00:00",
+      "summary": "Le CERT-FR a connaissance de nombreuses compromissions des controleurs à distance d'installation de réfrigération Danfoss série AK-SM, AK-SC ainsi que Copeland xweb et Dixell xweb. De manière générale l'exposition d'une interface de gestion sur Internet est contraire aux bonnes pratiques."
     },
     {
       "source": "FortiGuard Outbreak Alerts",
@@ -1930,7 +2090,5 @@
       ]
     }
   ],
-  "errors": [
-    "CISA Cybersecurity Advisories: HTTPError: HTTP Error 403: Forbidden"
-  ]
+  "errors": []
 }
