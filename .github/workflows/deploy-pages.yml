@@ -34,6 +34,8 @@ jobs:
           touch _site/.nojekyll
       - name: Configurer GitHub Pages
         uses: actions/configure-pages@v5
+        with:
+          enablement: true
       - name: Vérifier les fichiers publiés
         run: |
           test -s _site/index.html
