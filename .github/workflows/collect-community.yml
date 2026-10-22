@@ -1,0 +1,44 @@
+name: Collecte Fortinet Community
+
+on:
+  schedule:
+    - cron: "37 */6 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: collect-fortinet-community
+  cancel-in-progress: false
+
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Récupérer main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+      - name: Installer Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Tester le collecteur
+        run: python -m unittest tests.test_collect_community -v
+      - name: Collecter les sujets du forum
+        run: python scripts/collect_community.py
+      - name: Valider le JSON
+        run: python -m json.tool data/community.json > /dev/null
+      - name: Enregistrer les nouvelles données sur main
+        run: |
+          if git diff --quiet -- data/community.json; then
+            echo "Aucune modification de la veille Community."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/community.json
+          git commit -m "chore: actualiser la veille Fortinet Community"
+          git push origin HEAD:main
