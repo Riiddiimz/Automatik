@@ -116,7 +116,7 @@ def parse_topics(html, product, page_url, now=None, keywords=()):
             continue
         seen.add(url)
         title = item["title"]
-        if keywords and not any(word.lower() in title.lower() for word in keywords):
+        if "support-forum-92" in page_url and keywords and not any(word.lower() in title.lower() for word in keywords):
             continue
         # Topic-card timestamps are not consistently exposed in the new public UI;
         # do not invent a publication date when it cannot be parsed.
