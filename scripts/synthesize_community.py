@@ -27,13 +27,12 @@ ISSUE_RE = re.compile(
     r"does not work|doesn't work|crash(?:es|ed)?|hang(?:s|ing)?|drop(?:s|ped|ping)?|"
     r"disconnect(?:s|ed|ion)?|intermittent|regression|unexpected|incorrect|wrong|"
     r"no longer|after upgrade|since upgrade|change(?:d|s)? behavior|behavio[u]?r change|"
-    r"not displayed|not shown|cannot|can't|cannot save|packet loss|bypass(?:es|ed)?|"
+    r"not displayed|not shown|not included|not supported|cannot|can't|cannot save|packet loss|bypass(?:es|ed)?|"
     r"fails to|missing|stuck|timeout|timed out)\b",
     re.I,
 )
 VERSION_CONTEXT_RE = re.compile(
-    r"(?:fortios|fortigate|firmware|software|version|release|build|running|upgrade(?:d)? to|"
-    r"upgrading to|on|for|v)\s*(?:version\s*)?v?(\d{1,2}\.\d{1,2}(?:\.\d{1,3})?)",
+    r"\b(?:fortios|fortigate|firmware|software|version|release|build|running|upgrade(?:d)? to|upgrading to)\s*(?:version\s*)?v?(\d{1,2}\.\d{1,2}(?:\.\d{1,3})?)",
     re.I,
 )
 BARE_VERSION_RE = re.compile(r"\bv(\d{1,2}\.\d{1,2}(?:\.\d{1,3})?)\b", re.I)
