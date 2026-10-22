@@ -62,7 +62,7 @@ function renderCommunity() {
   });
   $("community-count").textContent = `${incidents.length} problème(s)`;
   if (!incidents.length) {
-    $("community-list").innerHTML = '<div class="empty-card">Aucun problème potentiel correspondant. La collecte quotidienne actualise les données automatiquement.</div>';
+    $("community-list").innerHTML = '<div class="empty-card">Aucun point de vigilance ne correspond aux critères retenus. Les signalements isolés non documentés sont exclus.</div>';
     return;
   }
   $("community-list").innerHTML = incidents.slice(0, 100).map(item => {
@@ -71,16 +71,17 @@ function renderCommunity() {
     const exact = (item.versions || []).map(v => escapeHTML(v)).join(", ");
     const sources = (item.sources || []).slice(0, 5).map(source => {
       const url = /^https:\/\//i.test(source.url || "") ? source.url : "https://community.fortinet.com/";
-      return `<li><a href="${escapeHTML(url)}" target="_blank" rel="noopener noreferrer">${escapeHTML(source.title || "Discussion source")} ↗</a><span>${escapeHTML(safeDate(source.date))}</span></li>`;
+      const sourceLabel = source.sourceType === "fortinet_article" ? "Article Fortinet" : source.sourceType === "forum_discussion" ? "Discussion utilisateur" : "Source";
+      return `<li><a href="${escapeHTML(url)}" target="_blank" rel="noopener noreferrer">${escapeHTML(source.title || "Source")} ↗</a><span>${escapeHTML(sourceLabel)} · ${escapeHTML(safeDate(source.date))}</span></li>`;
     }).join("");
     const extra = Math.max(0, (item.sources || []).length - 5);
     return `<article class="community-card incident-card">
-      <div class="community-card-top"><span class="community-products">${products}</span><span class="community-status-badge">À confirmer</span></div>
+      <div class="community-card-top"><span class="community-products">${products}</span><span class="community-status-badge">${escapeHTML(item.status || "Point de vigilance")}</span></div>
       <h3>${escapeHTML(item.title || "Problème potentiel Fortinet")}</h3>
       <p>${escapeHTML(item.summary || "Résumé indisponible : consulter les discussions sources.")}</p>
-      <div class="community-meta"><span>${item.sourceCount || (item.sources || []).length} discussion(s) regroupée(s)</span><span>Famille(s) : ${families || "non déterminée(s)"}</span>${exact ? `<span>Versions exactes : ${exact}</span>` : ""}<span>Dernier signal : ${escapeHTML(safeDate(item.lastSeen))}</span></div>
+      <div class="community-meta"><span>${item.forumReportCount ?? 0} signalement(s) utilisateur(s) distinct(s)</span>${item.documentedSourceCount ? `<span>${item.documentedSourceCount} source(s) Fortinet documentée(s)</span>` : ""}<span>Famille(s) : ${families || "non déterminée(s)"}</span>${exact ? `<span>Versions exactes : ${exact}</span>` : ""}<span>Dernière publication : ${escapeHTML(safeDate(item.lastSeen))}</span></div>
       <details class="incident-sources"><summary>Consulter les discussions sources (${(item.sources || []).length})</summary><ul>${sources}</ul>${extra ? `<p class="source-extra">Et ${extra} autre(s) source(s) dans ce regroupement.</p>` : ""}</details>
-      <div class="community-caution">Regroupement automatique par similarité de texte. Vérifier les versions, les symptômes et les réponses avant de conclure qu’il s’agit du même bug ou d’une solution confirmée.</div>
+      <div class="community-caution">${escapeHTML(item.confidence || "Critères de preuve appliqués.")}. Les versions, symptômes et sources restent consultables avant toute décision de mise à niveau.</div>
     </article>`;
   }).join("");
 }
@@ -94,9 +95,9 @@ async function loadCommunity() {
     const date = communityData.generatedAt ? safeDate(communityData.generatedAt) : "jamais";
     $("community-status").textContent = communityData.partial
       ? `Collecte partielle — historique conservé · dernière tentative : ${date}`
-      : `Dernière collecte : ${date} · ${communityData.incidentCount ?? communityData.incidents?.length ?? 0} problèmes potentiels regroupés depuis ${communityData.topics?.length || 0} sujets`;
+      : `Dernière collecte : ${date} · ${communityData.incidentCount ?? communityData.incidents?.length ?? 0} points de vigilance retenus depuis ${communityData.topics?.length || 0} sujets`;
     if (communityData.errors?.length) $("community-status").textContent += ` · ${communityData.errors.length} avertissement(s)`;
-    if (communityData.synthesisNote) $("community-status").textContent += " · Synthèse automatique à confirmer";
+    if (communityData.synthesisNote) $("community-status").title = communityData.synthesisNote;
     renderCommunity();
   } catch (error) {
     $("community-status").textContent = "Flux Community indisponible. L’historique affiché n’a pas pu être chargé.";
