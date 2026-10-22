@@ -134,7 +134,7 @@ def has_documented_evidence(item: dict) -> bool:
     )
     # Prefer version-scoped documentation so the result can be useful during upgrades.
     has_version = bool(extract_versions(item)[0])
-    return bool(known_issue or (behavior_change and has_version))
+    return bool(has_version and (known_issue or behavior_change))
 
 
 def similar(a: dict, b: dict) -> bool:
