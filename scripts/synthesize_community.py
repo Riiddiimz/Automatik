@@ -109,6 +109,34 @@ def title_tokens(item: dict) -> set[str]:
     return words(item.get("title", ""))
 
 
+def is_official_article(item: dict) -> bool:
+    """Fortinet Community knowledge-base article, excluding user discussion boards."""
+    match = re.search(r"https?://community\\.fortinet\\.com/([^/]+)/", item.get("url", ""), re.I)
+    if not match:
+        return False
+    return not match.group(1).lower().startswith("support-forum")
+
+
+def has_documented_evidence(item: dict) -> bool:
+    """A single source qualifies only when it documents a known issue or an explicit behavior change."""
+    if not is_official_article(item):
+        return False
+    text = item.get("title", "") + " " + item.get("summary", "")
+    known_issue = re.search(r"\\b(known issue|known bug|bug id|bug #[0-9]+|bug number)\\b", text, re.I)
+    behavior_change = re.search(
+        r"(no longer supported|not supported on|will no longer|will be removed|"
+        r"removed from|feature removal|starting from|starting with|as of fortios|"
+        r"from fortios version|beginning with|behavior change|behaviour change|"
+        r"changed behavior|changed behaviour|is now required|is mandatory|"
+        r"mandatory by default|required by default|replaces? \\w+|is disabled by default|"
+        r"will be disabled|requires? .*certificate|must be signed)",
+        text, re.I,
+    )
+    # Prefer version-scoped documentation so the result can be useful during upgrades.
+    has_version = bool(extract_versions(item)[0])
+    return bool(known_issue or (behavior_change and has_version))
+
+
 def similar(a: dict, b: dict) -> bool:
     pa, pb = set(a.get("products", [])), set(b.get("products", []))
     if pa and pb and not pa.intersection(pb):
@@ -180,7 +208,11 @@ def synthesize(data: dict, out: Path = DATA) -> dict:
             "versionFamilies": item.get("versionFamilies", []),
         } for item in cluster]
         newest = max((item.get("date") or "" for item in cluster), default="")
-        # A grouped record is a candidate incident, not a confirmed defect.
+        documented = any(has_documented_evidence(item) for item in cluster)
+        # A lone user report is never promoted to a vigilance point.
+        # It must either be corroborated by a separate topic or documented by Fortinet.
+        if len(cluster) < 2 and not documented:
+            continue
         incidents.append({
             "id": "incident-" + hashlib.sha1((" ".join(sorted(words(cluster[0].get("title", "")))) + "|" + "|".join(products)).encode("utf-8")).hexdigest()[:12],
             "title": cluster[0].get("title", "Problème potentiel Fortinet"),
@@ -191,16 +223,17 @@ def synthesize(data: dict, out: Path = DATA) -> dict:
             "sourceCount": len(sources),
             "sources": sources,
             "lastSeen": newest or None,
-            "status": "À confirmer",
-            "confidence": "À examiner",
-            "synthesisMethod": "Regroupement lexical déterministe; synthèse extraite des sources, sans IA générative.",
+            "status": "Documenté par Fortinet" if documented else "Récurrent — plusieurs signalements",
+            "confidence": "Documentation officielle" if documented else "Plusieurs discussions indépendantes",
+            "evidenceType": "official_documentation" if documented else "repeated_reports",
+            "synthesisMethod": "Vérification par règles : documentation Fortinet explicite ou plusieurs discussions regroupées; pas d'IA générative.",
         })
     incidents.sort(key=lambda x: (x["sourceCount"], x.get("lastSeen") or ""), reverse=True)
     data["topics"] = enriched
     data["incidents"] = incidents
     data["incidentCount"] = len(incidents)
     data["synthesisGeneratedAt"] = datetime.now(timezone.utc).isoformat()
-    data["synthesisNote"] = "Les incidents sont des regroupements automatiques à vérifier. Les solutions ne sont pas considérées comme confirmées sans validation explicite des sources."
+    data["synthesisNote"] = "Seuls les problèmes signalés dans plusieurs discussions indépendantes ou les bugs/changements de comportement explicitement documentés par Fortinet sont affichés. Un signalement isolé non documenté est exclu. Les versions et les sources doivent être consultées avant toute décision de mise à niveau."
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     return data
