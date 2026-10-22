@@ -63,6 +63,22 @@ class UpdatePreservationTests(unittest.TestCase):
         self.assertEqual(result["kev"][0]["cveID"], "CVE-2026-0002")
         self.assertTrue(any("FortiGuard Outbreak Alerts" in error for error in result["errors"]))
 
+    def test_cisa_feed_uses_alternate_official_rss_after_failure(self):
+        psirt = b"""<rss version="2.0"><channel><item><title>PSIRT</title><link>https://example.com/psirt</link></item></channel></rss>"""
+        outbreak = b"""<rss version="2.0"><channel><item><title>Outbreak</title><link>https://example.com/outbreak</link></item></channel></rss>"""
+        cisa = b"""<rss version="2.0"><channel><item><title>Fresh CISA feed</title><link>https://example.com/cisa</link></item></channel></rss>"""
+        kev = json.dumps({"vulnerabilities": [{"cveID": "CVE-2026-0100"}]}).encode()
+        responses = [psirt, outbreak, urllib.error.URLError("403 Forbidden"), cisa, kev]
+        with tempfile.TemporaryDirectory() as directory:
+            out_path = Path(directory) / "veille.json"
+            with patch.object(updater, "OUT", out_path), patch.object(updater, "fetch", side_effect=responses) as mock_fetch:
+                updater.main()
+            result = json.loads(out_path.read_text(encoding="utf-8"))
+        self.assertIn("Fresh CISA feed", [item["title"] for item in result["cyber"]])
+        self.assertFalse(any("CISA Cybersecurity Advisories" in error for error in result["errors"]))
+        self.assertEqual(mock_fetch.call_args_list[2].args[0], "https://www.cisa.gov/cybersecurity-advisories/all.xml")
+        self.assertEqual(mock_fetch.call_args_list[3].args[0], "https://www.cisa.gov/cybersecurity-advisories/cybersecurity-advisories.xml")
+
     def test_failed_kev_keeps_previous_catalogue(self):
         old = {
             "fortinet": [{"source": "FortiGuard PSIRT", "title": "Existing", "url": "https://example.com"}],
