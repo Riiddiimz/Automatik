@@ -1,0 +1,195 @@
+#!/usr/bin/env python3
+"""Construit des fiches de veille regroupées à partir des sujets Fortinet collectés.
+
+Sans service IA externe : regroupement déterministe et synthèse structurée depuis les sources.
+Les fiches restent des signaux à vérifier, pas des bugs officiellement confirmés.
+"""
+from __future__ import annotations
+
+import json
+import re
+import unicodedata
+from collections import Counter
+from datetime import datetime, timezone
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[1]
+DATA = ROOT / "data" / "community.json"
+STOP = {
+    "the", "and", "for", "with", "from", "when", "after", "before", "into", "using",
+    "this", "that", "have", "has", "are", "was", "were", "not", "unable", "issue",
+    "problem", "troubleshooting", "tip", "technical", "fortinet", "fortigate", "fortios",
+    "forticlient", "fortimanager", "fortianalyzer", "fortiauthenticator", "version",
+    "versions", "user", "users", "device", "devices", "solution", "how", "to",
+}
+ISSUE_RE = re.compile(
+    r"\\b(bug|broken|fail(?:s|ed|ure)?|error|unable|not working|stops? working|"
+    r"does not work|doesn't work|crash(?:es|ed)?|hang(?:s|ing)?|drop(?:s|ped|ping)?|"
+    r"disconnect(?:s|ed|ion)?|intermittent|regression|unexpected|incorrect|wrong|"
+    r"no longer|after upgrade|since upgrade|change(?:d|s)? behavior|behavio[u]?r change|"
+    r"not displayed|not shown|cannot|can't|cannot save|packet loss|bypass(?:es|ed)?|"
+    r"fails to|missing|stuck|timeout|timed out)\\b",
+    re.I,
+)
+VERSION_CONTEXT_RE = re.compile(
+    r"(?:fortios|fortigate|firmware|software|version|release|build|running|upgrade(?:d)? to|"
+    r"upgrading to|on|for|v)\\s*(?:version\\s*)?v?(\\d{1,2}\\.\\d{1,2}(?:\\.\\d{1,3})?)",
+    re.I,
+)
+BARE_VERSION_RE = re.compile(r"\\bv(\\d{1,2}\\.\\d{1,2}(?:\\.\\d{1,3})?)\\b", re.I)
+PRODUCT_PATTERNS = {
+    "FortiGate": r"\\bfortigate\\b|\\bfortios\\b",
+    "FortiManager": r"\\bfortimanager\\b",
+    "FortiAnalyzer": r"\\bfortianalyzer\\b",
+    "FortiAuthenticator": r"\\bfortiauthenticator\\b",
+    "FortiClient EMS": r"\\bforticlient\\s*ems\\b|\\bfcems\\b",
+    "FortiClient": r"\\bforticlient\\b",
+    "FortiSwitch": r"\\bfortiswitch\\b",
+    "FortiAP": r"\\bfortiap\\b",
+}
+
+
+def norm(text: str) -> str:
+    text = unicodedata.normalize("NFKD", text.lower()).encode("ascii", "ignore").decode()
+    text = re.sub(r"[^a-z0-9]+", " ", text)
+    return re.sub(r"\\s+", " ", text).strip()
+
+
+def words(text: str) -> set[str]:
+    return {w for w in norm(text).split() if len(w) > 2 and w not in STOP and not w.isdigit()}
+
+
+def extract_products(item: dict) -> list[str]:
+    text = " ".join([item.get("title", ""), item.get("summary", ""), item.get("url", "")])
+    found = [name for name, pattern in PRODUCT_PATTERNS.items() if re.search(pattern, text, re.I)]
+    # EMS is more specific than the generic FortiClient label.
+    if "FortiClient EMS" in found:
+        found = [p for p in found if p != "FortiClient"]
+    return found or item.get("products", [])
+
+
+def extract_versions(item: dict) -> tuple[list[str], list[str]]:
+    text = " ".join([item.get("title", ""), item.get("summary", "")])
+    found = set(VERSION_CONTEXT_RE.findall(text))
+    found.update(BARE_VERSION_RE.findall(text))
+    exact = sorted(found, key=lambda v: tuple(int(x) for x in v.split(".")))
+    families = sorted({ ".".join(v.split(".")[:2]) for v in exact }, key=lambda v: tuple(int(x) for x in v.split(".")))
+    return exact, families
+
+
+def looks_like_problem(item: dict) -> bool:
+    title = item.get("title", "")
+    summary = item.get("summary", "")
+    # Official how-to/technical tips are not incidents unless they explicitly describe a failure/bug.
+    return bool(ISSUE_RE.search(title) or ISSUE_RE.search(summary[:1800]))
+
+
+def title_tokens(item: dict) -> set[str]:
+    return words(item.get("title", ""))
+
+
+def similar(a: dict, b: dict) -> bool:
+    pa, pb = set(a.get("products", [])), set(b.get("products", []))
+    if pa and pb and not pa.intersection(pb):
+        return False
+    va, vb = set(a.get("versionFamilies", [])), set(b.get("versionFamilies", []))
+    if va and vb and not va.intersection(vb):
+        return False
+    wa, wb = title_tokens(a), title_tokens(b)
+    if not wa or not wb:
+        return False
+    overlap = len(wa & wb) / min(len(wa), len(wb))
+    jaccard = len(wa & wb) / len(wa | wb)
+    return overlap >= 0.72 or jaccard >= 0.48
+
+
+def build_summary(items: list[dict]) -> str:
+    # Use the clearest source description; do not invent a root cause or fix.
+    best = max(items, key=lambda x: min(len(x.get("summary", "")), 1600))
+    text = re.sub(r"\\s+", " ", best.get("summary", "")).strip()
+    if not text:
+        return "Plusieurs discussions semblent décrire un problème proche. Ouvrir les sources pour confirmer les symptômes et le périmètre."
+    # Prefer a compact lead, stopping at the first clear sentence after a minimum useful length.
+    sentences = re.split(r"(?<=[.!?])\\s+(?=[A-Z])", text)
+    selected = []
+    for sentence in sentences:
+        sentence = sentence.strip()
+        if sentence and len(" ".join(selected)) < 420:
+            selected.append(sentence)
+        if len(" ".join(selected)) >= 420:
+            break
+    result = " ".join(selected) or text[:500]
+    if len(result) > 560:
+        result = result[:557].rsplit(" ", 1)[0] + "…"
+    return result
+
+
+def synthesize(data: dict) -> dict:
+    topics = data.get("topics", [])
+    enriched = []
+    for raw in topics:
+        item = dict(raw)
+        item["products"] = extract_products(item)
+        item["versions"], item["versionFamilies"] = extract_versions(item)
+        item["potentialProblem"] = looks_like_problem(item)
+        enriched.append(item)
+
+    candidates = [item for item in enriched if item["potentialProblem"]]
+    candidates.sort(key=lambda x: x.get("date") or "", reverse=True)
+    clusters: list[list[dict]] = []
+    for item in candidates:
+        match = next((cluster for cluster in clusters if any(similar(item, member) for member in cluster)), None)
+        if match is None:
+            clusters.append([item])
+        else:
+            match.append(item)
+
+    incidents = []
+    for cluster in clusters:
+        products = sorted({p for item in cluster for p in item.get("products", [])})
+        exact_versions = sorted({v for item in cluster for v in item.get("versions", [])}, key=lambda v: tuple(int(x) for x in v.split(".")))
+        families = sorted({v for item in cluster for v in item.get("versionFamilies", [])}, key=lambda v: tuple(int(x) for x in v.split(".")))
+        sources = [{
+            "title": item.get("title", "Sujet sans titre"),
+            "url": item.get("url", ""),
+            "date": item.get("date"),
+            "summary": item.get("summary", "")[:1000],
+            "products": item.get("products", []),
+            "versions": item.get("versions", []),
+            "versionFamilies": item.get("versionFamilies", []),
+        } for item in cluster]
+        newest = max((item.get("date") or "" for item in cluster), default="")
+        # A grouped record is a candidate incident, not a confirmed defect.
+        incidents.append({
+            "id": "incident-" + str(abs(hash(" ".join(sorted(words(cluster[0].get("title", ""))))))),
+            "title": cluster[0].get("title", "Problème potentiel Fortinet"),
+            "summary": build_summary(cluster),
+            "products": products,
+            "versions": exact_versions,
+            "versionFamilies": families,
+            "sourceCount": len(sources),
+            "sources": sources,
+            "lastSeen": newest or None,
+            "status": "À confirmer",
+            "confidence": "À examiner",
+            "synthesisMethod": "Regroupement lexical déterministe; synthèse extraite des sources, sans IA générative.",
+        })
+    incidents.sort(key=lambda x: (x["sourceCount"], x.get("lastSeen") or ""), reverse=True)
+    data["topics"] = enriched
+    data["incidents"] = incidents
+    data["incidentCount"] = len(incidents)
+    data["synthesisGeneratedAt"] = datetime.now(timezone.utc).isoformat()
+    data["synthesisNote"] = "Les incidents sont des regroupements automatiques à vérifier. Les solutions ne sont pas considérées comme confirmées sans validation explicite des sources."
+    DATA.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\\n", encoding="utf-8")
+    return data
+
+
+def main() -> int:
+    data = json.loads(DATA.read_text(encoding="utf-8"))
+    result = synthesize(data)
+    print(f"Synthèse terminée : {len(result.get('incidents', []))} groupes potentiels depuis {len(result.get('topics', []))} sujets.")
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())
