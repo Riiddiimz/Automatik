@@ -35,6 +35,21 @@ class CommunitySynthesisTests(unittest.TestCase):
         self.assertEqual(result["incidents"][0]["sourceCount"], 2)
         self.assertEqual(result["incidents"][0]["versionFamilies"], ["7.6"])
 
+    def test_radius_wording_variants_are_grouped(self):
+        a = {"title": "FortiGate RADIUS authentication fails after upgrade", "products": ["FortiGate"], "versionFamilies": ["7.4"]}
+        b = {"title": "FortiGate RADIUS server not responding after firmware update", "products": ["FortiGate"], "versionFamilies": ["7.4"]}
+        self.assertTrue(synth.looks_like_problem(a))
+        self.assertTrue(synth.looks_like_problem(b))
+        self.assertTrue(synth.similar(a, b))
+
+    def test_saml_and_ssl_vpn_aliases_are_normalized(self):
+        saml_a = {"title": "SAML SSO login fails", "products": ["FortiGate"], "versionFamilies": ["7.6"]}
+        saml_b = {"title": "SAML single sign on failure", "products": ["FortiGate"], "versionFamilies": ["7.6"]}
+        vpn_a = {"title": "SSL VPN disconnects after upgrade", "products": ["FortiGate"], "versionFamilies": ["7.4"]}
+        vpn_b = {"title": "SSlVPN disconnects after firmware update", "products": ["FortiGate"], "versionFamilies": ["7.4"]}
+        self.assertTrue(synth.similar(saml_a, saml_b))
+        self.assertTrue(synth.similar(vpn_a, vpn_b))
+
     def test_unrelated_products_are_not_merged(self):
         a = {"title": "FortiGate VPN disconnects", "summary": "VPN disconnects after upgrade", "products": ["FortiGate"], "versionFamilies": ["7.4"]}
         b = {"title": "FortiManager VPN disconnects", "summary": "VPN disconnects after upgrade", "products": ["FortiManager"], "versionFamilies": ["7.4"]}
