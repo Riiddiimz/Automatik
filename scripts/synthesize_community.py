@@ -134,7 +134,7 @@ def title_tokens(item: dict) -> set[str]:
         (r"\b(?:single sign on|single sign-on|sso)\b", "sso"),
         (r"\b(?:ssl vpn|sslvpn)\b", "sslvpn"),
         (r"\b(?:password policy|password complexity policy|password requirements)\b", "passwordpolicy"),
-        (r"\b(?:radius authentication|authentication via radius|authentication using radius)\b", "radiusauth"),
+        (r"\b(?:radius authentication|authentication via radius|authentication using radius)\b", "radius"),
         (r"\b(?:saml authentication|saml single sign on|saml sso)\b", "saml"),
     )
     for pattern, replacement in replacements:
