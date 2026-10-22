@@ -111,7 +111,7 @@ def title_tokens(item: dict) -> set[str]:
 
 def is_official_article(item: dict) -> bool:
     """Fortinet Community knowledge-base article, excluding user discussion boards."""
-    match = re.search(r"https?://community\\.fortinet\\.com/([^/]+)/", item.get("url", ""), re.I)
+    match = re.search(r"https?://community\.fortinet\\.com/([^/]+)/", item.get("url", ""), re.I)
     if not match:
         return False
     return not match.group(1).lower().startswith("support-forum")
@@ -122,13 +122,13 @@ def has_documented_evidence(item: dict) -> bool:
     if not is_official_article(item):
         return False
     text = item.get("title", "") + " " + item.get("summary", "")
-    known_issue = re.search(r"\\b(known issue|known bug|bug id|bug #[0-9]+|bug number)\\b", text, re.I)
+    known_issue = re.search(r"\b(known issue|known bug|bug id|bug #[0-9]+|bug number)\b", text, re.I)
     behavior_change = re.search(
         r"(no longer supported|not supported on|will no longer|will be removed|"
         r"removed from|feature removal|starting from|starting with|as of fortios|"
         r"from fortios version|beginning with|behavior change|behaviour change|"
         r"changed behavior|changed behaviour|is now required|is mandatory|"
-        r"mandatory by default|required by default|replaces? \\w+|is disabled by default|"
+        r"mandatory by default|required by default|replaces? \w+|is disabled by default|"
         r"will be disabled|requires? .*certificate|must be signed)",
         text, re.I,
     )
