@@ -6,10 +6,10 @@ Les fiches restent des signaux à vérifier, pas des bugs officiellement confirm
 """
 from __future__ import annotations
 
+import hashlib
 import json
 import re
 import unicodedata
-from collections import Counter
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -23,36 +23,36 @@ STOP = {
     "versions", "user", "users", "device", "devices", "solution", "how", "to",
 }
 ISSUE_RE = re.compile(
-    r"\\b(bug|broken|fail(?:s|ed|ure)?|error|unable|not working|stops? working|"
+    r"\b(bug|broken|fail(?:s|ed|ure)?|error|unable|not working|stops? working|"
     r"does not work|doesn't work|crash(?:es|ed)?|hang(?:s|ing)?|drop(?:s|ped|ping)?|"
     r"disconnect(?:s|ed|ion)?|intermittent|regression|unexpected|incorrect|wrong|"
     r"no longer|after upgrade|since upgrade|change(?:d|s)? behavior|behavio[u]?r change|"
     r"not displayed|not shown|cannot|can't|cannot save|packet loss|bypass(?:es|ed)?|"
-    r"fails to|missing|stuck|timeout|timed out)\\b",
+    r"fails to|missing|stuck|timeout|timed out)\b",
     re.I,
 )
 VERSION_CONTEXT_RE = re.compile(
     r"(?:fortios|fortigate|firmware|software|version|release|build|running|upgrade(?:d)? to|"
-    r"upgrading to|on|for|v)\\s*(?:version\\s*)?v?(\\d{1,2}\\.\\d{1,2}(?:\\.\\d{1,3})?)",
+    r"upgrading to|on|for|v)\s*(?:version\s*)?v?(\d{1,2}\.\d{1,2}(?:\.\d{1,3})?)",
     re.I,
 )
-BARE_VERSION_RE = re.compile(r"\\bv(\\d{1,2}\\.\\d{1,2}(?:\\.\\d{1,3})?)\\b", re.I)
+BARE_VERSION_RE = re.compile(r"\bv(\d{1,2}\.\d{1,2}(?:\.\d{1,3})?)\b", re.I)
 PRODUCT_PATTERNS = {
-    "FortiGate": r"\\bfortigate\\b|\\bfortios\\b",
-    "FortiManager": r"\\bfortimanager\\b",
-    "FortiAnalyzer": r"\\bfortianalyzer\\b",
-    "FortiAuthenticator": r"\\bfortiauthenticator\\b",
-    "FortiClient EMS": r"\\bforticlient\\s*ems\\b|\\bfcems\\b",
-    "FortiClient": r"\\bforticlient\\b",
-    "FortiSwitch": r"\\bfortiswitch\\b",
-    "FortiAP": r"\\bfortiap\\b",
+    "FortiGate": r"\bfortigate\b|\bfortios\b",
+    "FortiManager": r"\bfortimanager\b",
+    "FortiAnalyzer": r"\bfortianalyzer\b",
+    "FortiAuthenticator": r"\bfortiauthenticator\b",
+    "FortiClient EMS": r"\bforticlient\s*ems\b|\bfcems\b",
+    "FortiClient": r"\bforticlient\b",
+    "FortiSwitch": r"\bfortiswitch\b",
+    "FortiAP": r"\bfortiap\b",
 }
 
 
 def norm(text: str) -> str:
     text = unicodedata.normalize("NFKD", text.lower()).encode("ascii", "ignore").decode()
     text = re.sub(r"[^a-z0-9]+", " ", text)
-    return re.sub(r"\\s+", " ", text).strip()
+    return re.sub(r"\s+", " ", text).strip()
 
 
 def words(text: str) -> set[str]:
@@ -106,11 +106,11 @@ def similar(a: dict, b: dict) -> bool:
 def build_summary(items: list[dict]) -> str:
     # Use the clearest source description; do not invent a root cause or fix.
     best = max(items, key=lambda x: min(len(x.get("summary", "")), 1600))
-    text = re.sub(r"\\s+", " ", best.get("summary", "")).strip()
+    text = re.sub(r"\s+", " ", best.get("summary", "")).strip()
     if not text:
         return "Plusieurs discussions semblent décrire un problème proche. Ouvrir les sources pour confirmer les symptômes et le périmètre."
     # Prefer a compact lead, stopping at the first clear sentence after a minimum useful length.
-    sentences = re.split(r"(?<=[.!?])\\s+(?=[A-Z])", text)
+    sentences = re.split(r"(?<=[.!?])\s+(?=[A-Z])", text)
     selected = []
     for sentence in sentences:
         sentence = sentence.strip()
@@ -161,7 +161,7 @@ def synthesize(data: dict) -> dict:
         newest = max((item.get("date") or "" for item in cluster), default="")
         # A grouped record is a candidate incident, not a confirmed defect.
         incidents.append({
-            "id": "incident-" + str(abs(hash(" ".join(sorted(words(cluster[0].get("title", ""))))))),
+            "id": "incident-" + hashlib.sha1((" ".join(sorted(words(cluster[0].get("title", "")))) + "|" + "|".join(products)).encode("utf-8")).hexdigest()[:12],
             "title": cluster[0].get("title", "Problème potentiel Fortinet"),
             "summary": build_summary(cluster),
             "products": products,
@@ -180,7 +180,7 @@ def synthesize(data: dict) -> dict:
     data["incidentCount"] = len(incidents)
     data["synthesisGeneratedAt"] = datetime.now(timezone.utc).isoformat()
     data["synthesisNote"] = "Les incidents sont des regroupements automatiques à vérifier. Les solutions ne sont pas considérées comme confirmées sans validation explicite des sources."
-    DATA.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\\n", encoding="utf-8")
+    DATA.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     return data
 
 
