@@ -60,7 +60,7 @@ class CommunitySynthesisTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as directory:
             result = synth.synthesize(data, Path(directory) / "community.json")
         self.assertEqual(result["incidentCount"], 1)
-        self.assertEqual(result["incidents"][0]["status"], "Bug/changement documenté par Fortinet")
+        self.assertEqual(result["incidents"][0]["status"], "Documenté par Fortinet (version identifiée)")
         self.assertEqual(result["incidents"][0]["versionFamilies"], ["7.4"])
 
 
