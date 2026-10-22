@@ -25,6 +25,8 @@ jobs:
           python-version: "3.12"
       - name: Récupérer les flux officiels
         run: python scripts/update_veille.py
+      - name: Collecter les sujets publics de la communauté Fortinet
+        run: python scripts/fortinet_community.py
       - name: Vérifier le JSON généré
         run: python -m json.tool data/veille.json > /dev/null
       - name: Enregistrer les nouvelles données
