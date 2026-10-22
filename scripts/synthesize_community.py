@@ -35,7 +35,7 @@ VERSION_CONTEXT_RE = re.compile(
     r"\b(?:fortios|fortigate|firmware|software|version|release|build|running|upgrade(?:d)? to|upgrading to)\s*(?:version\s*)?v?(\d{1,2}\.\d{1,2}(?:\.\d{1,3})?)",
     re.I,
 )
-BARE_VERSION_RE = re.compile(r"(?<![\d.])(\d{1,2}\.\d{1,2}(?:\.\d{1,3})?)(?![\d.])")
+BARE_VERSION_RE = re.compile(r"(?<![\d.])(\d{1,2}\.\d{1,2}(?:\.\d{1,3})?)(?!\d)")
 PRODUCT_PATTERNS = {
     "FortiGate": r"\bfortigate\b|\bfortios\b",
     "FortiManager": r"\bfortimanager\b",
