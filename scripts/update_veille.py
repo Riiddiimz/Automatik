@@ -16,8 +16,9 @@ FEEDS = [
     ("fortinet", "FortiGuard PSIRT", "https://fortiguard.fortinet.com/rss/ir.xml"),
     ("cyber", "FortiGuard Outbreak Alerts", "https://filestore.fortinet.com/fortiguard/rss/outbreakalert.xml"),
     ("cyber", "CISA Cybersecurity Advisories", (
-        "https://www.cisa.gov/cybersecurity-advisories/all.xml",
-        "https://www.cisa.gov/cybersecurity-advisories/cybersecurity-advisories.xml",
+        ("https://www.cisa.gov/cybersecurity-advisories/all.xml", "CISA Cybersecurity Advisories"),
+        ("https://www.cisa.gov/cybersecurity-advisories/cybersecurity-advisories.xml", "CISA Cybersecurity Advisories"),
+        ("https://www.cert.ssi.gouv.fr/feed/", "CERT-FR"),
     )),
 ]
 KEV_URL = "https://www.cisa.gov/sites/default/files/feeds/known_exploited_vulnerabilities.json"
@@ -100,9 +101,13 @@ def main():
         urls = configured_urls if isinstance(configured_urls, (tuple, list)) else (configured_urls,)
         last_error = None
         items = []
-        for url in urls:
+        for configured_url in urls:
+            if isinstance(configured_url, (tuple, list)) and len(configured_url) == 2:
+                url, feed_source = configured_url
+            else:
+                url, feed_source = configured_url, source
             try:
-                items = parse_rss(fetch(url), source, "PSIRT" if section == "fortinet" else source, limit=20)
+                items = parse_rss(fetch(url), feed_source, "PSIRT" if section == "fortinet" else feed_source, limit=20)
                 if not items:
                     raise ValueError("flux accessible mais aucun élément RSS reconnu")
                 break
