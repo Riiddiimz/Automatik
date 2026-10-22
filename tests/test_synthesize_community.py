@@ -25,7 +25,8 @@ class CommunitySynthesisTests(unittest.TestCase):
             {"title": "FortiGate DNS over TLS broken in Proxy Mode", "summary": "FortiOS 7.6.4 DNS over TLS fails.", "url": "https://community.fortinet.com/a", "products": ["FortiGate"], "date": "2026-10-22"},
             {"title": "DNS over TLS fails in proxy mode on FortiGate", "summary": "FortiOS version 7.6.4 has broken DNS over TLS.", "url": "https://community.fortinet.com/b", "products": ["FortiGate"], "date": "2026-10-21"},
         ]}
-        result = synth.synthesize(data)
+        with tempfile.TemporaryDirectory() as directory:
+            result = synth.synthesize(data, Path(directory) / "community.json")
         self.assertEqual(result["incidentCount"], 1)
         self.assertEqual(result["incidents"][0]["sourceCount"], 2)
         self.assertEqual(result["incidents"][0]["versionFamilies"], ["7.6"])
