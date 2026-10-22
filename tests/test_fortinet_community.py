@@ -34,7 +34,7 @@ class CommunityParserTests(unittest.TestCase):
 
     def test_successful_fetches_are_deduplicated(self):
         html = '<a href="/support-forum-92/fortios-7-4-11-issue-230259">FortiOS 7.4.11 issue after upgrade</a>'
-        items, errors, successes = collector.collect([], fetcher=lambda _url: html)
+        items, errors, successes = collector.collect([], fetcher=lambda url: (html if "support-forum-92" not in url else html.replace("FortiOS 7.4.11 issue after upgrade", "FortiClient EMS 7.4.7 issue after upgrade")) )
         self.assertEqual(len(items), 1)
         self.assertEqual(len(successes), 6)
         self.assertEqual(errors, [])
