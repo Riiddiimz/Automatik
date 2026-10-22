@@ -109,19 +109,22 @@ def title_tokens(item: dict) -> set[str]:
     return words(item.get("title", ""))
 
 
-def is_official_article(item: dict) -> bool:
-    """Fortinet Community knowledge-base article, excluding user discussion boards."""
+def source_type(item: dict) -> str:
+    """Distinguish user reports from Fortinet-authored Community knowledge articles."""
     match = re.search(r"https?://community\.fortinet\.com/([^/]+)/", item.get("url", ""), re.I)
-    if not match:
-        return False
-    return not match.group(1).lower().startswith("support-forum")
+    if match and match.group(1).lower().startswith("support-forum"):
+        return "forum_discussion"
+    if match:
+        return "fortinet_article"
+    return "unknown"
 
 
 def has_documented_evidence(item: dict) -> bool:
-    """A single source qualifies only when it documents a known issue or an explicit behavior change."""
-    if not is_official_article(item):
+    """Require a version-scoped, explicit issue/change in a Fortinet-authored article."""
+    if source_type(item) != "fortinet_article":
         return False
-    text = item.get("title", "") + " " + item.get("summary", "")
+    title = item.get("title", "")
+    text = title + " " + item.get("summary", "")
     known_issue = re.search(r"\b(known issue|known bug|bug id|bug #[0-9]+|bug number)\b", text, re.I)
     behavior_change = re.search(
         r"(no longer supported|not supported on|will no longer|will be removed|"
@@ -132,9 +135,22 @@ def has_documented_evidence(item: dict) -> bool:
         r"will be disabled|requires? .*certificate|must be signed)",
         text, re.I,
     )
-    # Prefer version-scoped documentation so the result can be useful during upgrades.
+    troubleshooting = bool(
+        re.search(r"\btroubleshooting tip\b", title, re.I)
+        and ISSUE_RE.search(title)
+        and re.search(r"\bsolution\b", item.get("summary", ""), re.I)
+    )
     has_version = bool(extract_versions(item)[0])
-    return bool(has_version and (known_issue or behavior_change))
+    return bool(has_version and (known_issue or behavior_change or troubleshooting))
+
+
+def forum_report_count(items: list[dict]) -> int:
+    """Count distinct user-discussion URLs, not editor-authored articles."""
+    return len({
+        item.get("url", "").rstrip("/")
+        for item in items
+        if source_type(item) == "forum_discussion" and item.get("url")
+    })
 
 
 def similar(a: dict, b: dict) -> bool:
@@ -206,13 +222,15 @@ def synthesize(data: dict, out: Path = DATA) -> dict:
             "products": item.get("products", []),
             "versions": item.get("versions", []),
             "versionFamilies": item.get("versionFamilies", []),
+            "sourceType": source_type(item),
         } for item in cluster]
         newest = max((item.get("date") or "" for item in cluster), default="")
-        documented = any(has_documented_evidence(item) for item in cluster)
-        # A lone user report is never promoted to a vigilance point.
-        # It must either be corroborated by a separate topic or documented by Fortinet.
-        if len(cluster) < 2 and not documented:
+        documented_sources = [item for item in cluster if has_documented_evidence(item)]
+        reports = forum_report_count(cluster)
+        # Forum-only incidents require at least two distinct user discussions.
+        if reports < 2 and not documented_sources:
             continue
+        documented = bool(documented_sources)
         incidents.append({
             "id": "incident-" + hashlib.sha1((" ".join(sorted(words(cluster[0].get("title", "")))) + "|" + "|".join(products)).encode("utf-8")).hexdigest()[:12],
             "title": cluster[0].get("title", "Problème potentiel Fortinet"),
@@ -221,19 +239,25 @@ def synthesize(data: dict, out: Path = DATA) -> dict:
             "versions": exact_versions,
             "versionFamilies": families,
             "sourceCount": len(sources),
+            "forumReportCount": reports,
+            "documentedSourceCount": len(documented_sources),
             "sources": sources,
             "lastSeen": newest or None,
-            "status": "Documenté par Fortinet" if documented else "Récurrent — plusieurs signalements",
-            "confidence": "Documentation officielle" if documented else "Plusieurs discussions indépendantes",
+            "status": (
+                "Bug/changement documenté par Fortinet" if documented and reports < 2
+                else "Documenté par Fortinet et signalé par plusieurs personnes" if documented
+                else f"Récurrent — {reports} discussions distinctes"
+            ),
+            "confidence": "Documentation Fortinet versionnée" if documented else "Plusieurs discussions distinctes",
             "evidenceType": "official_documentation" if documented else "repeated_reports",
-            "synthesisMethod": "Vérification par règles : documentation Fortinet explicite ou plusieurs discussions regroupées; pas d'IA générative.",
+            "synthesisMethod": "Règles de preuve : article Fortinet versionné et explicite, ou au moins deux discussions distinctes; pas d'IA générative.",
         })
     incidents.sort(key=lambda x: (x["sourceCount"], x.get("lastSeen") or ""), reverse=True)
     data["topics"] = enriched
     data["incidents"] = incidents
     data["incidentCount"] = len(incidents)
     data["synthesisGeneratedAt"] = datetime.now(timezone.utc).isoformat()
-    data["synthesisNote"] = "Seuls les problèmes signalés dans plusieurs discussions indépendantes ou les bugs/changements de comportement explicitement documentés par Fortinet sont affichés. Un signalement isolé non documenté est exclu. Les versions et les sources doivent être consultées avant toute décision de mise à niveau."
+    data["synthesisNote"] = "Un point n'est affiché que s'il est documenté par un article Fortinet versionné et explicite, ou décrit dans au moins deux discussions distinctes d'utilisateurs. Les articles officiels ne comptent pas comme des personnes supplémentaires. Les signalements isolés non documentés sont exclus."
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     return data
