@@ -18,3 +18,14 @@
 .community-meta{display:flex;flex-wrap:wrap;gap:12px;color:#8292a6;font:9px 'DM Mono',monospace}
 .community-caution{margin-top:11px;padding-top:9px;border-top:1px solid #263241;color:#d0aa81;font-size:10px;line-height:1.5}
 @media(max-width:760px){.community-filters label{width:auto}.community-filters input,.community-filters select{flex:1;min-width:130px;max-width:none}.community-card{padding:14px}}
+
+/* Fiches de problèmes regroupés */
+.incident-card h3{font-size:15px;line-height:1.45;margin:0 0 9px}
+.incident-sources{margin-top:13px;border-top:1px solid #263241;padding-top:10px}
+.incident-sources summary{cursor:pointer;color:#ffad79;font-size:11px;font-weight:700}
+.incident-sources ul{list-style:none;margin:10px 0 0;padding:0;display:grid;gap:8px}
+.incident-sources li{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;font-size:11px}
+.incident-sources li a{color:#dbe6f0}
+.incident-sources li a:hover{color:#ffad79}
+.incident-sources li span,.source-extra{color:#8292a6;font:9px 'DM Mono',monospace;white-space:nowrap}
+.source-extra{margin:9px 0 0}
