@@ -1,9 +1,9 @@
 {
-  "generatedAt": "2026-10-22T08:39:26.783874+00:00",
+  "generatedAt": "2026-10-22T09:24:01.029989+00:00",
   "feedUrl": "https://community.fortinet.com/feed/topics",
   "partial": false,
   "errors": [],
-  "topicCount": 66,
+  "topicCount": 72,
   "topics": [
     {
       "id": "https://community.fortinet.com/fortigate-3/technical-tip-how-to-configure-network-id-for-distinguishing-ikev2-ipsec-vpn-tunnels-using-forticlient-xml-file-223272",
@@ -20,7 +20,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-22T08:39:26.783874+00:00",
+      "lastSeen": "2026-10-22T09:24:01.029989+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -41,7 +41,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-22T08:39:26.783874+00:00",
+      "lastSeen": "2026-10-22T09:24:01.029989+00:00",
       "versionFamilies": [
         "7.6",
         "8.0"
@@ -66,7 +66,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-22T08:39:26.783874+00:00",
+      "lastSeen": "2026-10-22T09:24:01.029989+00:00",
       "versionFamilies": [
         "7.4",
         "7.6",
@@ -91,7 +91,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-22T08:39:26.783874+00:00",
+      "lastSeen": "2026-10-22T09:24:01.029989+00:00",
       "versionFamilies": [
         "7.4",
         "7.6"
@@ -115,7 +115,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-22T08:39:26.783874+00:00",
+      "lastSeen": "2026-10-22T09:24:01.029989+00:00",
       "versionFamilies": [
         "7.4"
       ],
@@ -131,13 +131,21 @@
         "FortiGate",
         "FortiManager"
       ],
-      "versions": [],
+      "versions": [
+        "7.2",
+        "7.4",
+        "7.6"
+      ],
       "status": "À vérifier",
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-22T08:39:26.783874+00:00",
-      "versionFamilies": [],
+      "lastSeen": "2026-10-22T09:24:01.029989+00:00",
+      "versionFamilies": [
+        "7.2",
+        "7.4",
+        "7.6"
+      ],
       "potentialProblem": true
     },
     {
@@ -154,7 +162,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-22T08:39:26.783874+00:00",
+      "lastSeen": "2026-10-22T09:24:01.029989+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -168,6 +176,7 @@
         "FortiGate"
       ],
       "versions": [
+        "1.1.1",
         "7.4.11"
       ],
       "status": "À vérifier",
@@ -176,8 +185,51 @@
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
       "lastSeen": "2026-10-22T08:39:26.783874+00:00",
       "versionFamilies": [
+        "1.1",
         "7.4"
       ],
+      "potentialProblem": true
+    },
+    {
+      "id": "https://community.fortinet.com/fortigate-3/ssl-vpn-stops-working-for-remote-and-local-users-due-to-fnbamd-process-230744",
+      "title": "SSL VPN stops working for remote and local users due to fnbamd process",
+      "url": "https://community.fortinet.com/fortigate-3/ssl-vpn-stops-working-for-remote-and-local-users-due-to-fnbamd-process-230744",
+      "date": "2026-10-22T06:21:57+00:00",
+      "summary": "DescriptionFortiGate may stop accepting new SSL VPN connections due to the FNBAMD process.ScopeFortiGate version 7.4.11 and previous versions.SolutionUsers configure a standard SSL VPN connection for local and remote users.Check the crash log and validate that there are multiple fnbamd crashesdiagnose debug crashlog read | grep 2026 111: 2026-03-14 15:48:14 firmware FortiGate-100 v7.4.11,build2878b2878,260126 (GA.M) (Release) 112: 2026-03-14 15:48:14 application fnbamdTake some debugs of the VPN and validate the fnbamd process that remains stuck.diagnose debug disable diagnose debug reset diagnose vpn ssl debug-filter src-addr4 x.x.x.x → replace x.x.x.x with the public IP of the user diagnose debug application sslvpn -1 diagnose debug application fnbamd -1 diagnose debug enable FGT_Test# #15553:root:2]allocSSLConn:303 sconn 0x7f9c2a558000 (0:root) >15553:root:2]SSL state:before SSL initialization (1.1.1.1) >15556:root:2]rmt_web_auth_info_parser_common:534 no session id in auth info >15556:root:2]rmt_web_access_check:805 access failed, uri=[/remote/logincheck],ret=5003, >15556:root:2]fsv_logincheck_common_handler:1489 user 'TEST_USER' has a matched local entry. >15556:root:2]sslvpn_",
+      "products": [
+        "FortiGate"
+      ],
+      "versions": [
+        "1.1.1",
+        "7.4.11"
+      ],
+      "status": "À vérifier",
+      "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
+      "source": "Fortinet Community",
+      "firstSeen": "2026-10-22T09:24:01.029989+00:00",
+      "lastSeen": "2026-10-22T09:24:01.029989+00:00",
+      "versionFamilies": [
+        "1.1",
+        "7.4"
+      ],
+      "potentialProblem": true
+    },
+    {
+      "id": "https://community.fortinet.com/fortianalyzer-6/rma-information-hardware-failure-and-replacement-with-a-spare-unit-on-site-support-procedure-94937",
+      "title": "RMA Information: Hardware failure and replacement with a spare unit on-site (support procedure)",
+      "url": "https://community.fortinet.com/fortianalyzer-6/rma-information-hardware-failure-and-replacement-with-a-spare-unit-on-site-support-procedure-94937",
+      "date": "2026-10-22T03:54:20+00:00",
+      "summary": "Description This KB article describes, how to manage an RMA request (a hardware replacement request within the technical support contract) with the Fortinet Customer Service and Support (Fortinet CSS), when another (possibly temporary) spare unit is already available on-site. In case of a hardware failure on a Fortinet product and a need for replacement, when a spare unit is already available on-site (for example: a \"cold spare\" unit, or a temporarily loaned unit from a Fortinet reseller or distributor), for a smooth RMA exchange of the defective unit by the Fortinet CSS, Fortinet recommends to proceed as follows: 1. With the Fortinet CSS, create an RMA ticket first, using the serial number of the defective unit.2. In the RMA ticket, describe the problem with the defective unit, and make sure to mention to which spare/replacement unit (specify the serial number) the support contract will be transferred to.3. Once the RMA ticket has been created, request the Fortinet Customer Service (Fortinet CS) to transfer the support contract from the defective unit to the spare unit, possibly by creating another ticket (this time, a CS ticket), or making a phone call. Important step is to creat",
+      "products": [
+        "FortiAnalyzer"
+      ],
+      "versions": [],
+      "status": "À vérifier",
+      "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
+      "source": "Fortinet Community",
+      "firstSeen": "2026-10-22T09:24:01.029989+00:00",
+      "lastSeen": "2026-10-22T09:24:01.029989+00:00",
+      "versionFamilies": [],
       "potentialProblem": true
     },
     {
@@ -194,7 +246,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-22T08:39:26.783874+00:00",
+      "lastSeen": "2026-10-22T09:24:01.029989+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -212,7 +264,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-22T08:39:26.783874+00:00",
+      "lastSeen": "2026-10-22T09:24:01.029989+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -225,13 +277,17 @@
       "products": [
         "FortiClient EMS"
       ],
-      "versions": [],
+      "versions": [
+        "7.4.7"
+      ],
       "status": "À vérifier",
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-22T08:39:26.783874+00:00",
-      "versionFamilies": [],
+      "lastSeen": "2026-10-22T09:24:01.029989+00:00",
+      "versionFamilies": [
+        "7.4"
+      ],
       "potentialProblem": false
     },
     {
@@ -245,15 +301,17 @@
         "FortiManager"
       ],
       "versions": [
-        "7.4"
+        "7.4",
+        "7.6"
       ],
       "status": "À vérifier",
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-22T08:39:26.783874+00:00",
+      "lastSeen": "2026-10-22T09:24:01.029989+00:00",
       "versionFamilies": [
-        "7.4"
+        "7.4",
+        "7.6"
       ],
       "potentialProblem": false
     },
@@ -266,13 +324,17 @@
       "products": [
         "FortiGate"
       ],
-      "versions": [],
+      "versions": [
+        "10.0.0"
+      ],
       "status": "À vérifier",
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-22T08:39:26.783874+00:00",
-      "versionFamilies": [],
+      "lastSeen": "2026-10-22T09:24:01.029989+00:00",
+      "versionFamilies": [
+        "10.0"
+      ],
       "potentialProblem": false
     },
     {
@@ -284,13 +346,19 @@
       "products": [
         "FortiGate"
       ],
-      "versions": [],
+      "versions": [
+        "2.0",
+        "7.9"
+      ],
       "status": "À vérifier",
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-22T08:39:26.783874+00:00",
-      "versionFamilies": [],
+      "lastSeen": "2026-10-22T09:24:01.029989+00:00",
+      "versionFamilies": [
+        "2.0",
+        "7.9"
+      ],
       "potentialProblem": false
     },
     {
@@ -304,14 +372,17 @@
         "FortiClient EMS"
       ],
       "versions": [
+        "7.6",
+        "8.0",
         "8.0.1"
       ],
       "status": "À vérifier",
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-22T08:39:26.783874+00:00",
+      "lastSeen": "2026-10-22T09:24:01.029989+00:00",
       "versionFamilies": [
+        "7.6",
         "8.0"
       ],
       "potentialProblem": true
@@ -325,13 +396,17 @@
       "products": [
         "FortiGate"
       ],
-      "versions": [],
+      "versions": [
+        "10.0.2"
+      ],
       "status": "À vérifier",
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-22T08:39:26.783874+00:00",
-      "versionFamilies": [],
+      "lastSeen": "2026-10-22T09:24:01.029989+00:00",
+      "versionFamilies": [
+        "10.0"
+      ],
       "potentialProblem": false
     },
     {
@@ -348,7 +423,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-22T08:39:26.783874+00:00",
+      "lastSeen": "2026-10-22T09:24:01.029989+00:00",
       "versionFamilies": [],
       "potentialProblem": true
     },
@@ -366,13 +441,14 @@
         "7.2.13",
         "7.4",
         "7.4.3",
+        "7.4.8",
         "7.6.3"
       ],
       "status": "À vérifier",
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-22T08:39:26.783874+00:00",
+      "lastSeen": "2026-10-22T09:24:01.029989+00:00",
       "versionFamilies": [
         "7.2",
         "7.4",
@@ -391,15 +467,18 @@
         "FortiClient"
       ],
       "versions": [
-        "7.4.12"
+        "7.4.11",
+        "7.4.12",
+        "26.7.1"
       ],
       "status": "À vérifier",
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-22T08:39:26.783874+00:00",
+      "lastSeen": "2026-10-22T09:24:01.029989+00:00",
       "versionFamilies": [
-        "7.4"
+        "7.4",
+        "26.7"
       ],
       "potentialProblem": true
     },
@@ -417,7 +496,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-22T08:39:26.783874+00:00",
+      "lastSeen": "2026-10-22T09:24:01.029989+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -430,14 +509,36 @@
       "products": [
         "FortiGate"
       ],
-      "versions": [],
+      "versions": [
+        "0.0.0"
+      ],
       "status": "À vérifier",
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-22T08:39:26.783874+00:00",
-      "versionFamilies": [],
+      "lastSeen": "2026-10-22T09:24:01.029989+00:00",
+      "versionFamilies": [
+        "0.0"
+      ],
       "potentialProblem": true
+    },
+    {
+      "id": "https://community.fortinet.com/support-forum-92/ring-topology-and-redundancy-protocols-230536",
+      "title": "Ring Topology and redundancy protocols",
+      "url": "https://community.fortinet.com/support-forum-92/ring-topology-and-redundancy-protocols-230536",
+      "date": "2026-10-21T11:45:20+00:00",
+      "summary": "Hi All,I'm looking for guidance and best practices for implementing a resilient Layer 2 access network using a ring topology.Hardware Under ConsiderationFortiGate 121G (Firewall) FortiSwitch FS-1024E (Core/Distribution) FortiSwitch FS-224E (Access) FortiSwitch Rugged FSR-112F-POE (Rugged Access)Design ConsiderationsThe current access-layer design consists of up to five rings, with each ring supporting 15 hops in a dual-ring architecture (up to 30 switches per dual ring).End devices (1 NIC 2 IP ports) will be connecting to two separate access switches for redundancy. The expectation is that RSTP will provide both:Ring redundancy within the access network Redundancy for dual-homed endpoint connectionsThe attached diagram provides a high-level representation of the proposed architecture.Challenges RSTP convergence time RSTP convergence may be too slow for the application. The target recovery/convergence time is less than 1 second following a link or switch failure. MRP/PRP limitations My understanding is that MRP and PRP implementations are typically designed around limited ring structures and may not readily accommodate the proposed multi-ring architecture. Lack of MC-LAG support The",
+      "products": [
+        "FortiSwitch"
+      ],
+      "versions": [],
+      "status": "À vérifier",
+      "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
+      "source": "Fortinet Community",
+      "firstSeen": "2026-10-22T09:24:01.029989+00:00",
+      "lastSeen": "2026-10-22T09:24:01.029989+00:00",
+      "versionFamilies": [],
+      "potentialProblem": false
     },
     {
       "id": "https://community.fortinet.com/fortigate-3/resolving-intermittent-packet-loss-on-fortigate-50g-5g-wwan-cellular-connection-230727",
@@ -453,7 +554,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-22T08:39:26.783874+00:00",
+      "lastSeen": "2026-10-22T09:24:01.029989+00:00",
       "versionFamilies": [],
       "potentialProblem": true
     },
@@ -471,7 +572,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-22T08:39:26.783874+00:00",
+      "lastSeen": "2026-10-22T09:24:01.029989+00:00",
       "versionFamilies": [],
       "potentialProblem": true
     },
@@ -491,7 +592,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-22T08:39:26.783874+00:00",
+      "lastSeen": "2026-10-22T09:24:01.029989+00:00",
       "versionFamilies": [
         "7.4"
       ],
@@ -511,7 +612,25 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-22T08:39:26.783874+00:00",
+      "lastSeen": "2026-10-22T09:24:01.029989+00:00",
+      "versionFamilies": [],
+      "potentialProblem": false
+    },
+    {
+      "id": "https://community.fortinet.com/fortigate-3/reserved-dhcp-configuration-deleted-after-leased-ip-is-revoked-230724",
+      "title": "Reserved DHCP configuration deleted after leased IP is revoked",
+      "url": "https://community.fortinet.com/fortigate-3/reserved-dhcp-configuration-deleted-after-leased-ip-is-revoked-230724",
+      "date": "2026-10-21T11:17:48+00:00",
+      "summary": "DescriptionAn issue where users experience loss of DHCP reservation configuration after revoking a leased IP.ScopeFortiGate.SolutionAfter a DHCP reservation using MAC address, the configuration is added to the configuration.On the GUI menu at the left side of the page, navigate to Dashboard -> DHCP Monitor (if it is not present, it means you need to add a monitor).You can see the leased IP and the reserved status under the \"Reserved\" column. The value can be \"Reserved\" or \"Not Reserved\".If you revoke a \"Not reserved\" leased IP, there is no change on the configuration.However, if you select and revoke a reserved leased IP, you will get a popup warning stating that the reservation DHCP lease will be deleted.You can validate on the interface that the reservation was deleted.",
+      "products": [
+        "FortiGate"
+      ],
+      "versions": [],
+      "status": "À vérifier",
+      "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
+      "source": "Fortinet Community",
+      "firstSeen": "2026-10-22T09:24:01.029989+00:00",
+      "lastSeen": "2026-10-22T09:24:01.029989+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -524,13 +643,19 @@
       "products": [
         "FortiClient"
       ],
-      "versions": [],
+      "versions": [
+        "7.4.3",
+        "27.0.1"
+      ],
       "status": "À vérifier",
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-22T08:39:26.783874+00:00",
-      "versionFamilies": [],
+      "lastSeen": "2026-10-22T09:24:01.029989+00:00",
+      "versionFamilies": [
+        "7.4",
+        "27.0"
+      ],
       "potentialProblem": true
     },
     {
@@ -542,13 +667,17 @@
       "products": [
         "FortiGate"
       ],
-      "versions": [],
+      "versions": [
+        "1.2"
+      ],
       "status": "À vérifier",
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-22T08:39:26.783874+00:00",
-      "versionFamilies": [],
+      "lastSeen": "2026-10-22T09:24:01.029989+00:00",
+      "versionFamilies": [
+        "1.2"
+      ],
       "potentialProblem": false
     },
     {
@@ -565,7 +694,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-22T08:39:26.783874+00:00",
+      "lastSeen": "2026-10-22T09:24:01.029989+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -583,7 +712,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-22T08:39:26.783874+00:00",
+      "lastSeen": "2026-10-22T09:24:01.029989+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -597,17 +726,37 @@
         "FortiManager"
       ],
       "versions": [
-        "7.4"
+        "7.4",
+        "7.6"
       ],
       "status": "À vérifier",
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-22T08:39:26.783874+00:00",
+      "lastSeen": "2026-10-22T09:24:01.029989+00:00",
       "versionFamilies": [
-        "7.4"
+        "7.4",
+        "7.6"
       ],
       "potentialProblem": true
+    },
+    {
+      "id": "https://community.fortinet.com/fortigate-3/how-to-allow-google-ai-search-mode-while-explicitly-blocking-only-the-google-ai-upload-option-230718",
+      "title": "How to allow Google AI search mode while explicitly blocking only the Google AI upload option",
+      "url": "https://community.fortinet.com/fortigate-3/how-to-allow-google-ai-search-mode-while-explicitly-blocking-only-the-google-ai-upload-option-230718",
+      "date": "2026-10-21T08:45:38+00:00",
+      "summary": "DescriptionA method to block Google AI Mode outright using the \"udm=50\" web filter method described in Technical Tip: Blocking Google Search AI mode via Web Filter or Application Control profile. The method is all-or-nothing. To keep AI Mode available and block only uploads, create a Static URL filter as below.ScopeFortiGate.SolutionStep 1: Create Firewall Policy:Navigate to Policy & Objects and select \"Create New\".Make sure inspection Mode is set to proxy-based and SSL inspection is set to deep-inspection.Note: Refer to this article to install a certificate into end-user system: Technical Tip: How to enable deep inspection and import a certificate in the browser.Step 2: Applying the Static URL filter Inside Web Filter to the Firewall Policy:Navigate to Security Profiles -> Web Filter and select \"Create New\".Inside the Web Filter Profile, Enable the \"URL Filter option\" under \"Static URL Filter\" and configure the below:Note: The URL \"lensfrontend-pa.clients6.google.com\" was obtained from the Developer tools when clicking on the upload option.Verification:",
+      "products": [
+        "FortiGate"
+      ],
+      "versions": [],
+      "status": "À vérifier",
+      "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
+      "source": "Fortinet Community",
+      "firstSeen": "2026-10-22T09:24:01.029989+00:00",
+      "lastSeen": "2026-10-22T09:24:01.029989+00:00",
+      "versionFamilies": [],
+      "potentialProblem": false
     },
     {
       "id": "https://community.fortinet.com/fortimanager-27/how-to-reclaim-and-restore-fgfm-tunnel-in-a-newer-fortimanager-versions-7-6-7-230717",
@@ -618,13 +767,19 @@
       "products": [
         "FortiManager"
       ],
-      "versions": [],
+      "versions": [
+        "7.6.7",
+        "8.0.0"
+      ],
       "status": "À vérifier",
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-22T08:39:26.783874+00:00",
-      "versionFamilies": [],
+      "lastSeen": "2026-10-22T09:24:01.029989+00:00",
+      "versionFamilies": [
+        "7.6",
+        "8.0"
+      ],
       "potentialProblem": false
     },
     {
@@ -641,8 +796,32 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-22T08:39:26.783874+00:00",
+      "lastSeen": "2026-10-22T09:24:01.029989+00:00",
       "versionFamilies": [],
+      "potentialProblem": false
+    },
+    {
+      "id": "https://community.fortinet.com/fortigate-3/behavior-of-adding-a-second-health-check-server-while-the-first-server-is-dead-to-one-of-the-sd-wan-interface-230716",
+      "title": "Behavior of adding a second health check server while the first server is dead to one of the SD-WAN interface",
+      "url": "https://community.fortinet.com/fortigate-3/behavior-of-adding-a-second-health-check-server-while-the-first-server-is-dead-to-one-of-the-sd-wan-interface-230716",
+      "date": "2026-10-21T07:47:21+00:00",
+      "summary": "DescriptionThis article describes the behavior when adding a second health check server while the first server is dead to one of the SD-WAN interfaces.ScopeFortiGate.SolutionIn the scenario of SD-WAN health check with two servers and two members, one of the configured servers is unreachable through one member and the expectation is that SLA should be shown as up. Two SD-WAN interfaces configured as below:config members edit 1 set interface \"port1\" set gateway 10.47.15.254 next edit 2 set interface \"port2\" set gateway 10.200.4.79 next endSet up the health check server that is not accessible from port1:config health-check edit \"test\" set server \"10.200.4.79\" set members 1 2 next endFrom the output below, port1 is marked as dead:diagnose sys sdwan health-check Health Check(test): Seq(1 port1): state(dead), packet-loss(100.000%) sla_map=0x0 Seq(2 port2): state(alive), packet-loss(0.000%) latency(0.248), jitter(0.029), mos(4.404), bandwidth-up(9999999), bandwidth-dw(9999999), bandwidth-bi(19999998) sla_map=0x0The second health check server that can be accessed by both interfaces is added:config health-check edit \"test\" set server \"10.200.4.79\" \"8.8.8.8\" set members 1 2 next endHowever, ",
+      "products": [
+        "FortiGate"
+      ],
+      "versions": [
+        "8.8.8",
+        "10.47.15"
+      ],
+      "status": "À vérifier",
+      "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
+      "source": "Fortinet Community",
+      "firstSeen": "2026-10-22T09:24:01.029989+00:00",
+      "lastSeen": "2026-10-22T09:24:01.029989+00:00",
+      "versionFamilies": [
+        "8.8",
+        "10.47"
+      ],
       "potentialProblem": false
     },
     {
@@ -654,13 +833,22 @@
       "products": [
         "FortiGate"
       ],
-      "versions": [],
+      "versions": [
+        "7.6.4",
+        "7.6.7",
+        "9.17.12",
+        "76.76.2"
+      ],
       "status": "À vérifier",
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-22T08:39:26.783874+00:00",
-      "versionFamilies": [],
+      "lastSeen": "2026-10-22T09:24:01.029989+00:00",
+      "versionFamilies": [
+        "7.6",
+        "9.17",
+        "76.76"
+      ],
       "potentialProblem": true
     },
     {
@@ -673,13 +861,19 @@
         "FortiGate",
         "FortiClient"
       ],
-      "versions": [],
+      "versions": [
+        "7.0.8",
+        "7.2.14"
+      ],
       "status": "À vérifier",
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-22T08:39:26.783874+00:00",
-      "versionFamilies": [],
+      "lastSeen": "2026-10-22T09:24:01.029989+00:00",
+      "versionFamilies": [
+        "7.0",
+        "7.2"
+      ],
       "potentialProblem": false
     },
     {
@@ -692,15 +886,19 @@
         "FortiGate"
       ],
       "versions": [
-        "8.0.1"
+        "0.0.0",
+        "8.0.1",
+        "8.8.8"
       ],
       "status": "À vérifier",
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-22T08:39:26.783874+00:00",
+      "lastSeen": "2026-10-22T09:24:01.029989+00:00",
       "versionFamilies": [
-        "8.0"
+        "0.0",
+        "8.0",
+        "8.8"
       ],
       "potentialProblem": false
     },
@@ -720,7 +918,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-22T08:39:26.783874+00:00",
+      "lastSeen": "2026-10-22T09:24:01.029989+00:00",
       "versionFamilies": [
         "8.0"
       ],
@@ -735,13 +933,19 @@
       "products": [
         "FortiGate"
       ],
-      "versions": [],
+      "versions": [
+        "7.2.11",
+        "7.2.12",
+        "7.2.13"
+      ],
       "status": "À vérifier",
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-22T08:39:26.783874+00:00",
-      "versionFamilies": [],
+      "lastSeen": "2026-10-22T09:24:01.029989+00:00",
+      "versionFamilies": [
+        "7.2"
+      ],
       "potentialProblem": false
     },
     {
@@ -760,7 +964,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-22T08:39:26.783874+00:00",
+      "lastSeen": "2026-10-22T09:24:01.029989+00:00",
       "versionFamilies": [
         "7.6"
       ],
@@ -783,7 +987,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-22T08:39:26.783874+00:00",
+      "lastSeen": "2026-10-22T09:24:01.029989+00:00",
       "versionFamilies": [
         "7.4"
       ],
@@ -805,7 +1009,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-22T08:39:26.783874+00:00",
+      "lastSeen": "2026-10-22T09:24:01.029989+00:00",
       "versionFamilies": [
         "7.6"
       ],
@@ -825,7 +1029,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-22T08:39:26.783874+00:00",
+      "lastSeen": "2026-10-22T09:24:01.029989+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -846,7 +1050,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-22T08:39:26.783874+00:00",
+      "lastSeen": "2026-10-22T09:24:01.029989+00:00",
       "versionFamilies": [
         "7.6"
       ],
@@ -866,7 +1070,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-22T08:39:26.783874+00:00",
+      "lastSeen": "2026-10-22T09:24:01.029989+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -886,7 +1090,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-22T08:39:26.783874+00:00",
+      "lastSeen": "2026-10-22T09:24:01.029989+00:00",
       "versionFamilies": [
         "7.6"
       ],
@@ -906,7 +1110,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-22T08:39:26.783874+00:00",
+      "lastSeen": "2026-10-22T09:24:01.029989+00:00",
       "versionFamilies": [],
       "potentialProblem": true
     },
@@ -924,7 +1128,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-22T08:39:26.783874+00:00",
+      "lastSeen": "2026-10-22T09:24:01.029989+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -942,7 +1146,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-22T08:39:26.783874+00:00",
+      "lastSeen": "2026-10-22T09:24:01.029989+00:00",
       "versionFamilies": [],
       "potentialProblem": true
     },
@@ -951,21 +1155,23 @@
       "title": "Trigger a FortiGate automation from FortiWeb alerts on FortiAnalyzer using a playbook",
       "url": "https://community.fortinet.com/fortianalyzer-6/trigger-a-fortigate-automation-from-fortiweb-alerts-on-fortianalyzer-using-a-playbook-230700",
       "date": "2026-10-20T10:29:32+00:00",
-      "summary": "DescriptionHow to trigger a FortiGate automation stitch, such as an IP ban, from a FortiAnalyzer alert based on FortiWeb logs.ScopeFortiAnalyzer 8.0, FortiOS 7.6, FortiWeb 8.0SolutionWhen Automation Stitch is enabled on a FortiAnalyzer event handler, FortiAnalyzer sends the notification only to the FortiGate that sent the logs that triggered the handler. For handlers based on FortiWeb logs, the alert is generated on FortiAnalyzer, but the FortiGate stitch is not triggered and its trigger count stays at 0. The same applies to handlers based on FortiMail logs.This is expected behavior, as described in the FortiAnalyzer Administration Guide: Using the Automation Stitch for alert handlers.For alerts generated from FortiWeb or FortiMail logs, the supported method for triggering an action on a FortiGate is to use a FortiAnalyzer playbook with the FortiOS connector and a FortiGate automation stitch with an Incoming Webhook trigger.PrerequisitesThe FortiGate is authorized on FortiAnalyzer and its FortiOS connector shows as connected.An alert handler for the FortiWeb logs is configured and generating alerts.Step 1: Create the automation on the FortiGateGo to Security Fabric -> Automation an",
+      "summary": "DescriptionHow to trigger a FortiGate automation stitch, such as an IP ban, from a FortiAnalyzer alert based on FortiWeb logs.ScopeFortiAnalyzer version 8.0, FortiOS version 7.6, FortiWeb version 8.0.SolutionWhen Automation Stitch is enabled on a FortiAnalyzer alert handler, FortiAnalyzer sends the notification only to the FortiGate that sent the logs that triggered the handler. For handlers based on FortiWeb logs, the alert is generated on FortiAnalyzer, but the FortiGate stitch is not triggered, and its trigger count stays at 0. The same applies to handlers based on FortiMail logs.This is expected behavior, as described in the FortiAnalyzer Administration Guide: Using the Automation Stitch for alert handlers.For alerts generated from FortiWeb or FortiMail logs, the supported method for triggering an action on a FortiGate is to use a FortiAnalyzer playbook with the FortiOS connector and a FortiGate automation stitch with an Incoming Webhook trigger.Prerequisites:The FortiGate is authorized on FortiAnalyzer, and its FortiOS connector shows as connected.An alert handler for the FortiWeb logs is configured and generating alerts.Step 1: Create the automation on the FortiGateGo to Secu",
       "products": [
         "FortiAnalyzer",
         "FortiGate"
       ],
       "versions": [
-        "7.6"
+        "7.6",
+        "8.0"
       ],
       "status": "À vérifier",
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-22T08:39:26.783874+00:00",
+      "lastSeen": "2026-10-22T09:24:01.029989+00:00",
       "versionFamilies": [
-        "7.6"
+        "7.6",
+        "8.0"
       ],
       "potentialProblem": false
     },
@@ -984,7 +1190,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-22T08:39:26.783874+00:00",
+      "lastSeen": "2026-10-22T09:24:01.029989+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -1002,7 +1208,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-22T08:39:26.783874+00:00",
+      "lastSeen": "2026-10-22T09:24:01.029989+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -1020,7 +1226,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-22T08:39:26.783874+00:00",
+      "lastSeen": "2026-10-22T09:24:01.029989+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -1038,7 +1244,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-22T08:39:26.783874+00:00",
+      "lastSeen": "2026-10-22T09:24:01.029989+00:00",
       "versionFamilies": [],
       "potentialProblem": true
     },
@@ -1051,13 +1257,17 @@
       "products": [
         "FortiGate"
       ],
-      "versions": [],
+      "versions": [
+        "1.3.6"
+      ],
       "status": "À vérifier",
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-22T08:39:26.783874+00:00",
-      "versionFamilies": [],
+      "lastSeen": "2026-10-22T09:24:01.029989+00:00",
+      "versionFamilies": [
+        "1.3"
+      ],
       "potentialProblem": false
     },
     {
@@ -1079,7 +1289,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-22T08:39:26.783874+00:00",
+      "lastSeen": "2026-10-22T09:24:01.029989+00:00",
       "versionFamilies": [
         "7.4",
         "7.6",
@@ -1101,7 +1311,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-22T08:39:26.783874+00:00",
+      "lastSeen": "2026-10-22T09:24:01.029989+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -1114,13 +1324,17 @@
       "products": [
         "FortiManager"
       ],
-      "versions": [],
+      "versions": [
+        "2.0"
+      ],
       "status": "À vérifier",
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-22T08:39:26.783874+00:00",
-      "versionFamilies": [],
+      "lastSeen": "2026-10-22T09:24:01.029989+00:00",
+      "versionFamilies": [
+        "2.0"
+      ],
       "potentialProblem": false
     },
     {
@@ -1132,13 +1346,17 @@
       "products": [
         "FortiGate"
       ],
-      "versions": [],
+      "versions": [
+        "7.6.6"
+      ],
       "status": "À vérifier",
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-22T08:39:26.783874+00:00",
-      "versionFamilies": [],
+      "lastSeen": "2026-10-22T09:24:01.029989+00:00",
+      "versionFamilies": [
+        "7.6"
+      ],
       "potentialProblem": false
     },
     {
@@ -1155,7 +1373,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-22T08:39:26.783874+00:00",
+      "lastSeen": "2026-10-22T09:24:01.029989+00:00",
       "versionFamilies": [],
       "potentialProblem": true
     },
@@ -1173,7 +1391,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-22T08:39:26.783874+00:00",
+      "lastSeen": "2026-10-22T09:24:01.029989+00:00",
       "versionFamilies": [],
       "potentialProblem": true
     },
@@ -1187,13 +1405,19 @@
         "FortiGate",
         "FortiSwitch"
       ],
-      "versions": [],
+      "versions": [
+        "7.2.13",
+        "7.4.12"
+      ],
       "status": "À vérifier",
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-22T08:39:26.783874+00:00",
-      "versionFamilies": [],
+      "lastSeen": "2026-10-22T09:24:01.029989+00:00",
+      "versionFamilies": [
+        "7.2",
+        "7.4"
+      ],
       "potentialProblem": true
     },
     {
@@ -1210,7 +1434,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-22T08:39:26.783874+00:00",
+      "lastSeen": "2026-10-22T09:24:01.029989+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -1228,7 +1452,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-22T08:39:26.783874+00:00",
+      "lastSeen": "2026-10-22T09:24:01.029989+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -1248,7 +1472,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-22T08:39:26.783874+00:00",
+      "lastSeen": "2026-10-22T09:24:01.029989+00:00",
       "versionFamilies": [
         "7.6"
       ],
@@ -1265,18 +1489,36 @@
         "FortiSwitch"
       ],
       "versions": [
+        "1.0.0",
+        "1.8.4",
         "7.0",
         "7.0.0",
-        "7.6.8"
+        "7.0.19",
+        "7.0.23",
+        "7.2",
+        "7.4",
+        "7.6",
+        "7.6.0",
+        "7.6.7",
+        "7.6.8",
+        "7.6.9",
+        "8.0",
+        "25.4"
       ],
       "status": "À vérifier",
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-22T08:39:26.783874+00:00",
+      "lastSeen": "2026-10-22T09:24:01.029989+00:00",
       "versionFamilies": [
+        "1.0",
+        "1.8",
         "7.0",
-        "7.6"
+        "7.2",
+        "7.4",
+        "7.6",
+        "8.0",
+        "25.4"
       ],
       "potentialProblem": false
     },
@@ -1296,7 +1538,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-22T08:39:26.783874+00:00",
+      "lastSeen": "2026-10-22T09:24:01.029989+00:00",
       "versionFamilies": [
         "7.6"
       ],
@@ -1316,14 +1558,14 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-22T08:39:26.783874+00:00",
+      "lastSeen": "2026-10-22T09:24:01.029989+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     }
   ],
   "incidents": [
     {
-      "id": "incident-e1acee92",
+      "id": "incident-2f864c553570",
       "title": "DNS over TLS broken in Proxy Mode",
       "summary": "DescriptionDNS filtering fails to inspect DNS over TLS (DoT)and DNS over HTTPS version 2 (DoH2) queries in certain FortiOS versions like 7.6.4 and 7.6.7, leading to bypassed filtering or connection errors in flow mode.ScopeFortiGate.SolutionThe issue occurs because the IPS engine does not recognize port 853 for decoding, causing it to skip the DNS dissector.Workaround:Run the following commands to add port 853 to the IPS decoder port list:config ips decoder \"dns_decoder\" config parameter \"port_list\" set value \"53,853\" end endRestart the IPS engine to…",
       "products": [
@@ -1332,13 +1574,19 @@
       "versions": [
         "7.6.4",
         "7.6.7",
-        "8.0.1"
+        "8.0.1",
+        "9.17.12",
+        "76.76.2"
       ],
       "versionFamilies": [
         "7.6",
-        "8.0"
+        "8.0",
+        "9.17",
+        "76.76"
       ],
       "sourceCount": 2,
+      "forumReportCount": 0,
+      "documentedSourceCount": 1,
       "sources": [
         {
           "title": "DNS over TLS broken in Proxy Mode",
@@ -1368,10 +1616,14 @@
           ],
           "versions": [
             "7.6.4",
-            "7.6.7"
+            "7.6.7",
+            "9.17.12",
+            "76.76.2"
           ],
           "versionFamilies": [
-            "7.6"
+            "7.6",
+            "9.17",
+            "76.76"
           ],
           "sourceType": "fortinet_article"
         }
@@ -1379,25 +1631,27 @@
       "lastSeen": "2026-10-22T07:51:37+00:00",
       "status": "Documenté par Fortinet (version identifiée)",
       "confidence": "Documentation Fortinet versionnée",
-      "synthesisMethod": "Règles de preuve : article Fortinet versionné et explicite, ou au moins deux discussions distinctes; pas d'IA générative.",
-      "forumReportCount": 0,
-      "documentedSourceCount": 1,
-      "evidenceType": "official_documentation"
+      "evidenceType": "official_documentation",
+      "synthesisMethod": "Règles de preuve : article Fortinet versionné et explicite, ou au moins deux discussions distinctes; pas d'IA générative."
     },
     {
-      "id": "incident-d2b123d2",
+      "id": "incident-57da110da5bb",
       "title": "Troubleshooting Tip: SSL VPN stops working for remote and local users due to fnbamd process",
       "summary": "DescriptionThis article describes behavior where FortiGate stops accepting new SSL VPN connections due to the FNBAMD process.ScopeFortiGate version 7.4.11 and previous versions.SolutionUsers configure a standard SSL VPN connection for local and remote usersCheck the crash log and validate that there are multiple fnbamd crashesdiagnose debug crashlog read | grep 2026 111: 2026-03-14 15:48:14 firmware FortiGate-100 v7.4.11,build2878b2878,260126 (GA.M) (Release) 112: 2026-03-14 15:48:14 application fnbamdTake some debugs of the VPN and validate the…",
       "products": [
         "FortiGate"
       ],
       "versions": [
+        "1.1.1",
         "7.4.11"
       ],
       "versionFamilies": [
+        "1.1",
         "7.4"
       ],
-      "sourceCount": 1,
+      "sourceCount": 2,
+      "forumReportCount": 0,
+      "documentedSourceCount": 2,
       "sources": [
         {
           "title": "Troubleshooting Tip: SSL VPN stops working for remote and local users due to fnbamd process",
@@ -1408,9 +1662,29 @@
             "FortiGate"
           ],
           "versions": [
+            "1.1.1",
             "7.4.11"
           ],
           "versionFamilies": [
+            "1.1",
+            "7.4"
+          ],
+          "sourceType": "fortinet_article"
+        },
+        {
+          "title": "SSL VPN stops working for remote and local users due to fnbamd process",
+          "url": "https://community.fortinet.com/fortigate-3/ssl-vpn-stops-working-for-remote-and-local-users-due-to-fnbamd-process-230744",
+          "date": "2026-10-22T06:21:57+00:00",
+          "summary": "DescriptionFortiGate may stop accepting new SSL VPN connections due to the FNBAMD process.ScopeFortiGate version 7.4.11 and previous versions.SolutionUsers configure a standard SSL VPN connection for local and remote users.Check the crash log and validate that there are multiple fnbamd crashesdiagnose debug crashlog read | grep 2026 111: 2026-03-14 15:48:14 firmware FortiGate-100 v7.4.11,build2878b2878,260126 (GA.M) (Release) 112: 2026-03-14 15:48:14 application fnbamdTake some debugs of the VPN and validate the fnbamd process that remains stuck.diagnose debug disable diagnose debug reset diagnose vpn ssl debug-filter src-addr4 x.x.x.x → replace x.x.x.x with the public IP of the user diagnose debug application sslvpn -1 diagnose debug application fnbamd -1 diagnose debug enable FGT_Test# #15553:root:2]allocSSLConn:303 sconn 0x7f9c2a558000 (0:root) >15553:root:2]SSL state:before SSL initialization (1.1.1.1) >15556:root:2]rmt_web_auth_info_parser_common:534 no session id in auth info >15",
+          "products": [
+            "FortiGate"
+          ],
+          "versions": [
+            "1.1.1",
+            "7.4.11"
+          ],
+          "versionFamilies": [
+            "1.1",
             "7.4"
           ],
           "sourceType": "fortinet_article"
@@ -1419,13 +1693,11 @@
       "lastSeen": "2026-10-22T06:21:57+00:00",
       "status": "Documenté par Fortinet (version identifiée)",
       "confidence": "Documentation Fortinet versionnée",
-      "synthesisMethod": "Règles de preuve : article Fortinet versionné et explicite, ou au moins deux discussions distinctes; pas d'IA générative.",
-      "forumReportCount": 0,
-      "documentedSourceCount": 1,
-      "evidenceType": "official_documentation"
+      "evidenceType": "official_documentation",
+      "synthesisMethod": "Règles de preuve : article Fortinet versionné et explicite, ou au moins deux discussions distinctes; pas d'IA générative."
     }
   ],
   "incidentCount": 2,
-  "synthesisGeneratedAt": "2026-10-22T08:56:57.489Z",
+  "synthesisGeneratedAt": "2026-10-22T09:24:01.638463+00:00",
   "synthesisNote": "Un point n'est affiché que s'il est documenté par un article Fortinet versionné et explicite, ou décrit dans au moins deux discussions distinctes d'utilisateurs. Les articles officiels ne comptent pas comme des personnes supplémentaires. Les signalements isolés non documentés sont exclus."
 }
