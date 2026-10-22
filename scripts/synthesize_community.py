@@ -244,8 +244,8 @@ def synthesize(data: dict, out: Path = DATA) -> dict:
             "sources": sources,
             "lastSeen": newest or None,
             "status": (
-                "Bug/changement documenté par Fortinet" if documented and reports < 2
-                else "Documenté par Fortinet et signalé par plusieurs personnes" if documented
+                "Documenté par Fortinet (version identifiée)" if documented and reports < 2
+                else "Documenté par Fortinet + récurrent" if documented
                 else f"Récurrent — {reports} discussions distinctes"
             ),
             "confidence": "Documentation Fortinet versionnée" if documented else "Plusieurs discussions distinctes",
