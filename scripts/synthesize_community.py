@@ -59,9 +59,26 @@ def words(text: str) -> set[str]:
 
 
 def extract_products(item: dict) -> list[str]:
-    text = " ".join([item.get("title", ""), item.get("summary", ""), item.get("url", "")])
-    found = [name for name, pattern in PRODUCT_PATTERNS.items() if re.search(pattern, text, re.I)]
-    # EMS is more specific than the generic FortiClient label.
+    title = item.get("title", "")
+    summary = item.get("summary", "")
+    url = item.get("url", "")
+    # The forum board slug is a better product signal than a mention in an article's body.
+    board_match = re.search(r"https?://community\\.fortinet\\.com/([a-z0-9]+)", url, re.I)
+    board = board_match.group(1).lower() if board_match else ""
+    board_aliases = {
+        "fortigate": "FortiGate", "fortimanager": "FortiManager",
+        "fortianalyzer": "FortiAnalyzer", "fortiauthenticator": "FortiAuthenticator",
+        "forticlient": "FortiClient", "forticlientems": "FortiClient EMS",
+        "fortiswitch": "FortiSwitch", "fortiap": "FortiAP",
+    }
+    primary = next((name for slug, name in board_aliases.items() if board.startswith(slug)), None)
+    # Prefer products explicitly named in the title; use the body only as a fallback.
+    title_found = [name for name, pattern in PRODUCT_PATTERNS.items() if re.search(pattern, title, re.I)]
+    if primary:
+        found = list(dict.fromkeys([primary] + title_found))
+    else:
+        text = title + " " + summary
+        found = [name for name, pattern in PRODUCT_PATTERNS.items() if re.search(pattern, text, re.I)]
     if "FortiClient EMS" in found:
         found = [p for p in found if p != "FortiClient"]
     return found or item.get("products", [])
