@@ -25,11 +25,13 @@ jobs:
         with:
           node-version: "22"
       - name: Vérifier la syntaxe Python
-        run: python -m py_compile scripts/update_veille.py tests/test_update_veille.py
+        run: python -m py_compile scripts/update_veille.py scripts/collect_community.py tests/test_update_veille.py tests/test_collect_community.py
       - name: Exécuter les tests du collecteur
         run: python -m unittest discover -s tests -v
-      - name: Vérifier le JSON initial
-        run: python -m json.tool data/veille.json > /dev/null
+      - name: Vérifier les JSON initiaux
+        run: |
+          python -m json.tool data/veille.json > /dev/null
+          python -m json.tool data/community.json > /dev/null
       - name: Vérifier la syntaxe JavaScript
         run: node --check app.js
       - name: Vérifier les fichiers essentiels
@@ -38,5 +40,7 @@ jobs:
           test -s styles.css
           test -s app.js
           test -s scripts/update_veille.py
+          test -s scripts/collect_community.py
+          test -s data/community.json
           grep -q 'styles.css' index.html
           grep -q 'app.js' index.html
