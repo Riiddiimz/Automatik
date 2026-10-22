@@ -45,6 +45,58 @@ function renderKev(items, filter = "") {
     return `<article class="cve-card"><div class="cve-id">${escapeHTML(cve)}</div><div><h3>${escapeHTML(title)}</h3><p>${escapeHTML(description)}</p>${product ? `<div class="cve-product">${escapeHTML(product)}</div>` : ""}</div><span class="cve-date">${escapeHTML(safeDate(item.dateAdded || item.date))}</span></article>`;
   }).join("");
 }
+
+const COMMUNITY_URL = "data/community.json";
+let communityData = { topics: [], generatedAt: null, partial: false, errors: [] };
+
+function renderCommunity() {
+  const query = ($("community-search").value || "").trim().toLowerCase();
+  const product = $("community-product").value;
+  const version = $("community-version").value;
+  const topics = (communityData.topics || []).filter(item => {
+    const text = [item.title, item.summary, ...(item.products || []), ...(item.versions || [])].join(" ").toLowerCase();
+    return (!query || text.includes(query))
+      && (!product || (item.products || []).includes(product))
+      && (!version || (item.versions || []).includes(version));
+  });
+  $("community-count").textContent = `${topics.length} sujet(s)`;
+  if (!topics.length) {
+    $("community-list").innerHTML = '<div class="empty-card">Aucun sujet correspondant dans l’historique collecté. Essaie un autre filtre ou lance la collecte GitHub Actions.</div>';
+    return;
+  }
+  $("community-list").innerHTML = topics.slice(0, 100).map(item => {
+    const url = /^https:\/\//i.test(item.url || "") ? item.url : "https://community.fortinet.com/";
+    const products = (item.products || []).map(escapeHTML).join(" · ") || "Produit non précisé";
+    const versions = (item.versions || []).map(escapeHTML).join(", ");
+    return `<article class="community-card">
+      <div class="community-card-top"><span class="community-products">${products}</span><span class="community-status-badge">À vérifier</span></div>
+      <h3><a href="${escapeHTML(url)}" target="_blank" rel="noopener noreferrer">${escapeHTML(item.title || "Sujet sans titre")} ↗</a></h3>
+      <p>${escapeHTML(item.summary || "Le flux ne fournit pas de résumé. Ouvre le sujet pour consulter les réponses.")}</p>
+      <div class="community-meta"><span>${escapeHTML(safeDate(item.date))}</span>${versions ? `<span>Version(s) : ${versions}</span>` : '<span>Version non précisée</span>'}</div>
+      <div class="community-caution">${escapeHTML(item.statusNote || "Solution non vérifiée : consulter le fil original.")}</div>
+    </article>`;
+  }).join("");
+}
+async function loadCommunity() {
+  try {
+    const response = await fetch(`${COMMUNITY_URL}?t=${Date.now()}`, { cache: "no-store" });
+    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+    communityData = await response.json();
+    const versions = [...new Set((communityData.topics || []).flatMap(item => item.versions || []))].sort((a, b) => a.localeCompare(b, "fr", { numeric: true }));
+    $("community-version").innerHTML = '<option value="">Toutes les versions</option>' + versions.map(version => `<option value="${escapeHTML(version)}">${escapeHTML(version)}</option>`).join("");
+    const date = communityData.generatedAt ? safeDate(communityData.generatedAt) : "jamais";
+    $("community-status").textContent = communityData.partial
+      ? `Collecte partielle — historique conservé · dernière tentative : ${date}`
+      : `Dernière collecte : ${date} · ${communityData.topics?.length || 0} sujets en historique`;
+    if (communityData.errors?.length) $("community-status").textContent += ` · ${communityData.errors.length} avertissement(s)`;
+    renderCommunity();
+  } catch (error) {
+    $("community-status").textContent = "Flux Community indisponible. L’historique affiché n’a pas pu être chargé.";
+    $("community-list").innerHTML = '<div class="error-card">Vérifie que data/community.json est publié et consulte les exécutions du workflow Collecte Fortinet Community.</div>';
+    console.error("Impossible de charger la veille Community :", error);
+  }
+}
+
 function updateDashboard(data) {
   currentData = { ...fallback, ...data };
   const fortinet = currentData.fortinet || [];
@@ -87,3 +139,7 @@ $("cve-search").addEventListener("input", () => {
   $("cve-list").innerHTML = renderKev(currentData.kev || [], $("cve-search").value);
 });
 loadData();
+loadCommunity();
+["community-search", "community-product", "community-version"].forEach(id => {
+  $(id).addEventListener(id === "community-search" ? "input" : "change", renderCommunity);
+});
