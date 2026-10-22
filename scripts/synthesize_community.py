@@ -111,7 +111,7 @@ def title_tokens(item: dict) -> set[str]:
 
 def is_official_article(item: dict) -> bool:
     """Fortinet Community knowledge-base article, excluding user discussion boards."""
-    match = re.search(r"https?://community\.fortinet\\.com/([^/]+)/", item.get("url", ""), re.I)
+    match = re.search(r"https?://community\.fortinet\.com/([^/]+)/", item.get("url", ""), re.I)
     if not match:
         return False
     return not match.group(1).lower().startswith("support-forum")
