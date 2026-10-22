@@ -20,6 +20,7 @@
         <a class="nav-link active" href="#overview"><span>◫</span> Vue d'ensemble</a>
         <a class="nav-link" href="#fortinet"><span>⌁</span> Fortinet & FortiGate</a>
         <a class="nav-link" href="#cves"><span>⌘</span> CVE & vulnérabilités</a>
+        <a class="nav-link" href="#community"><span>◌</span> Forum Fortinet</a>
         <a class="nav-link" href="#cyber"><span>◉</span> Cyber actualités</a>
         <a class="nav-link" href="#sources"><span>↗</span> Sources vérifiées</a>
       </nav>
@@ -59,13 +60,26 @@
         <div id="cve-list" class="cve-list"><div class="loading-card">Chargement du catalogue CISA…</div></div>
       </section>
 
+      <section id="community" class="content-section">
+        <div class="section-heading"><div><div class="eyebrow">03 / RETOURS TERRAIN</div><h2>Forum <span>communautaire Fortinet</span></h2></div><a href="https://community.fortinet.com/" target="_blank" rel="noopener noreferrer" class="text-link">Communauté officielle ↗</a></div>
+        <p class="community-intro">Sujets publics récents classés par équipement. Les signalements communautaires ne constituent pas une confirmation officielle d’un bug.</p>
+        <div id="community-status" class="community-status" role="status">État de collecte en attente…</div>
+        <div class="community-filters">
+          <label>Produit <select id="community-product"><option value="">Tous les produits</option><option>FortiGate / FortiOS</option><option>FortiManager</option><option>FortiAuthenticator</option><option>FortiClient EMS</option><option>FortiAnalyzer</option><option>FortiClient</option></select></label>
+          <label>Version <input id="community-version" type="search" placeholder="Ex. 7.4.11 ou build"></label>
+          <label>Statut <select id="community-state"><option value="">Tous les statuts</option><option>bug rapporté non confirmé</option><option>solution/correctif signalé</option><option>question de configuration</option><option>demande d'aide ou discussion</option></select></label>
+          <label>Recherche <input id="community-search" type="search" placeholder="Symptôme, titre, version…"></label>
+        </div>
+        <div id="community-list" class="community-list"><div class="loading-card">Chargement des sujets de la communauté…</div></div>
+      </section>
+
       <section id="cyber" class="content-section">
-        <div class="section-heading"><div><div class="eyebrow">03 / MENACES & RECHERCHE</div><h2>Actualités <span>cyber</span></h2></div><span class="section-meta">Flux RSS publics</span></div>
+        <div class="section-heading"><div><div class="eyebrow">04 / MENACES & RECHERCHE</div><h2>Actualités <span>cyber</span></h2></div><span class="section-meta">Flux RSS publics</span></div>
         <div id="cyber-list" class="news-grid"><div class="loading-card">Chargement des actualités…</div></div>
       </section>
 
       <section id="sources" class="content-section sources-section">
-        <div class="section-heading"><div><div class="eyebrow">04 / TRANSPARENCE</div><h2>Sources <span>vérifiées</span></h2></div></div>
+        <div class="section-heading"><div><div class="eyebrow">05 / TRANSPARENCE</div><h2>Sources <span>vérifiées</span></h2></div></div>
         <div class="source-grid">
           <a class="source-card" href="https://fortiguard.fortinet.com/psirt" target="_blank" rel="noopener noreferrer"><span class="source-type">SOURCE OFFICIELLE</span><strong>FortiGuard PSIRT</strong><p>Avis de sécurité Fortinet, produits concernés et informations de remédiation.</p><span class="source-url">fortiguard.fortinet.com ↗</span></a>
           <a class="source-card" href="https://www.fortinet.com/lat/rss-feeds" target="_blank" rel="noopener noreferrer"><span class="source-type">FLUX RSS</span><strong>Fortinet News & Research</strong><p>Actualités, blogs de recherche sur les menaces et publications Fortinet.</p><span class="source-url">fortinet.com ↗</span></a>

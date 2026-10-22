@@ -30,3 +30,10 @@ python -m http.server 8000
 ```
 
 Puis ouvre http://localhost:8000.
+
+
+## Veille de la communauté Fortinet
+
+Le workflow consulte également les pages publiques de la communauté officielle pour FortiGate/FortiOS, FortiManager, FortiAuthenticator, FortiClient EMS, FortiAnalyzer et FortiClient. Les sujets sont dédupliqués par URL et l'historique connu est conservé lorsqu'une rubrique échoue. L'interface signale les collectes partielles.
+
+**Limites de collecte à garder en tête :** la communauté peut modifier son HTML ou restreindre l'accès public. Les dates, versions exactes et résolutions ne sont affichées comme connues que si les métadonnées sont effectivement disponibles; un signalement de membre n'est pas une confirmation de bug par Fortinet. Une rubrique inaccessible doit être considérée comme non vérifiée, jamais comme l'absence de problème.

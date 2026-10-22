@@ -1,5 +1,5 @@
 const DATA_URL = "data/veille.json";
-const fallback = { generatedAt: null, fortinet: [], cyber: [], kev: [], errors: [] };
+const fallback = { generatedAt: null, fortinet: [], cyber: [], kev: [], errors: [], community: [], communityStatus: null };
 const $ = (id) => document.getElementById(id);
 let currentData = fallback;
 
@@ -45,6 +45,43 @@ function renderKev(items, filter = "") {
     return `<article class="cve-card"><div class="cve-id">${escapeHTML(cve)}</div><div><h3>${escapeHTML(title)}</h3><p>${escapeHTML(description)}</p>${product ? `<div class="cve-product">${escapeHTML(product)}</div>` : ""}</div><span class="cve-date">${escapeHTML(safeDate(item.dateAdded || item.date))}</span></article>`;
   }).join("");
 }
+
+function renderCommunity(data) {
+  const items = data.community || [];
+  const product = $("community-product").value;
+  const version = $("community-version").value.trim().toLowerCase();
+  const state = $("community-state").value;
+  const query = $("community-search").value.trim().toLowerCase();
+  const filtered = items.filter(item => {
+    const searchable = [item.title, item.symptom, item.impact, item.product, item.versionLabel, ...(item.versions || [])].join(" ").toLowerCase();
+    return (!product || item.product === product) &&
+      (!version || searchable.includes(version)) &&
+      (!state || item.status === state) &&
+      (!query || searchable.includes(query));
+  });
+  const status = data.communityStatus;
+  $("community-status").className = "community-status " + (status && status.status === "ok" ? "is-ok" : "is-partial");
+  $("community-status").textContent = status
+    ? `Collecte ${status.status === "ok" ? "complète" : status.status === "partial" ? "partielle" : "en échec"} · ${safeDate(status.checkedAt)} · ${(status.successfulProducts || []).length}/6 rubriques consultées${(status.failedProducts || []).length ? " · " + status.failedProducts.join(" | ") : ""}`
+    : "Aucun état de collecte forum fourni.";
+  if (!filtered.length) {
+    $("community-list").innerHTML = '<div class="empty-card">Aucun sujet correspondant. Une rubrique inaccessible ne signifie pas qu’il n’existe aucun bug.</div>';
+    return;
+  }
+  $("community-list").innerHTML = filtered.slice(0, 80).map(item => {
+    const url = /^https:\/\//i.test(item.url || "") ? item.url : "https://community.fortinet.com/";
+    const versions = (item.versions && item.versions.length) ? item.versions.join(", ") : "non précisé";
+    return `<article class="community-card">
+      <div class="community-card-head"><span class="community-product">${escapeHTML(item.product || "Produit non précisé")}</span><span class="community-version">Version : ${escapeHTML(versions)}</span></div>
+      <h3><a href="${escapeHTML(url)}" target="_blank" rel="noopener noreferrer">${escapeHTML(item.title || "Sujet sans titre")} ↗</a></h3>
+      <p>${escapeHTML(item.symptom || item.title || "Symptôme non précisé")}</p>
+      <div class="community-meta"><span>${escapeHTML(item.status || "statut à confirmer")}</span><span>Publié : ${escapeHTML(safeDate(item.publishedAt))}</span><span>Confiance : ${escapeHTML(item.confidence || "à confirmer")}</span></div>
+      <p class="community-impact"><strong>Impact :</strong> ${escapeHTML(item.impact || "à confirmer")}</p>
+      <p class="community-impact"><strong>Résolution :</strong> ${escapeHTML(item.resolution || "non précisé")} · <strong>Version corrigée :</strong> ${escapeHTML(item.fixedVersion || "à confirmer")}</p>
+    </article>`;
+  }).join("");
+}
+
 function updateDashboard(data) {
   currentData = { ...fallback, ...data };
   const fortinet = currentData.fortinet || [];
@@ -60,6 +97,7 @@ function updateDashboard(data) {
   $("fortinet-list").innerHTML = renderArticles(fortinet);
   $("cyber-list").innerHTML = renderCyber(cyber);
   $("cve-list").innerHTML = renderKev(kev, $("cve-search").value);
+  renderCommunity(currentData);
 }
 async function loadData() {
   const button = $("refresh-btn");
@@ -87,3 +125,7 @@ $("cve-search").addEventListener("input", () => {
   $("cve-list").innerHTML = renderKev(currentData.kev || [], $("cve-search").value);
 });
 loadData();
+["community-product", "community-version", "community-state", "community-search"].forEach(id => {
+  $(id).addEventListener("input", () => renderCommunity(currentData));
+  $(id).addEventListener("change", () => renderCommunity(currentData));
+});
