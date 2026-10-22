@@ -23,8 +23,8 @@ PRODUCTS = {
     "FortiGate / FortiOS": ("https://community.fortinet.com/fortigate-3/", ("fortigate", "fortios", "fortigate-")),
     "FortiManager": ("https://community.fortinet.com/fortimanager-27/", ("fortimanager", "fmg")),
     "FortiAuthenticator": ("https://community.fortinet.com/fortiauthenticator-8/", ("fortiauthenticator", "fac")),
-    "FortiClient EMS": ("https://community.fortinet.com/forticlient-ems/", ("forticlient ems", "forticlient-ems", "ems")),
-    "FortiAnalyzer": ("https://community.fortinet.com/fortianalyzer-5/", ("fortianalyzer", "faz")),
+    "FortiClient EMS": ("https://community.fortinet.com/support-forum-92/", ("forticlient ems", "forticlient-ems", "ems")),
+    "FortiAnalyzer": ("https://community.fortinet.com/fortianalyzer-6/", ("fortianalyzer", "faz")),
     "FortiClient": ("https://community.fortinet.com/forticlient-4/", ("forticlient", "forti client")),
 }
 VERSION_RE = re.compile(r"(?i)\b(?:FortiOS|FortiGate|FortiManager|FortiAuthenticator|FortiClient(?:\s+EMS)?|FortiAnalyzer)?\s*v?((?:[5678]\.\d+(?:\.\d+){0,2})(?:\s*build\s*\d+)?)\b")
@@ -104,7 +104,7 @@ def extract_version(text):
     return match.group(1).strip() if match else "non précisé"
 
 
-def parse_topics(html, product, page_url, now=None):
+def parse_topics(html, product, page_url, now=None, keywords=()):
     now = now or datetime.now(timezone.utc)
     parser = TopicParser(page_url)
     parser.feed(html)
@@ -116,6 +116,8 @@ def parse_topics(html, product, page_url, now=None):
             continue
         seen.add(url)
         title = item["title"]
+        if keywords and not any(word.lower() in title.lower() for word in keywords):
+            continue
         # Topic-card timestamps are not consistently exposed in the new public UI;
         # do not invent a publication date when it cannot be parsed.
         version = extract_version(title + " " + item["text"])
@@ -146,10 +148,10 @@ def collect(previous=None, fetcher=fetch_page, now=None):
     now = now or datetime.now(timezone.utc)
     result, errors, successes = [], [], []
     old_by_url = {item.get("url"): item for item in previous if item.get("url")}
-    for product, (url, _keywords) in PRODUCTS.items():
+    for product, (url, keywords) in PRODUCTS.items():
         try:
             html = fetcher(url)
-            items = parse_topics(html, product, url, now)
+            items = parse_topics(html, product, url, now, keywords=keywords)
             if not items:
                 raise ValueError("aucun sujet reconnu dans le HTML public")
             successes.append(product)
