@@ -24,7 +24,7 @@ STOP = {
 }
 ISSUE_RE = re.compile(
     r"\b(bug|broken|fail(?:s|ed|ure)?|error|unable|not working|stops? working|"
-    r"does not work|doesn't work|crash(?:es|ed)?|hang(?:s|ing)?|drop(?:s|ped|ping)?|"
+    r"does not work|doesn't work|not responding|does not respond|no response from|rejects? authentication|crash(?:es|ed)?|hang(?:s|ing)?|drop(?:s|ped|ping)?|"
     r"disconnect(?:s|ed|ion)?|intermittent|regression|unexpected|incorrect|wrong|"
     r"no longer|after upgrade|since upgrade|change(?:d|s)? behavior|behavio[u]?r change|"
     r"not displayed|not shown|not included|not supported|cannot|can't|cannot save|packet loss|bypass(?:es|ed)?|"
@@ -122,7 +122,24 @@ def looks_like_problem(item: dict) -> bool:
 
 
 def title_tokens(item: dict) -> set[str]:
-    return words(item.get("title", ""))
+    """Normalize common Fortinet wording variants before comparing issue titles."""
+    title = norm(item.get("title", ""))
+    # These are phrasing variants, not evidence that two reports are the same bug.
+    # Product/version compatibility and the similarity threshold still apply.
+    replacements = (
+        (r"\b(?:firmware|software) update\b", "upgrade"),
+        (r"\b(?:upgrading|upgraded)\b", "upgrade"),
+        (r"\b(?:not responding|does not respond|no response from|unresponsive)\b", "failure"),
+        (r"\b(?:does not work|doesnt work|not working|broken|fails?|failed|failing|failure|errors?)\b", "failure"),
+        (r"\b(?:single sign on|single sign-on|sso)\b", "sso"),
+        (r"\b(?:ssl vpn|sslvpn)\b", "sslvpn"),
+        (r"\b(?:password policy|password complexity policy|password requirements)\b", "passwordpolicy"),
+        (r"\b(?:radius authentication|authentication via radius|authentication using radius)\b", "radiusauth"),
+        (r"\b(?:saml authentication|saml single sign on|saml sso)\b", "saml"),
+    )
+    for pattern, replacement in replacements:
+        title = re.sub(pattern, replacement, title)
+    return {w for w in title.split() if len(w) > 2 and w not in STOP and not w.isdigit()}
 
 
 def source_type(item: dict) -> str:
