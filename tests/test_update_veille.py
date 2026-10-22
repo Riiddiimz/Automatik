@@ -66,7 +66,7 @@ class UpdatePreservationTests(unittest.TestCase):
     def test_cisa_feed_falls_back_to_cert_fr_when_both_cisa_urls_fail(self):
         psirt = b"""<rss version="2.0"><channel><item><title>PSIRT</title><link>https://example.com/psirt</link></item></channel></rss>"""
         outbreak = b"""<rss version="2.0"><channel><item><title>Outbreak</title><link>https://example.com/outbreak</link></item></channel></rss>"""
-        cert_fr = b"""<rss version="2.0"><channel><item><title>Vulnérabilité CERT-FR</title><link>https://www.cert.ssi.gouv.fr/alerte/example</link></item></channel></rss>"""
+        cert_fr = b"""<rss version="2.0"><channel><item><title>CERT-FR security advisory</title><link>https://www.cert.ssi.gouv.fr/alerte/example</link></item></channel></rss>"""
         kev = json.dumps({"vulnerabilities": [{"cveID": "CVE-2026-0100"}]}).encode()
         responses = [psirt, outbreak, urllib.error.URLError("403 Forbidden"), urllib.error.URLError("403 Forbidden"), cert_fr, kev]
         with tempfile.TemporaryDirectory() as directory:
@@ -74,7 +74,7 @@ class UpdatePreservationTests(unittest.TestCase):
             with patch.object(updater, "OUT", out_path), patch.object(updater, "fetch", side_effect=responses) as mock_fetch:
                 updater.main()
             result = json.loads(out_path.read_text(encoding="utf-8"))
-        self.assertIn("Vulnérabilité CERT-FR", [item["title"] for item in result["cyber"]])
+        self.assertIn("CERT-FR security advisory", [item["title"] for item in result["cyber"]])
         self.assertIn("CERT-FR", [item["source"] for item in result["cyber"]])
         self.assertFalse(any("CISA Cybersecurity Advisories" in error for error in result["errors"]))
         self.assertEqual(mock_fetch.call_args_list[2].args[0], "https://www.cisa.gov/cybersecurity-advisories/all.xml")
