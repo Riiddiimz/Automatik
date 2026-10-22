@@ -1,0 +1,148 @@
+#!/usr/bin/env python3
+"""Collecteur non interactif du flux Fortinet Community, sans IA ni clé API."""
+from __future__ import annotations
+
+import html
+import json
+import re
+import urllib.error
+import urllib.request
+import xml.etree.ElementTree as ET
+from datetime import datetime, timezone
+from email.utils import parsedate_to_datetime
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[1]
+FEED_URL = "https://community.fortinet.com/feed/topics"
+OUT = ROOT / "data" / "community.json"
+USER_AGENT = "AutomatikCommunityWatch/1.0 (+https://github.com/Riiddiimz/Automatik)"
+MAX_HISTORY = 500
+
+PRODUCT_ALIASES = {
+    "FortiGate": (r"\bfortigate\b", r"\bfortios\b", r"\bforti[- ]?gate\b"),
+    "FortiManager": (r"\bfortimanager\b",),
+    "FortiAnalyzer": (r"\bfortianalyzer\b",),
+    "FortiAuthenticator": (r"\bfortiauthenticator\b",),
+    "FortiClient EMS": (r"\bforticlient\s*ems\b", r"\bfcems\b"),
+    "FortiClient": (r"\bforticlient\b",),
+}
+VERSION_RE = re.compile(r"\b\d+\.\d+\.\d+\b")
+TAG_RE = re.compile(r"<[^>]+>")
+
+
+def clean(value: str | None) -> str:
+    value = html.unescape(value or "")
+    return re.sub(r"\s+", " ", TAG_RE.sub(" ", value)).strip()
+
+
+def parse_date(value: str) -> str | None:
+    if not value:
+        return None
+    try:
+        parsed = parsedate_to_datetime(value)
+    except (TypeError, ValueError, OverflowError):
+        try:
+            parsed = datetime.fromisoformat(value.replace("Z", "+00:00"))
+        except ValueError:
+            return None
+    if parsed.tzinfo is None:
+        parsed = parsed.replace(tzinfo=timezone.utc)
+    return parsed.astimezone(timezone.utc).isoformat()
+
+
+def fetch_feed(url: str = FEED_URL) -> bytes:
+    request = urllib.request.Request(url, headers={"User-Agent": USER_AGENT, "Accept": "application/rss+xml, application/atom+xml, application/xml"})
+    with urllib.request.urlopen(request, timeout=30) as response:
+        return response.read()
+
+
+def parse_feed(payload: bytes) -> list[dict]:
+    root = ET.fromstring(payload)
+    entries = root.findall(".//item")
+    atom_ns = "{http://www.w3.org/2005/Atom}"
+    if not entries:
+        entries = root.findall(f".//{atom_ns}entry")
+    result = []
+    for entry in entries:
+        title = clean(entry.findtext("title") if entry.tag != f"{atom_ns}entry" else entry.findtext(f"{atom_ns}title"))
+        if entry.tag == f"{atom_ns}entry":
+            link_el = entry.find(f"{atom_ns}link")
+            link = (link_el.get("href", "") if link_el is not None else "").strip()
+            date_raw = entry.findtext(f"{atom_ns}published") or entry.findtext(f"{atom_ns}updated") or ""
+            summary_raw = entry.findtext(f"{atom_ns}summary") or entry.findtext(f"{atom_ns}content") or ""
+        else:
+            link = (entry.findtext("link") or "").strip()
+            date_raw = entry.findtext("pubDate") or entry.findtext("published") or ""
+            summary_raw = entry.findtext("description") or entry.findtext("summary") or ""
+        summary = clean(summary_raw)
+        if not title or not link.startswith("https://community.fortinet.com/"):
+            continue
+        text = f"{title} {summary}"
+        products = [name for name, patterns in PRODUCT_ALIASES.items() if any(re.search(pattern, text, re.I) for pattern in patterns)]
+        if not products:
+            continue
+        if "FortiClient EMS" in products:
+            products = [p for p in products if p != "FortiClient"]
+        versions = sorted(set(VERSION_RE.findall(text)))
+        result.append({
+            "id": link.rstrip("/"),
+            "title": title,
+            "url": link,
+            "date": parse_date(date_raw),
+            "summary": summary[:1200],
+            "products": products,
+            "versions": versions,
+            "status": "À vérifier",
+            "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
+            "source": "Fortinet Community",
+        })
+    return result
+
+
+def load_previous(path: Path = OUT) -> dict:
+    try:
+        data = json.loads(path.read_text(encoding="utf-8"))
+        if isinstance(data, dict) and isinstance(data.get("topics"), list):
+            return data
+    except (OSError, json.JSONDecodeError):
+        pass
+    return {"topics": []}
+
+
+def collect(fetcher=fetch_feed, out: Path = OUT) -> dict:
+    previous = load_previous(out)
+    now = datetime.now(timezone.utc).isoformat()
+    errors = []
+    try:
+        fresh = parse_feed(fetcher())
+    except (OSError, urllib.error.URLError, ET.ParseError, ValueError, TimeoutError) as exc:
+        errors.append(f"Fortinet Community: {type(exc).__name__}: {exc}")
+        if not previous.get("topics"):
+            raise RuntimeError("Le flux a échoué et aucun historique exploitable n'existe.") from exc
+        result = {**previous, "generatedAt": now, "partial": True, "errors": errors}
+        out.parent.mkdir(parents=True, exist_ok=True)
+        out.write_text(json.dumps(result, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+        return result
+
+    merged = {item.get("id") or item.get("url"): item for item in previous.get("topics", []) if item.get("id") or item.get("url")}
+    for item in fresh:
+        key = item["id"]
+        old = merged.get(key, {})
+        merged[key] = {**old, **item, "firstSeen": old.get("firstSeen", now), "lastSeen": now}
+    topics = sorted(merged.values(), key=lambda item: item.get("date") or item.get("firstSeen") or "", reverse=True)[:MAX_HISTORY]
+    result = {"generatedAt": now, "feedUrl": FEED_URL, "partial": False, "errors": errors, "topicCount": len(topics), "topics": topics}
+    out.parent.mkdir(parents=True, exist_ok=True)
+    out.write_text(json.dumps(result, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    return result
+
+
+def main() -> int:
+    result = collect()
+    print(f"Collecte terminée : {len(result.get('topics', []))} sujets conservés; partielle={result.get('partial', False)}")
+    for error in result.get("errors", []):
+        print(f"AVERTISSEMENT: {error}")
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())
