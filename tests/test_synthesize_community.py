@@ -85,5 +85,15 @@ class CommunitySynthesisTests(unittest.TestCase):
         self.assertEqual(result["incidents"][0]["status"], "Récurrent — 2 discussions distinctes")
 
 
+
+    def test_legacy_t5_url_is_a_forum_report_not_official_documentation(self):
+        item = {
+            "title": "FortiGate 7.4.12 VPN fails",
+            "summary": "Known issue reported by one user.",
+            "url": "https://community.fortinet.com/t5/FortiGate/abc",
+        }
+        self.assertEqual(synth.source_type(item), "forum_discussion")
+        self.assertFalse(synth.has_documented_evidence(item))
+
 if __name__ == "__main__":
     unittest.main()
