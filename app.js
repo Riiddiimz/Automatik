@@ -77,10 +77,10 @@ function renderCommunity() {
     const extra = Math.max(0, (item.sources || []).length - 5);
     return `<article class="community-card incident-card">
       <div class="community-card-top"><span class="community-products">${products}</span><span class="community-status-badge">${escapeHTML(item.status || "Point de vigilance")}</span></div>
-      <h3>${escapeHTML(item.title || "Problème potentiel Fortinet")}</h3>
+      <h3>${escapeHTML(item.title || "Point de vigilance Fortinet")}</h3>
       <p>${escapeHTML(item.summary || "Résumé indisponible : consulter les discussions sources.")}</p>
       <div class="community-meta"><span>${item.forumReportCount ?? 0} signalement(s) utilisateur(s) distinct(s)</span>${item.documentedSourceCount ? `<span>${item.documentedSourceCount} source(s) Fortinet documentée(s)</span>` : ""}<span>Famille(s) : ${families || "non déterminée(s)"}</span>${exact ? `<span>Versions exactes : ${exact}</span>` : ""}<span>Dernière publication : ${escapeHTML(safeDate(item.lastSeen))}</span></div>
-      <details class="incident-sources"><summary>Consulter les discussions sources (${(item.sources || []).length})</summary><ul>${sources}</ul>${extra ? `<p class="source-extra">Et ${extra} autre(s) source(s) dans ce regroupement.</p>` : ""}</details>
+      <details class="incident-sources"><summary>Consulter les sources (${(item.sources || []).length})</summary><ul>${sources}</ul>${extra ? `<p class="source-extra">Et ${extra} autre(s) source(s) dans ce regroupement.</p>` : ""}</details>
       <div class="community-caution">${escapeHTML(item.confidence || "Critères de preuve appliqués.")}. Les versions, symptômes et sources restent consultables avant toute décision de mise à niveau.</div>
     </article>`;
   }).join("");
