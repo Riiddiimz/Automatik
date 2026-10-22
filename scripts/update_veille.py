@@ -123,7 +123,7 @@ def main():
     OUT.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     if not data["fortinet"] and not data["cyber"] and not data["kev"]:
         raise SystemExit("Aucune source n'a fourni de données et aucun cache précédent n'est disponible.")
-    print(f"Écrit {OUT.relative_to(ROOT)} : {len(data['fortinet'])} avis Fortinet, {len(data['cyber'])} actualités, {len(data['kev'])} entrées KEV.")
+    print(f"Écrit {OUT} : {len(data['fortinet'])} avis Fortinet, {len(data['cyber'])} actualités, {len(data['kev'])} entrées KEV.")
     if data["errors"]:
         print("Sources en erreur (les données précédentes sont conservées lorsqu'elles existent) :")
         for error in data["errors"]:
