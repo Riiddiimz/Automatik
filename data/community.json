@@ -1,8 +1,1227 @@
 {
-  "generatedAt": null,
+  "generatedAt": "2026-10-22T08:39:26.783874+00:00",
   "feedUrl": "https://community.fortinet.com/feed/topics",
   "partial": false,
   "errors": [],
-  "topicCount": 0,
-  "topics": []
+  "topicCount": 66,
+  "topics": [
+    {
+      "id": "https://community.fortinet.com/fortigate-3/technical-tip-how-to-configure-network-id-for-distinguishing-ikev2-ipsec-vpn-tunnels-using-forticlient-xml-file-223272",
+      "title": "Technical Tip: How to configure Network ID for distinguishing IKEv2 IPsec VPN tunnels using FortiClient XML file",
+      "url": "https://community.fortinet.com/fortigate-3/technical-tip-how-to-configure-network-id-for-distinguishing-ikev2-ipsec-vpn-tunnels-using-forticlient-xml-file-223272",
+      "date": "2026-10-22T08:33:24+00:00",
+      "summary": "DescriptionThis article explains how to edit the FortiClient XML file to distinguish multiple IKEv2 IPsec VPN tunnels using Network ID instead of Peer ID.ScopeFortiGate, FortiClient.SolutionWhen multiple dial-up IPsec IKEv2 IPsec VPN tunnels are configured on FortiGate, a unique Network ID must be defined on each Phase 1 configuration. This allows FortiGate to correctly match incoming IKEv2 initiations with the appropriate tunnel.If the Network ID is not defined, FortiGate cannot reliably determine which Phase 1 configuration to use when multiple IKEv2 dial‑up tunnels reside on the same interface. This behavior differs from IKEv1, where Peer IDs were used to distinguish between tunnels. Use the following CLI syntax to define the Network ID for each Phase 1 configuration: config vpn ipsec phase1-interface edit \" \" set ike-version 2 set network-overlay enable set network-id next end The Network ID must be defined on both the FortiGate Phase1 and the FortiClient configuration to ensure correct tunnel matching.Note: The Network ID setting cannot be configured on unmanaged or standalone Forticlient. For managed Forticlient, configuration of Network ID is supported through Forticlient EM",
+      "products": [
+        "FortiGate",
+        "FortiClient EMS"
+      ],
+      "versions": [
+        "10.0.0",
+        "192.168.11",
+        "7.2.6",
+        "7.4.1"
+      ],
+      "status": "À vérifier",
+      "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
+      "source": "Fortinet Community",
+      "firstSeen": "2026-10-22T08:39:26.783874+00:00",
+      "lastSeen": "2026-10-22T08:39:26.783874+00:00"
+    },
+    {
+      "id": "https://community.fortinet.com/fortigate-3/dns-over-tls-broken-in-proxy-mode-230749",
+      "title": "DNS over TLS broken in Proxy Mode",
+      "url": "https://community.fortinet.com/fortigate-3/dns-over-tls-broken-in-proxy-mode-230749",
+      "date": "2026-10-22T07:51:37+00:00",
+      "summary": "DescriptionDNS filtering fails to inspect DNS over TLS (DoT) queries in certain FortiOS versions, such as version 7.6.4, leading to bypassed filtering or connection errors in proxy mode. The issue occurs when a DNS query is made over TLS after upgrading to FortiOS version 7.6.4.ScopeFortiGate.SolutionThis known issue is Bug ID 1214371.Sample: The issue is reproduced using deep inspection with DNS filter enabled for a proxy mode firewall policy.As seen in the image above, the default redirect block IP addresses (208.91.112.55, 2620:101:9000:53) were not returned over TLS. Upgrade FortiGate to FortiOS 8.0.1 to resolve the issue where DNS over TLS queries bypass filtering in proxy mode.Related documents:Resolved issuesDNS over QUIC and DNS over HTTP3 for transparent and local-in DNS modes",
+      "products": [
+        "FortiGate"
+      ],
+      "versions": [
+        "208.91.112",
+        "7.6.4",
+        "8.0.1"
+      ],
+      "status": "À vérifier",
+      "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
+      "source": "Fortinet Community",
+      "firstSeen": "2026-10-22T08:39:26.783874+00:00",
+      "lastSeen": "2026-10-22T08:39:26.783874+00:00"
+    },
+    {
+      "id": "https://community.fortinet.com/fortigate-3/technical-tip-fortigate-400g-and-401g-are-not-included-in-the-upgrade-path-tool-229320",
+      "title": "Technical Tip: FortiGate-400G and 401G are not included in the upgrade path tool",
+      "url": "https://community.fortinet.com/fortigate-3/technical-tip-fortigate-400g-and-401g-are-not-included-in-the-upgrade-path-tool-229320",
+      "date": "2026-10-22T07:27:57+00:00",
+      "summary": "DescriptionThis article describes the availability of the FortiGate-400G and 401G models in the Upgrade Path Tool and provides information about supported firmware versions.ScopeFortiGate-400G and 401G: users checking supported firmware versions and recommended upgrade paths.The FortiGate-400G and 401G are now included in the Upgrade Path Tool. Select the product model, current version, and target version to view its recommended upgrade path.For example, the tool shows a direct recommended path for FortiGate-400G from FortiOS v7.6.6 M (Build 6689) to v8.0.1 F (Build 0245).These models are supported by a special branch of v7.6.6 (Build 6689), specifically designed for them: Introduction and supported models.The FortiGates-400G and 401G do not support FortiOS v7.4.x.For a FortiGate-401G, select that model separately in the Upgrade Path Tool to confirm its available versions and recommended path.Note: Release timelines are subject to change.If additional information regarding compatibility and available versions is required, contact TAC through Support.",
+      "products": [
+        "FortiGate"
+      ],
+      "versions": [],
+      "status": "À vérifier",
+      "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
+      "source": "Fortinet Community",
+      "firstSeen": "2026-10-22T08:39:26.783874+00:00",
+      "lastSeen": "2026-10-22T08:39:26.783874+00:00"
+    },
+    {
+      "id": "https://community.fortinet.com/fortiap-5/preserving-client-ip-addresses-across-ap-group-vlans-with-layer-3-intra-controller-roaming-230748",
+      "title": "Preserving client IP addresses across AP group VLANs with Layer 3 intra controller roaming",
+      "url": "https://community.fortinet.com/fortiap-5/preserving-client-ip-addresses-across-ap-group-vlans-with-layer-3-intra-controller-roaming-230748",
+      "date": "2026-10-22T07:00:48+00:00",
+      "summary": "DescriptionHow to enable a new Layer 3 intra-controller roaming feature on a bridge-mode SSID, so wireless clients can move between FortiAP groups that are mapped to different VLANs, while retaining their original IP address.ScopeFortiGate 60F with FortiOS 7.4.11 and two FortiAP-441K access points with FortiAP firmware 7.6.3, managed by the same FortiGate.The source lab used feature-specific STS builds. The version labels above identify the tested release families and do not establish support in every build. Confirm that the target build exposes 'l3-intra-roaming' before applying this configuration.Solution1. Prepare the environmentUse two authorized FortiAPs managed by the same FortiGate and broadcasting the same bridge-mode SSID. Configure the SSID authentication before applying the following changes. The selected test used WPA2 Personal.Create two managed AP groups and assign one access point to each:FortiAPAP groupClient VLANManagement IPFAP1-loungeNorth10010.10.201.2FAP2-officeSouth20010.10.202.2Provide the required VLANs, DHCP scopes, gateways, and routing. Ensure the FortiAPs can communicate directly, without NAT in the path, when using direct roaming mode.Advertise the SSID",
+      "products": [
+        "FortiGate"
+      ],
+      "versions": [
+        "10.10.100",
+        "10.10.200",
+        "7.4.11",
+        "7.6.3"
+      ],
+      "status": "À vérifier",
+      "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
+      "source": "Fortinet Community",
+      "firstSeen": "2026-10-22T08:39:26.783874+00:00",
+      "lastSeen": "2026-10-22T08:39:26.783874+00:00"
+    },
+    {
+      "id": "https://community.fortinet.com/fortiap-5/capturing-zebra-zs300-ble-data-with-fortiap-for-temperature-monitoring-230747",
+      "title": "Capturing Zebra ZS300 BLE data with FortiAP for temperature monitoring",
+      "url": "https://community.fortinet.com/fortiap-5/capturing-zebra-zs300-ble-data-with-fortiap-for-temperature-monitoring-230747",
+      "date": "2026-10-22T06:50:28+00:00",
+      "summary": "DescriptionConfigure BLE scanning on a FortiAP to collect advertisements from Zebra ZS300 temperature sensors for processing and visualization by an external application.ScopeThe main proof of concept used a FortiGate 60F running FortiOS 7.4.12 and a FortiAP-233G running firmware 7.4.5. A separate local validation used a FortiAP-234F.The workflow illustrates BLE scanning on both models. Configuration availability depends on the FortiAP model and firmware.Solution1. Configure BLE scanningOn the FortiGate, create a BLE profile using the scan parameters validated during the proof of concept:config wireless-controller ble-profile edit \"ZEBRA-ZS300-BLE\" set ble-scanning enable set scan-type active set scan-threshold \"-90\" set scan-period 4000 set scan-time 1000 set scan-interval 50 set scan-window 50 next endAssign the BLE profile to the FortiAP profile. Replace with the existing profile name.config wireless-controller wtp-profile edit \" \" set ble-profile \"ZEBRA-ZS300-BLE\" next endIf the FortiAP profile is shared, this change affects the other access points using it.2. Verify the BLE configurationFrom the FortiAP CLI, run:cw_diag -c ble-configThe following excerpt shows the scan configu",
+      "products": [
+        "FortiGate"
+      ],
+      "versions": [
+        "7.4.12",
+        "7.4.5"
+      ],
+      "status": "À vérifier",
+      "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
+      "source": "Fortinet Community",
+      "firstSeen": "2026-10-22T08:39:26.783874+00:00",
+      "lastSeen": "2026-10-22T08:39:26.783874+00:00"
+    },
+    {
+      "id": "https://community.fortinet.com/fortigate-3/unable-to-save-configuration-with-execute-cfg-save-when-using-fortigatecloud-or-fortimanager-cli-script-230746",
+      "title": "Unable to save configuration with “execute cfg save” when using FortiGateCloud or FortiManager CLI script",
+      "url": "https://community.fortinet.com/fortigate-3/unable-to-save-configuration-with-execute-cfg-save-when-using-fortigatecloud-or-fortimanager-cli-script-230746",
+      "date": "2026-10-22T06:41:11+00:00",
+      "summary": "DescriptionWhen configuration save mode on the FortiGate (aka cfg-save under config system global) is changed from automatic to either manual or revert, any configuration changes applied via CLI scripts pushed from FortiGate Cloud or FortiManager may not be saved to flash.ScopeFortiOS 7.2.x, 7.4.x, and 7.6.x.SolutionAs a quick primer: cfg-save is a configurable feature that allows FortiGate administrators to enforce manual saving of configuration changes to persistent storage, as opposed to the default behavior where the FortiGate automatically saves each change once it is committed. For more info, refer to the following Article: Technical Tip: Using the save option 'set cfg-save revert' to automatically reboot and revert to a previous configuration of a FortiGate config system global set cfg-save end However, there is currently an issue where cfg-save (when set to manual or revert) can have an unexpected interaction with CLI scripts that are pushed to the FortiGate using FortiManagement Cloud (previously known as FortiGate Cloud) or FortiManager. After a CLI script is run, the configuration changes will appear in the running configuration, but those changes are not currently being",
+      "products": [
+        "FortiGate",
+        "FortiManager"
+      ],
+      "versions": [
+        "8.0.3"
+      ],
+      "status": "À vérifier",
+      "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
+      "source": "Fortinet Community",
+      "firstSeen": "2026-10-22T08:39:26.783874+00:00",
+      "lastSeen": "2026-10-22T08:39:26.783874+00:00"
+    },
+    {
+      "id": "https://community.fortinet.com/fortigate-3/operating-system-suggestion-for-fortigate-s-nac-policies-230745",
+      "title": "Operating System suggestion for FortiGate's NAC policies",
+      "url": "https://community.fortinet.com/fortigate-3/operating-system-suggestion-for-fortigate-s-nac-policies-230745",
+      "date": "2026-10-22T06:37:08+00:00",
+      "summary": "DescriptionHow to get FortiGate's NAC policies to show a list of Operating System suggestions when enabling the radio button.ScopeFortiGateSolutionThe Operating System(OS) suggestions for FortiGate's NAC policies can be populated using the following steps:Navigate to Network -> Interfaces and edit the internal-facing interfaces.Look for \"Device detection\" under Network and toggle it to enable.Wait for a while and check if the device connected behind the port is being detected using the following command line:diagnose user device list hosts vd root/0 00:57:69:72:1f:01 gen 272 req 0 created 166978s gen 1 seen 4s port2 gen 129 ip 10.235.1.242 src arp os 'Windows' src http id 1453 weight 130 software version '10/11' src http id 1453 weight 130 host 'WIRA-KVM31' src mwbsAfter confirming the connected device is being detected, proceed to navigate to WiFi Controller > NAC Policies and create/edit a NAC policy. Notice that after enabling the radio button for the Operating System, the detected device OS will be listed as a suggestion.",
+      "products": [
+        "FortiGate"
+      ],
+      "versions": [
+        "10.235.1"
+      ],
+      "status": "À vérifier",
+      "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
+      "source": "Fortinet Community",
+      "firstSeen": "2026-10-22T08:39:26.783874+00:00",
+      "lastSeen": "2026-10-22T08:39:26.783874+00:00"
+    },
+    {
+      "id": "https://community.fortinet.com/fortigate-3/troubleshooting-tip-ssl-vpn-stops-working-for-remote-and-local-users-due-to-fnbamd-process-230744",
+      "title": "Troubleshooting Tip: SSL VPN stops working for remote and local users due to fnbamd process",
+      "url": "https://community.fortinet.com/fortigate-3/troubleshooting-tip-ssl-vpn-stops-working-for-remote-and-local-users-due-to-fnbamd-process-230744",
+      "date": "2026-10-22T06:21:57+00:00",
+      "summary": "DescriptionThis article describes behavior where FortiGate stops accepting new SSL VPN connections due to the FNBAMD process.ScopeFortiGate version 7.4.11 and previous versions.SolutionUsers configure a standard SSL VPN connection for local and remote usersCheck the crash log and validate that there are multiple fnbamd crashesdiagnose debug crashlog read | grep 2026 111: 2026-03-14 15:48:14 firmware FortiGate-100 v7.4.11,build2878b2878,260126 (GA.M) (Release) 112: 2026-03-14 15:48:14 application fnbamdTake some debugs of the VPN and validate the fnbamd process remains stuck.diagnose debug disable diagnose debug reset diagnose vpn ssl debug-filter src-addr4 x.x.x.x → replace x.x.x.x with the public IP of the user diagnose debug application sslvpn -1 diagnose debug application fnbamd -1 diagnose debug enable FGT_Test# #15553:root:2]allocSSLConn:303 sconn 0x7f9c2a558000 (0:root) >15553:root:2]SSL state:before SSL initialization (1.1.1.1) >15556:root:2]rmt_web_auth_info_parser_common:534 no session id in auth info >15556:root:2]rmt_web_access_check:805 access failed, uri=[/remote/logincheck],ret=5003, >15556:root:2]fsv_logincheck_common_handler:1489 user 'TEST_USER' has a matched local",
+      "products": [
+        "FortiGate"
+      ],
+      "versions": [
+        "1.1.1",
+        "7.4.11"
+      ],
+      "status": "À vérifier",
+      "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
+      "source": "Fortinet Community",
+      "firstSeen": "2026-10-22T08:39:26.783874+00:00",
+      "lastSeen": "2026-10-22T08:39:26.783874+00:00"
+    },
+    {
+      "id": "https://community.fortinet.com/support-forum-92/use-lan-port-as-a-wan-port-230737",
+      "title": "Use LAN port as a WAN Port",
+      "url": "https://community.fortinet.com/support-forum-92/use-lan-port-as-a-wan-port-230737",
+      "date": "2026-10-21T22:53:03+00:00",
+      "summary": "Hi, community Forti. I have a fortigate 100D but a WAN port broke down; now ot only gives me 10 mbps instead of the normal speed. So I want to use a LAN port as a WAN port but a I have some questions.The Lan port can fuction properly? The speed is 100 mbps The Wan port can be repaired?I know that I need change policies and more things. All for the LAN port.",
+      "products": [
+        "FortiGate"
+      ],
+      "versions": [],
+      "status": "À vérifier",
+      "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
+      "source": "Fortinet Community",
+      "firstSeen": "2026-10-22T08:39:26.783874+00:00",
+      "lastSeen": "2026-10-22T08:39:26.783874+00:00"
+    },
+    {
+      "id": "https://community.fortinet.com/fortigate-3/how-to-protect-endpoints-affected-by-emudhra-certificate-authority-compromise-230740",
+      "title": "How to protect endpoints affected by eMudhra certificate authority compromise",
+      "url": "https://community.fortinet.com/fortigate-3/how-to-protect-endpoints-affected-by-emudhra-certificate-authority-compromise-230740",
+      "date": "2026-10-21T22:44:58+00:00",
+      "summary": "DescriptionThis article provides steps to block protect vulnerable endpoints from man-in-the-middle (MITM) attacks on HTTPS and other traffic encrypted by SSL, including the vulnerability introduced by the October 2026 eMudhra Certificate Authority compromise.ScopeFortiOSSolutionOn October 17th 2026, 8 private keys held by eMudhra intermediate CA certificates were proven compromised. This became public information on October 20, 2026. Refer to the third-party reference eMudhra Intermediate CA Compromise.As the affected keys are trivial to crack with known methods, it is simple for any competent attacker to impersonate the affected intermediate CAs. There is no single identifiable attack vector or campaign associated with this compromise, rather it is a potentially widespread issue now that the weakness is known.Any endpoint which includes the following root CA certificates in their trust store is considered vulnerable to man-in-the-middle attacks:emSign Root TLS CA - G3 (a widely trusted root CA before the issue became known)AAA Certificate Services (This is a legacy Sectigo CA already removed from most endpoints and not present in FortiOS).It is strongly recommended to update affe",
+      "products": [
+        "FortiGate"
+      ],
+      "versions": [],
+      "status": "À vérifier",
+      "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
+      "source": "Fortinet Community",
+      "firstSeen": "2026-10-22T08:39:26.783874+00:00",
+      "lastSeen": "2026-10-22T08:39:26.783874+00:00"
+    },
+    {
+      "id": "https://community.fortinet.com/support-forum-92/forticlient-ems-userbased-azuread-groups-230416",
+      "title": "FortiClient EMS - userbased AzureAD groups",
+      "url": "https://community.fortinet.com/support-forum-92/forticlient-ems-userbased-azuread-groups-230416",
+      "date": "2026-10-21T22:05:19+00:00",
+      "summary": "We currently use FortiClient EMS 7.4.7 and want to assign the endpoint profiles with userbased AzureAD groups. Currently it works only with devicebased AzureAD groups. When I add user to to the AzureAD group und resync I noticed the the user is synced with the EMS, but the device from the user is not assigned to the profile.The Fortinet Support means that it is a bug, but perhabs it is a incorrect configuration in the claims or anything else.Has anyone use userbased AzureAD groups with the version?",
+      "products": [
+        "FortiClient EMS"
+      ],
+      "versions": [
+        "7.4.7"
+      ],
+      "status": "À vérifier",
+      "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
+      "source": "Fortinet Community",
+      "firstSeen": "2026-10-22T08:39:26.783874+00:00",
+      "lastSeen": "2026-10-22T08:39:26.783874+00:00"
+    },
+    {
+      "id": "https://community.fortinet.com/support-forum-92/taking-over-a-messy-production-fortimanager-100-fortigates-many-adoms-safest-way-to-reconcile-drift-and-standardise-policy-230736",
+      "title": "Taking over a messy production FortiManager (100+ FortiGates, many ADOMs): safest way to reconcile drift and standardise policy?",
+      "url": "https://community.fortinet.com/support-forum-92/taking-over-a-messy-production-fortimanager-100-fortigates-many-adoms-safest-way-to-reconcile-drift-and-standardise-policy-230736",
+      "date": "2026-10-21T21:38:39+00:00",
+      "summary": "I've been brought in to help an organisation with a large branch network get proper value from their FortiManager. It was set up by someone else and never became the single source of truth. They want to push policies, templates, firmware and switch and AP settings from FortiManager, with no policy mismatches and no per-firewall changes. It's a live environment, so any approach has to avoid outages.EnvironmentFortiManager VM 7.6.x in HA, with several ADOMs100+ FortiGates (mixed 60F, 40F and 100F class units) all on the same FortiOS 7.4.x buildA large number of FortiSwitches and FortiAPs through FortiLinkHub-and-spoke SD-WAN, which works fine and is out of scopeWhat I found (read-only access)Far more policy packages than makes sense for the number of devices, and many devices have a package to themselves. This looks like cloned packages instead of meta variables and dynamic mappings.A number of devices show Modified config status, concentrated in one ADOM, and I haven't seen any Synchronized devices. Most show Auto-update.A handful of devices show Never Installed.One ADOM is still set to an older version than the FortiOS its devices run.Several ADOMs hold the same branch hardware, so",
+      "products": [
+        "FortiGate",
+        "FortiManager"
+      ],
+      "versions": [],
+      "status": "À vérifier",
+      "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
+      "source": "Fortinet Community",
+      "firstSeen": "2026-10-22T08:39:26.783874+00:00",
+      "lastSeen": "2026-10-22T08:39:26.783874+00:00"
+    },
+    {
+      "id": "https://community.fortinet.com/support-forum-92/fortiextender-wan-extension-in-nat-mode-230738",
+      "title": "FortiExtender WAN Extension in NAT Mode?",
+      "url": "https://community.fortinet.com/support-forum-92/fortiextender-wan-extension-in-nat-mode-230738",
+      "date": "2026-10-21T21:29:02+00:00",
+      "summary": "Hello,we currently use several FortiExtenders as WAN extensions in combination with 5G, SIM cards an IP passthrough. While this seems like the optimal solution we randomly encounter issues because the ISP assigns random CGNAT subnets through DHCP within 10.0.0.0/8. This seems completely random and may or may not conflict with our internal networks.I have thought about using the FEX in standalone NAT mode so I am able to use deterministic transit networks on the FortiGate. However in that case we lose the nice FortiGate integration & management.Has anyone an idea how this can be solved more elegant? Can NAT mode used while the extender is managed by FortiGate?",
+      "products": [
+        "FortiGate"
+      ],
+      "versions": [
+        "10.0.0"
+      ],
+      "status": "À vérifier",
+      "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
+      "source": "Fortinet Community",
+      "firstSeen": "2026-10-22T08:39:26.783874+00:00",
+      "lastSeen": "2026-10-22T08:39:26.783874+00:00"
+    },
+    {
+      "id": "https://community.fortinet.com/support-forum-92/deploying-fortigate-vm-on-huawei-private-cloud-230712",
+      "title": "Deploying FortiGate VM on Huawei private cloud",
+      "url": "https://community.fortinet.com/support-forum-92/deploying-fortigate-vm-on-huawei-private-cloud-230712",
+      "date": "2026-10-21T20:02:04+00:00",
+      "summary": "Hello, Can i deploy FortiGate VM on Huawei private cloud? is it supported and compatible ? And could you please advise what are the supported hypervisors/platforms on Huawei private cloud for the VM Deployment? And does this one ( Huawei Cloud EulerOS 2.0 64 bit - CentOS 7.9 ) supported for FortiGate VM deployment ? Thanks in advance",
+      "products": [
+        "FortiGate"
+      ],
+      "versions": [],
+      "status": "À vérifier",
+      "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
+      "source": "Fortinet Community",
+      "firstSeen": "2026-10-22T08:39:26.783874+00:00",
+      "lastSeen": "2026-10-22T08:39:26.783874+00:00"
+    },
+    {
+      "id": "https://community.fortinet.com/support-forum-92/fortianalyzer-8-0-1-all-automation-playbooks-failing-after-upgrade-from-7-6-x-230733",
+      "title": "FortiAnalyzer 8.0.1 – All Automation Playbooks Failing After Upgrade from 7.6.x",
+      "url": "https://community.fortinet.com/support-forum-92/fortianalyzer-8-0-1-all-automation-playbooks-failing-after-upgrade-from-7-6-x-230733",
+      "date": "2026-10-21T20:00:14+00:00",
+      "summary": "Hi everyone,We are experiencing a serious issue with the Automation Playbooks functionality in FortiAnalyzer 8.0.1 following an upgrade from FortiAnalyzer 7.6.x.All automation playbooks were working correctly on FortiAnalyzer 7.6.x. However, after upgrading to 8.0.1, multiple playbooks using different connectors stopped working.Environment: FortiAnalyzer VM: 8.0.1 Previous FortiAnalyzer version: 7.6.x FortiClient EMS: 8.0. 1. FortiClient EMS ConnectorThe FortiClient EMS connector is configured, enabled, and displayed as healthy (green) under Active Connectors.However, running actions such as Get Endpoints or Get Vulnerabilities fails with:Failed to execute task \"Get Endpoints\":cannot access local variable 'connection'where it is not associated with a valueThe same error occurs when using a newly created EMS connector task.2. Active Directory ConnectorAutomation tasks using the Active Directory connector also fail:Failed to execute task \"Get User from AD\":cannot access local variable 'download_paths'where it is not associated with a value3. LocalHost ConnectorEven a basic LocalHost action (Get Alerts) fails:The conn_id 'redis' isn't definedSince the issue affects EMS, Active Directo",
+      "products": [
+        "FortiAnalyzer",
+        "FortiClient EMS"
+      ],
+      "versions": [
+        "8.0.1"
+      ],
+      "status": "À vérifier",
+      "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
+      "source": "Fortinet Community",
+      "firstSeen": "2026-10-22T08:39:26.783874+00:00",
+      "lastSeen": "2026-10-22T08:39:26.783874+00:00"
+    },
+    {
+      "id": "https://community.fortinet.com/support-forum-92/multiple-plc-devices-on-individual-vlan-s-with-overlapping-ip-s-subnet-need-to-setup-2-way-traffic-230734",
+      "title": "Multiple PLC devices on individual Vlan's with overlapping ip's subnet. Need to setup 2 way traffic",
+      "url": "https://community.fortinet.com/support-forum-92/multiple-plc-devices-on-individual-vlan-s-with-overlapping-ip-s-subnet-need-to-setup-2-way-traffic-230734",
+      "date": "2026-10-21T18:38:46+00:00",
+      "summary": "I have a FortiGate firewall with FortiGate switches all connected via Fortilink in the firewall. I have a requirement to now connect 20 PLC devices that share the same ip addresses to our network. I am not able to re-ip the PLC devices so need to figure out the correct NAT setup for this. I have setup each PLC in its own vlan (Vlan 3001-3020). Each vlan its own unique subnet as the primary subnet (10.0.2.0/29…..10.0.2.210/29). I then added the overlapping subnet (192.168.1.0/24) as a secondary subnet to each vlan. Dnat and Snat ip pools have been setup for each device and firewall rules have been setup to allow the communication. The snat is working I am able to ping from each PLC device to the corp network. The problem I have is the Dnat ping from the Corp network to each PLC device. Because of the overlapping subnets the VIP is converting the traffic back to the 192.168.1.1 address and the firewall is routing all traffice back to one vlan not the correct vlan. I have searched the Fortigate KB’s and it looks like i need to put each vlan in a different VRF and then setup route leaking. I have tried to follow the instructions from the KB’s but I have not been able to get this workin",
+      "products": [
+        "FortiGate"
+      ],
+      "versions": [
+        "10.0.1",
+        "10.0.2",
+        "192.168.1",
+        "7.4.11"
+      ],
+      "status": "À vérifier",
+      "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
+      "source": "Fortinet Community",
+      "firstSeen": "2026-10-22T08:39:26.783874+00:00",
+      "lastSeen": "2026-10-22T08:39:26.783874+00:00"
+    },
+    {
+      "id": "https://community.fortinet.com/fortigate-3/fortigate-devices-not-displayed-in-fortigate-cloud-device-map-230732",
+      "title": "FortiGate devices not displayed in FortiGate Cloud Device Map",
+      "url": "https://community.fortinet.com/fortigate-3/fortigate-devices-not-displayed-in-fortigate-cloud-device-map-230732",
+      "date": "2026-10-21T15:40:51+00:00",
+      "summary": "DescriptionAn issue where FortiGate devices are visible in the device list but do not appear on the FortiCloud device map due to license requirements.ScopeFortiGate, FortiGate Cloud.SolutionSymptoms:FortiGate devices are listed correctly in the FortiCloud device list, but the device map section remains empty or does not display the equipment.Before: After:Root cause:The FortiCloud device map requires a specific license level to display devices. Devices with only a free FortiGate Cloud license or basic support contracts (such as FortiCare Premium) are filtered out and not shown on the map. Only devices with a standard license that includes log retention or an Enhanced license with a PREMIUM support type are displayed.Ensure that the FortiGate devices are registered with a valid subscription that supports map visualization.Verify the license status of the FortiGate devices in the FortiCloud portal.Confirm that the devices have a standard license (log retention) or an Enhanced license with support type PREMIUM.",
+      "products": [
+        "FortiGate"
+      ],
+      "versions": [],
+      "status": "À vérifier",
+      "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
+      "source": "Fortinet Community",
+      "firstSeen": "2026-10-22T08:39:26.783874+00:00",
+      "lastSeen": "2026-10-22T08:39:26.783874+00:00"
+    },
+    {
+      "id": "https://community.fortinet.com/support-forum-92/fortios-7-4-3-ssl-vpn-stability-230558",
+      "title": "FortiOS 7.4.3 SSL VPN stability",
+      "url": "https://community.fortinet.com/support-forum-92/fortios-7-4-3-ssl-vpn-stability-230558",
+      "date": "2026-10-21T15:23:31+00:00",
+      "summary": "Hey everyone,We currently have a couple of FortiGate VM appliances running FortiOS 7.2.13 and are using FortiClient SSL VPN tunnel mode for client remote access.I understand Fortinet is sunsetting SSL VPN tunnel mode in FortiOS 7.6.3. the business is not ready to pivot off SSL VPN so in the meantime, they want to know whether upgrading to FortiOS 7.4.x is a reasonable short-term bridge (Fortinet’s lifecycl page says says it’ll be supported until March 31, 2028/November 11, 2028). Questions:1. For those who have upgraded, has FortiOS 7.4.x been stable for production SSL VPN tunnel mode?2. Is SSL VPN tunnel mode supported throughout the 7.4.x branch, including later releases such as 7.4.8 or newer, or is there a specific 7.4.x version we should target/avoid?3. Since SSL VPN is hidden from the GUI by default in 7.4, is it still considered fully supported in 7.4.x, or is it more of a transitional feature?4. Can I upgrade directly from 7.2.13 to a 7.4.x release, or should I follow a specific interim upgrade path?5. Would dialup IPsec VPN be Fortinet’s preferred replacement path for this type of remote user access, and can it be piloted alongside existing SSL VPN using separate IP pools ",
+      "products": [
+        "FortiGate",
+        "FortiClient"
+      ],
+      "versions": [
+        "7.2.13",
+        "7.4.3",
+        "7.4.8",
+        "7.6.3"
+      ],
+      "status": "À vérifier",
+      "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
+      "source": "Fortinet Community",
+      "firstSeen": "2026-10-22T08:39:26.783874+00:00",
+      "lastSeen": "2026-10-22T08:39:26.783874+00:00"
+    },
+    {
+      "id": "https://community.fortinet.com/support-forum-92/forticlient-vpn-for-ipados-fails-with-aes256-gcm-and-prf-sha384-sha512-in-ikev2-phase-1-230730",
+      "title": "FortiClient VPN for iPadOS fails with AES256-GCM and PRF-SHA384/SHA512 in IKEv2 Phase 1",
+      "url": "https://community.fortinet.com/support-forum-92/forticlient-vpn-for-ipados-fails-with-aes256-gcm-and-prf-sha384-sha512-in-ikev2-phase-1-230730",
+      "date": "2026-10-21T13:38:32+00:00",
+      "summary": "FortiClient VPN 7.4.11.0198 on iPadOS 26.7.1 fails to establish an IKEv2 IPsec tunnel to FortiGate running FortiOS 7.4.12 build 2902 when Phase 1 uses AES256-GCM with PRF-SHA384 or PRF-SHA512.FortiGate accepts the Phase 1 proposal:ENCR: AES_GCM_16, 256 bitINTEGR: NONEPRF: PRF_HMAC_SHA2_384 or PRF_HMAC_SHA2_512DH: MODP2048 or MODP3072However, FortiClient does not send the subsequent IKE_AUTH request. FortiGate eventually reports:negotiation timeout, deletingconnection expiring due to phase1 downThese combinations were tested:AES256-GCM / PRF-SHA256 / DH15: worksAES256-GCM / PRF-SHA384 / DH14 or DH15: fails after IKE_SA_INITAES256-GCM / PRF-SHA512 / DH14 or DH15: fails after IKE_SA_INITAES256-CBC / SHA384 / DH15: worksPhase 2 with AES256-GCM works correctly when Phase 1 uses either AES256-GCM/PRF-SHA256 or AES256-CBC/SHA384. The problem occurs with both SAML SSO and local username/password authentication, although authentication is never reached in the failing cases.I reproduced the issue on both an iPad and an iPhone running iPadOS/iOS 26.7.1. Has anyone else confirmed this behavior with FortiClient VPN 7.4.11, and is there a known solution, workaround, or bug ID?Thanks in advance.B",
+      "products": [
+        "FortiGate",
+        "FortiClient"
+      ],
+      "versions": [
+        "26.7.1",
+        "7.4.11",
+        "7.4.12"
+      ],
+      "status": "À vérifier",
+      "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
+      "source": "Fortinet Community",
+      "firstSeen": "2026-10-22T08:39:26.783874+00:00",
+      "lastSeen": "2026-10-22T08:39:26.783874+00:00"
+    },
+    {
+      "id": "https://community.fortinet.com/fortigate-3/wad-cpu-affinity-230729",
+      "title": "WAD CPU affinity",
+      "url": "https://community.fortinet.com/fortigate-3/wad-cpu-affinity-230729",
+      "date": "2026-10-21T13:26:44+00:00",
+      "summary": "DescriptionAn explanation of how setting WAD affinity works in FortiGate. By default, FortiGate spreads the WAD processes across all CPU cores. With the usage of the set wad-affinity these processes can be restricted to run on specific CPU cores.ScopeFortiGate.SolutionThis setting is available under config system global and required a hex number to select all the wanted CPU cores. So for example a hex number of 0x3 would correspond to the first two CPU cores. All other cores would therefore be ineligible to be used by the WAD process.This configuration change also requires a reboot of the device.config system global set wad-affinity endWhat is important to understand is that this restriction will be placed on all wad sub-processes and not only wad workers. This may cause high CPU usage since all work will be done by fewer CPU cores. For a detailed description of wad-sub processes refer to this article Overview of wad process structure.Example: With diagnose test application 1000, you get the process IDs (PID) and the corresponding wad-sub-processes in detail.diagnose debug enable diagnose test application wad 1000 Process [0]: WAD manager type=manager(0) pid=2106 diagnosis=yes. Pro",
+      "products": [
+        "FortiGate"
+      ],
+      "versions": [],
+      "status": "À vérifier",
+      "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
+      "source": "Fortinet Community",
+      "firstSeen": "2026-10-22T08:39:26.783874+00:00",
+      "lastSeen": "2026-10-22T08:39:26.783874+00:00"
+    },
+    {
+      "id": "https://community.fortinet.com/fortigate-3/fortigate-3g-4g-lte-connection-drops-and-wwan-interface-fails-to-receive-an-ip-address-230728",
+      "title": "FortiGate 3G/4G LTE connection drops and WWAN interface fails to receive an IP address",
+      "url": "https://community.fortinet.com/fortigate-3/fortigate-3g-4g-lte-connection-drops-and-wwan-interface-fails-to-receive-an-ip-address-230728",
+      "date": "2026-10-21T12:59:14+00:00",
+      "summary": "DescriptionThe WWAN physical interface on a FortiGate 40F 4G does not receive an IP address from the provider, resulting in a loss of connectivity.ScopeFortiGate 3G/4G modelsSolutionFortiGate 3G/4G devices may experience an unexpected loss of LTE connectivity. During the issue, the LTE connection becomes unavailable, and the 3G/4G indicator LEDs turn off while the service (SVC) indicator remains on. The WWAN interface may continue to appear in the configuration with DHCP enabled, but its IP address and netmask are displayed as 0.0.0.0. The issue may persist even when the SIM card is functional and provides mobile connectivity when tested in another device.Run the following command to query \"api.ipify.org\" over HTTPS and retrieve the firewall's public WAN IP address.diagnose sys waninfo ipifyIf no WAN IP resolves, to restore LTE connectivity, configure the LTE modem to use IPv4 as the PDP (Packet Data Protocol) type. Access the FortiGate CLI and apply the following commands:config system lte-modem set pdptype IPv4 endAfter applying the configuration, renew the LTE IP address by executing the following command:diagnose test application lted 7This procedure should retain the connectio",
+      "products": [
+        "FortiGate"
+      ],
+      "versions": [
+        "0.0.0"
+      ],
+      "status": "À vérifier",
+      "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
+      "source": "Fortinet Community",
+      "firstSeen": "2026-10-22T08:39:26.783874+00:00",
+      "lastSeen": "2026-10-22T08:39:26.783874+00:00"
+    },
+    {
+      "id": "https://community.fortinet.com/fortigate-3/resolving-intermittent-packet-loss-on-fortigate-50g-5g-wwan-cellular-connection-230727",
+      "title": "Resolving intermittent packet loss on FortiGate-50G-5G WWAN cellular connection",
+      "url": "https://community.fortinet.com/fortigate-3/resolving-intermittent-packet-loss-on-fortigate-50g-5g-wwan-cellular-connection-230727",
+      "date": "2026-10-21T11:45:02+00:00",
+      "summary": "DescriptionFortiGate-50G-5G units equipped with an integrated cellular modem can experience severe intermittent packet loss over the WWAN interface despite reporting excellent LTE signal strength and maintaining an active connected state. When this occurs, user traffic and ICMP pings sourced from the WWAN interface suffer high packet loss, even though interface error counters show zero discards and the modem remains connected.This behavior occurs when the modem network type is configured for simultaneous 4G and 5G operation in an area where the mobile operator does not provide active 5G Standalone (SA) or 5G Non-Standalone (NSA) E-UTRA-NR Dual Connectivity (EN-DC). As a result, the modem repeatedly initiates radio renegotiation attempts for secondary carrier aggregation, causing momentary data transmission pauses. You can resolve this issue by locking the modem network mode to 4G and enabling automatic carrier profile negotiation (auto-gcf).ScopeFortiGate-50G-5G, WWAN.SolutionOn a FortiGate-50G-5G with an inserted SIM card, the WWAN interface successfully acquires an IP address, gateway, and DNS servers from the carrier. The modem state displays as connected and radio parameters sh",
+      "products": [
+        "FortiGate"
+      ],
+      "versions": [
+        "8.8.8"
+      ],
+      "status": "À vérifier",
+      "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
+      "source": "Fortinet Community",
+      "firstSeen": "2026-10-22T08:39:26.783874+00:00",
+      "lastSeen": "2026-10-22T08:39:26.783874+00:00"
+    },
+    {
+      "id": "https://community.fortinet.com/fortigate-3/resolving-ztna-error-021-application-not-found-during-saml-authentication-on-access-proxy-230726",
+      "title": "Resolving ZTNA Error 021 (Application Not Found) During SAML Authentication on Access Proxy",
+      "url": "https://community.fortinet.com/fortigate-3/resolving-ztna-error-021-application-not-found-during-saml-authentication-on-access-proxy-230726",
+      "date": "2026-10-21T11:42:26+00:00",
+      "summary": "DescriptionOn FortiGate ZTNA Access Proxies configured with TCP forwarding and SAML authentication, client authentication attempts can fail with Error 021: Application not found (HTTP 403 Forbidden). This error occurs when the client browser reaches the FortiGate Assertion Consumer Service (ACS) endpoint (/remote/saml/login/), but the Web Access Daemon (WAD) proxy engine fails to route the request to the internal SAML service provider gateway.This behavior occurs because FortiOS dynamically registers the implicit SAML Service Provider virtual host only when the SAML Service Provider endpoints are configured with a Fully Qualified Domain Name (FQDN). When a literal IP address is used in the SAML single-sign-on-url, or when the SAML hostname collides with an existing reverse-proxy virtual host, WAD drops the request with a \"No matched gwy\" condition. You can resolve this issue by assigning a dedicated public FQDN to the SAML Service Provider configuration.ScopeFortiGate, ZTNA, SAML.SolutionUnderstanding WAD Virtual Host and Gateway MatchingWhen an endpoint initiates a ZTNA connection, the WAD daemon processes incoming HTTP/HTTPS requests using a strict two-level evaluation hierarchy:",
+      "products": [
+        "FortiGate",
+        "FortiClient"
+      ],
+      "versions": [
+        "192.0.2"
+      ],
+      "status": "À vérifier",
+      "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
+      "source": "Fortinet Community",
+      "firstSeen": "2026-10-22T08:39:26.783874+00:00",
+      "lastSeen": "2026-10-22T08:39:26.783874+00:00"
+    },
+    {
+      "id": "https://community.fortinet.com/support-forum-92/what-is-the-latest-recommended-and-stable-fortios-version-for-our-fortigate-60f-firewall-which-is-currently-running-fortios-v7-4-4-build-2662-230722",
+      "title": "What is the latest recommended and stable FortiOS version for our FortiGate 60F firewall, which is currently running FortiOS v7.4.4, build 2662?",
+      "url": "https://community.fortinet.com/support-forum-92/what-is-the-latest-recommended-and-stable-fortios-version-for-our-fortigate-60f-firewall-which-is-currently-running-fortios-v7-4-4-build-2662-230722",
+      "date": "2026-10-21T11:26:55+00:00",
+      "summary": "What is the latest recommended and stable FortiOS version for our FortiGate 60F?What is the recommended upgrade path, and could you please provide the step-by-step procedure for upgrading the FortiGate firewall from its current version to the recommended stable version?",
+      "products": [
+        "FortiGate"
+      ],
+      "versions": [],
+      "status": "À vérifier",
+      "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
+      "source": "Fortinet Community",
+      "firstSeen": "2026-10-22T08:39:26.783874+00:00",
+      "lastSeen": "2026-10-22T08:39:26.783874+00:00"
+    },
+    {
+      "id": "https://community.fortinet.com/support-forum-92/can-fortiems-ztna-tags-be-integrated-with-third-party-pam-solutions-such-as-jumpserver-230725",
+      "title": "Can FortiEMS ZTNA Tags Be Integrated with Third-Party PAM Solutions Such as JumpServer?",
+      "url": "https://community.fortinet.com/support-forum-92/can-fortiems-ztna-tags-be-integrated-with-third-party-pam-solutions-such-as-jumpserver-230725",
+      "date": "2026-10-21T11:25:31+00:00",
+      "summary": "Hello Fortinet Community,I would like to integrate FortiEMS ZTNA with a third-party Privileged Access Management (PAM) solution, such as JumpServer.With FortiPAM, I can associate specific ZTNA tags with secrets and restrict access based on endpoint compliance. A user must have the required ZTNA tag from FortiEMS to access a specific secret or target server.I would like to achieve the same functionality with a third-party PAM solution.My questions are: Can a third-party PAM, such as JumpServer, integrate with FortiEMS to retrieve or verify endpoint ZTNA tags? Can the PAM check the user's endpoint tag before allowing access to a specific target server or secret? Is there an API or another supported integration method to achieve this? Does this require a FortiGate ZTNA deployment, or can the integration work directly between FortiEMS and the third-party PAM? Our goal is to use FortiEMS for endpoint posture assessment and enforce tag-based access control within the PAM, similar to the integration between FortiPAM and FortiEMS.I would appreciate any technical guidance or documentation regarding this use case.Thank you.",
+      "products": [
+        "FortiGate"
+      ],
+      "versions": [],
+      "status": "À vérifier",
+      "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
+      "source": "Fortinet Community",
+      "firstSeen": "2026-10-22T08:39:26.783874+00:00",
+      "lastSeen": "2026-10-22T08:39:26.783874+00:00"
+    },
+    {
+      "id": "https://community.fortinet.com/support-forum-92/forticlient-vpn-7-4-3-freezing-on-macos-27-0-1-compatibility-issue-or-known-bug-230719",
+      "title": "FortiClient VPN 7.4.3 Freezing on macOS 27.0.1 – Compatibility Issue or Known Bug?",
+      "url": "https://community.fortinet.com/support-forum-92/forticlient-vpn-7-4-3-freezing-on-macos-27-0-1-compatibility-issue-or-known-bug-230719",
+      "date": "2026-10-21T11:05:23+00:00",
+      "summary": "Hello Fortinet Community,We are experiencing recurring FortiClient VPN connection issues with one of our customers and would appreciate your advice.System Information:Device: MacBook Pro (Apple M1 Pro) Operating System: macOS 27.0.1 FortiClient VPN: 7.4.3.4323 (Free VPN Version) VPN Type: SSL-VPNProblem Description:The VPN connection works normally for several days. However, after some time, FortiClient becomes unresponsive when attempting to reconnect.Restarting the Mac does not resolve the issue. The VPN only starts working again after reconfiguring the connection, but the problem returns after a few days.Troubleshooting Already Performed:Verified the VPN configuration. Successfully tested connecting and disconnecting the VPN. Checked Fortinet network extensions and background services – all active. Reviewed FortiClient logs without identifying a definitive cause. Verified that the VPN works correctly immediately after reconfiguration.Our Questions:Is FortiClient VPN 7.4.3.4323 officially compatible with macOS 27.0.1? Is this a known issue with FortiClient VPN on newer macOS versions? Would upgrading FortiClient resolve the issue? If so, which version is recommended? Is there a p",
+      "products": [
+        "FortiClient"
+      ],
+      "versions": [
+        "27.0.1",
+        "7.4.3"
+      ],
+      "status": "À vérifier",
+      "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
+      "source": "Fortinet Community",
+      "firstSeen": "2026-10-22T08:39:26.783874+00:00",
+      "lastSeen": "2026-10-22T08:39:26.783874+00:00"
+    },
+    {
+      "id": "https://community.fortinet.com/fortigate-3/limitations-when-restricting-the-usage-of-sha1-as-a-signature-algorithm-during-a-tls-1-2-handshake-230723",
+      "title": "Limitations when restricting the usage of SHA1 as a signature algorithm during a TLS 1.2 handshake",
+      "url": "https://community.fortinet.com/fortigate-3/limitations-when-restricting-the-usage-of-sha1-as-a-signature-algorithm-during-a-tls-1-2-handshake-230723",
+      "date": "2026-10-21T10:56:49+00:00",
+      "summary": "DescriptionLearn the limitations of restricting SHA1 as a signature algorithm during a TLS 1.2 handshake.ScopeFortiGate.SolutionThe FortiGate terminates TLS on an HTTPS server-load-balance Virtual Server using SSL full mode.Despite restricting the cipher suites, the FortiGate still accepts SHA1 as a signature algorithm during a TLS 1.2 handshake.This is specifically related to the TLS 1.2 ServerKeyExchange signature algorithm.To restrict the cipher suites, see Remove cipher suites which are shown as weak.ServerKeyExchange -- The server sends the client a server key exchange message if the public key information from the Certificate is not sufficient for key exchange.SolutionCurrently there is no way to disable rsa_pkcs1_sha1 or SHA1 as a TLS 1.2 signature algorithm for a HTTPS Virtual Server while keeping TLS 1.2 enabled.A New Feature Request (NFR) must be raised.Related articleUnderstanding the cipher suite 1.2 supported by Fortinet devices",
+      "products": [
+        "FortiGate"
+      ],
+      "versions": [],
+      "status": "À vérifier",
+      "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
+      "source": "Fortinet Community",
+      "firstSeen": "2026-10-22T08:39:26.783874+00:00",
+      "lastSeen": "2026-10-22T08:39:26.783874+00:00"
+    },
+    {
+      "id": "https://community.fortinet.com/support-forum-92/automating-deployment-of-externally-renewed-certificates-to-forticlient-ems-230458",
+      "title": "Automating deployment of externally renewed certificates to FortiClient EMS",
+      "url": "https://community.fortinet.com/support-forum-92/automating-deployment-of-externally-renewed-certificates-to-forticlient-ems-230458",
+      "date": "2026-10-21T10:06:07+00:00",
+      "summary": "Hello Team,Our FortiClient EMS uses a manually uploaded Let’s Encrypt server certificate containing two DNS SANs.Certificate renewal is already automated through our Salt master. After each renewal, we currently download the certificate and manually upload and apply it in EMS.We want to automate only the certificate deployment and activation steps while keeping certificate renewal managed by Salt. Or happy explore option auto renwal in EMS with two DNS SANs.Please provide the supported API or CLI procedure for importing the renewed certificate, matching private key, and intermediate chain, and assigning it to the applicable Web server and Endpoint control services.Please also confirm the required authentication and permissions, any service restart requirements, and whether this operation can run unattended on our EMS version. Thanks,",
+      "products": [
+        "FortiClient EMS"
+      ],
+      "versions": [],
+      "status": "À vérifier",
+      "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
+      "source": "Fortinet Community",
+      "firstSeen": "2026-10-22T08:39:26.783874+00:00",
+      "lastSeen": "2026-10-22T08:39:26.783874+00:00"
+    },
+    {
+      "id": "https://community.fortinet.com/fortigate-3/technical-tip-fortiguard-anycast-configuration-change-logged-under-the-fortimanagement-cloud-user-230721",
+      "title": "Technical Tip: FortiGuard Anycast configuration change logged under the FortiManagement Cloud user",
+      "url": "https://community.fortinet.com/fortigate-3/technical-tip-fortiguard-anycast-configuration-change-logged-under-the-fortimanagement-cloud-user-230721",
+      "date": "2026-10-21T09:50:56+00:00",
+      "summary": "DescriptionThis article describes why changes to the FortiGuard Anycast settings may appear in the FortiGate system event logs under the FortiManagement Cloud user and explains why this is expected behavior.ScopeFortiGate.SolutionAs seen in the event logs below, it is observed that the FortiGuard anycast setting is disabled and then re-enabled.date=2026-10-08 time=00:16:50 eventtime=1791342952XXXX89120 tz=\"-0300\" logid=\"010XXXXXX6\" type=\"event\" subtype=\"system\" level=\"information\" vd=\"root\" logdesc=\"Attribute configured\" user=\"FortiGateCloud\" ui=\"fgfm_tunnel\" action=\"Edit\" cfgtid=25XXXXX7 cfgpath=\"system.fortiguard\" cfgattr=\"fortiguard-anycast[disable->enable]\" msg=\"Edit system.fortiguard \" date=2026-10-08 time=00:16:48 eventtime=17913429509XXXX60 tz=\"-0300\" logid=\"010XXXXXX6\" type=\"event\" subtype=\"system\" level=\"information\" vd=\"root\" logdesc=\"Attribute configured\" user=\"FortiGateCloud\" ui=\"fgfm_tunnel\" action=\"Edit\" cfgtid=25XXXXX6 cfgpath=\"system.fortiguard\" cfgattr=\"fortiguard-anycast[enable->disable]\" msg=\"Edit system.fortiguard \"During a FortiOS firmware upgrade, server reassignment, or contract update, anycast mode is briefly turned off and then back on. This recent change a",
+      "products": [
+        "FortiGate"
+      ],
+      "versions": [],
+      "status": "À vérifier",
+      "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
+      "source": "Fortinet Community",
+      "firstSeen": "2026-10-22T08:39:26.783874+00:00",
+      "lastSeen": "2026-10-22T08:39:26.783874+00:00"
+    },
+    {
+      "id": "https://community.fortinet.com/fortimanager-27/how-to-fix-error-firewall-service-custom-protocol-after-adom-upgrade-230720",
+      "title": "How to fix \"error firewall service custom protocol\" after ADOM upgrade",
+      "url": "https://community.fortinet.com/fortimanager-27/how-to-fix-error-firewall-service-custom-protocol-after-adom-upgrade-230720",
+      "date": "2026-10-21T09:47:06+00:00",
+      "summary": "DescriptionA fix for the installation issue with multiple \"firewall service custom\" objects that may occur after an ADOM upgrade.Post vdom failed: error firewall service custom protocol- TCP_UDP_20101 TCP/UDP/SCTP:-999 - invalid value - prop[protocol]: option(TCP/UDP/SCTP) Copy objects for vdom Main_VDOM \"firewall ssl-ssh-profile\", \"certificate-inspection\", id=18459, SKIP - (null) \"firewall ssl-ssh-profile\", \"deep-inspection\", id=18474, SKIP - (null)ScopeFortiManager.SolutionWhen upgrading from FortiOS 7.4 to 7.6, the default protocol changes from TCP/UDP/SCTP to TCP/UDP/UDP-Lite/SCTP. To match this logic, a 7.6 ADOM should be used in FortiManager.However, it might appear that after upgrading the ADOM, \"firewall service custom\" objects fail to be installed.When drilling down to the object, it can be observed that the UUID of the object is set to ZERO, which is causing the issue during the installation:To resolve this problem and generate a correct UUID, it is possible to add the comment to the object, click the \"Ok\" button to update the object, and verify that a new UUID was generated.However, it may be challenging if it requires updating a bunch of such objects.To address this sit",
+      "products": [
+        "FortiGate",
+        "FortiManager"
+      ],
+      "versions": [],
+      "status": "À vérifier",
+      "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
+      "source": "Fortinet Community",
+      "firstSeen": "2026-10-22T08:39:26.783874+00:00",
+      "lastSeen": "2026-10-22T08:39:26.783874+00:00"
+    },
+    {
+      "id": "https://community.fortinet.com/fortimanager-27/how-to-reclaim-and-restore-fgfm-tunnel-in-a-newer-fortimanager-versions-7-6-7-230717",
+      "title": "How to reclaim and restore FGFM tunnel in a newer FortiManager versions (7.6.7+)",
+      "url": "https://community.fortinet.com/fortimanager-27/how-to-reclaim-and-restore-fgfm-tunnel-in-a-newer-fortimanager-versions-7-6-7-230717",
+      "date": "2026-10-21T08:18:32+00:00",
+      "summary": "DescriptionThe revised security workflow and operational mechanics for handling managed device credentials and reclaiming FGFM communication tunnels, starting with versions 7.6.7 and 8.0.0. ScopeFortiManager.SolutionHistorically, administrator credentials supplied during the initial onboarding phase stayed permanently stored within the FortiManager. These FortiGate credentials are only required during the initial connection, and as a security enhancement, it was decided to remove them from the internal FortiManager DB.Beginning with FortiManager 7.6.7, the platform implements an automated pruning mechanism.As soon as the FGFM channel is successfully established and the central management system's serial number is successfully registered on the managed firewall, the platform purges the administrator password from its internal storage repository.This behavior eliminates the continuous retention of node-level credentials on the central management server, significantly narrowing the security attack surface.However, it will no longer be possible to reclaim and restore the FGFM tunnel in circumstances when the managed device doesnt have information about the FortiManager Serial Number wi",
+      "products": [
+        "FortiGate",
+        "FortiManager"
+      ],
+      "versions": [
+        "7.6.7",
+        "8.0.0"
+      ],
+      "status": "À vérifier",
+      "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
+      "source": "Fortinet Community",
+      "firstSeen": "2026-10-22T08:39:26.783874+00:00",
+      "lastSeen": "2026-10-22T08:39:26.783874+00:00"
+    },
+    {
+      "id": "https://community.fortinet.com/support-forum-92/how-to-add-password-protection-to-an-xml-configuration-in-forticlient-ems-trial-version-229366",
+      "title": "How to Add Password Protection to an XML Configuration in FortiClient EMS (TRIAL VERSION)",
+      "url": "https://community.fortinet.com/support-forum-92/how-to-add-password-protection-to-an-xml-configuration-in-forticlient-ems-trial-version-229366",
+      "date": "2026-10-21T08:08:20+00:00",
+      "summary": "Good morning teams ;For FortiClient EMS Trial, I created an IPsec VPN tunnel.However, I cannot export the XML configuration file with the VPN password included.Is there a way to export the VPN XML configuration with a password?What I would like is that when the user imports the XML configuration file (with forticlient) , they are required to enter a password before they can access the VPN.thanks for you support",
+      "products": [
+        "FortiClient EMS"
+      ],
+      "versions": [],
+      "status": "À vérifier",
+      "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
+      "source": "Fortinet Community",
+      "firstSeen": "2026-10-22T08:39:26.783874+00:00",
+      "lastSeen": "2026-10-22T08:39:26.783874+00:00"
+    },
+    {
+      "id": "https://community.fortinet.com/fortigate-3/dns-over-tls-and-dns-over-https-version-2-broken-in-flow-mode-230715",
+      "title": "DNS over TLS and DNS over HTTPS version 2 broken in Flow Mode",
+      "url": "https://community.fortinet.com/fortigate-3/dns-over-tls-and-dns-over-https-version-2-broken-in-flow-mode-230715",
+      "date": "2026-10-21T07:10:57+00:00",
+      "summary": "DescriptionDNS filtering fails to inspect DNS over TLS (DoT)and DNS over HTTPS version 2 (DoH2) queries in certain FortiOS versions like 7.6.4 and 7.6.7, leading to bypassed filtering or connection errors in flow mode.ScopeFortiGate.SolutionThe issue occurs because the IPS engine does not recognize port 853 for decoding, causing it to skip the DNS dissector.Workaround:Run the following commands to add port 853 to the IPS decoder port list:config ips decoder \"dns_decoder\" config parameter \"port_list\" set value \"53,853\" end endRestart the IPS engine to apply the changes:diagnose test application ipsmonitor 99Sample result that shows it working, as the default block IP address of 208.91.112.55 is returned over TLS:dig @p2.freedns.controld.com +tls +all http://www.nab.com.au ; > DiG 9.17.12 > @p2.freedns.controld.com +tls +all http://www.nab.com.au ; (1 server found) ;; global options: +cmd ;; Got answer: ;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 41119 ;; flags: qr rd ra; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 0 ;; QUESTION SECTION: ;http://www.nab.com.au. IN A ;; ANSWER SECTION: http://www.nab.com.au. 60 IN A 208.91.112.55 ;; Query time: 46 msec ;; SERVER: 76.76.2.11",
+      "products": [
+        "FortiGate"
+      ],
+      "versions": [
+        "208.91.112",
+        "7.6.4",
+        "7.6.7",
+        "76.76.2",
+        "9.17.12"
+      ],
+      "status": "À vérifier",
+      "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
+      "source": "Fortinet Community",
+      "firstSeen": "2026-10-22T08:39:26.783874+00:00",
+      "lastSeen": "2026-10-22T08:39:26.783874+00:00"
+    },
+    {
+      "id": "https://community.fortinet.com/support-forum-92/forticlient-ipsec-vpn-randomly-disconnecting-client-sends-sa-delete-230710",
+      "title": "FortiClient IPsec VPN randomly disconnecting. client sends SA DELETE.",
+      "url": "https://community.fortinet.com/support-forum-92/forticlient-ipsec-vpn-randomly-disconnecting-client-sends-sa-delete-230710",
+      "date": "2026-10-21T06:34:45+00:00",
+      "summary": "im having an issue with our FortiClient IPsec VPN randomly disconnecting users. we are running a FortiGate 60F, using IKEv1 with xAuth.The VPN connects and works fine, but sometimes it disconnects after just 4-6 minutes, while other times it stays connected for hours. I've tested this on different Windows laptops with FortiClient VPN-only 7.0.8 and 7.2.14, and both versions have experienced the issue.I've spent quite a bit of time checking the logs and running IKE debug on the FortiGate, during one of the disconnects, I noticed these messagesrecv IPsec SA delete, spi count 1recv ISAKMP SA deleteFrom what I understand, this means the client itself is requesting the disconnect, but I cant figure out why. There was no DPD failure, and Windows didnt report any Wi-Fi disconnection at that timeHas anyone experienced something similar? Is there anything else worth checking or changing in the current IKEv1 setup? I'm also considering switching to IKEv2, but Id rather understand whats causing the disconnects before making changes to our VPN.Thanks in advance",
+      "products": [
+        "FortiGate",
+        "FortiClient"
+      ],
+      "versions": [
+        "7.0.8",
+        "7.2.14"
+      ],
+      "status": "À vérifier",
+      "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
+      "source": "Fortinet Community",
+      "firstSeen": "2026-10-22T08:39:26.783874+00:00",
+      "lastSeen": "2026-10-22T08:39:26.783874+00:00"
+    },
+    {
+      "id": "https://community.fortinet.com/support-forum-92/fortigate-vm-v8-0-1-trial-license-activates-successfully-but-gui-immediately-logs-out-hyper-v-230294",
+      "title": "FortiGate VM v8.0.1 Trial License Activates Successfully, but GUI Immediately Logs Out (Hyper-V)",
+      "url": "https://community.fortinet.com/support-forum-92/fortigate-vm-v8-0-1-trial-license-activates-successfully-but-gui-immediately-logs-out-hyper-v-230294",
+      "date": "2026-10-21T02:58:50+00:00",
+      "summary": "FortiGate-VM64-HV Trial Issue on Hyper-VPlatform:- Hyper-V (Server 2019) Gen 1 virtual machine- FortiGate-VM64-HV v8.0.1 build0245 (GA.F)- Trial LicenseIssue:The trial license activation completed successfully and the CLI shows \"License Status: Valid\". However, after logging into the web GUI, I logged out immediately.CLI access works normally.Network Connectivity:- Can ping 8.8.8.8 successfully- Default route configured via 192.168.1.254 on port1Relevant Output:FGT-VM64-HV-NZVQOU # get system statusVersion: FortiGate-VM64-HV v8.0.1 build0245 (GA.F)First GA patch build date: 260421Current Security Level: HighFirmware Signature: certifiedLicense Status: ValidVM Resources: 1 CPU/1 allowed, 1694 MB RAM/2048 MB allowedHostname: FGT-VM64-HV-NZVQOUOperation Mode: NATCurrent virtual domain: rootMax number of virtual domains: 10Virtual domains status: 1 in NAT mode, 0 in TP modeCurrent HA mode: standaloneBranch point: 0245Release Version Information: GAFortiOS x86-64: YesRouting Table:S* 0.0.0.0/0 [15/0] via 192.168.1.254, port1C 192.168.1.0/24 is directly connected, port1HTTPS Debug:Session key request authorized for admin.Completed GET request for \"/api/v2/monitor/system/usb-log\" (HTTP 20",
+      "products": [
+        "FortiGate"
+      ],
+      "versions": [
+        "0.0.0",
+        "192.168.1",
+        "8.8.8"
+      ],
+      "status": "À vérifier",
+      "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
+      "source": "Fortinet Community",
+      "firstSeen": "2026-10-22T08:39:26.783874+00:00",
+      "lastSeen": "2026-10-22T08:39:26.783874+00:00"
+    },
+    {
+      "id": "https://community.fortinet.com/support-forum-92/fortigate-gui-logs-out-immediately-after-successful-login-in-eve-ng-229437",
+      "title": "FortiGate GUI Logs Out Immediately After Successful Login in EVE-NG",
+      "url": "https://community.fortinet.com/support-forum-92/fortigate-gui-logs-out-immediately-after-successful-login-in-eve-ng-229437",
+      "date": "2026-10-21T02:57:42+00:00",
+      "summary": "Hello Fortinet Community,I have installed FortiGate-VM64 FortiOS 8.0.0 in my EVE-NG lab environment.The FortiGate VM boots normally, and I am able to access the GUI login page.Current IssueI can successfully enter my credentials and the GUI appears to authenticate successfully. However, immediately after login, I am logged out and redirected back to the login page.In other words:Open FortiGate GUI. Enter username and password. Authentication appears successful. GUI starts to load. Immediately after that, the session is terminated and I am returned to the login screen.EnvironmentPlatform: EVE-NG Device: FortiGate-VM64 FortiOS: 8.0.0 Build: 0167 Image: FGT_VM64_KVM-v8.0.0.F-build0167-FORTINET.out.kvm.zip Deployment: KVM/EVE-NGLicense StatusThe FortiGate license is showing Up to Date / Active, so there does not appear to be an obvious licensing issue.What I have checkedFortiGate VM is booting normally. GUI is reachable. Username/password are accepted. License status shows up to date. The problem occurs immediately after successful GUI authentication.I would like to understand what could cause the FortiGate GUI session to be immediately terminated after successful login.Could this be r",
+      "products": [
+        "FortiGate"
+      ],
+      "versions": [
+        "8.0.0"
+      ],
+      "status": "À vérifier",
+      "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
+      "source": "Fortinet Community",
+      "firstSeen": "2026-10-22T08:39:26.783874+00:00",
+      "lastSeen": "2026-10-22T08:39:26.783874+00:00"
+    },
+    {
+      "id": "https://community.fortinet.com/support-forum-92/7-2-12-ipsec-slow-performance-on-101e-224010",
+      "title": "7.2.12 IPSEC slow performance on 101E",
+      "url": "https://community.fortinet.com/support-forum-92/7-2-12-ipsec-slow-performance-on-101e-224010",
+      "date": "2026-10-20T21:59:50+00:00",
+      "summary": "Hi everyone,I manage like 30 fortigate devices and I updated them to 7.2.13 when it was released.Since I got users complaining about slow SMB traffic inside IPSEC tunnel s2s. The users are all behind this 101E model and they are thé only ones to complain.Bandwidth is like 300KB/s during transfer in 7.2.13I tried to check ipsec config (encrypt. algo.) Changed and adjust MTU but the traffic is still slow...Since the users told me it started since last update I tried to rollback to 7.2.12. same issue. I remember that I updated 7.2.12 and 7.2.13 a week after. So I checked to rollback to 7.2.11 and now speed is back to normal like it was before 8MB/s.I'll open a ticket but it seems linked to this model. Anyone has the same behaviour ?",
+      "products": [
+        "FortiGate"
+      ],
+      "versions": [
+        "7.2.11",
+        "7.2.12",
+        "7.2.13"
+      ],
+      "status": "À vérifier",
+      "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
+      "source": "Fortinet Community",
+      "firstSeen": "2026-10-22T08:39:26.783874+00:00",
+      "lastSeen": "2026-10-22T08:39:26.783874+00:00"
+    },
+    {
+      "id": "https://community.fortinet.com/support-forum-92/fortigate-7-6-7-blank-page-on-loading-gui-after-upgrade-228584",
+      "title": "FortiGate 7.6.7: blank page on loading GUI after upgrade",
+      "url": "https://community.fortinet.com/support-forum-92/fortigate-7-6-7-blank-page-on-loading-gui-after-upgrade-228584",
+      "date": "2026-10-20T17:49:37+00:00",
+      "summary": "I've noticed an extremely strange thing upon upgrading some test FortiGates to the new version 7.6.7: the upgrade goes fine, and the FortiGate is happily online and is routing/firewalling-just fine. However, when trying to load the GUI it is just a blank page.I can see the little favicon loading for the FortiGate login page, but its just blank otherwise. I can SSH in just fine, so that is good. I do not see any settings reset in global settings, and strangely going to the http login instead of https sometimes works (I have https redirect turned on).As the FortiGate seems to be perfectly fine otherwise, I thought I'd see if anyone else has experienced this?Also I have tried multiple browsers with privacy/incognito mode on, so I don't think it is a cache issue.",
+      "products": [
+        "FortiGate"
+      ],
+      "versions": [
+        "7.6.7"
+      ],
+      "status": "À vérifier",
+      "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
+      "source": "Fortinet Community",
+      "firstSeen": "2026-10-22T08:39:26.783874+00:00",
+      "lastSeen": "2026-10-22T08:39:26.783874+00:00"
+    },
+    {
+      "id": "https://community.fortinet.com/support-forum-92/forticlient-split-tunnel-not-working-for-windows-updates-230671",
+      "title": "FortiClient Split Tunnel Not working for Windows Updates",
+      "url": "https://community.fortinet.com/support-forum-92/forticlient-split-tunnel-not-working-for-windows-updates-230671",
+      "date": "2026-10-20T17:44:42+00:00",
+      "summary": "we are using forticlient v7.4.7, today our users brought down their latest updates. Our VPN users are coming back down the VPN tunnel to download their updates, this maxed out our 1GB line. We have Windows updates set in the forticlient to go direct instead of using the tunnel. We also have the .exe and microsoft domain set to got direct. We are still seeing all this traffic coming down the VPN tunnel and then using our web filtering policies on the Fortigate to go out. Can anyone help with this?",
+      "products": [
+        "FortiGate",
+        "FortiClient"
+      ],
+      "versions": [],
+      "status": "À vérifier",
+      "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
+      "source": "Fortinet Community",
+      "firstSeen": "2026-10-22T08:39:26.783874+00:00",
+      "lastSeen": "2026-10-22T08:39:26.783874+00:00"
+    },
+    {
+      "id": "https://community.fortinet.com/support-forum-92/remote-ipsec-vpn-new-fortigate-os-7-6-6-230389",
+      "title": "Remote IPsec VPN new fortigate OS 7.6.6",
+      "url": "https://community.fortinet.com/support-forum-92/remote-ipsec-vpn-new-fortigate-os-7-6-6-230389",
+      "date": "2026-10-20T17:31:04+00:00",
+      "summary": "Can anyone provide any guidelines for remote ipsec VPN with fortigate 7.6.6 os & its integrate with LDAP local user many more members ?",
+      "products": [
+        "FortiGate"
+      ],
+      "versions": [
+        "7.6.6"
+      ],
+      "status": "À vérifier",
+      "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
+      "source": "Fortinet Community",
+      "firstSeen": "2026-10-22T08:39:26.783874+00:00",
+      "lastSeen": "2026-10-22T08:39:26.783874+00:00"
+    },
+    {
+      "id": "https://community.fortinet.com/fortigate-3/prefer-passive-performance-sla-may-remove-static-routes-while-other-slas-on-the-same-member-remain-up-230708",
+      "title": "Prefer-Passive Performance SLA may remove static routes while other SLAs on the same member remain up",
+      "url": "https://community.fortinet.com/fortigate-3/prefer-passive-performance-sla-may-remove-static-routes-while-other-slas-on-the-same-member-remain-up-230708",
+      "date": "2026-10-20T17:27:22+00:00",
+      "summary": "DescriptionFortiGate incorrectly removes the static route from the active routing table when a Prefer Passive Performance SLA goes down, even though other Performance SLAs associated with the same WAN interface remain up. As a result, traffic is no longer forwarded through that interface.ScopeFortiGate.SolutionThis behavior occurs when a Prefer Passive Performance SLA transitions to a dead state. Although other Performance SLAs linked to the same WAN interface remain operational, the route associated with the affected member is withdrawn from the active routing table.diagnose sys sdwan health-check status Health Check(Microsoft Teams): Seq(4 port1): state(alive), packet-loss(0.000%), latency(25.108), jitter(0.168), mos(4.391), custom_profile(0.000), bandwidth-up(999977), bandwidth-dw(999988), bandwidth-bi(1999965), sla_map=0x1 Seq(5 port2): state(dead), packet-loss(100.000%), sla_map=0x0 Health Check(Google): Seq(4 port1): state(alive), packet-loss(8.000%), latency(6.036), jitter(0.055), mos(4.397), custom_profile(0.000), bandwidth-up(999977), bandwidth-dw(999988), bandwidth-bi(1999965), sla_map=0x0 Seq(5 port2): state(alive), packet-loss(9.000%), latency(6.278), jitter(0.077), mos",
+      "products": [
+        "FortiGate"
+      ],
+      "versions": [
+        "0.0.0",
+        "1.1.1",
+        "8.0.3",
+        "8.8.8"
+      ],
+      "status": "À vérifier",
+      "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
+      "source": "Fortinet Community",
+      "firstSeen": "2026-10-22T08:39:26.783874+00:00",
+      "lastSeen": "2026-10-22T08:39:26.783874+00:00"
+    },
+    {
+      "id": "https://community.fortinet.com/support-forum-92/fortios-7-6-6-to-7-6-7-228496",
+      "title": "FortiOS 7.6.6 to 7.6.7",
+      "url": "https://community.fortinet.com/support-forum-92/fortios-7-6-6-to-7-6-7-228496",
+      "date": "2026-10-20T17:08:15+00:00",
+      "summary": "I updated the FortiGate from FortiOS 7.6.6 to 7.6.7 and am experiencing issues with SSL inspection certificates.After the update, the firewall started dropping all traffic. Even traffic matching firewall policies without SSL inspection enabled is being dropped.As a temporary workaround, you can disable SSL inspection globally to restore connectivity.Has anyone else encountered this issue after upgrading to version 7.6.7? Is there a known bug or a recommended fix?Update:Not logging dropped packetsFirewall memory usage reaching 90%Thousands of active sessions (compared to normal levels)",
+      "products": [
+        "FortiGate"
+      ],
+      "versions": [
+        "7.6.6",
+        "7.6.7"
+      ],
+      "status": "À vérifier",
+      "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
+      "source": "Fortinet Community",
+      "firstSeen": "2026-10-22T08:39:26.783874+00:00",
+      "lastSeen": "2026-10-22T08:39:26.783874+00:00"
+    },
+    {
+      "id": "https://community.fortinet.com/fortigate-3/how-to-configure-and-verify-pim-sparse-mode-with-a-bootstrap-router-bsr-on-fortigate-230707",
+      "title": "How to configure and verify PIM Sparse Mode with a Bootstrap Router (BSR) on FortiGate",
+      "url": "https://community.fortinet.com/fortigate-3/how-to-configure-and-verify-pim-sparse-mode-with-a-bootstrap-router-bsr-on-fortigate-230707",
+      "date": "2026-10-20T16:27:45+00:00",
+      "summary": "DescriptionThis article describes how to configure and verify the Bootstrap Router (BSR) mechanism in PIM Sparse Mode across FortiGate firewalls. It provides step-by-step guidance to elect a Candidate BSR, register a Candidate Rendezvous Point (C-RP), and dynamically distribute RP information across the network.ScopeFortiGate.SolutionTopology:Step 1: Ensure Multicast Routing and Base PIM Configuration:Enable multicast routing globally on all FortiGate units (FG1, FG2, and FG3) and activate PIM-SM on the transit and local interfaces.On FG1:config router multicast set multicast-routing enable config interface edit \"port2\" set pim-mode sparse-mode config igmp set version 2 end next edit \"port3\" set pim-mode sparse-mode config igmp set version 2 end next edit \"port4\" set pim-mode sparse-mode config igmp set version 2 end next end endOn FG2:config router multicast set multicast-routing enable config interface edit \"port3\" set pim-mode sparse-mode config igmp set version 2 end next edit \"port4\" set pim-mode sparse-mode config igmp set version 2 end next end endOn FG3:config router multicast set multicast-routing enable config interface edit \"port3\" set pim-mode sparse-mode config igmp se",
+      "products": [
+        "FortiGate"
+      ],
+      "versions": [
+        "192.168.1",
+        "192.168.12",
+        "192.168.13",
+        "192.168.23",
+        "224.0.0",
+        "239.1.1",
+        "239.255.255"
+      ],
+      "status": "À vérifier",
+      "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
+      "source": "Fortinet Community",
+      "firstSeen": "2026-10-22T08:39:26.783874+00:00",
+      "lastSeen": "2026-10-22T08:39:26.783874+00:00"
+    },
+    {
+      "id": "https://community.fortinet.com/fortinac-f-57/netflow-network-sessions-stop-populating-after-upgrading-to-fortinac-f-7-6-7-230706",
+      "title": "NetFlow network sessions stop populating after upgrading to FortiNAC-F 7.6.7",
+      "url": "https://community.fortinet.com/fortinac-f-57/netflow-network-sessions-stop-populating-after-upgrading-to-fortinac-f-7-6-7-230706",
+      "date": "2026-10-20T16:21:40+00:00",
+      "summary": "DescriptionThis article describes a behaviour where FortiNAC-F stops adding entries to Users & Hosts -> Network Sessions after an upgrade to 7.6.7, in deployments that use NetFlow as a device profiling source.The appliance continues to receive and queue NetFlow packets normally, and existing session records remain visible, but no new records are created. Device Profiling rules that rely on the Network Traffic method therefore stop matching, and no error, warning or exception is written to output.master.The behavior is independent of FortiGate firewall session polling, and affects setups where NetFlow is the only configured session source as well as setups where both are enabled.ScopeFortiNAC-F 7.6.7, using NetFlow as a device profiling source (Network Traffic profiling method).Any NetFlow exporter supported by FortiNAC, including FortiGate.SolutionThe steps below confirm the behavior and separate it from the configuration faults that produce the same empty Network Sessions view. Work through them in order: each one eliminates a different cause, and only the last step is specific to this issue.Confirm the symptom:In the FortiNAC-F UI, navigate to Users & Hosts -> Network Sessions. S",
+      "products": [
+        "FortiGate"
+      ],
+      "versions": [
+        "10.0.10",
+        "10.0.20",
+        "7.6.7",
+        "7.6.8"
+      ],
+      "status": "À vérifier",
+      "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
+      "source": "Fortinet Community",
+      "firstSeen": "2026-10-22T08:39:26.783874+00:00",
+      "lastSeen": "2026-10-22T08:39:26.783874+00:00"
+    },
+    {
+      "id": "https://community.fortinet.com/fortigate-3/fortigate-sends-syn-ack-packet-using-wrong-source-ip-when-a-single-syn-packet-is-sent-to-a-real-server-without-an-acknowledgment-or-reset-230704",
+      "title": "FortiGate sends SYN/ACK packet using wrong source IP when a single SYN packet is sent to a real server without an acknowledgment or reset",
+      "url": "https://community.fortinet.com/fortigate-3/fortigate-sends-syn-ack-packet-using-wrong-source-ip-when-a-single-syn-packet-is-sent-to-a-real-server-without-an-acknowledgment-or-reset-230704",
+      "date": "2026-10-20T13:22:36+00:00",
+      "summary": "DescriptionA known issue where the FortiGate sends SYN/ACK packet using wrong source IP when a single SYN packet is sent to a real server without an acknowledgment or reset.ScopeFortiOS.SolutionIn this scenario, a Virtual Server is configured as follows:config firewall vip edit \"http_virtual_server\" set type server-load-balance set server-type tcp set extip 198.51.100.169 set extintf \"any\" set arp-reply disable set extport 80 config realservers edit 1 set ip 192.0.2.20 set port 80 next end next end config firewall policy edit 1 set srcintf \"port1\" set dstintf \"any\" set action accept set srcaddr \"all\" set dstaddr \"http_virtual_server\" set schedule \"always\" set service \"HTTP\" set inspection-mode proxy set logtraffic all set nat enable next endNote that the source traffic is coming in via port1 and the real server is also behind port1 which make it a hairpin traffic (incoming and outgoing traffic on the same interface).In the example packet sniffer outputs below, it is showing only one SYN packet coming in port1 and FortiGate the FortiGate response with SYN/ACK using the correct source IP address. However, on the 6th SYN/ACK packets, FortiGate is using the real server IP address as so",
+      "products": [
+        "FortiGate"
+      ],
+      "versions": [
+        "192.0.2",
+        "198.51.100",
+        "203.0.113",
+        "7.2.11",
+        "7.4.8",
+        "7.6.3",
+        "7.6.7",
+        "8.0.1"
+      ],
+      "status": "À vérifier",
+      "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
+      "source": "Fortinet Community",
+      "firstSeen": "2026-10-22T08:39:26.783874+00:00",
+      "lastSeen": "2026-10-22T08:39:26.783874+00:00"
+    },
+    {
+      "id": "https://community.fortinet.com/fortigate-3/ssl-anomaly-with-b-cdn-net-malicious-certificates-230703",
+      "title": "SSL Anomaly with \"*.b-cdn.net\" malicious certificates",
+      "url": "https://community.fortinet.com/fortigate-3/ssl-anomaly-with-b-cdn-net-malicious-certificates-230703",
+      "date": "2026-10-20T13:16:13+00:00",
+      "summary": "DescriptionAn issue where traffic is blocked because the content is flagged as malicious.ScopeFortiGate.SolutionUsers cannot load the content from Internet websites. In the FortiGate Logs, the traffic is flagged as a certificate anomaly.Error while accessing the website:To verify if a certificate is being blocked by the Malicious Certificate Database, perform the following steps:To confirm that traffic is blocked by a malicious certificate, check Security Profiles -> SSL/SSH Inspection -> Malicious Certificates -> View.Select Blocked certificates -> View Blocked Certificates to check if the certificate for the affected domain is listed.To check SSL security events via the CLI:execute log filter reset execute log filter category utm-ssl execute log displayUse the following command to view the current update version that the malicious certificate DB is running.diagnose autoupdate versions | grep -A 7 'Malicious Certificate' Malicious Certificate DB --------- Version: 1.00609 Contract Expiry Date: Tue Feb 2 2027 Last Updated using scheduled update on Fri Oct 16 20:39:57 2026 Last Update Attempt: Mon Oct 19 14:43:19 2026 Result: No UpdatesThe TLS certificate is added to the FortiGuard ",
+      "products": [
+        "FortiGate"
+      ],
+      "versions": [],
+      "status": "À vérifier",
+      "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
+      "source": "Fortinet Community",
+      "firstSeen": "2026-10-22T08:39:26.783874+00:00",
+      "lastSeen": "2026-10-22T08:39:26.783874+00:00"
+    },
+    {
+      "id": "https://community.fortinet.com/support-forum-92/configuring-a-static-ipv6-address-fails-with-state-dadfailed-due-to-duplicate-address-detection-230702",
+      "title": "Configuring a static IPv6 address fails with state dadfailed due to duplicate address detection",
+      "url": "https://community.fortinet.com/support-forum-92/configuring-a-static-ipv6-address-fails-with-state-dadfailed-due-to-duplicate-address-detection-230702",
+      "date": "2026-10-20T12:19:26+00:00",
+      "summary": "Configuring a static IPv6 address on client fails with state \"dadfailed\"When configuring an IPv6 address the system sends out a message to check if the address if already in use.If the Fortigate has ippool6 type nptv6 configured it acts it replies on the external-prefix configured.Similar to arp-reply enable.Adjust the nptv6 pool itself or adjust the client by using an address in the internal-prefix range or not affected by ippool6.Check other ippool6 and vip usage for overlap as well. Example On linux client: ip -6 addr EXTERNALIP shows state dadfailedDirectly after configuring the ip address we get the packet capture: VMMAC > 33:33:ff:00:00:06, ethertype IPv6 (0x86dd), length 86: (hlim 255, next-header ICMPv6 (58) payload length: 32) :: > ff02::1:ff00:6: 6icmp6 sum ok] ICMP6, neighbor solicitation, length 32, who has EXTERNALIP FGTMAC > 33:33:00:00:00:01, ethertype IPv6 (0x86dd), length 86: (hlim 255, next-header ICMPv6 (58) payload length: 32) fe80::FGTEUI-64 > ff02::1: :icmp6 sum ok] ICMP6, neighbor advertisement, length 32, tgt is EXTERNALIP, Flags arouter]There is a reply from the FortiGate, the client gets a duplicate detection and sets state dadfailedOn the FortiGate is an ",
+      "products": [
+        "FortiGate"
+      ],
+      "versions": [],
+      "status": "À vérifier",
+      "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
+      "source": "Fortinet Community",
+      "firstSeen": "2026-10-22T08:39:26.783874+00:00",
+      "lastSeen": "2026-10-22T08:39:26.783874+00:00"
+    },
+    {
+      "id": "https://community.fortinet.com/fortianalyzer-6/trigger-a-fortigate-automation-from-fortiweb-alerts-on-fortianalyzer-using-a-playbook-230700",
+      "title": "Trigger a FortiGate automation from FortiWeb alerts on FortiAnalyzer using a playbook",
+      "url": "https://community.fortinet.com/fortianalyzer-6/trigger-a-fortigate-automation-from-fortiweb-alerts-on-fortianalyzer-using-a-playbook-230700",
+      "date": "2026-10-20T10:29:32+00:00",
+      "summary": "DescriptionHow to trigger a FortiGate automation stitch, such as an IP ban, from a FortiAnalyzer alert based on FortiWeb logs.ScopeFortiAnalyzer 8.0, FortiOS 7.6, FortiWeb 8.0SolutionWhen Automation Stitch is enabled on a FortiAnalyzer event handler, FortiAnalyzer sends the notification only to the FortiGate that sent the logs that triggered the handler. For handlers based on FortiWeb logs, the alert is generated on FortiAnalyzer, but the FortiGate stitch is not triggered and its trigger count stays at 0. The same applies to handlers based on FortiMail logs.This is expected behavior, as described in the FortiAnalyzer Administration Guide: Using the Automation Stitch for alert handlers.For alerts generated from FortiWeb or FortiMail logs, the supported method for triggering an action on a FortiGate is to use a FortiAnalyzer playbook with the FortiOS connector and a FortiGate automation stitch with an Incoming Webhook trigger.PrerequisitesThe FortiGate is authorized on FortiAnalyzer and its FortiOS connector shows as connected.An alert handler for the FortiWeb logs is configured and generating alerts.Step 1: Create the automation on the FortiGateGo to Security Fabric -> Automation an",
+      "products": [
+        "FortiGate",
+        "FortiAnalyzer"
+      ],
+      "versions": [],
+      "status": "À vérifier",
+      "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
+      "source": "Fortinet Community",
+      "firstSeen": "2026-10-22T08:39:26.783874+00:00",
+      "lastSeen": "2026-10-22T08:39:26.783874+00:00"
+    },
+    {
+      "id": "https://community.fortinet.com/support-forum-92/fortilink-with-fortigate-to-controller-managed-access-switch-passing-through-standalone-mclag-switches-peer-group-230699",
+      "title": "Fortilink with Fortigate to Controller-Managed Access switch passing through standalone MCLAG switches Peer Group",
+      "url": "https://community.fortinet.com/support-forum-92/fortilink-with-fortigate-to-controller-managed-access-switch-passing-through-standalone-mclag-switches-peer-group-230699",
+      "date": "2026-10-20T10:23:02+00:00",
+      "summary": "Subject: FortiLink Through Standalone FortiSwitches in an MCLAG DesignHello Fortinet Community,I would like to get your advice on a planned network design involving FortiGate, standalone FortiSwitches, managed FortiSwitches, and FortiAPs.Proposed Network Topology FortiGate | Standalone FortiSwitches (MCLAG Peer Pair) | Managed FortiSwitches | FortiAPs In this design, the FortiSwitches directly connected to the FortiGate will operate in standalone mode as an MCLAG peer pair. The downstream FortiSwitches will be managed by the FortiGate through FortiLink, and the FortiAPs will connect to the managed FortiSwitches.I would appreciate your advice on the following questions:Design feasibility: Is this topology supported by Fortinet, particularly when using standalone FortiSwitches as an intermediate layer between the FortiGate and the managed FortiSwitches? FortiLink connectivity: Can the FortiGate discover, authorize, and manage the downstream FortiSwitches through FortiLink across the standalone MCLAG peer switches? FortiAP management: If the downstream FortiSwitches are successfully managed by the FortiGate, can the FortiGate also discover and manage the FortiAPs connected to them? Co",
+      "products": [
+        "FortiGate"
+      ],
+      "versions": [],
+      "status": "À vérifier",
+      "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
+      "source": "Fortinet Community",
+      "firstSeen": "2026-10-22T08:39:26.783874+00:00",
+      "lastSeen": "2026-10-22T08:39:26.783874+00:00"
+    },
+    {
+      "id": "https://community.fortinet.com/fortigate-3/technical-tip-disk-logging-is-unavailable-on-the-downstream-fortigate-after-security-fabric-setup-230697",
+      "title": "Technical Tip: Disk logging is unavailable on the downstream FortiGate after Security Fabric setup",
+      "url": "https://community.fortinet.com/fortigate-3/technical-tip-disk-logging-is-unavailable-on-the-downstream-fortigate-after-security-fabric-setup-230697",
+      "date": "2026-10-20T09:55:00+00:00",
+      "summary": "DescriptionThis article describes an issue where disk logging is unavailable on a downstream FortiGate after configuring Security Fabric setup.ScopeFortiGate.SolutionBefore Security Fabric was configured, disk logging was enabled, and logs stored on the disk could be viewed under Log & Report -> Forward Traffic. From CLI:jiyong-fgvm-dmz-esxi3 (setting) # show config log disk setting set status enable end From Log & Report -> Forward Traffic: However, after Security Fabric is enabled, disk logging is no longer available on the downstream FortiGate, and the option is no longer displayed in the GUI. After Security Fabric is enabled, the disk logging setting in the CLI is automatically changed to disabled, and the Local Logs tab related to disk logging no longer appears in the GUI. From CLI:jiyong-fgvm-dmz-esxi3 (setting) # show config log disk setting set status disable end From Log & Report -> Forward Traffic:This is expected behavior. When Security Fabric is enabled, disk logging is available only on the Root FortiGate.",
+      "products": [
+        "FortiGate"
+      ],
+      "versions": [],
+      "status": "À vérifier",
+      "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
+      "source": "Fortinet Community",
+      "firstSeen": "2026-10-22T08:39:26.783874+00:00",
+      "lastSeen": "2026-10-22T08:39:26.783874+00:00"
+    },
+    {
+      "id": "https://community.fortinet.com/fortigate-3/how-to-connect-the-fabric-root-and-downstream-fortigate-devices-through-security-fabric-setup-230696",
+      "title": "How to connect the Fabric Root and downstream FortiGate devices through Security Fabric Setup",
+      "url": "https://community.fortinet.com/fortigate-3/how-to-connect-the-fabric-root-and-downstream-fortigate-devices-through-security-fabric-setup-230696",
+      "date": "2026-10-20T09:47:37+00:00",
+      "summary": "DescriptionThis article describes how to connect the Fabric Root and downstream FortiGate devices through Security Fabric Setup.ScopeFortiGate.SolutionThe initial Security Fabric setup consists of the following steps. On the FortiGate that will serve as the Fabric Root, navigate to GUI -> Fabric Connectors -> Security Fabric Setup. Select Serve as Fabric Root, then choose a listening interface that is reachable by the downstream FortiGate. On the downstream FortiGate that will connect to the Root FortiGate, navigate to the same menu as in Step 1. Select Join Existing Fabric, then configure the interface and IP address/FQDN used to communicate with the upstream FortiGate. After completing the configuration, the Security Fabric will not be established immediately. The Root FortiGate must authorize the downstream FortiGate before the connection is established. On the Root FortiGate, navigate to GUI -> System -> Firmware & Registration. The downstream FortiGate that has not yet been authorized will appear in the list. Select the newly added downstream FortiGate and click Authorize to verify its certificate. If the Security Fabric connection is still not established after completing the",
+      "products": [
+        "FortiGate"
+      ],
+      "versions": [],
+      "status": "À vérifier",
+      "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
+      "source": "Fortinet Community",
+      "firstSeen": "2026-10-22T08:39:26.783874+00:00",
+      "lastSeen": "2026-10-22T08:39:26.783874+00:00"
+    },
+    {
+      "id": "https://community.fortinet.com/support-forum-92/can-t-get-the-pki-based-pre-logon-working-from-fortisase-230695",
+      "title": "Can't get the PKI based pre-logon working from FortiSASE",
+      "url": "https://community.fortinet.com/support-forum-92/can-t-get-the-pki-based-pre-logon-working-from-fortisase-230695",
+      "date": "2026-10-20T09:33:13+00:00",
+      "summary": "Hello,We're currently migrating users from EMS to FortiSASE and have run into an issue with pre-logon VPN connectivity.The customer requires a pre-logon tunnel using machine certificate authentication (PKI), allowing the endpoint to connect before the user signs in.What we observe:The endpoint initiates the pre-logon connection. FortiSASE indicates that the connection is successfully established. Shortly afterwards, the session is terminated. The FortiClient on the endpoint never shows the pre-logon tunnel as connected.We have tested multiple certificate configurations, including certificate chains with and without an intermediate CA, but the results are identical.A Fortinet PS engineer is involved and a support case has already been opened, but so far we have not found the root cause.Has anyone experienced this before or successfully deployed pre-logon PKI-based tunnels with FortiSASE?",
+      "products": [
+        "FortiClient"
+      ],
+      "versions": [],
+      "status": "À vérifier",
+      "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
+      "source": "Fortinet Community",
+      "firstSeen": "2026-10-22T08:39:26.783874+00:00",
+      "lastSeen": "2026-10-22T08:39:26.783874+00:00"
+    },
+    {
+      "id": "https://community.fortinet.com/fortigate-3/technical-tip-fortigate-snmp-processor-oids-report-additional-core-s-on-hardware-models-230694",
+      "title": "Technical Tip: FortiGate SNMP Processor OIDs report additional core(s) on hardware models",
+      "url": "https://community.fortinet.com/fortigate-3/technical-tip-fortigate-snmp-processor-oids-report-additional-core-s-on-hardware-models-230694",
+      "date": "2026-10-20T09:13:34+00:00",
+      "summary": "​Description When querying processor-related SNMP OIDs on hardware FortiGate units, the returned results may show more processor entries than the number of CPU cores available on the device. This behavior can be observed on platforms where a network processor is also represented as an entry in the processor-related SNMP information. Scope This article uses the FortiGate 1801F as an example. The device has 16 CPU cores, but querying certain processor-related SNMP OIDs returns 17 entries. Example Querying fgProcessorPktTxDroppedCount.OID: 1.3.6.1.4.1.12356.101.4.4.2.1.11.Command: snmpwalk -v2c -c test 1.3.6.1.4.1.12356.101.4.4.2.1.11.The output contains 17 entries, indexed from .1 to .17.:iso.3.6.1.4.1.12356.101.4.4.2.1.11.1 = Counter64: 0 iso.3.6.1.4.1.12356.101.4.4.2.1.11.2 = Counter64: 0 iso.3.6.1.4.1.12356.101.4.4.2.1.11.3 = Counter64: 0 ... iso.3.6.1.4.1.12356.101.4.4.2.1.11.16 = Counter64: 0 iso.3.6.1.4.1.12356.101.4.4.2.1.11.17 = Counter64: 0 Querying fgProcessorCount.OID: 1.3.6.1.4.1.12356.101.4.4.2.1.1.Command: snmpwalk -v2c -c test 1.3.6.1.4.1.12356.101.4.4.2.1.1.The output also contains 17 entries, indexed from .1 to .17:iso.3.6.1.4.1.12356.101.4.4.2.1.1.1 = INTEGER: 1 iso",
+      "products": [
+        "FortiGate"
+      ],
+      "versions": [
+        "1.3.6",
+        "1.4.1",
+        "101.4.4",
+        "12356.101.4",
+        "2.1.1",
+        "2.1.11",
+        "3.6.1",
+        "4.1.12356",
+        "4.2.1"
+      ],
+      "status": "À vérifier",
+      "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
+      "source": "Fortinet Community",
+      "firstSeen": "2026-10-22T08:39:26.783874+00:00",
+      "lastSeen": "2026-10-22T08:39:26.783874+00:00"
+    },
+    {
+      "id": "https://community.fortinet.com/fortigate-3/technical-tip-deleting-vdoms-with-a-similar-name-such-as-ro-roo-removes-pac-file-data-under-root-vdom-227803",
+      "title": "Technical Tip: Deleting VDOMs with a similar name (such as 'ro/roo') removes PAC file data under 'root' VDOM",
+      "url": "https://community.fortinet.com/fortigate-3/technical-tip-deleting-vdoms-with-a-similar-name-such-as-ro-roo-removes-pac-file-data-under-root-vdom-227803",
+      "date": "2026-10-20T08:51:09+00:00",
+      "summary": "DescriptionThis article describes an issue where, in some FortiOS versions, the explicit proxy PAC file configured under the root VDOM may become empty after deleting another VDOM with a similar name, such as 'ro' or 'roo'.This issue has been observed on FortiOS 7.4.11 and may also affect other FortiOS versions.ScopeFortiOS v7.4, FortiOS v7.6, FortiOS v8.0.SolutionThe issue may occur after creating and deleting VDOM names similar to root.config vdom edit roo end config vdom delete roo endWhen this issue occurs:Explicit proxy clients may lose internet connectivity.PAC file download from the GUI may fail with HTTP 404.The configured PAC file data under the root VDOM is removed.The following command may show an empty PAC file configuration:config web-proxy explicit showExample output:set pac-file-data \"\"PAC file download from the GUI under 'Network -> Explicit Proxy' may also fail with the following error:{ \"status\":\"error\", \"http_status\":404 }The following httpsd debug may also be observed:[httpsd 5242 - 1778161285 error] api_file_response[116] -- File '/etc/pac/proxy.pac.vfroot' could not be accessed: 2 [httpsd 5242 - 1778161285 info] fweb_debug_final[503] -- Completed GET request f",
+      "products": [
+        "FortiGate"
+      ],
+      "versions": [
+        "7.4.11",
+        "7.4.13",
+        "8.0.1"
+      ],
+      "status": "À vérifier",
+      "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
+      "source": "Fortinet Community",
+      "firstSeen": "2026-10-22T08:39:26.783874+00:00",
+      "lastSeen": "2026-10-22T08:39:26.783874+00:00"
+    },
+    {
+      "id": "https://community.fortinet.com/fortigate-3/technical-tip-how-to-solve-ha-out-of-sync-due-to-fortinet-sub-ca-backup-229050",
+      "title": "Technical Tip: How to solve HA out of sync due to Fortinet_Sub_CA_Backup",
+      "url": "https://community.fortinet.com/fortigate-3/technical-tip-how-to-solve-ha-out-of-sync-due-to-fortinet-sub-ca-backup-229050",
+      "date": "2026-10-20T08:46:00+00:00",
+      "summary": "DescriptionThis article describes the issue when HA is out of sync due to Fortinet_Sub_CA_Backup.ScopeFortiGate 700G.SolutionWhen adding VDOMs in an HA cluster, HA goes out of sync due to vpn.certificate.ca.Fortinet_Sub_CA_Backup certificate is present only in the root VDOM in the secondary FortiGate. It is missing on any other VDOM.diagnose system ha checksum cluster ================== FG7H1GT000000011 ================== is_manage_primary()=1, is_root_primary()=1 checksum global: f9 26 81 5c cf 3d 91 09 a3 28 1c 24 4a 62 94 95 vdom_a: 0b a8 29 30 c2 d4 59 87 41 35 a8 40 ef 57 5f b6 vdom_b: ce 42 f0 49 e9 4d 4a c8 15 18 f4 bb e0 fd 04 c1 vdom_c: 5f 24 95 16 0e 6e cb e2 29 e6 80 77 24 56 38 d0----->> root: 23 86 b9 57 ee 71 8f 5c c7 b5 7b 87 6e 22 30 ed internet: e5 a6 a9 e9 c9 39 ad 0f e0 ae e0 d7 3a 85 46 7f all: 9a 1a f5 97 76 1d 11 15 91 d8 40 a4 68 50 e2 ce ================== FG7H1GT00000022 ================== is_manage_primary()=0, is_root_primary()=0 checksum global: f9 26 81 5c cf 3d 91 09 a3 28 1c 24 4a 62 94 95 vdom_a: c6 06 9c 63 35 45 15 8d a4 e9 07 a0 ef bb 82 62 vdom_b: ce 42 f0 49 e9 4d 4a c8 15 18 f4 bb e0 fd 04 c1 vdom_c: 5f 24 95 16 0e 6e cb e2 29 e6 80 77 24 56 38",
+      "products": [
+        "FortiGate"
+      ],
+      "versions": [
+        "7.4.13",
+        "7.6.8",
+        "8.0.1"
+      ],
+      "status": "À vérifier",
+      "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
+      "source": "Fortinet Community",
+      "firstSeen": "2026-10-22T08:39:26.783874+00:00",
+      "lastSeen": "2026-10-22T08:39:26.783874+00:00"
+    },
+    {
+      "id": "https://community.fortinet.com/fortimanager-27/fortimanager-pxgrid-connector-returns-no-entry-on-the-connector-users-230687",
+      "title": "FortiManager pxGrid connector returns \"no entry\" on the Connector Users",
+      "url": "https://community.fortinet.com/fortimanager-27/fortimanager-pxgrid-connector-returns-no-entry-on-the-connector-users-230687",
+      "date": "2026-10-20T08:11:00+00:00",
+      "summary": "DescriptionThis article explains why the FortiManager Cisco pxGrid connector can complete every pxGrid request successfully (HTTP 200) and still import no users, and how to fix it. It is useful when FortiManager shows no user or session information from Cisco ISE, although the connector status, certificates, and pxGrid account all look correct.ScopeFortiManager.SolutionOn the FortiManager CLI, enable the connector debug:diagnose debug reset diagnose debug application connector 255 diagnose debug enable Trigger the import by running Apply & Refresh on the pxGrid connector in the GUI, and leave the debug running for at least one minute. The connector repeats the full exchange about every 5 seconds, alternating between the configured servers.The connector debug shows a complete and successful pxGrid exchange, but the session query returns an empty list:POST /pxgrid/control/AccountActivate -> {“accountState”:”ENABLED”,”version”:”2.0\"} POST /pxgrid/control/ServiceLookup {“name”:”com.cisco.ise.session”} -> 200 POST /pxgrid/control/ServiceLookup {“name”:”com.cisco.ise.pubsub”} -> 200 POST /pxgrid/control/AccessSecret -> 200 POST /pxgrid/mnt/sd/getSessions -> {“sessions”:g]} Total user num",
+      "products": [
+        "FortiManager"
+      ],
+      "versions": [],
+      "status": "À vérifier",
+      "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
+      "source": "Fortinet Community",
+      "firstSeen": "2026-10-22T08:39:26.783874+00:00",
+      "lastSeen": "2026-10-22T08:39:26.783874+00:00"
+    },
+    {
+      "id": "https://community.fortinet.com/support-forum-92/fortigate-firewall-didn-t-connect-by-remote-users-when-using-remote-ipsec-vpn-7-6-6-os-230610",
+      "title": "Fortigate firewall didn’t connect by remote users when using remote ipsec vpn 7.6.6 OS",
+      "url": "https://community.fortinet.com/support-forum-92/fortigate-firewall-didn-t-connect-by-remote-users-when-using-remote-ipsec-vpn-7-6-6-os-230610",
+      "date": "2026-10-20T07:52:47+00:00",
+      "summary": "Fortigate firewall didn’t connect by remote users when using remote ipsec vpn 7.6.6 OS. But client getting all other services after created policy remote user interface to wan. Please help me if any other solution for it. I follow the below link remote access vpn for AD users through LDAP server",
+      "products": [
+        "FortiGate"
+      ],
+      "versions": [
+        "7.6.6"
+      ],
+      "status": "À vérifier",
+      "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
+      "source": "Fortinet Community",
+      "firstSeen": "2026-10-22T08:39:26.783874+00:00",
+      "lastSeen": "2026-10-22T08:39:26.783874+00:00"
+    },
+    {
+      "id": "https://community.fortinet.com/support-forum-92/ipsec-ikev2-timeout-on-ee-bt-home-router-230686",
+      "title": "IPSec IKEv2 Timeout on EE + BT Home router",
+      "url": "https://community.fortinet.com/support-forum-92/ipsec-ikev2-timeout-on-ee-bt-home-router-230686",
+      "date": "2026-10-20T07:26:42+00:00",
+      "summary": "FortiClient VPN is failing to connect and gives \"Timed out\" when trying to connect. Connecting via mobile hotspot works fine which rules out config issue. On the Smart Hub I have disabled IPv6 and confirmed the LAN range does NOT clash with the target VPN site. \"Port Clamping\" is set to on. The VPN is using IKEv2 IPSec.",
+      "products": [
+        "FortiClient"
+      ],
+      "versions": [],
+      "status": "À vérifier",
+      "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
+      "source": "Fortinet Community",
+      "firstSeen": "2026-10-22T08:39:26.783874+00:00",
+      "lastSeen": "2026-10-22T08:39:26.783874+00:00"
+    },
+    {
+      "id": "https://community.fortinet.com/fortigate-3/why-an-ipsec-tunnel-using-ddns-may-fail-in-certain-scenarios-230684",
+      "title": "Why an IPsec tunnel using DDNS may fail in certain scenarios",
+      "url": "https://community.fortinet.com/fortigate-3/why-an-ipsec-tunnel-using-ddns-may-fail-in-certain-scenarios-230684",
+      "date": "2026-10-20T07:14:57+00:00",
+      "summary": "DescriptionThis article describes why an IPsec tunnel using DDNS may fail to re-establish in certain scenarios.ScopeFortiGate.SolutionNote: The issue described in this article is not common.The following illustrates the scenario in a site-to-site IPsec VPN:Local firewall: the Hub FortiGate has a static public IP address.Remote firewall: the Spoke FortiGate is behind CGNAT (such as on a 4G/5G mobile network).DDNS is configured on the Spoke FortiGate so that the Hub FortiGate can resolve the Spoke FortiGate's public IP address for IKE negotiation.Since the Spoke FortiGate is behind CGNAT, it can act only as the IKE initiator.The Hub FortiGate, on the other hand, is configured to act as the IKE responder only by enabling passive mode with the following configuration:config vpn ipsec phase1-interface edit \"TO_SPOKE\" set type ddns set remotegw-ddns \"SOPKE_FQDN\" set passive-mode enable next endSymptoms.The IPsec tunnel is initially established successfully.Subsequently, the public IP address on the Spoke side changes, potentially because the address is reallocated by the CGNAT network from time to time.Although the Hub FortiGate can resolve the updated public IP address through DDNS, the",
+      "products": [
+        "FortiGate"
+      ],
+      "versions": [],
+      "status": "À vérifier",
+      "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
+      "source": "Fortinet Community",
+      "firstSeen": "2026-10-22T08:39:26.783874+00:00",
+      "lastSeen": "2026-10-22T08:39:26.783874+00:00"
+    },
+    {
+      "id": "https://community.fortinet.com/fortigate-3/fortiswitch-mac-sync-status-stuck-in-wait-after-fortigate-upgrade-230683",
+      "title": "FortiSwitch MAC-SYNC status stuck in 'Wait' after FortiGate upgrade",
+      "url": "https://community.fortinet.com/fortigate-3/fortiswitch-mac-sync-status-stuck-in-wait-after-fortigate-upgrade-230683",
+      "date": "2026-10-20T07:03:01+00:00",
+      "summary": "DescriptionManaged FortiSwitch devices may show a MAC-SYNC status of 'Wait' on the FortiGate after an upgrade, preventing synchronization of MAC addresses.ScopeFortiGate, FortiSwitch.SolutionSymptoms.After upgrading FortiGate from versions 7.2.13 to 7.4.12 or above, managed FortiSwitch devices display a status of 'Wait' in the MAC-SYNC column when running the following command:execute switch-controller get-sync-status all Managed-devices in current vdom root: FortiLink interface : fortilink SWITCH-ID (SERIAL) STATUS CONFIG MAC-SYNC HTTP-UPGRADE Server-SW01 (S224EPTF25000849) Up - Wait - Server-SW02 (S224EPTF25004126) Up - Wait -The configuration sync remains functional, and traffic continues to flow, but the MAC-SYNC status does not transition to a synced state.Resolution.Rename the affected FortiSwitch devices to their default names (serial numbers) to trigger a fresh synchronization.Log in to the FortiGate console.Rename the affected FortiSwitch devices.Verify that the MAC-SYNC status has changed from \"Wait\" to a synced state by running:execute switch-controller get-sync-status allIf renaming the devices does not resolve the issue, collect the following debug information for anal",
+      "products": [
+        "FortiGate"
+      ],
+      "versions": [
+        "7.2.13",
+        "7.4.12"
+      ],
+      "status": "À vérifier",
+      "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
+      "source": "Fortinet Community",
+      "firstSeen": "2026-10-22T08:39:26.783874+00:00",
+      "lastSeen": "2026-10-22T08:39:26.783874+00:00"
+    },
+    {
+      "id": "https://community.fortinet.com/fortigate-3/using-bgp-route-maps-to-switch-branch-application-traffic-from-production-to-disaster-recovery-230682",
+      "title": "Using BGP route maps to switch branch application traffic from production to disaster recovery",
+      "url": "https://community.fortinet.com/fortigate-3/using-bgp-route-maps-to-switch-branch-application-traffic-from-production-to-disaster-recovery-230682",
+      "date": "2026-10-20T06:48:20+00:00",
+      "summary": "DescriptionThis article describes how to configure inbound BGP route maps on a branch FortiGate to prefer a disaster recovery (DR) site over a production site for a specific application network.ScopeAll FortiGatesSolutionBoth sites advertise the same prefix. During a planned switchover, the branch assigns a higher BGP local preference to the route received from DR. Production remains available as a backup path.Prerequisites:Both BGP sessions are established and advertise 172.16.100.0/24 to the branch.Both paths have reachable next hops and equal BGP weight.The application can operate at DR using the same destination addresses. Routing does not perform application or data replication.Firewall policies, IPsec selectors and return routes permit branch-to-application traffic through either site.No more-specific route, preferred non-BGP route, policy route or SD-WAN decision overrides the intended forwarding path.Configure a prefix list:config router prefix-list edit \"APP-NETWORK\" config rule edit 1 set action permit set prefix 172.16.100.0 255.255.255.0 unset ge unset le next end next end Configure inbound route maps:Assign local preference 100 to production and 200 to DR:config router",
+      "products": [
+        "FortiGate"
+      ],
+      "versions": [
+        "10.10.10",
+        "10.20.20",
+        "172.16.100",
+        "255.255.255"
+      ],
+      "status": "À vérifier",
+      "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
+      "source": "Fortinet Community",
+      "firstSeen": "2026-10-22T08:39:26.783874+00:00",
+      "lastSeen": "2026-10-22T08:39:26.783874+00:00"
+    },
+    {
+      "id": "https://community.fortinet.com/fortiauthenticator-8/prevent-fortitoken-activation-emails-in-fortiidentity-cloud-when-using-external-idp-230681",
+      "title": "Prevent FortiToken activation emails in FortiIdentity Cloud when using external IdP",
+      "url": "https://community.fortinet.com/fortiauthenticator-8/prevent-fortitoken-activation-emails-in-fortiidentity-cloud-when-using-external-idp-230681",
+      "date": "2026-10-20T06:37:08+00:00",
+      "summary": "DescriptionHow to disable unwanted FortiToken activation emails for FortiClient Standalone users provisioned in FortiIdentity Cloud that use an external Identity Provider for MFA.ScopeFortiIdentity Cloud (formerly FortiTokenCloud), FortiClient Standalone.SolutionTo prevent FortiToken activation emails from being sent, configure FortiIdentity Cloud to use the remote Identity Provider for all authentication by enabling passthrough mode:Log in to the FortiIdentity Cloud console.Go to Applications -> SSO.Edit the SSO application or create a new SSO application.Set the authentication setting to Passthrough.This configuration ensures that FortiIdentity Cloud does not attempt to manage passwords or MFA tokens locally, which suppresses the automatic sending of FortiToken activation emails.",
+      "products": [
+        "FortiClient"
+      ],
+      "versions": [],
+      "status": "À vérifier",
+      "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
+      "source": "Fortinet Community",
+      "firstSeen": "2026-10-22T08:39:26.783874+00:00",
+      "lastSeen": "2026-10-22T08:39:26.783874+00:00"
+    },
+    {
+      "id": "https://community.fortinet.com/support-forum-92/502-unknown-content-encoding-with-firefox-and-google-230343",
+      "title": "502 unknown content-encoding with Firefox and Google",
+      "url": "https://community.fortinet.com/support-forum-92/502-unknown-content-encoding-with-firefox-and-google-230343",
+      "date": "2026-10-20T05:58:54+00:00",
+      "summary": "Hi everyone,we using a Fortigate G900 with v7.6.7 as explicit proxy.Since a couple of weeks, we have the problem that, when using Firefox, we can’t use the Google Search.After we type anything in the search bar, we get the following error:502 unknown content-encodingThe webserver reported that an error occurred while trying to access the website. Please return to the previous page.URL https://www.google.com/search?client=firefox-b-d&q=fortigate Other Websites / Search-Engines with Firefox are working fine. With Edge or Chrome Browser Google works as well.Have somebody an idea? Regards, Michel",
+      "products": [
+        "FortiGate"
+      ],
+      "versions": [],
+      "status": "À vérifier",
+      "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
+      "source": "Fortinet Community",
+      "firstSeen": "2026-10-22T08:39:26.783874+00:00",
+      "lastSeen": "2026-10-22T08:39:26.783874+00:00"
+    },
+    {
+      "id": "https://community.fortinet.com/support-forum-92/cve-2026-106175-fg-ir-26-182-cve-record-lists-fortipam-fortisase-and-fortios-fortiproxy-7-0-as-affected-but-the-advisory-does-not-230678",
+      "title": "CVE-2026-106175 (FG-IR-26-182): CVE record lists FortiPAM, FortiSASE and FortiOS/FortiProxy 7.0 as affected, but the advisory does not",
+      "url": "https://community.fortinet.com/support-forum-92/cve-2026-106175-fg-ir-26-182-cve-record-lists-fortipam-fortisase-and-fortios-fortiproxy-7-0-as-affected-but-the-advisory-does-not-230678",
+      "date": "2026-10-20T02:46:50+00:00",
+      "summary": "Hi all,I noticed a discrepancy between the PSIRT advisory FG-IR-26-182 and the CVE record for CVE-2026-106175 (published by Fortinet as CNA).The CVE record's \"affected\" section (also reflected in NVD, currently \"Awaiting Analysis\") lists:- FortiPAM 1.0.0 through 1.8.4- FortiSASE 25.4.c- FortiOS 7.0.0 through 7.0.19- FortiProxy 7.0.0 through 7.0.23However, none of these appear in the advisory table, the CVE description, or the CVE \"solutions\" field. The advisory only covers FortiOS / FortiProxy / FortiSwitch 7.2, 7.4, 7.6 (and 8.0 as not affected).In previous advisories (e.g. FG-IR-25-545, FG-IR-24-325), FortiPAM and FortiSASE were listed explicitly with their own affected versions and fixes, so this looks unusual.Questions:1. Are FortiPAM and FortiSASE actually affected by this vulnerability?2. If FortiPAM is affected, is a fixed version planned?3. Are FortiOS 7.0 / FortiProxy 7.0 affected, and is the omission from the advisory intentional (e.g. out of support)?4. FortiOS 7.6.8 is not mentioned in either the affected range (7.6.0–7.6.7) or the fix (upcoming 7.6.9). What is its status?Has anyone else seen this, or received clarification from Fortinet?References:- https://fortiguard.",
+      "products": [
+        "FortiGate"
+      ],
+      "versions": [
+        "1.0.0",
+        "1.8.4",
+        "7.0.0",
+        "7.0.19",
+        "7.6.0",
+        "7.6.7",
+        "7.6.8",
+        "7.6.9"
+      ],
+      "status": "À vérifier",
+      "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
+      "source": "Fortinet Community",
+      "firstSeen": "2026-10-22T08:39:26.783874+00:00",
+      "lastSeen": "2026-10-22T08:39:26.783874+00:00"
+    },
+    {
+      "id": "https://community.fortinet.com/support-forum-92/fortigate-100f-emac-vlan-across-multiple-vdoms-with-a-routed-28-subnet-over-30-230564",
+      "title": "FortiGate 100F – EMAC-VLAN across multiple VDOMs with a routed /28 subnet over /30",
+      "url": "https://community.fortinet.com/support-forum-92/fortigate-100f-emac-vlan-across-multiple-vdoms-with-a-routed-28-subnet-over-30-230564",
+      "date": "2026-10-19T19:43:05+00:00",
+      "summary": "itle: FortiGate 100F – EMAC-VLAN across multiple VDOMs with a routed /28 subnet over /30Hello Fortinet Community, We are testing a FortiGate 100F running FortiOS 7.6.6 with two VDOMs (root and Production), using EMAC-VLAN interfaces. Our configuration: - Physical \"wan1\" interface belongs to the root VDOM.- \"wan1\" has an IP address in the ISP's \"/30\" transit network.- Two EMAC-VLAN interfaces (\"outside_Root\" and \"outside_Prod\") share \"wan1\" as their parent interface.- Each EMAC-VLAN belongs to a separate VDOM and has its own public IP address from the same \"/28\" subnet.- Both VDOMs have independent IPsec VPN tunnels. What works: We have successfully tested EMAC-VLAN when the upstream router or Layer 3 switch has an IP address in the same public subnet as the EMAC-VLAN interfaces. In this setup, the router can resolve each EMAC-VLAN interface's unique MAC address using ARP, and traffic reaches the correct VDOM. Our problem: Our ISP provides two separate IPv4 networks: - A \"/30\" transit network between the ISP and our FortiGate.- A public \"/28\" subnet routed to our FortiGate through the \"/30\" transit network. The ISP does not use any IP address from the public \"/28\" subnet. Example: I",
+      "products": [
+        "FortiGate"
+      ],
+      "versions": [
+        "198.51.100",
+        "203.0.113",
+        "7.6.6"
+      ],
+      "status": "À vérifier",
+      "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
+      "source": "Fortinet Community",
+      "firstSeen": "2026-10-22T08:39:26.783874+00:00",
+      "lastSeen": "2026-10-22T08:39:26.783874+00:00"
+    },
+    {
+      "id": "https://community.fortinet.com/support-forum-92/wan1-stopped-working-228284",
+      "title": "WAN1 STOPPED WORKING",
+      "url": "https://community.fortinet.com/support-forum-92/wan1-stopped-working-228284",
+      "date": "2026-10-19T18:31:46+00:00",
+      "summary": "WAN1 STOPPED WORKING- I have two FortiGate 60F setups as stack (HA1 and HA2)- I have Juniper router - I have a Rogers modem with 2 public IP 187.x.x.x/30 and 184.x.x.x/30- link 1: Rogers modem port1 > FG60F WAN1- link 2: Rogers modem port2 > Juniper router- I also have a 2nd ISP (TELUS) for failover- WAN1 link shows Green UP in the GUI; WAN1 led light is blinking green/yellowProblem: WAN1 is not pulling the public ip whether in static or DHCPTS:- reboot the modem, connect my laptop with correct IP details used in FG60F (SM, GW and IP) = WORKING- leave Juniper plugged in = WORKING- turned off the modem for 10mins, removed the laptop, reconnected the FG60F = FAILED- Juniper still working- Replaced modem, reprovisioned and performed laptop testing again and still working. - Tried disconnecting Juniper from Rogers modem and leave only FG60F connected = FAILED- Internet works because of WAN2 (TELUS)Question:1. Why WAN1 not pulling the public IP? why there is no internet from WAN1? 2. Why my laptop works and not the FG60F? 3. Will it be a MAC address issue? Note: before the incident, Rogers had a network update (node migration) and after that it suddenly stopped working. The fact that my",
+      "products": [
+        "FortiGate"
+      ],
+      "versions": [],
+      "status": "À vérifier",
+      "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
+      "source": "Fortinet Community",
+      "firstSeen": "2026-10-22T08:39:26.783874+00:00",
+      "lastSeen": "2026-10-22T08:39:26.783874+00:00"
+    }
+  ]
 }
