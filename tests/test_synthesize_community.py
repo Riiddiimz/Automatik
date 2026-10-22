@@ -12,10 +12,12 @@ SPEC.loader.exec_module(synth)
 
 class CommunitySynthesisTests(unittest.TestCase):
     def test_versions_ignore_ip_addresses_and_keep_major_minor_family(self):
-        item = {"title": "DNS over TLS broken in Proxy Mode", "summary": "Issue in FortiOS version 7.6.4. IP 208.91.112.55; upgrade to 8.0.1."}
+        item = {"title": "DNS over TLS broken in Proxy Mode", "summary": "Issue in FortiOS version 7.6.4. IP 208.91.112.55; upgrade to 8.0.1. Upgrade path from versions 7.2.13 to 7.4.12."}
         exact, families = synth.extract_versions(item)
         self.assertIn("7.6.4", exact)
         self.assertIn("8.0.1", exact)
+        self.assertIn("7.2.13", exact)
+        self.assertIn("7.4.12", exact)
         self.assertNotIn("208.91.112", exact)
         self.assertIn("7.6", families)
         self.assertIn("8.0", families)
