@@ -32,10 +32,17 @@ ISSUE_RE = re.compile(
     re.I,
 )
 VERSION_CONTEXT_RE = re.compile(
-    r"\b(?:fortios|fortigate|firmware|software|version|release|build|running|upgrade(?:d)? to|upgrading to)\s*(?:version\s*)?v?(\d{1,2}\.\d{1,2}(?:\.\d{1,3})?)",
+    r"\b(?:fortios|fortigate|fortimanager|fortianalyzer|fortiauthenticator|forticlient(?:\s+ems)?|fortiswitch|fortiap|firmware)\s*(?:version\s*)?v?(\d{1,2}\.\d{1,2}(?:\.\d{1,3})?)",
     re.I,
 )
 BARE_VERSION_RE = re.compile(r"(?<![\d.])(\d{1,2}\.\d{1,2}(?:\.\d{1,3})?)(?!\d)")
+NON_FORTINET_VERSION_RE = re.compile(
+    r"\b(?:(?:huawei\s+cloud\s+)?euleros|centos|rhel|red\s+hat\s+enterprise\s+linux|"
+    r"ubuntu|debian|fedora|rocky\s+linux|almalinux|oracle\s+linux|windows(?:\s+server)?|"
+    r"macos|mac\s+os|os\s+x|android|ios|vmware\s+esxi|esxi|proxmox|freebsd|openbsd|"
+    r"suse|opensuse)\s*(?:version\s*)?v?\d{1,2}\.\d{1,2}(?:\.\d{1,3})?\b",
+    re.I,
+)
 PRODUCT_PATTERNS = {
     "FortiGate": r"\bfortigate\b|\bfortios\b",
     "FortiManager": r"\bfortimanager\b",
@@ -89,16 +96,20 @@ def extract_versions(item: dict) -> tuple[list[str], list[str]]:
     # Remove complete IPv4 addresses before looking for dotted version numbers.
     text_without_ips = re.sub(r"\b(?:\d{1,3}\.){3}\d{1,3}\b", " ", text)
     # Do not mistake versions printed by diagnostic utilities for Fortinet firmware.
+    # Exclude operating-system/platform versions (for example EulerOS 2.0
+    # and CentOS 7.9), which are not Fortinet firmware versions.
+    text_without_ips = NON_FORTINET_VERSION_RE.sub(" ", text_without_ips)
     text_without_ips = re.sub(
         r"\b(?:dig|openssl|python|curl|wget|iperf3?|ping)\s+v?\d{1,2}\.\d{1,2}(?:\.\d{1,3})?\b",
         " ", text_without_ips, flags=re.I,
     )
     found = set(VERSION_CONTEXT_RE.findall(text_without_ips))
-    # Capture companion versions only in a sentence that explicitly talks about
-    # firmware/software versions, releases, builds, or an upgrade path.
+    # Bare versions are accepted only in a Fortinet-product/firmware context
+    # or an explicit upgrade path; generic mentions of "versions" are too broad.
     context = re.compile(
-        r"\b(fortios|fortigate|firmware|software|versions?|releases?|builds?|"
-        r"upgrade(?:d|s|ing)?(?:\s+to|\s+from)?|running)\b",
+        r"\b(fortios|fortigate|fortimanager|fortianalyzer|fortiauthenticator|"
+        r"forticlient(?:\s+ems)?|fortiswitch|fortiap|firmware|"
+        r"upgrade(?:d|s|ing)?(?:\s+(?:to|from|path))?)\b",
         re.I,
     )
     for sentence in re.split(r"(?<=[.!?])\s+", text_without_ips):
