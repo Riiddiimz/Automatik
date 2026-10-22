@@ -140,7 +140,7 @@ def build_summary(items: list[dict]) -> str:
     return result
 
 
-def synthesize(data: dict) -> dict:
+def synthesize(data: dict, out: Path = DATA) -> dict:
     topics = data.get("topics", [])
     enriched = []
     for raw in topics:
