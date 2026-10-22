@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-22T17:09:38.616862+00:00",
+  "generatedAt": "2026-10-22T21:34:37.892258+00:00",
   "fortinet": [
     {
       "source": "FortiGuard PSIRT",
@@ -163,6 +163,14 @@
     }
   ],
   "cyber": [
+    {
+      "source": "FortiGuard Outbreak Alerts",
+      "label": "FortiGuard Outbreak Alerts",
+      "title": "PHP2Shell Remote Code Execution Vulnerabilities",
+      "url": "https://fortiguard.fortinet.com/outbreak-alert/php2shell",
+      "date": "2026-10-22T07:00:00+00:00",
+      "summary": "Successful exploitation could allow attackers to execute arbitrary code within the PHP application process, potentially compromising the affected server and exposing sensitive data, application files, or connected databases, depending on the process privileges and system configuration. FortiGuard Labs is monitoring the PHP2Shell vulnerabilities and related t"
+    },
     {
       "source": "CERT-FR",
       "label": "CERT-FR",
@@ -474,14 +482,6 @@
       "url": "https://fortiguard.fortinet.com/outbreak-alert/unc1549-espionage-attack",
       "date": "2025-12-02T08:00:00+00:00",
       "summary": "A suspected Iran-linked espionage group tracked as UNC1549 is actively targeting aerospace, defense, and telecommunications organizations across Europe and other regions. The threat actor employs a combination of highly tailored spear-phishing, credential theft from third-party services, and the abuse of virtual desktop infrastructure such as Citrix, VMware,"
-    },
-    {
-      "source": "FortiGuard Outbreak Alerts",
-      "label": "FortiGuard Outbreak Alerts",
-      "title": "Akira Ransomware",
-      "url": "https://fortiguard.fortinet.com/outbreak-alert/akira-ransomware",
-      "date": "2025-11-13T08:00:00+00:00",
-      "summary": "FortiGuard Labs continue to observe detections in the wild related to the Akira ransomware group. According to the new report by CISA it has targeted over 250 organizations since the past year, affecting numerous businesses and critical infrastructure entities across North America, Europe, and Australia. The gang has made over $42 million from the attacks as"
     }
   ],
   "kev": [
