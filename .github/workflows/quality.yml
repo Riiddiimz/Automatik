@@ -25,7 +25,7 @@ jobs:
         with:
           node-version: "22"
       - name: Vérifier la syntaxe Python
-        run: python -m py_compile scripts/update_veille.py tests/test_update_veille.py
+        run: python -m py_compile scripts/update_veille.py scripts/fortinet_community.py tests/test_update_veille.py tests/test_fortinet_community.py
       - name: Exécuter les tests du collecteur
         run: python -m unittest discover -s tests -v
       - name: Vérifier le JSON initial
@@ -38,5 +38,8 @@ jobs:
           test -s styles.css
           test -s app.js
           test -s scripts/update_veille.py
+          test -s scripts/fortinet_community.py
+          grep -q 'id="community-list"' index.html
+          grep -q 'renderCommunity' app.js
           grep -q 'styles.css' index.html
           grep -q 'app.js' index.html
