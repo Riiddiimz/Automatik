@@ -37,5 +37,30 @@ class CommunitySynthesisTests(unittest.TestCase):
         self.assertFalse(synth.similar(a, b))
 
 
+    def test_single_unconfirmed_user_report_is_excluded(self):
+        data = {"topics": [
+            {"title": "FortiGate VPN disconnects after upgrade", "summary": "VPN disconnects on my device.", "url": "https://community.fortinet.com/support-forum-92/one-report", "products": ["FortiGate"], "date": "2026-10-22"}
+        ]}
+        with tempfile.TemporaryDirectory() as directory:
+            result = synth.synthesize(data, Path(directory) / "community.json")
+        self.assertEqual(result["incidentCount"], 0)
+
+    def test_official_version_scoped_behavior_change_is_included(self):
+        item = {
+            "title": "Proxy-related features no longer supported on low-memory FortiGate models",
+            "summary": "Starting with FortiOS version 7.4.4, proxy-related features are no longer supported on FortiGate models with 2 GB RAM.",
+            "url": "https://community.fortinet.com/fortigate-3/proxy-related-features",
+            "products": ["FortiGate"],
+        }
+        self.assertTrue(synth.is_official_article(item))
+        self.assertTrue(synth.has_documented_evidence(item))
+        data = {"topics": [item]}
+        with tempfile.TemporaryDirectory() as directory:
+            result = synth.synthesize(data, Path(directory) / "community.json")
+        self.assertEqual(result["incidentCount"], 1)
+        self.assertEqual(result["incidents"][0]["status"], "Documenté par Fortinet")
+        self.assertEqual(result["incidents"][0]["versionFamilies"], ["7.4"])
+
+
 if __name__ == "__main__":
     unittest.main()
