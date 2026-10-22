@@ -1331,6 +1331,7 @@
       ],
       "versions": [
         "7.6.4",
+        "7.6.7",
         "8.0.1"
       ],
       "versionFamilies": [
@@ -1354,7 +1355,8 @@
           "versionFamilies": [
             "7.6",
             "8.0"
-          ]
+          ],
+          "sourceType": "fortinet_article"
         },
         {
           "title": "DNS over TLS and DNS over HTTPS version 2 broken in Flow Mode",
@@ -1364,14 +1366,23 @@
           "products": [
             "FortiGate"
           ],
-          "versions": [],
-          "versionFamilies": []
+          "versions": [
+            "7.6.4",
+            "7.6.7"
+          ],
+          "versionFamilies": [
+            "7.6"
+          ],
+          "sourceType": "fortinet_article"
         }
       ],
       "lastSeen": "2026-10-22T07:51:37+00:00",
-      "status": "À confirmer",
-      "confidence": "À examiner",
-      "synthesisMethod": "Regroupement lexical déterministe; synthèse extraite des sources, sans IA générative."
+      "status": "Documenté par Fortinet (version identifiée)",
+      "confidence": "Documentation Fortinet versionnée",
+      "synthesisMethod": "Règles de preuve : article Fortinet versionné et explicite, ou au moins deux discussions distinctes; pas d'IA générative.",
+      "forumReportCount": 0,
+      "documentedSourceCount": 1,
+      "evidenceType": "official_documentation"
     },
     {
       "id": "incident-d2b123d2",
@@ -1401,16 +1412,20 @@
           ],
           "versionFamilies": [
             "7.4"
-          ]
+          ],
+          "sourceType": "fortinet_article"
         }
       ],
       "lastSeen": "2026-10-22T06:21:57+00:00",
-      "status": "À confirmer",
-      "confidence": "À examiner",
-      "synthesisMethod": "Regroupement lexical déterministe; synthèse extraite des sources, sans IA générative."
+      "status": "Documenté par Fortinet (version identifiée)",
+      "confidence": "Documentation Fortinet versionnée",
+      "synthesisMethod": "Règles de preuve : article Fortinet versionné et explicite, ou au moins deux discussions distinctes; pas d'IA générative.",
+      "forumReportCount": 0,
+      "documentedSourceCount": 1,
+      "evidenceType": "official_documentation"
     }
   ],
   "incidentCount": 2,
   "synthesisGeneratedAt": "2026-10-22T08:56:57.489Z",
-  "synthesisNote": "Seuls les problèmes signalés dans plusieurs discussions indépendantes ou les bugs/changements de comportement explicitement documentés par Fortinet avec un périmètre de version sont affichés. Un signalement isolé non documenté est exclu."
+  "synthesisNote": "Un point n'est affiché que s'il est documenté par un article Fortinet versionné et explicite, ou décrit dans au moins deux discussions distinctes d'utilisateurs. Les articles officiels ne comptent pas comme des personnes supplémentaires. Les signalements isolés non documentés sont exclus."
 }
