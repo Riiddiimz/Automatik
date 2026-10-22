@@ -1,0 +1,58 @@
+name: Publier Automatik sur GitHub Pages
+
+on:
+  push:
+    branches: ["main"]
+    paths:
+      - "index.html"
+      - "styles.css"
+      - "app.js"
+      - "data/**"
+      - ".github/workflows/deploy-pages.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: github-pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Récupérer le dépôt
+        uses: actions/checkout@v4
+      - name: Préparer le site statique
+        run: |
+          mkdir -p _site/data
+          cp index.html styles.css app.js _site/
+          cp data/veille.json data/community.json _site/data/
+          touch _site/.nojekyll
+      - name: Configurer GitHub Pages
+        uses: actions/configure-pages@v5
+      - name: Vérifier les fichiers publiés
+        run: |
+          test -s _site/index.html
+          test -s _site/styles.css
+          test -s _site/app.js
+          python -m json.tool _site/data/veille.json > /dev/null
+          python -m json.tool _site/data/community.json > /dev/null
+      - name: Téléverser le site
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Publier le site
+        id: deployment
+        uses: actions/deploy-pages@v4
