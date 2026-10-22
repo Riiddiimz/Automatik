@@ -112,12 +112,18 @@ def title_tokens(item: dict) -> set[str]:
 def source_type(item: dict) -> str:
     """Distinguish user reports from Fortinet-authored Community knowledge articles."""
     match = re.search(r"https?://community\.fortinet\.com/([^/]+)/", item.get("url", ""), re.I)
-    if match and match.group(1).lower().startswith("support-forum"):
+    if not match:
+        return "unknown"
+    slug = match.group(1).lower()
+    if slug.startswith("support-forum") or slug == "t5":
         return "forum_discussion"
-    if match:
+    official_prefixes = (
+        "fortigate-", "fortimanager-", "fortianalyzer-", "fortiauthenticator-",
+        "forticlient-ems-", "forticlient-", "fortiswitch-", "fortiap-",
+    )
+    if slug.startswith(official_prefixes):
         return "fortinet_article"
     return "unknown"
-
 
 def has_documented_evidence(item: dict) -> bool:
     """Require a version-scoped, explicit issue/change in a Fortinet-authored article."""
