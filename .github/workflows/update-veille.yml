@@ -1,6 +1,12 @@
 name: Actualiser la veille cyber
 
 on:
+  push:
+    branches: ["main"]
+    paths:
+      - "scripts/update_veille.py"
+      - "tests/test_update_veille.py"
+      - ".github/workflows/update-veille.yml"
   schedule:
     - cron: "17 */6 * * *"
   workflow_dispatch:
@@ -23,6 +29,8 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: "3.12"
+      - name: Tester les scripts de veille
+        run: python -m unittest discover -s tests -v
       - name: Récupérer les flux officiels
         run: python scripts/update_veille.py
       - name: Vérifier le JSON généré
