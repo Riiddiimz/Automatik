@@ -196,7 +196,8 @@ def synthesize(data: dict, out: Path = DATA) -> dict:
     data["incidentCount"] = len(incidents)
     data["synthesisGeneratedAt"] = datetime.now(timezone.utc).isoformat()
     data["synthesisNote"] = "Les incidents sont des regroupements automatiques à vérifier. Les solutions ne sont pas considérées comme confirmées sans validation explicite des sources."
-    DATA.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    out.parent.mkdir(parents=True, exist_ok=True)
+    out.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     return data
 
 
