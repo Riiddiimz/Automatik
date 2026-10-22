@@ -9,11 +9,22 @@ const { chromium } = require("playwright");
   page.on("pageerror", error => pageErrors.push(error.message));
 
   try {
+    const dashboardResponse = await page.request.get(`${baseUrl}/data/veille.json`);
+    assert.equal(dashboardResponse.status(), 200, "veille.json doit être servi");
+    const dashboardData = await dashboardResponse.json();
+    for (const key of ["fortinet", "cyber", "kev"]) {
+      assert.ok(Array.isArray(dashboardData[key]), `veille.json doit contenir un tableau ${key}`);
+    }
+
     const dataResponse = await page.request.get(`${baseUrl}/data/community.json`);
     assert.equal(dataResponse.status(), 200, "community.json doit être servi");
     const data = await dataResponse.json();
 
     await page.goto(baseUrl, { waitUntil: "networkidle" });
+    await page.waitForFunction(() => document.querySelector("#metric-fortinet")?.textContent !== "—");
+    assert.equal(await page.locator("#metric-fortinet").innerText(), String(dashboardData.fortinet.length));
+    assert.equal(await page.locator("#metric-cyber").innerText(), String(dashboardData.cyber.length));
+    assert.equal(await page.locator("#metric-kev").innerText(), String(dashboardData.kev.length));
     assert.match(await page.title(), /Automatik/i);
     await page.locator("#community-status").waitFor();
     await page.waitForFunction(() => {
