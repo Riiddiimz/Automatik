@@ -47,33 +47,40 @@ function renderKev(items, filter = "") {
 }
 
 const COMMUNITY_URL = "data/community.json";
-let communityData = { topics: [], generatedAt: null, partial: false, errors: [] };
+let communityData = { topics: [], incidents: [], generatedAt: null, partial: false, errors: [] };
 
 function renderCommunity() {
   const query = ($("community-search").value || "").trim().toLowerCase();
   const product = $("community-product").value;
   const version = $("community-version").value;
-  const topics = (communityData.topics || []).filter(item => {
-    const text = [item.title, item.summary, ...(item.products || []), ...(item.versions || [])].join(" ").toLowerCase();
+  const incidents = (communityData.incidents || []).filter(item => {
+    const sourceText = (item.sources || []).map(source => [source.title, source.summary].join(" ")).join(" ");
+    const text = [item.title, item.summary, sourceText, ...(item.products || []), ...(item.versions || []), ...(item.versionFamilies || [])].join(" ").toLowerCase();
     return (!query || text.includes(query))
       && (!product || (item.products || []).includes(product))
-      && (!version || (item.versions || []).includes(version));
+      && (!version || (item.versionFamilies || []).includes(version));
   });
-  $("community-count").textContent = `${topics.length} sujet(s)`;
-  if (!topics.length) {
-    $("community-list").innerHTML = '<div class="empty-card">Aucun sujet correspondant dans l’historique collecté. Essaie un autre filtre ou lance la collecte GitHub Actions.</div>';
+  $("community-count").textContent = `${incidents.length} problème(s)`;
+  if (!incidents.length) {
+    $("community-list").innerHTML = '<div class="empty-card">Aucun problème potentiel correspondant. La collecte quotidienne actualise les données automatiquement.</div>';
     return;
   }
-  $("community-list").innerHTML = topics.slice(0, 100).map(item => {
-    const url = /^https:\/\//i.test(item.url || "") ? item.url : "https://community.fortinet.com/";
-    const products = (item.products || []).map(escapeHTML).join(" · ") || "Produit non précisé";
-    const versions = (item.versions || []).map(escapeHTML).join(", ");
-    return `<article class="community-card">
-      <div class="community-card-top"><span class="community-products">${products}</span><span class="community-status-badge">À vérifier</span></div>
-      <h3><a href="${escapeHTML(url)}" target="_blank" rel="noopener noreferrer">${escapeHTML(item.title || "Sujet sans titre")} ↗</a></h3>
-      <p>${escapeHTML(item.summary || "Le flux ne fournit pas de résumé. Ouvre le sujet pour consulter les réponses.")}</p>
-      <div class="community-meta"><span>${escapeHTML(safeDate(item.date))}</span>${versions ? `<span>Version(s) : ${versions}</span>` : '<span>Version non précisée</span>'}</div>
-      <div class="community-caution">${escapeHTML(item.statusNote || "Solution non vérifiée : consulter le fil original.")}</div>
+  $("community-list").innerHTML = incidents.slice(0, 100).map(item => {
+    const products = (item.products || []).map(escapeHTML).join(" · ") || "Produit à confirmer";
+    const families = (item.versionFamilies || []).map(v => escapeHTML(v) + ".x").join(", ");
+    const exact = (item.versions || []).map(v => escapeHTML(v)).join(", ");
+    const sources = (item.sources || []).slice(0, 5).map(source => {
+      const url = /^https:\/\//i.test(source.url || "") ? source.url : "https://community.fortinet.com/";
+      return `<li><a href="${escapeHTML(url)}" target="_blank" rel="noopener noreferrer">${escapeHTML(source.title || "Discussion source")} ↗</a><span>${escapeHTML(safeDate(source.date))}</span></li>`;
+    }).join("");
+    const extra = Math.max(0, (item.sources || []).length - 5);
+    return `<article class="community-card incident-card">
+      <div class="community-card-top"><span class="community-products">${products}</span><span class="community-status-badge">À confirmer</span></div>
+      <h3>${escapeHTML(item.title || "Problème potentiel Fortinet")}</h3>
+      <p>${escapeHTML(item.summary || "Résumé indisponible : consulter les discussions sources.")}</p>
+      <div class="community-meta"><span>${item.sourceCount || (item.sources || []).length} discussion(s) regroupée(s)</span><span>Famille(s) : ${families || "non déterminée(s)"}</span>${exact ? `<span>Versions exactes : ${exact}</span>` : ""}<span>Dernier signal : ${escapeHTML(safeDate(item.lastSeen))}</span></div>
+      <details class="incident-sources"><summary>Consulter les discussions sources (${(item.sources || []).length})</summary><ul>${sources}</ul>${extra ? `<p class="source-extra">Et ${extra} autre(s) source(s) dans ce regroupement.</p>` : ""}</details>
+      <div class="community-caution">Regroupement automatique par similarité de texte. Vérifier les versions, les symptômes et les réponses avant de conclure qu’il s’agit du même bug ou d’une solution confirmée.</div>
     </article>`;
   }).join("");
 }
@@ -82,13 +89,14 @@ async function loadCommunity() {
     const response = await fetch(`${COMMUNITY_URL}?t=${Date.now()}`, { cache: "no-store" });
     if (!response.ok) throw new Error(`HTTP ${response.status}`);
     communityData = await response.json();
-    const versions = [...new Set((communityData.topics || []).flatMap(item => item.versions || []))].sort((a, b) => a.localeCompare(b, "fr", { numeric: true }));
-    $("community-version").innerHTML = '<option value="">Toutes les versions</option>' + versions.map(version => `<option value="${escapeHTML(version)}">${escapeHTML(version)}</option>`).join("");
+    const versions = [...new Set((communityData.incidents || []).flatMap(item => item.versionFamilies || []))].sort((a, b) => a.localeCompare(b, "fr", { numeric: true }));
+    $("community-version").innerHTML = '<option value="">Toutes les familles</option>' + versions.map(version => `<option value="${escapeHTML(version)}">${escapeHTML(version)}.x</option>`).join("");
     const date = communityData.generatedAt ? safeDate(communityData.generatedAt) : "jamais";
     $("community-status").textContent = communityData.partial
       ? `Collecte partielle — historique conservé · dernière tentative : ${date}`
-      : `Dernière collecte : ${date} · ${communityData.topics?.length || 0} sujets en historique`;
+      : `Dernière collecte : ${date} · ${communityData.incidentCount ?? communityData.incidents?.length ?? 0} problèmes potentiels regroupés depuis ${communityData.topics?.length || 0} sujets`;
     if (communityData.errors?.length) $("community-status").textContent += ` · ${communityData.errors.length} avertissement(s)`;
+    if (communityData.synthesisNote) $("community-status").textContent += " · Synthèse automatique à confirmer";
     renderCommunity();
   } catch (error) {
     $("community-status").textContent = "Flux Community indisponible. L’historique affiché n’a pas pu être chargé.";
@@ -96,7 +104,6 @@ async function loadCommunity() {
     console.error("Impossible de charger la veille Community :", error);
   }
 }
-
 function updateDashboard(data) {
   currentData = { ...fallback, ...data };
   const fortinet = currentData.fortinet || [];
