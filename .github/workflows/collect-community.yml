@@ -2,7 +2,7 @@ name: Collecte Fortinet Community
 
 on:
   schedule:
-    - cron: "37 */6 * * *"
+    - cron: "17 5 * * *"
   workflow_dispatch:
 
 permissions:
@@ -25,10 +25,12 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - name: Tester le collecteur
-        run: python -m unittest discover -s tests -p 'test_collect_community.py' -v
+      - name: Tester la collecte et la synthèse
+        run: python -m unittest discover -s tests -v
       - name: Collecter les sujets du forum
         run: python scripts/collect_community.py
+      - name: Regrouper les problèmes similaires et synthétiser
+        run: python scripts/synthesize_community.py
       - name: Valider le JSON
         run: python -m json.tool data/community.json > /dev/null
       - name: Enregistrer les nouvelles données sur main
