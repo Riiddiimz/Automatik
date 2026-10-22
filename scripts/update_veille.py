@@ -15,7 +15,10 @@ USER_AGENT = "AutomatikCyberVeille/1.0 (+https://github.com/Riiddiimz/Automatik)
 FEEDS = [
     ("fortinet", "FortiGuard PSIRT", "https://fortiguard.fortinet.com/rss/ir.xml"),
     ("cyber", "FortiGuard Outbreak Alerts", "https://filestore.fortinet.com/fortiguard/rss/outbreakalert.xml"),
-    ("cyber", "CISA Cybersecurity Advisories", "https://www.cisa.gov/news-events/cybersecurity-advisories?feed=rss"),
+    ("cyber", "CISA Cybersecurity Advisories", (
+        "https://www.cisa.gov/cybersecurity-advisories/all.xml",
+        "https://www.cisa.gov/cybersecurity-advisories/cybersecurity-advisories.xml",
+    )),
 ]
 KEV_URL = "https://www.cisa.gov/sites/default/files/feeds/known_exploited_vulnerabilities.json"
 
@@ -93,13 +96,22 @@ def main():
         pass
 
     data = {"generatedAt": datetime.now(timezone.utc).isoformat(), "fortinet": [], "cyber": [], "kev": [], "errors": []}
-    for section, source, url in FEEDS:
-        try:
-            items = parse_rss(fetch(url), source, "PSIRT" if section == "fortinet" else source, limit=20)
-            if not items:
-                raise ValueError("flux accessible mais aucun élément RSS reconnu")
+    for section, source, configured_urls in FEEDS:
+        urls = configured_urls if isinstance(configured_urls, (tuple, list)) else (configured_urls,)
+        last_error = None
+        items = []
+        for url in urls:
+            try:
+                items = parse_rss(fetch(url), source, "PSIRT" if section == "fortinet" else source, limit=20)
+                if not items:
+                    raise ValueError("flux accessible mais aucun élément RSS reconnu")
+                break
+            except (urllib.error.URLError, TimeoutError, ET.ParseError, OSError, ValueError) as exc:
+                last_error = exc
+        if items:
             data[section].extend(items)
-        except (urllib.error.URLError, TimeoutError, ET.ParseError, OSError, ValueError) as exc:
+        else:
+            exc = last_error or ValueError("aucun flux de secours disponible")
             data["errors"].append(f"{source}: {type(exc).__name__}: {exc}")
             # Keep the last known records from this specific feed instead of erasing them.
             stale_items = [item for item in previous.get(section, []) if item.get("source") == source]
