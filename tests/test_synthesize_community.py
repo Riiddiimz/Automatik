@@ -24,8 +24,8 @@ class CommunitySynthesisTests(unittest.TestCase):
 
     def test_similar_topics_are_grouped_once(self):
         data = {"topics": [
-            {"title": "FortiGate DNS over TLS broken in Proxy Mode", "summary": "FortiOS 7.6.4 DNS over TLS fails.", "url": "https://community.fortinet.com/a", "products": ["FortiGate"], "date": "2026-10-22"},
-            {"title": "DNS over TLS fails in proxy mode on FortiGate", "summary": "FortiOS version 7.6.4 has broken DNS over TLS.", "url": "https://community.fortinet.com/b", "products": ["FortiGate"], "date": "2026-10-21"},
+            {"title": "FortiGate DNS over TLS broken in Proxy Mode", "summary": "FortiOS 7.6.4 DNS over TLS fails.", "url": "https://community.fortinet.com/support-forum-92/dns-dot-1", "products": ["FortiGate"], "date": "2026-10-22"},
+            {"title": "DNS over TLS fails in proxy mode on FortiGate", "summary": "FortiOS version 7.6.4 has broken DNS over TLS.", "url": "https://community.fortinet.com/support-forum-92/dns-dot-2", "products": ["FortiGate"], "date": "2026-10-21"},
         ]}
         with tempfile.TemporaryDirectory() as directory:
             result = synth.synthesize(data, Path(directory) / "community.json")
@@ -54,14 +54,35 @@ class CommunitySynthesisTests(unittest.TestCase):
             "url": "https://community.fortinet.com/fortigate-3/proxy-related-features",
             "products": ["FortiGate"],
         }
-        self.assertTrue(synth.is_official_article(item))
+        self.assertEqual(synth.source_type(item), "fortinet_article")
         self.assertTrue(synth.has_documented_evidence(item))
         data = {"topics": [item]}
         with tempfile.TemporaryDirectory() as directory:
             result = synth.synthesize(data, Path(directory) / "community.json")
         self.assertEqual(result["incidentCount"], 1)
-        self.assertEqual(result["incidents"][0]["status"], "Documenté par Fortinet")
+        self.assertEqual(result["incidents"][0]["status"], "Bug/changement documenté par Fortinet")
         self.assertEqual(result["incidents"][0]["versionFamilies"], ["7.4"])
+
+
+    def test_official_articles_do_not_count_as_multiple_people(self):
+        data = {"topics": [
+            {"title": "VPN disconnects after upgrade", "summary": "VPN disconnects after upgrade", "url": "https://community.fortinet.com/support-forum-92/report-1", "products": ["FortiGate"], "versionFamilies": ["7.4"]},
+            {"title": "VPN disconnects after upgrade", "summary": "VPN disconnects after upgrade", "url": "https://community.fortinet.com/fortigate-3/official-tip", "products": ["FortiGate"], "versionFamilies": ["7.4"]},
+        ]}
+        with tempfile.TemporaryDirectory() as directory:
+            result = synth.synthesize(data, Path(directory) / "community.json")
+        self.assertEqual(result["incidentCount"], 0)
+
+    def test_two_distinct_forum_reports_are_retained(self):
+        data = {"topics": [
+            {"title": "FortiGate DNS over TLS broken in Proxy Mode", "summary": "FortiOS 7.6.4 DNS over TLS fails.", "url": "https://community.fortinet.com/support-forum-92/dns-dot-1", "products": ["FortiGate"], "date": "2026-10-22"},
+            {"title": "DNS over TLS fails in proxy mode on FortiGate", "summary": "FortiOS version 7.6.4 has broken DNS over TLS.", "url": "https://community.fortinet.com/support-forum-92/dns-dot-2", "products": ["FortiGate"], "date": "2026-10-21"},
+        ]}
+        with tempfile.TemporaryDirectory() as directory:
+            result = synth.synthesize(data, Path(directory) / "community.json")
+        self.assertEqual(result["incidentCount"], 1)
+        self.assertEqual(result["incidents"][0]["forumReportCount"], 2)
+        self.assertEqual(result["incidents"][0]["status"], "Récurrent — 2 discussions distinctes")
 
 
 if __name__ == "__main__":
