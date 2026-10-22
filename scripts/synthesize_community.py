@@ -96,8 +96,13 @@ def extract_versions(item: dict) -> tuple[list[str], list[str]]:
 def looks_like_problem(item: dict) -> bool:
     title = item.get("title", "")
     summary = item.get("summary", "")
-    # Official how-to/technical tips are not incidents unless they explicitly describe a failure/bug.
-    return bool(ISSUE_RE.search(title) or ISSUE_RE.search(summary[:1800]))
+    # Do not turn an ordinary how-to article into an incident just because its instructions mention
+    # something that cannot be configured. For those articles, require an explicit failure in title.
+    if re.match(r"^(technical tip|how to|configuration guide)", title, re.I) and not ISSUE_RE.search(title):
+        return False
+    if ISSUE_RE.search(title):
+        return True
+    return bool(re.search(r"\\b(known issue|known bug|bug id|regression|issue occurs|failure occurs|stops working|not working|broken after upgrade)\\b", summary[:1200], re.I))
 
 
 def title_tokens(item: dict) -> set[str]:
