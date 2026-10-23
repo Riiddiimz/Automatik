@@ -127,5 +127,14 @@ class CommunitySynthesisTests(unittest.TestCase):
         self.assertEqual(exact, ["7.4.11", "7.4.12"])
         self.assertEqual(families, ["7.4"])
 
+
+    def test_official_article_scope_can_include_multiple_products(self):
+        item = {
+            "title": 'Upgrade firmware fails with "New image is too big"',
+            "summary": "Description of the issue. Scope FortiManager-VM, FortiAnalyzer-VM. Solution: expand the flash disk.",
+            "url": "https://community.fortinet.com/fortianalyzer-6/upgrade-firmware-fails-with-new-image-is-too-big-230675",
+        }
+        self.assertEqual(set(synth.extract_products(item)), {"FortiManager", "FortiAnalyzer"})
+
 if __name__ == "__main__":
     unittest.main()
