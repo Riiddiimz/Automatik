@@ -53,12 +53,14 @@ function renderCommunity() {
   const query = ($("community-search").value || "").trim().toLowerCase();
   const product = $("community-product").value;
   const version = $("community-version").value;
+  const status = $("community-status-filter").value;
   const incidents = (communityData.incidents || []).filter(item => {
     const sourceText = (item.sources || []).map(source => [source.title, source.summary].join(" ")).join(" ");
-    const text = [item.title, item.summary, item.symptom, item.impact, item.solution, sourceText, ...(item.products || []), ...(item.versions || []), ...(item.versionFamilies || [])].join(" ").toLowerCase();
+    const text = [item.title, item.summary, item.symptom, item.impact, item.solution, item.status, sourceText, ...(item.products || []), ...(item.versions || []), ...(item.versionFamilies || [])].join(" ").toLowerCase();
     return (!query || text.includes(query))
       && (!product || (item.products || []).includes(product))
-      && (!version || (item.versionFamilies || []).includes(version));
+      && (!version || (item.versionFamilies || []).includes(version))
+      && (!status || (item.status || "À vérifier") === status);
   });
   $("community-count").textContent = `${incidents.length} problème(s)`;
   if (!incidents.length) {
@@ -96,6 +98,8 @@ async function loadCommunity() {
     communityData = await response.json();
     const versions = [...new Set((communityData.incidents || []).flatMap(item => item.versionFamilies || []))].sort((a, b) => a.localeCompare(b, "fr", { numeric: true }));
     $("community-version").innerHTML = '<option value="">Toutes les familles</option>' + versions.map(version => `<option value="${escapeHTML(version)}">${escapeHTML(version)}.x</option>`).join("");
+    const statuses = [...new Set((communityData.incidents || []).map(item => item.status || "À vérifier"))].sort((a, b) => a.localeCompare(b, "fr"));
+    $("community-status-filter").innerHTML = '<option value="">Tous les statuts</option>' + statuses.map(status => `<option value="${escapeHTML(status)}">${escapeHTML(status)}</option>`).join("");
     const date = communityData.generatedAt ? safeDate(communityData.generatedAt) : "jamais";
     $("community-status").textContent = communityData.partial
       ? `Collecte partielle — historique conservé · dernière tentative : ${date}`
@@ -152,6 +156,6 @@ $("cve-search").addEventListener("input", () => {
 });
 loadData();
 loadCommunity();
-["community-search", "community-product", "community-version"].forEach(id => {
+["community-search", "community-product", "community-version", "community-status-filter"].forEach(id => {
   $(id).addEventListener(id === "community-search" ? "input" : "change", renderCommunity);
 });
