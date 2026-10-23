@@ -66,6 +66,7 @@ Le test navigateur est exécuté en CI avec Playwright et Chromium. Pour le repr
 - [FortiGuard PSIRT](https://fortiguard.fortinet.com/psirt)
 - [Flux RSS PSIRT Fortinet](https://fortiguard.fortinet.com/rss/ir.xml)
 - [Fortinet News & Research](https://www.fortinet.com/lat/rss-feeds)
+- [Fortinet CISO Collective — annonces de sécurité](https://www.fortinet.com/blog/ciso-collective)
 - [Fortinet Community](https://community.fortinet.com/)
 - [CISA Known Exploited Vulnerabilities](https://www.cisa.gov/known-exploited-vulnerabilities-catalog)
 - [CERT-FR / ANSSI](https://www.cert.ssi.gouv.fr/feed/)
