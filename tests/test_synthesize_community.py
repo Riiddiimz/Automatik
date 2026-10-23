@@ -24,6 +24,24 @@ class CommunitySynthesisTests(unittest.TestCase):
         self.assertIn("7.6", families)
         self.assertIn("8.0", families)
 
+    def test_unrelated_dotted_numbers_are_not_misread_as_firmware_versions(self):
+        item = {
+            "title": "CVE-2026-106175 record lists FortiPAM, FortiSASE and FortiOS/FortiProxy 7.0 as affected",
+            "summary": (
+                "The CVE record lists FortiPAM 1.0.0, FortiSASE 25.4 and FortiProxy 7.0.19, "
+                "while FortiOS 7.6.8 is also mentioned. A Python example uses 3.11.8. "
+                "Upgrade path from versions 7.2.13 to 7.4.12."
+            ),
+        }
+        exact, _ = synth.extract_versions(item)
+        self.assertIn("7.6.8", exact)
+        self.assertIn("7.2.13", exact)
+        self.assertIn("7.4.12", exact)
+        self.assertNotIn("1.0.0", exact)
+        self.assertNotIn("25.4", exact)
+        self.assertNotIn("7.0.19", exact)
+        self.assertNotIn("3.11.8", exact)
+
     def test_similar_topics_are_grouped_once(self):
         data = {"topics": [
             {"title": "FortiGate DNS over TLS broken in Proxy Mode", "summary": "FortiOS 7.6.4 DNS over TLS fails.", "url": "https://community.fortinet.com/support-forum-92/dns-dot-1", "products": ["FortiGate"], "date": "2026-10-22"},
