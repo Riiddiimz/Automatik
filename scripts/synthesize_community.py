@@ -83,6 +83,19 @@ def extract_products(item: dict) -> list[str]:
     title_found = [name for name, pattern in PRODUCT_PATTERNS.items() if re.search(pattern, title, re.I)]
     if primary:
         found = list(dict.fromkeys([primary] + title_found))
+        # Official knowledge articles often scope one issue to several products
+        # even when the article is hosted on a single product board.
+        if source_type(item) == "fortinet_article":
+            scope = re.search(
+                r"\\bScope\\b(.*?)(?=\\bSolution\\b|\\bWorkaround\\b|$)",
+                summary, re.I | re.S,
+            )
+            if scope:
+                scope_products = [
+                    name for name, pattern in PRODUCT_PATTERNS.items()
+                    if re.search(pattern, scope.group(1), re.I)
+                ]
+                found = list(dict.fromkeys(found + scope_products))
     else:
         text = title + " " + summary
         found = [name for name, pattern in PRODUCT_PATTERNS.items() if re.search(pattern, text, re.I)]
