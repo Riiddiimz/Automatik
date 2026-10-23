@@ -30,11 +30,13 @@ class CommunitySynthesisTests(unittest.TestCase):
             "summary": (
                 "The CVE record lists FortiPAM 1.0.0, FortiSASE 25.4 and FortiProxy 7.0.19, "
                 "while FortiOS 7.6.8 is also mentioned. A Python example uses 3.11.8. "
-                "Upgrade path from versions 7.2.13 to 7.4.12."
+                "Upgrade path from versions 7.2.13 to 7.4.12. "
+                "After upgrading FortiGate from FortiOS v7.6.7 to v7.6.8, the keytab is removed."
             ),
         }
         exact, _ = synth.extract_versions(item)
         self.assertIn("7.6.8", exact)
+        self.assertIn("7.6.7", exact)
         self.assertIn("7.2.13", exact)
         self.assertIn("7.4.12", exact)
         self.assertNotIn("1.0.0", exact)
