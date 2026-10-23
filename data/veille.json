@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-23T04:47:34.992780+00:00",
+  "generatedAt": "2026-10-23T17:05:45.969025+00:00",
   "fortinet": [
     {
       "source": "FortiGuard PSIRT",
@@ -168,8 +168,16 @@
       "label": "FortiGuard Outbreak Alerts",
       "title": "PHP2Shell Remote Code Execution Vulnerabilities",
       "url": "https://fortiguard.fortinet.com/outbreak-alert/php2shell",
-      "date": "2026-10-22T07:00:00+00:00",
+      "date": "2026-10-23T07:00:00+00:00",
       "summary": "Successful exploitation could allow attackers to execute arbitrary code within the PHP application process, potentially compromising the affected server and exposing sensitive data, application files, or connected databases, depending on the process privileges and system configuration. FortiGuard Labs is monitoring the PHP2Shell vulnerabilities and related t"
+    },
+    {
+      "source": "Fortinet CISO Collective",
+      "label": "Fortinet CISO Collective",
+      "title": "Fortinet Releases Security Hardening Release for Multiple Products",
+      "url": "https://feeds.fortinet.com/~/971845082/0/fortinet/blog/ciso-collective~Fortinet-Releases-Security-Hardening-Release-for-Multiple-Products",
+      "date": "2026-10-21T13:00:00+00:00",
+      "summary": "Fortinet announces frontier AI hardening releases for a range of products including FortiOS, FortiManager, FortiAnalyzer, FortiMail, and FortiAuthenticator. &#160; &#160; &#160; &#160; &nbsp;&#160;"
     },
     {
       "source": "CERT-FR",
@@ -194,6 +202,94 @@
       "url": "https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-1349/",
       "date": "2026-10-21T00:00:00+00:00",
       "summary": "De multiples vulnérabilités ont été découvertes dans Oracle Database Server. Certaines d'entre elles permettent à un attaquant de provoquer une exécution de code arbitraire à distance, un déni de service à distance et une atteinte à la confidentialité des données."
+    },
+    {
+      "source": "CERT-FR",
+      "label": "CERT-FR",
+      "title": "Multiples vulnérabilités dans PHP (21 octobre 2026)",
+      "url": "https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-1359/",
+      "date": "2026-10-21T00:00:00+00:00",
+      "summary": "De multiples vulnérabilités ont été découvertes dans PHP. Elles permettent à un attaquant de provoquer une exécution de code arbitraire à distance."
+    },
+    {
+      "source": "CERT-FR",
+      "label": "CERT-FR",
+      "title": "Multiples vulnérabilités dans Oracle MySQL (21 octobre 2026)",
+      "url": "https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-1351/",
+      "date": "2026-10-21T00:00:00+00:00",
+      "summary": "De multiples vulnérabilités ont été découvertes dans Oracle MySQL. Certaines d'entre elles permettent à un attaquant de provoquer une exécution de code arbitraire à distance, un déni de service à distance et une atteinte à la confidentialité des données."
+    },
+    {
+      "source": "CERT-FR",
+      "label": "CERT-FR",
+      "title": "Vulnérabilité dans MongoDB PHP Driver (21 octobre 2026)",
+      "url": "https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-1347/",
+      "date": "2026-10-21T00:00:00+00:00",
+      "summary": "Une vulnérabilité a été découverte dans MongoDB PHP Driver. Elle permet à un attaquant de provoquer un déni de service à distance."
+    },
+    {
+      "source": "CERT-FR",
+      "label": "CERT-FR",
+      "title": "Multiples vulnérabilités dans les produits StormShield (21 octobre 2026)",
+      "url": "https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-1345/",
+      "date": "2026-10-21T00:00:00+00:00",
+      "summary": "De multiples vulnérabilités ont été découvertes dans les produits StormShield. Certaines d'entre elles permettent à un attaquant de provoquer une exécution de code arbitraire, un déni de service à distance et une atteinte à la confidentialité des données."
+    },
+    {
+      "source": "CERT-FR",
+      "label": "CERT-FR",
+      "title": "Multiples vulnérabilités dans Google Chrome (21 octobre 2026)",
+      "url": "https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-1357/",
+      "date": "2026-10-21T00:00:00+00:00",
+      "summary": "De multiples vulnérabilités ont été découvertes dans Google Chrome. Elles permettent à un attaquant de provoquer un problème de sécurité non spécifié par l'éditeur."
+    },
+    {
+      "source": "CERT-FR",
+      "label": "CERT-FR",
+      "title": "Multiples vulnérabilités dans Oracle PeopleSoft (21 octobre 2026)",
+      "url": "https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-1352/",
+      "date": "2026-10-21T00:00:00+00:00",
+      "summary": "De multiples vulnérabilités ont été découvertes dans Oracle PeopleSoft. Certaines d'entre elles permettent à un attaquant de provoquer une exécution de code arbitraire à distance, un déni de service à distance et une atteinte à la confidentialité des données."
+    },
+    {
+      "source": "CERT-FR",
+      "label": "CERT-FR",
+      "title": "Multiples vulnérabilités dans Oracle Java SE (21 octobre 2026)",
+      "url": "https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-1350/",
+      "date": "2026-10-21T00:00:00+00:00",
+      "summary": "De multiples vulnérabilités ont été découvertes dans Oracle Java SE. Certaines d'entre elles permettent à un attaquant de provoquer une exécution de code arbitraire à distance, un déni de service à distance et une atteinte à la confidentialité des données."
+    },
+    {
+      "source": "CERT-FR",
+      "label": "CERT-FR",
+      "title": "Multiples vulnérabilités dans Mattermost Server (21 octobre 2026)",
+      "url": "https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-1348/",
+      "date": "2026-10-21T00:00:00+00:00",
+      "summary": "De multiples vulnérabilités ont été découvertes dans Mattermost Server. Elles permettent à un attaquant de provoquer un problème de sécurité non spécifié par l'éditeur."
+    },
+    {
+      "source": "CERT-FR",
+      "label": "CERT-FR",
+      "title": "Multiples vulnérabilités dans Apache Tomcat (21 octobre 2026)",
+      "url": "https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-1358/",
+      "date": "2026-10-21T00:00:00+00:00",
+      "summary": "De multiples vulnérabilités ont été découvertes dans Apache Tomcat. Certaines d'entre elles permettent à un attaquant de provoquer une atteinte à la confidentialité des données, un contournement de la politique de sécurité et un problème de sécurité non spécifié par l'éditeur."
+    },
+    {
+      "source": "CERT-FR",
+      "label": "CERT-FR",
+      "title": "Multiples vulnérabilités dans Oracle Weblogic (21 octobre 2026)",
+      "url": "https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-1355/",
+      "date": "2026-10-21T00:00:00+00:00",
+      "summary": "De multiples vulnérabilités ont été découvertes dans Oracle Weblogic. Elles permettent à un attaquant de provoquer un déni de service à distance, une atteinte à la confidentialité des données et une atteinte à l'intégrité des données."
+    },
+    {
+      "source": "CERT-FR",
+      "label": "CERT-FR",
+      "title": "Vulnérabilité dans Traefik (21 octobre 2026)",
+      "url": "https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-1356/",
+      "date": "2026-10-21T00:00:00+00:00",
+      "summary": "Une vulnérabilité a été découverte dans Traefik. Elle permet à un attaquant de provoquer une atteinte à la confidentialité des données et un contournement de la politique de sécurité."
     },
     {
       "source": "CERT-FR",
@@ -230,22 +326,6 @@
     {
       "source": "CERT-FR",
       "label": "CERT-FR",
-      "title": "Bulletin d'actualité CERTFR-2026-ACT-044 (19 octobre 2026)",
-      "url": "https://www.cert.ssi.gouv.fr/actualite/CERTFR-2026-ACT-044/",
-      "date": "2026-10-19T00:00:00+00:00",
-      "summary": "Ce bulletin d'actualité du CERT-FR revient sur les vulnérabilités significatives de la semaine passée pour souligner leurs criticités. Il ne remplace pas l'analyse de l'ensemble des avis et alertes publiés par le CERT-FR dans le cadre d'une analyse de risques pour prioriser l'application des..."
-    },
-    {
-      "source": "CERT-FR",
-      "label": "CERT-FR",
-      "title": "Vulnérabilité dans Mattermost Server (19 octobre 2026)",
-      "url": "https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-1338/",
-      "date": "2026-10-19T00:00:00+00:00",
-      "summary": "Une vulnérabilité a été découverte dans Mattermost Server. Elle permet à un attaquant de provoquer un problème de sécurité non spécifié par l'éditeur."
-    },
-    {
-      "source": "CERT-FR",
-      "label": "CERT-FR",
       "title": "Multiples vulnérabilités dans les produits F5 (19 octobre 2026)",
       "url": "https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-1341/",
       "date": "2026-10-19T00:00:00+00:00",
@@ -254,90 +334,10 @@
     {
       "source": "CERT-FR",
       "label": "CERT-FR",
-      "title": "Multiples vulnérabilités dans Juniper Networks Session Smart Router (19 octobre 2026)",
-      "url": "https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-1337/",
-      "date": "2026-10-19T00:00:00+00:00",
-      "summary": "De multiples vulnérabilités ont été découvertes dans Juniper Networks Session Smart Router. Elles permettent à un attaquant de provoquer un problème de sécurité non spécifié par l'éditeur."
-    },
-    {
-      "source": "CERT-FR",
-      "label": "CERT-FR",
       "title": "Multiples vulnérabilités dans Microsoft Edge (19 octobre 2026)",
       "url": "https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-1342/",
       "date": "2026-10-19T00:00:00+00:00",
       "summary": "De multiples vulnérabilités ont été découvertes dans Microsoft Edge. Elles permettent à un attaquant de provoquer une exécution de code arbitraire à distance et un problème de sécurité non spécifié par l'éditeur."
-    },
-    {
-      "source": "CERT-FR",
-      "label": "CERT-FR",
-      "title": "Multiples vulnérabilités dans Stormshield Network Security (19 octobre 2026)",
-      "url": "https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-1339/",
-      "date": "2026-10-19T00:00:00+00:00",
-      "summary": "De multiples vulnérabilités ont été découvertes dans Stormshield Network Security. Certaines d'entre elles permettent à un attaquant de provoquer une atteinte à l'intégrité des données, une injection de code indirecte à distance (XSS) et un contournement de la politique de sécurité."
-    },
-    {
-      "source": "CERT-FR",
-      "label": "CERT-FR",
-      "title": "Multiples vulnérabilités dans Roundcube Webmail (19 octobre 2026)",
-      "url": "https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-1340/",
-      "date": "2026-10-19T00:00:00+00:00",
-      "summary": "De multiples vulnérabilités ont été découvertes dans Roundcube Webmail. Certaines d'entre elles permettent à un attaquant de provoquer une exécution de code arbitraire à distance, une falsification de requêtes côté serveur (SSRF) et une injection de code indirecte à distance (XSS)."
-    },
-    {
-      "source": "CERT-FR",
-      "label": "CERT-FR",
-      "title": "Multiples vulnérabilités dans le noyau Linux de Red Hat (16 octobre 2026)",
-      "url": "https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-1334/",
-      "date": "2026-10-16T00:00:00+00:00",
-      "summary": "De multiples vulnérabilités ont été découvertes dans le noyau Linux de Red Hat. Certaines d'entre elles permettent à un attaquant de provoquer une exécution de code arbitraire à distance, une élévation de privilèges et un déni de service à distance."
-    },
-    {
-      "source": "CERT-FR",
-      "label": "CERT-FR",
-      "title": "Multiples vulnérabilités dans les produits Microsoft (16 octobre 2026)",
-      "url": "https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-1332/",
-      "date": "2026-10-16T00:00:00+00:00",
-      "summary": "De multiples vulnérabilités ont été découvertes dans les produits Microsoft. Certaines d'entre elles permettent à un attaquant de provoquer une exécution de code arbitraire à distance, une élévation de privilèges et un déni de service à distance."
-    },
-    {
-      "source": "CERT-FR",
-      "label": "CERT-FR",
-      "title": "Multiples vulnérabilités dans le noyau Linux de SUSE (16 octobre 2026)",
-      "url": "https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-1335/",
-      "date": "2026-10-16T00:00:00+00:00",
-      "summary": "De multiples vulnérabilités ont été découvertes dans le noyau Linux de SUSE. Certaines d'entre elles permettent à un attaquant de provoquer une élévation de privilèges, un déni de service à distance et une atteinte à la confidentialité des données."
-    },
-    {
-      "source": "CERT-FR",
-      "label": "CERT-FR",
-      "title": "Multiples vulnérabilités dans les produits IBM (16 octobre 2026)",
-      "url": "https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-1336/",
-      "date": "2026-10-16T00:00:00+00:00",
-      "summary": "De multiples vulnérabilités ont été découvertes dans les produits IBM. Certaines d'entre elles permettent à un attaquant de provoquer une exécution de code arbitraire à distance, une élévation de privilèges et un déni de service à distance."
-    },
-    {
-      "source": "CERT-FR",
-      "label": "CERT-FR",
-      "title": "Multiples vulnérabilités dans le noyau Linux d'Ubuntu (16 octobre 2026)",
-      "url": "https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-1333/",
-      "date": "2026-10-16T00:00:00+00:00",
-      "summary": "De multiples vulnérabilités ont été découvertes dans le noyau Linux d'Ubuntu. Certaines d'entre elles permettent à un attaquant de provoquer une exécution de code arbitraire à distance, une élévation de privilèges et une atteinte à la confidentialité des données."
-    },
-    {
-      "source": "CERT-FR",
-      "label": "CERT-FR",
-      "title": "Multiples vulnérabilités dans Microsoft Office (16 octobre 2026)",
-      "url": "https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-1331/",
-      "date": "2026-10-16T00:00:00+00:00",
-      "summary": "De multiples vulnérabilités ont été découvertes dans Microsoft Office. Elles permettent à un attaquant de provoquer une exécution de code arbitraire à distance, une atteinte à la confidentialité des données et un contournement de la politique de sécurité."
-    },
-    {
-      "source": "CERT-FR",
-      "label": "CERT-FR",
-      "title": "Multiples vulnérabilités dans Traefik (16 octobre 2026)",
-      "url": "https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-1330/",
-      "date": "2026-10-16T00:00:00+00:00",
-      "summary": "De multiples vulnérabilités ont été découvertes dans Traefik. Elles permettent à un attaquant de provoquer une atteinte à la confidentialité des données et un contournement de la politique de sécurité."
     },
     {
       "source": "FortiGuard Outbreak Alerts",
@@ -354,6 +354,14 @@
       "url": "https://fortiguard.fortinet.com/outbreak-alert/orkes-conductor-rce",
       "date": "2026-09-15T07:00:00+00:00",
       "summary": "Attackers are actively targeting Orkes Conductor servers vulnerable to CVE-2026-58138, a critical unauthenticated remote code execution vulnerability in its GraalVM script evaluators. FortiGuard telemetry is observing active attack attempts targeting vulnerable Orkes Conductor deployments. The vulnerability allows an unauthenticated attacker to submit a mali"
+    },
+    {
+      "source": "Fortinet CISO Collective",
+      "label": "Fortinet CISO Collective",
+      "title": "Secure by Design: Fortinet’s Continued Commitment and the Work Ahead",
+      "url": "https://feeds.fortinet.com/~/968263118/0/fortinet/blog/ciso-collective~Secure-by-Design-Fortinets-Continued-Commitment-and-the-Work-Ahead",
+      "date": "2026-08-26T13:00:00+00:00",
+      "summary": "Fortinet CISO Carl Windsor shares progress on CISA's Secure by Design Pledge, from automatic updates and product hardening to greater transparency. &#160; &#160; &#160; &#160; &nbsp;&#160;"
     },
     {
       "source": "FortiGuard Outbreak Alerts",
@@ -404,6 +412,14 @@
       "summary": "FortiGuard Labs has observed a significant uptick in attacks targeting Langflow, leveraging a recently discovered authentication bypass vulnerability that allows unauthenticated remote attackers to fully compromise affected servers."
     },
     {
+      "source": "Fortinet CISO Collective",
+      "label": "Fortinet CISO Collective",
+      "title": "Update on Fortinet Use of Frontier AI",
+      "url": "https://feeds.fortinet.com/~/958785326/0/fortinet/blog/ciso-collective~Update-on-Fortinet-Use-of-Frontier-AI",
+      "date": "2026-06-30T13:00:00+00:00",
+      "summary": "Fortinet CISO Carl Windsor shares an update on Fortinet's active use of frontier AI—including Anthropic's Glasswing and OpenAI's Daybreak—for large-scale security testing, source code analysis findings, and what it means for customers and the industry. &#160; &#160; &#160; &#160; &nbsp;&#160;"
+    },
+    {
       "source": "FortiGuard Outbreak Alerts",
       "label": "FortiGuard Outbreak Alerts",
       "title": "HTTP/2 Bomb Denial-of-Service Vulnerability",
@@ -420,12 +436,28 @@
       "summary": "Exploitation activity targeting vulnerable Citrix NetScaler ADC and Gateway appliances remains persistent and widespread, with FortiGuard Labs telemetry continuously observing attack attempts from global sources probing exposed NetScaler SAML endpoints for vulnerable configurations. Analysis from FortiGuard IPS sensors shows sustained targeting of internet-f"
     },
     {
+      "source": "Fortinet CISO Collective",
+      "label": "Fortinet CISO Collective",
+      "title": "Defending Critical Infrastructure: Why OT Security Demands a Threat-Informed Approach",
+      "url": "https://feeds.fortinet.com/~/956879882/0/fortinet/blog/ciso-collective~Defending-Critical-Infrastructure-Why-OT-Security-Demands-a-ThreatInformed-Approach",
+      "date": "2026-05-21T13:00:00+00:00",
+      "summary": "As OT environments face more targeted cyberattacks, CISOs need a threat-informed security strategy built for industrial risk. &#160; &#160; &#160; &#160; &nbsp;&#160;"
+    },
+    {
       "source": "FortiGuard Outbreak Alerts",
       "label": "FortiGuard Outbreak Alerts",
       "title": "Cisco ASA and FTD Firewall RCE",
       "url": "https://fortiguard.fortinet.com/outbreak-alert/cisco-asa-and-ftd-firewall-zero-day",
       "date": "2026-04-27T07:00:00+00:00",
       "summary": "Critical zero-day vulnerabilities affecting Cisco Secure Firewall Adaptive Security Appliance (ASA) and Cisco Secure Firewall Threat Defense (FTD) software have been actively exploited in the wild. The campaign is widespread and involves exploiting zero-day vulnerabilities to gain unauthenticated remote code execution on ASAs, as well as manipulating read-on"
+    },
+    {
+      "source": "Fortinet CISO Collective",
+      "label": "Fortinet CISO Collective",
+      "title": "Supercharged Security: Security in the Time of Mythos",
+      "url": "https://feeds.fortinet.com/~/954108563/0/fortinet/blog/ciso-collective~Supercharged-Security-Security-in-the-Time-of-Mythos",
+      "date": "2026-04-20T13:00:00+00:00",
+      "summary": "As AI has turned cybersecurity into an arms race, learn how Fortinet stands apart by combining long standing AI expertise, secure by design products, and the fastest path from discovery to mitigation, without sacrificing trust. &#160; &#160; &#160; &#160; &nbsp;&#160;"
     },
     {
       "source": "FortiGuard Outbreak Alerts",
@@ -468,6 +500,22 @@
       "summary": "In 2025, the FortiGuard Labs team processed and blocked 3.8 trillion vulnerability exploitation attempts, preventing 2.71 billion malware deliveries, and blocking 257 million newly seen malware variants worldwide to protect its customers from cyber threats. Through the outbreak alert system, FortiGuard Labs escalated the significant threats to raise awarenes"
     },
     {
+      "source": "Fortinet CISO Collective",
+      "label": "Fortinet CISO Collective",
+      "title": "World Economic Forum Global Cybersecurity Outlook 2026: Key Takeaways for CISOs",
+      "url": "https://feeds.fortinet.com/~/949843793/0/fortinet/blog/ciso-collective~World-Economic-Forum-Global-Cybersecurity-Outlook-Key-Takeaways-for-CISOs",
+      "date": "2026-03-09T15:00:00+00:00",
+      "summary": "Analysis of the World Economic Forum's Global Cybersecurity Outlook 2026 report. Fortinet's Carl Windsor highlights key findings on AI-driven threats, geopolitics, cyber resilience, and regulatory complexity that CISOs must address. &#160; &#160; &#160; &#160; &nbsp;&#160;"
+    },
+    {
+      "source": "Fortinet CISO Collective",
+      "label": "Fortinet CISO Collective",
+      "title": "Why Certification Has Become a Strategic Control for CISOs",
+      "url": "https://feeds.fortinet.com/~/946227704/0/fortinet/blog/ciso-collective~Why-Certification-Has-Become-a-Strategic-Control-for-CISOs",
+      "date": "2026-02-12T14:00:00+00:00",
+      "summary": "Cybersecurity certifications have moved beyond compliance. For CISOs, they are now a strategic control that demonstrates how security is designed, governed, and enforced across products, industries, and regions. &#160; &#160; &#160; &#160; &nbsp;&#160;"
+    },
+    {
       "source": "FortiGuard Outbreak Alerts",
       "label": "FortiGuard Outbreak Alerts",
       "title": "Versa Concerto SD-WAN Authentication Bypass",
@@ -476,12 +524,44 @@
       "summary": "Multiple critical security vulnerabilities in the Versa Concerto network security and SD-WAN orchestration platform. When chained, these flaws could allow remote attackers to bypass authentication, escape Docker containers, and fully compromise both the application and the underlying host system."
     },
     {
+      "source": "CERT-FR",
+      "label": "CERT-FR",
+      "title": "Recommandations à destination  des acteurs du secteur de l’énergie et de l’eau (22 janvier 2026)",
+      "url": "https://www.cert.ssi.gouv.fr/dur/CERTFR-2025-DUR-003/",
+      "date": "2026-01-22T00:00:00+00:00",
+      "summary": "**Objet** : Recommandations de sécurisation des systèmes d’information à destination des producteurs, des intégrateurs et des installateurs des systèmes de production industriels du secteur de l’énergie et de l’eau en France. **Annexe** : Liens et références Depuis plusieurs mois, l’Agence..."
+    },
+    {
+      "source": "Fortinet CISO Collective",
+      "label": "Fortinet CISO Collective",
+      "title": "The Year of Resilience: What Will 2026 Demand from CISOs?",
+      "url": "https://feeds.fortinet.com/~/940043060/0/fortinet/blog/ciso-collective~The-Year-of-Resilience-What-Will-Demand-from-CISOs",
+      "date": "2026-01-12T14:00:00+00:00",
+      "summary": "What 2026 will demand from CISOs: resilience over prevention, governed AI, hardened identity, and business continuity in an AI-driven threat landscape &#160; &#160; &#160; &#160; &nbsp;&#160;"
+    },
+    {
+      "source": "Fortinet CISO Collective",
+      "label": "Fortinet CISO Collective",
+      "title": "Debunking Common Cloud Security Misconceptions",
+      "url": "https://feeds.fortinet.com/~/932275703/0/fortinet/blog/ciso-collective~Debunking-Common-Cloud-Security-Misconceptions",
+      "date": "2025-12-08T14:00:00+00:00",
+      "summary": "Although cloud providers secure their own platforms, cloud security is a shared responsibility. Learn how CISOs can overcome misconceptions, strengthen visibility, and protect their multi-cloud environments. &#160; &#160; &#160; &#160; &nbsp;&#160;"
+    },
+    {
       "source": "FortiGuard Outbreak Alerts",
       "label": "FortiGuard Outbreak Alerts",
       "title": "UNC1549 Critical Infrastructure Espionage Attack",
       "url": "https://fortiguard.fortinet.com/outbreak-alert/unc1549-espionage-attack",
       "date": "2025-12-02T08:00:00+00:00",
       "summary": "A suspected Iran-linked espionage group tracked as UNC1549 is actively targeting aerospace, defense, and telecommunications organizations across Europe and other regions. The threat actor employs a combination of highly tailored spear-phishing, credential theft from third-party services, and the abuse of virtual desktop infrastructure such as Citrix, VMware,"
+    },
+    {
+      "source": "Fortinet CISO Collective",
+      "label": "Fortinet CISO Collective",
+      "title": "CISO Predictions for 2026",
+      "url": "https://feeds.fortinet.com/~/927178706/0/fortinet/blog/ciso-collective~CISO-Predictions-for",
+      "date": "2025-11-04T14:00:00+00:00",
+      "summary": "Explore Fortinet's 2026 cybersecurity predictions from global CISOs. Discover how AI-driven threats, geopolitical tensions, and emerging technologies, such as quantum computing and satellite networks, are reshaping the CISO's mission—from securing data to ensuring resilience. &#160; &#160; &#160; &#160; &nbsp;&#160;"
     }
   ],
   "kev": [
