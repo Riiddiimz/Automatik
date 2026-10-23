@@ -115,6 +115,19 @@ async function loadCommunity() {
 }
 function updateDashboard(data) {
   currentData = { ...fallback, ...data };
+  const health = $("data-health");
+  const sourceErrors = Array.isArray(currentData.errors) ? currentData.errors.filter(Boolean) : [];
+  if (health) {
+    if (sourceErrors.length) {
+      const details = sourceErrors.slice(0, 3).join(" · ");
+      const extra = sourceErrors.length > 3 ? ` · +${sourceErrors.length - 3} autre(s) erreur(s)` : "";
+      health.hidden = false;
+      health.textContent = `Actualisation partielle : ${sourceErrors.length} source(s) en erreur. Les données précédentes ont pu être conservées ; vérifie les dates et les liens avant toute décision. Détails : ${details}${extra}`;
+    } else {
+      health.hidden = true;
+      health.textContent = "";
+    }
+  }
   const fortinet = currentData.fortinet || [];
   const cyber = currentData.cyber || [];
   const kev = currentData.kev || [];

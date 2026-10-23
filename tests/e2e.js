@@ -25,6 +25,10 @@ const { chromium } = require("playwright");
     assert.equal(await page.locator("#metric-fortinet").innerText(), String(dashboardData.fortinet.length));
     assert.equal(await page.locator("#metric-cyber").innerText(), String(dashboardData.cyber.length));
     assert.equal(await page.locator("#metric-kev").innerText(), String(dashboardData.kev.length));
+    const sourceErrors = Array.isArray(dashboardData.errors) ? dashboardData.errors : [];
+    const healthBanner = page.locator("#data-health");
+    assert.equal(await healthBanner.isVisible(), sourceErrors.length > 0, "les erreurs de flux doivent être signalées dans le tableau de bord");
+    if (sourceErrors.length) assert.match(await healthBanner.innerText(), /Actualisation partielle/);
     assert.match(await page.title(), /Automatik/i);
     await page.locator("#community-status").waitFor();
     await page.waitForFunction(() => {
