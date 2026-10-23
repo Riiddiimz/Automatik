@@ -32,7 +32,7 @@ ISSUE_RE = re.compile(
     re.I,
 )
 VERSION_CONTEXT_RE = re.compile(
-    r"\b(?:fortios|fortigate|fortimanager|fortianalyzer|fortiauthenticator|forticlient(?:\s+ems)?|fortiswitch|fortiap|firmware)\s*(?:version\s*)?v?(\d{1,2}\.\d{1,2}(?:\.\d{1,3})?)",
+    r"\b(?:fortios|fortigate|fortimanager|fortianalyzer|fortiauthenticator|forticlient(?:\s+(?:ems|vpn))?|fortiswitch|fortiap|firmware)\s*(?:version\s*)?v?(\d{1,2}\.\d{1,2}(?:\.\d{1,3})?)",
     re.I,
 )
 UPGRADE_PATH_RE = re.compile(
@@ -113,6 +113,13 @@ def extract_products(item: dict) -> list[str]:
 
 def extract_versions(item: dict) -> tuple[list[str], list[str]]:
     text = " ".join([item.get("title", ""), item.get("summary", "")])
+    # RSS/HTML cleanup can concatenate section labels and their values (e.g.
+    # "ScopeFortiGate 7.6.4"). Restore that boundary before version matching.
+    text = re.sub(
+        r"\b(?i:Description|Scope|Solution|Workaround|Impact)(?=[A-Z])",
+        lambda match: match.group(0) + " ",
+        text,
+    )
     # Remove complete IPv4 addresses before looking for dotted version numbers.
     text_without_ips = re.sub(r"\b(?:\d{1,3}\.){3}\d{1,3}\b", " ", text)
     # Do not mistake versions printed by diagnostic utilities for Fortinet firmware.
@@ -198,6 +205,11 @@ def extract_sections(item: dict) -> dict:
         return empty
 
     text = re.sub(r"\s+", " ", item.get("summary", "")).strip()
+    text = re.sub(
+        r"\b(?i:Description|Scope|Solution|Workaround|Impact)(?=[A-Z])",
+        lambda match: match.group(0) + " ",
+        text,
+    )
 
     def section(label: str, stop_labels: str) -> str:
         match = re.search(rf"{label}\s*:?\s*(.*?)(?={stop_labels}|$)", text, re.S)
