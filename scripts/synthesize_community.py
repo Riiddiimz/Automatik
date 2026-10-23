@@ -194,13 +194,13 @@ def extract_sections(item: dict) -> dict:
     if source_type(item) != "fortinet_article":
         return empty
 
-    text = re.sub(r"\\s+", " ", item.get("summary", "")).strip()
+    text = re.sub(r"\s+", " ", item.get("summary", "")).strip()
 
     def section(label: str, stop_labels: str) -> str:
-        match = re.search(rf"{label}\\s*:?\\s*(.*?)(?={stop_labels}|$)", text, re.S)
+        match = re.search(rf"{label}\s*:?\s*(.*?)(?={stop_labels}|$)", text, re.S)
         if not match:
             return ""
-        value = re.sub(r"\\s+", " ", match.group(1)).strip(" \\t\\r\\n:.-")
+        value = re.sub(r"\s+", " ", match.group(1)).strip(" \t\r\n:.-")
         return value[:1200]
 
     symptom = section("Description", r"Scope|Solution|Workaround|Impact")
