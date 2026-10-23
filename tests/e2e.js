@@ -60,6 +60,10 @@ const { chromium } = require("playwright");
     }
 
     if ((data.incidents || []).length) {
+      const firstCard = cards.first();
+      for (const label of ["Symptôme", "Impact", "Solution / correctif"]) {
+        assert.equal(await firstCard.getByText(label, { exact: true }).count(), 1, `le champ "${label}" doit être affiché`);
+      }
       const firstDetails = page.locator("#community-list .incident-sources").first();
       await firstDetails.locator("summary").click();
       assert.equal(await firstDetails.locator("ul").isVisible(), true, "les sources doivent pouvoir être dépliées");
