@@ -136,5 +136,28 @@ class CommunitySynthesisTests(unittest.TestCase):
         }
         self.assertEqual(set(synth.extract_products(item)), {"FortiManager", "FortiAnalyzer"})
 
+
+    def test_synthesized_incident_exposes_explicit_symptom_and_solution(self):
+        item = {
+            "title": "Troubleshooting Tip: DNS over TLS fails in proxy mode",
+            "summary": "DescriptionDNS filtering fails to inspect DNS over TLS queries in proxy mode.ScopeFortiGate 7.6.4.SolutionThis known issue occurs because the IPS engine skips DNS decoding.Workaround: add port 853 to the IPS decoder list.",
+            "url": "https://community.fortinet.com/fortigate-3/dns-over-tls-example",
+            "products": ["FortiGate"],
+        }
+        with tempfile.TemporaryDirectory() as directory:
+            result = synth.synthesize({"topics": [item]}, Path(directory) / "community.json")
+        incident = result["incidents"][0]
+        self.assertIn("DNS filtering fails", incident["symptom"])
+        self.assertIn("Contournement : add port 853", incident["solution"])
+        self.assertEqual(incident["impact"], "")
+
+    def test_user_discussion_does_not_receive_an_invented_solution(self):
+        item = {
+            "title": "VPN disconnects after upgrade",
+            "summary": "VPN disconnects after upgrade for one user.",
+            "url": "https://community.fortinet.com/support-forum-92/vpn-disconnects",
+        }
+        self.assertEqual(synth.extract_sections(item), {"symptom": "", "impact": "", "solution": ""})
+
 if __name__ == "__main__":
     unittest.main()
