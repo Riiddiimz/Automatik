@@ -1887,9 +1887,9 @@
       "id": "incident-2f864c553570",
       "title": "DNS over TLS broken in Proxy Mode",
       "summary": "DescriptionDNS filtering fails to inspect DNS over TLS (DoT)and DNS over HTTPS version 2 (DoH2) queries in certain FortiOS versions like 7.6.4 and 7.6.7, leading to bypassed filtering or connection errors in flow mode.ScopeFortiGate.SolutionThe issue occurs because the IPS engine does not recognize port 853 for decoding, causing it to skip the DNS dissector.Workaround:Run the following commands to add port 853 to the IPS decoder port list:config ips decoder \"dns_decoder\" config parameter \"port_list\" set value \"53,853\" end endRestart the IPS engine to…",
-      "symptom": "DescriptionDNS filtering fails to inspect DNS over TLS (DoT)and DNS over HTTPS version 2 (DoH2) queries in certain FortiOS versions like 7.6.4 and 7.6.7, leading to bypassed filtering or connection errors in flow mode.ScopeFortiGate.SolutionThe issue occurs because the IPS engine does not recognize port 853 for decoding, causing it to skip the DNS dissector.Workaround:Run the following commands to add port 853 to the IPS decoder port list:config ips decoder \"dns_decoder\" config parameter \"port_list\" set value \"53,853\" end endRestart the IPS engine to…",
+      "symptom": "DNS filtering fails to inspect DNS over TLS (DoT) queries in certain FortiOS versions, such as version 7.6.4, leading to bypassed filtering or connection errors in proxy mode. The issue occurs when a DNS query is made over TLS after upgrading to FortiOS version 7.6.4",
       "impact": "",
-      "solution": "",
+      "solution": "This known issue is Bug ID 1214371.Sample: The issue is reproduced using deep inspection with DNS filter enabled for a proxy mode firewall policy.As seen in the image above, the default redirect block IP addresses (208.91.112.55, 2620:101:9000:53) were not returned over TLS. Upgrade FortiGate to FortiOS 8.0.1 to resolve the issue where DNS over TLS queries bypass filtering in proxy mode.Related documents:Resolved issuesDNS over QUIC and DNS over HTTP3 for transparent and local-in DNS modes",
       "products": [
         "FortiGate"
       ],
@@ -1923,9 +1923,9 @@
             "8.0"
           ],
           "sourceType": "fortinet_article",
-          "symptom": "",
+          "symptom": "DNS filtering fails to inspect DNS over TLS (DoT) queries in certain FortiOS versions, such as version 7.6.4, leading to bypassed filtering or connection errors in proxy mode. The issue occurs when a DNS query is made over TLS after upgrading to FortiOS version 7.6.4",
           "impact": "",
-          "solution": ""
+          "solution": "This known issue is Bug ID 1214371.Sample: The issue is reproduced using deep inspection with DNS filter enabled for a proxy mode firewall policy.As seen in the image above, the default redirect block IP addresses (208.91.112.55, 2620:101:9000:53) were not returned over TLS. Upgrade FortiGate to FortiOS 8.0.1 to resolve the issue where DNS over TLS queries bypass filtering in proxy mode.Related documents:Resolved issuesDNS over QUIC and DNS over HTTP3 for transparent and local-in DNS modes"
         },
         {
           "title": "DNS over TLS and DNS over HTTPS version 2 broken in Flow Mode",
@@ -1943,9 +1943,9 @@
             "7.6"
           ],
           "sourceType": "fortinet_article",
-          "symptom": "",
+          "symptom": "DNS filtering fails to inspect DNS over TLS (DoT)and DNS over HTTPS version 2 (DoH2) queries in certain FortiOS versions like 7.6.4 and 7.6.7, leading to bypassed filtering or connection errors in flow mode",
           "impact": "",
-          "solution": ""
+          "solution": "The issue occurs because the IPS engine does not recognize port 853 for decoding, causing it to skip the DNS dissector Contournement : Run the following commands to add port 853 to the IPS decoder port list:config ips decoder \"dns_decoder\" config parameter \"port_list\" set value \"53,853\" end endRestart the IPS engine to apply the changes:diagnose test application ipsmonitor 99Sample result that shows it working, as the default block IP address of 208.91.112.55 is returned over TLS:dig @p2.freedns.controld.com +tls +all http://www.nab.com.au ; > DiG 9.17.12 > @p2.freedns.controld.com +tls +all http://www.nab.com.au ; (1 server found) ;; global options: +cmd ;; Got answer: ;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 41119 ;; flags: qr rd ra; QUERY"
         }
       ],
       "lastSeen": "2026-10-22T07:51:37+00:00",
@@ -1958,9 +1958,9 @@
       "id": "incident-57da110da5bb",
       "title": "Troubleshooting Tip: SSL VPN stops working for remote and local users due to fnbamd process",
       "summary": "DescriptionThis article describes behavior where FortiGate stops accepting new SSL VPN connections due to the FNBAMD process.ScopeFortiGate version 7.4.11 and previous versions.SolutionUsers configure a standard SSL VPN connection for local and remote usersCheck the crash log and validate that there are multiple fnbamd crashesdiagnose debug crashlog read | grep 2026 111: 2026-03-14 15:48:14 firmware FortiGate-100 v7.4.11,build2878b2878,260126 (GA.M) (Release) 112: 2026-03-14 15:48:14 application fnbamdTake some debugs of the VPN and validate the…",
-      "symptom": "DescriptionThis article describes behavior where FortiGate stops accepting new SSL VPN connections due to the FNBAMD process.ScopeFortiGate version 7.4.11 and previous versions.SolutionUsers configure a standard SSL VPN connection for local and remote usersCheck the crash log and validate that there are multiple fnbamd crashesdiagnose debug crashlog read | grep 2026 111: 2026-03-14 15:48:14 firmware FortiGate-100 v7.4.11,build2878b2878,260126 (GA.M) (Release) 112: 2026-03-14 15:48:14 application fnbamdTake some debugs of the VPN and validate the…",
+      "symptom": "This article describes behavior where FortiGate stops accepting new SSL VPN connections due to the FNBAMD process",
       "impact": "",
-      "solution": "",
+      "solution": "Users configure a standard SSL VPN connection for local and remote usersCheck the crash log and validate that there are multiple fnbamd crashesdiagnose debug crashlog read | grep 2026 111: 2026-03-14 15:48:14 firmware FortiGate-100 v7.4.11,build2878b2878,260126 (GA.M) (Release) 112: 2026-03-14 15:48:14 application fnbamdTake some debugs of the VPN and validate the fnbamd process remains stuck.diagnose debug disable diagnose debug reset diagnose vpn ssl debug-filter src-addr4 x.x.x.x → replace x.x.x.x with the public IP of the user diagnose debug application sslvpn -1 diagnose debug application fnbamd -1 diagnose debug enable FGT_Test# #15553:root:2]allocSSLConn:303 sconn 0x7f9c2a558000 (0:root) >15553:root:2]SSL state:before SSL initialization (1.1.1.1) >15556:root:2]rmt_web_auth_info_parser_common:534 n",
       "products": [
         "FortiGate"
       ],
@@ -1989,9 +1989,9 @@
             "7.4"
           ],
           "sourceType": "fortinet_article",
-          "symptom": "",
+          "symptom": "This article describes behavior where FortiGate stops accepting new SSL VPN connections due to the FNBAMD process",
           "impact": "",
-          "solution": ""
+          "solution": "Users configure a standard SSL VPN connection for local and remote usersCheck the crash log and validate that there are multiple fnbamd crashesdiagnose debug crashlog read | grep 2026 111: 2026-03-14 15:48:14 firmware FortiGate-100 v7.4.11,build2878b2878,260126 (GA.M) (Release) 112: 2026-03-14 15:48:14 application fnbamdTake some debugs of the VPN and validate the fnbamd process remains stuck.diagnose debug disable diagnose debug reset diagnose vpn ssl debug-filter src-addr4 x.x.x.x → replace x.x.x.x with the public IP of the user diagnose debug application sslvpn -1 diagnose debug application fnbamd -1 diagnose debug enable FGT_Test# #15553:root:2]allocSSLConn:303 sconn 0x7f9c2a558000 (0:root) >15553:root:2]SSL state:before SSL initialization (1.1.1.1) >15556:root:2]rmt_web_auth_info_parser_common:534 n"
         },
         {
           "title": "SSL VPN stops working for remote and local users due to fnbamd process",
@@ -2008,9 +2008,9 @@
             "7.4"
           ],
           "sourceType": "fortinet_article",
-          "symptom": "",
+          "symptom": "FortiGate may stop accepting new SSL VPN connections due to the FNBAMD process",
           "impact": "",
-          "solution": ""
+          "solution": "Users configure a standard SSL VPN connection for local and remote users.Check the crash log and validate that there are multiple fnbamd crashesdiagnose debug crashlog read | grep 2026 111: 2026-03-14 15:48:14 firmware FortiGate-100 v7.4.11,build2878b2878,260126 (GA.M) (Release) 112: 2026-03-14 15:48:14 application fnbamdTake some debugs of the VPN and validate the fnbamd process that remains stuck.diagnose debug disable diagnose debug reset diagnose vpn ssl debug-filter src-addr4 x.x.x.x → replace x.x.x.x with the public IP of the user diagnose debug application sslvpn -1 diagnose debug application fnbamd -1 diagnose debug enable FGT_Test# #15553:root:2]allocSSLConn:303 sconn 0x7f9c2a558000 (0:root) >15553:root:2]SSL state:before SSL initialization (1.1.1.1) >15556:root:2]rmt_web_auth_info_parser_common:534 no session id in auth info >15"
         }
       ],
       "lastSeen": "2026-10-22T06:21:57+00:00",
@@ -2023,9 +2023,9 @@
       "id": "incident-449e553f6a6f",
       "title": "Kerberos keytab removed from 'config user krb-keytab' after upgrade from FortiOS v7.6.7 to v7.6.8",
       "summary": "DescriptionAfter upgrading FortiGate from FortiOS v7.6.7 to v7.6.8, the 'set keytab' line is removed from the Kerberos keytab entries configured under 'config user krb-keytab'. The other settings of each entry (principal, LDAP servers, PAC data) are kept, so the entry is still present in the configuration but without its keytab.Kerberos authentication that relies on an affected entry can fail until the keytab is configured again.ScopeFortiGate, FortiOS v7.6.7 upgraded to v7.6.8, with Kerberos keytab entries configured under 'config user…",
-      "symptom": "DescriptionAfter upgrading FortiGate from FortiOS v7.6.7 to v7.6.8, the 'set keytab' line is removed from the Kerberos keytab entries configured under 'config user krb-keytab'. The other settings of each entry (principal, LDAP servers, PAC data) are kept, so the entry is still present in the configuration but without its keytab.Kerberos authentication that relies on an affected entry can fail until the keytab is configured again.ScopeFortiGate, FortiOS v7.6.7 upgraded to v7.6.8, with Kerberos keytab entries configured under 'config user…",
+      "symptom": "After upgrading FortiGate from FortiOS v7.6.7 to v7.6.8, the 'set keytab' line is removed from the Kerberos keytab entries configured under 'config user krb-keytab'. The other settings of each entry (principal, LDAP servers, PAC data) are kept, so the entry is still present in the configuration but without its keytab.Kerberos authentication that relies on an affected entry can fail until the keytab is configured again",
       "impact": "",
-      "solution": "",
+      "solution": "The behavior is reproducible after the upgrade; the keytab of each Kerberos keytab entry is removed from the configuration.After the upgrade, the configuration error log shows a parse error on the 'set keytab' line of each affected entry:FortiGate (global) # diagnose debug config-error-log read >>> \"set\" \"keytab\" \"ENC\" \"XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX ... @ VDOM_TEST.user.krb-keytab.k",
       "products": [
         "FortiGate"
       ],
@@ -2058,9 +2058,9 @@
             "7.6"
           ],
           "sourceType": "fortinet_article",
-          "symptom": "",
+          "symptom": "After upgrading FortiGate from FortiOS v7.6.7 to v7.6.8, the 'set keytab' line is removed from the Kerberos keytab entries configured under 'config user krb-keytab'. The other settings of each entry (principal, LDAP servers, PAC data) are kept, so the entry is still present in the configuration but without its keytab.Kerberos authentication that relies on an affected entry can fail until the keytab is configured again",
           "impact": "",
-          "solution": ""
+          "solution": "The behavior is reproducible after the upgrade; the keytab of each Kerberos keytab entry is removed from the configuration.After the upgrade, the configuration error log shows a parse error on the 'set keytab' line of each affected entry:FortiGate (global) # diagnose debug config-error-log read >>> \"set\" \"keytab\" \"ENC\" \"XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX ... @ VDOM_TEST.user.krb-keytab.k"
         }
       ],
       "lastSeen": "2026-10-23T06:31:42+00:00",
@@ -2073,9 +2073,9 @@
       "id": "incident-bc19dbddaf75",
       "title": "Upgrade firmware fails with \"New image is too big\"",
       "summary": "DescriptionTroubleshooting steps for issues related to the error \"New image is too big\".ScopeFortiManager-VM, FortiAnalyzer-VM.SolutionTypically, this error occurs during a firmware update when the target device lacks sufficient flash memory storage to accommodate the new firmware image.This is most commonly documented for FortiManager/FortiAnalyzer VM platforms, where the error message reads: \"New image is too big”.This is Bug ID 1329518 in the FortiManager/FortiAnalyzer Known Issues.Most common causes:Insufficient flash disk space – The flash…",
-      "symptom": "DescriptionTroubleshooting steps for issues related to the error \"New image is too big\".ScopeFortiManager-VM, FortiAnalyzer-VM.SolutionTypically, this error occurs during a firmware update when the target device lacks sufficient flash memory storage to accommodate the new firmware image.This is most commonly documented for FortiManager/FortiAnalyzer VM platforms, where the error message reads: \"New image is too big”.This is Bug ID 1329518 in the FortiManager/FortiAnalyzer Known Issues.Most common causes:Insufficient flash disk space – The flash…",
+      "symptom": "Troubleshooting steps for issues related to the error \"New image is too big\"",
       "impact": "",
-      "solution": "",
+      "solution": "Typically, this error occurs during a firmware update when the target device lacks sufficient flash memory storage to accommodate the new firmware image.This is most commonly documented for FortiManager/FortiAnalyzer VM platforms, where the error message reads: \"New image is too big”.This is Bug ID 1329518 in the FortiManager/FortiAnalyzer Known Issues.Most common causes:Insufficient flash disk space – The flash partition does not have enough free space to store the new firmware image during the upgrade process.Small virtual disk allocation – The VM was originally provisioned with a flash disk that is too small for the target firmware version. Diagnostic steps:Take the firmware update from version 8.0.0 to 8.0.1 for FortiAnalyzer VM as an example.Check flash disk usage:Run the following command on the FortiManager/FortiAnalyzer CLI to view the flash dis",
       "products": [
         "FortiAnalyzer",
         "FortiManager"
@@ -2110,9 +2110,9 @@
             "8.0"
           ],
           "sourceType": "fortinet_article",
-          "symptom": "",
+          "symptom": "Troubleshooting steps for issues related to the error \"New image is too big\"",
           "impact": "",
-          "solution": ""
+          "solution": "Typically, this error occurs during a firmware update when the target device lacks sufficient flash memory storage to accommodate the new firmware image.This is most commonly documented for FortiManager/FortiAnalyzer VM platforms, where the error message reads: \"New image is too big”.This is Bug ID 1329518 in the FortiManager/FortiAnalyzer Known Issues.Most common causes:Insufficient flash disk space – The flash partition does not have enough free space to store the new firmware image during the upgrade process.Small virtual disk allocation – The VM was originally provisioned with a flash disk that is too small for the target firmware version. Diagnostic steps:Take the firmware update from version 8.0.0 to 8.0.1 for FortiAnalyzer VM as an example.Check flash disk usage:Run the following command on the FortiManager/FortiAnalyzer CLI to view the flash dis"
         }
       ],
       "lastSeen": "2026-10-22T23:06:11+00:00",
@@ -2125,9 +2125,9 @@
       "id": "incident-b08e0b8cbcdc",
       "title": "1GbE SFP ports may fail to forward traffic on FortiGate 1800F/1801F after upgrading to FortiOS 7.6.8",
       "summary": "Description This articles describes an issue where the 1GbE SFP ports may fail to forward traffic on FortiGate 1800F/1801F after upgrading to FortiOS 7.6.8 Scope FortiGate 1800F, FortiGate 1801F, FortiOS 7.6.8 Solution Following an internal driver update introduced in FortiOS 7.6.8, the affected platforms - FortiGate 1800F and 1801F is unable to process traffic over its GE SFP slots. As a summary:GE SFP ports 17-24 are unable to process traffic.Traffic through SFP ports 25-40 is unaffected.Traffic through GE RJ45 ports is unaffected.",
-      "symptom": "Description This articles describes an issue where the 1GbE SFP ports may fail to forward traffic on FortiGate 1800F/1801F after upgrading to FortiOS 7.6.8 Scope FortiGate 1800F, FortiGate 1801F, FortiOS 7.6.8 Solution Following an internal driver update introduced in FortiOS 7.6.8, the affected platforms - FortiGate 1800F and 1801F is unable to process traffic over its GE SFP slots. As a summary:GE SFP ports 17-24 are unable to process traffic.Traffic through SFP ports 25-40 is unaffected.Traffic through GE RJ45 ports is unaffected.",
+      "symptom": "This articles describes an issue where the 1GbE SFP ports may fail to forward traffic on FortiGate 1800F/1801F after upgrading to FortiOS 7.6.8",
       "impact": "",
-      "solution": "",
+      "solution": "Following an internal driver update introduced in FortiOS 7.6.8, the affected platforms - FortiGate 1800F and 1801F is unable to process traffic over its GE SFP slots. As a summary:GE SFP ports 17-24 are unable to process traffic.Traffic through SFP ports 25-40 is unaffected.Traffic through GE RJ45 ports is unaffected. This issue is tracked in bug ID 1353422. Fortinet has released a special build to address the issue. Contact Fortinet Technical Support to validate whether the issue applies to the affected device and obtain the appropriate special build. Reference articlesFortiOS Release Notes",
       "products": [
         "FortiGate"
       ],
@@ -2156,9 +2156,9 @@
             "7.6"
           ],
           "sourceType": "fortinet_article",
-          "symptom": "",
+          "symptom": "This articles describes an issue where the 1GbE SFP ports may fail to forward traffic on FortiGate 1800F/1801F after upgrading to FortiOS 7.6.8",
           "impact": "",
-          "solution": ""
+          "solution": "Following an internal driver update introduced in FortiOS 7.6.8, the affected platforms - FortiGate 1800F and 1801F is unable to process traffic over its GE SFP slots. As a summary:GE SFP ports 17-24 are unable to process traffic.Traffic through SFP ports 25-40 is unaffected.Traffic through GE RJ45 ports is unaffected. This issue is tracked in bug ID 1353422. Fortinet has released a special build to address the issue. Contact Fortinet Technical Support to validate whether the issue applies to the affected device and obtain the appropriate special build. Reference articlesFortiOS Release Notes"
         }
       ],
       "lastSeen": "2026-10-22T20:21:12+00:00",
@@ -2169,6 +2169,6 @@
     }
   ],
   "incidentCount": 5,
-  "synthesisGeneratedAt": "2026-10-23T07:49:47.378072+00:00",
+  "synthesisGeneratedAt": "2026-10-23T07:55:36.911Z",
   "synthesisNote": "Un point n'est affiché que s'il est documenté par un article Fortinet versionné et explicite, ou décrit dans au moins deux discussions distinctes d'utilisateurs. Les articles officiels ne comptent pas comme des personnes supplémentaires. Les signalements isolés non documentés sont exclus."
 }
