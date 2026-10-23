@@ -87,7 +87,7 @@ def extract_products(item: dict) -> list[str]:
         # even when the article is hosted on a single product board.
         if source_type(item) == "fortinet_article":
             scope = re.search(
-                r"\\bScope\\b(.*?)(?=\\bSolution\\b|\\bWorkaround\\b|$)",
+                r"\bScope\b(.*?)(?=\bSolution\b|\bWorkaround\b|$)",
                 summary, re.I | re.S,
             )
             if scope:
