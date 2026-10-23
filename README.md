@@ -30,6 +30,8 @@ Le regroupement actuel utilise des règles déterministes, des variantes de term
 
 Aucune clé d'API IA payante n'est nécessaire pour les collecteurs actuels.
 
+Le fichier historique `scripts/scrap_commu_copie.py` est un outil manuel distinct : il demande une clé Gemini en argument et génère ses propres fichiers `historique.json`/rapports HTML. Il n'est appelé ni par le site ni par les workflows. Pour les données publiées dans `data/community.json`, la chaîne active est `scripts/collect_community.py` puis `scripts/synthesize_community.py` ; elle fonctionne sans clé IA.
+
 ## Vérifier le projet
 
 ### En local
