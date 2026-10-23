@@ -35,7 +35,14 @@ VERSION_CONTEXT_RE = re.compile(
     r"\b(?:fortios|fortigate|fortimanager|fortianalyzer|fortiauthenticator|forticlient(?:\s+ems)?|fortiswitch|fortiap|firmware)\s*(?:version\s*)?v?(\d{1,2}\.\d{1,2}(?:\.\d{1,3})?)",
     re.I,
 )
-BARE_VERSION_RE = re.compile(r"(?<![\d.])(\d{1,2}\.\d{1,2}(?:\.\d{1,3})?)(?!\d)")
+UPGRADE_PATH_RE = re.compile(
+    r"\b(?:upgrade(?:d|s|ing)?|firmware update)\b[^.!?]{0,120}?\b(?:from\s+)?(?:version\s*)?v?(\d{1,2}\.\d{1,2}(?:\.\d{1,3})?)\b[^.!?]{0,80}?\bto\s+(?:version\s*)?v?(\d{1,2}\.\d{1,2}(?:\.\d{1,3})?)\b",
+    re.I,
+)
+UPGRADE_TARGET_RE = re.compile(
+    r"\b(?:upgrade(?:d|s|ing)?|firmware update)\b[^.!?]{0,100}?\bto\s+(?:version\s*)?v?(\d{1,2}\.\d{1,2}(?:\.\d{1,3})?)\b",
+    re.I,
+)
 NON_FORTINET_VERSION_RE = re.compile(
     r"\b(?:(?:huawei\s+cloud\s+)?euleros|centos|rhel|red\s+hat\s+enterprise\s+linux|"
     r"ubuntu|debian|fedora|rocky\s+linux|almalinux|oracle\s+linux|windows(?:\s+server)?|"
@@ -121,18 +128,14 @@ def extract_versions(item: dict) -> tuple[list[str], list[str]]:
         r"\b(?:dig|openssl|python|curl|wget|iperf3?|ping)\s+v?\d{1,2}\.\d{1,2}(?:\.\d{1,3})?\b",
         " ", text_without_ips, flags=re.I,
     )
+    # Keep versions explicitly tied to a Fortinet product/firmware marker.
+    # Only add unqualified versions when they are part of an explicit upgrade path;
+    # a long sentence mentioning FortiOS must not make unrelated CVE/platform numbers
+    # look like FortiGate firmware versions.
     found = set(VERSION_CONTEXT_RE.findall(text_without_ips))
-    # Bare versions are accepted only in a Fortinet-product/firmware context
-    # or an explicit upgrade path; generic mentions of "versions" are too broad.
-    context = re.compile(
-        r"\b(fortios|fortigate|fortimanager|fortianalyzer|fortiauthenticator|"
-        r"forticlient(?:\s+ems)?|fortiswitch|fortiap|firmware|"
-        r"upgrade(?:d|s|ing)?(?:\s+(?:to|from|path))?)\b",
-        re.I,
-    )
-    for sentence in re.split(r"(?<=[.!?])\s+", text_without_ips):
-        if context.search(sentence):
-            found.update(BARE_VERSION_RE.findall(sentence))
+    for source_version, target_version in UPGRADE_PATH_RE.findall(text_without_ips):
+        found.update((source_version, target_version))
+    found.update(UPGRADE_TARGET_RE.findall(text_without_ips))
     exact = sorted(found, key=lambda v: tuple(int(x) for x in v.split(".")))
     families = sorted({ ".".join(v.split(".")[:2]) for v in exact }, key=lambda v: tuple(int(x) for x in v.split(".")))
     return exact, families
