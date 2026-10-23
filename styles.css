@@ -29,3 +29,8 @@
 .incident-sources li a:hover{color:#ffad79}
 .incident-sources li span,.source-extra{color:#8292a6;font:9px 'DM Mono',monospace;white-space:nowrap}
 .source-extra{margin:9px 0 0}
+
+.incident-details{display:grid;gap:10px;margin:12px 0}
+.incident-detail{border-left:2px solid #334155;padding-left:10px;min-width:0}
+.incident-detail strong{display:block;color:#dbe6f0;font:10px 'DM Mono',monospace;margin-bottom:4px;text-transform:uppercase;letter-spacing:.4px}
+.incident-detail p{margin:0;font-size:11px;line-height:1.6;color:#9aa9b9;overflow-wrap:anywhere}
