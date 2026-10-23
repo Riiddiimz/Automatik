@@ -39,7 +39,7 @@ BARE_VERSION_RE = re.compile(r"(?<![\d.])(\d{1,2}\.\d{1,2}(?:\.\d{1,3})?)(?!\d)"
 NON_FORTINET_VERSION_RE = re.compile(
     r"\b(?:(?:huawei\s+cloud\s+)?euleros|centos|rhel|red\s+hat\s+enterprise\s+linux|"
     r"ubuntu|debian|fedora|rocky\s+linux|almalinux|oracle\s+linux|windows(?:\s+server)?|"
-    r"macos|mac\s+os|os\s+x|android|ios|vmware\s+esxi|esxi|proxmox|freebsd|openbsd|"
+    r"macos(?:\s+[a-z]+)?|mac\s+os(?:\s+[a-z]+)?|os\s+x|android|ipados?|ios|vmware\s+esxi|esxi|proxmox|freebsd|openbsd|"
     r"suse|opensuse)\s*(?:version\s*)?v?\d{1,2}\.\d{1,2}(?:\.\d{1,3})?\b",
     re.I,
 )
@@ -99,6 +99,11 @@ def extract_versions(item: dict) -> tuple[list[str], list[str]]:
     # Exclude operating-system/platform versions (for example EulerOS 2.0
     # and CentOS 7.9), which are not Fortinet firmware versions.
     text_without_ips = NON_FORTINET_VERSION_RE.sub(" ", text_without_ips)
+    # Exclude elapsed-time decimals such as "0.7 seconds" from firmware versions.
+    text_without_ips = re.sub(
+        r"\b\d+(?:\.\d+)?\s*(?:seconds?|secs?|milliseconds?|msecs?|minutes?|mins?|hours?|hrs?)\b",
+        " ", text_without_ips, flags=re.I,
+    )
     text_without_ips = re.sub(
         r"\b(?:dig|openssl|python|curl|wget|iperf3?|ping)\s+v?\d{1,2}\.\d{1,2}(?:\.\d{1,3})?\b",
         " ", text_without_ips, flags=re.I,
