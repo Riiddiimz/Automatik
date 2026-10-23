@@ -94,9 +94,20 @@ const { chromium } = require("playwright");
     }));
     assert.ok(widthCheck.content <= widthCheck.viewport + 2, `débordement horizontal mobile: ${JSON.stringify(widthCheck)}`);
 
+    await page.route("**/data/veille.json*", async route => {
+      const response = await route.fetch();
+      const payload = await response.json();
+      payload.errors = ["Source de test en erreur"];
+      await route.fulfill({ response, json: payload });
+    });
     await page.locator("#refresh-btn").click();
-    await page.locator("#refresh-btn").waitFor({ state: "visible" });
-    await page.waitForFunction(() => !document.querySelector("#refresh-btn")?.disabled);
+    await page.waitForFunction(() => document.querySelector("#data-health")?.hidden === false);
+    assert.match(await healthBanner.innerText(), /Actualisation partielle/);
+    assert.match(await healthBanner.innerText(), /Source de test en erreur/);
+
+    await page.unroute("**/data/veille.json*");
+    await page.locator("#refresh-btn").click();
+    await page.waitForFunction(() => document.querySelector("#data-health")?.hidden === true && !document.querySelector("#refresh-btn")?.disabled);
     assert.deepEqual(pageErrors, [], "aucune erreur JavaScript non gérée ne doit apparaître");
     console.log(`Playwright OK — ${data.incidents?.length || 0} fiche(s), filtres, sources, mobile et actualisation vérifiés.`);
   } finally {
