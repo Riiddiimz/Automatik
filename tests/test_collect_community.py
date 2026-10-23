@@ -56,5 +56,31 @@ class CommunityFeedTests(unittest.TestCase):
             self.assertTrue(failed["errors"])
 
 
+    def test_empty_valid_feed_is_partial_and_preserves_history(self):
+        unrelated = b"""<rss version="2.0"><channel>
+          <item><title>Unrelated product issue</title><link>https://community.fortinet.com/support-forum-92/unrelated</link><description>Something else</description></item>
+        </channel></rss>"""
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "community.json"
+            old_topic = {"id": "https://community.fortinet.com/support-forum-92/old",
+                         "url": "https://community.fortinet.com/support-forum-92/old",
+                         "title": "Previously collected FortiGate issue"}
+            path.write_text(json.dumps({"topics": [old_topic]}), encoding="utf-8")
+            result = collector.collect(fetcher=lambda: unrelated, out=path)
+
+        self.assertTrue(result["partial"])
+        self.assertEqual([topic["id"] for topic in result["topics"]], [old_topic["id"]])
+        self.assertTrue(any("aucun sujet Fortinet reconnu" in error for error in result["errors"]))
+
+    def test_empty_valid_feed_without_history_fails_loudly(self):
+        unrelated = b"""<rss version="2.0"><channel>
+          <item><title>Unrelated product issue</title><link>https://community.fortinet.com/support-forum-92/unrelated</link><description>Something else</description></item>
+        </channel></rss>"""
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "community.json"
+            with self.assertRaisesRegex(RuntimeError, "aucun historique exploitable"):
+                collector.collect(fetcher=lambda: unrelated, out=path)
+
+
 if __name__ == "__main__":
     unittest.main()
