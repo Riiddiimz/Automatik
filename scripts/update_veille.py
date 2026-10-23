@@ -20,6 +20,9 @@ FEEDS = [
         ("https://www.cisa.gov/cybersecurity-advisories/cybersecurity-advisories.xml", "CISA Cybersecurity Advisories"),
         ("https://www.cert.ssi.gouv.fr/feed/", "CERT-FR"),
     )),
+    # Official Fortinet CISO Collective feed: catches coordinated security releases
+    # that may precede the detailed PSIRT advisories.
+    ("cyber", "Fortinet CISO Collective", "https://feeds.fortinet.com/fortinet/blog/ciso-collective"),
 ]
 KEV_URL = "https://www.cisa.gov/sites/default/files/feeds/known_exploited_vulnerabilities.json"
 
