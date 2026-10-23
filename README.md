@@ -5,7 +5,7 @@ Tableau de bord statique en français pour suivre les avis Fortinet, les vulnér
 ## Ce que le site propose
 
 - **Fortinet / FortiGate** : avis de sécurité et publications du flux de veille.
-- **Fortinet Community** : points de vigilance regroupés, avec filtres par produit et famille de versions.
+- **Fortinet Community** : points de vigilance regroupés, avec recherche et filtres par produit, famille de versions et statut.
 - **CVE et vulnérabilités exploitées** : catalogue CISA Known Exploited Vulnerabilities (KEV) et recherche.
 - **Actualités cyber** : publications issues de flux publics.
 - **Traçabilité** : dates de collecte, liens vers les sources et distinction entre documentation Fortinet et discussions d'utilisateurs.
@@ -20,6 +20,8 @@ Une fiche est affichée uniquement si elle remplit l'un des critères suivants :
 Un article officiel ne compte jamais comme plusieurs utilisateurs. Les signalements isolés non documentés sont exclus. Les fiches restent des points de vigilance à vérifier, et non une confirmation que chaque équipement est concerné.
 
 Le regroupement actuel utilise des règles déterministes, des variantes de termes et une comparaison de titres. **Il n'utilise pas de modèle d'IA générative** et ne lit pas encore l'intégralité des réponses des discussions : des formulations très différentes peuvent donc ne pas être rapprochées, et les sources doivent être consultées avant toute décision technique.
+
+Les versions sont extraites lorsqu'elles sont explicitement liées à un produit/firmware Fortinet ou à un parcours de mise à niveau. Les nombres décimaux sans lien clair avec une version de firmware (par exemple une version d'outil ou de plateforme) ne doivent pas être affichés comme versions Fortinet.
 
 ## Collecte et publication
 
