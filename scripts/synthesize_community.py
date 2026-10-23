@@ -187,6 +187,31 @@ def source_type(item: dict) -> str:
         return "fortinet_article"
     return "unknown"
 
+
+def extract_sections(item: dict) -> dict:
+    """Extract only explicitly labelled sections from Fortinet-authored articles."""
+    empty = {"symptom": "", "impact": "", "solution": ""}
+    if source_type(item) != "fortinet_article":
+        return empty
+
+    text = re.sub(r"\\s+", " ", item.get("summary", "")).strip()
+
+    def section(label: str, stop_labels: str) -> str:
+        match = re.search(rf"{label}\\s*:?\\s*(.*?)(?={stop_labels}|$)", text, re.S)
+        if not match:
+            return ""
+        value = re.sub(r"\\s+", " ", match.group(1)).strip(" \\t\\r\\n:.-")
+        return value[:1200]
+
+    symptom = section("Description", r"Scope|Solution|Workaround|Impact")
+    impact = section("Impact", r"Scope|Solution|Workaround|Description")
+    solution = section("Solution", r"Workaround|Impact|Scope|Description")
+    workaround = section("Workaround", r"Impact|Scope|Description|Solution")
+    if workaround:
+        solution = f"{solution} Contournement : {workaround}".strip()
+    return {"symptom": symptom, "impact": impact, "solution": solution}
+
+
 def has_documented_evidence(item: dict) -> bool:
     """Require a version-scoped, explicit issue/change in a Fortinet-authored article."""
     if source_type(item) != "fortinet_article":
@@ -291,7 +316,11 @@ def synthesize(data: dict, out: Path = DATA) -> dict:
             "versions": item.get("versions", []),
             "versionFamilies": item.get("versionFamilies", []),
             "sourceType": source_type(item),
+            **extract_sections(item),
         } for item in cluster]
+        symptom = next((source["symptom"] for source in sources if source.get("symptom")), "")
+        impact = next((source["impact"] for source in sources if source.get("impact")), "")
+        solution = next((source["solution"] for source in sources if source.get("solution")), "")
         newest = max((item.get("date") or "" for item in cluster), default="")
         documented_sources = [item for item in cluster if has_documented_evidence(item)]
         reports = forum_report_count(cluster)
@@ -303,6 +332,9 @@ def synthesize(data: dict, out: Path = DATA) -> dict:
             "id": "incident-" + hashlib.sha1((" ".join(sorted(words(cluster[0].get("title", "")))) + "|" + "|".join(products)).encode("utf-8")).hexdigest()[:12],
             "title": cluster[0].get("title", "Problème potentiel Fortinet"),
             "summary": build_summary(cluster),
+            "symptom": symptom or build_summary(cluster),
+            "impact": impact,
+            "solution": solution,
             "products": products,
             "versions": exact_versions,
             "versionFamilies": families,
