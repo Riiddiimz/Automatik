@@ -59,6 +59,16 @@ const { chromium } = require("playwright");
       await versionSelect.selectOption("");
     }
 
+    const statusSelect = page.locator("#community-status-filter");
+    const statusOptions = await statusSelect.locator("option").evaluateAll(options => options.map(option => option.value).filter(Boolean));
+    if (statusOptions.length) {
+      const status = statusOptions[0];
+      const expected = (data.incidents || []).filter(item => (item.status || "À vérifier") === status).length;
+      await statusSelect.selectOption(status);
+      assert.equal(await cards.count(), expected, "le filtre de statut doit fonctionner");
+      await statusSelect.selectOption("");
+    }
+
     if ((data.incidents || []).length) {
       const firstCard = cards.first();
       for (const label of ["Symptôme", "Impact", "Solution / correctif"]) {
