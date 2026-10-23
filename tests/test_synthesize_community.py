@@ -117,5 +117,15 @@ class CommunitySynthesisTests(unittest.TestCase):
         self.assertEqual(synth.source_type(item), "forum_discussion")
         self.assertFalse(synth.has_documented_evidence(item))
 
+
+    def test_platform_versions_and_elapsed_time_are_not_firmware_versions(self):
+        item = {
+            "title": "FortiClient VPN 7.4.11 on iPadOS 26.7.1 fails",
+            "summary": "FortiOS 7.4.12 also fails. Environment: macOS Tahoe 26.7.1. Tunnel drops within ~0.7 seconds.",
+        }
+        exact, families = synth.extract_versions(item)
+        self.assertEqual(exact, ["7.4.11", "7.4.12"])
+        self.assertEqual(families, ["7.4"])
+
 if __name__ == "__main__":
     unittest.main()
