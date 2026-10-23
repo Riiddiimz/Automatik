@@ -47,8 +47,9 @@ class UpdatePreservationTests(unittest.TestCase):
         }
         rss = b"""<rss version="2.0"><channel><item><title>Fresh PSIRT</title><link>https://example.com/psirt</link><description>Fresh item</description></item></channel></rss>"""
         cisa_rss = b"""<rss version="2.0"><channel><item><title>Fresh CISA advisory</title><link>https://example.com/cisa-new</link><description>Fresh CISA item</description></item></channel></rss>"""
+        ciso_rss = b"""<rss version="2.0"><channel><item><title>Fortinet security hardening release</title><link>https://www.fortinet.com/blog/ciso-collective/fortinet-releases-security-hardening-release-for-multiple-products</link><description>Fixed FortiOS and FortiManager versions</description></item></channel></rss>"""
         kev = json.dumps({"vulnerabilities": [{"cveID": "CVE-2026-0002", "shortDescription": "New vulnerability"}]}).encode()
-        responses = [rss, urllib.error.URLError("temporary outage"), cisa_rss, kev]
+        responses = [rss, urllib.error.URLError("temporary outage"), cisa_rss, ciso_rss, kev]
 
         with tempfile.TemporaryDirectory() as directory:
             out_path = Path(directory) / "veille.json"
@@ -60,6 +61,7 @@ class UpdatePreservationTests(unittest.TestCase):
         self.assertEqual(result["fortinet"][0]["title"], "Fresh PSIRT")
         self.assertIn("Last known alert", [item["title"] for item in result["cyber"]])
         self.assertIn("Fresh CISA advisory", [item["title"] for item in result["cyber"]])
+        self.assertIn("Fortinet security hardening release", [item["title"] for item in result["cyber"]])
         self.assertEqual(result["kev"][0]["cveID"], "CVE-2026-0002")
         self.assertTrue(any("FortiGuard Outbreak Alerts" in error for error in result["errors"]))
 
@@ -67,14 +69,16 @@ class UpdatePreservationTests(unittest.TestCase):
         psirt = b"""<rss version="2.0"><channel><item><title>PSIRT</title><link>https://example.com/psirt</link></item></channel></rss>"""
         outbreak = b"""<rss version="2.0"><channel><item><title>Outbreak</title><link>https://example.com/outbreak</link></item></channel></rss>"""
         cert_fr = b"""<rss version="2.0"><channel><item><title>CERT-FR security advisory</title><link>https://www.cert.ssi.gouv.fr/alerte/example</link></item></channel></rss>"""
+        ciso_rss = b"""<rss version="2.0"><channel><item><title>Fortinet security hardening release</title><link>https://www.fortinet.com/blog/ciso-collective/fortinet-releases-security-hardening-release-for-multiple-products</link><description>Fixed FortiOS and FortiManager versions</description></item></channel></rss>"""
         kev = json.dumps({"vulnerabilities": [{"cveID": "CVE-2026-0100"}]}).encode()
-        responses = [psirt, outbreak, urllib.error.URLError("403 Forbidden"), urllib.error.URLError("403 Forbidden"), cert_fr, kev]
+        responses = [psirt, outbreak, urllib.error.URLError("403 Forbidden"), urllib.error.URLError("403 Forbidden"), cert_fr, ciso_rss, kev]
         with tempfile.TemporaryDirectory() as directory:
             out_path = Path(directory) / "veille.json"
             with patch.object(updater, "OUT", out_path), patch.object(updater, "fetch", side_effect=responses) as mock_fetch:
                 updater.main()
             result = json.loads(out_path.read_text(encoding="utf-8"))
         self.assertIn("CERT-FR security advisory", [item["title"] for item in result["cyber"]])
+        self.assertIn("Fortinet security hardening release", [item["title"] for item in result["cyber"]])
         self.assertIn("CERT-FR", [item["source"] for item in result["cyber"]])
         self.assertFalse(any("CISA Cybersecurity Advisories" in error for error in result["errors"]))
         self.assertEqual(mock_fetch.call_args_list[2].args[0], "https://www.cisa.gov/cybersecurity-advisories/all.xml")
@@ -90,7 +94,8 @@ class UpdatePreservationTests(unittest.TestCase):
         rss = b"""<rss version="2.0"><channel><item><title>PSIRT</title><link>https://example.com/psirt</link></item></channel></rss>"""
         outbreak = b"""<rss version="2.0"><channel><item><title>Alert</title><link>https://example.com/alert</link></item></channel></rss>"""
         cisa = b"""<rss version="2.0"><channel><item><title>Advisory</title><link>https://example.com/advisory</link></item></channel></rss>"""
-        responses = [rss, outbreak, cisa, urllib.error.URLError("temporary outage")]
+        ciso_rss = b"""<rss version="2.0"><channel><item><title>Fortinet security hardening release</title><link>https://www.fortinet.com/blog/ciso-collective/fortinet-releases-security-hardening-release-for-multiple-products</link><description>Fixed FortiOS and FortiManager versions</description></item></channel></rss>"""
+        responses = [rss, outbreak, cisa, ciso_rss, urllib.error.URLError("temporary outage")]
         with tempfile.TemporaryDirectory() as directory:
             out_path = Path(directory) / "veille.json"
             out_path.write_text(json.dumps(old), encoding="utf-8")
@@ -99,6 +104,32 @@ class UpdatePreservationTests(unittest.TestCase):
             result = json.loads(out_path.read_text(encoding="utf-8"))
         self.assertEqual(result["kev"][0]["cveID"], "CVE-2026-0009")
 
+
+
+    def test_failed_ciso_feed_preserves_previous_ciso_items(self):
+        old = {
+            "fortinet": [],
+            "cyber": [{
+                "source": "Fortinet CISO Collective",
+                "title": "Old Fortinet hardening notice",
+                "url": "https://www.fortinet.com/blog/ciso-collective/old-notice"
+            }],
+            "kev": [],
+            "errors": []
+        }
+        psirt = b"""<rss version="2.0"><channel><item><title>PSIRT</title><link>https://example.com/psirt</link></item></channel></rss>"""
+        outbreak = b"""<rss version="2.0"><channel><item><title>Outbreak</title><link>https://example.com/outbreak</link></item></channel></rss>"""
+        cisa = b"""<rss version="2.0"><channel><item><title>Advisory</title><link>https://example.com/advisory</link></item></channel></rss>"""
+        kev = json.dumps({"vulnerabilities": [{"cveID": "CVE-2026-0199"}]}).encode()
+        responses = [psirt, outbreak, cisa, urllib.error.URLError("temporary outage"), kev]
+        with tempfile.TemporaryDirectory() as directory:
+            out_path = Path(directory) / "veille.json"
+            out_path.write_text(json.dumps(old), encoding="utf-8")
+            with patch.object(updater, "OUT", out_path), patch.object(updater, "fetch", side_effect=responses):
+                updater.main()
+            result = json.loads(out_path.read_text(encoding="utf-8"))
+        self.assertIn("Old Fortinet hardening notice", [item["title"] for item in result["cyber"]])
+        self.assertTrue(any("Fortinet CISO Collective" in error for error in result["errors"]))
 
 if __name__ == "__main__":
     unittest.main()
