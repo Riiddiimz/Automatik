@@ -130,6 +130,8 @@ def collect(fetcher=fetch_feed, out: Path = OUT) -> dict:
     errors = []
     try:
         fresh = parse_feed(fetcher())
+        if not fresh:
+            raise ValueError("flux accessible mais aucun sujet Fortinet reconnu; collecte considérée partielle")
     except (OSError, urllib.error.URLError, ET.ParseError, ValueError, TimeoutError) as exc:
         errors.append(f"Fortinet Community: {type(exc).__name__}: {exc}")
         if not previous.get("topics"):
