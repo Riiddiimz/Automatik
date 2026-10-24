@@ -15,11 +15,14 @@ USER_AGENT = "AutomatikCyberVeille/1.0 (+https://github.com/Riiddiimz/Automatik)
 FEEDS = [
     ("fortinet", "FortiGuard PSIRT", "https://fortiguard.fortinet.com/rss/ir.xml"),
     ("cyber", "FortiGuard Outbreak Alerts", "https://filestore.fortinet.com/fortiguard/rss/outbreakalert.xml"),
+    # These two URLs are alternate endpoints for the same CISA source.
     ("cyber", "CISA Cybersecurity Advisories", (
         ("https://www.cisa.gov/cybersecurity-advisories/all.xml", "CISA Cybersecurity Advisories"),
         ("https://www.cisa.gov/cybersecurity-advisories/cybersecurity-advisories.xml", "CISA Cybersecurity Advisories"),
-        ("https://www.cert.ssi.gouv.fr/feed/", "CERT-FR"),
     )),
+    # CERT-FR is an independent source, not a substitute for CISA. Collect it
+    # separately so a CISA outage is visible and the previous CISA cache survives.
+    ("cyber", "CERT-FR", "https://www.cert.ssi.gouv.fr/feed/"),
     # Official Fortinet CISO Collective feed: catches coordinated security releases
     # that may precede the detailed PSIRT advisories.
     ("cyber", "Fortinet CISO Collective", "https://feeds.fortinet.com/fortinet/blog/ciso-collective"),
