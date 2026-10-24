@@ -14,10 +14,10 @@ Tableau de bord statique en français pour suivre les avis Fortinet, les vulnér
 
 Une fiche est affichée uniquement si elle remplit l'un des critères suivants :
 
-1. Un article Fortinet explicite documente un problème ou un changement de comportement et une version est identifiable.
+1. Un article Fortinet documente explicitement un problème avec une version identifiable, ou fournit un périmètre `Scope` et une `Solution` explicites pour un problème dont la version n'est pas précisée.
 2. Au moins deux URL distinctes de discussions d'utilisateurs décrivent un problème suffisamment similaire.
 
-Un article officiel ne compte jamais comme plusieurs utilisateurs. Les signalements isolés non documentés sont exclus. Les fiches restent des points de vigilance à vérifier, et non une confirmation que chaque équipement est concerné.
+Un article officiel ne compte jamais comme plusieurs utilisateurs. Les signalements isolés non documentés sont exclus. Lorsqu'une fiche officielle ne donne pas de version, l'interface affiche explicitement « Version : non précisée par la source » au lieu de suggérer une version. Les fiches restent des points de vigilance à vérifier, et non une confirmation que chaque équipement est concerné.
 
 Le regroupement actuel utilise des règles déterministes, des variantes de termes et une comparaison de titres. **Il n'utilise pas de modèle d'IA générative** et ne lit pas encore l'intégralité des réponses des discussions : des formulations très différentes peuvent donc ne pas être rapprochées, et les sources doivent être consultées avant toute décision technique.
 
