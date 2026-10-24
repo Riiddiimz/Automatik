@@ -14,7 +14,8 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 FEED_URL = "https://community.fortinet.com/feed/topics"
-EXTENDED_FEED_URL = f"{FEED_URL}?count=500"
+EXTENDED_FEED_COUNT = 500
+EXTENDED_FEED_URL = f"{FEED_URL}?count={EXTENDED_FEED_COUNT}"
 OUT = ROOT / "data" / "community.json"
 USER_AGENT = "AutomatikCommunityWatch/1.0 (+https://github.com/Riiddiimz/Automatik)"
 MAX_HISTORY = 500
@@ -236,6 +237,11 @@ def collect(fetcher=fetch_feed, out: Path = OUT) -> dict:
         if not fresh:
             raise ValueError("flux accessible mais aucun sujet Fortinet reconnu; collecte considérée partielle")
         errors.extend(getattr(fetcher, "last_errors", []))
+        if fetcher is fetch_feed and feed_url == EXTENDED_FEED_URL and len(fresh) < EXTENDED_FEED_COUNT:
+            errors.append(
+                f"Le flux Community a renvoyé {len(fresh)} sujets sur {EXTENDED_FEED_COUNT} demandés; "
+                "la couverture complète des 30 derniers jours n'est pas garantie."
+            )
     except (OSError, urllib.error.URLError, ET.ParseError, ValueError, TimeoutError) as exc:
         errors.extend(getattr(fetcher, "last_errors", []))
         errors.append(f"Fortinet Community: {type(exc).__name__}: {exc}")
