@@ -28,13 +28,64 @@ PRODUCT_ALIASES = {
     "FortiSwitch": (r"\bfortiswitch\b",),
     "FortiAP": (r"\bfortiap\b",),
 }
-VERSION_RE = re.compile(r"\b\d+\.\d+\.\d+\b")
+# Only treat a dotted number as firmware when it is tied to a Fortinet
+# product/firmware marker or appears in an explicit upgrade path.
+VERSION_CONTEXT_RE = re.compile(
+    r"\b(?:fortios|fortigate|fortimanager|fortianalyzer|fortiauthenticator|"
+    r"forticlient(?:\s+(?:ems|vpn))?|fortiswitch|fortiap|firmware)\s*"
+    r"(?:version\s*)?v?(\d{1,2}\.\d{1,2}(?:\.\d{1,3})?)",
+    re.I,
+)
+UPGRADE_PATH_RE = re.compile(
+    r"\b(?:upgrad(?:e|ed|ing|es)|firmware update)\b[^.!?]{0,120}?"
+    r"\b(?:from\s+)?(?:version\s*)?v?(\d{1,2}\.\d{1,2}(?:\.\d{1,3})?)\b"
+    r"[^.!?]{0,80}?\bto\s+(?:version\s*)?v?(\d{1,2}\.\d{1,2}(?:\.\d{1,3})?)\b",
+    re.I,
+)
+UPGRADE_TARGET_RE = re.compile(
+    r"\b(?:upgrad(?:e|ed|ing|es)|firmware update)\b[^.!?]{0,100}?"
+    r"\bto\s+(?:version\s*)?v?(\d{1,2}\.\d{1,2}(?:\.\d{1,3})?)\b",
+    re.I,
+)
+NON_FORTINET_VERSION_RE = re.compile(
+    r"\b(?:(?:huawei\s+cloud\s+)?euleros|centos|rhel|red\s+hat\s+enterprise\s+linux|"
+    r"ubuntu|debian|fedora|rocky\s+linux|almalinux|oracle\s+linux|windows(?:\s+server)?|"
+    r"macos(?:\s+[a-z]+)?|mac\s+os(?:\s+[a-z]+)?|os\s+x|android|ipados?|ios|"
+    r"vmware\s+esxi|esxi|proxmox|freebsd|openbsd|suse|opensuse)\s*"
+    r"(?:version\s*)?v?\d{1,2}\.\d{1,2}(?:\.\d{1,3})?\b",
+    re.I,
+)
 TAG_RE = re.compile(r"<[^>]+>")
 
 
 def clean(value: str | None) -> str:
     value = html.unescape(value or "")
     return re.sub(r"\s+", " ", TAG_RE.sub(" ", value)).strip()
+
+
+def extract_versions(text: str) -> list[str]:
+    # RSS/HTML cleanup can concatenate section labels and values, e.g. ScopeFortiOS.
+    text = re.sub(
+        r"\b(?i:Description|Scope|Solution|Workaround|Impact)(?=[A-Z])",
+        lambda match: match.group(0) + " ",
+        text,
+    )
+    # Exclude IP addresses, platform/tool versions and elapsed-time decimals.
+    text = re.sub(r"\b(?:\d{1,3}\.){3}\d{1,3}\b", " ", text)
+    text = NON_FORTINET_VERSION_RE.sub(" ", text)
+    text = re.sub(
+        r"\b\d+(?:\.\d+)?\s*(?:seconds?|secs?|milliseconds?|msecs?|minutes?|mins?|hours?|hrs?)\b",
+        " ", text, flags=re.I,
+    )
+    text = re.sub(
+        r"\b(?:dig|openssl|python|curl|wget|iperf3?|ping)\s+v?\d{1,2}\.\d{1,2}(?:\.\d{1,3})?\b",
+        " ", text, flags=re.I,
+    )
+    found = set(VERSION_CONTEXT_RE.findall(text))
+    for source_version, target_version in UPGRADE_PATH_RE.findall(text):
+        found.update((source_version, target_version))
+    found.update(UPGRADE_TARGET_RE.findall(text))
+    return sorted(found, key=lambda version: tuple(int(part) for part in version.split(".")))
 
 
 def parse_date(value: str) -> str | None:
@@ -98,7 +149,7 @@ def parse_feed(payload: bytes) -> list[dict]:
             continue
         if "FortiClient EMS" in products:
             products = [p for p in products if p != "FortiClient"]
-        versions = sorted(set(VERSION_RE.findall(text)))
+        versions = extract_versions(text)
         result.append({
             "id": link.rstrip("/"),
             "title": title,
