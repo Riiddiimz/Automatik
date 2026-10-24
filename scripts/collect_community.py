@@ -14,6 +14,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 FEED_URL = "https://community.fortinet.com/feed/topics"
+EXTENDED_FEED_URL = f"{FEED_URL}?count=500"
 OUT = ROOT / "data" / "community.json"
 USER_AGENT = "AutomatikCommunityWatch/1.0 (+https://github.com/Riiddiimz/Automatik)"
 MAX_HISTORY = 500
@@ -120,10 +121,35 @@ def parse_date(value: str) -> str | None:
     return parsed.astimezone(timezone.utc).isoformat()
 
 
-def fetch_feed(url: str = FEED_URL) -> bytes:
-    request = urllib.request.Request(url, headers={"User-Agent": USER_AGENT, "Accept": "application/rss+xml, application/atom+xml, application/xml"})
-    with urllib.request.urlopen(request, timeout=30) as response:
-        return response.read()
+def fetch_feed(url: str = EXTENDED_FEED_URL) -> bytes:
+    # Khoros RSS supports a count parameter. Request a wider window for the
+    # initial 30-day backfill; fall back to the documented community feed URL
+    # if the parameterized endpoint is unavailable.
+    candidates = [url]
+    if url == EXTENDED_FEED_URL:
+        candidates.append(FEED_URL)
+    failures = []
+    for candidate in candidates:
+        request = urllib.request.Request(
+            candidate,
+            headers={"User-Agent": USER_AGENT, "Accept": "application/rss+xml, application/atom+xml, application/xml"},
+        )
+        try:
+            with urllib.request.urlopen(request, timeout=30) as response:
+                payload = response.read()
+            fetch_feed.last_url = candidate
+            fetch_feed.last_errors = [
+                f"Flux étendu indisponible ({failed_url}): {type(exc).__name__}: {exc}; repli sur le flux standard."
+                for failed_url, exc in failures
+            ]
+            return payload
+        except (OSError, urllib.error.URLError, TimeoutError) as exc:
+            failures.append((candidate, exc))
+    fetch_feed.last_url = None
+    fetch_feed.last_errors = [
+        f"{failed_url}: {type(exc).__name__}: {exc}" for failed_url, exc in failures
+    ]
+    raise failures[-1][1]
 
 
 def parse_feed(payload: bytes) -> list[dict]:
@@ -198,13 +224,30 @@ def collect(fetcher=fetch_feed, out: Path = OUT) -> dict:
     errors = []
     try:
         fresh = parse_feed(fetcher())
+        feed_url = getattr(fetcher, "last_url", None) or FEED_URL
+        if not fresh and fetcher is fetch_feed and feed_url == EXTENDED_FEED_URL:
+            # A syntactically valid but empty extended response is not evidence
+            # that there are no topics; try the standard public feed as well.
+            fallback = parse_feed(fetcher(FEED_URL))
+            if fallback:
+                fresh = fallback
+                feed_url = getattr(fetcher, "last_url", None) or FEED_URL
+                errors.append("Flux étendu accessible mais sans sujets reconnus; repli sur le flux standard.")
         if not fresh:
             raise ValueError("flux accessible mais aucun sujet Fortinet reconnu; collecte considérée partielle")
+        errors.extend(getattr(fetcher, "last_errors", []))
     except (OSError, urllib.error.URLError, ET.ParseError, ValueError, TimeoutError) as exc:
+        errors.extend(getattr(fetcher, "last_errors", []))
         errors.append(f"Fortinet Community: {type(exc).__name__}: {exc}")
         if not previous.get("topics"):
             raise RuntimeError("Le flux a échoué et aucun historique exploitable n'existe.") from exc
-        result = {**previous, "generatedAt": now, "partial": True, "errors": errors}
+        result = {
+            **previous,
+            "generatedAt": now,
+            "feedUrl": getattr(fetcher, "last_url", None) or previous.get("feedUrl", FEED_URL),
+            "partial": True,
+            "errors": errors,
+        }
         out.parent.mkdir(parents=True, exist_ok=True)
         out.write_text(json.dumps(result, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
         return result
@@ -215,7 +258,14 @@ def collect(fetcher=fetch_feed, out: Path = OUT) -> dict:
         old = merged.get(key, {})
         merged[key] = {**old, **item, "firstSeen": old.get("firstSeen", now), "lastSeen": now}
     topics = sorted(merged.values(), key=lambda item: item.get("date") or item.get("firstSeen") or "", reverse=True)[:MAX_HISTORY]
-    result = {"generatedAt": now, "feedUrl": FEED_URL, "partial": False, "errors": errors, "topicCount": len(topics), "topics": topics}
+    result = {
+        "generatedAt": now,
+        "feedUrl": feed_url,
+        "partial": bool(errors),
+        "errors": errors,
+        "topicCount": len(topics),
+        "topics": topics,
+    }
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(json.dumps(result, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     return result
