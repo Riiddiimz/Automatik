@@ -106,6 +106,26 @@ class CommunitySynthesisTests(unittest.TestCase):
         self.assertEqual(result["incidents"][0]["versionFamilies"], ["7.4"])
 
 
+    def test_official_scoped_issue_excludes_versions_marked_unaffected(self):
+        item = {
+            "title": "Administrator SSO authentication fails after upgrade to FortiOS 7.6.8",
+            "summary": (
+                "DescriptionAfter upgrade to FortiOS 7.6.8, administrator SSO authentication fails. "
+                "ScopeFortiOS 7.6.8. SolutionAfter upgrade, administrator SSO will fail. "
+                "Confirmed not affected: VPN user SSO authentication. Other FortiOS versions including "
+                "FortiOS 7.2.14, 7.4.13, 7.6.7 and 8.0.2. A Python example uses 3.11.8."
+            ),
+            "url": "https://community.fortinet.com/fortigate-3/administrator-sso-authentication-fails-after-upgrade-to-fortios-7-6-8-230826",
+        }
+        self.assertEqual(synth.extract_versions(item), (["7.6.8"], ["7.6"]))
+        self.assertTrue(synth.has_documented_evidence(item))
+        with tempfile.TemporaryDirectory() as directory:
+            result = synth.synthesize({"topics": [item]}, Path(directory) / "community.json")
+        self.assertEqual(result["incidentCount"], 1)
+        self.assertEqual(result["incidents"][0]["versions"], ["7.6.8"])
+        self.assertEqual(result["incidents"][0]["versionFamilies"], ["7.6"])
+
+
     def test_official_articles_do_not_count_as_multiple_people(self):
         data = {"topics": [
             {"title": "VPN disconnects after upgrade", "summary": "VPN disconnects after upgrade", "url": "https://community.fortinet.com/support-forum-92/report-1", "products": ["FortiGate"], "versionFamilies": ["7.4"]},
