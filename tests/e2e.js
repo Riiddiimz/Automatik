@@ -118,13 +118,32 @@ const { chromium } = require("playwright");
       await route.fulfill({ response, json: payload });
     });
     await page.locator("#refresh-btn").click();
-    await page.waitForFunction(() => document.querySelector("#data-health")?.hidden === false);
+    await page.waitForFunction(() => {
+      const banner = document.querySelector("#data-health");
+      return banner && !banner.hidden && banner.textContent.includes("Source de test en erreur");
+    });
     assert.match(await healthBanner.innerText(), /Actualisation partielle/);
     assert.match(await healthBanner.innerText(), /Source de test en erreur/);
 
     await page.unroute("**/data/veille.json*");
     await page.locator("#refresh-btn").click();
-    await page.waitForFunction(() => document.querySelector("#data-health")?.hidden === true && !document.querySelector("#refresh-btn")?.disabled);
+    await page.waitForFunction((hasBaselineErrors) => {
+      const banner = document.querySelector("#data-health");
+      const button = document.querySelector("#refresh-btn");
+      return banner
+        && button
+        && !button.disabled
+        && banner.hidden === !hasBaselineErrors
+        && !banner.textContent.includes("Source de test en erreur");
+    }, sourceErrors.length > 0);
+    assert.equal(
+      await healthBanner.isVisible(),
+      sourceErrors.length > 0,
+      "après le test, l'état de santé doit revenir à celui des données publiées"
+    );
+    if (sourceErrors.length) {
+      assert.match(await healthBanner.innerText(), /Actualisation partielle/);
+    }
     assert.deepEqual(pageErrors, [], "aucune erreur JavaScript non gérée ne doit apparaître");
     console.log(`Playwright OK — ${data.incidents?.length || 0} fiche(s), filtres, sources, mobile et actualisation vérifiés.`);
   } finally {
