@@ -1,12 +1,56 @@
 {
-  "generatedAt": "2026-10-24T09:36:12.709479+00:00",
+  "generatedAt": "2026-10-24T13:57:19.874191+00:00",
   "feedUrl": "https://community.fortinet.com/feed/topics?count=500",
   "partial": true,
   "errors": [
     "Le flux Community a renvoyé 74 sujets sur 500 demandés; la couverture complète des 30 derniers jours n'est pas garantie."
   ],
-  "topicCount": 102,
+  "topicCount": 103,
   "topics": [
+    {
+      "id": "https://community.fortinet.com/fortigate-3/1gbe-sfp-ports-may-fail-to-forward-traffic-on-fortigate-1800f-1801f-after-upgrading-to-fortios-7-6-8-230759",
+      "title": "1GbE SFP ports may fail to forward traffic on FortiGate 1800F/1801F after upgrading to FortiOS 7.6.8",
+      "url": "https://community.fortinet.com/fortigate-3/1gbe-sfp-ports-may-fail-to-forward-traffic-on-fortigate-1800f-1801f-after-upgrading-to-fortios-7-6-8-230759",
+      "date": "2026-10-24T12:09:33+00:00",
+      "summary": "Description This articles describes an issue where the 1GbE SFP ports may fail to forward traffic on FortiGate 1800F/1801F after upgrading to FortiOS 7.6.8 Scope FortiGate 1800F, FortiGate 1801F, FortiOS 7.6.8 Solution Following an internal driver update introduced in FortiOS 7.6.8, the affected platforms - FortiGate 1800F and 1801F is unable to process traffic over its GE SFP slots. As a summary:GE SFP ports 17-24 are unable to process traffic.Traffic through SFP ports 25-40 is unaffected.Traffic through GE RJ45 ports is unaffected. This issue is tracked in bug ID 1353422. Fortinet has released a special build to address the issue. Contact Fortinet Technical Support to validate whether the issue applies to the affected device and obtain the appropriate special build. Reference articlesFortiOS Release Notes",
+      "products": [
+        "FortiGate"
+      ],
+      "versions": [
+        "7.6.8"
+      ],
+      "status": "À vérifier",
+      "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
+      "source": "Fortinet Community",
+      "firstSeen": "2026-10-23T07:37:30.171221+00:00",
+      "lastSeen": "2026-10-24T13:57:19.874191+00:00",
+      "versionFamilies": [
+        "7.6"
+      ],
+      "potentialProblem": true
+    },
+    {
+      "id": "https://community.fortinet.com/support-forum-92/i-am-trying-to-activate-the-fortigate-vm-230833",
+      "title": "I am trying to activate the FortiGate-VM",
+      "url": "https://community.fortinet.com/support-forum-92/i-am-trying-to-activate-the-fortigate-vm-230833",
+      "date": "2026-10-24T11:37:42+00:00",
+      "summary": "Hello,I am trying to activate the FortiGate-VM permanent trial (FortiOS 7.2.1+ model) on a lab VM, and the license request always fails.EnvironmentFortiGate-VM64-KVM v7.4.13 (build 2933) and v7.6.8 (build 3744), both downloaded from Support > Download > VM Images (FortiGate, KVM; FGT_ image, not FFW_). Running under QEMU/KVM inside a container (Containerlab/vrnetlab) in WSL2, with 1 vCPU and 2 GB RAM, so inside the trial limits. get system status shows \"License Status: Invalid\", \"VM Resources: 1 CPU/1 allowed\".What I doexecute vm-license-options account-id execute vm-license-options account-password execute vm-licenseResult\"Requesting FortiCare Trial license, proxy:(null)\" followed by \"Failed to download VM license.\" No error code is displayed. The web GUI trial activation also fails (\"Error downloading license: Invalid serial number\" on one attempt).What I have verifiedDNS works (public resolvers 8.8.8.8 / 1.1.1.1; earlier \"dns resolve error\" fixed). A packet capture shows a complete TCP + TLS exchange with directregistration.fortinet.com (63.137.229.3:443); the request is sent and a response is received, then the FortiGate closes the connection. So connectivity is fine and the re",
+      "products": [
+        "FortiGate"
+      ],
+      "versions": [
+        "7.2.1"
+      ],
+      "status": "À vérifier",
+      "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
+      "source": "Fortinet Community",
+      "firstSeen": "2026-10-24T13:57:19.874191+00:00",
+      "lastSeen": "2026-10-24T13:57:19.874191+00:00",
+      "versionFamilies": [
+        "7.2"
+      ],
+      "potentialProblem": false
+    },
     {
       "id": "https://community.fortinet.com/fortigate-3/using-the-fortigate-to-protect-against-php-vulnerabilities-cve-2026-109618-and-cve-2026-109619-230762",
       "title": "Using the FortiGate to protect against PHP vulnerabilities CVE-2026-109618 and CVE-2026-109619",
@@ -21,7 +65,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-23T07:37:30.171221+00:00",
-      "lastSeen": "2026-10-24T09:36:12.709479+00:00",
+      "lastSeen": "2026-10-24T13:57:19.874191+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -39,7 +83,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-24T07:14:22.584683+00:00",
-      "lastSeen": "2026-10-24T09:36:12.709479+00:00",
+      "lastSeen": "2026-10-24T13:57:19.874191+00:00",
       "versionFamilies": [],
       "potentialProblem": true
     },
@@ -58,7 +102,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-24T07:14:22.584683+00:00",
-      "lastSeen": "2026-10-24T09:36:12.709479+00:00",
+      "lastSeen": "2026-10-24T13:57:19.874191+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -76,7 +120,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-24T09:36:12.709479+00:00",
+      "lastSeen": "2026-10-24T13:57:19.874191+00:00",
       "versionFamilies": [],
       "potentialProblem": true
     },
@@ -94,7 +138,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-24T07:14:22.584683+00:00",
-      "lastSeen": "2026-10-24T09:36:12.709479+00:00",
+      "lastSeen": "2026-10-24T13:57:19.874191+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -112,7 +156,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-24T09:36:12.709479+00:00",
+      "lastSeen": "2026-10-24T13:57:19.874191+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -131,7 +175,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-24T09:36:12.709479+00:00",
+      "lastSeen": "2026-10-24T13:57:19.874191+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -149,7 +193,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-24T09:36:12.709479+00:00",
+      "lastSeen": "2026-10-24T13:57:19.874191+00:00",
       "versionFamilies": [],
       "potentialProblem": true
     },
@@ -167,7 +211,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-24T07:14:22.584683+00:00",
-      "lastSeen": "2026-10-24T09:36:12.709479+00:00",
+      "lastSeen": "2026-10-24T13:57:19.874191+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -187,7 +231,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-24T07:14:22.584683+00:00",
-      "lastSeen": "2026-10-24T09:36:12.709479+00:00",
+      "lastSeen": "2026-10-24T13:57:19.874191+00:00",
       "versionFamilies": [
         "7.6"
       ],
@@ -208,7 +252,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-24T07:14:22.584683+00:00",
-      "lastSeen": "2026-10-24T09:36:12.709479+00:00",
+      "lastSeen": "2026-10-24T13:57:19.874191+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -226,7 +270,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-23T13:47:25.795786+00:00",
-      "lastSeen": "2026-10-24T09:36:12.709479+00:00",
+      "lastSeen": "2026-10-24T13:57:19.874191+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -244,7 +288,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-24T07:14:22.584683+00:00",
-      "lastSeen": "2026-10-24T09:36:12.709479+00:00",
+      "lastSeen": "2026-10-24T13:57:19.874191+00:00",
       "versionFamilies": [],
       "potentialProblem": true
     },
@@ -262,7 +306,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-23T07:37:30.171221+00:00",
-      "lastSeen": "2026-10-24T09:36:12.709479+00:00",
+      "lastSeen": "2026-10-24T13:57:19.874191+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -284,7 +328,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-23T07:37:30.171221+00:00",
-      "lastSeen": "2026-10-24T09:36:12.709479+00:00",
+      "lastSeen": "2026-10-24T13:57:19.874191+00:00",
       "versionFamilies": [
         "7.6"
       ],
@@ -310,7 +354,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-24T09:36:12.709479+00:00",
+      "lastSeen": "2026-10-24T13:57:19.874191+00:00",
       "versionFamilies": [
         "7.2",
         "7.4",
@@ -332,7 +376,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-24T07:14:22.584683+00:00",
-      "lastSeen": "2026-10-24T09:36:12.709479+00:00",
+      "lastSeen": "2026-10-24T13:57:19.874191+00:00",
       "versionFamilies": [],
       "potentialProblem": true
     },
@@ -350,7 +394,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-23T13:47:25.795786+00:00",
-      "lastSeen": "2026-10-24T09:36:12.709479+00:00",
+      "lastSeen": "2026-10-24T13:57:19.874191+00:00",
       "versionFamilies": [],
       "potentialProblem": true
     },
@@ -370,7 +414,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-24T09:36:12.709479+00:00",
+      "lastSeen": "2026-10-24T13:57:19.874191+00:00",
       "versionFamilies": [
         "7.4"
       ],
@@ -393,7 +437,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-23T07:37:30.171221+00:00",
-      "lastSeen": "2026-10-24T09:36:12.709479+00:00",
+      "lastSeen": "2026-10-24T13:57:19.874191+00:00",
       "versionFamilies": [
         "7.4"
       ],
@@ -419,7 +463,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-24T09:36:12.709479+00:00",
+      "lastSeen": "2026-10-24T13:57:19.874191+00:00",
       "versionFamilies": [
         "7.0",
         "7.2",
@@ -443,7 +487,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-23T13:47:25.795786+00:00",
-      "lastSeen": "2026-10-24T09:36:12.709479+00:00",
+      "lastSeen": "2026-10-24T13:57:19.874191+00:00",
       "versionFamilies": [
         "7.4"
       ],
@@ -466,7 +510,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-23T13:47:25.795786+00:00",
-      "lastSeen": "2026-10-24T09:36:12.709479+00:00",
+      "lastSeen": "2026-10-24T13:57:19.874191+00:00",
       "versionFamilies": [
         "7.6"
       ],
@@ -488,7 +532,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-23T07:37:30.171221+00:00",
-      "lastSeen": "2026-10-24T09:36:12.709479+00:00",
+      "lastSeen": "2026-10-24T13:57:19.874191+00:00",
       "versionFamilies": [
         "7.6"
       ],
@@ -511,7 +555,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-23T13:47:25.795786+00:00",
-      "lastSeen": "2026-10-24T09:36:12.709479+00:00",
+      "lastSeen": "2026-10-24T13:57:19.874191+00:00",
       "versionFamilies": [
         "7.4"
       ],
@@ -533,7 +577,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-23T07:37:30.171221+00:00",
-      "lastSeen": "2026-10-24T09:36:12.709479+00:00",
+      "lastSeen": "2026-10-24T13:57:19.874191+00:00",
       "versionFamilies": [
         "7.4"
       ],
@@ -553,7 +597,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-23T07:37:30.171221+00:00",
-      "lastSeen": "2026-10-24T09:36:12.709479+00:00",
+      "lastSeen": "2026-10-24T13:57:19.874191+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -575,7 +619,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-23T07:37:30.171221+00:00",
-      "lastSeen": "2026-10-24T09:36:12.709479+00:00",
+      "lastSeen": "2026-10-24T13:57:19.874191+00:00",
       "versionFamilies": [
         "7.6"
       ],
@@ -595,7 +639,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-23T07:37:30.171221+00:00",
-      "lastSeen": "2026-10-24T09:36:12.709479+00:00",
+      "lastSeen": "2026-10-24T13:57:19.874191+00:00",
       "versionFamilies": [],
       "potentialProblem": true
     },
@@ -617,7 +661,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-23T07:37:30.171221+00:00",
-      "lastSeen": "2026-10-24T09:36:12.709479+00:00",
+      "lastSeen": "2026-10-24T13:57:19.874191+00:00",
       "versionFamilies": [
         "8.0"
       ],
@@ -637,31 +681,9 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-24T09:36:12.709479+00:00",
+      "lastSeen": "2026-10-24T13:57:19.874191+00:00",
       "versionFamilies": [],
       "potentialProblem": false
-    },
-    {
-      "id": "https://community.fortinet.com/fortigate-3/1gbe-sfp-ports-may-fail-to-forward-traffic-on-fortigate-1800f-1801f-after-upgrading-to-fortios-7-6-8-230759",
-      "title": "1GbE SFP ports may fail to forward traffic on FortiGate 1800F/1801F after upgrading to FortiOS 7.6.8",
-      "url": "https://community.fortinet.com/fortigate-3/1gbe-sfp-ports-may-fail-to-forward-traffic-on-fortigate-1800f-1801f-after-upgrading-to-fortios-7-6-8-230759",
-      "date": "2026-10-22T20:21:12+00:00",
-      "summary": "Description This articles describes an issue where the 1GbE SFP ports may fail to forward traffic on FortiGate 1800F/1801F after upgrading to FortiOS 7.6.8 Scope FortiGate 1800F, FortiGate 1801F, FortiOS 7.6.8 Solution Following an internal driver update introduced in FortiOS 7.6.8, the affected platforms - FortiGate 1800F and 1801F is unable to process traffic over its GE SFP slots. As a summary:GE SFP ports 17-24 are unable to process traffic.Traffic through SFP ports 25-40 is unaffected.Traffic through GE RJ45 ports is unaffected. This issue is tracked in bug ID 1353422. Fortinet has released a special build to address the issue. Contact Fortinet Technical Support to validate whether the issue applies to the affected device and obtain the appropriate special build. Reference articlesFortiOS Release Notes",
-      "products": [
-        "FortiGate"
-      ],
-      "versions": [
-        "7.6.8"
-      ],
-      "status": "À vérifier",
-      "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
-      "source": "Fortinet Community",
-      "firstSeen": "2026-10-23T07:37:30.171221+00:00",
-      "lastSeen": "2026-10-24T09:36:12.709479+00:00",
-      "versionFamilies": [
-        "7.6"
-      ],
-      "potentialProblem": true
     },
     {
       "id": "https://community.fortinet.com/support-forum-92/forticlient-vpn-7-4-3-macos-drops-ipsec-ikev2-tunnel-immediately-on-screen-lock-check-vpn-connect-without-reauth-230440",
@@ -679,7 +701,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-23T07:37:30.171221+00:00",
-      "lastSeen": "2026-10-24T09:36:12.709479+00:00",
+      "lastSeen": "2026-10-24T13:57:19.874191+00:00",
       "versionFamilies": [
         "7.4"
       ],
@@ -699,7 +721,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T11:38:48.104306+00:00",
-      "lastSeen": "2026-10-24T09:36:12.709479+00:00",
+      "lastSeen": "2026-10-24T13:57:19.874191+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -717,7 +739,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-23T07:37:30.171221+00:00",
-      "lastSeen": "2026-10-24T09:36:12.709479+00:00",
+      "lastSeen": "2026-10-24T13:57:19.874191+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -737,7 +759,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-24T09:36:12.709479+00:00",
+      "lastSeen": "2026-10-24T13:57:19.874191+00:00",
       "versionFamilies": [
         "7.6"
       ],
@@ -757,7 +779,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T09:24:01.029989+00:00",
-      "lastSeen": "2026-10-24T09:36:12.709479+00:00",
+      "lastSeen": "2026-10-24T13:57:19.874191+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -775,7 +797,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-23T07:37:30.171221+00:00",
-      "lastSeen": "2026-10-24T09:36:12.709479+00:00",
+      "lastSeen": "2026-10-24T13:57:19.874191+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -793,7 +815,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-23T07:37:30.171221+00:00",
-      "lastSeen": "2026-10-24T09:36:12.709479+00:00",
+      "lastSeen": "2026-10-24T13:57:19.874191+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -811,7 +833,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-24T09:36:12.709479+00:00",
+      "lastSeen": "2026-10-24T13:57:19.874191+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -830,7 +852,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T11:38:48.104306+00:00",
-      "lastSeen": "2026-10-24T09:36:12.709479+00:00",
+      "lastSeen": "2026-10-24T13:57:19.874191+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -849,7 +871,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-24T09:36:12.709479+00:00",
+      "lastSeen": "2026-10-24T13:57:19.874191+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -870,7 +892,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-24T09:36:12.709479+00:00",
+      "lastSeen": "2026-10-24T13:57:19.874191+00:00",
       "versionFamilies": [
         "7.6",
         "8.0"
@@ -894,7 +916,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-24T09:36:12.709479+00:00",
+      "lastSeen": "2026-10-24T13:57:19.874191+00:00",
       "versionFamilies": [
         "7.4",
         "7.6"
@@ -919,7 +941,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-24T09:36:12.709479+00:00",
+      "lastSeen": "2026-10-24T13:57:19.874191+00:00",
       "versionFamilies": [
         "7.4",
         "7.6"
@@ -944,7 +966,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-24T09:36:12.709479+00:00",
+      "lastSeen": "2026-10-24T13:57:19.874191+00:00",
       "versionFamilies": [
         "7.4"
       ],
@@ -967,7 +989,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-24T09:36:12.709479+00:00",
+      "lastSeen": "2026-10-24T13:57:19.874191+00:00",
       "versionFamilies": [
         "7.2"
       ],
@@ -987,7 +1009,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-24T09:36:12.709479+00:00",
+      "lastSeen": "2026-10-24T13:57:19.874191+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -1029,7 +1051,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T09:24:01.029989+00:00",
-      "lastSeen": "2026-10-24T09:36:12.709479+00:00",
+      "lastSeen": "2026-10-24T13:57:19.874191+00:00",
       "versionFamilies": [
         "7.4"
       ],
@@ -1049,7 +1071,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T09:24:01.029989+00:00",
-      "lastSeen": "2026-10-24T09:36:12.709479+00:00",
+      "lastSeen": "2026-10-24T13:57:19.874191+00:00",
       "versionFamilies": [],
       "potentialProblem": true
     },
@@ -1067,7 +1089,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-24T09:36:12.709479+00:00",
+      "lastSeen": "2026-10-24T13:57:19.874191+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -1085,7 +1107,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-24T09:36:12.709479+00:00",
+      "lastSeen": "2026-10-24T13:57:19.874191+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -1106,7 +1128,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-24T09:36:12.709479+00:00",
+      "lastSeen": "2026-10-24T13:57:19.874191+00:00",
       "versionFamilies": [
         "7.4"
       ],
@@ -1126,7 +1148,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-24T09:36:12.709479+00:00",
+      "lastSeen": "2026-10-24T13:57:19.874191+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -1148,7 +1170,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-24T09:36:12.709479+00:00",
+      "lastSeen": "2026-10-24T13:57:19.874191+00:00",
       "versionFamilies": [
         "7.6",
         "8.0"
@@ -1169,7 +1191,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-24T09:36:12.709479+00:00",
+      "lastSeen": "2026-10-24T13:57:19.874191+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -1187,7 +1209,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-24T09:36:12.709479+00:00",
+      "lastSeen": "2026-10-24T13:57:19.874191+00:00",
       "versionFamilies": [],
       "potentialProblem": true
     },
@@ -1209,7 +1231,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-24T09:36:12.709479+00:00",
+      "lastSeen": "2026-10-24T13:57:19.874191+00:00",
       "versionFamilies": [
         "7.4"
       ],
@@ -1229,7 +1251,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-24T09:36:12.709479+00:00",
+      "lastSeen": "2026-10-24T13:57:19.874191+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -1247,7 +1269,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-24T09:36:12.709479+00:00",
+      "lastSeen": "2026-10-24T13:57:19.874191+00:00",
       "versionFamilies": [],
       "potentialProblem": true
     },
@@ -1265,7 +1287,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-24T09:36:12.709479+00:00",
+      "lastSeen": "2026-10-24T13:57:19.874191+00:00",
       "versionFamilies": [],
       "potentialProblem": true
     },
@@ -1283,7 +1305,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-24T09:36:12.709479+00:00",
+      "lastSeen": "2026-10-24T13:57:19.874191+00:00",
       "versionFamilies": [],
       "potentialProblem": true
     },
@@ -1303,7 +1325,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-24T09:36:12.709479+00:00",
+      "lastSeen": "2026-10-24T13:57:19.874191+00:00",
       "versionFamilies": [
         "7.4"
       ],
@@ -1323,7 +1345,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T09:24:01.029989+00:00",
-      "lastSeen": "2026-10-24T09:36:12.709479+00:00",
+      "lastSeen": "2026-10-24T13:57:19.874191+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -1343,7 +1365,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-24T09:36:12.709479+00:00",
+      "lastSeen": "2026-10-24T13:57:19.874191+00:00",
       "versionFamilies": [
         "7.4"
       ],
@@ -1363,7 +1385,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-24T09:36:12.709479+00:00",
+      "lastSeen": "2026-10-24T13:57:19.874191+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -1381,7 +1403,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-24T09:36:12.709479+00:00",
+      "lastSeen": "2026-10-24T13:57:19.874191+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -1399,7 +1421,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-24T09:36:12.709479+00:00",
+      "lastSeen": "2026-10-24T13:57:19.874191+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -1420,7 +1442,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-24T09:36:12.709479+00:00",
+      "lastSeen": "2026-10-24T13:57:19.874191+00:00",
       "versionFamilies": [
         "7.4",
         "7.6"
@@ -1441,7 +1463,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T09:24:01.029989+00:00",
-      "lastSeen": "2026-10-24T09:36:12.709479+00:00",
+      "lastSeen": "2026-10-24T13:57:19.874191+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -1461,7 +1483,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-24T09:36:12.709479+00:00",
+      "lastSeen": "2026-10-24T13:57:19.874191+00:00",
       "versionFamilies": [
         "7.6"
       ],
@@ -1481,7 +1503,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-24T09:36:12.709479+00:00",
+      "lastSeen": "2026-10-24T13:57:19.874191+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -1499,7 +1521,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T09:24:01.029989+00:00",
-      "lastSeen": "2026-10-24T09:36:12.709479+00:00",
+      "lastSeen": "2026-10-24T13:57:19.874191+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -2060,71 +2082,6 @@
   ],
   "incidents": [
     {
-      "id": "incident-2f864c553570",
-      "title": "DNS over TLS broken in Proxy Mode",
-      "summary": "DescriptionDNS filtering fails to inspect DNS over TLS (DoT)and DNS over HTTPS version 2 (DoH2) queries in certain FortiOS versions like 7.6.4 and 7.6.7, leading to bypassed filtering or connection errors in flow mode.ScopeFortiGate.SolutionThe issue occurs because the IPS engine does not recognize port 853 for decoding, causing it to skip the DNS dissector.Workaround:Run the following commands to add port 853 to the IPS decoder port list:config ips decoder \"dns_decoder\" config parameter \"port_list\" set value \"53,853\" end endRestart the IPS engine to…",
-      "symptom": "DNS filtering fails to inspect DNS over TLS (DoT) queries in certain FortiOS versions, such as version 7.6.4, leading to bypassed filtering or connection errors in proxy mode. The issue occurs when a DNS query is made over TLS after upgrading to FortiOS version 7.6.4",
-      "impact": "",
-      "solution": "This known issue is Bug ID 1214371.Sample: The issue is reproduced using deep inspection with DNS filter enabled for a proxy mode firewall policy.As seen in the image above, the default redirect block IP addresses (208.91.112.55, 2620:101:9000:53) were not returned over TLS. Upgrade FortiGate to FortiOS 8.0.1 to resolve the issue where DNS over TLS queries bypass filtering in proxy mode.Related documents:Resolved issuesDNS over QUIC and DNS over HTTP3 for transparent and local-in DNS modes",
-      "products": [
-        "FortiGate"
-      ],
-      "versions": [
-        "7.6.4",
-        "8.0.1"
-      ],
-      "versionFamilies": [
-        "7.6",
-        "8.0"
-      ],
-      "sourceCount": 2,
-      "forumReportCount": 0,
-      "documentedSourceCount": 2,
-      "sources": [
-        {
-          "title": "DNS over TLS broken in Proxy Mode",
-          "url": "https://community.fortinet.com/fortigate-3/dns-over-tls-broken-in-proxy-mode-230749",
-          "date": "2026-10-22T07:51:37+00:00",
-          "summary": "DescriptionDNS filtering fails to inspect DNS over TLS (DoT) queries in certain FortiOS versions, such as version 7.6.4, leading to bypassed filtering or connection errors in proxy mode. The issue occurs when a DNS query is made over TLS after upgrading to FortiOS version 7.6.4.ScopeFortiGate.SolutionThis known issue is Bug ID 1214371.Sample: The issue is reproduced using deep inspection with DNS filter enabled for a proxy mode firewall policy.As seen in the image above, the default redirect block IP addresses (208.91.112.55, 2620:101:9000:53) were not returned over TLS. Upgrade FortiGate to FortiOS 8.0.1 to resolve the issue where DNS over TLS queries bypass filtering in proxy mode.Related documents:Resolved issuesDNS over QUIC and DNS over HTTP3 for transparent and local-in DNS modes",
-          "products": [
-            "FortiGate"
-          ],
-          "versions": [
-            "7.6.4",
-            "8.0.1"
-          ],
-          "versionFamilies": [
-            "7.6",
-            "8.0"
-          ],
-          "sourceType": "fortinet_article",
-          "symptom": "DNS filtering fails to inspect DNS over TLS (DoT) queries in certain FortiOS versions, such as version 7.6.4, leading to bypassed filtering or connection errors in proxy mode. The issue occurs when a DNS query is made over TLS after upgrading to FortiOS version 7.6.4",
-          "impact": "",
-          "solution": "This known issue is Bug ID 1214371.Sample: The issue is reproduced using deep inspection with DNS filter enabled for a proxy mode firewall policy.As seen in the image above, the default redirect block IP addresses (208.91.112.55, 2620:101:9000:53) were not returned over TLS. Upgrade FortiGate to FortiOS 8.0.1 to resolve the issue where DNS over TLS queries bypass filtering in proxy mode.Related documents:Resolved issuesDNS over QUIC and DNS over HTTP3 for transparent and local-in DNS modes"
-        },
-        {
-          "title": "DNS over TLS and DNS over HTTPS version 2 broken in Flow Mode",
-          "url": "https://community.fortinet.com/fortigate-3/dns-over-tls-and-dns-over-https-version-2-broken-in-flow-mode-230715",
-          "date": "2026-10-21T07:10:57+00:00",
-          "summary": "DescriptionDNS filtering fails to inspect DNS over TLS (DoT)and DNS over HTTPS version 2 (DoH2) queries in certain FortiOS versions like 7.6.4 and 7.6.7, leading to bypassed filtering or connection errors in flow mode.ScopeFortiGate.SolutionThe issue occurs because the IPS engine does not recognize port 853 for decoding, causing it to skip the DNS dissector.Workaround:Run the following commands to add port 853 to the IPS decoder port list:config ips decoder \"dns_decoder\" config parameter \"port_list\" set value \"53,853\" end endRestart the IPS engine to apply the changes:diagnose test application ipsmonitor 99Sample result that shows it working, as the default block IP address of 208.91.112.55 is returned over TLS:dig @p2.freedns.controld.com +tls +all http://www.nab.com.au ; > DiG 9.17.12 > @p2.freedns.controld.com +tls +all http://www.nab.com.au ; (1 server found) ;; global options: +cmd ;; Got answer: ;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 41119 ;; flags: qr rd ra; QUERY: ",
-          "products": [
-            "FortiGate"
-          ],
-          "versions": [],
-          "versionFamilies": [],
-          "sourceType": "fortinet_article",
-          "symptom": "DNS filtering fails to inspect DNS over TLS (DoT)and DNS over HTTPS version 2 (DoH2) queries in certain FortiOS versions like 7.6.4 and 7.6.7, leading to bypassed filtering or connection errors in flow mode",
-          "impact": "",
-          "solution": "The issue occurs because the IPS engine does not recognize port 853 for decoding, causing it to skip the DNS dissector Contournement : Run the following commands to add port 853 to the IPS decoder port list:config ips decoder \"dns_decoder\" config parameter \"port_list\" set value \"53,853\" end endRestart the IPS engine to apply the changes:diagnose test application ipsmonitor 99Sample result that shows it working, as the default block IP address of 208.91.112.55 is returned over TLS:dig @p2.freedns.controld.com +tls +all http://www.nab.com.au ; > DiG 9.17.12 > @p2.freedns.controld.com +tls +all http://www.nab.com.au ; (1 server found) ;; global options: +cmd ;; Got answer: ;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 41119 ;; flags: qr rd ra; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 0 ;; QUESTION SECTION: ;http://www.nab.com.au. IN A ;; ANSWER SECTION: http://www.nab.com.au. 60 IN A 208.91.112.55 ;; Query time: 46 msec ;; SERVER: 76.76.2.11"
-        }
-      ],
-      "lastSeen": "2026-10-22T07:51:37+00:00",
-      "status": "Documenté par Fortinet (version identifiée)",
-      "confidence": "Documentation Fortinet versionnée",
-      "evidenceType": "official_documentation",
-      "synthesisMethod": "Règles de preuve : article Fortinet versionné et explicite, ou au moins deux discussions distinctes; pas d'IA générative."
-    },
-    {
       "id": "incident-57da110da5bb",
       "title": "Troubleshooting Tip: SSL VPN stops working for remote and local users due to fnbamd process",
       "summary": "DescriptionThis article describes behavior where FortiGate stops accepting new SSL VPN connections due to the FNBAMD process.ScopeFortiGate version 7.4.11 and previous versions.SolutionUsers configure a standard SSL VPN connection for local and remote usersCheck the crash log and validate that there are multiple fnbamd crashesdiagnose debug crashlog read | grep 2026 111: 2026-03-14 15:48:14 firmware FortiGate-100 v7.4.11,build2878b2878,260126 (GA.M) (Release) 112: 2026-03-14 15:48:14 application fnbamdTake some debugs of the VPN and validate the…",
@@ -2184,6 +2141,52 @@
         }
       ],
       "lastSeen": "2026-10-22T06:21:57+00:00",
+      "status": "Documenté par Fortinet (version identifiée)",
+      "confidence": "Documentation Fortinet versionnée",
+      "evidenceType": "official_documentation",
+      "synthesisMethod": "Règles de preuve : article Fortinet versionné et explicite, ou au moins deux discussions distinctes; pas d'IA générative."
+    },
+    {
+      "id": "incident-b08e0b8cbcdc",
+      "title": "1GbE SFP ports may fail to forward traffic on FortiGate 1800F/1801F after upgrading to FortiOS 7.6.8",
+      "summary": "Description This articles describes an issue where the 1GbE SFP ports may fail to forward traffic on FortiGate 1800F/1801F after upgrading to FortiOS 7.6.8 Scope FortiGate 1800F, FortiGate 1801F, FortiOS 7.6.8 Solution Following an internal driver update introduced in FortiOS 7.6.8, the affected platforms - FortiGate 1800F and 1801F is unable to process traffic over its GE SFP slots. As a summary:GE SFP ports 17-24 are unable to process traffic.Traffic through SFP ports 25-40 is unaffected.Traffic through GE RJ45 ports is unaffected.",
+      "symptom": "This articles describes an issue where the 1GbE SFP ports may fail to forward traffic on FortiGate 1800F/1801F after upgrading to FortiOS 7.6.8",
+      "impact": "",
+      "solution": "Following an internal driver update introduced in FortiOS 7.6.8, the affected platforms - FortiGate 1800F and 1801F is unable to process traffic over its GE SFP slots. As a summary:GE SFP ports 17-24 are unable to process traffic.Traffic through SFP ports 25-40 is unaffected.Traffic through GE RJ45 ports is unaffected. This issue is tracked in bug ID 1353422. Fortinet has released a special build to address the issue. Contact Fortinet Technical Support to validate whether the issue applies to the affected device and obtain the appropriate special build. Reference articlesFortiOS Release Notes",
+      "products": [
+        "FortiGate"
+      ],
+      "versions": [
+        "7.6.8"
+      ],
+      "versionFamilies": [
+        "7.6"
+      ],
+      "sourceCount": 1,
+      "forumReportCount": 0,
+      "documentedSourceCount": 1,
+      "sources": [
+        {
+          "title": "1GbE SFP ports may fail to forward traffic on FortiGate 1800F/1801F after upgrading to FortiOS 7.6.8",
+          "url": "https://community.fortinet.com/fortigate-3/1gbe-sfp-ports-may-fail-to-forward-traffic-on-fortigate-1800f-1801f-after-upgrading-to-fortios-7-6-8-230759",
+          "date": "2026-10-24T12:09:33+00:00",
+          "summary": "Description This articles describes an issue where the 1GbE SFP ports may fail to forward traffic on FortiGate 1800F/1801F after upgrading to FortiOS 7.6.8 Scope FortiGate 1800F, FortiGate 1801F, FortiOS 7.6.8 Solution Following an internal driver update introduced in FortiOS 7.6.8, the affected platforms - FortiGate 1800F and 1801F is unable to process traffic over its GE SFP slots. As a summary:GE SFP ports 17-24 are unable to process traffic.Traffic through SFP ports 25-40 is unaffected.Traffic through GE RJ45 ports is unaffected. This issue is tracked in bug ID 1353422. Fortinet has released a special build to address the issue. Contact Fortinet Technical Support to validate whether the issue applies to the affected device and obtain the appropriate special build. Reference articlesFortiOS Release Notes",
+          "products": [
+            "FortiGate"
+          ],
+          "versions": [
+            "7.6.8"
+          ],
+          "versionFamilies": [
+            "7.6"
+          ],
+          "sourceType": "fortinet_article",
+          "symptom": "This articles describes an issue where the 1GbE SFP ports may fail to forward traffic on FortiGate 1800F/1801F after upgrading to FortiOS 7.6.8",
+          "impact": "",
+          "solution": "Following an internal driver update introduced in FortiOS 7.6.8, the affected platforms - FortiGate 1800F and 1801F is unable to process traffic over its GE SFP slots. As a summary:GE SFP ports 17-24 are unable to process traffic.Traffic through SFP ports 25-40 is unaffected.Traffic through GE RJ45 ports is unaffected. This issue is tracked in bug ID 1353422. Fortinet has released a special build to address the issue. Contact Fortinet Technical Support to validate whether the issue applies to the affected device and obtain the appropriate special build. Reference articlesFortiOS Release Notes"
+        }
+      ],
+      "lastSeen": "2026-10-24T12:09:33+00:00",
       "status": "Documenté par Fortinet (version identifiée)",
       "confidence": "Documentation Fortinet versionnée",
       "evidenceType": "official_documentation",
@@ -2468,46 +2471,50 @@
       "synthesisMethod": "Règles de preuve : article Fortinet versionné et explicite, ou au moins deux discussions distinctes; pas d'IA générative."
     },
     {
-      "id": "incident-b08e0b8cbcdc",
-      "title": "1GbE SFP ports may fail to forward traffic on FortiGate 1800F/1801F after upgrading to FortiOS 7.6.8",
-      "summary": "Description This articles describes an issue where the 1GbE SFP ports may fail to forward traffic on FortiGate 1800F/1801F after upgrading to FortiOS 7.6.8 Scope FortiGate 1800F, FortiGate 1801F, FortiOS 7.6.8 Solution Following an internal driver update introduced in FortiOS 7.6.8, the affected platforms - FortiGate 1800F and 1801F is unable to process traffic over its GE SFP slots. As a summary:GE SFP ports 17-24 are unable to process traffic.Traffic through SFP ports 25-40 is unaffected.Traffic through GE RJ45 ports is unaffected.",
-      "symptom": "This articles describes an issue where the 1GbE SFP ports may fail to forward traffic on FortiGate 1800F/1801F after upgrading to FortiOS 7.6.8",
+      "id": "incident-2f864c553570",
+      "title": "DNS over TLS broken in Proxy Mode",
+      "summary": "DescriptionDNS filtering fails to inspect DNS over TLS (DoT) queries in certain FortiOS versions, such as version 7.6.4, leading to bypassed filtering or connection errors in proxy mode. The issue occurs when a DNS query is made over TLS after upgrading to FortiOS version 7.6.4.ScopeFortiGate.SolutionThis known issue is Bug ID 1214371.Sample: The issue is reproduced using deep inspection with DNS filter enabled for a proxy mode firewall policy.As seen in the image above, the default redirect block IP addresses (208.91.112.55, 2620:101:9000:53) were…",
+      "symptom": "DNS filtering fails to inspect DNS over TLS (DoT) queries in certain FortiOS versions, such as version 7.6.4, leading to bypassed filtering or connection errors in proxy mode. The issue occurs when a DNS query is made over TLS after upgrading to FortiOS version 7.6.4",
       "impact": "",
-      "solution": "Following an internal driver update introduced in FortiOS 7.6.8, the affected platforms - FortiGate 1800F and 1801F is unable to process traffic over its GE SFP slots. As a summary:GE SFP ports 17-24 are unable to process traffic.Traffic through SFP ports 25-40 is unaffected.Traffic through GE RJ45 ports is unaffected. This issue is tracked in bug ID 1353422. Fortinet has released a special build to address the issue. Contact Fortinet Technical Support to validate whether the issue applies to the affected device and obtain the appropriate special build. Reference articlesFortiOS Release Notes",
+      "solution": "This known issue is Bug ID 1214371.Sample: The issue is reproduced using deep inspection with DNS filter enabled for a proxy mode firewall policy.As seen in the image above, the default redirect block IP addresses (208.91.112.55, 2620:101:9000:53) were not returned over TLS. Upgrade FortiGate to FortiOS 8.0.1 to resolve the issue where DNS over TLS queries bypass filtering in proxy mode.Related documents:Resolved issuesDNS over QUIC and DNS over HTTP3 for transparent and local-in DNS modes",
       "products": [
         "FortiGate"
       ],
       "versions": [
-        "7.6.8"
+        "7.6.4",
+        "8.0.1"
       ],
       "versionFamilies": [
-        "7.6"
+        "7.6",
+        "8.0"
       ],
       "sourceCount": 1,
       "forumReportCount": 0,
       "documentedSourceCount": 1,
       "sources": [
         {
-          "title": "1GbE SFP ports may fail to forward traffic on FortiGate 1800F/1801F after upgrading to FortiOS 7.6.8",
-          "url": "https://community.fortinet.com/fortigate-3/1gbe-sfp-ports-may-fail-to-forward-traffic-on-fortigate-1800f-1801f-after-upgrading-to-fortios-7-6-8-230759",
-          "date": "2026-10-22T20:21:12+00:00",
-          "summary": "Description This articles describes an issue where the 1GbE SFP ports may fail to forward traffic on FortiGate 1800F/1801F after upgrading to FortiOS 7.6.8 Scope FortiGate 1800F, FortiGate 1801F, FortiOS 7.6.8 Solution Following an internal driver update introduced in FortiOS 7.6.8, the affected platforms - FortiGate 1800F and 1801F is unable to process traffic over its GE SFP slots. As a summary:GE SFP ports 17-24 are unable to process traffic.Traffic through SFP ports 25-40 is unaffected.Traffic through GE RJ45 ports is unaffected. This issue is tracked in bug ID 1353422. Fortinet has released a special build to address the issue. Contact Fortinet Technical Support to validate whether the issue applies to the affected device and obtain the appropriate special build. Reference articlesFortiOS Release Notes",
+          "title": "DNS over TLS broken in Proxy Mode",
+          "url": "https://community.fortinet.com/fortigate-3/dns-over-tls-broken-in-proxy-mode-230749",
+          "date": "2026-10-22T07:51:37+00:00",
+          "summary": "DescriptionDNS filtering fails to inspect DNS over TLS (DoT) queries in certain FortiOS versions, such as version 7.6.4, leading to bypassed filtering or connection errors in proxy mode. The issue occurs when a DNS query is made over TLS after upgrading to FortiOS version 7.6.4.ScopeFortiGate.SolutionThis known issue is Bug ID 1214371.Sample: The issue is reproduced using deep inspection with DNS filter enabled for a proxy mode firewall policy.As seen in the image above, the default redirect block IP addresses (208.91.112.55, 2620:101:9000:53) were not returned over TLS. Upgrade FortiGate to FortiOS 8.0.1 to resolve the issue where DNS over TLS queries bypass filtering in proxy mode.Related documents:Resolved issuesDNS over QUIC and DNS over HTTP3 for transparent and local-in DNS modes",
           "products": [
             "FortiGate"
           ],
           "versions": [
-            "7.6.8"
+            "7.6.4",
+            "8.0.1"
           ],
           "versionFamilies": [
-            "7.6"
+            "7.6",
+            "8.0"
           ],
           "sourceType": "fortinet_article",
-          "symptom": "This articles describes an issue where the 1GbE SFP ports may fail to forward traffic on FortiGate 1800F/1801F after upgrading to FortiOS 7.6.8",
+          "symptom": "DNS filtering fails to inspect DNS over TLS (DoT) queries in certain FortiOS versions, such as version 7.6.4, leading to bypassed filtering or connection errors in proxy mode. The issue occurs when a DNS query is made over TLS after upgrading to FortiOS version 7.6.4",
           "impact": "",
-          "solution": "Following an internal driver update introduced in FortiOS 7.6.8, the affected platforms - FortiGate 1800F and 1801F is unable to process traffic over its GE SFP slots. As a summary:GE SFP ports 17-24 are unable to process traffic.Traffic through SFP ports 25-40 is unaffected.Traffic through GE RJ45 ports is unaffected. This issue is tracked in bug ID 1353422. Fortinet has released a special build to address the issue. Contact Fortinet Technical Support to validate whether the issue applies to the affected device and obtain the appropriate special build. Reference articlesFortiOS Release Notes"
+          "solution": "This known issue is Bug ID 1214371.Sample: The issue is reproduced using deep inspection with DNS filter enabled for a proxy mode firewall policy.As seen in the image above, the default redirect block IP addresses (208.91.112.55, 2620:101:9000:53) were not returned over TLS. Upgrade FortiGate to FortiOS 8.0.1 to resolve the issue where DNS over TLS queries bypass filtering in proxy mode.Related documents:Resolved issuesDNS over QUIC and DNS over HTTP3 for transparent and local-in DNS modes"
         }
       ],
-      "lastSeen": "2026-10-22T20:21:12+00:00",
+      "lastSeen": "2026-10-22T07:51:37+00:00",
       "status": "Documenté par Fortinet (version identifiée)",
       "confidence": "Documentation Fortinet versionnée",
       "evidenceType": "official_documentation",
@@ -2726,6 +2733,44 @@
       "synthesisMethod": "Règles de preuve : article Fortinet versionné et explicite, ou au moins deux discussions distinctes; pas d'IA générative."
     },
     {
+      "id": "incident-d706562cc0b0",
+      "title": "DNS over TLS and DNS over HTTPS version 2 broken in Flow Mode",
+      "summary": "DescriptionDNS filtering fails to inspect DNS over TLS (DoT)and DNS over HTTPS version 2 (DoH2) queries in certain FortiOS versions like 7.6.4 and 7.6.7, leading to bypassed filtering or connection errors in flow mode.ScopeFortiGate.SolutionThe issue occurs because the IPS engine does not recognize port 853 for decoding, causing it to skip the DNS dissector.Workaround:Run the following commands to add port 853 to the IPS decoder port list:config ips decoder \"dns_decoder\" config parameter \"port_list\" set value \"53,853\" end endRestart the IPS engine to…",
+      "symptom": "DNS filtering fails to inspect DNS over TLS (DoT)and DNS over HTTPS version 2 (DoH2) queries in certain FortiOS versions like 7.6.4 and 7.6.7, leading to bypassed filtering or connection errors in flow mode",
+      "impact": "",
+      "solution": "The issue occurs because the IPS engine does not recognize port 853 for decoding, causing it to skip the DNS dissector Contournement : Run the following commands to add port 853 to the IPS decoder port list:config ips decoder \"dns_decoder\" config parameter \"port_list\" set value \"53,853\" end endRestart the IPS engine to apply the changes:diagnose test application ipsmonitor 99Sample result that shows it working, as the default block IP address of 208.91.112.55 is returned over TLS:dig @p2.freedns.controld.com +tls +all http://www.nab.com.au ; > DiG 9.17.12 > @p2.freedns.controld.com +tls +all http://www.nab.com.au ; (1 server found) ;; global options: +cmd ;; Got answer: ;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 41119 ;; flags: qr rd ra; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 0 ;; QUESTION SECTION: ;http://www.nab.com.au. IN A ;; ANSWER SECTION: http://www.nab.com.au. 60 IN A 208.91.112.55 ;; Query time: 46 msec ;; SERVER: 76.76.2.11",
+      "products": [
+        "FortiGate"
+      ],
+      "versions": [],
+      "versionFamilies": [],
+      "sourceCount": 1,
+      "forumReportCount": 0,
+      "documentedSourceCount": 1,
+      "sources": [
+        {
+          "title": "DNS over TLS and DNS over HTTPS version 2 broken in Flow Mode",
+          "url": "https://community.fortinet.com/fortigate-3/dns-over-tls-and-dns-over-https-version-2-broken-in-flow-mode-230715",
+          "date": "2026-10-21T07:10:57+00:00",
+          "summary": "DescriptionDNS filtering fails to inspect DNS over TLS (DoT)and DNS over HTTPS version 2 (DoH2) queries in certain FortiOS versions like 7.6.4 and 7.6.7, leading to bypassed filtering or connection errors in flow mode.ScopeFortiGate.SolutionThe issue occurs because the IPS engine does not recognize port 853 for decoding, causing it to skip the DNS dissector.Workaround:Run the following commands to add port 853 to the IPS decoder port list:config ips decoder \"dns_decoder\" config parameter \"port_list\" set value \"53,853\" end endRestart the IPS engine to apply the changes:diagnose test application ipsmonitor 99Sample result that shows it working, as the default block IP address of 208.91.112.55 is returned over TLS:dig @p2.freedns.controld.com +tls +all http://www.nab.com.au ; > DiG 9.17.12 > @p2.freedns.controld.com +tls +all http://www.nab.com.au ; (1 server found) ;; global options: +cmd ;; Got answer: ;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 41119 ;; flags: qr rd ra; QUERY: ",
+          "products": [
+            "FortiGate"
+          ],
+          "versions": [],
+          "versionFamilies": [],
+          "sourceType": "fortinet_article",
+          "symptom": "DNS filtering fails to inspect DNS over TLS (DoT)and DNS over HTTPS version 2 (DoH2) queries in certain FortiOS versions like 7.6.4 and 7.6.7, leading to bypassed filtering or connection errors in flow mode",
+          "impact": "",
+          "solution": "The issue occurs because the IPS engine does not recognize port 853 for decoding, causing it to skip the DNS dissector Contournement : Run the following commands to add port 853 to the IPS decoder port list:config ips decoder \"dns_decoder\" config parameter \"port_list\" set value \"53,853\" end endRestart the IPS engine to apply the changes:diagnose test application ipsmonitor 99Sample result that shows it working, as the default block IP address of 208.91.112.55 is returned over TLS:dig @p2.freedns.controld.com +tls +all http://www.nab.com.au ; > DiG 9.17.12 > @p2.freedns.controld.com +tls +all http://www.nab.com.au ; (1 server found) ;; global options: +cmd ;; Got answer: ;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 41119 ;; flags: qr rd ra; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 0 ;; QUESTION SECTION: ;http://www.nab.com.au. IN A ;; ANSWER SECTION: http://www.nab.com.au. 60 IN A 208.91.112.55 ;; Query time: 46 msec ;; SERVER: 76.76.2.11"
+        }
+      ],
+      "lastSeen": "2026-10-21T07:10:57+00:00",
+      "status": "Documenté par Fortinet (version non précisée)",
+      "confidence": "Documentation Fortinet (version non précisée)",
+      "evidenceType": "official_documentation",
+      "synthesisMethod": "Règles de preuve : article Fortinet versionné et explicite, ou au moins deux discussions distinctes; pas d'IA générative."
+    },
+    {
       "id": "incident-929be2757086",
       "title": "FortiGate sends SYN/ACK packet using wrong source IP when a single SYN packet is sent to a real server without an acknowledgment or reset",
       "summary": "DescriptionA known issue where the FortiGate sends SYN/ACK packet using wrong source IP when a single SYN packet is sent to a real server without an acknowledgment or reset.ScopeFortiOS.SolutionIn this scenario, a Virtual Server is configured as follows:config firewall vip edit \"http_virtual_server\" set type server-load-balance set server-type tcp set extip 198.51.100.169 set extintf \"any\" set arp-reply disable set extport 80 config realservers edit 1 set ip 192.0.2.20 set port 80 next end next end config firewall policy edit 1 set srcintf \"port1\"…",
@@ -2854,7 +2899,7 @@
       "synthesisMethod": "Règles de preuve : article Fortinet versionné et explicite, ou au moins deux discussions distinctes; pas d'IA générative."
     }
   ],
-  "incidentCount": 17,
-  "synthesisGeneratedAt": "2026-10-24T09:36:14.117912+00:00",
+  "incidentCount": 18,
+  "synthesisGeneratedAt": "2026-10-24T13:57:20.799422+00:00",
   "synthesisNote": "Un point n'est affiché que s'il est documenté par un article Fortinet versionné et explicite, ou décrit dans au moins deux discussions distinctes d'utilisateurs. Les articles officiels ne comptent pas comme des personnes supplémentaires. Les signalements isolés non documentés sont exclus."
 }
