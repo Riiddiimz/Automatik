@@ -55,6 +55,29 @@ class CommunitySynthesisTests(unittest.TestCase):
         self.assertEqual(result["incidents"][0]["sourceCount"], 2)
         self.assertEqual(result["incidents"][0]["versionFamilies"], ["7.6"])
 
+    def test_conflicting_inspection_modes_are_not_merged(self):
+        proxy = {
+            "title": "DNS over TLS broken in Proxy Mode",
+            "summary": "DescriptionDNS filtering fails in proxy mode. ScopeFortiGate. SolutionKnown issue affects proxy mode.",
+            "url": "https://community.fortinet.com/fortigate-3/dns-over-tls-proxy-mode",
+        }
+        flow = {
+            "title": "DNS over TLS and DNS over HTTPS version 2 broken in Flow Mode",
+            "summary": "DescriptionDNS filtering fails in flow mode. ScopeFortiGate. SolutionThe IPS engine does not recognize port 853.",
+            "url": "https://community.fortinet.com/fortigate-3/dns-over-tls-flow-mode",
+        }
+
+        self.assertFalse(synth.similar(proxy, flow))
+        with tempfile.TemporaryDirectory() as directory:
+            result = synth.synthesize({"topics": [proxy, flow]}, Path(directory) / "community.json")
+
+        self.assertEqual(result["incidentCount"], 2)
+        self.assertEqual(
+            {incident["title"] for incident in result["incidents"]},
+            {proxy["title"], flow["title"]},
+        )
+        self.assertTrue(all(incident["sourceCount"] == 1 for incident in result["incidents"]))
+
     def test_radius_wording_variants_are_grouped(self):
         a = {"title": "FortiGate RADIUS authentication fails after upgrade", "products": ["FortiGate"], "versionFamilies": ["7.4"]}
         b = {"title": "FortiGate RADIUS server not responding after firmware update", "products": ["FortiGate"], "versionFamilies": ["7.4"]}

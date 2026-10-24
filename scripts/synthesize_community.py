@@ -22,6 +22,9 @@ STOP = {
     "forticlient", "fortimanager", "fortianalyzer", "fortiauthenticator", "version",
     "versions", "user", "users", "device", "devices", "solution", "how", "to",
 }
+
+# Explicitly different FortiGate inspection modes can describe different failure paths.
+MODE_CONTEXTS = ("proxy mode", "flow mode", "transparent mode", "tunnel mode")
 ISSUE_RE = re.compile(
     r"\b(bug|broken|fail(?:s|ed|ure)?|error|unable|not working|stops? working|"
     r"does not work|doesn't work|not responding|does not respond|no response from|rejects? authentication|crash(?:es|ed)?|hang(?:s|ing)?|drop(?:s|ped|ping)?|"
@@ -277,6 +280,14 @@ def forum_report_count(items: list[dict]) -> int:
 
 
 def similar(a: dict, b: dict) -> bool:
+    # Do not merge reports that explicitly name different inspection modes just
+    # because they share protocol terms (for example, DNS over TLS).
+    title_a, title_b = norm(a.get("title", "")), norm(b.get("title", ""))
+    modes_a = {mode for mode in MODE_CONTEXTS if mode in title_a}
+    modes_b = {mode for mode in MODE_CONTEXTS if mode in title_b}
+    if modes_a and modes_b and modes_a.isdisjoint(modes_b):
+        return False
+
     pa, pb = set(a.get("products", [])), set(b.get("products", []))
     if pa and pb and not pa.intersection(pb):
         return False
