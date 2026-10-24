@@ -234,7 +234,7 @@ def extract_sections(item: dict) -> dict:
 
 
 def has_documented_evidence(item: dict) -> bool:
-    """Require a version-scoped, explicit issue/change in a Fortinet-authored article."""
+    """Require an explicit, scoped Fortinet issue; missing versions remain explicitly unknown."""
     if source_type(item) != "fortinet_article":
         return False
     title = item.get("title", "")
@@ -264,7 +264,7 @@ def has_documented_evidence(item: dict) -> bool:
         and re.search(r"\bSolution\b", normalized_summary, re.I)
     )
     has_version = bool(extract_versions(item)[0])
-    return bool(has_version and (known_issue or behavior_change or troubleshooting or scoped_issue))
+    return bool(scoped_issue or (has_version and (known_issue or behavior_change or troubleshooting)))
 
 
 def forum_report_count(items: list[dict]) -> int:
@@ -374,11 +374,16 @@ def synthesize(data: dict, out: Path = DATA) -> dict:
             "sources": sources,
             "lastSeen": newest or None,
             "status": (
-                "Documenté par Fortinet (version identifiée)" if documented and reports < 2
+                "Documenté par Fortinet (version identifiée)" if documented and reports < 2 and exact_versions
+                else "Documenté par Fortinet (version non précisée)" if documented and reports < 2
                 else "Documenté par Fortinet + récurrent" if documented
                 else f"Récurrent — {reports} discussions distinctes"
             ),
-            "confidence": "Documentation Fortinet versionnée" if documented else "Plusieurs discussions distinctes",
+            "confidence": (
+                "Documentation Fortinet versionnée" if documented and exact_versions
+                else "Documentation Fortinet (version non précisée)" if documented
+                else "Plusieurs discussions distinctes"
+            ),
             "evidenceType": "official_documentation" if documented else "repeated_reports",
             "synthesisMethod": "Règles de preuve : article Fortinet versionné et explicite, ou au moins deux discussions distinctes; pas d'IA générative.",
         })
