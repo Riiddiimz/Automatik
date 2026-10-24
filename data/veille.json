@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-24T07:11:01.476018+00:00",
+  "generatedAt": "2026-10-24T07:12:41.841023+00:00",
   "fortinet": [
     {
       "source": "FortiGuard PSIRT",
@@ -2170,5 +2170,7 @@
       ]
     }
   ],
-  "errors": []
+  "errors": [
+    "CISA Cybersecurity Advisories: HTTPError: HTTP Error 403: Forbidden"
+  ]
 }
