@@ -148,6 +148,28 @@ class CommunitySynthesisTests(unittest.TestCase):
         self.assertEqual(incident["status"], "Documenté par Fortinet (version non précisée)")
 
 
+    def test_official_scoped_issue_without_version_is_published_as_unknown(self):
+        item = {
+            "title": "Troubleshooting Tip: LDAP search 'Timed out' in 5 seconds, ignoring timeout settings",
+            "summary": (
+                "DescriptionThis article describes a known issue where an LDAP search fails within five seconds. "
+                "ScopeFortiAuthenticator, LDAP, FSSO. "
+                "SolutionCollect the LDAP debug logs and open a support case if the timeout persists."
+            ),
+            "url": "https://community.fortinet.com/fortiauthenticator-8/troubleshooting-tip-ldap-search-timed-out-in-5-seconds-ignoring-timeout-settings-230479",
+        }
+        self.assertEqual(synth.extract_versions(item), ([], []))
+        self.assertTrue(synth.has_documented_evidence(item))
+        with tempfile.TemporaryDirectory() as directory:
+            result = synth.synthesize({"topics": [item]}, Path(directory) / "community.json")
+        self.assertEqual(result["incidentCount"], 1)
+        incident = result["incidents"][0]
+        self.assertEqual(incident["products"], ["FortiAuthenticator"])
+        self.assertEqual(incident["versions"], [])
+        self.assertEqual(incident["versionFamilies"], [])
+        self.assertEqual(incident["status"], "Documenté par Fortinet (version non précisée)")
+
+
     def test_official_articles_do_not_count_as_multiple_people(self):
         data = {"topics": [
             {"title": "VPN disconnects after upgrade", "summary": "VPN disconnects after upgrade", "url": "https://community.fortinet.com/support-forum-92/report-1", "products": ["FortiGate"], "versionFamilies": ["7.4"]},
