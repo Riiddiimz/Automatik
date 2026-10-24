@@ -112,21 +112,31 @@ def extract_products(item: dict) -> list[str]:
 
 
 def extract_versions(item: dict) -> tuple[list[str], list[str]]:
-    text = " ".join([item.get("title", ""), item.get("summary", "")])
-    # RSS/HTML cleanup can concatenate section labels and their values (e.g.
-    # "ScopeFortiGate 7.6.4"). Restore that boundary before version matching.
-    text = re.sub(
+    title = item.get("title", "")
+    summary = item.get("summary", "")
+    # RSS/HTML cleanup can concatenate section labels and their values.
+    summary = re.sub(
         r"\b(?i:Description|Scope|Solution|Workaround|Impact)(?=[A-Z])",
         lambda match: match.group(0) + " ",
-        text,
+        summary,
     )
+    text = title + " " + summary
+    if source_type(item) == "fortinet_article":
+        scope = re.search(
+            r"\bScope\s*:?\s*(.*?)(?=\b(?:Solution|Workaround|Impact|Description)\b|$)",
+            summary, re.I | re.S,
+        )
+        if scope:
+            scoped_text = title + " " + scope.group(1)
+            # Scope identifies affected releases. Don't include versions later
+            # listed as unaffected or merely mentioned in the resolution steps.
+            if VERSION_CONTEXT_RE.search(scoped_text) or UPGRADE_PATH_RE.search(scoped_text) or UPGRADE_TARGET_RE.search(scoped_text):
+                text = scoped_text
     # Remove complete IPv4 addresses before looking for dotted version numbers.
     text_without_ips = re.sub(r"\b(?:\d{1,3}\.){3}\d{1,3}\b", " ", text)
-    # Do not mistake versions printed by diagnostic utilities for Fortinet firmware.
-    # Exclude operating-system/platform versions (for example EulerOS 2.0
-    # and CentOS 7.9), which are not Fortinet firmware versions.
+    # Exclude operating-system/platform versions, which are not Fortinet firmware.
     text_without_ips = NON_FORTINET_VERSION_RE.sub(" ", text_without_ips)
-    # Exclude elapsed-time decimals such as "0.7 seconds" from firmware versions.
+    # Exclude elapsed-time decimals such as "0.7 seconds".
     text_without_ips = re.sub(
         r"\b\d+(?:\.\d+)?\s*(?:seconds?|secs?|milliseconds?|msecs?|minutes?|mins?|hours?|hrs?)\b",
         " ", text_without_ips, flags=re.I,
@@ -135,10 +145,6 @@ def extract_versions(item: dict) -> tuple[list[str], list[str]]:
         r"\b(?:dig|openssl|python|curl|wget|iperf3?|ping)\s+v?\d{1,2}\.\d{1,2}(?:\.\d{1,3})?\b",
         " ", text_without_ips, flags=re.I,
     )
-    # Keep versions explicitly tied to a Fortinet product/firmware marker.
-    # Only add unqualified versions when they are part of an explicit upgrade path;
-    # a long sentence mentioning FortiOS must not make unrelated CVE/platform numbers
-    # look like FortiGate firmware versions.
     found = set(VERSION_CONTEXT_RE.findall(text_without_ips))
     for source_version, target_version in UPGRADE_PATH_RE.findall(text_without_ips):
         found.update((source_version, target_version))
@@ -243,13 +249,22 @@ def has_documented_evidence(item: dict) -> bool:
         r"will be disabled|requires? .*certificate|must be signed)",
         text, re.I,
     )
+    normalized_summary = re.sub(
+        r"\b(?i:Description|Scope|Solution|Workaround|Impact)(?=[A-Z])",
+        lambda match: match.group(0) + " ", item.get("summary", ""),
+    )
     troubleshooting = bool(
         re.search(r"\btroubleshooting tip\b", title, re.I)
         and ISSUE_RE.search(title)
-        and re.search(r"\bsolution\b", item.get("summary", ""), re.I)
+        and re.search(r"\bsolution\b", normalized_summary, re.I)
+    )
+    scoped_issue = bool(
+        ISSUE_RE.search(title)
+        and re.search(r"\bScope\b", normalized_summary, re.I)
+        and re.search(r"\bSolution\b", normalized_summary, re.I)
     )
     has_version = bool(extract_versions(item)[0])
-    return bool(has_version and (known_issue or behavior_change or troubleshooting))
+    return bool(has_version and (known_issue or behavior_change or troubleshooting or scoped_issue))
 
 
 def forum_report_count(items: list[dict]) -> int:
