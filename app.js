@@ -107,8 +107,11 @@ async function loadCommunity() {
     $("community-status").textContent = communityData.partial
       ? `Collecte partielle — historique conservé · dernière tentative : ${date}`
       : `Dernière collecte : ${date} · ${communityData.incidentCount ?? communityData.incidents?.length ?? 0} points de vigilance retenus depuis ${communityData.topics?.length || 0} sujets`;
-    if (communityData.errors?.length) $("community-status").textContent += ` · ${communityData.errors.length} avertissement(s)`;
-    if (communityData.synthesisNote) $("community-status").title = communityData.synthesisNote;
+    const warnings = (communityData.errors || []).filter(Boolean);
+    if (warnings.length) {
+      $("community-status").textContent += ` · ${warnings.length} avertissement(s) : ${warnings[0]}`;
+    }
+    $("community-status").title = [communityData.synthesisNote, ...warnings].filter(Boolean).join("\n\n");
     renderCommunity();
   } catch (error) {
     $("community-status").textContent = "Flux Community indisponible. L’historique affiché n’a pas pu être chargé.";
