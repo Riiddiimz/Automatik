@@ -31,6 +31,19 @@ class CommunityFeedTests(unittest.TestCase):
         ems = next(item for item in items if "FortiClient EMS" in item["products"])
         self.assertNotIn("FortiClient", ems["products"])
 
+    def test_official_article_versions_follow_scope_not_unaffected_versions(self):
+        payload = b"""<rss version="2.0"><channel>
+          <item>
+            <title>Administrator SSO authentication fails after upgrade to FortiOS 7.6.8</title>
+            <link>https://community.fortinet.com/fortigate-3/administrator-sso-authentication-fails-after-upgrade-to-fortios-7-6-8-230826</link>
+            <description><![CDATA[DescriptionAfter upgrade to FortiOS 7.6.8, administrator SSO authentication fails. ScopeFortiOS 7.6.8.SolutionAfter upgrade, administrator SSO fails. Confirmed not affected: Other FortiOS versions including FortiOS 7.2.14, 7.4.13, 7.6.7 and 8.0.2. A Python example uses 3.11.8; host address 208.91.112.55.]]></description>
+          </item>
+        </channel></rss>"""
+        items = collector.parse_feed(payload)
+        self.assertEqual(len(items), 1)
+        self.assertEqual(items[0]["versions"], ["7.6.8"])
+
+
     def test_atom_feed_is_supported(self):
         payload = b"""<feed xmlns="http://www.w3.org/2005/Atom"><entry><title>FortiManager topic</title><link href="https://community.fortinet.com/t5/FortiManager/atom"/><updated>2026-10-21T08:00:00Z</updated><summary>Policy issue</summary></entry></feed>"""
         items = collector.parse_feed(payload)
