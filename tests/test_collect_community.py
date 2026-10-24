@@ -1,4 +1,5 @@
 import importlib.util
+import io
 import json
 from pathlib import Path
 import tempfile
@@ -42,6 +43,28 @@ class CommunityFeedTests(unittest.TestCase):
         items = collector.parse_feed(payload)
         self.assertEqual(len(items), 1)
         self.assertEqual(items[0]["versions"], ["7.6.8"])
+
+
+    def test_extended_feed_falls_back_and_marks_collection_partial(self):
+        payload = b"""<rss version="2.0"><channel>
+          <item><title>FortiGate 7.4.12 VPN issue</title><link>https://community.fortinet.com/t5/FortiGate/new</link><description>VPN disconnects</description></item>
+        </channel></rss>"""
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "community.json"
+            with patch.object(
+                collector.urllib.request,
+                "urlopen",
+                side_effect=[urllib.error.URLError("extended feed forbidden"), io.BytesIO(payload)],
+            ) as mocked:
+                result = collector.collect(out=path)
+
+        self.assertTrue(result["partial"])
+        self.assertEqual(result["feedUrl"], collector.FEED_URL)
+        self.assertTrue(any("Flux étendu indisponible" in error for error in result["errors"]))
+        self.assertEqual(len(result["topics"]), 1)
+        self.assertEqual(mocked.call_count, 2)
+        self.assertIn("count=500", mocked.call_args_list[0].args[0].full_url)
+        self.assertEqual(mocked.call_args_list[1].args[0].full_url, collector.FEED_URL)
 
 
     def test_atom_feed_is_supported(self):
