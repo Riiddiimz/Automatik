@@ -63,13 +63,30 @@ def clean(value: str | None) -> str:
     return re.sub(r"\s+", " ", TAG_RE.sub(" ", value)).strip()
 
 
-def extract_versions(text: str) -> list[str]:
+def extract_versions(title: str, summary: str, url: str = "") -> list[str]:
     # RSS/HTML cleanup can concatenate section labels and values, e.g. ScopeFortiOS.
-    text = re.sub(
+    summary = re.sub(
         r"\b(?i:Description|Scope|Solution|Workaround|Impact)(?=[A-Z])",
         lambda match: match.group(0) + " ",
-        text,
+        summary,
     )
+    text = f"{title} {summary}"
+    official_article = bool(re.match(
+        r"https?://community\.fortinet\.com/(?:fortigate-|fortimanager-|fortianalyzer-|"
+        r"fortiauthenticator-|forticlient-ems-|forticlient-|fortiswitch-|fortiap-)",
+        url, re.I,
+    ))
+    if official_article:
+        scope = re.search(
+            r"\bScope\s*:?\s*(.*?)(?=\b(?:Solution|Workaround|Impact|Description)\b|$)",
+            summary, re.I | re.S,
+        )
+        if scope:
+            scoped_text = f"{title} {scope.group(1)}"
+            # When Fortinet explicitly scopes a version, don't mix in versions
+            # listed later as unaffected or merely mentioned in the solution.
+            if VERSION_CONTEXT_RE.search(scoped_text) or UPGRADE_PATH_RE.search(scoped_text) or UPGRADE_TARGET_RE.search(scoped_text):
+                text = scoped_text
     # Exclude IP addresses, platform/tool versions and elapsed-time decimals.
     text = re.sub(r"\b(?:\d{1,3}\.){3}\d{1,3}\b", " ", text)
     text = NON_FORTINET_VERSION_RE.sub(" ", text)
@@ -149,7 +166,7 @@ def parse_feed(payload: bytes) -> list[dict]:
             continue
         if "FortiClient EMS" in products:
             products = [p for p in products if p != "FortiClient"]
-        versions = extract_versions(text)
+        versions = extract_versions(title, summary, link)
         result.append({
             "id": link.rstrip("/"),
             "title": title,
