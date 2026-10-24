@@ -87,6 +87,18 @@ const { chromium } = require("playwright");
       }
     }
 
+    const unknownVersionIncident = (data.incidents || []).find(item =>
+      !(item.versions || []).length && !(item.versionFamilies || []).length
+    );
+    if (unknownVersionIncident) {
+      const unknownVersionCard = cards.filter({ hasText: unknownVersionIncident.title }).first();
+      assert.equal(
+        await unknownVersionCard.getByText("Version : non précisée par la source", { exact: true }).count(),
+        1,
+        "une fiche sans version ne doit pas suggérer de version"
+      );
+    }
+
     await page.setViewportSize({ width: 390, height: 844 });
     const widthCheck = await page.evaluate(() => ({
       viewport: document.documentElement.clientWidth,
