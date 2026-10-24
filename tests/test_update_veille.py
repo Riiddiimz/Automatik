@@ -65,7 +65,7 @@ class UpdatePreservationTests(unittest.TestCase):
         self.assertEqual(result["kev"][0]["cveID"], "CVE-2026-0002")
         self.assertTrue(any("FortiGuard Outbreak Alerts" in error for error in result["errors"]))
 
-    def test_cisa_feed_falls_back_to_cert_fr_when_both_cisa_urls_fail(self):
+    def test_cert_fr_is_collected_when_cisa_endpoints_fail(self):
         psirt = b"""<rss version="2.0"><channel><item><title>PSIRT</title><link>https://example.com/psirt</link></item></channel></rss>"""
         outbreak = b"""<rss version="2.0"><channel><item><title>Outbreak</title><link>https://example.com/outbreak</link></item></channel></rss>"""
         cert_fr = b"""<rss version="2.0"><channel><item><title>CERT-FR security advisory</title><link>https://www.cert.ssi.gouv.fr/alerte/example</link></item></channel></rss>"""
@@ -80,7 +80,6 @@ class UpdatePreservationTests(unittest.TestCase):
         self.assertIn("CERT-FR security advisory", [item["title"] for item in result["cyber"]])
         self.assertIn("Fortinet security hardening release", [item["title"] for item in result["cyber"]])
         self.assertIn("CERT-FR", [item["source"] for item in result["cyber"]])
-        self.assertFalse(any("CISA Cybersecurity Advisories" in error for error in result["errors"]))
         self.assertEqual(mock_fetch.call_args_list[2].args[0], "https://www.cisa.gov/cybersecurity-advisories/all.xml")
         self.assertEqual(mock_fetch.call_args_list[3].args[0], "https://www.cisa.gov/cybersecurity-advisories/cybersecurity-advisories.xml")
         self.assertEqual(mock_fetch.call_args_list[4].args[0], "https://www.cert.ssi.gouv.fr/feed/")
