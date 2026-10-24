@@ -67,6 +67,20 @@ class CommunityFeedTests(unittest.TestCase):
         self.assertEqual(mocked.call_args_list[1].args[0].full_url, collector.FEED_URL)
 
 
+    def test_underfilled_extended_feed_is_marked_partial(self):
+        payload = b"""<rss version="2.0"><channel>
+          <item><title>FortiGate 7.4.12 VPN issue</title><link>https://community.fortinet.com/t5/FortiGate/new</link><description>VPN disconnects</description></item>
+        </channel></rss>"""
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "community.json"
+            with patch.object(collector.urllib.request, "urlopen", return_value=io.BytesIO(payload)):
+                result = collector.collect(out=path)
+
+        self.assertTrue(result["partial"])
+        self.assertEqual(result["feedUrl"], collector.EXTENDED_FEED_URL)
+        self.assertTrue(any("500 demandés" in error for error in result["errors"]))
+
+
     def test_atom_feed_is_supported(self):
         payload = b"""<feed xmlns="http://www.w3.org/2005/Atom"><entry><title>FortiManager topic</title><link href="https://community.fortinet.com/t5/FortiManager/atom"/><updated>2026-10-21T08:00:00Z</updated><summary>Policy issue</summary></entry></feed>"""
         items = collector.parse_feed(payload)
