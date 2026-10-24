@@ -88,7 +88,7 @@ function renderCommunity() {
         <section class="incident-detail"><strong>Impact</strong><p>${escapeHTML(item.impact || "Non précisé par la source.")}</p></section>
         <section class="incident-detail"><strong>Solution / correctif</strong><p>${escapeHTML(item.solution || "Non précisé dans les sources consultées.")}</p></section>
       </div>
-      <div class="community-meta"><span>${item.forumReportCount ?? 0} signalement(s) utilisateur(s) distinct(s)</span>${item.documentedSourceCount ? `<span>${item.documentedSourceCount} source(s) Fortinet documentée(s)</span>` : ""}${versionMeta}<span>Dernière publication : ${escapeHTML(safeDate(item.lastSeen))}</span></div>
+      <div class="community-meta"><span>${item.forumReportCount ?? 0} signalement(s) utilisateur(s) distinct(s)</span>${item.documentedSourceCount ? `<span>${item.documentedSourceCount} source(s) Fortinet documentée(s)</span>` : ""}${versionMeta}<span>Dernière activité source : ${escapeHTML(safeDate(item.lastSeen))}</span></div>
       <details class="incident-sources"><summary>Consulter les sources (${(item.sources || []).length})</summary><ul>${sources}</ul>${extra ? `<p class="source-extra">Et ${extra} autre(s) source(s) dans ce regroupement.</p>` : ""}</details>
       <div class="community-caution">${escapeHTML(item.confidence || "Critères de preuve appliqués.")}. Les versions, symptômes et sources restent consultables avant toute décision de mise à niveau.</div>
     </article>`;
