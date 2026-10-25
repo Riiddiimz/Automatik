@@ -34,7 +34,7 @@ function renderCyber(items) {
 }
 function renderKev(items, filter = "") {
   const query = filter.trim().toLowerCase();
-  const filtered = items.filter(item => [item.cve, item.title, item.vendorProject, item.product, item.shortDescription].join(" ").toLowerCase().includes(query));
+  const filtered = items.filter(item => [item.cve, item.cveID, item.title, item.vulnerabilityName, item.vendorProject, item.product, item.shortDescription, item.description, item.requiredAction, item.notes].filter(Boolean).join(" ").toLowerCase().includes(query));
   $("cve-count").textContent = `${filtered.length} résultat(s)`;
   if (!filtered.length) return '<div class="empty-card">Aucun résultat. Essaie un autre mot-clé.</div>';
   return filtered.slice(0, 30).map(item => {
