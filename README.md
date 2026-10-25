@@ -25,7 +25,7 @@ Les versions sont extraites lorsqu'elles sont explicitement liées à un produit
 
 ## Collecte et publication
 
-- Le workflow **Collecte Fortinet Community** s'exécute quotidiennement et peut aussi être lancé manuellement depuis l'onglet Actions.
+- Le workflow **Collecte Fortinet Community** s'exécute toutes les six heures (planification UTC) et peut aussi être lancé manuellement depuis l'onglet Actions.
 - Il demande d’abord le flux public avec `count=500`, puis utilise l’URL RSS standard si ce paramètre échoue. Il conserve un historique plafonné, déduplique les URL, regroupe les sujets et actualise `data/community.json`.
 - Si moins de 500 sujets sont renvoyés, la collecte est marquée partielle et l’interface affiche l’avertissement. Cela signale que la couverture des 30 derniers jours n’est pas garantie; ce n’est pas une preuve d’absence de problèmes, et l’historique déjà collecté reste conservé.
 - Le workflow **Vérification du projet** contrôle la syntaxe Python et JavaScript, les tests unitaires, les fichiers JSON et le parcours navigateur Playwright/Chromium.
