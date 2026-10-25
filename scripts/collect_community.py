@@ -119,7 +119,10 @@ class TopicProductTagParser(HTMLParser):
                 re.I,
             )
             slug = match.group(1).lower() if match else ""
-            product = PRODUCT_BOARD_SLUGS.get(slug)
+            product = PRODUCT_BOARD_SLUGS.get(slug) or next(
+                (name for prefix, name in PRODUCT_BOARD_SLUGS.items() if slug.startswith(prefix)),
+                None,
+            )
         if product and product not in target:
             target.append(product)
 
