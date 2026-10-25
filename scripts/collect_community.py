@@ -109,8 +109,14 @@ class TopicProductTagParser(HTMLParser):
             self.anchor = {"href": dict(attrs).get("href", "") or "", "text": []}
 
     def handle_data(self, data: str) -> None:
+        if self.stopped:
+            return
         if self.anchor is not None:
             self.anchor["text"].append(data)
+        elif data.strip().casefold() in {"like", "follow"}:
+            # Khoros renders the reaction bar as buttons on some pages, not links.
+            # Stop before footer navigation, which links to every product board.
+            self.stopped = True
 
     def handle_endtag(self, tag: str) -> None:
         if tag.lower() != "a" or self.anchor is None:

@@ -78,7 +78,7 @@ class CommunityFeedTests(unittest.TestCase):
         page = """<html><body>
           <a href="/fortigate-3">FortiGate</a>
           <a href="/fortiap-5">FortiAP</a>
-          <a href="/reaction">Like</a>
+          <button><span>Like</span></button>
           <a href="/fortimanager-27">FortiManager</a>
         </body></html>"""
         self.assertEqual(collector.parse_topic_products(page), ["FortiGate", "FortiAP"])
