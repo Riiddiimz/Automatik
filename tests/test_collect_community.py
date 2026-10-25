@@ -45,6 +45,23 @@ class CommunityFeedTests(unittest.TestCase):
         self.assertEqual(items[0]["versions"], ["7.6.8"])
 
 
+    def test_rss_categories_identify_products_missing_from_title_and_summary(self):
+        payload = b"""<rss version="2.0"><channel>
+          <item>
+            <title>After upgrade to 7.4.13 many AP are not connected</title>
+            <link>https://community.fortinet.com/support-forum-92/after-upgrade-to-7-4-13-many-ap-are-not-connected-230800</link>
+            <pubDate>Sat, 24 Oct 2026 08:00:00 GMT</pubDate>
+            <category>FortiGate</category><category>FortiAP</category>
+            <description>Many APs no longer connect after the upgrade.</description>
+          </item>
+        </channel></rss>"""
+        items = collector.parse_feed(payload)
+        self.assertEqual(len(items), 1)
+        self.assertEqual(items[0]["products"], ["FortiGate", "FortiAP"])
+        self.assertEqual(items[0]["categories"], ["FortiGate", "FortiAP"])
+        self.assertEqual(items[0]["versions"], ["7.4.13"])
+        self.assertEqual(items[0]["summary"], "Many APs no longer connect after the upgrade.")
+
     def test_extended_feed_falls_back_and_marks_collection_partial(self):
         payload = b"""<rss version="2.0"><channel>
           <item><title>FortiGate 7.4.12 VPN issue</title><link>https://community.fortinet.com/t5/FortiGate/new</link><description>VPN disconnects</description></item>
