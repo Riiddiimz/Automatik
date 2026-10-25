@@ -167,14 +167,29 @@ def parse_feed(payload: bytes) -> list[dict]:
             link = (link_el.get("href", "") if link_el is not None else "").strip()
             date_raw = entry.findtext(f"{atom_ns}published") or entry.findtext(f"{atom_ns}updated") or ""
             summary_raw = entry.findtext(f"{atom_ns}summary") or entry.findtext(f"{atom_ns}content") or ""
+            categories = [
+                clean(category.get("term", "") or category.text or "")
+                for category in entry.findall(f"{atom_ns}category")
+            ]
         else:
             link = (entry.findtext("link") or "").strip()
             date_raw = entry.findtext("pubDate") or entry.findtext("published") or ""
             summary_raw = entry.findtext("description") or entry.findtext("summary") or ""
+            categories = [
+                clean(category.text or "")
+                for category in entry.findall("category")
+            ]
+            categories.extend(
+                clean(subject.text or "")
+                for subject in entry.findall("{http://purl.org/dc/elements/1.1/}subject")
+            )
+        categories = list(dict.fromkeys(category for category in categories if category))
         summary = clean(summary_raw)
         if not title or not link.startswith("https://community.fortinet.com/"):
             continue
-        text = f"{title} {summary}"
+        # Khoros forum topics can mention products only in their tags/categories.
+        # Include those labels for product detection without polluting the symptom summary.
+        text = f"{title} {summary} {' '.join(categories)}"
         products = [name for name, patterns in PRODUCT_ALIASES.items() if any(re.search(pattern, text, re.I) for pattern in patterns)]
         # The forum board identifies the primary product even when the article body mentions another device.
         board = re.match(r"https?://community\.fortinet\.com/([^/]+)", link, re.I)
@@ -200,6 +215,7 @@ def parse_feed(payload: bytes) -> list[dict]:
             "url": link,
             "date": parse_date(date_raw),
             "summary": summary[:1200],
+            "categories": categories,
             "products": products,
             "versions": versions,
             "status": "À vérifier",
