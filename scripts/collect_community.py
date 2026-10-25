@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import html
+from html.parser import HTMLParser
 import json
 import re
 import urllib.error
@@ -19,16 +20,17 @@ EXTENDED_FEED_URL = f"{FEED_URL}?count={EXTENDED_FEED_COUNT}"
 OUT = ROOT / "data" / "community.json"
 USER_AGENT = "AutomatikCommunityWatch/1.0 (+https://github.com/Riiddiimz/Automatik)"
 MAX_HISTORY = 500
+MAX_TOPIC_PRODUCT_LOOKUPS = 8
 
 PRODUCT_ALIASES = {
-    "FortiGate": (r"\bfortigate\b", r"\bfortios\b", r"\bforti[- ]?gate\b"),
-    "FortiManager": (r"\bfortimanager\b",),
-    "FortiAnalyzer": (r"\bfortianalyzer\b",),
-    "FortiAuthenticator": (r"\bfortiauthenticator\b",),
+    "FortiGate": (r"\bforti[- ]?gates?\b", r"\bfortios\b"),
+    "FortiManager": (r"\bfortimanagers?\b",),
+    "FortiAnalyzer": (r"\bfortianalyzers?\b",),
+    "FortiAuthenticator": (r"\bfortiauthenticators?\b",),
     "FortiClient EMS": (r"\bforticlient\s*ems\b", r"\bfcems\b"),
-    "FortiClient": (r"\bforticlient\b",),
-    "FortiSwitch": (r"\bfortiswitch\b",),
-    "FortiAP": (r"\bfortiap\b",),
+    "FortiClient": (r"\bforticlients?\b",),
+    "FortiSwitch": (r"\bfortiswitch(?:es)?\b",),
+    "FortiAP": (r"\bforti[- ]?aps?\b",),
 }
 # Only treat a dotted number as firmware when it is tied to a Fortinet
 # product/firmware marker or appears in an explicit upgrade path.
@@ -63,6 +65,138 @@ TAG_RE = re.compile(r"<[^>]+>")
 def clean(value: str | None) -> str:
     value = html.unescape(value or "")
     return re.sub(r"\s+", " ", TAG_RE.sub(" ", value)).strip()
+
+
+PRODUCT_BOARD_SLUGS = {
+    "fortigate-3": "FortiGate",
+    "fortimanager-27": "FortiManager",
+    "fortianalyzer-6": "FortiAnalyzer",
+    "fortiauthenticator-8": "FortiAuthenticator",
+    "forticlient-4": "FortiClient",
+    "fortiap-5": "FortiAP",
+}
+ISSUE_CONTEXT_RE = re.compile(
+    r"\b(?:not\s+connect(?:ed|ing)?|unable\s+to\s+connect|cannot\s+connect|"
+    r"can't\s+connect|disconnect(?:ed|ing|s)?|fail(?:s|ed|ure)?|broken|"
+    r"not\s+working|stuck|offline|does\s+not\s+work|no\s+longer)\b",
+    re.I,
+)
+
+
+def needs_product_enrichment(title: str, summary: str) -> bool:
+    text = f"{title} {summary}"
+    has_version = bool(
+        VERSION_CONTEXT_RE.search(text)
+        or UPGRADE_TARGET_RE.search(text)
+        or UPGRADE_PATH_RE.search(text)
+    )
+    return has_version and bool(ISSUE_CONTEXT_RE.search(text))
+
+
+class TopicProductTagParser(HTMLParser):
+    """Read product labels from the public topic page, before the reaction/footer links."""
+
+    def __init__(self):
+        super().__init__(convert_charrefs=True)
+        self.products: list[str] = []
+        self.anchor: dict | None = None
+        self.stopped = False
+
+    def handle_starttag(self, tag: str, attrs: list[tuple[str, str | None]]) -> None:
+        if self.stopped:
+            return
+        if tag.lower() == "a":
+            self.anchor = {"href": dict(attrs).get("href", "") or "", "text": []}
+
+    def handle_data(self, data: str) -> None:
+        if self.anchor is not None:
+            self.anchor["text"].append(data)
+
+    def handle_endtag(self, tag: str) -> None:
+        if tag.lower() != "a" or self.anchor is None:
+            return
+        anchor = self.anchor
+        self.anchor = None
+        label = clean("".join(anchor["text"]))
+        if label.casefold() in {"like", "follow"}:
+            self.stopped = True
+            return
+        product = next(
+            (name for name in PRODUCT_ALIASES if label.casefold() == name.casefold()),
+            None,
+        )
+        if product is None:
+            match = re.match(
+                r"^(?:https?://community\.fortinet\.com)?/([^/?#]+)",
+                anchor["href"],
+                re.I,
+            )
+            slug = match.group(1).lower() if match else ""
+            product = PRODUCT_BOARD_SLUGS.get(slug)
+        if product and product not in self.products:
+            self.products.append(product)
+
+
+def parse_topic_products(payload: str | bytes) -> list[str]:
+    if isinstance(payload, bytes):
+        payload = payload.decode("utf-8", errors="replace")
+    parser = TopicProductTagParser()
+    parser.feed(payload)
+    parser.close()
+    return parser.products
+
+
+def fetch_topic_products(url: str) -> list[str]:
+    """Read public product tags only; never retry by bypassing a 403 or access control."""
+    request = urllib.request.Request(
+        url,
+        headers={"User-Agent": USER_AGENT, "Accept": "text/html,application/xhtml+xml"},
+    )
+    with urllib.request.urlopen(request, timeout=12) as response:
+        payload = response.read(1_000_000)
+    return parse_topic_products(payload)
+
+
+def enrich_unclassified_topics(items: list[dict], detail_fetcher, errors: list[str]) -> list[dict]:
+    result = []
+    lookups = 0
+    deferred = 0
+    for raw in items:
+        if not raw.get("needsProductEnrichment"):
+            result.append(raw)
+            continue
+        if detail_fetcher is None:
+            continue
+        if lookups >= MAX_TOPIC_PRODUCT_LOOKUPS:
+            deferred += 1
+            continue
+        lookups += 1
+        try:
+            topic_products = detail_fetcher(raw["url"])
+        except (OSError, urllib.error.URLError, TimeoutError, UnicodeError) as exc:
+            errors.append(
+                f"Lecture des tags Community impossible ({raw['url']}): {type(exc).__name__}: {exc}"
+            )
+            continue
+        categories = list(dict.fromkeys([*raw.get("categories", []), *topic_products]))
+        text = f"{raw.get('title', '')} {raw.get('summary', '')} {' '.join(categories)}"
+        products = [
+            name for name, patterns in PRODUCT_ALIASES.items()
+            if any(re.search(pattern, text, re.I) for pattern in patterns)
+        ]
+        if "FortiClient EMS" in products:
+            products = [product for product in products if product != "FortiClient"]
+        if not products:
+            continue
+        item = {**raw, "categories": categories, "products": products}
+        item.pop("needsProductEnrichment", None)
+        result.append(item)
+    if deferred:
+        errors.append(
+            f"{deferred} sujets potentiels supplémentaires n'ont pas été enrichis "
+            f"(limite de {MAX_TOPIC_PRODUCT_LOOKUPS} pages publiques par collecte)."
+        )
+    return result
 
 
 def extract_versions(title: str, summary: str, url: str = "") -> list[str]:
@@ -204,12 +338,13 @@ def parse_feed(payload: bytes) -> list[dict]:
             primary = next((product for prefix, product in board_products.items() if slug.startswith(prefix)), None)
             if primary:
                 products = list(dict.fromkeys([primary] + [p for p in products if p in title]))
-        if not products:
+        needs_enrichment = not products and needs_product_enrichment(title, summary)
+        if not products and not needs_enrichment:
             continue
         if "FortiClient EMS" in products:
             products = [p for p in products if p != "FortiClient"]
         versions = extract_versions(title, summary, link)
-        result.append({
+        item = {
             "id": link.rstrip("/"),
             "title": title,
             "url": link,
@@ -221,7 +356,10 @@ def parse_feed(payload: bytes) -> list[dict]:
             "status": "À vérifier",
             "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
             "source": "Fortinet Community",
-        })
+        }
+        if needs_enrichment:
+            item["needsProductEnrichment"] = True
+        result.append(item)
     return result
 
 
@@ -235,17 +373,19 @@ def load_previous(path: Path = OUT) -> dict:
     return {"topics": []}
 
 
-def collect(fetcher=fetch_feed, out: Path = OUT) -> dict:
+def collect(fetcher=fetch_feed, out: Path = OUT, topic_fetcher=None) -> dict:
     previous = load_previous(out)
     now = datetime.now(timezone.utc).isoformat()
     errors = []
+    if topic_fetcher is None and fetcher is fetch_feed:
+        topic_fetcher = fetch_topic_products
     try:
-        fresh = parse_feed(fetcher())
+        fresh = enrich_unclassified_topics(parse_feed(fetcher()), topic_fetcher, errors)
         feed_url = getattr(fetcher, "last_url", None) or FEED_URL
         if not fresh and fetcher is fetch_feed and feed_url == EXTENDED_FEED_URL:
             # A syntactically valid but empty extended response is not evidence
             # that there are no topics; try the standard public feed as well.
-            fallback = parse_feed(fetcher(FEED_URL))
+            fallback = enrich_unclassified_topics(parse_feed(fetcher(FEED_URL)), topic_fetcher, errors)
             if fallback:
                 fresh = fallback
                 feed_url = getattr(fetcher, "last_url", None) or FEED_URL

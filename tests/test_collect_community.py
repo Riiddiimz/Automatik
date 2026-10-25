@@ -62,6 +62,65 @@ class CommunityFeedTests(unittest.TestCase):
         self.assertEqual(items[0]["versions"], ["7.4.13"])
         self.assertEqual(items[0]["summary"], "Many APs no longer connect after the upgrade.")
 
+    def test_product_aliases_accept_plural_names(self):
+        payload = b"""<rss version="2.0"><channel>
+          <item>
+            <title>FortiAPs are offline but can be pinged from the firewall</title>
+            <link>https://community.fortinet.com/support-forum-92/fortiaps-are-offline-230835</link>
+            <description>FortiGates can ping the FortiAPs, but the APs are not connected.</description>
+          </item>
+        </channel></rss>"""
+        items = collector.parse_feed(payload)
+        self.assertEqual(len(items), 1)
+        self.assertEqual(items[0]["products"], ["FortiGate", "FortiAP"])
+
+    def test_topic_product_tag_parser_ignores_footer_navigation(self):
+        page = """<html><body>
+          <a href="/fortigate-3">FortiGate</a>
+          <a href="/fortiap-5">FortiAP</a>
+          <a href="/reaction">Like</a>
+          <a href="/fortimanager-27">FortiManager</a>
+        </body></html>"""
+        self.assertEqual(collector.parse_topic_products(page), ["FortiGate", "FortiAP"])
+
+    def test_unclassified_upgrade_topic_is_enriched_from_public_tags(self):
+        payload = b"""<rss version="2.0"><channel>
+          <item>
+            <title>After upgrade to 7.4.13 many AP are not connected</title>
+            <link>https://community.fortinet.com/support-forum-92/after-upgrade-to-7-4-13-many-ap-are-not-connected-230800</link>
+            <pubDate>Sat, 24 Oct 2026 08:00:00 GMT</pubDate>
+            <category>Support Forum</category>
+            <description>Many APs no longer connect after the upgrade.</description>
+          </item>
+        </channel></rss>"""
+        items = collector.parse_feed(payload)
+        self.assertEqual(len(items), 1)
+        self.assertTrue(items[0]["needsProductEnrichment"])
+        self.assertEqual(items[0]["versions"], ["7.4.13"])
+        errors = []
+        enriched = collector.enrich_unclassified_topics(
+            items, lambda url: ["FortiGate", "FortiAP"], errors
+        )
+        self.assertEqual(enriched[0]["products"], ["FortiGate", "FortiAP"])
+        self.assertNotIn("needsProductEnrichment", enriched[0])
+        self.assertEqual(errors, [])
+
+    def test_failed_topic_detail_preserves_other_valid_topics(self):
+        payload = b"""<rss version="2.0"><channel>
+          <item><title>FortiGate 7.4.12 VPN disconnects</title><link>https://community.fortinet.com/fortigate-3/known-issue-230001</link><description>VPN drops after update</description></item>
+          <item><title>After upgrade to 7.4.13 many AP are not connected</title><link>https://community.fortinet.com/support-forum-92/after-upgrade-to-7-4-13-many-ap-are-not-connected-230800</link><description>Many APs no longer connect after the upgrade.</description></item>
+        </channel></rss>"""
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "community.json"
+            result = collector.collect(
+                fetcher=lambda: payload,
+                topic_fetcher=lambda url: (_ for _ in ()).throw(urllib.error.URLError("403 Forbidden")),
+                out=path,
+            )
+        self.assertTrue(result["partial"])
+        self.assertEqual(len(result["topics"]), 1)
+        self.assertTrue(any("Lecture des tags Community impossible" in error for error in result["errors"]))
+
     def test_extended_feed_falls_back_and_marks_collection_partial(self):
         payload = b"""<rss version="2.0"><channel>
           <item><title>FortiGate 7.4.12 VPN issue</title><link>https://community.fortinet.com/t5/FortiGate/new</link><description>VPN disconnects</description></item>
