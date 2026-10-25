@@ -55,6 +55,31 @@ class CommunitySynthesisTests(unittest.TestCase):
         self.assertEqual(result["incidents"][0]["sourceCount"], 2)
         self.assertEqual(result["incidents"][0]["versionFamilies"], ["7.6"])
 
+    def test_ap_and_wifi_reports_after_same_upgrade_are_grouped(self):
+        data = {"topics": [
+            {
+                "title": "After upgrade to 7.4.13 many AP are not connected",
+                "summary": "After upgrading to 7.4.13, many APs are no longer connecting to the firewall. A small number are connected, but most are not.",
+                "url": "https://community.fortinet.com/support-forum-92/after-upgrade-to-7-4-13-many-ap-are-not-connected-230800",
+                "products": ["FortiGate", "FortiAP"],
+                "date": "2026-10-23T08:00:00+00:00",
+            },
+            {
+                "title": "Some Devices Unable to Connect to Wi-Fi After Upgrading to 7.4.13",
+                "summary": "Some client devices cannot connect to Wi-Fi after upgrading our FortiGate 101F and FortiAP 231F environment to FortiOS 7.4.13.",
+                "url": "https://community.fortinet.com/support-forum-92/some-devices-unable-to-connect-to-wi-fi-after-upgrading-to-7-4-13-230816",
+                "products": ["FortiGate", "FortiAP"],
+                "date": "2026-10-23T09:44:13+00:00",
+            },
+        ]}
+        with tempfile.TemporaryDirectory() as directory:
+            result = synth.synthesize(data, Path(directory) / "community.json")
+        self.assertEqual(result["incidentCount"], 1)
+        self.assertEqual(result["incidents"][0]["forumReportCount"], 2)
+        self.assertEqual(result["incidents"][0]["sourceCount"], 2)
+        self.assertEqual(result["incidents"][0]["versionFamilies"], ["7.4"])
+        self.assertEqual(result["incidents"][0]["products"], ["FortiAP", "FortiGate"])
+
     def test_conflicting_inspection_modes_are_not_merged(self):
         proxy = {
             "title": "DNS over TLS broken in Proxy Mode",
