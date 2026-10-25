@@ -1,12 +1,55 @@
 {
-  "generatedAt": "2026-10-25T16:15:19.386671+00:00",
+  "generatedAt": "2026-10-25T20:49:10.802194+00:00",
   "feedUrl": "https://community.fortinet.com/feed/topics?count=500",
   "partial": true,
   "errors": [
     "Le flux Community a renvoyé 76 sujets sur 500 demandés; la couverture complète des 30 derniers jours n'est pas garantie."
   ],
-  "topicCount": 107,
+  "topicCount": 108,
   "topics": [
+    {
+      "id": "https://community.fortinet.com/support-forum-92/add-ha-a-p-fortigate-to-fortimanager-219157",
+      "title": "Add HA A/P FortiGate to FortiManager",
+      "url": "https://community.fortinet.com/support-forum-92/add-ha-a-p-fortigate-to-fortimanager-219157",
+      "date": "2026-10-25T20:25:01+00:00",
+      "summary": "Hi, I do have HA Active Passive FortiGate - Active and Running. Recently, I added a new FortiManager. Kindly guide how I can add FortiGate as an HA to FortiManager. There is an option on FortiManager to add an HA Cluster. But that means that this is for a new deployment, and now I'm in production. I followed the normal way to add a node from FortiManager - Add Primary IP - Then I noted that the Secondary became out of sync. Kindly guide me to the correct way.",
+      "categories": [
+        "Support Forum"
+      ],
+      "products": [
+        "FortiGate",
+        "FortiManager"
+      ],
+      "versions": [],
+      "status": "À vérifier",
+      "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
+      "source": "Fortinet Community",
+      "firstSeen": "2026-10-25T20:49:10.802194+00:00",
+      "lastSeen": "2026-10-25T20:49:10.802194+00:00",
+      "versionFamilies": [],
+      "potentialProblem": false
+    },
+    {
+      "id": "https://community.fortinet.com/support-forum-92/intermittent-azure-application-slowness-over-ipsec-vpn-invalid-esp-packet-logs-230834",
+      "title": "Intermittent Azure Application Slowness Over IPsec VPN - Invalid ESP Packet Logs",
+      "url": "https://community.fortinet.com/support-forum-92/intermittent-azure-application-slowness-over-ipsec-vpn-invalid-esp-packet-logs-230834",
+      "date": "2026-10-25T18:16:30+00:00",
+      "summary": "Hello All,We have a site-to-site IPsec VPN between an on-premises FortiGate 100F and a remote FortiGate providing access to Azure-hosted applications.We are experiencing intermittent slowness when accessing one specific Azure application. The issue is reported by users almost every day after 5:00 PM.So far, we have:Verified Phase 1 and Phase 2 VPN configurations Verified routing and firewall policies Confirmed the tunnel remains up during the issue Reviewed security profiles (AV, IPS, SSL Certificate Inspection) and found no obvious impact Adjusted TCP MSS values (1350 on the tunnel interface and 1380 on the policy)While reviewing VPN event logs, I noticed multiple \"Invalid ESP packet detected\" messages. Today, one such event was logged at 5:12 PM, which coincided with user complaints about application slowness.Has anyone experienced a similar issue? Could the \"Invalid ESP packet detected\" logs indicate packet drops, MTU/fragmentation issues, rekeying problems, or another IPsec-related condition affecting performance?Any guidance on what to check next or recommended debug commands would be greatly appreciated.",
+      "products": [
+        "FortiGate"
+      ],
+      "versions": [],
+      "status": "À vérifier",
+      "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
+      "source": "Fortinet Community",
+      "firstSeen": "2026-10-25T08:38:19.289767+00:00",
+      "lastSeen": "2026-10-25T20:49:10.802194+00:00",
+      "versionFamilies": [],
+      "potentialProblem": true,
+      "categories": [
+        "Support Forum"
+      ]
+    },
     {
       "id": "https://community.fortinet.com/support-forum-92/fortiap-231f-standalone-configuration-230835",
       "title": "FortiAP 231F standalone configuration",
@@ -24,30 +67,9 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-25T16:15:19.386671+00:00",
-      "lastSeen": "2026-10-25T16:15:19.386671+00:00",
+      "lastSeen": "2026-10-25T20:49:10.802194+00:00",
       "versionFamilies": [],
       "potentialProblem": false
-    },
-    {
-      "id": "https://community.fortinet.com/support-forum-92/intermittent-azure-application-slowness-over-ipsec-vpn-invalid-esp-packet-logs-230834",
-      "title": "Intermittent Azure Application Slowness Over IPsec VPN - Invalid ESP Packet Logs",
-      "url": "https://community.fortinet.com/support-forum-92/intermittent-azure-application-slowness-over-ipsec-vpn-invalid-esp-packet-logs-230834",
-      "date": "2026-10-24T18:13:32+00:00",
-      "summary": "Hello All,We have a site-to-site IPsec VPN between an on-premises FortiGate 100F and a remote FortiGate providing access to Azure-hosted applications.We are experiencing intermittent slowness when accessing one specific Azure application. The issue is reported by users almost every day after 5:00 PM.So far, we have:Verified Phase 1 and Phase 2 VPN configurations Verified routing and firewall policies Confirmed the tunnel remains up during the issue Reviewed security profiles (AV, IPS, SSL Certificate Inspection) and found no obvious impact Adjusted TCP MSS values (1350 on the tunnel interface and 1380 on the policy)While reviewing VPN event logs, I noticed multiple \"Invalid ESP packet detected\" messages. Today, one such event was logged at 5:12 PM, which coincided with user complaints about application slowness.Has anyone experienced a similar issue? Could the \"Invalid ESP packet detected\" logs indicate packet drops, MTU/fragmentation issues, rekeying problems, or another IPsec-related condition affecting performance?Any guidance on what to check next or recommended debug commands would be greatly appreciated.",
-      "products": [
-        "FortiGate"
-      ],
-      "versions": [],
-      "status": "À vérifier",
-      "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
-      "source": "Fortinet Community",
-      "firstSeen": "2026-10-25T08:38:19.289767+00:00",
-      "lastSeen": "2026-10-25T16:15:19.386671+00:00",
-      "versionFamilies": [],
-      "potentialProblem": true,
-      "categories": [
-        "Support Forum"
-      ]
     },
     {
       "id": "https://community.fortinet.com/support-forum-92/configuring-a-static-ipv6-address-fails-with-state-dadfailed-due-to-duplicate-address-detection-230702",
@@ -63,7 +85,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-25T16:15:19.386671+00:00",
+      "lastSeen": "2026-10-25T20:49:10.802194+00:00",
       "versionFamilies": [],
       "potentialProblem": true,
       "categories": [
@@ -86,7 +108,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-23T07:37:30.171221+00:00",
-      "lastSeen": "2026-10-25T16:15:19.386671+00:00",
+      "lastSeen": "2026-10-25T20:49:10.802194+00:00",
       "versionFamilies": [
         "7.6"
       ],
@@ -111,7 +133,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-24T13:57:19.874191+00:00",
-      "lastSeen": "2026-10-25T16:15:19.386671+00:00",
+      "lastSeen": "2026-10-25T20:49:10.802194+00:00",
       "versionFamilies": [
         "7.2"
       ],
@@ -137,7 +159,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-25T08:49:02.456463+00:00",
-      "lastSeen": "2026-10-25T16:15:19.386671+00:00",
+      "lastSeen": "2026-10-25T20:49:10.802194+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -163,7 +185,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-25T08:49:02.456463+00:00",
-      "lastSeen": "2026-10-25T16:15:19.386671+00:00",
+      "lastSeen": "2026-10-25T20:49:10.802194+00:00",
       "versionFamilies": [
         "7.4"
       ],
@@ -183,7 +205,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-23T07:37:30.171221+00:00",
-      "lastSeen": "2026-10-25T16:15:19.386671+00:00",
+      "lastSeen": "2026-10-25T20:49:10.802194+00:00",
       "versionFamilies": [],
       "potentialProblem": false,
       "categories": [
@@ -204,7 +226,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-24T07:14:22.584683+00:00",
-      "lastSeen": "2026-10-25T16:15:19.386671+00:00",
+      "lastSeen": "2026-10-25T20:49:10.802194+00:00",
       "versionFamilies": [],
       "potentialProblem": true,
       "categories": [
@@ -226,7 +248,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-24T07:14:22.584683+00:00",
-      "lastSeen": "2026-10-25T16:15:19.386671+00:00",
+      "lastSeen": "2026-10-25T20:49:10.802194+00:00",
       "versionFamilies": [],
       "potentialProblem": false,
       "categories": [
@@ -247,7 +269,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-24T07:14:22.584683+00:00",
-      "lastSeen": "2026-10-25T16:15:19.386671+00:00",
+      "lastSeen": "2026-10-25T20:49:10.802194+00:00",
       "versionFamilies": [],
       "potentialProblem": false,
       "categories": [
@@ -268,7 +290,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-25T16:15:19.386671+00:00",
+      "lastSeen": "2026-10-25T20:49:10.802194+00:00",
       "versionFamilies": [],
       "potentialProblem": false,
       "categories": [
@@ -290,7 +312,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-25T16:15:19.386671+00:00",
+      "lastSeen": "2026-10-25T20:49:10.802194+00:00",
       "versionFamilies": [],
       "potentialProblem": false,
       "categories": [
@@ -311,7 +333,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-25T16:15:19.386671+00:00",
+      "lastSeen": "2026-10-25T20:49:10.802194+00:00",
       "versionFamilies": [],
       "potentialProblem": true,
       "categories": [
@@ -332,7 +354,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-24T07:14:22.584683+00:00",
-      "lastSeen": "2026-10-25T16:15:19.386671+00:00",
+      "lastSeen": "2026-10-25T20:49:10.802194+00:00",
       "versionFamilies": [],
       "potentialProblem": false,
       "categories": [
@@ -355,7 +377,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-24T07:14:22.584683+00:00",
-      "lastSeen": "2026-10-25T16:15:19.386671+00:00",
+      "lastSeen": "2026-10-25T20:49:10.802194+00:00",
       "versionFamilies": [
         "7.6"
       ],
@@ -379,7 +401,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-24T07:14:22.584683+00:00",
-      "lastSeen": "2026-10-25T16:15:19.386671+00:00",
+      "lastSeen": "2026-10-25T20:49:10.802194+00:00",
       "versionFamilies": [],
       "potentialProblem": false,
       "categories": [
@@ -400,7 +422,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-23T13:47:25.795786+00:00",
-      "lastSeen": "2026-10-25T16:15:19.386671+00:00",
+      "lastSeen": "2026-10-25T20:49:10.802194+00:00",
       "versionFamilies": [],
       "potentialProblem": false,
       "categories": [
@@ -421,7 +443,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-24T07:14:22.584683+00:00",
-      "lastSeen": "2026-10-25T16:15:19.386671+00:00",
+      "lastSeen": "2026-10-25T20:49:10.802194+00:00",
       "versionFamilies": [],
       "potentialProblem": true,
       "categories": [
@@ -442,7 +464,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-23T07:37:30.171221+00:00",
-      "lastSeen": "2026-10-25T16:15:19.386671+00:00",
+      "lastSeen": "2026-10-25T20:49:10.802194+00:00",
       "versionFamilies": [],
       "potentialProblem": false,
       "categories": [
@@ -467,7 +489,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-23T07:37:30.171221+00:00",
-      "lastSeen": "2026-10-25T16:15:19.386671+00:00",
+      "lastSeen": "2026-10-25T20:49:10.802194+00:00",
       "versionFamilies": [
         "7.6"
       ],
@@ -496,7 +518,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-25T16:15:19.386671+00:00",
+      "lastSeen": "2026-10-25T20:49:10.802194+00:00",
       "versionFamilies": [
         "7.2",
         "7.4",
@@ -521,7 +543,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-24T07:14:22.584683+00:00",
-      "lastSeen": "2026-10-25T16:15:19.386671+00:00",
+      "lastSeen": "2026-10-25T20:49:10.802194+00:00",
       "versionFamilies": [],
       "potentialProblem": true,
       "categories": [
@@ -542,7 +564,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-23T13:47:25.795786+00:00",
-      "lastSeen": "2026-10-25T16:15:19.386671+00:00",
+      "lastSeen": "2026-10-25T20:49:10.802194+00:00",
       "versionFamilies": [],
       "potentialProblem": true,
       "categories": [
@@ -565,7 +587,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-25T16:15:19.386671+00:00",
+      "lastSeen": "2026-10-25T20:49:10.802194+00:00",
       "versionFamilies": [
         "7.4"
       ],
@@ -591,7 +613,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-23T07:37:30.171221+00:00",
-      "lastSeen": "2026-10-25T16:15:19.386671+00:00",
+      "lastSeen": "2026-10-25T20:49:10.802194+00:00",
       "versionFamilies": [
         "7.4"
       ],
@@ -620,7 +642,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-25T16:15:19.386671+00:00",
+      "lastSeen": "2026-10-25T20:49:10.802194+00:00",
       "versionFamilies": [
         "7.0",
         "7.2",
@@ -647,7 +669,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-23T13:47:25.795786+00:00",
-      "lastSeen": "2026-10-25T16:15:19.386671+00:00",
+      "lastSeen": "2026-10-25T20:49:10.802194+00:00",
       "versionFamilies": [
         "7.4"
       ],
@@ -673,7 +695,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-23T13:47:25.795786+00:00",
-      "lastSeen": "2026-10-25T16:15:19.386671+00:00",
+      "lastSeen": "2026-10-25T20:49:10.802194+00:00",
       "versionFamilies": [
         "7.6"
       ],
@@ -698,7 +720,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-23T07:37:30.171221+00:00",
-      "lastSeen": "2026-10-25T16:15:19.386671+00:00",
+      "lastSeen": "2026-10-25T20:49:10.802194+00:00",
       "versionFamilies": [
         "7.6"
       ],
@@ -724,7 +746,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-23T13:47:25.795786+00:00",
-      "lastSeen": "2026-10-25T16:15:19.386671+00:00",
+      "lastSeen": "2026-10-25T20:49:10.802194+00:00",
       "versionFamilies": [
         "7.4"
       ],
@@ -749,7 +771,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-23T07:37:30.171221+00:00",
-      "lastSeen": "2026-10-25T16:15:19.386671+00:00",
+      "lastSeen": "2026-10-25T20:49:10.802194+00:00",
       "versionFamilies": [
         "7.4"
       ],
@@ -772,7 +794,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-23T07:37:30.171221+00:00",
-      "lastSeen": "2026-10-25T16:15:19.386671+00:00",
+      "lastSeen": "2026-10-25T20:49:10.802194+00:00",
       "versionFamilies": [],
       "potentialProblem": false,
       "categories": [
@@ -797,7 +819,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-23T07:37:30.171221+00:00",
-      "lastSeen": "2026-10-25T16:15:19.386671+00:00",
+      "lastSeen": "2026-10-25T20:49:10.802194+00:00",
       "versionFamilies": [
         "7.6"
       ],
@@ -820,7 +842,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-23T07:37:30.171221+00:00",
-      "lastSeen": "2026-10-25T16:15:19.386671+00:00",
+      "lastSeen": "2026-10-25T20:49:10.802194+00:00",
       "versionFamilies": [],
       "potentialProblem": true,
       "categories": [
@@ -845,7 +867,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-23T07:37:30.171221+00:00",
-      "lastSeen": "2026-10-25T16:15:19.386671+00:00",
+      "lastSeen": "2026-10-25T20:49:10.802194+00:00",
       "versionFamilies": [
         "8.0"
       ],
@@ -868,7 +890,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-25T16:15:19.386671+00:00",
+      "lastSeen": "2026-10-25T20:49:10.802194+00:00",
       "versionFamilies": [],
       "potentialProblem": false,
       "categories": [
@@ -891,7 +913,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-23T07:37:30.171221+00:00",
-      "lastSeen": "2026-10-25T16:15:19.386671+00:00",
+      "lastSeen": "2026-10-25T20:49:10.802194+00:00",
       "versionFamilies": [
         "7.4"
       ],
@@ -914,7 +936,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T11:38:48.104306+00:00",
-      "lastSeen": "2026-10-25T16:15:19.386671+00:00",
+      "lastSeen": "2026-10-25T20:49:10.802194+00:00",
       "versionFamilies": [],
       "potentialProblem": false,
       "categories": [
@@ -935,7 +957,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-23T07:37:30.171221+00:00",
-      "lastSeen": "2026-10-25T16:15:19.386671+00:00",
+      "lastSeen": "2026-10-25T20:49:10.802194+00:00",
       "versionFamilies": [],
       "potentialProblem": false,
       "categories": [
@@ -958,7 +980,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-25T16:15:19.386671+00:00",
+      "lastSeen": "2026-10-25T20:49:10.802194+00:00",
       "versionFamilies": [
         "7.6"
       ],
@@ -981,7 +1003,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T09:24:01.029989+00:00",
-      "lastSeen": "2026-10-25T16:15:19.386671+00:00",
+      "lastSeen": "2026-10-25T20:49:10.802194+00:00",
       "versionFamilies": [],
       "potentialProblem": false,
       "categories": [
@@ -1002,7 +1024,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-23T07:37:30.171221+00:00",
-      "lastSeen": "2026-10-25T16:15:19.386671+00:00",
+      "lastSeen": "2026-10-25T20:49:10.802194+00:00",
       "versionFamilies": [],
       "potentialProblem": false,
       "categories": [
@@ -1023,7 +1045,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-23T07:37:30.171221+00:00",
-      "lastSeen": "2026-10-25T16:15:19.386671+00:00",
+      "lastSeen": "2026-10-25T20:49:10.802194+00:00",
       "versionFamilies": [],
       "potentialProblem": false,
       "categories": [
@@ -1044,7 +1066,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-25T16:15:19.386671+00:00",
+      "lastSeen": "2026-10-25T20:49:10.802194+00:00",
       "versionFamilies": [],
       "potentialProblem": false,
       "categories": [
@@ -1066,7 +1088,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T11:38:48.104306+00:00",
-      "lastSeen": "2026-10-25T16:15:19.386671+00:00",
+      "lastSeen": "2026-10-25T20:49:10.802194+00:00",
       "versionFamilies": [],
       "potentialProblem": false,
       "categories": [
@@ -1088,7 +1110,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-25T16:15:19.386671+00:00",
+      "lastSeen": "2026-10-25T20:49:10.802194+00:00",
       "versionFamilies": [],
       "potentialProblem": false,
       "categories": [
@@ -1112,7 +1134,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-25T16:15:19.386671+00:00",
+      "lastSeen": "2026-10-25T20:49:10.802194+00:00",
       "versionFamilies": [
         "7.6",
         "8.0"
@@ -1139,7 +1161,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-25T16:15:19.386671+00:00",
+      "lastSeen": "2026-10-25T20:49:10.802194+00:00",
       "versionFamilies": [
         "7.4",
         "7.6"
@@ -1167,7 +1189,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-25T16:15:19.386671+00:00",
+      "lastSeen": "2026-10-25T20:49:10.802194+00:00",
       "versionFamilies": [
         "7.4",
         "7.6"
@@ -1195,7 +1217,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-25T16:15:19.386671+00:00",
+      "lastSeen": "2026-10-25T20:49:10.802194+00:00",
       "versionFamilies": [
         "7.4"
       ],
@@ -1221,7 +1243,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-25T16:15:19.386671+00:00",
+      "lastSeen": "2026-10-25T20:49:10.802194+00:00",
       "versionFamilies": [
         "7.2"
       ],
@@ -1244,7 +1266,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-25T16:15:19.386671+00:00",
+      "lastSeen": "2026-10-25T20:49:10.802194+00:00",
       "versionFamilies": [],
       "potentialProblem": false,
       "categories": [
@@ -1289,7 +1311,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T09:24:01.029989+00:00",
-      "lastSeen": "2026-10-25T16:15:19.386671+00:00",
+      "lastSeen": "2026-10-25T20:49:10.802194+00:00",
       "versionFamilies": [
         "7.4"
       ],
@@ -1312,7 +1334,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T09:24:01.029989+00:00",
-      "lastSeen": "2026-10-25T16:15:19.386671+00:00",
+      "lastSeen": "2026-10-25T20:49:10.802194+00:00",
       "versionFamilies": [],
       "potentialProblem": true,
       "categories": [
@@ -1333,7 +1355,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-25T16:15:19.386671+00:00",
+      "lastSeen": "2026-10-25T20:49:10.802194+00:00",
       "versionFamilies": [],
       "potentialProblem": false,
       "categories": [
@@ -1354,7 +1376,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-25T16:15:19.386671+00:00",
+      "lastSeen": "2026-10-25T20:49:10.802194+00:00",
       "versionFamilies": [],
       "potentialProblem": false,
       "categories": [
@@ -1378,7 +1400,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-25T16:15:19.386671+00:00",
+      "lastSeen": "2026-10-25T20:49:10.802194+00:00",
       "versionFamilies": [
         "7.4"
       ],
@@ -1401,7 +1423,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-25T16:15:19.386671+00:00",
+      "lastSeen": "2026-10-25T20:49:10.802194+00:00",
       "versionFamilies": [],
       "potentialProblem": false,
       "categories": [
@@ -1426,7 +1448,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-25T16:15:19.386671+00:00",
+      "lastSeen": "2026-10-25T20:49:10.802194+00:00",
       "versionFamilies": [
         "7.6",
         "8.0"
@@ -1450,7 +1472,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-25T16:15:19.386671+00:00",
+      "lastSeen": "2026-10-25T20:49:10.802194+00:00",
       "versionFamilies": [],
       "potentialProblem": false,
       "categories": [
@@ -1471,7 +1493,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-25T16:15:19.386671+00:00",
+      "lastSeen": "2026-10-25T20:49:10.802194+00:00",
       "versionFamilies": [],
       "potentialProblem": true,
       "categories": [
@@ -1496,7 +1518,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-25T16:15:19.386671+00:00",
+      "lastSeen": "2026-10-25T20:49:10.802194+00:00",
       "versionFamilies": [
         "7.4"
       ],
@@ -1519,7 +1541,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-25T16:15:19.386671+00:00",
+      "lastSeen": "2026-10-25T20:49:10.802194+00:00",
       "versionFamilies": [],
       "potentialProblem": false,
       "categories": [
@@ -1540,7 +1562,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-25T16:15:19.386671+00:00",
+      "lastSeen": "2026-10-25T20:49:10.802194+00:00",
       "versionFamilies": [],
       "potentialProblem": true,
       "categories": [
@@ -1561,7 +1583,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-25T16:15:19.386671+00:00",
+      "lastSeen": "2026-10-25T20:49:10.802194+00:00",
       "versionFamilies": [],
       "potentialProblem": true,
       "categories": [
@@ -1582,7 +1604,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-25T16:15:19.386671+00:00",
+      "lastSeen": "2026-10-25T20:49:10.802194+00:00",
       "versionFamilies": [],
       "potentialProblem": true,
       "categories": [
@@ -1605,7 +1627,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-25T16:15:19.386671+00:00",
+      "lastSeen": "2026-10-25T20:49:10.802194+00:00",
       "versionFamilies": [
         "7.4"
       ],
@@ -1628,7 +1650,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T09:24:01.029989+00:00",
-      "lastSeen": "2026-10-25T16:15:19.386671+00:00",
+      "lastSeen": "2026-10-25T20:49:10.802194+00:00",
       "versionFamilies": [],
       "potentialProblem": false,
       "categories": [
@@ -1651,7 +1673,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-25T16:15:19.386671+00:00",
+      "lastSeen": "2026-10-25T20:49:10.802194+00:00",
       "versionFamilies": [
         "7.4"
       ],
@@ -1674,7 +1696,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-25T16:15:19.386671+00:00",
+      "lastSeen": "2026-10-25T20:49:10.802194+00:00",
       "versionFamilies": [],
       "potentialProblem": false,
       "categories": [
@@ -1695,7 +1717,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-25T16:15:19.386671+00:00",
+      "lastSeen": "2026-10-25T20:49:10.802194+00:00",
       "versionFamilies": [],
       "potentialProblem": false,
       "categories": [
@@ -1716,7 +1738,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-25T16:15:19.386671+00:00",
+      "lastSeen": "2026-10-25T20:49:10.802194+00:00",
       "versionFamilies": [],
       "potentialProblem": false,
       "categories": [
@@ -1740,7 +1762,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-25T16:15:19.386671+00:00",
+      "lastSeen": "2026-10-25T20:49:10.802194+00:00",
       "versionFamilies": [
         "7.4",
         "7.6"
@@ -1764,7 +1786,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T09:24:01.029989+00:00",
-      "lastSeen": "2026-10-25T16:15:19.386671+00:00",
+      "lastSeen": "2026-10-25T20:49:10.802194+00:00",
       "versionFamilies": [],
       "potentialProblem": false,
       "categories": [
@@ -3275,6 +3297,6 @@
     }
   ],
   "incidentCount": 19,
-  "synthesisGeneratedAt": "2026-10-25T16:15:21.273454+00:00",
+  "synthesisGeneratedAt": "2026-10-25T20:49:12.912764+00:00",
   "synthesisNote": "Un point n'est affiché que s'il est documenté par un article Fortinet versionné et explicite, ou décrit dans au moins deux discussions distinctes d'utilisateurs. Les articles officiels ne comptent pas comme des personnes supplémentaires. Les signalements isolés non documentés sont exclus."
 }
