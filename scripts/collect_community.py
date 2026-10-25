@@ -69,6 +69,7 @@ def clean(value: str | None) -> str:
 
 PRODUCT_BOARD_SLUGS = {
     "fortigate-3": "FortiGate",
+    "forticlient-ems": "FortiClient EMS",
     "fortimanager-27": "FortiManager",
     "fortianalyzer-6": "FortiAnalyzer",
     "fortiauthenticator-8": "FortiAuthenticator",
