@@ -74,6 +74,14 @@ class CommunityFeedTests(unittest.TestCase):
         self.assertEqual(len(items), 1)
         self.assertEqual(items[0]["products"], ["FortiGate", "FortiAP"])
 
+    def test_topic_product_tag_parser_recognizes_product_board_slug_suffixes(self):
+        page = """<html><body>
+          <div class="lia-component-tags">
+            <a href="/forticlient-ems-25">FortiClient EMS</a>
+          </div>
+        </body></html>"""
+        self.assertEqual(collector.parse_topic_products(page), ["FortiClient EMS"])
+
     def test_topic_product_tag_parser_ignores_footer_navigation(self):
         page = """<html><body>
           <div class="lia-component-tags">
