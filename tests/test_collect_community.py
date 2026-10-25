@@ -76,10 +76,12 @@ class CommunityFeedTests(unittest.TestCase):
 
     def test_topic_product_tag_parser_ignores_footer_navigation(self):
         page = """<html><body>
-          <a href="/fortigate-3">FortiGate</a>
-          <a href="/fortiap-5">FortiAP</a>
-          <button><span>Like</span></button>
-          <a href="/fortimanager-27">FortiManager</a>
+          <div class="lia-component-tags">
+            <a href="/fortigate-3">FortiGate</a>
+            <a href="/fortiap-5">FortiAP</a>
+          </div>
+          <button aria-label="Like"></button>
+          <footer><a href="/fortimanager-27">FortiManager</a></footer>
         </body></html>"""
         self.assertEqual(collector.parse_topic_products(page), ["FortiGate", "FortiAP"])
 
@@ -104,6 +106,34 @@ class CommunityFeedTests(unittest.TestCase):
         self.assertEqual(enriched[0]["products"], ["FortiGate", "FortiAP"])
         self.assertNotIn("needsProductEnrichment", enriched[0])
         self.assertEqual(errors, [])
+
+    def test_stale_overclassified_topic_is_rechecked_from_public_tags(self):
+        old_url = "https://community.fortinet.com/support-forum-92/after-upgrade-to-7-4-13-many-ap-are-not-connected-230800"
+        old_topic = {
+            "id": old_url,
+            "url": old_url,
+            "title": "After upgrade to 7.4.13 many ap are not connected",
+            "summary": "Many APs no longer connect after the upgrade.",
+            "categories": ["Support Forum", "FortiGate", "FortiManager", "FortiAP", "FortiAuthenticator", "FortiAnalyzer", "FortiClient"],
+            "products": ["FortiGate", "FortiManager", "FortiAnalyzer", "FortiAuthenticator", "FortiClient", "FortiAP"],
+            "versions": ["7.4.13"],
+            "date": "2026-10-23T08:00:00+00:00",
+        }
+        payload = b"""<rss version="2.0"><channel>
+          <item><title>FortiGate 7.4.12 VPN disconnects</title><link>https://community.fortinet.com/fortigate-3/known-issue-230001</link><description>VPN drops after update</description></item>
+        </channel></rss>"""
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "community.json"
+            path.write_text(json.dumps({"topics": [old_topic]}), encoding="utf-8")
+            result = collector.collect(
+                fetcher=lambda: payload,
+                topic_fetcher=lambda url: ["FortiGate", "FortiAP"],
+                out=path,
+            )
+        repaired = next(topic for topic in result["topics"] if topic["url"] == old_url)
+        self.assertEqual(repaired["products"], ["FortiGate", "FortiAP"])
+        self.assertEqual(repaired["categories"], ["Support Forum", "FortiGate", "FortiAP"])
+        self.assertEqual(len(result["topics"]), 2)
 
     def test_failed_topic_detail_preserves_other_valid_topics(self):
         payload = b"""<rss version="2.0"><channel>

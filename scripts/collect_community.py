@@ -94,39 +94,20 @@ def needs_product_enrichment(title: str, summary: str) -> bool:
 
 
 class TopicProductTagParser(HTMLParser):
-    """Read product labels from the public topic page, before the reaction/footer links."""
+    """Extract product labels from the topic tags, never from global footer navigation."""
 
     def __init__(self):
         super().__init__(convert_charrefs=True)
         self.products: list[str] = []
+        self.tagged_products: list[str] = []
         self.anchor: dict | None = None
+        self.tag_capture: dict | None = None
+        self.tag_depth = 0
         self.stopped = False
+        self.boundary_seen = False
 
-    def handle_starttag(self, tag: str, attrs: list[tuple[str, str | None]]) -> None:
-        if self.stopped:
-            return
-        if tag.lower() == "a":
-            self.anchor = {"href": dict(attrs).get("href", "") or "", "text": []}
-
-    def handle_data(self, data: str) -> None:
-        if self.stopped:
-            return
-        if self.anchor is not None:
-            self.anchor["text"].append(data)
-        elif data.strip().casefold() in {"like", "follow"}:
-            # Khoros renders the reaction bar as buttons on some pages, not links.
-            # Stop before footer navigation, which links to every product board.
-            self.stopped = True
-
-    def handle_endtag(self, tag: str) -> None:
-        if tag.lower() != "a" or self.anchor is None:
-            return
-        anchor = self.anchor
-        self.anchor = None
-        label = clean("".join(anchor["text"]))
-        if label.casefold() in {"like", "follow"}:
-            self.stopped = True
-            return
+    def _record_product(self, label: str, href: str = "", target: list[str] | None = None) -> None:
+        target = self.products if target is None else target
         product = next(
             (name for name in PRODUCT_ALIASES if label.casefold() == name.casefold()),
             None,
@@ -134,13 +115,68 @@ class TopicProductTagParser(HTMLParser):
         if product is None:
             match = re.match(
                 r"^(?:https?://community\.fortinet\.com)?/([^/?#]+)",
-                anchor["href"],
+                href,
                 re.I,
             )
             slug = match.group(1).lower() if match else ""
             product = PRODUCT_BOARD_SLUGS.get(slug)
-        if product and product not in self.products:
-            self.products.append(product)
+        if product and product not in target:
+            target.append(product)
+
+    def handle_starttag(self, tag: str, attrs: list[tuple[str, str | None]]) -> None:
+        if self.stopped:
+            return
+        attributes = dict(attrs)
+        class_names = (attributes.get("class", "") or "").lower()
+        element_id = (attributes.get("id", "") or "").lower()
+        if tag.lower() == "footer" or "footer" in class_names or "footer" in element_id:
+            self.stopped = True
+            self.boundary_seen = True
+            return
+        for key in ("aria-label", "title", "data-testid", "data-action"):
+            if (attributes.get(key, "") or "").strip().casefold() in {"like", "follow"}:
+                self.stopped = True
+                self.boundary_seen = True
+                return
+        if self.tag_capture is not None:
+            self.tag_depth += 1
+        elif any("tag" in token for token in class_names.split()):
+            self.tag_capture = {"text": []}
+            self.tag_depth = 1
+        if tag.lower() == "a":
+            self.anchor = {"href": attributes.get("href", "") or "", "text": []}
+
+    def handle_data(self, data: str) -> None:
+        if self.stopped:
+            return
+        if self.anchor is not None:
+            self.anchor["text"].append(data)
+        if self.tag_capture is not None:
+            self.tag_capture["text"].append(data)
+        elif self.anchor is None and data.strip().casefold() in {"like", "follow"}:
+            self.stopped = True
+            self.boundary_seen = True
+
+    def handle_endtag(self, tag: str) -> None:
+        if self.stopped:
+            return
+        if tag.lower() == "a" and self.anchor is not None:
+            anchor = self.anchor
+            self.anchor = None
+            label = clean("".join(anchor["text"]))
+            if label.casefold() in {"like", "follow"}:
+                self.stopped = True
+                self.boundary_seen = True
+                return
+            target = self.tagged_products if self.tag_capture is not None else self.products
+            self._record_product(label, anchor["href"], target)
+        if self.tag_capture is not None:
+            self.tag_depth -= 1
+            if self.tag_depth <= 0:
+                label = clean("".join(self.tag_capture["text"]))
+                self._record_product(label, target=self.tagged_products)
+                self.tag_capture = None
+                self.tag_depth = 0
 
 
 def parse_topic_products(payload: str | bytes) -> list[str]:
@@ -149,7 +185,12 @@ def parse_topic_products(payload: str | bytes) -> list[str]:
     parser = TopicProductTagParser()
     parser.feed(payload)
     parser.close()
-    return parser.products
+    if parser.tagged_products:
+        return parser.tagged_products
+    # If no clear tag container was found, trust link labels only when a
+    # reaction/footer boundary was observed. Otherwise the page may be a
+    # partial response and global navigation could be mistaken for topic tags.
+    return parser.products if parser.boundary_seen else []
 
 
 def fetch_topic_products(url: str) -> list[str]:
@@ -369,6 +410,41 @@ def parse_feed(payload: bytes) -> list[dict]:
     return result
 
 
+def legacy_tag_recheck_candidates(previous: dict, observed_ids: set[str]) -> list[dict]:
+    """Repair older support-forum entries polluted by global product navigation."""
+    candidates = []
+    for raw in previous.get("topics", []):
+        url = raw.get("url", "")
+        if not url.startswith("https://community.fortinet.com/support-forum-92/"):
+            continue
+        topic_id = raw.get("id") or url
+        if topic_id in observed_ids:
+            continue
+        title = raw.get("title", "")
+        summary = raw.get("summary", "")
+        if not needs_product_enrichment(title, summary):
+            continue
+        text = f"{title} {summary}"
+        if any(
+            re.search(pattern, text, re.I)
+            for patterns in PRODUCT_ALIASES.values()
+            for pattern in patterns
+        ):
+            continue
+        products = raw.get("products", [])
+        if len(products) < 4:
+            continue
+        item = dict(raw)
+        item["products"] = []
+        item["categories"] = [
+            category for category in raw.get("categories", [])
+            if category not in PRODUCT_ALIASES
+        ]
+        item["needsProductEnrichment"] = True
+        candidates.append(item)
+    return candidates
+
+
 def load_previous(path: Path = OUT) -> dict:
     try:
         data = json.loads(path.read_text(encoding="utf-8"))
@@ -386,12 +462,30 @@ def collect(fetcher=fetch_feed, out: Path = OUT, topic_fetcher=None) -> dict:
     if topic_fetcher is None and fetcher is fetch_feed:
         topic_fetcher = fetch_topic_products
     try:
-        fresh = enrich_unclassified_topics(parse_feed(fetcher()), topic_fetcher, errors)
+        parsed = parse_feed(fetcher())
+        observed_ids = {item.get("id") or item.get("url") for item in parsed}
+        fresh = enrich_unclassified_topics(parsed, topic_fetcher, errors)
         feed_url = getattr(fetcher, "last_url", None) or FEED_URL
+
+        if topic_fetcher:
+            stale_candidates = legacy_tag_recheck_candidates(previous, observed_ids)
+            repaired = enrich_unclassified_topics(stale_candidates, topic_fetcher, errors)
+            by_id = {item.get("id") or item.get("url"): item for item in fresh}
+            by_id.update({item.get("id") or item.get("url"): item for item in repaired})
+            fresh = list(by_id.values())
+
         if not fresh and fetcher is fetch_feed and feed_url == EXTENDED_FEED_URL:
             # A syntactically valid but empty extended response is not evidence
             # that there are no topics; try the standard public feed as well.
-            fallback = enrich_unclassified_topics(parse_feed(fetcher(FEED_URL)), topic_fetcher, errors)
+            fallback_parsed = parse_feed(fetcher(FEED_URL))
+            observed_ids.update(item.get("id") or item.get("url") for item in fallback_parsed)
+            fallback = enrich_unclassified_topics(fallback_parsed, topic_fetcher, errors)
+            if topic_fetcher:
+                stale_candidates = legacy_tag_recheck_candidates(previous, observed_ids)
+                repaired = enrich_unclassified_topics(stale_candidates, topic_fetcher, errors)
+                by_id = {item.get("id") or item.get("url"): item for item in fallback}
+                by_id.update({item.get("id") or item.get("url"): item for item in repaired})
+                fallback = list(by_id.values())
             if fallback:
                 fresh = fallback
                 feed_url = getattr(fetcher, "last_url", None) or FEED_URL
