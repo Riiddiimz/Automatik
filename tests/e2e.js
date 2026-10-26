@@ -107,7 +107,7 @@ const { chromium } = require("playwright");
         assert.equal(await firstCard.getByText(label, { exact: true }).count(), 1, `le champ "${label}" doit être affiché`);
       }
       // Ouvrir la fiche accordéon avant d'interagir avec ses sources imbriquées.
-      await firstCard.locator("summary").click();
+      await firstCard.locator("summary").first().click();
       const firstDetails = page.locator("#community-list .incident-sources").first();
       await firstDetails.locator("summary").click();
       assert.equal(await firstDetails.locator("ul").isVisible(), true, "les sources doivent pouvoir être dépliées");
