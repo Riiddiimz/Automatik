@@ -84,20 +84,32 @@ function renderCommunity() {
       return `<li><a href="${escapeHTML(url)}" target="_blank" rel="noopener noreferrer">${escapeHTML(source.title || "Source")} ↗</a><span>${escapeHTML(sourceLabel)} · ${escapeHTML(safeDate(source.date))}</span></li>`;
     }).join("");
     const extra = Math.max(0, (item.sources || []).length - 5);
-    return `<article class="community-card incident-card">
-      <div class="community-card-top"><span class="community-products">${products}</span><span class="community-status-badge">${escapeHTML(item.status || "Point de vigilance")}</span></div>
-      <h3>${escapeHTML(item.title || "Point de vigilance Fortinet")}</h3>
-      ${aiReviewPanel}
-      <div class="incident-details">
-        <section class="incident-detail"><strong>Symptôme</strong><p>${escapeHTML(aiReview.symptom || item.symptom || item.summary || "Résumé indisponible : consulter les sources.")}</p></section>
-        <section class="incident-detail"><strong>Impact</strong><p>${escapeHTML(aiReview.impact || item.impact || "Non précisé par la source.")}</p></section>
-        <section class="incident-detail"><strong>Solution / correctif</strong><p>${escapeHTML(aiReview.solution || item.solution || "Non précisé dans les sources consultées.")}</p></section>
-        <section class="incident-detail"><strong>Version de correctif mentionnée</strong><p>${escapeHTML((item.fixVersions || []).join(", ") || "Non précisée par la source.")}</p></section>
+    const shortSummary = aiReview.summary || item.summary || item.symptom || "Ouvrir la fiche pour consulter les détails.";
+    return `<details class="community-card incident-card incident-accordion">
+      <summary class="incident-accordion-summary">
+        <span class="incident-summary-main">
+          <span class="community-products">${products}</span>
+          <strong>${escapeHTML(item.title || "Point de vigilance Fortinet")}</strong>
+          <span class="incident-summary-preview">${escapeHTML(shortSummary)}</span>
+        </span>
+        <span class="incident-summary-side">
+          <span class="community-status-badge">${escapeHTML(item.status || "Point de vigilance")}</span>
+          <span class="incident-expand-label"><span class="incident-expand-open">Voir les détails</span><span class="incident-expand-close">Réduire</span><span class="incident-chevron" aria-hidden="true">⌄</span></span>
+        </span>
+      </summary>
+      <div class="incident-accordion-body">
+        ${aiReviewPanel}
+        <div class="incident-details">
+          <section class="incident-detail"><strong>Symptôme</strong><p>${escapeHTML(aiReview.symptom || item.symptom || item.summary || "Résumé indisponible : consulter les sources.")}</p></section>
+          <section class="incident-detail"><strong>Impact</strong><p>${escapeHTML(aiReview.impact || item.impact || "Non précisé par la source.")}</p></section>
+          <section class="incident-detail"><strong>Solution / correctif</strong><p>${escapeHTML(aiReview.solution || item.solution || "Non précisé dans les sources consultées.")}</p></section>
+          <section class="incident-detail"><strong>Version de correctif mentionnée</strong><p>${escapeHTML((item.fixVersions || []).join(", ") || "Non précisée par la source.")}</p></section>
+        </div>
+        <div class="community-meta"><span>${item.forumReportCount ?? 0} signalement(s) utilisateur(s) distinct(s)</span>${item.documentedSourceCount ? `<span>${item.documentedSourceCount} source(s) Fortinet documentée(s)</span>` : ""}${versionMeta}<span>Dernière activité source : ${escapeHTML(safeDate(item.lastSeen))}</span></div>
+        <details class="incident-sources"><summary>Consulter les sources (${(item.sources || []).length})</summary><ul>${sources}</ul>${extra ? `<p class="source-extra">Et ${extra} autre(s) source(s) dans ce regroupement.</p>` : ""}</details>
+        <div class="community-caution">${escapeHTML(item.confidence || "Critères de preuve appliqués.")}. Les versions, symptômes et sources restent consultables avant toute décision de mise à niveau.</div>
       </div>
-      <div class="community-meta"><span>${item.forumReportCount ?? 0} signalement(s) utilisateur(s) distinct(s)</span>${item.documentedSourceCount ? `<span>${item.documentedSourceCount} source(s) Fortinet documentée(s)</span>` : ""}${versionMeta}<span>Dernière activité source : ${escapeHTML(safeDate(item.lastSeen))}</span></div>
-      <details class="incident-sources"><summary>Consulter les sources (${(item.sources || []).length})</summary><ul>${sources}</ul>${extra ? `<p class="source-extra">Et ${extra} autre(s) source(s) dans ce regroupement.</p>` : ""}</details>
-      <div class="community-caution">${escapeHTML(item.confidence || "Critères de preuve appliqués.")}. Les versions, symptômes et sources restent consultables avant toute décision de mise à niveau.</div>
-    </article>`;
+    </details>`;
   }).join("");
 }
 async function loadCommunity() {
