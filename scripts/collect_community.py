@@ -423,7 +423,7 @@ def parse_feed(payload: bytes) -> list[dict]:
             "title": title,
             "url": link,
             "date": parse_date(date_raw),
-            "summary": summary[:1200],
+            "summary": summary[:5000],
             "categories": categories,
             "products": products,
             "versions": versions,
