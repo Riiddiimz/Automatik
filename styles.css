@@ -34,6 +34,10 @@
 .incident-detail{border-left:2px solid #334155;padding-left:10px;min-width:0}
 .incident-detail strong{display:block;color:#dbe6f0;font:10px 'DM Mono',monospace;margin-bottom:4px;text-transform:uppercase;letter-spacing:.4px}
 .incident-detail p{margin:0;font-size:11px;line-height:1.6;color:#9aa9b9;overflow-wrap:anywhere}
+.incident-ai-review{margin:10px 0 12px;padding:11px 13px;border:1px solid #344b67;border-left:3px solid #62a8ff;border-radius:7px;background:linear-gradient(120deg,#172638,#121c29)}
+.incident-ai-review>span{display:block;margin-bottom:6px;color:#8fc5ff;font:9px 'DM Mono',monospace;letter-spacing:.55px}
+.incident-ai-review p{margin:0 0 5px;color:#dce9f7;font-size:11px;line-height:1.65}
+.incident-ai-review small{display:block;color:#829ab4;font-size:9px;line-height:1.5}
 
 
 /* État des flux de veille */
