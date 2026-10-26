@@ -58,10 +58,10 @@ const { chromium } = require("playwright");
       const status = document.querySelector("#community-status")?.textContent || "";
       return !status.includes("En attente de la première collecte");
     });
-    assert.match(await page.locator("#community-status").innerText(), /points de vigilance retenus|Collecte partielle|Flux Community indisponible/);
+    assert.match(await page.locator("#community-status").innerText(), /points de vigilance retenus|Collecte partielle|état partiel publié|Flux Community indisponible/);
     if (data.partial && (data.errors || []).length) {
       const communityStatusText = await page.locator("#community-status").innerText();
-      assert.match(communityStatusText, /Collecte partielle/, "une collecte partielle doit être clairement signalée");
+      assert.match(communityStatusText, /Collecte partielle|état partiel publié/, "une collecte partielle doit être clairement signalée");
       assert.ok(communityStatusText.includes(data.errors[0]), "le détail du premier avertissement doit être visible");
     }
 
