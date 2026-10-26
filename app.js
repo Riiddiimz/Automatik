@@ -68,6 +68,10 @@ function renderCommunity() {
     return;
   }
   $("community-list").innerHTML = incidents.slice(0, 100).map(item => {
+    const aiReview = item.aiReview && item.aiReview.reviewedAt ? item.aiReview : {};
+    const aiReviewPanel = aiReview.reviewedAt
+      ? `<div class="incident-ai-review"><span>RELECTURE IA · À VÉRIFIER</span><p>${escapeHTML(aiReview.summary || "Aucune reformulation proposée.")}</p>${aiReview.note ? `<small>${escapeHTML(aiReview.note)}</small>` : ""}</div>`
+      : "";
     const products = (item.products || []).map(escapeHTML).join(" · ") || "Produit à confirmer";
     const families = (item.versionFamilies || []).map(v => escapeHTML(v) + ".x").join(", ");
     const exact = (item.versions || []).map(v => escapeHTML(v)).join(", ");
@@ -83,10 +87,11 @@ function renderCommunity() {
     return `<article class="community-card incident-card">
       <div class="community-card-top"><span class="community-products">${products}</span><span class="community-status-badge">${escapeHTML(item.status || "Point de vigilance")}</span></div>
       <h3>${escapeHTML(item.title || "Point de vigilance Fortinet")}</h3>
+      ${aiReviewPanel}
       <div class="incident-details">
-        <section class="incident-detail"><strong>Symptôme</strong><p>${escapeHTML(item.symptom || item.summary || "Résumé indisponible : consulter les sources.")}</p></section>
-        <section class="incident-detail"><strong>Impact</strong><p>${escapeHTML(item.impact || "Non précisé par la source.")}</p></section>
-        <section class="incident-detail"><strong>Solution / correctif</strong><p>${escapeHTML(item.solution || "Non précisé dans les sources consultées.")}</p></section>
+        <section class="incident-detail"><strong>Symptôme</strong><p>${escapeHTML(aiReview.symptom || item.symptom || item.summary || "Résumé indisponible : consulter les sources.")}</p></section>
+        <section class="incident-detail"><strong>Impact</strong><p>${escapeHTML(aiReview.impact || item.impact || "Non précisé par la source.")}</p></section>
+        <section class="incident-detail"><strong>Solution / correctif</strong><p>${escapeHTML(aiReview.solution || item.solution || "Non précisé dans les sources consultées.")}</p></section>
         <section class="incident-detail"><strong>Version de correctif mentionnée</strong><p>${escapeHTML((item.fixVersions || []).join(", ") || "Non précisée par la source.")}</p></section>
       </div>
       <div class="community-meta"><span>${item.forumReportCount ?? 0} signalement(s) utilisateur(s) distinct(s)</span>${item.documentedSourceCount ? `<span>${item.documentedSourceCount} source(s) Fortinet documentée(s)</span>` : ""}${versionMeta}<span>Dernière activité source : ${escapeHTML(safeDate(item.lastSeen))}</span></div>
