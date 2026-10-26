@@ -90,3 +90,20 @@ body.page-overview .hero[hidden],body.page-overview .metrics[hidden],.hero[hidde
 @keyframes page-enter{from{opacity:.65;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
 .nav-link[aria-current="page"]{box-shadow:inset 2px 0 0 var(--orange)}
 @media(prefers-reduced-motion:reduce){.content-section.page-visible{animation:none}}
+
+
+/* État des collectes GitHub Actions */
+.workflow-health{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:-10px 0 30px}
+.workflow-health-card{min-width:0;border:1px solid #2b3b4d;background:#111925;border-radius:10px;padding:14px 16px}
+.workflow-health-top{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.workflow-health-top strong{font-size:12px}
+.workflow-health-badge{flex:0 0 auto;border:1px solid #315d4d;background:#142c25;color:#7fe0b7;border-radius:5px;padding:3px 7px;font:9px 'DM Mono',monospace}
+.workflow-health-card p{font-size:11px;line-height:1.55;color:#a3b1c1;margin:9px 0}
+.workflow-health-meta{display:grid;gap:3px;color:#8292a6;font:9px 'DM Mono',monospace;overflow-wrap:anywhere}
+.workflow-health-card>a{display:inline-block;margin-top:9px;color:#ffad79;font-size:10px;font-weight:700}
+.workflow-health-card.is-partial,.workflow-health-card.is-stale{border-color:#73542f}
+.workflow-health-card.is-partial .workflow-health-badge,.workflow-health-card.is-stale .workflow-health-badge{border-color:#73542f;background:#30251a;color:#f3c38c}
+.workflow-health-card.is-error{border-color:#713b45}
+.workflow-health-card.is-error .workflow-health-badge{border-color:#713b45;background:#321d23;color:#ff9da5}
+.workflow-health-card.is-unknown .workflow-health-badge{border-color:#354457;background:#1a2532;color:#aab8c8}
+@media(max-width:760px){.workflow-health{grid-template-columns:1fr;margin-top:0}}

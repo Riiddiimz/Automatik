@@ -166,6 +166,65 @@ function updateDashboard(data) {
   $("cyber-list").innerHTML = renderCyber(cyber);
   $("cve-list").innerHTML = renderKev(kev, $("cve-search").value);
 }
+const HEALTH_FILES = [
+  { key: "veille", label: "Veille cyber officielle", path: "data/health-veille.json" },
+  { key: "community", label: "Fortinet Community", path: "data/health-community.json" }
+];
+
+function healthDate(value) {
+  if (!value) return "Jamais enregistrée";
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return "Date inconnue";
+  return new Intl.DateTimeFormat("fr-FR", { dateStyle: "medium", timeStyle: "short" }).format(date);
+}
+
+async function loadWorkflowHealth() {
+  const container = $("workflow-health");
+  if (!container) return;
+  const results = await Promise.all(HEALTH_FILES.map(async source => {
+    try {
+      const response = await fetch(`${source.path}?t=${Date.now()}`, { cache: "no-store" });
+      if (!response.ok) throw new Error(`HTTP ${response.status}`);
+      return { ...source, data: await response.json() };
+    } catch (error) {
+      return { ...source, error: error.message };
+    }
+  }));
+  const now = Date.now();
+  container.innerHTML = results.map(result => {
+    if (result.error) {
+      return `<article class="workflow-health-card is-unknown"><div class="workflow-health-top"><strong>${escapeHTML(result.label)}</strong><span class="workflow-health-badge">Inconnu</span></div><p>Impossible de charger le statut de cette collecte.</p></article>`;
+    }
+    const data = result.data || {};
+    let status = data.status || "unknown";
+    let label = status === "ok" ? "OK" : status === "partial" ? "Partiel" : status === "error" ? "Échec" : "En attente";
+    const checked = data.checkedAt ? new Date(data.checkedAt).getTime() : 0;
+    const stale = !checked || !Number.isFinite(checked) || now - checked > 12 * 60 * 60 * 1000;
+    if (stale && status !== "error") {
+      status = "stale";
+      label = "À vérifier";
+    }
+    const detail = status === "error"
+      ? (data.message || "La dernière exécution a échoué. Les données déjà publiées peuvent être anciennes.")
+      : status === "partial"
+        ? (data.message || "La collecte est partielle : certaines sources n'ont pas été actualisées.")
+        : status === "stale"
+          ? "Aucun état récent reçu depuis plus de 12 heures. Vérifie les exécutions GitHub Actions."
+          : status === "ok"
+            ? (data.message || "Dernière exécution terminée sans erreur.")
+            : "Le statut sera disponible après la prochaine exécution du workflow.";
+    const lastSuccess = data.lastSuccessAt ? `Dernière réussite complète : ${healthDate(data.lastSuccessAt)}` : "Aucune réussite complète enregistrée";
+    const checkedText = data.checkedAt ? `Dernier contrôle : ${healthDate(data.checkedAt)}` : "Aucun contrôle enregistré";
+    const url = /^https:\/\//i.test(data.runUrl || "") ? data.runUrl : "https://github.com/Riiddiimz/Automatik/actions";
+    return `<article class="workflow-health-card is-${escapeHTML(status)}">
+      <div class="workflow-health-top"><strong>${escapeHTML(result.label)}</strong><span class="workflow-health-badge">${escapeHTML(label)}</span></div>
+      <p>${escapeHTML(detail)}</p>
+      <div class="workflow-health-meta"><span>${escapeHTML(checkedText)}</span><span>${escapeHTML(lastSuccess)}</span></div>
+      <a href="${escapeHTML(url)}" target="_blank" rel="noopener noreferrer">Voir les exécutions GitHub Actions ↗</a>
+    </article>`;
+  }).join("");
+}
+
 async function loadData() {
   const button = $("refresh-btn");
   button.disabled = true;
@@ -193,6 +252,7 @@ $("cve-search").addEventListener("input", () => {
 });
 loadData();
 loadCommunity();
+loadWorkflowHealth();
 ["community-search", "community-product", "community-version", "community-status-filter"].forEach(id => {
   $(id).addEventListener(id === "community-search" ? "input" : "change", renderCommunity);
 });

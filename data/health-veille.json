@@ -1,0 +1,9 @@
+{
+  "source": "veille",
+  "label": "Veille cyber officielle",
+  "status": "unknown",
+  "checkedAt": null,
+  "lastSuccessAt": null,
+  "message": "Le statut sera disponible après la prochaine exécution du workflow.",
+  "runUrl": "https://github.com/Riiddiimz/Automatik/actions"
+}
