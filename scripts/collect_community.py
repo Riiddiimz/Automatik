@@ -53,7 +53,7 @@ UPGRADE_TARGET_RE = re.compile(
 ) 
 FIXED_VERSION_RE = re.compile(
     r"\b(?:will\s+be\s+fixed|will\s+be\s+resolved|is\s+scheduled\s+to\s+be\s+fixed|"
-    r"scheduled\s+to\s+be\s+fixed|fixed|resolved|corrected|addressed|"
+    r"scheduled\s+to\s+be\s+fixed|scheduled\s+for\s+(?:a\s+)?fix|planned\s+fix|fixed|resolved|corrected|addressed|"
     r"(?:fix|patch|correction)\s+(?:is\s+)?(?:available|included|provided))\s+"
     r"(?:in|with|from)\s+(?:(?:fortios|fortigate|fortimanager|fortianalyzer|"
     r"fortiauthenticator|forticlient(?:\s+(?:ems|vpn))?|fortiswitch|fortiap|firmware)\s*)?"
