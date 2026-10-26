@@ -30,6 +30,12 @@ class FeedParserTests(unittest.TestCase):
         self.assertEqual(items[0]["title"], "Atom advisory")
         self.assertEqual(items[0]["url"], "https://example.com/atom")
 
+    def test_cisa_sources_use_official_github_csaf_feeds(self):
+        urls = [item[2] for item in updater.FEEDS if item[1] in ("CISA Cybersecurity Advisories", "CISA ICS Advisories")]
+        self.assertEqual(len(urls), 2)
+        self.assertTrue(all(url.startswith("https://raw.githubusercontent.com/cisagov/CSAF/") for url in urls))
+        self.assertFalse(any("www.cisa.gov/cybersecurity-advisories" in url for url in urls))
+
     def test_parse_cisa_csaf_feed_index(self):
         payload = json.dumps({
             "feed": {
