@@ -242,7 +242,7 @@ class CommunityFeedTests(unittest.TestCase):
         payload = ("<rss version=\"2.0\"><channel>" + "".join(items) + "</channel></rss>").encode()
         with tempfile.TemporaryDirectory() as directory:
             path = Path(directory) / "community.json"
-            with patch.object(collector, "fetch_feed", return_value=payload):
+            with patch.object(collector.urllib.request, "urlopen", return_value=io.BytesIO(payload)):
                 result = collector.collect(out=path)
         self.assertEqual(result["feedItemCount"], 500)
         self.assertEqual(result["topicCount"], 1)
