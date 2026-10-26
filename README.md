@@ -21,7 +21,7 @@ Un article officiel ne compte jamais comme plusieurs utilisateurs. Les signaleme
 
 Le regroupement actuel utilise des règles déterministes, des variantes de termes et une comparaison de titres. **Il n'utilise pas de modèle d'IA générative** et ne lit pas encore l'intégralité des réponses des discussions : des formulations très différentes peuvent donc ne pas être rapprochées, et les sources doivent être consultées avant toute décision technique.
 
-Les versions sont extraites lorsqu'elles sont explicitement liées à un produit/firmware Fortinet ou à un parcours de mise à niveau. Les nombres décimaux sans lien clair avec une version de firmware (par exemple une version d'outil ou de plateforme) ne doivent pas être affichés comme versions Fortinet.
+Les versions sont extraites lorsqu'elles sont explicitement liées à un produit/firmware Fortinet ou à un parcours de mise à niveau. Les nombres décimaux sans lien clair avec une version de firmware (par exemple une version d'outil ou de plateforme) ne doivent pas être affichés comme versions Fortinet. La version corrigée est présentée séparément lorsqu'un article Fortinet l'indique explicitement; elle n'est pas ajoutée aux versions affectées.
 
 ## Collecte et publication
 
