@@ -16,7 +16,8 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 FEED_URL = "https://community.fortinet.com/feed/topics"
 EXTENDED_FEED_COUNT = 500
-EXTENDED_FEED_URL = f"{FEED_URL}?count={EXTENDED_FEED_COUNT}"
+FEED_PAGE_SIZE = 100
+EXTENDED_FEED_URL = f"{FEED_URL}?count={FEED_PAGE_SIZE}&start=0"
 OUT = ROOT / "data" / "community.json"
 USER_AGENT = "AutomatikCommunityWatch/1.0 (+https://github.com/Riiddiimz/Automatik)"
 MAX_HISTORY = 500
@@ -331,34 +332,83 @@ def parse_date(value: str) -> str | None:
 
 
 def fetch_feed(url: str = EXTENDED_FEED_URL) -> bytes:
-    # Khoros RSS supports a count parameter. Request a wider window for the
-    # initial 30-day backfill; fall back to the documented community feed URL
-    # if the parameterized endpoint is unavailable.
-    candidates = [url]
-    if url == EXTENDED_FEED_URL:
-        candidates.append(FEED_URL)
+    # The public RSS endpoint caps responses at about 100 entries. Try Khoros-style
+    # start offsets to page through up to 500 topics; if offsets are ignored, dedupe
+    # and report the true coverage rather than claiming that 500 were retrieved.
+    if url != EXTENDED_FEED_URL:
+        candidates = [url]
+    else:
+        candidates = [f"{FEED_URL}?count={FEED_PAGE_SIZE}&start={offset}" for offset in range(0, EXTENDED_FEED_COUNT, FEED_PAGE_SIZE)]
+    all_entries = []
+    seen = set()
     failures = []
-    for candidate in candidates:
+    for page_url in candidates:
         request = urllib.request.Request(
-            candidate,
+            page_url,
             headers={"User-Agent": USER_AGENT, "Accept": "application/rss+xml, application/atom+xml, application/xml"},
         )
         try:
             with urllib.request.urlopen(request, timeout=30) as response:
                 payload = response.read()
-            fetch_feed.last_url = candidate
-            fetch_feed.last_errors = [
-                f"Flux étendu indisponible ({failed_url}): {type(exc).__name__}: {exc}; repli sur le flux standard."
-                for failed_url, exc in failures
-            ]
+            root = ET.fromstring(payload)
+            entries = root.findall(".//item")
+            atom = False
+            if not entries:
+                entries = root.findall(".//{http://www.w3.org/2005/Atom}entry")
+                atom = bool(entries)
+            if not entries:
+                if not all_entries:
+                    raise ValueError("flux RSS valide mais sans entrées")
+                break
+            new_entries = 0
+            for entry in entries:
+                if atom:
+                    link_el = entry.find("{http://www.w3.org/2005/Atom}link")
+                    key = link_el.get("href", "") if link_el is not None else ""
+                else:
+                    key = (entry.findtext("link") or "").strip()
+                if not key:
+                    key = ET.tostring(entry, encoding="unicode")
+                if key in seen:
+                    continue
+                seen.add(key)
+                all_entries.append(entry)
+                new_entries += 1
+            if len(entries) < FEED_PAGE_SIZE:
+                break
+            if new_entries == 0:
+                failures.append("Le paramètre start semble ignoré par le flux RSS; les pages suivantes répètent les mêmes sujets.")
+                break
+        except (OSError, urllib.error.URLError, TimeoutError, ET.ParseError, ValueError) as exc:
+            failures.append(f"{page_url}: {type(exc).__name__}: {exc}")
+            if not all_entries:
+                continue
+            break
+    if all_entries:
+        combined = ET.Element("rss", {"version": "2.0"})
+        channel = ET.SubElement(combined, "channel")
+        for entry in all_entries:
+            channel.append(entry)
+        fetch_feed.last_url = EXTENDED_FEED_URL if url == EXTENDED_FEED_URL else url
+        fetch_feed.last_errors = failures
+        return ET.tostring(combined, encoding="utf-8", xml_declaration=True)
+    if url == EXTENDED_FEED_URL:
+        # If the paged endpoint fails completely, preserve a standard-feed fallback.
+        fallback_request = urllib.request.Request(
+            FEED_URL,
+            headers={"User-Agent": USER_AGENT, "Accept": "application/rss+xml, application/atom+xml, application/xml"},
+        )
+        try:
+            with urllib.request.urlopen(fallback_request, timeout=30) as response:
+                payload = response.read()
+            fetch_feed.last_url = FEED_URL
+            fetch_feed.last_errors = [f"Flux étendu indisponible ({error}); repli sur le flux standard." for error in failures]
             return payload
         except (OSError, urllib.error.URLError, TimeoutError) as exc:
-            failures.append((candidate, exc))
+            failures.append(f"{FEED_URL}: {type(exc).__name__}: {exc}")
     fetch_feed.last_url = None
-    fetch_feed.last_errors = [
-        f"{failed_url}: {type(exc).__name__}: {exc}" for failed_url, exc in failures
-    ]
-    raise failures[-1][1]
+    fetch_feed.last_errors = failures
+    raise RuntimeError("Aucune page du flux Community n'a pu être récupérée: " + "; ".join(failures))
 
 
 def count_feed_entries(payload: bytes) -> int:
