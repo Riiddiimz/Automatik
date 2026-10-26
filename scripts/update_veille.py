@@ -15,11 +15,11 @@ USER_AGENT = "AutomatikCyberVeille/1.0 (+https://github.com/Riiddiimz/Automatik)
 FEEDS = [
     ("fortinet", "FortiGuard PSIRT", "https://fortiguard.fortinet.com/rss/ir.xml"),
     ("cyber", "FortiGuard Outbreak Alerts", "https://filestore.fortinet.com/fortiguard/rss/outbreakalert.xml"),
-    # These two URLs are alternate endpoints for the same CISA source.
-    ("cyber", "CISA Cybersecurity Advisories", (
-        ("https://www.cisa.gov/cybersecurity-advisories/all.xml", "CISA Cybersecurity Advisories"),
-        ("https://www.cisa.gov/cybersecurity-advisories/cybersecurity-advisories.xml", "CISA Cybersecurity Advisories"),
-    )),
+    # CISA's official CSAF feeds are mirrored in its public GitHub repository.
+    # They remain machine-readable when cisa.gov RSS endpoints return HTTP 403
+    # to hosted automation runners.
+    ("cyber", "CISA Cybersecurity Advisories", "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/IT/white/cisa-csaf-it-feed-tlp-white.json"),
+    ("cyber", "CISA ICS Advisories", "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/cisa-csaf-ot-feed-tlp-white.json"),
     # CERT-FR is an independent source, not a substitute for CISA. Collect it
     # separately so a CISA outage is visible and the previous CISA cache survives.
     ("cyber", "CERT-FR", "https://www.cert.ssi.gouv.fr/feed/"),
@@ -71,6 +71,34 @@ def parse_date(value):
 
 
 def parse_rss(payload, source, label, limit=20):
+    # CISA publishes official CSAF/ROLIE JSON feeds as well as RSS.
+    # Parse the feed index directly; individual advisory links remain canonical raw JSON.
+    try:
+        document = json.loads(payload.decode("utf-8"))
+    except (UnicodeDecodeError, json.JSONDecodeError):
+        document = None
+    feed = document.get("feed") if isinstance(document, dict) else None
+    if isinstance(feed, dict) and isinstance(feed.get("entry"), list):
+        entries = []
+        for item in feed["entry"][:limit]:
+            content = item.get("content") or {}
+            links = item.get("link") or []
+            url = content.get("src") or next(
+                (link.get("href", "") for link in links if link.get("rel") == "self"),
+                "",
+            )
+            if not url:
+                continue
+            entries.append({
+                "source": source,
+                "label": label,
+                "title": item.get("title") or item.get("id") or "Avis CISA sans titre",
+                "url": url,
+                "date": parse_date(item.get("published") or item.get("updated") or ""),
+                "summary": "Avis de sécurité CISA publié au format structuré CSAF.",
+            })
+        return entries
+
     root = ET.fromstring(payload)
     entries = []
     # RSS 2.0
