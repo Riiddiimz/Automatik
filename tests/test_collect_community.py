@@ -229,6 +229,25 @@ class CommunityFeedTests(unittest.TestCase):
         self.assertTrue(any("500 demandés" in error for error in result["errors"]))
 
 
+    def test_coverage_counts_raw_feed_entries_before_product_filtering(self):
+        items = []
+        for index in range(500):
+            title = "FortiGate 7.4.12 VPN issue" if index == 0 else f"Unrelated discussion {index}"
+            summary = "VPN disconnects" if index == 0 else "General discussion"
+            items.append(
+                f"<item><title>{title}</title>"
+                f"<link>https://community.fortinet.com/support-forum-92/topic-{index}</link>"
+                f"<description>{summary}</description></item>"
+            )
+        payload = ("<rss version=\"2.0\"><channel>" + "".join(items) + "</channel></rss>").encode()
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "community.json"
+            with patch.object(collector, "fetch_feed", return_value=payload):
+                result = collector.collect(out=path)
+        self.assertEqual(result["feedItemCount"], 500)
+        self.assertEqual(result["topicCount"], 1)
+        self.assertFalse(any("500 demandés" in error for error in result["errors"]))
+
     def test_atom_feed_is_supported(self):
         payload = b"""<feed xmlns="http://www.w3.org/2005/Atom"><entry><title>FortiManager topic</title><link href="https://community.fortinet.com/t5/FortiManager/atom"/><updated>2026-10-21T08:00:00Z</updated><summary>Policy issue</summary></entry></feed>"""
         items = collector.parse_feed(payload)
