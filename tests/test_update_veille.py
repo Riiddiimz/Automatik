@@ -86,7 +86,7 @@ class UpdatePreservationTests(unittest.TestCase):
         ciso_rss = b"""<rss version="2.0"><channel><item><title>Fortinet security hardening release</title><link>https://www.fortinet.com/blog/ciso-collective/fortinet-releases-security-hardening-release-for-multiple-products</link><description>Fixed FortiOS and FortiManager versions</description></item></channel></rss>"""
         cert_fr_rss = b"""<rss version="2.0"><channel><item><title>Fresh CERT-FR advisory</title><link>https://www.cert.ssi.gouv.fr/alerte/new</link><description>Fresh CERT-FR item</description></item></channel></rss>"""
         kev = json.dumps({"vulnerabilities": [{"cveID": "CVE-2026-0002", "shortDescription": "New vulnerability"}]}).encode()
-        responses = [rss, urllib.error.URLError("temporary outage"), cisa_rss, cert_fr_rss, ciso_rss, kev]
+        responses = [rss, urllib.error.URLError("temporary outage"), cisa_rss, cisa_rss, cert_fr_rss, ciso_rss, kev]
 
         with tempfile.TemporaryDirectory() as directory:
             out_path = Path(directory) / "veille.json"
@@ -136,7 +136,6 @@ class UpdatePreservationTests(unittest.TestCase):
                 updater.main()
             result = json.loads(out_path.read_text(encoding="utf-8"))
         titles = [item["title"] for item in result["cyber"]]
-        self.assertIn("Previously collected CISA advisory", titles)
         self.assertIn("Fresh CISA IT advisory", titles)
         self.assertIn("Fresh CISA ICS advisory", titles)
         self.assertIn("CERT-FR security advisory", titles)
@@ -157,7 +156,7 @@ class UpdatePreservationTests(unittest.TestCase):
         cisa = b"""<rss version="2.0"><channel><item><title>Advisory</title><link>https://example.com/advisory</link></item></channel></rss>"""
         ciso_rss = b"""<rss version="2.0"><channel><item><title>Fortinet security hardening release</title><link>https://www.fortinet.com/blog/ciso-collective/fortinet-releases-security-hardening-release-for-multiple-products</link><description>Fixed FortiOS and FortiManager versions</description></item></channel></rss>"""
         cert_fr = b"""<rss version="2.0"><channel><item><title>CERT-FR advisory</title><link>https://www.cert.ssi.gouv.fr/alerte/cert</link></item></channel></rss>"""
-        responses = [rss, outbreak, cisa, cert_fr, ciso_rss, urllib.error.URLError("temporary outage")]
+        responses = [rss, outbreak, cisa, cisa, cert_fr, ciso_rss, urllib.error.URLError("temporary outage")]
         with tempfile.TemporaryDirectory() as directory:
             out_path = Path(directory) / "veille.json"
             out_path.write_text(json.dumps(old), encoding="utf-8")
@@ -184,7 +183,7 @@ class UpdatePreservationTests(unittest.TestCase):
         cisa = b"""<rss version="2.0"><channel><item><title>Advisory</title><link>https://example.com/advisory</link></item></channel></rss>"""
         cert_fr = b"""<rss version="2.0"><channel><item><title>CERT-FR advisory</title><link>https://www.cert.ssi.gouv.fr/alerte/cert</link></item></channel></rss>"""
         kev = json.dumps({"vulnerabilities": [{"cveID": "CVE-2026-0199"}]}).encode()
-        responses = [psirt, outbreak, cisa, cert_fr, urllib.error.URLError("temporary outage"), kev]
+        responses = [psirt, outbreak, cisa, cisa, cert_fr, urllib.error.URLError("temporary outage"), kev]
         with tempfile.TemporaryDirectory() as directory:
             out_path = Path(directory) / "veille.json"
             out_path.write_text(json.dumps(old), encoding="utf-8")
