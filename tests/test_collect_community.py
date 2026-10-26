@@ -58,6 +58,27 @@ class CommunityFeedTests(unittest.TestCase):
         self.assertEqual(items[0]["versions"], [])
         self.assertEqual(items[0]["fixedVersions"], ["8.0.4"])
 
+    def test_long_official_summary_keeps_late_fix_version(self):
+        description = (
+            "DescriptionAdministrator SSO authentication fails. "
+            + ("technical details " * 100)
+            + "ScopeFortiOS 7.6.8. "
+            + "SolutionThe issue is under investigation and scheduled for fix in FortiOS 7.6.9."
+        )
+        payload = f"""<rss version="2.0"><channel>
+          <item>
+            <title>Administrator SSO authentication fails after upgrade to FortiOS 7.6.8</title>
+            <link>https://community.fortinet.com/fortigate-3/administrator-sso-authentication-fails-after-upgrade-to-fortios-7-6-8-230826</link>
+            <description><![CDATA[{description}]]></description>
+          </item>
+        </channel></rss>""".encode("utf-8")
+        items = collector.parse_feed(payload)
+        self.assertEqual(len(items), 1)
+        self.assertGreater(len(items[0]["summary"]), 1200)
+        self.assertIn("scheduled for fix in FortiOS 7.6.9", items[0]["summary"])
+        self.assertEqual(items[0]["versions"], ["7.6.8"])
+        self.assertEqual(items[0]["fixedVersions"], ["7.6.9"])
+
     def test_rss_categories_identify_products_missing_from_title_and_summary(self):
         payload = b"""<rss version="2.0"><channel>
           <item>
