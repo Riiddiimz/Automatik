@@ -3,6 +3,7 @@ import unittest
 from scripts.review_community_gemini import (
     apply_reviews,
     build_review_input,
+    parse_gemini_json,
     validate_reviews,
 )
 
@@ -35,6 +36,12 @@ class GeminiReviewTests(unittest.TestCase):
         self.assertEqual(items[0]["id"], "incident-test123")
         self.assertEqual(items[0]["versions"], ["7.4.12"])
         self.assertEqual(items[0]["sources"][0]["url"], "https://community.fortinet.com/example")
+
+    def test_parse_gemini_json_accepts_markdown_fence(self):
+        self.assertEqual(parse_gemini_json('\\x60\\x60\\x60json\\n[{"id":"a"}]\\n\\x60\\x60\\x60'), [{"id": "a"}])
+
+    def test_parse_gemini_json_accepts_surrounding_text(self):
+        self.assertEqual(parse_gemini_json('Resultat : [{"id":"a"}] fin'), [{"id": "a"}])
 
     def test_validate_reviews_requires_exact_ids_and_string_fields(self):
         payload = [{
