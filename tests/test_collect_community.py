@@ -226,7 +226,7 @@ class CommunityFeedTests(unittest.TestCase):
 
         self.assertTrue(result["partial"])
         self.assertEqual(result["feedUrl"], collector.EXTENDED_FEED_URL)
-        self.assertTrue(any("500 demandés" in error for error in result["errors"]))
+        self.assertTrue(any("entrées brutes sur 500 demandées" in error for error in result["errors"]))
 
 
     def test_coverage_counts_raw_feed_entries_before_product_filtering(self):
