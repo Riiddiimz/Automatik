@@ -1,12 +1,215 @@
 {
-  "generatedAt": "2026-10-26T12:58:24.915805+00:00",
+  "generatedAt": "2026-10-26T14:38:38.019574+00:00",
   "feedUrl": "https://community.fortinet.com/feed/topics?count=500",
   "partial": true,
   "errors": [
-    "Le flux Community a renvoyé 71 sujets sur 500 demandés; la couverture complète des 30 derniers jours n'est pas garantie."
+    "Le flux Community a renvoyé 72 sujets sur 500 demandés; la couverture complète des 30 derniers jours n'est pas garantie."
   ],
-  "topicCount": 124,
+  "topicCount": 129,
   "topics": [
+    {
+      "id": "https://community.fortinet.com/support-forum-92/site-to-site-ipsec-tunnel-problem-between-different-os-firewall-230860",
+      "title": "site to site Ipsec tunnel problem between different OS firewall",
+      "url": "https://community.fortinet.com/support-forum-92/site-to-site-ipsec-tunnel-problem-between-different-os-firewall-230860",
+      "date": "2026-10-26T14:30:54+00:00",
+      "summary": "We created site to site ipsec vpn Between two fortigate firewall... One firewall OS 7.6.6 & another firewall OS 7.4.2..we entry the data exact the same to both firewall like Ike v number , DH, Encryption protocol etc but tunnel not working. Please help is there any solution for it",
+      "categories": [
+        "Support Forum"
+      ],
+      "products": [
+        "FortiGate"
+      ],
+      "versions": [],
+      "fixVersions": [],
+      "status": "À vérifier",
+      "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
+      "source": "Fortinet Community",
+      "firstSeen": "2026-10-26T14:38:38.019574+00:00",
+      "lastSeen": "2026-10-26T14:38:38.019574+00:00",
+      "versionFamilies": [],
+      "potentialProblem": true
+    },
+    {
+      "id": "https://community.fortinet.com/fortigate-3/ipsec-vpn-saml-sso-authentication-with-fortigate-and-fortiauthenticator-230859",
+      "title": "IPsec VPN SAML SSO authentication with FortiGate and FortiAuthenticator",
+      "url": "https://community.fortinet.com/fortigate-3/ipsec-vpn-saml-sso-authentication-with-fortigate-and-fortiauthenticator-230859",
+      "date": "2026-10-26T14:18:06+00:00",
+      "summary": "DescriptionThis article describes troubleshooting steps for IPsec IKEv2 VPN connections that use SAML single sign-on with FortiGate as the service provider and FortiAuthenticator as the identity provider. It covers troubleshooting listener connectivity, HTTP 403 responses, SAML attributes, and EAP authentication failures. Optional Fortinet Single Sign-On checks are included for deployments that also collect Active Directory logon events.ScopeFortiGate running FortiOS 7.4.11, FortiAuthenticator 6.6.9, and FortiClient 7.4.7 on Windows. The reference lab also used Windows Server 2019 Active Directory and a Windows 10 domain client. Commands and menu paths refer to these versions. Hostnames, usernames, addresses, and object names below are examples.SolutionSymptomsThe lab troubleshooting included the following observations:IKE_SA_INIT and gateway validation completed, but EAP later timed out. The authentication exchange reached a username and candidate group before returning FNBAM_ERROR, with an empty EAP response.After ike-saml-server was configured on the incoming FortiGate interface, the TCP 11443 test succeeded and the FortiClient error changed from Network Error to 403 Forbidden.The second observation establishes progress to an HTTP response. It does not establish successful SAML authentication, completion of EAP, or an operational IPsec tunnel.SolutionIdentify the failing authentication stageFortiClient first reaches the FortiGate IKE SAML listener over HTTPS. The browser is redirected to FortiAuthenticator, which authenticates the user against the configured directory and returns a SAML response to FortiGate. FortiGate then completes the VPN authentication and IKEv2 negotiation. The browser path and the IPsec transport require separate checks.ConnectionPurposeFortiClient to FortiGate TCP 11443Example HTTPS listener for IPsec SAML authenticationClient browser to FortiAuthenticator HTTPSIdentity provider login and SAML exchangeFortiAuthenticator to Active DirectoryDirectory authentication and group lookupFortiClient to FortiGate UDP 500 and 4500IKEv2 and NAT traversal in the reference UDP deploymentVerify DNS reachability and certificates.Run the following PowerShell commands from the affected endpoint before connecting the VPN:Resolve-DnsName vpn.example.com Resolve-DnsName idp.example.com Test-NetConnection vpn.example.com -Port 11443 Test-NetConnection idp.example.com -Port 443Confirm that both names resolve to addresses reachable before VPN establishment.Verify the browser can reach the identity provider over HTTPS.Verify the FortiGate listener certificate covers vpn.example.com, and the FortiAuthenticator HTTPS certificate covers idp.example.com.The endpoint must trust their issuing certificate authorities.Check certificate validity and time synchronization on the endpoint, FortiGate, and FortiAuthenticator.The HTTPS server certificate and the SAML identity provider signing certificate serve different purposes. Verify both independently; a successful TCP connection does not validate either certificate.Verify the FortiGate IKE SAML listener.Review the listener port, interface binding, and authentication certificate:show full-configuration system global | grep auth-ike-saml-port show full-configuration system interface port1 show full-configuration user setting | grep auth-cert show user samlThe SAML object must already exist. If the listener or interface binding is missing, apply the relevant correction. The following example uses TCP 11443 and an existing local certificate:config system global set auth-ike-saml-port 11443 end config system interface edit \"port1\" set ike-saml-server \"FAC-SAML\" next end config user setting set auth-cert \"Fortinet_Factory\" endBind the SAML server to the interface receiving the FortiClient authentication request.Administrative HTTPS access on that interface is a separate service and does not replace the IKE SAML binding.Verify the FortiClient SSO port and the FortiGate service provider URLs also use 11443.If TcpTestSucceeded (Test-NetConnection result) remains False, check endpoint routing, upstream filtering, FortiGate local-in restrictions, and competing services on the selected port.Capture the request while repeating the connection test:diagnose sniffer packet any 'host and tcp port 11443' 4 0 lUse the client source address as observed by FortiGate, including any upstream NAT translation. Repeated SYN packets without a SYN-ACK require transport or listener investigation. A completed TCP handshake followed by an HTTP denial requires the SAML and web-service checks below.Isolate HTTP 403 response.Record the hostname and path that return a 403 Forbidden error. A response from the FortiGate endpoint and a response from FortiAuthenticator identify different processing points. Correlate the failed request with FortiGate SAML debugging and FortiAuthenticator authentication and web-service logs.On FortiAuthenticator, verify that the SAML identity provider service is enabled o",
+      "categories": [
+        "FortiGate"
+      ],
+      "products": [
+        "FortiGate",
+        "FortiAuthenticator",
+        "FortiClient"
+      ],
+      "versions": [
+        "6.6.9",
+        "7.4.7",
+        "7.4.11"
+      ],
+      "fixVersions": [],
+      "status": "À vérifier",
+      "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
+      "source": "Fortinet Community",
+      "firstSeen": "2026-10-26T14:38:38.019574+00:00",
+      "lastSeen": "2026-10-26T14:38:38.019574+00:00",
+      "versionFamilies": [
+        "6.6",
+        "7.4"
+      ],
+      "potentialProblem": false
+    },
+    {
+      "id": "https://community.fortinet.com/support-forum-92/fortigate-gui-inaccessible-after-upgrade-to-fortios-7-6-8-due-to-tls-handshake-failure-230760",
+      "title": "FortiGate GUI inaccessible after upgrade to FortiOS 7.6.8 due to TLS handshake failure",
+      "url": "https://community.fortinet.com/support-forum-92/fortigate-gui-inaccessible-after-upgrade-to-fortios-7-6-8-due-to-tls-handshake-failure-230760",
+      "date": "2026-10-26T13:57:50+00:00",
+      "summary": "After upgrading a FortiGate HA cluster to FortiOS 7.6.8, the HTTPS GUI was no longer accessible. Browsers returned ERR_SSL_PROTOCOL_ERROR, while curl reported SEC_E_DECRYPT_FAILURE.The GUI worked when TLS 1.2 was explicitly enforced. The issue was resolved with:config system global set admin-https-ssl-versions tlsv1-2 set tls-session-cache disableendA reboot was required for the TLS session cache change to take effect. After the reboot, the GUI was accessible again.Is this a known issue in FortiOS 7.6.8?",
+      "products": [
+        "FortiGate"
+      ],
+      "versions": [
+        "7.6.8"
+      ],
+      "status": "À vérifier",
+      "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
+      "source": "Fortinet Community",
+      "firstSeen": "2026-10-23T07:37:30.171221+00:00",
+      "lastSeen": "2026-10-26T14:38:38.019574+00:00",
+      "versionFamilies": [
+        "7.6"
+      ],
+      "potentialProblem": true,
+      "categories": [
+        "Support Forum"
+      ],
+      "fixedVersions": [],
+      "fixVersions": []
+    },
+    {
+      "id": "https://community.fortinet.com/support-forum-92/how-to-connect-same-vlan-on-fortigate-internal-switch-isf-and-fortiswitch-vlans-225865",
+      "title": "How to connect same VLAN on FortiGate internal switch (ISF) and FortiSwitch VLANs?",
+      "url": "https://community.fortinet.com/support-forum-92/how-to-connect-same-vlan-on-fortigate-internal-switch-isf-and-fortiswitch-vlans-225865",
+      "date": "2026-10-26T13:57:14+00:00",
+      "summary": "I stepped away from Fortinet for a while and am coming back to find that there still seems to be no real solution to connecting the internal switch ports and external (FortiSwitch) switch ports on the same VLAN. You'd think that once you setup FortiLink, attach a FortiSwitch, and start making FortiSwitch VLANs that those VLAN interfaces would be available to add to either a software switch or hardware (vlan) switch. It doesn't seem that is the case though... Instead, it seems the only way to share traffic between internal ports and external ports is to PHYSICALLY connect between them? Is this really the best (only?) solution:Create virtual VLAN switch with VLAN ID of zero on Fortigate.Add all the ports you are going to use as membersCreate sub-interfaces for each VLAN ID that you are using on the networkDesignate a physical port on the firewall as the trunkCreate a trunk port on the switch controller for the FortiSwitchesPhysically connect the internal (fw) switch trunk port to the FortiSwitch trunk portI suppose if you had an HA fw pair you'd need to make an agg. interface for the trunk? I've not yet tested this as I just came up with it and the firewall and switches are in different locations (hence the desire to use the internal switch ports).",
+      "categories": [
+        "Support Forum"
+      ],
+      "products": [
+        "FortiGate",
+        "FortiSwitch"
+      ],
+      "versions": [],
+      "fixVersions": [],
+      "status": "À vérifier",
+      "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
+      "source": "Fortinet Community",
+      "firstSeen": "2026-10-26T14:38:38.019574+00:00",
+      "lastSeen": "2026-10-26T14:38:38.019574+00:00",
+      "versionFamilies": [],
+      "potentialProblem": false
+    },
+    {
+      "id": "https://community.fortinet.com/fortiswitch-36/rx-discards-increase-on-access-fortiswitch-uplink-ports-when-fortilink-neighbor-detect-is-set-to-fortilink-230858",
+      "title": "Rx Discards increase on access FortiSwitch uplink ports when fortilink-neighbor-detect is set to FortiLink",
+      "url": "https://community.fortinet.com/fortiswitch-36/rx-discards-increase-on-access-fortiswitch-uplink-ports-when-fortilink-neighbor-detect-is-set-to-fortilink-230858",
+      "date": "2026-10-26T13:42:50+00:00",
+      "summary": "DescriptionThis article describes the Rx Discards counter increases on the uplink ports of an access FortiSwitch when the FortiGate FortiLink interface uses fortilink-neighbor-detect fortilink. It also describes how to stop the increase by changing the setting to LLDP.ScopeFortiGate and FortiSwitch units managed over FortiLink, with fortilink-neighbor-detect set to FortiLink.SolutionSymptoms:The Rx Discards counter increases steadily on the uplink ports of the access FortiSwitch. These are the ports that connect to the distribution or core FortiSwitch.The Rx Discards counter does not increase on the access (downlink) ports.The uplink ports show no CRC, input, or output errors.The Rx Discards counter stops increasing after setting fortilink-neighbor-detect to LLDP on the FortiGate.Cause:When setting fortilink-neighbor-detect to FortiLink, the FortiGate and FortiSwitch units exchange proprietary FortiLink protocol frames over the FortiLink and ISL trunks. The access FortiSwitch receives these frames on its uplink ports, handles them itself instead of forwarding them, and adds them to the Rx Discards counter.When setting fortilink-neighbor-detect to LLDP, the FortiGate and FortiSwitch units use standard LLDP frames for neighbor detection. The FortiSwitch does not add these frames to the Rx Discards counter.Verification:On the FortiGate, check which neighbor detection method the FortiLink interface uses:show full system interface | grep neighborOn the access FortiSwitch, find the uplink trunk and its member ports:diagnose switch trunk summary show switch trunkOn the access FortiSwitch, reset the counters on each uplink port, wait a few minutes, and check the counters again:diagnose switch physical-ports set-counter-zero diagnose switch physical-ports port-stats list Rx Discards: diagnose switch physical-ports list dropsdiagnose switch physical-ports port-stats list Rx Discards: drops set lldp-reception enable set lldp-transmission enable set fortilink-neighbor-detect lldp next endOn the access FortiSwitch, reset the counters on each uplink port and confirm that the Rx Discards counter either stops increasing or no longer increases at the same rate as before the change:diagnose switch physical-ports set-counter-zero diagnose switch physical-ports port-stats list diagnose switch physical-ports list Notes:The increase in the Rx Discards counter does not disrupt production traffic.Changing fortilink-neighbor-detect can briefly interrupt traffic, so plan the change for a maintenance window.Enable LLDP before you change the detection method. If changing the method without enabling LLDP, the managed FortiSwitch units go offline.A FortiLink interface based on a hardware switch does not offer the fortilink-neighbor-detect option.Related article:Troubleshooting Tip: How to interpret RX drops on FortiSwitch devices",
+      "categories": [
+        "FortiSwitch"
+      ],
+      "products": [
+        "FortiSwitch",
+        "FortiGate"
+      ],
+      "versions": [],
+      "fixVersions": [],
+      "status": "À vérifier",
+      "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
+      "source": "Fortinet Community",
+      "firstSeen": "2026-10-26T14:38:38.019574+00:00",
+      "lastSeen": "2026-10-26T14:38:38.019574+00:00",
+      "versionFamilies": [],
+      "potentialProblem": false
+    },
+    {
+      "id": "https://community.fortinet.com/fortigate-3/understanding-and-managing-frequent-ha-audit-log-0108035018-230857",
+      "title": "Understanding and managing frequent HA audit log 0108035018",
+      "url": "https://community.fortinet.com/fortigate-3/understanding-and-managing-frequent-ha-audit-log-0108035018-230857",
+      "date": "2026-10-26T13:32:57+00:00",
+      "summary": "DescriptionAfter upgrading to FortiOS 7.4.13, you may observe frequent event logs on a FortiGate High Availability (HA) cluster with log ID 0108035018.A sample log message appears as follows:date=2026-10-23 time=10:33:00 logid=\"0108035018\" type=\"event\" subtype=\"ha\" level=\"information\" vd=\"root\" logdesc=\"HA secondary received CLI commands\" user=\"FGT_ha_admin\" ui=\"ha_daemon\" msg=\"Received CMD from ip:169.254.0.1 vdom:vsys_ha type:1, msg_type:66\"In FortiOS 7.4.13, security audit logging was added to record commands exchanged between HA cluster members across the internal heartbeat channel.Before FortiOS 7.4.13, these internal exchanges occurred silently. In FortiOS 7.4.13, each received command generates an informational event log.ScopeFortiOS 7.4.13.SolutionThese logs are purely informational. They do not cause packet loss, do not trigger failovers, and do not indicate a configuration defect.You can confirm that your cluster is healthy, or configure a log filter to exclude this message if you prefer not to retain it.Confirm HA Cluster SynchronizationTo verify that the cluster is healthy and in sync, run the following commands on the primary FortiGate:get system ha status diagnose sys ha statusVerify that both cluster members show an in-sync state and that the secondary node is reachable over all configured heartbeat interfaces.Filter the Log from Local Disk Storage (Optional)If your FortiGate has an onboard disk and you wish to stop recording this informational log to disk, configure a free-style exclusion filter in the CLI:config log disk filter config free-style edit 1 set category event set filter \"(logid 0108035018)\" set filter-type exclude next end endFilter the Log from FortiAnalyzer (Optional)If you send logs to FortiAnalyzer and wish to exclude this message, apply a free-style filter on the FortiGate:config log fortianalyzer filter config free-style edit 1 set category event set filter \"(logid 0108035018)\" set filter-type exclude next end end",
+      "categories": [
+        "FortiGate"
+      ],
+      "products": [
+        "FortiGate"
+      ],
+      "versions": [
+        "7.4.13"
+      ],
+      "fixVersions": [],
+      "status": "À vérifier",
+      "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
+      "source": "Fortinet Community",
+      "firstSeen": "2026-10-26T14:38:38.019574+00:00",
+      "lastSeen": "2026-10-26T14:38:38.019574+00:00",
+      "versionFamilies": [
+        "7.4"
+      ],
+      "potentialProblem": false
+    },
+    {
+      "id": "https://community.fortinet.com/fortimanager-27/ldaps-configuration-erased-after-fortimanager-upgrade-230637",
+      "title": "LDAPS configuration erased after FortiManager upgrade",
+      "url": "https://community.fortinet.com/fortimanager-27/ldaps-configuration-erased-after-fortimanager-upgrade-230637",
+      "date": "2026-10-26T13:25:02+00:00",
+      "summary": "DescriptionTroubleshooting steps for an issue where LDAPS configurations are erased after a FortiManager upgrade when a 'ca-cert' is not configured.ScopeFortiManager.DescriptionFortiManager currently permits omitting the 'ca-cert' field when configuring LDAPS.These LDAPS configurations, where LDAPS is configured but the 'ca-cert' field is not set, will be automatically deleted during the upgrade to FortiManager versions 7.4.12 GA and 7.6.8 GA.config system admin ldap edit \"LDAP\" set server \"x.x.x.x\" set cnid \"sAMAccountName\" set port 636 set dn \"dc=fortinet,dc=lab\" set type regular set username \"fortinet\" set password ENC XXX set secure ldaps set ca-cert \"Fortinet_CA\" nextWorkaround: Assign a temporary ca-cert before upgrading FortiManager to keep the configurations during the upgrade. Disable it if necessary once the FortiManager has been upgraded. Note: This behavior applies to RADIUS over TLS and TACACS+ configuration as well, where the 'ca-cert' field must be configured with a valid CA certificate. If no CA certificate is assigned, the corresponding remote authentication server configuration will be lost after upgrading FortiManager to version 7.4.12 or 7.6.8.",
+      "categories": [
+        "FortiManager"
+      ],
+      "products": [
+        "FortiManager"
+      ],
+      "versions": [],
+      "fixVersions": [],
+      "status": "À vérifier",
+      "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
+      "source": "Fortinet Community",
+      "firstSeen": "2026-10-26T12:58:24.915805+00:00",
+      "lastSeen": "2026-10-26T14:38:38.019574+00:00",
+      "versionFamilies": [],
+      "potentialProblem": false
+    },
+    {
+      "id": "https://community.fortinet.com/support-forum-92/install-failure-on-2-gb-ram-fortigates-after-fortimanager-7-6-8-upgrade-ssl-ssh-profile-udp-not-quic-230808",
+      "title": "Install failure on 2 GB RAM FortiGates after FortiManager 7.6.8 upgrade – ssl-ssh-profile udp-not-quic",
+      "url": "https://community.fortinet.com/support-forum-92/install-failure-on-2-gb-ram-fortigates-after-fortimanager-7-6-8-upgrade-ssl-ssh-profile-udp-not-quic-230808",
+      "date": "2026-10-26T13:21:50+00:00",
+      "summary": "Hi all,after upgrading FortiManager to 7.6.8, all installs to our FortiGate-50G devices (FortiOS 7.6.7) fail. FortiManager pushes an attribute to the default profile “custom-deep-inspection” that the 50G does not support:config firewall ssl-ssh-profile edit \"custom-deep-inspection\" config https set udp-not-quic allow end config dot set udp-not-quic allow end nextend---> generating verification report(vdom root: firewall ssl-ssh-profile \"custom-deep-inspection\" https:udp-not-quic) remote original: to be installed: allow(vdom root: firewall ssl-ssh-profile \"custom-deep-inspection\" dot:udp-not-quic) remote original: to be installed: allow<--- done generating verification report------- Start to retry ---------same result]install failedTask status: “verify state: install OK/verify FAIL” → “install and save finished status=FAILED”. No changes are applied.Running the command manually on the 50G:set udp-not-quic allowcommand parse error before 'udp-not-quic'Command fail. Return code -61A FortiGate-70G with the same FortiOS version accepts the command and installs fine, so this seems specific to 2 GB RAM models. The profile is unused and cannot be deleted (static entry), and an unset via CLI template doesn’t help either.Is this a known bug, and is there a workaround or fix version?Thanks!",
+      "products": [
+        "FortiGate",
+        "FortiManager"
+      ],
+      "versions": [
+        "7.6.7",
+        "7.6.8"
+      ],
+      "status": "À vérifier",
+      "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
+      "source": "Fortinet Community",
+      "firstSeen": "2026-10-23T07:37:30.171221+00:00",
+      "lastSeen": "2026-10-26T14:38:38.019574+00:00",
+      "versionFamilies": [
+        "7.6"
+      ],
+      "potentialProblem": true,
+      "categories": [
+        "Support Forum"
+      ],
+      "fixedVersions": [],
+      "fixVersions": []
+    },
     {
       "id": "https://community.fortinet.com/fortimanager-27/metadata-variables-in-cli-scripts-use-global-or-default-values-instead-of-mapped-per-device-vdom-values-230756",
       "title": "Metadata variables in CLI scripts use global or default values instead of mapped (per-device/VDOM) values",
@@ -21,7 +224,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-23T07:37:30.171221+00:00",
-      "lastSeen": "2026-10-26T12:58:24.915805+00:00",
+      "lastSeen": "2026-10-26T14:38:38.019574+00:00",
       "versionFamilies": [],
       "potentialProblem": false,
       "categories": [
@@ -29,28 +232,6 @@
       ],
       "fixedVersions": [],
       "fixVersions": []
-    },
-    {
-      "id": "https://community.fortinet.com/fortimanager-27/ldaps-configuration-erased-after-fortimanager-upgrade-230637",
-      "title": "LDAPS configuration erased after FortiManager upgrade",
-      "url": "https://community.fortinet.com/fortimanager-27/ldaps-configuration-erased-after-fortimanager-upgrade-230637",
-      "date": "2026-10-26T12:38:26+00:00",
-      "summary": "DescriptionTroubleshooting steps for an issue where LDAPS configurations are erased after a FortiManager upgrade when a 'ca-cert' is not configured.ScopeFortiManager.DescriptionFortiManager currently permits omitting the 'ca-cert' field when configuring LDAPS.These LDAPS configurations, where LDAPS is configured but the 'ca-cert' field is not set, will be automatically deleted during the upgrade to FortiManager versions 7.4.12 GA and 7.6.8 GA.config system admin ldap edit \"LDAP\" set server \"x.x.x.x\" set cnid \"sAMAccountName\" set port 636 set dn \"dc=fortinet,dc=lab\" set type regular set username \"fortinet\" set password ENC XXX set secure ldaps set ca-cert \"Fortinet_CA\" nextWorkaround: Assign a temporary ca-cert before upgrading FortiManager to keep the configurations during the upgrade. Disable it if necessary once the FortiManager has been upgraded. Note: This behavior applies to RADIUS over TLS and TACACS+ configuration as well, where the 'ca-cert' field must be configured with a valid CA certificate. If no CA certificate is assigned, the corresponding remote authentication server configuration will be lost after upgrading FortiManager to version 7.4.12 or 7.6.8.",
-      "categories": [
-        "FortiManager"
-      ],
-      "products": [
-        "FortiManager"
-      ],
-      "versions": [],
-      "fixVersions": [],
-      "status": "À vérifier",
-      "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
-      "source": "Fortinet Community",
-      "firstSeen": "2026-10-26T12:58:24.915805+00:00",
-      "lastSeen": "2026-10-26T12:58:24.915805+00:00",
-      "versionFamilies": [],
-      "potentialProblem": false
     },
     {
       "id": "https://community.fortinet.com/support-forum-92/after-upgrade-to-7-4-13-many-ap-are-not-connected-230800",
@@ -74,40 +255,11 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-25T08:49:02.456463+00:00",
-      "lastSeen": "2026-10-26T12:58:24.915805+00:00",
+      "lastSeen": "2026-10-26T14:38:38.019574+00:00",
       "versionFamilies": [
         "7.4"
       ],
       "potentialProblem": true,
-      "fixedVersions": [],
-      "fixVersions": []
-    },
-    {
-      "id": "https://community.fortinet.com/support-forum-92/install-failure-on-2-gb-ram-fortigates-after-fortimanager-7-6-8-upgrade-ssl-ssh-profile-udp-not-quic-230808",
-      "title": "Install failure on 2 GB RAM FortiGates after FortiManager 7.6.8 upgrade – ssl-ssh-profile udp-not-quic",
-      "url": "https://community.fortinet.com/support-forum-92/install-failure-on-2-gb-ram-fortigates-after-fortimanager-7-6-8-upgrade-ssl-ssh-profile-udp-not-quic-230808",
-      "date": "2026-10-26T12:10:59+00:00",
-      "summary": "Hi all,after upgrading FortiManager to 7.6.8, all installs to our FortiGate-50G devices (FortiOS 7.6.7) fail. FortiManager pushes an attribute to the default profile “custom-deep-inspection” that the 50G does not support:config firewall ssl-ssh-profile edit \"custom-deep-inspection\" config https set udp-not-quic allow end config dot set udp-not-quic allow end nextend---> generating verification report(vdom root: firewall ssl-ssh-profile \"custom-deep-inspection\" https:udp-not-quic) remote original: to be installed: allow(vdom root: firewall ssl-ssh-profile \"custom-deep-inspection\" dot:udp-not-quic) remote original: to be installed: allow<--- done generating verification report------- Start to retry ---------same result]install failedTask status: “verify state: install OK/verify FAIL” → “install and save finished status=FAILED”. No changes are applied.Running the command manually on the 50G:set udp-not-quic allowcommand parse error before 'udp-not-quic'Command fail. Return code -61A FortiGate-70G with the same FortiOS version accepts the command and installs fine, so this seems specific to 2 GB RAM models. The profile is unused and cannot be deleted (static entry), and an unset via CLI template doesn’t help either.Is this a known bug, and is there a workaround or fix version?Thanks!",
-      "products": [
-        "FortiGate",
-        "FortiManager"
-      ],
-      "versions": [
-        "7.6.7",
-        "7.6.8"
-      ],
-      "status": "À vérifier",
-      "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
-      "source": "Fortinet Community",
-      "firstSeen": "2026-10-23T07:37:30.171221+00:00",
-      "lastSeen": "2026-10-26T12:58:24.915805+00:00",
-      "versionFamilies": [
-        "7.6"
-      ],
-      "potentialProblem": true,
-      "categories": [
-        "Support Forum"
-      ],
       "fixedVersions": [],
       "fixVersions": []
     },
@@ -127,7 +279,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-24T07:14:22.584683+00:00",
-      "lastSeen": "2026-10-26T12:58:24.915805+00:00",
+      "lastSeen": "2026-10-26T14:38:38.019574+00:00",
       "versionFamilies": [
         "7.6"
       ],
@@ -160,7 +312,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-26T12:58:24.915805+00:00",
-      "lastSeen": "2026-10-26T12:58:24.915805+00:00",
+      "lastSeen": "2026-10-26T14:38:38.019574+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -182,7 +334,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-26T08:51:24.766456+00:00",
-      "lastSeen": "2026-10-26T12:58:24.915805+00:00",
+      "lastSeen": "2026-10-26T14:38:38.019574+00:00",
       "versionFamilies": [],
       "potentialProblem": false,
       "fixVersions": []
@@ -208,7 +360,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-26T12:58:24.915805+00:00",
-      "lastSeen": "2026-10-26T12:58:24.915805+00:00",
+      "lastSeen": "2026-10-26T14:38:38.019574+00:00",
       "versionFamilies": [
         "7.4"
       ],
@@ -232,7 +384,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-26T12:58:24.915805+00:00",
-      "lastSeen": "2026-10-26T12:58:24.915805+00:00",
+      "lastSeen": "2026-10-26T14:38:38.019574+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -254,7 +406,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-26T09:30:25.828296+00:00",
-      "lastSeen": "2026-10-26T12:58:24.915805+00:00",
+      "lastSeen": "2026-10-26T14:38:38.019574+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -275,7 +427,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-25T16:15:19.386671+00:00",
-      "lastSeen": "2026-10-26T12:58:24.915805+00:00",
+      "lastSeen": "2026-10-26T14:38:38.019574+00:00",
       "versionFamilies": [],
       "potentialProblem": false,
       "fixedVersions": [],
@@ -299,7 +451,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-26T09:30:25.828296+00:00",
-      "lastSeen": "2026-10-26T12:58:24.915805+00:00",
+      "lastSeen": "2026-10-26T14:38:38.019574+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -323,7 +475,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-26T08:51:24.766456+00:00",
-      "lastSeen": "2026-10-26T12:58:24.915805+00:00",
+      "lastSeen": "2026-10-26T14:38:38.019574+00:00",
       "versionFamilies": [
         "7.4"
       ],
@@ -348,7 +500,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-26T08:51:24.766456+00:00",
-      "lastSeen": "2026-10-26T12:58:24.915805+00:00",
+      "lastSeen": "2026-10-26T14:38:38.019574+00:00",
       "versionFamilies": [],
       "potentialProblem": true,
       "fixVersions": []
@@ -371,7 +523,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-26T08:51:24.766456+00:00",
-      "lastSeen": "2026-10-26T12:58:24.915805+00:00",
+      "lastSeen": "2026-10-26T14:38:38.019574+00:00",
       "versionFamilies": [],
       "potentialProblem": true,
       "fixVersions": []
@@ -397,7 +549,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-26T08:51:24.766456+00:00",
-      "lastSeen": "2026-10-26T12:58:24.915805+00:00",
+      "lastSeen": "2026-10-26T14:38:38.019574+00:00",
       "versionFamilies": [
         "7.2"
       ],
@@ -422,7 +574,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-26T08:51:24.766456+00:00",
-      "lastSeen": "2026-10-26T12:58:24.915805+00:00",
+      "lastSeen": "2026-10-26T14:38:38.019574+00:00",
       "versionFamilies": [],
       "potentialProblem": false,
       "fixVersions": []
@@ -448,7 +600,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-26T08:51:24.766456+00:00",
-      "lastSeen": "2026-10-26T12:58:24.915805+00:00",
+      "lastSeen": "2026-10-26T14:38:38.019574+00:00",
       "versionFamilies": [
         "7.6"
       ],
@@ -473,7 +625,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-26T08:51:24.766456+00:00",
-      "lastSeen": "2026-10-26T12:58:24.915805+00:00",
+      "lastSeen": "2026-10-26T14:38:38.019574+00:00",
       "versionFamilies": [],
       "potentialProblem": false,
       "fixVersions": []
@@ -498,7 +650,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-26T12:58:24.915805+00:00",
+      "lastSeen": "2026-10-26T14:38:38.019574+00:00",
       "versionFamilies": [
         "7.0",
         "7.2",
@@ -528,7 +680,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-26T04:44:07.561963+00:00",
-      "lastSeen": "2026-10-26T12:58:24.915805+00:00",
+      "lastSeen": "2026-10-26T14:38:38.019574+00:00",
       "versionFamilies": [],
       "potentialProblem": false,
       "fixedVersions": [],
@@ -552,7 +704,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-25T20:49:10.802194+00:00",
-      "lastSeen": "2026-10-26T12:58:24.915805+00:00",
+      "lastSeen": "2026-10-26T14:38:38.019574+00:00",
       "versionFamilies": [],
       "potentialProblem": false,
       "fixedVersions": [],
@@ -572,7 +724,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-25T08:38:19.289767+00:00",
-      "lastSeen": "2026-10-26T12:58:24.915805+00:00",
+      "lastSeen": "2026-10-26T14:38:38.019574+00:00",
       "versionFamilies": [],
       "potentialProblem": true,
       "categories": [
@@ -595,7 +747,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-26T12:58:24.915805+00:00",
+      "lastSeen": "2026-10-26T14:38:38.019574+00:00",
       "versionFamilies": [],
       "potentialProblem": true,
       "categories": [
@@ -620,7 +772,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-23T07:37:30.171221+00:00",
-      "lastSeen": "2026-10-26T12:58:24.915805+00:00",
+      "lastSeen": "2026-10-26T14:38:38.019574+00:00",
       "versionFamilies": [
         "7.6"
       ],
@@ -647,7 +799,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-24T13:57:19.874191+00:00",
-      "lastSeen": "2026-10-26T12:58:24.915805+00:00",
+      "lastSeen": "2026-10-26T14:38:38.019574+00:00",
       "versionFamilies": [
         "7.2"
       ],
@@ -675,7 +827,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-25T08:49:02.456463+00:00",
-      "lastSeen": "2026-10-26T12:58:24.915805+00:00",
+      "lastSeen": "2026-10-26T14:38:38.019574+00:00",
       "versionFamilies": [],
       "potentialProblem": false,
       "fixedVersions": [],
@@ -695,7 +847,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-23T07:37:30.171221+00:00",
-      "lastSeen": "2026-10-26T12:58:24.915805+00:00",
+      "lastSeen": "2026-10-26T14:38:38.019574+00:00",
       "versionFamilies": [],
       "potentialProblem": false,
       "categories": [
@@ -718,7 +870,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-24T07:14:22.584683+00:00",
-      "lastSeen": "2026-10-26T12:58:24.915805+00:00",
+      "lastSeen": "2026-10-26T14:38:38.019574+00:00",
       "versionFamilies": [],
       "potentialProblem": true,
       "categories": [
@@ -742,7 +894,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-24T07:14:22.584683+00:00",
-      "lastSeen": "2026-10-26T12:58:24.915805+00:00",
+      "lastSeen": "2026-10-26T14:38:38.019574+00:00",
       "versionFamilies": [],
       "potentialProblem": false,
       "categories": [
@@ -765,7 +917,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-24T07:14:22.584683+00:00",
-      "lastSeen": "2026-10-26T12:58:24.915805+00:00",
+      "lastSeen": "2026-10-26T14:38:38.019574+00:00",
       "versionFamilies": [],
       "potentialProblem": false,
       "categories": [
@@ -788,7 +940,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-26T12:58:24.915805+00:00",
+      "lastSeen": "2026-10-26T14:38:38.019574+00:00",
       "versionFamilies": [],
       "potentialProblem": false,
       "categories": [
@@ -812,7 +964,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-26T12:58:24.915805+00:00",
+      "lastSeen": "2026-10-26T14:38:38.019574+00:00",
       "versionFamilies": [],
       "potentialProblem": false,
       "categories": [
@@ -835,7 +987,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-26T12:58:24.915805+00:00",
+      "lastSeen": "2026-10-26T14:38:38.019574+00:00",
       "versionFamilies": [],
       "potentialProblem": true,
       "categories": [
@@ -858,7 +1010,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-24T07:14:22.584683+00:00",
-      "lastSeen": "2026-10-26T12:58:24.915805+00:00",
+      "lastSeen": "2026-10-26T14:38:38.019574+00:00",
       "versionFamilies": [],
       "potentialProblem": false,
       "categories": [
@@ -882,7 +1034,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-24T07:14:22.584683+00:00",
-      "lastSeen": "2026-10-26T12:58:24.915805+00:00",
+      "lastSeen": "2026-10-26T14:38:38.019574+00:00",
       "versionFamilies": [],
       "potentialProblem": false,
       "categories": [
@@ -905,7 +1057,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-23T13:47:25.795786+00:00",
-      "lastSeen": "2026-10-26T12:58:24.915805+00:00",
+      "lastSeen": "2026-10-26T14:38:38.019574+00:00",
       "versionFamilies": [],
       "potentialProblem": false,
       "categories": [
@@ -928,7 +1080,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-24T07:14:22.584683+00:00",
-      "lastSeen": "2026-10-26T12:58:24.915805+00:00",
+      "lastSeen": "2026-10-26T14:38:38.019574+00:00",
       "versionFamilies": [],
       "potentialProblem": true,
       "categories": [
@@ -951,7 +1103,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-23T07:37:30.171221+00:00",
-      "lastSeen": "2026-10-26T12:58:24.915805+00:00",
+      "lastSeen": "2026-10-26T14:38:38.019574+00:00",
       "versionFamilies": [],
       "potentialProblem": false,
       "categories": [
@@ -980,7 +1132,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-26T12:58:24.915805+00:00",
+      "lastSeen": "2026-10-26T14:38:38.019574+00:00",
       "versionFamilies": [
         "7.2",
         "7.4",
@@ -1007,7 +1159,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-24T07:14:22.584683+00:00",
-      "lastSeen": "2026-10-26T12:58:24.915805+00:00",
+      "lastSeen": "2026-10-26T14:38:38.019574+00:00",
       "versionFamilies": [],
       "potentialProblem": true,
       "categories": [
@@ -1030,7 +1182,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-23T13:47:25.795786+00:00",
-      "lastSeen": "2026-10-26T12:58:24.915805+00:00",
+      "lastSeen": "2026-10-26T14:38:38.019574+00:00",
       "versionFamilies": [],
       "potentialProblem": true,
       "categories": [
@@ -1055,7 +1207,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-26T12:58:24.915805+00:00",
+      "lastSeen": "2026-10-26T14:38:38.019574+00:00",
       "versionFamilies": [
         "7.4"
       ],
@@ -1084,7 +1236,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-23T07:37:30.171221+00:00",
-      "lastSeen": "2026-10-26T12:58:24.915805+00:00",
+      "lastSeen": "2026-10-26T14:38:38.019574+00:00",
       "versionFamilies": [
         "7.4"
       ],
@@ -1111,7 +1263,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-23T13:47:25.795786+00:00",
-      "lastSeen": "2026-10-26T12:58:24.915805+00:00",
+      "lastSeen": "2026-10-26T14:38:38.019574+00:00",
       "versionFamilies": [
         "7.4"
       ],
@@ -1139,40 +1291,13 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-23T13:47:25.795786+00:00",
-      "lastSeen": "2026-10-26T12:58:24.915805+00:00",
+      "lastSeen": "2026-10-26T14:38:38.019574+00:00",
       "versionFamilies": [
         "7.6"
       ],
       "potentialProblem": true,
       "categories": [
         "FortiManager"
-      ],
-      "fixedVersions": [],
-      "fixVersions": []
-    },
-    {
-      "id": "https://community.fortinet.com/support-forum-92/fortigate-gui-inaccessible-after-upgrade-to-fortios-7-6-8-due-to-tls-handshake-failure-230760",
-      "title": "FortiGate GUI inaccessible after upgrade to FortiOS 7.6.8 due to TLS handshake failure",
-      "url": "https://community.fortinet.com/support-forum-92/fortigate-gui-inaccessible-after-upgrade-to-fortios-7-6-8-due-to-tls-handshake-failure-230760",
-      "date": "2026-10-23T09:58:53+00:00",
-      "summary": "After upgrading a FortiGate HA cluster to FortiOS 7.6.8, the HTTPS GUI was no longer accessible. Browsers returned ERR_SSL_PROTOCOL_ERROR, while curl reported SEC_E_DECRYPT_FAILURE.The GUI worked when TLS 1.2 was explicitly enforced. The issue was resolved with:config system global set admin-https-ssl-versions tlsv1-2 set tls-session-cache disableendA reboot was required for the TLS session cache change to take effect. After the reboot, the GUI was accessible again.Is this a known issue in FortiOS 7.6.8?",
-      "products": [
-        "FortiGate"
-      ],
-      "versions": [
-        "7.6.8"
-      ],
-      "status": "À vérifier",
-      "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
-      "source": "Fortinet Community",
-      "firstSeen": "2026-10-23T07:37:30.171221+00:00",
-      "lastSeen": "2026-10-26T12:58:24.915805+00:00",
-      "versionFamilies": [
-        "7.6"
-      ],
-      "potentialProblem": true,
-      "categories": [
-        "Support Forum"
       ],
       "fixedVersions": [],
       "fixVersions": []
@@ -1194,7 +1319,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-23T13:47:25.795786+00:00",
-      "lastSeen": "2026-10-26T12:58:24.915805+00:00",
+      "lastSeen": "2026-10-26T14:38:38.019574+00:00",
       "versionFamilies": [
         "7.4"
       ],
@@ -1221,7 +1346,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-23T07:37:30.171221+00:00",
-      "lastSeen": "2026-10-26T12:58:24.915805+00:00",
+      "lastSeen": "2026-10-26T14:38:38.019574+00:00",
       "versionFamilies": [
         "7.4"
       ],
@@ -1247,7 +1372,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-23T07:37:30.171221+00:00",
-      "lastSeen": "2026-10-26T12:58:24.915805+00:00",
+      "lastSeen": "2026-10-26T14:38:38.019574+00:00",
       "versionFamilies": [],
       "potentialProblem": false,
       "categories": [
@@ -1274,7 +1399,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-23T07:37:30.171221+00:00",
-      "lastSeen": "2026-10-26T12:58:24.915805+00:00",
+      "lastSeen": "2026-10-26T14:38:38.019574+00:00",
       "versionFamilies": [
         "7.6"
       ],
@@ -1299,7 +1424,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-23T07:37:30.171221+00:00",
-      "lastSeen": "2026-10-26T12:58:24.915805+00:00",
+      "lastSeen": "2026-10-26T14:38:38.019574+00:00",
       "versionFamilies": [],
       "potentialProblem": true,
       "categories": [
@@ -1326,7 +1451,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-26T08:51:24.766456+00:00",
-      "lastSeen": "2026-10-26T12:58:24.915805+00:00",
+      "lastSeen": "2026-10-26T14:38:38.019574+00:00",
       "versionFamilies": [],
       "potentialProblem": false,
       "fixVersions": []
@@ -1346,7 +1471,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-23T07:37:30.171221+00:00",
-      "lastSeen": "2026-10-26T12:58:24.915805+00:00",
+      "lastSeen": "2026-10-26T14:38:38.019574+00:00",
       "versionFamilies": [],
       "potentialProblem": true,
       "categories": [
@@ -1369,7 +1494,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-26T12:58:24.915805+00:00",
+      "lastSeen": "2026-10-26T14:38:38.019574+00:00",
       "versionFamilies": [],
       "potentialProblem": false,
       "categories": [
@@ -1395,7 +1520,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-23T07:37:30.171221+00:00",
-      "lastSeen": "2026-10-26T12:58:24.915805+00:00",
+      "lastSeen": "2026-10-26T14:38:38.019574+00:00",
       "versionFamilies": [
         "7.4"
       ],
@@ -1420,7 +1545,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T11:38:48.104306+00:00",
-      "lastSeen": "2026-10-26T12:58:24.915805+00:00",
+      "lastSeen": "2026-10-26T14:38:38.019574+00:00",
       "versionFamilies": [],
       "potentialProblem": false,
       "categories": [
@@ -1443,7 +1568,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-23T07:37:30.171221+00:00",
-      "lastSeen": "2026-10-26T12:58:24.915805+00:00",
+      "lastSeen": "2026-10-26T14:38:38.019574+00:00",
       "versionFamilies": [],
       "potentialProblem": false,
       "categories": [
@@ -1468,7 +1593,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-26T12:58:24.915805+00:00",
+      "lastSeen": "2026-10-26T14:38:38.019574+00:00",
       "versionFamilies": [
         "7.6"
       ],
@@ -1493,7 +1618,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T09:24:01.029989+00:00",
-      "lastSeen": "2026-10-26T12:58:24.915805+00:00",
+      "lastSeen": "2026-10-26T14:38:38.019574+00:00",
       "versionFamilies": [],
       "potentialProblem": false,
       "categories": [
@@ -1516,7 +1641,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-23T07:37:30.171221+00:00",
-      "lastSeen": "2026-10-26T12:58:24.915805+00:00",
+      "lastSeen": "2026-10-26T14:38:38.019574+00:00",
       "versionFamilies": [],
       "potentialProblem": false,
       "categories": [
@@ -1539,7 +1664,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-26T12:58:24.915805+00:00",
+      "lastSeen": "2026-10-26T14:38:38.019574+00:00",
       "versionFamilies": [],
       "potentialProblem": false,
       "categories": [
@@ -1563,7 +1688,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T11:38:48.104306+00:00",
-      "lastSeen": "2026-10-26T12:58:24.915805+00:00",
+      "lastSeen": "2026-10-26T14:38:38.019574+00:00",
       "versionFamilies": [],
       "potentialProblem": false,
       "categories": [
@@ -1587,7 +1712,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-26T12:58:24.915805+00:00",
+      "lastSeen": "2026-10-26T14:38:38.019574+00:00",
       "versionFamilies": [],
       "potentialProblem": false,
       "categories": [
@@ -1610,7 +1735,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-26T12:58:24.915805+00:00",
+      "lastSeen": "2026-10-26T14:38:38.019574+00:00",
       "versionFamilies": [],
       "potentialProblem": true,
       "categories": [
@@ -1636,7 +1761,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-26T12:58:24.915805+00:00",
+      "lastSeen": "2026-10-26T14:38:38.019574+00:00",
       "versionFamilies": [
         "7.4",
         "7.6"
@@ -1666,7 +1791,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-26T12:58:24.915805+00:00",
+      "lastSeen": "2026-10-26T14:38:38.019574+00:00",
       "versionFamilies": [
         "7.4",
         "7.6"
@@ -3060,7 +3185,17 @@
       "status": "Récurrent — 2 discussions distinctes",
       "confidence": "Plusieurs discussions distinctes",
       "evidenceType": "repeated_reports",
-      "synthesisMethod": "Règles de preuve : article Fortinet versionné et explicite, ou au moins deux discussions distinctes; pas d'IA générative."
+      "synthesisMethod": "Règles de preuve : article Fortinet versionné et explicite, ou au moins deux discussions distinctes; pas d'IA générative.",
+      "aiReview": {
+        "summary": "Des appareils clients ne peuvent plus se connecter au Wi-Fi après la mise à niveau vers FortiOS 7.4.13.",
+        "symptom": "De nombreux points d'accès ne se connectent plus au pare-feu et des appareils clients ne parviennent pas à se connecter au Wi-Fi.",
+        "impact": "",
+        "solution": "",
+        "note": "Les sources proviennent de discussions d'utilisateurs et ne constituent pas une confirmation officielle de Fortinet.",
+        "model": "gemini-3.5-flash-lite",
+        "reviewedAt": "2026-10-26T14:41:07.773576+00:00",
+        "label": "Relecture IA — à vérifier avec les sources"
+      }
     },
     {
       "id": "incident-57da110da5bb",
@@ -3128,7 +3263,17 @@
       "status": "Documenté par Fortinet (version identifiée)",
       "confidence": "Documentation Fortinet versionnée",
       "evidenceType": "official_documentation",
-      "synthesisMethod": "Règles de preuve : article Fortinet versionné et explicite, ou au moins deux discussions distinctes; pas d'IA générative."
+      "synthesisMethod": "Règles de preuve : article Fortinet versionné et explicite, ou au moins deux discussions distinctes; pas d'IA générative.",
+      "aiReview": {
+        "summary": "FortiGate peut cesser d'accepter de nouvelles connexions SSL VPN en raison du processus FNBAMD.",
+        "symptom": "Le FortiGate arrête d'accepter de nouvelles connexions SSL VPN.",
+        "impact": "",
+        "solution": "Vérifier le journal des plantages (crash log) pour valider la présence de plantages multiples du processus fnbamd et exécuter des commandes de débogage pour s'assurer que le processus fnbamd reste bloqué.",
+        "note": "",
+        "model": "gemini-3.5-flash-lite",
+        "reviewedAt": "2026-10-26T14:41:07.773576+00:00",
+        "label": "Relecture IA — à vérifier avec les sources"
+      }
     },
     {
       "id": "incident-bdab9deaed50",
@@ -3180,7 +3325,17 @@
       "status": "Documenté par Fortinet (version identifiée)",
       "confidence": "Documentation Fortinet versionnée",
       "evidenceType": "official_documentation",
-      "synthesisMethod": "Règles de preuve : article Fortinet versionné et explicite, ou au moins deux discussions distinctes; pas d'IA générative."
+      "synthesisMethod": "Règles de preuve : article Fortinet versionné et explicite, ou au moins deux discussions distinctes; pas d'IA générative.",
+      "aiReview": {
+        "summary": "L'authentification SSO des administrateurs échoue après la mise à niveau vers FortiOS 7.6.8.",
+        "symptom": "L'authentification SSO des administrateurs échoue et l'accès à FortiOS nécessite un administrateur local ou un compte RADIUS/LDAP/TACACS+.",
+        "impact": "",
+        "solution": "Après la mise à niveau, l'authentification SSO des administrateurs échoue avec le message d'erreur \"Single Sign-On Failed\" sans proposer d'option de saisie des identifiants SSO.",
+        "note": "",
+        "model": "gemini-3.5-flash-lite",
+        "reviewedAt": "2026-10-26T14:41:07.773576+00:00",
+        "label": "Relecture IA — à vérifier avec les sources"
+      }
     },
     {
       "id": "incident-05cddadfb6de",
@@ -3228,7 +3383,17 @@
       "status": "Documenté par Fortinet (version identifiée)",
       "confidence": "Documentation Fortinet versionnée",
       "evidenceType": "official_documentation",
-      "synthesisMethod": "Règles de preuve : article Fortinet versionné et explicite, ou au moins deux discussions distinctes; pas d'IA générative."
+      "synthesisMethod": "Règles de preuve : article Fortinet versionné et explicite, ou au moins deux discussions distinctes; pas d'IA générative.",
+      "aiReview": {
+        "summary": "Le proxy explicite cesse de fonctionner à cause de VIPs après une mise à niveau vers la version 7.4.",
+        "symptom": "Le proxy explicite ne fonctionne plus correctement après la mise à niveau de FortiGate de la version 7.2.11 vers 7.4.12.",
+        "impact": "",
+        "solution": "La politique de proxy explicite échoue si une VIP est configurée avec la même adresse IP que celle du serveur.",
+        "note": "",
+        "model": "gemini-3.5-flash-lite",
+        "reviewedAt": "2026-10-26T14:41:07.773576+00:00",
+        "label": "Relecture IA — à vérifier avec les sources"
+      }
     },
     {
       "id": "incident-375b0b78b679",
@@ -3268,7 +3433,17 @@
       "status": "Documenté par Fortinet (version non précisée)",
       "confidence": "Documentation Fortinet (version non précisée)",
       "evidenceType": "official_documentation",
-      "synthesisMethod": "Règles de preuve : article Fortinet versionné et explicite, ou au moins deux discussions distinctes; pas d'IA générative."
+      "synthesisMethod": "Règles de preuve : article Fortinet versionné et explicite, ou au moins deux discussions distinctes; pas d'IA générative.",
+      "aiReview": {
+        "summary": "L'authentification IPsec dialup basée sur les certificats peut échouer après la mise à niveau vers FortiOS 7.6.7 ou 7.4.12 lorsque le pair PKI utilise un cn-type FQDN.",
+        "symptom": "L'authentification IPsec dialup basée sur les certificats échoue dans certains scénarios lorsque le pair PKI est configuré avec un cn-type FQDN.",
+        "impact": "",
+        "solution": "Configurer le certificat CA accepté et les informations de nom commun (Common Name) du certificat client sous 'config user peer'. Le concentrateur résout le nom commun du pair pour le comparer à l'adresse IP du client en connexion.",
+        "note": "",
+        "model": "gemini-3.5-flash-lite",
+        "reviewedAt": "2026-10-26T14:41:07.773576+00:00",
+        "label": "Relecture IA — à vérifier avec les sources"
+      }
     },
     {
       "id": "incident-dac6f96ab9f4",
@@ -3318,7 +3493,17 @@
       "status": "Documenté par Fortinet (version identifiée)",
       "confidence": "Documentation Fortinet versionnée",
       "evidenceType": "official_documentation",
-      "synthesisMethod": "Règles de preuve : article Fortinet versionné et explicite, ou au moins deux discussions distinctes; pas d'IA générative."
+      "synthesisMethod": "Règles de preuve : article Fortinet versionné et explicite, ou au moins deux discussions distinctes; pas d'IA générative.",
+      "aiReview": {
+        "summary": "Une route de stratégie configurée avec une interface SSL VPN correspond au trafic de toutes les interfaces après une mise à niveau vers FortiOS 7.6.",
+        "symptom": "La route correspond à du trafic non intentionnel après une mise à niveau, ce qui peut entraîner une mauvaise orientation ou la perte de trafic.",
+        "impact": "Un trafic mal routé ou abandonné peut survenir si la route correspond à du trafic non intentionnel.",
+        "solution": "Le mode tunnel SSL-VPN étant supprimé dans FortiOS 7.6.3 et supérieur, référencer une interface SSL VPN ou Agentless VPN dans les routes de stratégie constitue une mauvaise configuration.",
+        "note": "",
+        "model": "gemini-3.5-flash-lite",
+        "reviewedAt": "2026-10-26T14:41:07.773576+00:00",
+        "label": "Relecture IA — à vérifier avec les sources"
+      }
     },
     {
       "id": "incident-b08e0b8cbcdc",
@@ -3366,7 +3551,17 @@
       "status": "Documenté par Fortinet (version identifiée)",
       "confidence": "Documentation Fortinet versionnée",
       "evidenceType": "official_documentation",
-      "synthesisMethod": "Règles de preuve : article Fortinet versionné et explicite, ou au moins deux discussions distinctes; pas d'IA générative."
+      "synthesisMethod": "Règles de preuve : article Fortinet versionné et explicite, ou au moins deux discussions distinctes; pas d'IA générative.",
+      "aiReview": {
+        "summary": "Après une mise à niveau vers FortiOS 7.6.8, les ports SFP 1GbE (ports 17 à 24) des FortiGate 1800F et 1801F peuvent ne pas acheminer le trafic en raison d'une mise à jour du pilote interne.",
+        "symptom": "Les ports SFP 1GbE (ports 17 à 24) ne parviennent pas à traiter le trafic.",
+        "impact": "",
+        "solution": "Contactez le support technique Fortinet pour valider l'application du problème et obtenir un correctif spécial (build spécial), répertorié sous l'ID de bogue 1353422.",
+        "note": "La solution mentionne un build spécial mais ne détaille pas de procédure corrective directe.",
+        "model": "gemini-3.5-flash-lite",
+        "reviewedAt": "2026-10-26T14:41:07.773576+00:00",
+        "label": "Relecture IA — à vérifier avec les sources"
+      }
     },
     {
       "id": "incident-edb9867c8b10",
@@ -3406,7 +3601,17 @@
       "status": "Documenté par Fortinet (version non précisée)",
       "confidence": "Documentation Fortinet (version non précisée)",
       "evidenceType": "official_documentation",
-      "synthesisMethod": "Règles de preuve : article Fortinet versionné et explicite, ou au moins deux discussions distinctes; pas d'IA générative."
+      "synthesisMethod": "Règles de preuve : article Fortinet versionné et explicite, ou au moins deux discussions distinctes; pas d'IA générative.",
+      "aiReview": {
+        "summary": "Un échec du trafic IPv6 local-out se produit en raison de routes par défaut en double sur une interface parente PPPoE utilisant SLAAC.",
+        "symptom": "Le trafic IPv6 généré par le FortiGate (ping6, DNS, NTP, mises à jour FortiGuard et sondes TLS) échoue lorsque les paquets sont routés via l'interface parente.",
+        "impact": "",
+        "solution": "",
+        "note": "La source décrit le mécanisme de défaillance mais ne fournit pas de solution documentée.",
+        "model": "gemini-3.5-flash-lite",
+        "reviewedAt": "2026-10-26T14:41:07.773576+00:00",
+        "label": "Relecture IA — à vérifier avec les sources"
+      }
     },
     {
       "id": "incident-eaf6067411cb",
@@ -3454,7 +3659,17 @@
       "status": "Documenté par Fortinet (version identifiée)",
       "confidence": "Documentation Fortinet versionnée",
       "evidenceType": "official_documentation",
-      "synthesisMethod": "Règles de preuve : article Fortinet versionné et explicite, ou au moins deux discussions distinctes; pas d'IA générative."
+      "synthesisMethod": "Règles de preuve : article Fortinet versionné et explicite, ou au moins deux discussions distinctes; pas d'IA générative.",
+      "aiReview": {
+        "summary": "Les sessions HTTPS sont réinitialisées avec une erreur SSL lorsqu'elles sont traitées par l'unité secondaire d'un cluster FortiGate en mode HA Active-Active avec l'inspection de flux.",
+        "symptom": "Certaines sessions HTTPS sont bloquées et les journaux affichent l'impossibilité de récupérer le certificat du serveur.",
+        "impact": "",
+        "solution": "Activer la synchronisation de l'équilibrage des paquets et l'équilibrage global via les commandes de configuration HA.",
+        "note": "Les commandes CLI exactes sont mentionnées dans les sources mais résumées ici conformément aux consignes.",
+        "model": "gemini-3.5-flash-lite",
+        "reviewedAt": "2026-10-26T14:41:07.773576+00:00",
+        "label": "Relecture IA — à vérifier avec les sources"
+      }
     },
     {
       "id": "incident-013cae36bfc5",
@@ -3504,7 +3719,17 @@
       "status": "Documenté par Fortinet (version identifiée)",
       "confidence": "Documentation Fortinet versionnée",
       "evidenceType": "official_documentation",
-      "synthesisMethod": "Règles de preuve : article Fortinet versionné et explicite, ou au moins deux discussions distinctes; pas d'IA générative."
+      "synthesisMethod": "Règles de preuve : article Fortinet versionné et explicite, ou au moins deux discussions distinctes; pas d'IA générative.",
+      "aiReview": {
+        "summary": "FortiManager 7.6.8 tente d'installer des paramètres ssl-ssh-profile non pris en charge sur les appareils FortiGate disposant de 2 Go de mémoire.",
+        "symptom": "L'installation de la configuration échoue en raison de l'option 'udp-not-quic'.",
+        "impact": "",
+        "solution": "Définir 'udp-not-quic' sur 'block' dans les profils SSL/SSH concernés (bogue ID 1352524).",
+        "note": "Identifié comme bogue ID 1352524 avec un contournement documenté.",
+        "model": "gemini-3.5-flash-lite",
+        "reviewedAt": "2026-10-26T14:41:07.773576+00:00",
+        "label": "Relecture IA — à vérifier avec les sources"
+      }
     },
     {
       "id": "incident-449e553f6a6f",
@@ -3556,7 +3781,17 @@
       "status": "Documenté par Fortinet (version identifiée)",
       "confidence": "Documentation Fortinet versionnée",
       "evidenceType": "official_documentation",
-      "synthesisMethod": "Règles de preuve : article Fortinet versionné et explicite, ou au moins deux discussions distinctes; pas d'IA générative."
+      "synthesisMethod": "Règles de preuve : article Fortinet versionné et explicite, ou au moins deux discussions distinctes; pas d'IA générative.",
+      "aiReview": {
+        "summary": "Après la mise à niveau de FortiOS v7.6.7 vers v7.6.8, la ligne 'set keytab' est supprimée des entrées Kerberos configurées sous 'config user krb-keytab'.",
+        "symptom": "L'authentification Kerberos s'appuyant sur l'entrée affectée peut échouer tant que le keytab n'est pas configuré à nouveau.",
+        "impact": "",
+        "solution": "",
+        "note": "La cause est liée à un problème d'analyse du format de la clé lors de la mise à niveau, sans solution de contournement autre que la reconfiguration.",
+        "model": "gemini-3.5-flash-lite",
+        "reviewedAt": "2026-10-26T14:41:07.773576+00:00",
+        "label": "Relecture IA — à vérifier avec les sources"
+      }
     },
     {
       "id": "incident-bc19dbddaf75",
@@ -3598,7 +3833,17 @@
       "status": "Documenté par Fortinet (version non précisée)",
       "confidence": "Documentation Fortinet (version non précisée)",
       "evidenceType": "official_documentation",
-      "synthesisMethod": "Règles de preuve : article Fortinet versionné et explicite, ou au moins deux discussions distinctes; pas d'IA générative."
+      "synthesisMethod": "Règles de preuve : article Fortinet versionné et explicite, ou au moins deux discussions distinctes; pas d'IA générative.",
+      "aiReview": {
+        "summary": "Échec de la mise à niveau du micrologiciel avec l'erreur 'New image is too big' sur les environnements virtuels FortiManager et FortiAnalyzer.",
+        "symptom": "Affichage du message d'erreur 'New image is too big' lors d'une mise à jour de firmware.",
+        "impact": "",
+        "solution": "",
+        "note": "Le problème est référencé sous l'ID de bogue 1329518 avec des étapes de diagnostic mais sans solution de contournement explicite dans le texte.",
+        "model": "gemini-3.5-flash-lite",
+        "reviewedAt": "2026-10-26T14:41:07.773576+00:00",
+        "label": "Relecture IA — à vérifier avec les sources"
+      }
     },
     {
       "id": "incident-2f864c553570",
@@ -3638,7 +3883,17 @@
       "status": "Documenté par Fortinet (version non précisée)",
       "confidence": "Documentation Fortinet (version non précisée)",
       "evidenceType": "official_documentation",
-      "synthesisMethod": "Règles de preuve : article Fortinet versionné et explicite, ou au moins deux discussions distinctes; pas d'IA générative."
+      "synthesisMethod": "Règles de preuve : article Fortinet versionné et explicite, ou au moins deux discussions distinctes; pas d'IA générative.",
+      "aiReview": {
+        "summary": "Le filtrage DNS ne parvient pas à inspecter les requêtes DNS sur TLS (DoT) dans certaines versions de FortiOS, comme la version 7.6.4, ce qui entraîne un contournement du filtrage ou des erreurs de connexion en mode proxy.",
+        "symptom": "Le filtrage DNS ne parvient pas à inspecter les requêtes DNS sur TLS (DoT) dans certaines versions de FortiOS, telles que la version 7.6.4, provoquant un contournement du filtrage ou des erreurs de connexion en mode proxy après la mise à niveau.",
+        "impact": "",
+        "solution": "Il s'agit du problème connu répertorié sous le bug ID 1214371. Mettre à niveau le FortiGate vers FortiOS 8.0.1 pour résoudre le problème où les requêtes DNS sur TLS contournent le filtrage en mode proxy.",
+        "note": "Les informations sur l'impact ne sont pas documentées.",
+        "model": "gemini-3.5-flash-lite",
+        "reviewedAt": "2026-10-26T14:41:07.773576+00:00",
+        "label": "Relecture IA — à vérifier avec les sources"
+      }
     },
     {
       "id": "incident-fc25c6a2a2c9",
@@ -3688,7 +3943,17 @@
       "status": "Documenté par Fortinet (version identifiée)",
       "confidence": "Documentation Fortinet versionnée",
       "evidenceType": "official_documentation",
-      "synthesisMethod": "Règles de preuve : article Fortinet versionné et explicite, ou au moins deux discussions distinctes; pas d'IA générative."
+      "synthesisMethod": "Règles de preuve : article Fortinet versionné et explicite, ou au moins deux discussions distinctes; pas d'IA générative.",
+      "aiReview": {
+        "summary": "Lorsque le mode de sauvegarde de la configuration sur le FortiGate (cfg-save) est défini sur manuel ou revert au lieu d'automatique, les modifications appliquées via des scripts CLI poussés depuis FortiGate Cloud ou FortiManager peuvent ne pas être enregistrées sur la mémoire flash.",
+        "symptom": "Les modifications de configuration appliquées via des scripts CLI envoyés depuis FortiGate Cloud ou FortiManager ne sont pas enregistrées sur la mémoire flash lorsque le mode de sauvegarde cfg-save est réglé sur manuel ou revert.",
+        "impact": "",
+        "solution": "",
+        "note": "La solution détaillée n'est pas documentée dans les sources fournies.",
+        "model": "gemini-3.5-flash-lite",
+        "reviewedAt": "2026-10-26T14:41:07.773576+00:00",
+        "label": "Relecture IA — à vérifier avec les sources"
+      }
     },
     {
       "id": "incident-94c92fadf0b6",
@@ -3728,7 +3993,17 @@
       "status": "Documenté par Fortinet (version non précisée)",
       "confidence": "Documentation Fortinet (version non précisée)",
       "evidenceType": "official_documentation",
-      "synthesisMethod": "Règles de preuve : article Fortinet versionné et explicite, ou au moins deux discussions distinctes; pas d'IA générative."
+      "synthesisMethod": "Règles de preuve : article Fortinet versionné et explicite, ou au moins deux discussions distinctes; pas d'IA générative.",
+      "aiReview": {
+        "summary": "Un problème survient lorsque les appareils FortiGate sont visibles dans la liste des appareils mais n'apparaissent pas sur la carte des appareils FortiCloud en raison d'exigences de licence.",
+        "symptom": "Les appareils FortiGate sont correctement répertoriés dans la liste des appareils FortiCloud, mais la section de la carte des appareils reste vide ou n'affiche pas l'équipement.",
+        "impact": "",
+        "solution": "S'assurer que les appareils FortiGate sont enregistrés avec un abonnement valide prenant en charge la visualisation sur carte. Vérifier le statut de la licence dans le portail FortiCloud pour confirmer qu'ils disposent d'une licence standard (rétention des journaux) ou d'une licence Enhanced avec un type de support PREMIUM.",
+        "note": "L'impact n'est pas documenté.",
+        "model": "gemini-3.5-flash-lite",
+        "reviewedAt": "2026-10-26T14:41:07.773576+00:00",
+        "label": "Relecture IA — à vérifier avec les sources"
+      }
     },
     {
       "id": "incident-0222a9353ae2",
@@ -3768,7 +4043,17 @@
       "status": "Documenté par Fortinet (version non précisée)",
       "confidence": "Documentation Fortinet (version non précisée)",
       "evidenceType": "official_documentation",
-      "synthesisMethod": "Règles de preuve : article Fortinet versionné et explicite, ou au moins deux discussions distinctes; pas d'IA générative."
+      "synthesisMethod": "Règles de preuve : article Fortinet versionné et explicite, ou au moins deux discussions distinctes; pas d'IA générative.",
+      "aiReview": {
+        "summary": "Les unités FortiGate-50G-5G équipées d'un modem cellulaire intégré peuvent subir de graves pertes de paquets intermittentes sur l'interface WWAN malgré un signal LTE excellent et un état connecté actif, en raison de tentatives de renégociation radio répétées.",
+        "symptom": "Le trafic utilisateur et les pings ICMP provenant de l'interface WWAN subissent une perte de paquets élevée, bien que les compteurs d'erreurs de l'interface indiquent zéro rejet et que le modem reste connecté.",
+        "impact": "",
+        "solution": "",
+        "note": "La solution complète est tronquée dans les sources.",
+        "model": "gemini-3.5-flash-lite",
+        "reviewedAt": "2026-10-26T14:41:07.773576+00:00",
+        "label": "Relecture IA — à vérifier avec les sources"
+      }
     },
     {
       "id": "incident-df4f1d858158",
@@ -3808,7 +4093,17 @@
       "status": "Documenté par Fortinet (version non précisée)",
       "confidence": "Documentation Fortinet (version non précisée)",
       "evidenceType": "official_documentation",
-      "synthesisMethod": "Règles de preuve : article Fortinet versionné et explicite, ou au moins deux discussions distinctes; pas d'IA générative."
+      "synthesisMethod": "Règles de preuve : article Fortinet versionné et explicite, ou au moins deux discussions distinctes; pas d'IA générative.",
+      "aiReview": {
+        "summary": "Sur les proxys d'accès ZTNA configurés avec le transfert TCP et l'authentification SAML, les tentatives d'authentification des clients peuvent échouer avec l'erreur 021 (Application not found / HTTP 403 Forbidden) en raison d'un échec de routage du démon WAD vers la passerelle du fournisseur de services SAML.",
+        "symptom": "Les tentatives d'authentification des clients échouent avec l'erreur 021 : Application not found (HTTP 403 Forbidden) lorsque le navigateur atteint le point de terminaison ACS (/remote/saml/login/), mais que le moteur proxy WAD ne parvient pas à acheminer la requête vers la passerelle du fournisseur de services SAML interne.",
+        "impact": "",
+        "solution": "",
+        "note": "La solution complète n'est pas documentée dans les sources.",
+        "model": "gemini-3.5-flash-lite",
+        "reviewedAt": "2026-10-26T14:41:07.773576+00:00",
+        "label": "Relecture IA — à vérifier avec les sources"
+      }
     },
     {
       "id": "incident-326108763746",
@@ -3848,7 +4143,17 @@
       "status": "Documenté par Fortinet (version non précisée)",
       "confidence": "Documentation Fortinet (version non précisée)",
       "evidenceType": "official_documentation",
-      "synthesisMethod": "Règles de preuve : article Fortinet versionné et explicite, ou au moins deux discussions distinctes; pas d'IA générative."
+      "synthesisMethod": "Règles de preuve : article Fortinet versionné et explicite, ou au moins deux discussions distinctes; pas d'IA générative.",
+      "aiReview": {
+        "summary": "Résolution d'un problème d'installation avec plusieurs objets 'firewall service custom' pouvant survenir après une mise à niveau d'ADOM vers FortiOS 7.6 en raison d'un changement de protocole par défaut et d'un UUID défini à zéro.",
+        "symptom": "Échec de l'installation affichant des erreurs de type 'post vdom failed: error firewall service custom protocol' et des objets ignorés lors de la synchronisation.",
+        "impact": "",
+        "solution": "Utiliser un ADOM 7.6 dans FortiManager pour correspondre au nouveau protocole par défaut. Pour résoudre le problème sur les objets concernés dont l'UUID est à zéro, ajouter un commentaire à l'objet, cliquer sur le bouton 'Ok' pour le mettre à jour, et vérifier qu'un nouvel UUID a été généré.",
+        "note": "L'impact n'est pas documenté.",
+        "model": "gemini-3.5-flash-lite",
+        "reviewedAt": "2026-10-26T14:41:07.773576+00:00",
+        "label": "Relecture IA — à vérifier avec les sources"
+      }
     },
     {
       "id": "incident-d706562cc0b0",
@@ -3888,7 +4193,17 @@
       "status": "Documenté par Fortinet (version non précisée)",
       "confidence": "Documentation Fortinet (version non précisée)",
       "evidenceType": "official_documentation",
-      "synthesisMethod": "Règles de preuve : article Fortinet versionné et explicite, ou au moins deux discussions distinctes; pas d'IA générative."
+      "synthesisMethod": "Règles de preuve : article Fortinet versionné et explicite, ou au moins deux discussions distinctes; pas d'IA générative.",
+      "aiReview": {
+        "summary": "Le filtrage DNS ne parvient pas à inspecter les requêtes DNS over TLS (DoT) et DNS over HTTPS v2 (DoH2) en mode Flux sur certaines versions de FortiOS, ce qui entraîne un contournement du filtrage ou des erreurs de connexion.",
+        "symptom": "Le filtrage DNS ne parvient pas à inspecter les requêtes DNS over TLS (DoT) et DNS over HTTPS v2 (DoH2) sur certaines versions de FortiOS comme la 7.6.4 et la 7.6.7, provoquant un contournement du filtrage ou des erreurs de connexion en mode Flux.",
+        "impact": "",
+        "solution": "Le problème se produit parce que le moteur IPS ne reconnait pas le port 853 pour le décodage, ce qui l'amène à ignorer le sélecteur DNS. Contournement : configurer la liste des ports du décodeur IPS pour inclure 853, puis redémarrer le moteur IPS.",
+        "note": "Les versions exactes proviennent des sources textuelles, aucune autre confirmation officielle externe n'est fournie.",
+        "model": "gemini-3.5-flash-lite",
+        "reviewedAt": "2026-10-26T14:41:07.773576+00:00",
+        "label": "Relecture IA — à vérifier avec les sources"
+      }
     },
     {
       "id": "incident-929be2757086",
@@ -3928,7 +4243,17 @@
       "status": "Documenté par Fortinet (version non précisée)",
       "confidence": "Documentation Fortinet (version non précisée)",
       "evidenceType": "official_documentation",
-      "synthesisMethod": "Règles de preuve : article Fortinet versionné et explicite, ou au moins deux discussions distinctes; pas d'IA générative."
+      "synthesisMethod": "Règles de preuve : article Fortinet versionné et explicite, ou au moins deux discussions distinctes; pas d'IA générative.",
+      "aiReview": {
+        "summary": "Un problème connu provoque l'envoi de paquets SYN/ACK avec une mauvaise adresse IP source par le FortiGate lorsqu'un unique paquet SYN est envoyé à un serveur réel sans acquittement ni réinitialisation.",
+        "symptom": "Le FortiGate envoie un paquet SYN/ACK en utilisant la mauvaise adresse IP source lors de l'envoi d'un paquet SYN unique à un serveur réel sans acquittement ou réinitialisation.",
+        "impact": "",
+        "solution": "La source détaille un scénario avec un serveur virtuel configuré en mode d'équilibrage de charge TCP avec du trafic de bouclage (hairpin traffic) sur la même interface.",
+        "note": "La solution documente un exemple de configuration de serveur virtuel et de stratégie de pare-feu sans correctif explicite listé.",
+        "model": "gemini-3.5-flash-lite",
+        "reviewedAt": "2026-10-26T14:41:07.773576+00:00",
+        "label": "Relecture IA — à vérifier avec les sources"
+      }
     },
     {
       "id": "incident-16e3d1eb88e0",
@@ -3968,7 +4293,17 @@
       "status": "Documenté par Fortinet (version non précisée)",
       "confidence": "Documentation Fortinet (version non précisée)",
       "evidenceType": "official_documentation",
-      "synthesisMethod": "Règles de preuve : article Fortinet versionné et explicite, ou au moins deux discussions distinctes; pas d'IA générative."
+      "synthesisMethod": "Règles de preuve : article Fortinet versionné et explicite, ou au moins deux discussions distinctes; pas d'IA générative.",
+      "aiReview": {
+        "summary": "Cet article décrit pourquoi un tunnel IPsec utilisant le DNS dynamique (DDNS) peut échouer à se réétablir dans certains scénarios de type site à site.",
+        "symptom": "Le tunnel IPsec peut échouer à se réétablir dans certains scénarios.",
+        "impact": "",
+        "solution": "Utilise une configuration où le pare-feu local (Hub) a une IP statique et le pare-feu distant (Spoke) est derrière un CGNAT avec DDNS activé, le Hub étant configuré en mode passif.",
+        "note": "L'article présente un scénario d'architecture spécifique sans résolution de correctif mentionnée.",
+        "model": "gemini-3.5-flash-lite",
+        "reviewedAt": "2026-10-26T14:41:07.773576+00:00",
+        "label": "Relecture IA — à vérifier avec les sources"
+      }
     },
     {
       "id": "incident-3afbc8d479ad",
@@ -4010,10 +4345,23 @@
       "status": "Documenté par Fortinet (version non précisée)",
       "confidence": "Documentation Fortinet (version non précisée)",
       "evidenceType": "official_documentation",
-      "synthesisMethod": "Règles de preuve : article Fortinet versionné et explicite, ou au moins deux discussions distinctes; pas d'IA générative."
+      "synthesisMethod": "Règles de preuve : article Fortinet versionné et explicite, ou au moins deux discussions distinctes; pas d'IA générative.",
+      "aiReview": {
+        "summary": "Les appareils FortiSwitch gérés peuvent afficher un statut MAC-SYNC bloqué à l'état 'Wait' sur le FortiGate après une mise à niveau, empêchant la synchronisation des adresses MAC.",
+        "symptom": "Après une mise à niveau du FortiGate, les FortiSwitch gérés affichent le statut 'Wait' dans la colonne MAC-SYNC lors de l'exécution de la commande de vérification, bien que le trafic continue de circuler.",
+        "impact": "",
+        "solution": "Renommer les appareils FortiSwitch affectés pour leur donner leurs noms par défaut (numéros de série) afin de déclencher une nouvelle synchronisation.",
+        "note": "Les numéros de version de mise à niveau proviennent directement des sources fournies.",
+        "model": "gemini-3.5-flash-lite",
+        "reviewedAt": "2026-10-26T14:41:07.773576+00:00",
+        "label": "Relecture IA — à vérifier avec les sources"
+      }
     }
   ],
   "incidentCount": 22,
-  "synthesisGeneratedAt": "2026-10-26T12:58:27.471132+00:00",
-  "synthesisNote": "Un point n'est affiché que s'il est documenté par un article Fortinet versionné et explicite, ou décrit dans au moins deux discussions distinctes d'utilisateurs. Les articles officiels ne comptent pas comme des personnes supplémentaires. Les signalements isolés non documentés sont exclus."
+  "synthesisGeneratedAt": "2026-10-26T14:38:39.432027+00:00",
+  "synthesisNote": "Un point n'est affiché que s'il est documenté par un article Fortinet versionné et explicite, ou décrit dans au moins deux discussions distinctes d'utilisateurs. Les articles officiels ne comptent pas comme des personnes supplémentaires. Les signalements isolés non documentés sont exclus.",
+  "aiReviewGeneratedAt": "2026-10-26T14:41:07.773576+00:00",
+  "aiReviewModel": "gemini-3.5-flash-lite",
+  "aiReviewNote": "La relecture IA améliore la lisibilité mais ne constitue pas une validation officielle. Les produits, versions, correctifs, statuts et sources sont conservés depuis la synthèse déterministe."
 }
