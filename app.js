@@ -196,3 +196,41 @@ loadCommunity();
 ["community-search", "community-product", "community-version", "community-status-filter"].forEach(id => {
   $(id).addEventListener(id === "community-search" ? "input" : "change", renderCommunity);
 });
+
+
+// Navigation par pages : un seul espace de veille est visible à la fois.
+function activatePage(pageId, updateHash = false) {
+  const allowed = new Set(["overview", "fortinet", "community", "cves", "cyber", "sources"]);
+  const page = allowed.has(pageId) ? pageId : "overview";
+  document.body.classList.toggle("page-overview", page === "overview");
+  document.querySelectorAll(".content-section").forEach(section => {
+    const active = section.id === page;
+    section.classList.toggle("page-visible", active);
+    section.hidden = !active;
+  });
+  document.querySelectorAll(".nav-link").forEach(link => {
+    const active = link.getAttribute("href") === `#${page}`;
+    link.classList.toggle("active", active);
+    if (active) link.setAttribute("aria-current", "page");
+    else link.removeAttribute("aria-current");
+  });
+  const hero = document.querySelector(".hero");
+  const metrics = document.querySelector(".metrics");
+  const health = $("data-health");
+  if (hero) hero.hidden = page !== "overview";
+  if (metrics) metrics.hidden = page !== "overview";
+  if (health) health.hidden = page !== "overview" || !health.textContent.trim();
+  if (updateHash && location.hash !== `#${page}`) history.pushState(null, "", `#${page}`);
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+document.querySelectorAll(".nav-link").forEach(link => {
+  link.addEventListener("click", event => {
+    const page = (link.getAttribute("href") || "").slice(1);
+    if (!page) return;
+    event.preventDefault();
+    activatePage(page, true);
+  });
+});
+window.addEventListener("hashchange", () => activatePage(location.hash.slice(1)));
+window.addEventListener("popstate", () => activatePage(location.hash.slice(1)));
+activatePage(location.hash.slice(1) || "overview");
