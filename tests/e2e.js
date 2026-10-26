@@ -25,6 +25,8 @@ const { chromium } = require("playwright");
     assert.equal(await page.locator("#metric-fortinet").innerText(), String(dashboardData.fortinet.length));
     assert.equal(await page.locator("#metric-cyber").innerText(), String(dashboardData.cyber.length));
     assert.equal(await page.locator("#metric-kev").innerText(), String(dashboardData.kev.length));
+    // Les rubriques sont des pages distinctes : ouvrir CVE avant de tester son champ.
+    await page.locator('.nav-link[href="#cves"]').click();
     // CISA KEV utilise le champ cveID (et non cve) : vérifier la recherche sur le schéma réel.
     const cveProbe = dashboardData.kev.find(item => item.cveID);
     assert.ok(cveProbe, "le catalogue KEV doit fournir un cveID pour tester la recherche");
@@ -39,6 +41,7 @@ const { chromium } = require("playwright");
       "la fiche trouvée doit afficher l'identifiant recherché"
     );
     await page.locator("#cve-search").fill("");
+    await page.locator('.nav-link[href="#overview"]').click();
     assert.equal(
       await page.locator("#cve-list .cve-card").count(),
       Math.min(dashboardData.kev.length, 30),
@@ -49,6 +52,7 @@ const { chromium } = require("playwright");
     assert.equal(await healthBanner.isVisible(), sourceErrors.length > 0, "les erreurs de flux doivent être signalées dans le tableau de bord");
     if (sourceErrors.length) assert.match(await healthBanner.innerText(), /Actualisation partielle/);
     assert.match(await page.title(), /Automatik/i);
+    await page.locator('.nav-link[href="#community"]').click();
     await page.locator("#community-status").waitFor();
     await page.waitForFunction(() => {
       const status = document.querySelector("#community-status")?.textContent || "";
@@ -130,6 +134,7 @@ const { chromium } = require("playwright");
     }));
     assert.ok(widthCheck.content <= widthCheck.viewport + 2, `débordement horizontal mobile: ${JSON.stringify(widthCheck)}`);
 
+    await page.locator('.nav-link[href="#overview"]').click();
     await page.route("**/data/veille.json*", async route => {
       const response = await route.fetch();
       const payload = await response.json();
