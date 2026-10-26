@@ -30,6 +30,24 @@ class FeedParserTests(unittest.TestCase):
         self.assertEqual(items[0]["title"], "Atom advisory")
         self.assertEqual(items[0]["url"], "https://example.com/atom")
 
+    def test_parse_cisa_csaf_feed_index(self):
+        payload = json.dumps({
+            "feed": {
+                "entry": [{
+                    "id": "VA-26-001-01",
+                    "title": "Example CISA advisory",
+                    "published": "2026-10-22T17:14:18Z",
+                    "content": {"src": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/IT/white/2026/example.json"}
+                }]
+            }
+        }).encode()
+        items = updater.parse_rss(payload, "CISA Cybersecurity Advisories", "CISA Cybersecurity Advisories")
+        self.assertEqual(len(items), 1)
+        self.assertEqual(items[0]["title"], "Example CISA advisory")
+        self.assertIn("raw.githubusercontent.com/cisagov/CSAF", items[0]["url"])
+        self.assertEqual(items[0]["date"], "2026-10-22T17:14:18+00:00")
+        self.assertIn("CSAF", items[0]["summary"])
+
     def test_naive_iso_dates_are_interpreted_as_utc_independent_of_runner_timezone(self):
         previous_tz = os.environ.get("TZ")
         try:
@@ -84,13 +102,23 @@ class UpdatePreservationTests(unittest.TestCase):
         self.assertEqual(result["kev"][0]["cveID"], "CVE-2026-0002")
         self.assertTrue(any("FortiGuard Outbreak Alerts" in error for error in result["errors"]))
 
-    def test_cisa_failure_preserves_history_while_cert_fr_is_collected(self):
+    def test_cisa_csaf_feeds_replace_blocked_rss_and_preserve_history(self):
         psirt = b"""<rss version="2.0"><channel><item><title>PSIRT</title><link>https://example.com/psirt</link></item></channel></rss>"""
         outbreak = b"""<rss version="2.0"><channel><item><title>Outbreak</title><link>https://example.com/outbreak</link></item></channel></rss>"""
+        cisa_it = json.dumps({"feed": {"entry": [{
+            "id": "VA-26-001-01", "title": "Fresh CISA IT advisory",
+            "published": "2026-10-22T17:14:18Z",
+            "content": {"src": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/IT/white/2026/example.json"}
+        }]}}).encode()
+        cisa_ot = json.dumps({"feed": {"entry": [{
+            "id": "ICS-26-001-01", "title": "Fresh CISA ICS advisory",
+            "published": "2026-10-22T06:00:00Z",
+            "content": {"src": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2026/example.json"}
+        }]}}).encode()
         cert_fr = b"""<rss version="2.0"><channel><item><title>CERT-FR security advisory</title><link>https://www.cert.ssi.gouv.fr/alerte/example</link></item></channel></rss>"""
         ciso_rss = b"""<rss version="2.0"><channel><item><title>Fortinet security hardening release</title><link>https://www.fortinet.com/blog/ciso-collective/fortinet-releases-security-hardening-release-for-multiple-products</link><description>Fixed FortiOS and FortiManager versions</description></item></channel></rss>"""
         kev = json.dumps({"vulnerabilities": [{"cveID": "CVE-2026-0100"}]}).encode()
-        responses = [psirt, outbreak, urllib.error.URLError("403 Forbidden"), urllib.error.URLError("403 Forbidden"), cert_fr, ciso_rss, kev]
+        responses = [psirt, outbreak, cisa_it, cisa_ot, cert_fr, ciso_rss, kev]
         old = {
             "fortinet": [],
             "cyber": [{
@@ -108,14 +136,15 @@ class UpdatePreservationTests(unittest.TestCase):
                 updater.main()
             result = json.loads(out_path.read_text(encoding="utf-8"))
         titles = [item["title"] for item in result["cyber"]]
-        self.assertIn("Previously collected CISA advisory", titles, "une panne CISA ne doit pas effacer son cache")
+        self.assertIn("Previously collected CISA advisory", titles)
+        self.assertIn("Fresh CISA IT advisory", titles)
+        self.assertIn("Fresh CISA ICS advisory", titles)
         self.assertIn("CERT-FR security advisory", titles)
         self.assertIn("Fortinet security hardening release", titles)
-        self.assertIn("CERT-FR", [item["source"] for item in result["cyber"]])
-        self.assertTrue(any("CISA Cybersecurity Advisories" in error for error in result["errors"]))
-        self.assertEqual(mock_fetch.call_args_list[2].args[0], "https://www.cisa.gov/cybersecurity-advisories/all.xml")
-        self.assertEqual(mock_fetch.call_args_list[3].args[0], "https://www.cisa.gov/cybersecurity-advisories/cybersecurity-advisories.xml")
+        self.assertEqual(mock_fetch.call_args_list[2].args[0], updater.FEEDS[2][2])
+        self.assertEqual(mock_fetch.call_args_list[3].args[0], updater.FEEDS[3][2])
         self.assertEqual(mock_fetch.call_args_list[4].args[0], "https://www.cert.ssi.gouv.fr/feed/")
+        self.assertFalse(any("CISA Cybersecurity Advisories" in error for error in result["errors"]))
 
     def test_failed_kev_keeps_previous_catalogue(self):
         old = {
