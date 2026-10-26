@@ -201,12 +201,12 @@ class CommunitySynthesisTests(unittest.TestCase):
             "title": "Troubleshooting Tip: LDAP authentication fails",
             "summary": (
                 "DescriptionLDAP authentication fails. ScopeFortiAuthenticator. "
-                "SolutionThe issue will be fixed in FortiAuthenticator version 8.0.4."
+                "SolutionThe issue is under investigation and scheduled for fix in FortiOS version 7.6.9."
             ),
             "url": "https://community.fortinet.com/fortiauthenticator-8/ldap-authentication-fails-230999",
         }
         self.assertEqual(synth.extract_versions(item), ([], []))
-        self.assertEqual(synth.extract_fixed_versions(item), ["8.0.4"])
+        self.assertEqual(synth.extract_fixed_versions(item), ["7.6.9"])
         with tempfile.TemporaryDirectory() as directory:
             result = synth.synthesize({"topics": [item]}, Path(directory) / "community.json")
         self.assertEqual(result["incidentCount"], 1)
