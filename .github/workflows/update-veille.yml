@@ -6,6 +6,8 @@ on:
     paths:
       - "scripts/update_veille.py"
       - "tests/test_update_veille.py"
+      - "scripts/skip_timestamp_only_changes.py"
+      - "tests/test_skip_timestamp_only_changes.py"
       - ".github/workflows/update-veille.yml"
   schedule:
     - cron: "17 */6 * * *"
@@ -35,6 +37,8 @@ jobs:
         run: python scripts/update_veille.py
       - name: Vérifier le JSON généré
         run: python -m json.tool data/veille.json > /dev/null
+      - name: Éviter les déploiements sans changement de contenu
+        run: python scripts/skip_timestamp_only_changes.py data/veille.json
       - name: Enregistrer les nouvelles données
         run: |
           if git diff --quiet -- data/veille.json; then

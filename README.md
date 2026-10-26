@@ -8,7 +8,7 @@ Tableau de bord statique en français pour suivre les avis Fortinet, les vulnér
 - **Fortinet Community** : points de vigilance regroupés, avec recherche et filtres par produit, famille de versions et statut.
 - **CVE et vulnérabilités exploitées** : catalogue CISA Known Exploited Vulnerabilities (KEV) et recherche.
 - **Actualités cyber** : publications issues de flux publics.
-- **Traçabilité** : dates de collecte, liens vers les sources et distinction entre documentation Fortinet et discussions d'utilisateurs.
+- **Traçabilité** : dates des données publiées, liens vers les sources et distinction entre documentation Fortinet et discussions d'utilisateurs.
 
 ## Critères de publication — Fortinet Community
 
@@ -26,6 +26,7 @@ Les versions sont extraites lorsqu'elles sont explicitement liées à un produit
 ## Collecte et publication
 
 - Le workflow **Collecte Fortinet Community** s'exécute toutes les six heures (planification UTC) et peut aussi être lancé manuellement depuis l'onglet Actions.
+- Les workflows ne republient pas un JSON lorsque seuls les horodatages techniques changent et que le contenu, les avertissements de source et les synthèses restent identiques. `generatedAt` désigne donc le dernier état publié, pas chaque tentative de collecte; cela évite des builds Vercel sans changement visible.
 - Il demande d’abord le flux public avec `count=500`, puis utilise l’URL RSS standard si ce paramètre échoue. Pour un sujet récent qui mentionne une version et un problème mais aucun produit, il consulte sa page publique pour lire les tags produit (8 pages maximum par collecte). Un refus d’accès n’est pas contourné : il est signalé et les données déjà collectées sont conservées. L’historique est plafonné, les URL sont dédupliquées et `data/community.json` est actualisé.
 - Si moins de 500 sujets sont renvoyés, la collecte est marquée partielle et l’interface affiche l’avertissement. Cela signale que la couverture des 30 derniers jours n’est pas garantie; ce n’est pas une preuve d’absence de problèmes, et l’historique déjà collecté reste conservé.
 - Le workflow **Vérification du projet** contrôle la syntaxe Python et JavaScript, les tests unitaires, les fichiers JSON et le parcours navigateur Playwright/Chromium.

@@ -25,7 +25,7 @@ jobs:
         with:
           node-version: "22"
       - name: Vérifier la syntaxe Python
-        run: python -m py_compile scripts/update_veille.py scripts/collect_community.py scripts/synthesize_community.py tests/test_update_veille.py tests/test_collect_community.py tests/test_synthesize_community.py
+        run: python -m py_compile scripts/update_veille.py scripts/collect_community.py scripts/synthesize_community.py scripts/skip_timestamp_only_changes.py tests/test_update_veille.py tests/test_collect_community.py tests/test_synthesize_community.py tests/test_skip_timestamp_only_changes.py
       - name: Exécuter les tests du collecteur
         run: python -m unittest discover -s tests -v
       - name: Vérifier les JSON initiaux

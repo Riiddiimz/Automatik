@@ -8,9 +8,11 @@ on:
       - "scripts/synthesize_community.py"
       - "scripts/review_community_gemini.py"
       - "scripts/update_veille.py"
+      - "scripts/skip_timestamp_only_changes.py"
       - "tests/test_synthesize_community.py"
       - "tests/test_collect_community.py"
       - "tests/test_review_community_gemini.py"
+      - "tests/test_skip_timestamp_only_changes.py"
       - ".github/workflows/collect-community.yml"
   schedule:
     - cron: "17 */6 * * *"
@@ -48,6 +50,8 @@ jobs:
         run: python scripts/review_community_gemini.py
       - name: Valider le JSON
         run: python -m json.tool data/community.json > /dev/null
+      - name: Éviter les déploiements sans changement de contenu
+        run: python scripts/skip_timestamp_only_changes.py data/community.json
       - name: Enregistrer les nouvelles données sur main
         run: |
           if git diff --quiet -- data/community.json; then

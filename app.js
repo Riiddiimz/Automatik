@@ -123,8 +123,8 @@ async function loadCommunity() {
     $("community-status-filter").innerHTML = '<option value="">Tous les statuts</option>' + statuses.map(status => `<option value="${escapeHTML(status)}">${escapeHTML(status)}</option>`).join("");
     const date = communityData.generatedAt ? safeDate(communityData.generatedAt) : "jamais";
     $("community-status").textContent = communityData.partial
-      ? `Collecte partielle — historique conservé · dernière tentative : ${date}`
-      : `Dernière collecte : ${date} · ${communityData.incidentCount ?? communityData.incidents?.length ?? 0} points de vigilance retenus depuis ${communityData.topics?.length || 0} sujets`;
+      ? `Dernier état partiel publié le ${date} — historique conservé`
+      : `Dernier état publié : ${date} · ${communityData.incidentCount ?? communityData.incidents?.length ?? 0} points de vigilance retenus depuis ${communityData.topics?.length || 0} sujets`;
     const warnings = (communityData.errors || []).filter(Boolean);
     if (warnings.length) {
       $("community-status").textContent += ` · ${warnings.length} avertissement(s) : ${warnings[0]}`;
