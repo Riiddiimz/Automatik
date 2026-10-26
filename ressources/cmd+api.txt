@@ -1,0 +1,4 @@
+pip uninstall duckduckgo-search -y
+pip install ddgs google-genai requests beautifulsoup4
+
+python veille_scraper.py --gemini-key XXXXXXXXX --max-age-days 60

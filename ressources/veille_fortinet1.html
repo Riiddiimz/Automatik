@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Veille Fortinet — Bugs terrain & solutions</title>
+<style>
+:root{
+  --bg:#0b1220; --card:#111a2e; --hover:#15213a; --border:#1f2b45;
+  --text:#e8edf7; --muted:#93a1bd; --accent:#3b82f6; --purple:#8b5cf6; --green:#22c55e;
+}
+*{box-sizing:border-box;}
+body{margin:0;font-family:Arial,sans-serif;background:var(--bg);color:var(--text);padding:24px;}
+.title{font-size:1.6rem;font-weight:700;}
+.subtitle{color:var(--muted);margin-top:6px;font-size:0.85rem;}
+.menu-label{font-size:.72rem;text-transform:uppercase;color:var(--muted);margin:16px 0 8px;}
+.filters{display:flex;gap:10px;flex-wrap:wrap;}
+.btn{background:var(--card);border:1px solid var(--border);color:var(--text);padding:8px 16px;border-radius:20px;cursor:pointer;font-size:.9rem;}
+.btn:hover{background:var(--hover);}
+.btn.active-product{background:var(--accent);border-color:var(--accent);color:#fff;}
+.btn.active-version{background:var(--purple);border-color:var(--purple);color:#fff;}
+.list{margin-top:20px;display:flex;flex-direction:column;gap:12px;}
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden;}
+.card-header{display:flex;justify-content:space-between;align-items:center;padding:16px;cursor:pointer;gap:12px;}
+.card-header:hover{background:var(--hover);}
+.card-header > div:first-child{flex:1;min-width:0;}
+.card-header-right{display:flex;align-items:center;flex-shrink:0;}
+.badge{padding:4px 10px;border-radius:12px;font-size:.75rem;font-weight:700;margin-left:8px;white-space:nowrap;}
+.badge.prod{background:rgba(59,130,246,.15);color:var(--accent);border:1px solid var(--accent);}
+.badge.ver{background:rgba(139,92,246,.15);color:var(--purple);border:1px solid var(--purple);}
+.card-body{display:none;padding:0 16px 16px;}
+.card.open .card-body{display:block;}
+.card.open .chev{transform:rotate(180deg);}
+.chev{transition:transform .2s;color:var(--muted);flex-shrink:0;margin-left:8px;}
+.lbl{font-size:.72rem;text-transform:uppercase;color:var(--muted);margin:10px 0 4px;}
+.val{font-size:.9rem;line-height:1.5;}
+.mono{font-family:monospace;background:#0d1526;padding:8px;border-radius:6px;border:1px solid var(--border);white-space:pre-wrap;}
+.source a{color:var(--green);text-decoration:none;font-size:.8rem;}
+.source a:hover{text-decoration:underline;}
+.empty{text-align:center;color:var(--muted);padding:30px;}
+footer{margin-top:30px;text-align:center;color:var(--muted);font-size:.8rem;}
+</style>
+</head>
+<body>
+
+<div class="title">🛡️ Veille Fortinet — Bugs terrain & solutions communautaires</div>
+<div class="subtitle">Généré le 14/09/2026 à 10:32 · Sujets des 30 derniers jours · Cliquez sur une entrée pour voir les détails</div>
+
+<div class="menu-label">Produit</div>
+<div class="filters" id="productMenu">
+<button class="btn active-product" data-product="FortiGate">FortiGate</button>
+<button class="btn" data-product="FortiManager">FortiManager</button>
+<button class="btn" data-product="FortiAnalyzer">FortiAnalyzer</button>
+<button class="btn" data-product="FortiClientEMS">FortiClientEMS</button>
+</div>
+
+<div class="menu-label">Version</div>
+<div class="filters" id="versionMenu">
+<button class="btn active-version" data-version="7.4">7.4</button>
+<button class="btn" data-version="7.6">7.6</button>
+</div>
+
+<div class="list" id="list"></div>
+
+<footer>Recherche web + extraction automatisée via Gemini — vérifier les sources avant application en production</footer>
+
+<script>
+var bugData = [
+  {id:"FORTIGATE-7.4-1",title:"Échec d'accès aux services FortiGuard Anycast (erreur CRL scope)",product:"FortiGate",version:"7.4",symptom:"Les FortiGates sont incapables d'accéder à plusieurs services FortiGuard Anycast en raison d'erreurs de portée CRL (CRL scope errors) lors de la vérification des certificats signés par DigiCert. Les administrateurs observent des échecs de connexion TLS et des messages d'erreur dans les processus forticldd et update, affichant notamment 'Cert error 44, different CRL scope' au niveau de la profondeur 2.",solution:"Il est recommandé de basculer temporairement des serveurs FortiGuard Anycast vers les anciens serveurs Unicast. De plus, DigiCert a révoqué l'entrée IDP problématique, et il est conseillé de vider le cache CRL sur le FortiGate via la séquence de commandes CLI suivante : config system fortiguard \n set fortiguard-anycast disable \n end \n config system fortiguard \n set fortiguard-anycast enable \n end",source:"https://community.fortinet.com/fortigate-3/technical-tip-fortigate-unable-to-access-several-fortiguard-services-due-to-crl-scope-errors-september-2026-229879"},
+  {id:"FORTIGATE-7.4-2",title:"Perte partielle de configuration système après mise à niveau",product:"FortiGate",version:"7.4",symptom:"Après une mise à niveau depuis FortiOS v7.4.11 vers v7.4.12, les paramètres globaux du système (tels que le nom d'hôte, le fuseau horaire, admin-SCP, le mode VDOM et les paramètres 'switch-controller') peuvent être perdus et réinitialisés aux valeurs par défaut. Cela entraîne des dysfonctionnements, comme l'affichage hors ligne des FortiSwitches gérés et des perturbations de l'accès administratif.",solution:"Avant d'effectuer la mise à niveau, désactivez temporairement la fonction 'web-svc-auto-restart' via la commande : config system global \n set web-svc-auto-restart disable \n end. Une fois la mise à niveau terminée, réactivez-la avec : config system global \n set web-svc-auto-restart enable \n end.",source:"https://community.fortinet.com/fortigate-3/troubleshooting-tip-partial-configuration-loss-after-upgrade-from-fortios-v7-4-11-and-fortios-v7-6-6-229443"},
+  {id:"FORTIGATE-7.4-3",title:"Déconnexion du VPN IPsec lors de la mise en veille (macOS)",product:"FortiGate",version:"7.4",symptom:"Sous FortiClient VPN-only 7.4.3 avec macOS, le VPN se déconnecte lorsque l'ordinateur entre en mode veille (sleep) alors qu'il est branché sur une prise secteur. Un autre utilisateur signale également que le VPN se déconnecte immédiatement dès que l'écran de macOS est verrouillé, indépendamment de la gestion de l'alimentation.",solution:"Aucune solution mentionnée dans la source. (Support Fortinet a confirmé l'existence d'un bug interne ouvert, ticket #12157138).",source:"https://community.fortinet.com/support-forum-92/is-forticlient-vpn-only-7-4-3-4323-compatible-with-macos-26-229471"},
+  {id:"FORTIGATE-7.4-4",title:"Perte d'accès Internet malgré un tunnel IPsec établi (macOS)",product:"FortiGate",version:"7.4",symptom:"Avec FortiClient v7.4.3 sous macOS (notamment Sonoma et Tahoe), le tunnel IPsec semble établi mais l'utilisateur n'a pas d'accès Internet (pas de navigation web, ni accès à Microsoft Teams ou Outlook). Seul l'accès au réseau local via adresse IP est fonctionnel.",solution:"Vérifier l'installation correcte des routes dans la table de routage (tunnel complet ou partiel), tester les pings vers l'hôte VPN et les destinations Internet par IP (commande : netstat -rn -f inet), vérifier l'accessibilité et la résolution des serveurs DNS, ou tenter une réinstallation complète de FortiClient.",source:"https://community.fortinet.com/support-forum-92/is-forticlient-vpn-only-7-4-3-4323-compatible-with-macos-26-229471"},
+  {id:"FORTIGATE-7.6-5",title:"Échec d'accès aux services FortiGuard Anycast (Erreur CRL scope)",product:"FortiGate",version:"7.6",symptom:"Les pare-feux FortiGate ne parviennent pas à accéder à plusieurs services FortiGuard utilisant des certificats signés par DigiCert High Assurance EV Root CA. Les connexions TLS échouent et les journaux de débogage des processus forticldd et update affichent l'erreur 'Cert error 44, different CRL scope' au niveau de la vérification du certificat.",solution:"DigiCert a révoqué l'entrée IDP problématique. En guise de contournement ou de résolution, basculer temporairement sur les serveurs Unicast avec 'config system fortiguard set fortiguard-anycast disable', puis réactiver l'Anycast pour vider le cache CRL avec 'config system fortiguard set fortiguard-anycast enable'.",source:"https://community.fortinet.com/fortigate-3/technical-tip-fortigate-unable-to-access-several-fortiguard-services-due-to-crl-scope-errors-september-2026-229879"},
+  {id:"FORTIMANAGER-7.4-6",title:"Changement de comportement non documenté dans la résolution des variables méta",product:"FortiManager",version:"7.4",symptom:"Lors du passage de FortiManager 7.2 à 7.4, le comportement de résolution des variables méta a changé. En version 7.2, le système utilisait en priorité le niveau VDOM dans les templates de provisioning et le niveau global dans les scripts, avec un mécanisme de secours (fallback). En version 7.4, le système utilise prioritairement le niveau global partout et le mécanisme de secours a été supprimé, ce qui entraîne l'application inattendue des valeurs par défaut et corrompt les configurations IP sur les FortiGate gérés.",solution:"Il faut s'assurer de modifier les correspondances par appareil (per-device-mappings) des variables pour utiliser l'objet global avant de déployer la configuration pour la première fois après une mise à niveau de FortiManager vers la version 7.4.",source:"https://community.fortinet.com/support-forum-92/important-but-non-mentioned-change-from-fortimanager-7-2-to-7-4-229848"}
+];
+</script>
+
+<script>
+var state = {product:"FortiGate", version:"7.4"};
+
+function render(){
+  var list = document.getElementById("list");
+  var items = bugData.filter(function(v){
+    return v.product === state.product && v.version === state.version;
+  });
+
+  if(items.length === 0){
+    list.innerHTML = '<div class="empty">Aucun bug recensé pour ce produit/version.</div>';
+    return;
+  }
+
+  var html = [];
+  items.forEach(function(v, i){
+    html.push('<div class="card" data-i="'+i+'">');
+    html.push('<div class="card-header">');
+    html.push('<div><b>'+v.id+'</b> — '+v.title+'</div>');
+    html.push('<div class="card-header-right">');
+    html.push('<span class="badge prod">'+v.product+'</span>');
+    html.push('<span class="badge ver">'+v.version+'</span>');
+    html.push('<span class="chev">▼</span>');
+    html.push('</div></div>');
+    html.push('<div class="card-body">');
+    html.push('<div class="lbl">Symptôme observé</div><div class="val">'+v.symptom+'</div>');
+    html.push('<div class="lbl">Solution / contournement</div><div class="val mono">'+v.solution+'</div>');
+    html.push('<div class="lbl">Source</div><div class="val source"><a href="'+v.source+'" target="_blank" rel="noopener">'+v.source+'</a></div>');
+    html.push('</div></div>');
+  });
+
+  list.innerHTML = html.join("");
+
+  var cards = list.querySelectorAll(".card");
+  for(var c=0;c<cards.length;c++){
+    cards[c].querySelector(".card-header").addEventListener("click", function(){
+      this.parentElement.classList.toggle("open");
+    });
+  }
+}
+
+var prodBtns = document.querySelectorAll("#productMenu .btn");
+for(var p=0;p<prodBtns.length;p++){
+  prodBtns[p].addEventListener("click", function(){
+    for(var x=0;x<prodBtns.length;x++){ prodBtns[x].classList.remove("active-product"); }
+    this.classList.add("active-product");
+    state.product = this.getAttribute("data-product");
+    render();
+  });
+}
+
+var verBtns = document.querySelectorAll("#versionMenu .btn");
+for(var v=0;v<verBtns.length;v++){
+  verBtns[v].addEventListener("click", function(){
+    for(var y=0;y<verBtns.length;y++){ verBtns[y].classList.remove("active-version"); }
+    this.classList.add("active-version");
+    state.version = this.getAttribute("data-version");
+    render();
+  });
+}
+
+render();
+</script>
+</body>
+</html>

@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Veille Fortinet — Bugs terrain & solutions</title>
+<style>
+:root{
+  --bg:#0b1220; --card:#111a2e; --hover:#15213a; --border:#1f2b45;
+  --text:#e8edf7; --muted:#93a1bd; --accent:#3b82f6; --purple:#8b5cf6; --green:#22c55e;
+}
+*{box-sizing:border-box;}
+body{margin:0;font-family:Arial,sans-serif;background:var(--bg);color:var(--text);padding:24px;}
+.title{font-size:1.6rem;font-weight:700;}
+.subtitle{color:var(--muted);margin-top:6px;font-size:0.85rem;}
+.menu-label{font-size:.72rem;text-transform:uppercase;color:var(--muted);margin:16px 0 8px;}
+.filters{display:flex;gap:10px;flex-wrap:wrap;}
+.btn{background:var(--card);border:1px solid var(--border);color:var(--text);padding:8px 16px;border-radius:20px;cursor:pointer;font-size:.9rem;display:flex;align-items:center;gap:6px;}
+.btn:hover{background:var(--hover);}
+.btn.active-product{background:var(--accent);border-color:var(--accent);color:#fff;}
+.btn.active-version{background:var(--purple);border-color:var(--purple);color:#fff;}
+.btn .count{background:rgba(255,255,255,.15);padding:1px 7px;border-radius:10px;font-size:.75rem;font-weight:700;}
+.btn.zero{opacity:.45;}
+.searchbox{margin-top:16px;}
+.searchbox input{width:100%;max-width:420px;padding:10px 14px;border-radius:20px;border:1px solid var(--border);background:var(--card);color:var(--text);font-size:.9rem;outline:none;}
+.searchbox input:focus{border-color:var(--accent);}
+.list{margin-top:20px;display:flex;flex-direction:column;gap:10px;}
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden;}
+.card-header{display:flex;justify-content:space-between;align-items:center;padding:14px 16px;cursor:pointer;gap:12px;}
+.card-header:hover{background:var(--hover);}
+.card-header > div:first-child{flex:1;min-width:0;}
+.card-title{font-weight:600;}
+.card-sub{color:var(--muted);font-size:.78rem;margin-top:3px;}
+.card-header-right{display:flex;align-items:center;flex-shrink:0;}
+.badge{padding:4px 10px;border-radius:12px;font-size:.75rem;font-weight:700;margin-left:8px;white-space:nowrap;}
+.badge.prod{background:rgba(59,130,246,.15);color:var(--accent);border:1px solid var(--accent);}
+.badge.ver{background:rgba(139,92,246,.15);color:var(--purple);border:1px solid var(--purple);}
+.card-body{display:none;padding:0 16px 16px;}
+.card.open .card-body{display:block;}
+.card.open .chev{transform:rotate(180deg);}
+.chev{transition:transform .2s;color:var(--muted);flex-shrink:0;margin-left:8px;}
+.lbl{font-size:.72rem;text-transform:uppercase;color:var(--muted);margin:10px 0 4px;}
+.val{font-size:.9rem;line-height:1.5;}
+.mono{font-family:monospace;background:#0d1526;padding:8px;border-radius:6px;border:1px solid var(--border);white-space:pre-wrap;}
+.source a{color:var(--green);text-decoration:none;font-size:.8rem;}
+.source a:hover{text-decoration:underline;}
+.empty{text-align:center;color:var(--muted);padding:30px;}
+.results-count{color:var(--muted);font-size:.82rem;margin-top:14px;}
+footer{margin-top:30px;text-align:center;color:var(--muted);font-size:.8rem;}
+</style>
+</head>
+<body>
+
+<div class="title">🛡️ Veille Fortinet — Bugs terrain & solutions communautaires</div>
+<div class="subtitle">Généré le 14/09/2026 à 11:19 · Sujets des 60 derniers jours · Toutes les entrées sont visibles ci-dessous, cliquez pour dérouler les détails</div>
+
+<div class="menu-label">Produit</div>
+<div class="filters" id="productMenu"></div>
+
+<div class="menu-label">Version</div>
+<div class="filters" id="versionMenu"></div>
+
+<div class="searchbox">
+<input type="text" id="searchInput" placeholder="Rechercher un mot-clé (titre, symptôme)...">
+</div>
+
+<div class="results-count" id="resultsCount"></div>
+<div class="list" id="list"></div>
+
+<footer>Recherche web + extraction automatisée via Gemini — vérifier les sources avant application en production</footer>
+
+<script>
+var bugData = [
+  {id:"FORTIGATE-7.6-1",title:"Échec d'accès aux services FortiGuard Anycast (Erreur CRL scope)",product:"FortiGate",version:"7.6",symptom:"Les équipements FortiGate, FortiProxy ou FortiPAM ne parviennent pas à accéder à plusieurs services FortiGuard Anycast en raison d'erreurs de portée CRL (CRL scope). Les connexions TLS échouent et les journaux de débogage des processus forticldd et update affichent l'erreur : '__ssl_crl_verify_cb: Cert error 44, different CRL scope'. Ce problème est lié à une modification par DigiCert de l'extension IDP sur le CRL racine.",solution:"En contournement immédiat, basculer des serveurs FortiGuard Anycast vers les serveurs Unicast plus anciens. Suite à la correction de DigiCert, il est recommandé de vider le cache CRL sur le FortiGate via la commande CLI : config system fortiguard \n set fortiguard-anycast disable \n end \n config system fortiguard \n set fortiguard-anycast enable \n end",source:"https://community.fortinet.com/fortigate-3/technical-tip-fortigate-unable-to-access-several-fortiguard-services-due-to-crl-scope-errors-september-2026-229879"},
+  {id:"FORTICLIENT-7.4-2",title:"Lien de téléchargement cassé dans les e-mails d'invitation EMS",product:"FortiClient",version:"7.4",symptom:"Dans les e-mails d'invitation envoyés par FortiClient EMS (avec un fichier d'installation personnalisé, par exemple la version 7.2.15), le texte indique la version 7.4 et le lien de téléchargement pointe vers un nom de fichier contenant des majuscules (ex: FortiClientSetup_7.2.15_x64.exe). Cependant, le fichier réel sur le serveur possède un nom entièrement en minuscules, ce qui provoque une erreur de lien brisé lors du clic selon l'environnement.",solution:"Modifier manuellement le lien dans l'e-mail ou s'assurer que les caractères du lien correspondent aux minuscules du chemin du serveur (le problème est contourné en passant le nom du fichier en minuscules).",source:"https://community.fortinet.com/support-forum-92/forticlient-ems-7-4-8-build2245-229888"},
+  {id:"FORTICLIENT-7.4-3",title:"Absence de correctif pour la version gratuite de FortiClient VPN-only (CVE-2026-70465)",product:"FortiClient",version:"7.4",symptom:"La version gratuite VPN-only de FortiClient 7.4.3 est affectée par la vulnérabilité CVE-2026-70465, mais les notes de version indiquent que les versions 7.4.4 à 7.4.7 ne proposent pas de nouvelle version gratuite, bloquant les utilisateurs sur la 7.4.3 non corrigée. De plus, l'utilisation de la version payante (7.4.4) pour corriger le problème déclenche une alerte de licence non enregistrée au niveau du pare-feu FortiGate.",solution:"Le Support TAC de Fortinet conseille de migrer vers la version payante 7.4.4 pour bénéficier du correctif de sécurité, bien que cela nécessite une licence pour éviter l'alerte de non-licence.",source:"https://community.fortinet.com/support-forum-92/forticlient-windows-vpn-only-7-4-3-build-affected-by-cve-2026-70465-229488"}
+];
+</script>
+
+<script>
+var state = {product:"ALL", version:"ALL", search:""};
+
+var PRODUCTS = ["FortiGate", "FortiManager", "FortiAnalyzer", "FortiClientEMS", "FortiClient"];
+var VERSIONS = ["7.4", "7.6"];
+
+function countFor(product, version){
+  return bugData.filter(function(v){
+    var okP = (product === "ALL") || (v.product === product);
+    var okV = (version === "ALL") || (v.version === version);
+    return okP && okV;
+  }).length;
+}
+
+function buildMenus(){
+  var pMenu = document.getElementById("productMenu");
+  var totalAll = bugData.length;
+  var htmlP = ['<button class="btn active-product" data-product="ALL">Tous <span class="count">'+totalAll+'</span></button>'];
+  PRODUCTS.forEach(function(p){
+    var c = countFor(p, "ALL");
+    htmlP.push('<button class="btn'+(c===0?' zero':'')+'" data-product="'+p+'">'+p+' <span class="count">'+c+'</span></button>');
+  });
+  pMenu.innerHTML = htmlP.join("");
+
+  var vMenu = document.getElementById("versionMenu");
+  var htmlV = ['<button class="btn active-version" data-version="ALL">Toutes <span class="count">'+totalAll+'</span></button>'];
+  VERSIONS.forEach(function(v){
+    var c = countFor("ALL", v);
+    htmlV.push('<button class="btn'+(c===0?' zero':'')+'" data-version="'+v+'">'+v+' <span class="count">'+c+'</span></button>');
+  });
+  vMenu.innerHTML = htmlV.join("");
+
+  bindMenuEvents();
+}
+
+function bindMenuEvents(){
+  var prodBtns = document.querySelectorAll("#productMenu .btn");
+  for(var p=0;p<prodBtns.length;p++){
+    prodBtns[p].addEventListener("click", function(){
+      for(var x=0;x<prodBtns.length;x++){ prodBtns[x].classList.remove("active-product"); }
+      this.classList.add("active-product");
+      state.product = this.getAttribute("data-product");
+      render();
+    });
+  }
+  var verBtns = document.querySelectorAll("#versionMenu .btn");
+  for(var v=0;v<verBtns.length;v++){
+    verBtns[v].addEventListener("click", function(){
+      for(var y=0;y<verBtns.length;y++){ verBtns[y].classList.remove("active-version"); }
+      this.classList.add("active-version");
+      state.version = this.getAttribute("data-version");
+      render();
+    });
+  }
+}
+
+function render(){
+  var list = document.getElementById("list");
+  var countEl = document.getElementById("resultsCount");
+
+  var items = bugData.filter(function(v){
+    var okP = (state.product === "ALL") || (v.product === state.product);
+    var okV = (state.version === "ALL") || (v.version === state.version);
+    var okS = true;
+    if(state.search){
+      var s = state.search.toLowerCase();
+      okS = (v.title && v.title.toLowerCase().indexOf(s) !== -1) ||
+            (v.symptom && v.symptom.toLowerCase().indexOf(s) !== -1);
+    }
+    return okP && okV && okS;
+  });
+
+  countEl.textContent = items.length + " résultat(s)";
+
+  if(items.length === 0){
+    list.innerHTML = '<div class="empty">Aucun bug ne correspond aux filtres sélectionnés.</div>';
+    return;
+  }
+
+  var html = [];
+  items.forEach(function(v, i){
+    html.push('<div class="card" data-i="'+i+'">');
+    html.push('<div class="card-header">');
+    html.push('<div><div class="card-title">'+v.title+'</div><div class="card-sub">'+v.id+'</div></div>');
+    html.push('<div class="card-header-right">');
+    html.push('<span class="badge prod">'+v.product+'</span>');
+    html.push('<span class="badge ver">'+v.version+'</span>');
+    html.push('<span class="chev">▼</span>');
+    html.push('</div></div>');
+    html.push('<div class="card-body">');
+    html.push('<div class="lbl">Symptôme observé</div><div class="val">'+v.symptom+'</div>');
+    html.push('<div class="lbl">Solution / contournement</div><div class="val mono">'+v.solution+'</div>');
+    html.push('<div class="lbl">Source</div><div class="val source"><a href="'+v.source+'" target="_blank" rel="noopener">'+v.source+'</a></div>');
+    html.push('</div></div>');
+  });
+
+  list.innerHTML = html.join("");
+
+  var cards = list.querySelectorAll(".card");
+  for(var c=0;c<cards.length;c++){
+    cards[c].querySelector(".card-header").addEventListener("click", function(){
+      this.parentElement.classList.toggle("open");
+    });
+  }
+}
+
+document.getElementById("searchInput").addEventListener("input", function(){
+  state.search = this.value;
+  render();
+});
+
+buildMenus();
+render();
+</script>
+</body>
+</html>
