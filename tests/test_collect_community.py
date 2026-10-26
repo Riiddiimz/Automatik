@@ -56,7 +56,7 @@ class CommunityFeedTests(unittest.TestCase):
         items = collector.parse_feed(payload)
         self.assertEqual(len(items), 1)
         self.assertEqual(items[0]["versions"], [])
-        self.assertEqual(items[0]["fixedVersions"], ["8.0.4"])
+        self.assertEqual(items[0]["fixVersions"], ["8.0.4"])
 
     def test_long_official_summary_keeps_late_fix_version(self):
         description = (
@@ -77,7 +77,7 @@ class CommunityFeedTests(unittest.TestCase):
         self.assertGreater(len(items[0]["summary"]), 1200)
         self.assertIn("scheduled for fix in FortiOS 7.6.9", items[0]["summary"])
         self.assertEqual(items[0]["versions"], ["7.6.8"])
-        self.assertEqual(items[0]["fixedVersions"], ["7.6.9"])
+        self.assertEqual(items[0]["fixVersions"], ["7.6.9"])
 
     def test_rss_categories_identify_products_missing_from_title_and_summary(self):
         payload = b"""<rss version="2.0"><channel>
