@@ -45,7 +45,17 @@ UPGRADE_PATH_RE = re.compile(
 UPGRADE_TARGET_RE = re.compile(
     r"\b(?:upgrad(?:e|ed|ing|es)|firmware update)\b[^.!?]{0,100}?\bto\s+(?:version\s*)?v?(\d{1,2}\.\d{1,2}(?:\.\d{1,3})?)\b",
     re.I,
+) 
+FIXED_VERSION_RE = re.compile(
+    r"\b(?:will\s+be\s+fixed|will\s+be\s+resolved|is\s+scheduled\s+to\s+be\s+fixed|"
+    r"scheduled\s+to\s+be\s+fixed|fixed|resolved|corrected|addressed|"
+    r"(?:fix|patch|correction)\s+(?:is\s+)?(?:available|included|provided))\s+"
+    r"(?:in|with|from)\s+(?:(?:fortios|fortigate|fortimanager|fortianalyzer|"
+    r"fortiauthenticator|forticlient(?:\s+(?:ems|vpn))?|fortiswitch|fortiap|firmware)\s*)?"
+    r"(?:version\s*)?v?(\d{1,2}\.\d{1,2}(?:\.\d{1,3})?)\b",
+    re.I,
 )
+
 NON_FORTINET_VERSION_RE = re.compile(
     r"\b(?:(?:huawei\s+cloud\s+)?euleros|centos|rhel|red\s+hat\s+enterprise\s+linux|"
     r"ubuntu|debian|fedora|rocky\s+linux|almalinux|oracle\s+linux|windows(?:\s+server)?|"
@@ -130,13 +140,13 @@ def extract_versions(item: dict) -> tuple[list[str], list[str]]:
             summary, re.I | re.S,
         )
         if scope:
-            scoped_text = title + " " + scope.group(1)
-            # Scope identifies affected releases. Don't include versions later
-            # listed as unaffected or merely mentioned in the resolution steps.
-            if VERSION_CONTEXT_RE.search(scoped_text) or UPGRADE_PATH_RE.search(scoped_text) or UPGRADE_TARGET_RE.search(scoped_text):
-                text = scoped_text
+            # Use the title and Scope only; Solution/Workaround versions may be fixes,
+            # not releases affected by the problem.
+            text = title + " " + scope.group(1)
     # Remove complete IPv4 addresses before looking for dotted version numbers.
     text_without_ips = re.sub(r"\b(?:\d{1,3}\.){3}\d{1,3}\b", " ", text)
+    # Do not misclassify a documented fixed release as an affected release.
+    text_without_ips = FIXED_VERSION_RE.sub(" ", text_without_ips)
     # Exclude operating-system/platform versions, which are not Fortinet firmware.
     text_without_ips = NON_FORTINET_VERSION_RE.sub(" ", text_without_ips)
     # Exclude elapsed-time decimals such as "0.7 seconds".
@@ -239,6 +249,16 @@ def extract_sections(item: dict) -> dict:
     return {"symptom": symptom, "impact": impact, "solution": solution}
 
 
+def extract_fixed_versions(item: dict) -> list[str]:
+    """Return explicitly stated fixed releases from Fortinet-authored articles only."""
+    if source_type(item) != "fortinet_article":
+        return []
+    found = set(FIXED_VERSION_RE.findall(
+        f"{item.get('title', '')} {item.get('summary', '')}"
+    ))
+    return sorted(found, key=lambda version: tuple(int(part) for part in version.split(".")))
+
+
 def has_documented_evidence(item: dict) -> bool:
     """Require an explicit, scoped Fortinet issue; missing versions remain explicitly unknown."""
     if source_type(item) != "fortinet_article":
@@ -333,6 +353,7 @@ def synthesize(data: dict, out: Path = DATA) -> dict:
         item = dict(raw)
         item["products"] = extract_products(item)
         item["versions"], item["versionFamilies"] = extract_versions(item)
+        item["fixedVersions"] = extract_fixed_versions(item)
         item["potentialProblem"] = looks_like_problem(item)
         enriched.append(item)
 
@@ -351,6 +372,7 @@ def synthesize(data: dict, out: Path = DATA) -> dict:
         products = sorted({p for item in cluster for p in item.get("products", [])})
         exact_versions = sorted({v for item in cluster for v in item.get("versions", [])}, key=lambda v: tuple(int(x) for x in v.split(".")))
         families = sorted({v for item in cluster for v in item.get("versionFamilies", [])}, key=lambda v: tuple(int(x) for x in v.split(".")))
+        fixed_versions = sorted({v for item in cluster for v in item.get("fixedVersions", [])}, key=lambda v: tuple(int(x) for x in v.split(".")))
         sources = [{
             "title": item.get("title", "Sujet sans titre"),
             "url": item.get("url", ""),
@@ -360,6 +382,7 @@ def synthesize(data: dict, out: Path = DATA) -> dict:
             "versions": item.get("versions", []),
             "versionFamilies": item.get("versionFamilies", []),
             "sourceType": source_type(item),
+            "fixedVersions": extract_fixed_versions(item),
             **extract_sections(item),
         } for item in cluster]
         symptom = next((source["symptom"] for source in sources if source.get("symptom")), "")
@@ -382,6 +405,7 @@ def synthesize(data: dict, out: Path = DATA) -> dict:
             "products": products,
             "versions": exact_versions,
             "versionFamilies": families,
+            "fixedVersions": fixed_versions,
             "sourceCount": len(sources),
             "forumReportCount": reports,
             "documentedSourceCount": len(documented_sources),
