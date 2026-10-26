@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-26T14:47:57.019205+00:00",
+  "generatedAt": "2026-10-26T14:54:29.539118+00:00",
   "fortinet": [
     {
       "source": "FortiGuard PSIRT",
@@ -172,6 +172,46 @@
       "summary": "Successful exploitation could allow attackers to execute arbitrary code within the PHP application process, potentially compromising the affected server and exposing sensitive data, application files, or connected databases, depending on the process privileges and system configuration. FortiGuard Labs is monitoring the PHP2Shell vulnerabilities and related t"
     },
     {
+      "source": "CISA Cybersecurity Advisories",
+      "label": "CISA Cybersecurity Advisories",
+      "title": "HAPI FHIR",
+      "url": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/IT/white/2026/va-26-294-01.json",
+      "date": "2026-10-22T17:14:18+00:00",
+      "summary": "Avis de sécurité CISA publié au format structuré CSAF."
+    },
+    {
+      "source": "CISA Cybersecurity Advisories",
+      "label": "CISA Cybersecurity Advisories",
+      "title": "AgentZero XSS",
+      "url": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/IT/white/2026/va-26-296-01.json",
+      "date": "2026-10-22T17:13:57+00:00",
+      "summary": "Avis de sécurité CISA publié au format structuré CSAF."
+    },
+    {
+      "source": "CISA ICS Advisories",
+      "label": "CISA ICS Advisories",
+      "title": "InterSystems Corporation InterSystems IRIS for Health",
+      "url": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2026/icsma-26-295-01.json",
+      "date": "2026-10-22T06:00:00+00:00",
+      "summary": "Avis de sécurité CISA publié au format structuré CSAF."
+    },
+    {
+      "source": "CISA ICS Advisories",
+      "label": "CISA ICS Advisories",
+      "title": "Kiloview E3 NDI Encoder",
+      "url": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2026/icsa-26-295-01.json",
+      "date": "2026-10-22T06:00:00+00:00",
+      "summary": "Avis de sécurité CISA publié au format structuré CSAF."
+    },
+    {
+      "source": "CISA Cybersecurity Advisories",
+      "label": "CISA Cybersecurity Advisories",
+      "title": "PHP insecure error handling and state management",
+      "url": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/IT/white/2026/va-26-295-01.json",
+      "date": "2026-10-21T14:56:09+00:00",
+      "summary": "Avis de sécurité CISA publié au format structuré CSAF."
+    },
+    {
       "source": "Fortinet CISO Collective",
       "label": "Fortinet CISO Collective",
       "title": "Fortinet Releases Security Hardening Release for Multiple Products",
@@ -340,12 +380,244 @@
       "summary": "De multiples vulnérabilités ont été découvertes dans Microsoft Edge. Elles permettent à un attaquant de provoquer une exécution de code arbitraire à distance et un problème de sécurité non spécifié par l'éditeur."
     },
     {
+      "source": "CISA ICS Advisories",
+      "label": "CISA ICS Advisories",
+      "title": "Siemens Software Center",
+      "url": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2026/icsa-26-295-03.json",
+      "date": "2026-10-15T00:00:00+00:00",
+      "summary": "Avis de sécurité CISA publié au format structuré CSAF."
+    },
+    {
+      "source": "CISA ICS Advisories",
+      "label": "CISA ICS Advisories",
+      "title": "Siemens RUGGEDCOM APE1808 Devices",
+      "url": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2026/icsa-26-295-18.json",
+      "date": "2026-10-13T00:00:00+00:00",
+      "summary": "Avis de sécurité CISA publié au format structuré CSAF."
+    },
+    {
+      "source": "CISA ICS Advisories",
+      "label": "CISA ICS Advisories",
+      "title": "Siemens Industrial Edge Devices",
+      "url": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2026/icsa-26-295-17.json",
+      "date": "2026-10-13T00:00:00+00:00",
+      "summary": "Avis de sécurité CISA publié au format structuré CSAF."
+    },
+    {
+      "source": "CISA ICS Advisories",
+      "label": "CISA ICS Advisories",
+      "title": "Siemens SIMATIC S7-1500 TM MFP",
+      "url": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2026/icsa-26-295-16.json",
+      "date": "2026-10-13T00:00:00+00:00",
+      "summary": "Avis de sécurité CISA publié au format structuré CSAF."
+    },
+    {
+      "source": "CISA ICS Advisories",
+      "label": "CISA ICS Advisories",
+      "title": "Siemens RUGGEDCOM CROSSBOW Station Access Controller",
+      "url": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2026/icsa-26-295-15.json",
+      "date": "2026-10-13T00:00:00+00:00",
+      "summary": "Avis de sécurité CISA publié au format structuré CSAF."
+    },
+    {
+      "source": "CISA ICS Advisories",
+      "label": "CISA ICS Advisories",
+      "title": "Siemens SIMATIC S7 PLCs Web Server",
+      "url": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2026/icsa-26-295-14.json",
+      "date": "2026-10-13T00:00:00+00:00",
+      "summary": "Avis de sécurité CISA publié au format structuré CSAF."
+    },
+    {
+      "source": "CISA ICS Advisories",
+      "label": "CISA ICS Advisories",
+      "title": "Siemens WinCC",
+      "url": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2026/icsa-26-295-13.json",
+      "date": "2026-10-13T00:00:00+00:00",
+      "summary": "Avis de sécurité CISA publié au format structuré CSAF."
+    },
+    {
+      "source": "CISA ICS Advisories",
+      "label": "CISA ICS Advisories",
+      "title": "Siemens RUGGEDCOM CROSSBOW",
+      "url": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2026/icsa-26-295-12.json",
+      "date": "2026-10-13T00:00:00+00:00",
+      "summary": "Avis de sécurité CISA publié au format structuré CSAF."
+    },
+    {
+      "source": "CISA ICS Advisories",
+      "label": "CISA ICS Advisories",
+      "title": "Siemens SIMATIC S7-1500 CPU 1518(F)-4 PN/DP MFP",
+      "url": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2026/icsa-26-295-11.json",
+      "date": "2026-10-13T00:00:00+00:00",
+      "summary": "Avis de sécurité CISA publié au format structuré CSAF."
+    },
+    {
+      "source": "CISA ICS Advisories",
+      "label": "CISA ICS Advisories",
+      "title": "Siemens SIMATIC S7 Webserver API",
+      "url": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2026/icsa-26-295-10.json",
+      "date": "2026-10-13T00:00:00+00:00",
+      "summary": "Avis de sécurité CISA publié au format structuré CSAF."
+    },
+    {
+      "source": "CISA ICS Advisories",
+      "label": "CISA ICS Advisories",
+      "title": "Siemens Industrial Edge Device Kit",
+      "url": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2026/icsa-26-295-09.json",
+      "date": "2026-10-13T00:00:00+00:00",
+      "summary": "Avis de sécurité CISA publié au format structuré CSAF."
+    },
+    {
+      "source": "CISA ICS Advisories",
+      "label": "CISA ICS Advisories",
+      "title": "Siemens APOGEE, TALON and Desigo PXC/PXM Products",
+      "url": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2026/icsa-26-295-08.json",
+      "date": "2026-10-13T00:00:00+00:00",
+      "summary": "Avis de sécurité CISA publié au format structuré CSAF."
+    },
+    {
+      "source": "CISA ICS Advisories",
+      "label": "CISA ICS Advisories",
+      "title": "Siemens SIMATIC IPCs",
+      "url": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2026/icsa-26-295-07.json",
+      "date": "2026-10-13T00:00:00+00:00",
+      "summary": "Avis de sécurité CISA publié au format structuré CSAF."
+    },
+    {
+      "source": "CISA ICS Advisories",
+      "label": "CISA ICS Advisories",
+      "title": "Siemens PSS(R)SINCAL",
+      "url": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2026/icsa-26-295-06.json",
+      "date": "2026-10-13T00:00:00+00:00",
+      "summary": "Avis de sécurité CISA publié au format structuré CSAF."
+    },
+    {
+      "source": "CISA ICS Advisories",
+      "label": "CISA ICS Advisories",
+      "title": "Siemens SENTRON 3NA COM Fuse",
+      "url": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2026/icsa-26-295-05.json",
+      "date": "2026-10-13T00:00:00+00:00",
+      "summary": "Avis de sécurité CISA publié au format structuré CSAF."
+    },
+    {
+      "source": "CISA ICS Advisories",
+      "label": "CISA ICS Advisories",
+      "title": "Siemens Capital Embedded AR Classic",
+      "url": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2026/icsa-26-295-04.json",
+      "date": "2026-10-13T00:00:00+00:00",
+      "summary": "Avis de sécurité CISA publié au format structuré CSAF."
+    },
+    {
+      "source": "CISA ICS Advisories",
+      "label": "CISA ICS Advisories",
+      "title": "Siemens Industrial Edge App Publisher",
+      "url": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2026/icsa-26-295-02.json",
+      "date": "2026-10-13T00:00:00+00:00",
+      "summary": "Avis de sécurité CISA publié au format structuré CSAF."
+    },
+    {
+      "source": "CISA Cybersecurity Advisories",
+      "label": "CISA Cybersecurity Advisories",
+      "title": "Canimaan Software ClamXAV local privilege escalation",
+      "url": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/IT/white/2026/va-26-278-01.json",
+      "date": "2026-10-05T19:49:17+00:00",
+      "summary": "Avis de sécurité CISA publié au format structuré CSAF."
+    },
+    {
+      "source": "CISA Cybersecurity Advisories",
+      "label": "CISA Cybersecurity Advisories",
+      "title": "Newell Brands DYMO ID multiple vulnerabilities",
+      "url": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/IT/white/2026/va-26-275-01.json",
+      "date": "2026-10-05T19:42:46+00:00",
+      "summary": "Avis de sécurité CISA publié au format structuré CSAF."
+    },
+    {
+      "source": "CISA Cybersecurity Advisories",
+      "label": "CISA Cybersecurity Advisories",
+      "title": "Cadmos LTI",
+      "url": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/IT/white/2026/va-26-275-05.json",
+      "date": "2026-10-01T18:50:47+00:00",
+      "summary": "Avis de sécurité CISA publié au format structuré CSAF."
+    },
+    {
+      "source": "CISA Cybersecurity Advisories",
+      "label": "CISA Cybersecurity Advisories",
+      "title": "C-Open CANopen stack multiple vulnerabilities",
+      "url": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/IT/white/2026/va-26-275-02.json",
+      "date": "2026-10-01T18:47:46+00:00",
+      "summary": "Avis de sécurité CISA publié au format structuré CSAF."
+    },
+    {
+      "source": "CISA Cybersecurity Advisories",
+      "label": "CISA Cybersecurity Advisories",
+      "title": "wormhole.app WebRTC TURN relay",
+      "url": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/IT/white/2026/va-26-275-04.json",
+      "date": "2026-10-01T15:30:52+00:00",
+      "summary": "Avis de sécurité CISA publié au format structuré CSAF."
+    },
+    {
+      "source": "CISA Cybersecurity Advisories",
+      "label": "CISA Cybersecurity Advisories",
+      "title": "Joyland AI multiple vulnerabilities",
+      "url": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/IT/white/2026/va-26-274-03.json",
+      "date": "2026-10-01T15:24:53+00:00",
+      "summary": "Avis de sécurité CISA publié au format structuré CSAF."
+    },
+    {
+      "source": "CISA ICS Advisories",
+      "label": "CISA ICS Advisories",
+      "title": "Meari IoT Cloud Platform OpenAPI Service (Update A)",
+      "url": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2026/icsa-26-274-06.json",
+      "date": "2026-10-01T06:00:00+00:00",
+      "summary": "Avis de sécurité CISA publié au format structuré CSAF."
+    },
+    {
+      "source": "CISA Cybersecurity Advisories",
+      "label": "CISA Cybersecurity Advisories",
+      "title": "Kiteworks multiple vulnerabilities",
+      "url": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/IT/white/2026/va-26-274-01.json",
+      "date": "2026-09-30T18:58:55+00:00",
+      "summary": "Avis de sécurité CISA publié au format structuré CSAF."
+    },
+    {
+      "source": "CISA Cybersecurity Advisories",
+      "label": "CISA Cybersecurity Advisories",
+      "title": "Araxis Merge",
+      "url": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/IT/white/2026/va-26-267-01.json",
+      "date": "2026-09-24T14:21:29+00:00",
+      "summary": "Avis de sécurité CISA publié au format structuré CSAF."
+    },
+    {
+      "source": "CISA Cybersecurity Advisories",
+      "label": "CISA Cybersecurity Advisories",
+      "title": "Plex Media Server",
+      "url": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/IT/white/2026/va-26-266-01.json",
+      "date": "2026-09-23T15:39:29+00:00",
+      "summary": "Avis de sécurité CISA publié au format structuré CSAF."
+    },
+    {
       "source": "FortiGuard Outbreak Alerts",
       "label": "FortiGuard Outbreak Alerts",
       "title": "GitLab Path Traversal Vulnerability",
       "url": "https://fortiguard.fortinet.com/outbreak-alert/gitlab-path-traversal",
       "date": "2026-09-23T07:00:00+00:00",
       "summary": "FortiGuard Labs has observed attack activity targeting CVE-2026-85706, a critical path traversal vulnerability in GitLab Community Edition and Enterprise Edition. The vulnerability affects the repository commits API and can allow an unauthenticated remote attacker to read arbitrary files from a vulnerable GitLab server due to improper path confinement and mi"
+    },
+    {
+      "source": "CISA Cybersecurity Advisories",
+      "label": "CISA Cybersecurity Advisories",
+      "title": "FatPipe software multiple vulnerabilities",
+      "url": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/IT/white/2026/va-26-260-01.json",
+      "date": "2026-09-17T14:33:49+00:00",
+      "summary": "Avis de sécurité CISA publié au format structuré CSAF."
+    },
+    {
+      "source": "CISA Cybersecurity Advisories",
+      "label": "CISA Cybersecurity Advisories",
+      "title": "Tencent MSEC Path Traversal",
+      "url": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/IT/white/2026/va-26-258-01.json",
+      "date": "2026-09-15T18:08:29+00:00",
+      "summary": "Avis de sécurité CISA publié au format structuré CSAF."
     },
     {
       "source": "FortiGuard Outbreak Alerts",
@@ -356,12 +628,60 @@
       "summary": "Attackers are actively targeting Orkes Conductor servers vulnerable to CVE-2026-58138, a critical unauthenticated remote code execution vulnerability in its GraalVM script evaluators. FortiGuard telemetry is observing active attack attempts targeting vulnerable Orkes Conductor deployments. The vulnerability allows an unauthenticated attacker to submit a mali"
     },
     {
+      "source": "CISA Cybersecurity Advisories",
+      "label": "CISA Cybersecurity Advisories",
+      "title": "Waves Central local privilege escalation via Improper XPC Client Authentication in macOS",
+      "url": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/IT/white/2026/va-26-251-02.json",
+      "date": "2026-09-08T18:44:30+00:00",
+      "summary": "Avis de sécurité CISA publié au format structuré CSAF."
+    },
+    {
+      "source": "CISA Cybersecurity Advisories",
+      "label": "CISA Cybersecurity Advisories",
+      "title": "Maono Link local privilege escalation",
+      "url": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/IT/white/2026/va-26-251-01.json",
+      "date": "2026-09-08T18:36:54+00:00",
+      "summary": "Avis de sécurité CISA publié au format structuré CSAF."
+    },
+    {
+      "source": "CISA Cybersecurity Advisories",
+      "label": "CISA Cybersecurity Advisories",
+      "title": "Redis TLS pending-data list use-after-free",
+      "url": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/IT/white/2026/va-26-239-01.json",
+      "date": "2026-08-27T19:51:09+00:00",
+      "summary": "Avis de sécurité CISA publié au format structuré CSAF."
+    },
+    {
+      "source": "CISA Cybersecurity Advisories",
+      "label": "CISA Cybersecurity Advisories",
+      "title": "ComfyUI stored XSS and path traversal vulnerabilities",
+      "url": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/IT/white/2026/va-26-238-01.json",
+      "date": "2026-08-26T15:21:45+00:00",
+      "summary": "Avis de sécurité CISA publié au format structuré CSAF."
+    },
+    {
       "source": "Fortinet CISO Collective",
       "label": "Fortinet CISO Collective",
       "title": "Secure by Design: Fortinet’s Continued Commitment and the Work Ahead",
       "url": "https://feeds.fortinet.com/~/968263118/0/fortinet/blog/ciso-collective~Secure-by-Design-Fortinets-Continued-Commitment-and-the-Work-Ahead",
       "date": "2026-08-26T13:00:00+00:00",
       "summary": "Fortinet CISO Carl Windsor shares progress on CISA's Secure by Design Pledge, from automatic updates and product hardening to greater transparency. &#160; &#160; &#160; &#160; &nbsp;&#160;"
+    },
+    {
+      "source": "CISA Cybersecurity Advisories",
+      "label": "CISA Cybersecurity Advisories",
+      "title": "Webkul QloApps multiple vulnerabilities",
+      "url": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/IT/white/2026/va-26-237-01.json",
+      "date": "2026-08-25T16:12:44+00:00",
+      "summary": "Avis de sécurité CISA publié au format structuré CSAF."
+    },
+    {
+      "source": "CISA Cybersecurity Advisories",
+      "label": "CISA Cybersecurity Advisories",
+      "title": "ONNX symlink-following and path-traversal arbitrary file write",
+      "url": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/IT/white/2026/va-26-233-01.json",
+      "date": "2026-08-21T15:41:33+00:00",
+      "summary": "Avis de sécurité CISA publié au format structuré CSAF."
     },
     {
       "source": "FortiGuard Outbreak Alerts",
@@ -2170,7 +2490,5 @@
       ]
     }
   ],
-  "errors": [
-    "CISA Cybersecurity Advisories: HTTPError: HTTP Error 403: Forbidden"
-  ]
+  "errors": []
 }
