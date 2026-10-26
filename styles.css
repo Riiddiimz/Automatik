@@ -43,3 +43,38 @@
 /* État des flux de veille */
 .data-health{margin:-25px 0 28px;border:1px solid #73542f;background:#211c16;color:#f3c38c;border-radius:9px;padding:12px 14px;font-size:11px;line-height:1.6;overflow-wrap:anywhere}
 .data-health[hidden]{display:none}
+
+
+/* Fiches Community repliées par défaut pour faciliter le balayage */
+.incident-accordion{padding:0;overflow:hidden}
+.incident-accordion[open]{border-color:#3b5067}
+.incident-accordion-summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:18px;padding:17px 18px}
+.incident-accordion-summary::-webkit-details-marker{display:none}
+.incident-summary-main{display:grid;gap:5px;min-width:0}
+.incident-summary-main .community-products{font-size:9px}
+.incident-summary-main>strong{font-size:13px;line-height:1.45;color:#edf3f9}
+.incident-summary-preview{font-size:11px;line-height:1.5;color:#91a2b5;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.incident-summary-side{display:flex;flex:0 0 auto;align-items:flex-end;flex-direction:column;gap:9px}
+.incident-expand-label{display:flex;align-items:center;gap:7px;color:#ffad79;font-size:10px;font-weight:700;white-space:nowrap}
+.incident-expand-close{display:none}
+.incident-chevron{display:inline-block;font-size:16px;transition:transform .18s ease}
+.incident-accordion[open] .incident-chevron{transform:rotate(180deg)}
+.incident-accordion[open] .incident-expand-open{display:none}
+.incident-accordion[open] .incident-expand-close{display:inline}
+.incident-accordion-body{padding:0 18px 16px;border-top:1px solid #263241}
+.incident-accordion-body>.incident-ai-review{margin-top:14px}
+.incident-accordion-body .incident-details{grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}
+.incident-accordion-body .incident-detail{padding:10px 12px;border:1px solid #28394b;border-left:2px solid #496681;border-radius:7px;background:#101925}
+.incident-accordion-body .incident-sources{margin-top:14px}
+@media(max-width:760px){
+ .incident-accordion-summary{padding:14px;gap:10px;align-items:flex-start}
+ .incident-summary-main>strong{font-size:12px}
+ .incident-summary-preview{-webkit-line-clamp:2}
+ .incident-summary-side{gap:8px;align-items:flex-end}
+ .incident-summary-side .community-status-badge{font-size:8px;white-space:normal;text-align:center;max-width:115px}
+ .incident-expand-label{font-size:9px}
+ .incident-accordion-body{padding:0 14px 14px}
+ .incident-accordion-body .incident-details{grid-template-columns:1fr}
+ .incident-sources li{flex-direction:column;gap:3px}
+ .incident-sources li span{white-space:normal}
+}
