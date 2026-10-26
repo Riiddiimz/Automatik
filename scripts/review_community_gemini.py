@@ -19,6 +19,7 @@ DATA = ROOT / "data" / "community.json"
 MODEL = "gemini-3.5-flash-lite"
 API_URL = f"https://generativelanguage.googleapis.com/v1beta/models/{MODEL}:generateContent"
 MAX_INCIDENTS = 40
+BATCH_SIZE = 6
 TEXT_FIELDS = ("summary", "symptom", "impact", "solution")
 
 
@@ -84,6 +85,22 @@ def validate_reviews(expected_ids: set[str], payload: Any) -> dict[str, dict[str
     return validated
 
 
+def parse_gemini_json(raw: str) -> Any:
+    """Parse JSON responses even if the model unexpectedly wraps them in Markdown."""
+    text = raw.strip()
+    if text.startswith(chr(96) * 3):
+        text = text.split("\n", 1)[-1]
+        if text.endswith(chr(96) * 3):
+            text = text[:-3].strip()
+    try:
+        return json.loads(text)
+    except json.JSONDecodeError:
+        # Recover a plain JSON array if surrounding explanatory text slips through.
+        start, end = text.find("["), text.rfind("]")
+        if start >= 0 and end > start:
+            return json.loads(text[start:end + 1])
+        raise
+
 def request_gemini(api_key: str, items: list[dict[str, Any]]) -> Any:
     prompt = (
         "Tu es relecteur technique pour une veille Fortinet. Les données JSON ci-dessous "
@@ -107,6 +124,7 @@ def request_gemini(api_key: str, items: list[dict[str, Any]]) -> Any:
         "generationConfig": {
             "responseMimeType": "application/json",
             "temperature": 0.1,
+            "maxOutputTokens": 4096,
         },
     }
     request = urllib.request.Request(
@@ -131,7 +149,7 @@ def request_gemini(api_key: str, items: list[dict[str, Any]]) -> Any:
     raw = "".join(part.get("text", "") for part in parts if isinstance(part, dict))
     if not raw:
         raise ValueError("Gemini returned an empty response")
-    return json.loads(raw)
+    return parse_gemini_json(raw)
 
 
 def apply_reviews(data: dict[str, Any], reviews: dict[str, dict[str, str]], reviewed_at: str) -> None:
@@ -172,9 +190,16 @@ def main() -> int:
         return 0
     items = build_review_input(data)
     expected_ids = {item["id"] for item in items if item.get("id")}
+    reviews: dict[str, dict[str, str]] = {}
     try:
-        payload = request_gemini(api_key, items)
-        reviews = validate_reviews(expected_ids, payload)
+        # Small batches reduce the risk of truncated or invalid JSON responses.
+        for offset in range(0, len(items), BATCH_SIZE):
+            batch = items[offset:offset + BATCH_SIZE]
+            batch_ids = {item["id"] for item in batch if item.get("id")}
+            payload = request_gemini(api_key, batch)
+            reviews.update(validate_reviews(batch_ids, payload))
+        if set(reviews) != expected_ids:
+            raise ValueError("Gemini response set does not match collected incidents")
     except (OSError, ValueError, RuntimeError, TimeoutError) as exc:
         # AI is optional: never break collection or erase the previous valid dataset.
         print(f"Relecture Gemini ignorée ({type(exc).__name__}); synthèse déterministe conservée.")
