@@ -10,6 +10,7 @@ on:
       - "scripts/update_veille.py"
       - "tests/test_synthesize_community.py"
       - "tests/test_collect_community.py"
+      - "tests/test_review_community_gemini.py"
       - ".github/workflows/collect-community.yml"
   schedule:
     - cron: "17 */6 * * *"
