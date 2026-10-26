@@ -353,7 +353,7 @@ def synthesize(data: dict, out: Path = DATA) -> dict:
         item = dict(raw)
         item["products"] = extract_products(item)
         item["versions"], item["versionFamilies"] = extract_versions(item)
-        item["fixedVersions"] = extract_fixed_versions(item)
+        item["fixVersions"] = extract_fixed_versions(item)
         item["potentialProblem"] = looks_like_problem(item)
         enriched.append(item)
 
@@ -372,7 +372,7 @@ def synthesize(data: dict, out: Path = DATA) -> dict:
         products = sorted({p for item in cluster for p in item.get("products", [])})
         exact_versions = sorted({v for item in cluster for v in item.get("versions", [])}, key=lambda v: tuple(int(x) for x in v.split(".")))
         families = sorted({v for item in cluster for v in item.get("versionFamilies", [])}, key=lambda v: tuple(int(x) for x in v.split(".")))
-        fixed_versions = sorted({v for item in cluster for v in item.get("fixedVersions", [])}, key=lambda v: tuple(int(x) for x in v.split(".")))
+        fixed_versions = sorted({v for item in cluster for v in item.get("fixVersions", [])}, key=lambda v: tuple(int(x) for x in v.split(".")))
         sources = [{
             "title": item.get("title", "Sujet sans titre"),
             "url": item.get("url", ""),
@@ -382,7 +382,7 @@ def synthesize(data: dict, out: Path = DATA) -> dict:
             "versions": item.get("versions", []),
             "versionFamilies": item.get("versionFamilies", []),
             "sourceType": source_type(item),
-            "fixedVersions": extract_fixed_versions(item),
+            "fixVersions": extract_fixed_versions(item),
             **extract_sections(item),
         } for item in cluster]
         symptom = next((source["symptom"] for source in sources if source.get("symptom")), "")
@@ -405,7 +405,7 @@ def synthesize(data: dict, out: Path = DATA) -> dict:
             "products": products,
             "versions": exact_versions,
             "versionFamilies": families,
-            "fixedVersions": fixed_versions,
+            "fixVersions": fixed_versions,
             "sourceCount": len(sources),
             "forumReportCount": reports,
             "documentedSourceCount": len(documented_sources),
