@@ -78,3 +78,15 @@
  .incident-sources li{flex-direction:column;gap:3px}
  .incident-sources li span{white-space:normal}
 }
+
+
+/* Navigation en pages distinctes : le menu affiche une section à la fois */
+.content-section{display:none;scroll-margin-top:24px}
+.content-section.page-visible{display:block}
+body.page-overview .hero,body.page-overview .metrics{display:grid}
+body.page-overview .hero[hidden],body.page-overview .metrics[hidden],.hero[hidden],.metrics[hidden],.content-section[hidden]{display:none!important}
+#data-health[hidden]{display:none!important}
+.content-section.page-visible{animation:page-enter .18s ease-out}
+@keyframes page-enter{from{opacity:.65;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
+.nav-link[aria-current="page"]{box-shadow:inset 2px 0 0 var(--orange)}
+@media(prefers-reduced-motion:reduce){.content-section.page-visible{animation:none}}
