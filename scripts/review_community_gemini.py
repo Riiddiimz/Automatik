@@ -140,8 +140,16 @@ def request_gemini(api_key: str, items: list[dict[str, Any]]) -> Any:
         with urllib.request.urlopen(request, timeout=75) as response:
             response_data = json.loads(response.read().decode("utf-8"))
     except urllib.error.HTTPError as exc:
-        # Never print the request URL or headers; keep API credentials out of logs.
-        raise RuntimeError(f"Gemini API returned HTTP {exc.code}") from None
+        # The response body contains Google's diagnostic, not the request headers/key.
+        # Keep the diagnostic short and redact the credential defensively.
+        error_body = exc.read().decode("utf-8", errors="replace")
+        try:
+            error_payload = json.loads(error_body)
+            diagnostic = str(error_payload.get("error", {}).get("message", ""))
+        except (json.JSONDecodeError, AttributeError):
+            diagnostic = error_body
+        diagnostic = diagnostic.replace(api_key, "[redacted]")[:240]
+        raise RuntimeError(f"Gemini API HTTP {exc.code}: {diagnostic}") from None
     candidates = response_data.get("candidates", [])
     if not candidates:
         raise ValueError("Gemini returned no candidates")
