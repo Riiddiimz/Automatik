@@ -196,27 +196,25 @@ class CommunitySynthesisTests(unittest.TestCase):
         self.assertEqual(incident["status"], "Documenté par Fortinet (version non précisée)")
 
 
-    def test_official_scoped_issue_without_version_is_published_as_unknown(self):
+    def test_fixed_version_is_separate_from_affected_versions(self):
         item = {
-            "title": "Troubleshooting Tip: LDAP search 'Timed out' in 5 seconds, ignoring timeout settings",
+            "title": "Troubleshooting Tip: LDAP authentication fails",
             "summary": (
-                "DescriptionThis article describes a known issue where an LDAP search fails within five seconds. "
-                "ScopeFortiAuthenticator, LDAP, FSSO. "
-                "SolutionCollect the LDAP debug logs and open a support case if the timeout persists."
+                "DescriptionLDAP authentication fails. ScopeFortiAuthenticator. "
+                "SolutionThe issue will be fixed in FortiAuthenticator version 8.0.4."
             ),
-            "url": "https://community.fortinet.com/fortiauthenticator-8/troubleshooting-tip-ldap-search-timed-out-in-5-seconds-ignoring-timeout-settings-230479",
+            "url": "https://community.fortinet.com/fortiauthenticator-8/ldap-authentication-fails-230999",
         }
         self.assertEqual(synth.extract_versions(item), ([], []))
-        self.assertTrue(synth.has_documented_evidence(item))
+        self.assertEqual(synth.extract_fixed_versions(item), ["8.0.4"])
         with tempfile.TemporaryDirectory() as directory:
             result = synth.synthesize({"topics": [item]}, Path(directory) / "community.json")
         self.assertEqual(result["incidentCount"], 1)
         incident = result["incidents"][0]
-        self.assertEqual(incident["products"], ["FortiAuthenticator"])
         self.assertEqual(incident["versions"], [])
         self.assertEqual(incident["versionFamilies"], [])
-        self.assertEqual(incident["status"], "Documenté par Fortinet (version non précisée)")
-
+        self.assertEqual(incident["fixedVersions"], ["8.0.4"])
+        self.assertIn("will be fixed", incident["solution"])
 
     def test_official_articles_do_not_count_as_multiple_people(self):
         data = {"topics": [
