@@ -94,6 +94,7 @@ body.page-overview .hero[hidden],body.page-overview .metrics[hidden],.hero[hidde
 
 /* État des collectes GitHub Actions */
 .workflow-health{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:-10px 0 30px}
+.workflow-health[hidden]{display:none!important}
 .workflow-health-card{min-width:0;border:1px solid #2b3b4d;background:#111925;border-radius:10px;padding:14px 16px}
 .workflow-health-top{display:flex;align-items:center;justify-content:space-between;gap:10px}
 .workflow-health-top strong{font-size:12px}
