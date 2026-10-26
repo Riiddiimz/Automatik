@@ -214,7 +214,7 @@ class CommunitySynthesisTests(unittest.TestCase):
         incident = result["incidents"][0]
         self.assertEqual(incident["versions"], ["7.6.8"])
         self.assertEqual(incident["versionFamilies"], ["7.6"])
-        self.assertEqual(incident["fixedVersions"], ["7.6.9"])
+        self.assertEqual(incident["fixVersions"], ["7.6.9"])
         self.assertIn("scheduled for fix", incident["solution"])
 
     def test_official_articles_do_not_count_as_multiple_people(self):
