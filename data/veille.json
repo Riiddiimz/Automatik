@@ -1,6 +1,14 @@
 {
-  "generatedAt": "2026-10-26T16:16:28.521424+00:00",
+  "generatedAt": "2026-10-26T22:39:29.380133+00:00",
   "fortinet": [
+    {
+      "source": "FortiGuard PSIRT",
+      "label": "PSIRT",
+      "title": "Multiple Node.js CVEs",
+      "url": "https://fortiguard.fortinet.com/psirt/FG-IR-26-187",
+      "date": "2026-10-26T07:00:00+00:00",
+      "summary": "CVSSv3 Score: 9.8 CVE-2026-105482 - (high)This vulnerability affects Node.js 26.x, 24.x, and 22.x.CVE-2026-105483 - (high)This vulnerability affects Node.js 26.x and 24.x.CVE-2026-106069 - (high)This vulnerability affects Node.js 26.x, 24.x, and 22.x.CVE-2026-111497 - (high)A flaw in Node.js can cause Node.js Brotli decoder out-of-bounds write permits remote"
+    },
     {
       "source": "FortiGuard PSIRT",
       "label": "PSIRT",
@@ -144,14 +152,6 @@
       "url": "https://fortiguard.fortinet.com/psirt/FG-IR-26-173",
       "date": "2026-09-08T07:00:00+00:00",
       "summary": "CVSSv3 Score: 2.7 A NULL Pointer Dereference vulnerability [CWE-476] in FortiOS, FortiProxy and FortiPAM may allow an authenticated attacker to crash the httpsd daemon via crafted HTTP requests. Revised on 2026-09-08 00:00:00"
-    },
-    {
-      "source": "FortiGuard PSIRT",
-      "label": "PSIRT",
-      "title": "Open Redirect on FortiSIEM",
-      "url": "https://fortiguard.fortinet.com/psirt/FG-IR-26-169",
-      "date": "2026-09-08T07:00:00+00:00",
-      "summary": "CVSSv3 Score: 3.1 An URL redirection to untrusted site ('open redirect') [CWE-601] vulnerability in FortiSIEM may allow an authenticated attacker to cause a redirection to any website via specially crafted HTTP requests Revised on 2026-09-08 00:00:00"
     },
     {
       "source": "FortiGuard PSIRT",
