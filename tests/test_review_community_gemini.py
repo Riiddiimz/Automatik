@@ -38,7 +38,8 @@ class GeminiReviewTests(unittest.TestCase):
         self.assertEqual(items[0]["sources"][0]["url"], "https://community.fortinet.com/example")
 
     def test_parse_gemini_json_accepts_markdown_fence(self):
-        self.assertEqual(parse_gemini_json('\\x60\\x60\\x60json\\n[{"id":"a"}]\\n\\x60\\x60\\x60'), [{"id": "a"}])
+        fenced = chr(96) * 3 + 'json\n[{"id":"a"}]\n' + chr(96) * 3
+        self.assertEqual(parse_gemini_json(fenced), [{"id": "a"}])
 
     def test_parse_gemini_json_accepts_surrounding_text(self):
         self.assertEqual(parse_gemini_json('Resultat : [{"id":"a"}] fin'), [{"id": "a"}])
