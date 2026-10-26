@@ -140,6 +140,8 @@ async function loadCommunity() {
 function updateDashboard(data) {
   currentData = { ...fallback, ...data };
   const health = $("data-health");
+  const workflowHealth = $("workflow-health");
+  if (workflowHealth) workflowHealth.hidden = page !== "overview";
   const sourceErrors = Array.isArray(currentData.errors) ? currentData.errors.filter(Boolean) : [];
   if (health) {
     if (sourceErrors.length) {
