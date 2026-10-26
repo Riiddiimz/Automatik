@@ -99,7 +99,7 @@ const { chromium } = require("playwright");
 
     if ((data.incidents || []).length) {
       const firstCard = cards.first();
-      for (const label of ["Symptôme", "Impact", "Solution / correctif"]) {
+      for (const label of ["Symptôme", "Impact", "Solution / correctif", "Version corrigée"]) {
         assert.equal(await firstCard.getByText(label, { exact: true }).count(), 1, `le champ "${label}" doit être affiché`);
       }
       const firstDetails = page.locator("#community-list .incident-sources").first();
