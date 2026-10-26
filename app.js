@@ -145,7 +145,7 @@ function updateDashboard(data) {
     if (sourceErrors.length) {
       const details = sourceErrors.slice(0, 3).join(" · ");
       const extra = sourceErrors.length > 3 ? ` · +${sourceErrors.length - 3} autre(s) erreur(s)` : "";
-      health.hidden = false;
+      health.hidden = !document.body.classList.contains("page-overview");
       health.textContent = `Actualisation partielle : ${sourceErrors.length} source(s) en erreur. Les données précédentes ont pu être conservées ; vérifie les dates et les liens avant toute décision. Détails : ${details}${extra}`;
     } else {
       health.hidden = true;
