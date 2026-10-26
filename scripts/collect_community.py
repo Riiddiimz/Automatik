@@ -361,6 +361,14 @@ def fetch_feed(url: str = EXTENDED_FEED_URL) -> bytes:
     raise failures[-1][1]
 
 
+def count_feed_entries(payload: bytes) -> int:
+    """Count raw RSS/Atom entries before product filtering."""
+    root = ET.fromstring(payload)
+    entries = root.findall(".//item")
+    if not entries:
+        entries = root.findall(".//{http://www.w3.org/2005/Atom}entry")
+    return len(entries)
+
 def parse_feed(payload: bytes) -> list[dict]:
     root = ET.fromstring(payload)
     entries = root.findall(".//item")
@@ -490,7 +498,9 @@ def collect(fetcher=fetch_feed, out: Path = OUT, topic_fetcher=None) -> dict:
     if topic_fetcher is None and fetcher is fetch_feed:
         topic_fetcher = fetch_topic_products
     try:
-        parsed = parse_feed(fetcher())
+        feed_payload = fetcher()
+        raw_feed_count = count_feed_entries(feed_payload)
+        parsed = parse_feed(feed_payload)
         observed_ids = {item.get("id") or item.get("url") for item in parsed}
         fresh = enrich_unclassified_topics(parsed, topic_fetcher, errors)
         feed_url = getattr(fetcher, "last_url", None) or FEED_URL
@@ -505,7 +515,9 @@ def collect(fetcher=fetch_feed, out: Path = OUT, topic_fetcher=None) -> dict:
         if not fresh and fetcher is fetch_feed and feed_url == EXTENDED_FEED_URL:
             # A syntactically valid but empty extended response is not evidence
             # that there are no topics; try the standard public feed as well.
-            fallback_parsed = parse_feed(fetcher(FEED_URL))
+            fallback_payload = fetcher(FEED_URL)
+            raw_feed_count = count_feed_entries(fallback_payload)
+            fallback_parsed = parse_feed(fallback_payload)
             observed_ids.update(item.get("id") or item.get("url") for item in fallback_parsed)
             fallback = enrich_unclassified_topics(fallback_parsed, topic_fetcher, errors)
             if topic_fetcher:
@@ -521,9 +533,9 @@ def collect(fetcher=fetch_feed, out: Path = OUT, topic_fetcher=None) -> dict:
         if not fresh:
             raise ValueError("flux accessible mais aucun sujet Fortinet reconnu; collecte considérée partielle")
         errors.extend(getattr(fetcher, "last_errors", []))
-        if fetcher is fetch_feed and feed_url == EXTENDED_FEED_URL and len(fresh) < EXTENDED_FEED_COUNT:
+        if fetcher is fetch_feed and feed_url == EXTENDED_FEED_URL and raw_feed_count < EXTENDED_FEED_COUNT:
             errors.append(
-                f"Le flux Community a renvoyé {len(fresh)} sujets sur {EXTENDED_FEED_COUNT} demandés; "
+                f"Le flux Community a renvoyé {raw_feed_count} entrées brutes sur {EXTENDED_FEED_COUNT} demandées; "
                 "la couverture complète des 30 derniers jours n'est pas garantie."
             )
     except (OSError, urllib.error.URLError, ET.ParseError, ValueError, TimeoutError) as exc:
@@ -551,6 +563,8 @@ def collect(fetcher=fetch_feed, out: Path = OUT, topic_fetcher=None) -> dict:
     result = {
         "generatedAt": now,
         "feedUrl": feed_url,
+        "feedItemCount": raw_feed_count,
+        "requestedFeedItemCount": EXTENDED_FEED_COUNT if feed_url == EXTENDED_FEED_URL else None,
         "partial": bool(errors),
         "errors": errors,
         "topicCount": len(topics),
