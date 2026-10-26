@@ -1,5 +1,7 @@
 import importlib.util
 import json
+import os
+import time
 from pathlib import Path
 import tempfile
 import unittest
@@ -27,6 +29,22 @@ class FeedParserTests(unittest.TestCase):
         items = updater.parse_rss(payload, "Example", "Test")
         self.assertEqual(items[0]["title"], "Atom advisory")
         self.assertEqual(items[0]["url"], "https://example.com/atom")
+
+    def test_naive_iso_dates_are_interpreted_as_utc_independent_of_runner_timezone(self):
+        previous_tz = os.environ.get("TZ")
+        try:
+            os.environ["TZ"] = "Etc/GMT+5"
+            time.tzset()
+            self.assertEqual(
+                updater.parse_date("2026-10-21T08:00:00"),
+                "2026-10-21T08:00:00+00:00",
+            )
+        finally:
+            if previous_tz is None:
+                os.environ.pop("TZ", None)
+            else:
+                os.environ["TZ"] = previous_tz
+            time.tzset()
 
     def test_invalid_xml_raises_parse_error(self):
         with self.assertRaises(Exception):

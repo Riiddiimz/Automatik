@@ -60,7 +60,12 @@ def parse_date(value):
         return parsed.astimezone(timezone.utc).isoformat()
     except (TypeError, ValueError, OverflowError):
         try:
-            return datetime.fromisoformat(value.replace("Z", "+00:00")).astimezone(timezone.utc).isoformat()
+            parsed = datetime.fromisoformat(value.replace("Z", "+00:00"))
+            # Naive ISO timestamps have no declared timezone; interpret them as UTC
+            # instead of inheriting the runner's local timezone.
+            if parsed.tzinfo is None:
+                parsed = parsed.replace(tzinfo=timezone.utc)
+            return parsed.astimezone(timezone.utc).isoformat()
         except (TypeError, ValueError):
             return value
 
