@@ -382,7 +382,7 @@ def fetch_feed(url: str = EXTENDED_FEED_URL) -> bytes:
         except (OSError, urllib.error.URLError, TimeoutError, ET.ParseError, ValueError) as exc:
             failures.append(f"{page_url}: {type(exc).__name__}: {exc}")
             if not all_entries:
-                continue
+                break
             break
     if all_entries:
         combined = ET.Element("rss", {"version": "2.0"})
