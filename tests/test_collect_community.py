@@ -45,6 +45,19 @@ class CommunityFeedTests(unittest.TestCase):
         self.assertEqual(items[0]["versions"], ["7.6.8"])
 
 
+    def test_official_fix_version_is_not_reported_as_affected_version(self):
+        payload = b"""<rss version="2.0"><channel>
+          <item>
+            <title>Troubleshooting Tip: LDAP authentication fails</title>
+            <link>https://community.fortinet.com/fortiauthenticator-8/ldap-authentication-fails-230999</link>
+            <description><![CDATA[DescriptionLDAP authentication fails. ScopeFortiAuthenticator. SolutionThe issue will be fixed in FortiAuthenticator version 8.0.4.]]></description>
+          </item>
+        </channel></rss>"""
+        items = collector.parse_feed(payload)
+        self.assertEqual(len(items), 1)
+        self.assertEqual(items[0]["versions"], [])
+        self.assertEqual(items[0]["fixedVersions"], ["8.0.4"])
+
     def test_rss_categories_identify_products_missing_from_title_and_summary(self):
         payload = b"""<rss version="2.0"><channel>
           <item>
