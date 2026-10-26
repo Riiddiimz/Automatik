@@ -50,7 +50,17 @@ UPGRADE_TARGET_RE = re.compile(
     r"\b(?:upgrad(?:e|ed|ing|es)|firmware update)\b[^.!?]{0,100}?"
     r"\bto\s+(?:version\s*)?v?(\d{1,2}\.\d{1,2}(?:\.\d{1,3})?)\b",
     re.I,
+) 
+FIXED_VERSION_RE = re.compile(
+    r"\b(?:will\s+be\s+fixed|will\s+be\s+resolved|is\s+scheduled\s+to\s+be\s+fixed|"
+    r"scheduled\s+to\s+be\s+fixed|fixed|resolved|corrected|addressed|"
+    r"(?:fix|patch|correction)\s+(?:is\s+)?(?:available|included|provided))\s+"
+    r"(?:in|with|from)\s+(?:(?:fortios|fortigate|fortimanager|fortianalyzer|"
+    r"fortiauthenticator|forticlient(?:\s+(?:ems|vpn))?|fortiswitch|fortiap|firmware)\s*)?"
+    r"(?:version\s*)?v?(\d{1,2}\.\d{1,2}(?:\.\d{1,3})?)\b",
+    re.I,
 )
+
 NON_FORTINET_VERSION_RE = re.compile(
     r"\b(?:(?:huawei\s+cloud\s+)?euleros|centos|rhel|red\s+hat\s+enterprise\s+linux|"
     r"ubuntu|debian|fedora|rocky\s+linux|almalinux|oracle\s+linux|windows(?:\s+server)?|"
@@ -269,12 +279,12 @@ def extract_versions(title: str, summary: str, url: str = "") -> list[str]:
             summary, re.I | re.S,
         )
         if scope:
-            scoped_text = f"{title} {scope.group(1)}"
-            # When Fortinet explicitly scopes a version, don't mix in versions
-            # listed later as unaffected or merely mentioned in the solution.
-            if VERSION_CONTEXT_RE.search(scoped_text) or UPGRADE_PATH_RE.search(scoped_text) or UPGRADE_TARGET_RE.search(scoped_text):
-                text = scoped_text
+            # The title and Scope describe the affected product/release. Never
+            # infer affected versions from a Solution/Workaround (often a fixed release).
+            text = f"{title} {scope.group(1)}"
     # Exclude IP addresses, platform/tool versions and elapsed-time decimals.
+    # A version explicitly described as fixed is not an affected version.
+    text = FIXED_VERSION_RE.sub(" ", text)
     text = re.sub(r"\b(?:\d{1,3}\.){3}\d{1,3}\b", " ", text)
     text = NON_FORTINET_VERSION_RE.sub(" ", text)
     text = re.sub(
@@ -289,6 +299,19 @@ def extract_versions(title: str, summary: str, url: str = "") -> list[str]:
     for source_version, target_version in UPGRADE_PATH_RE.findall(text):
         found.update((source_version, target_version))
     found.update(UPGRADE_TARGET_RE.findall(text))
+    return sorted(found, key=lambda version: tuple(int(part) for part in version.split(".")))
+
+
+def extract_fixed_versions(title: str, summary: str, url: str = "") -> list[str]:
+    """Return only explicitly documented fixed releases from Fortinet-authored articles."""
+    official_article = bool(re.match(
+        r"https?://community\.fortinet\.com/(?:fortigate-|fortimanager-|fortianalyzer-|"
+        r"fortiauthenticator-|forticlient-ems-|forticlient-|fortiswitch-|fortiap-)",
+        url, re.I,
+    ))
+    if not official_article:
+        return []
+    found = set(FIXED_VERSION_RE.findall(f"{title} {summary}"))
     return sorted(found, key=lambda version: tuple(int(part) for part in version.split(".")))
 
 
@@ -404,6 +427,7 @@ def parse_feed(payload: bytes) -> list[dict]:
             "categories": categories,
             "products": products,
             "versions": versions,
+            "fixedVersions": extract_fixed_versions(title, summary, link),
             "status": "À vérifier",
             "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
             "source": "Fortinet Community",
