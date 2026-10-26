@@ -427,7 +427,7 @@ def parse_feed(payload: bytes) -> list[dict]:
             "categories": categories,
             "products": products,
             "versions": versions,
-            "fixedVersions": extract_fixed_versions(title, summary, link),
+            "fixVersions": extract_fixed_versions(title, summary, link),
             "status": "À vérifier",
             "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
             "source": "Fortinet Community",
