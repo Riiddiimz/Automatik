@@ -6,6 +6,7 @@ on:
     paths:
       - "scripts/collect_community.py"
       - "scripts/synthesize_community.py"
+      - "scripts/review_community_gemini.py"
       - "scripts/update_veille.py"
       - "tests/test_synthesize_community.py"
       - "tests/test_collect_community.py"
@@ -24,7 +25,7 @@ concurrency:
 jobs:
   collect:
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 7
     steps:
       - name: Récupérer main
         uses: actions/checkout@v4
@@ -40,6 +41,10 @@ jobs:
         run: python scripts/collect_community.py
       - name: Regrouper les problèmes similaires et synthétiser
         run: python scripts/synthesize_community.py
+      - name: Relire les synthèses avec Gemini (facultatif)
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: python scripts/review_community_gemini.py
       - name: Valider le JSON
         run: python -m json.tool data/community.json > /dev/null
       - name: Enregistrer les nouvelles données sur main
