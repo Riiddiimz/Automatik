@@ -198,23 +198,24 @@ class CommunitySynthesisTests(unittest.TestCase):
 
     def test_fixed_version_is_separate_from_affected_versions(self):
         item = {
-            "title": "Troubleshooting Tip: LDAP authentication fails",
+            "title": "Administrator SSO authentication fails after upgrade to FortiOS 7.6.8",
             "summary": (
-                "DescriptionLDAP authentication fails. ScopeFortiAuthenticator. "
-                "SolutionThe issue is under investigation and scheduled for fix in FortiOS version 7.6.9."
+                "DescriptionAfter upgrade to FortiOS 7.6.8, administrator SSO authentication fails. "
+                "ScopeFortiOS 7.6.8. "
+                "SolutionThe issue is under investigation and scheduled for fix in FortiOS 7.6.9."
             ),
-            "url": "https://community.fortinet.com/fortiauthenticator-8/ldap-authentication-fails-230999",
+            "url": "https://community.fortinet.com/fortigate-3/administrator-sso-authentication-fails-after-upgrade-to-fortios-7-6-8-230826",
         }
-        self.assertEqual(synth.extract_versions(item), ([], []))
+        self.assertEqual(synth.extract_versions(item), (["7.6.8"], ["7.6"]))
         self.assertEqual(synth.extract_fixed_versions(item), ["7.6.9"])
         with tempfile.TemporaryDirectory() as directory:
             result = synth.synthesize({"topics": [item]}, Path(directory) / "community.json")
         self.assertEqual(result["incidentCount"], 1)
         incident = result["incidents"][0]
-        self.assertEqual(incident["versions"], [])
-        self.assertEqual(incident["versionFamilies"], [])
-        self.assertEqual(incident["fixedVersions"], ["8.0.4"])
-        self.assertIn("will be fixed", incident["solution"])
+        self.assertEqual(incident["versions"], ["7.6.8"])
+        self.assertEqual(incident["versionFamilies"], ["7.6"])
+        self.assertEqual(incident["fixedVersions"], ["7.6.9"])
+        self.assertIn("scheduled for fix", incident["solution"])
 
     def test_official_articles_do_not_count_as_multiple_people(self):
         data = {"topics": [
