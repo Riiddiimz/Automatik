@@ -151,7 +151,7 @@ function updateDashboard(data) {
   currentData = { ...fallback, ...data };
   const health = $("data-health");
   const workflowHealth = $("workflow-health");
-  if (workflowHealth) workflowHealth.hidden = page !== "overview";
+  if (workflowHealth) workflowHealth.hidden = !document.body.classList.contains("page-overview");
   const sourceErrors = Array.isArray(currentData.errors) ? currentData.errors.filter(Boolean) : [];
   if (health) {
     if (sourceErrors.length) {
@@ -289,6 +289,8 @@ function activatePage(pageId, updateHash = false) {
   const hero = document.querySelector(".hero");
   const metrics = document.querySelector(".metrics");
   const health = $("data-health");
+  const workflowHealth = $("workflow-health");
+  if (workflowHealth) workflowHealth.hidden = page !== "overview";
   if (hero) hero.hidden = page !== "overview";
   if (metrics) metrics.hidden = page !== "overview";
   if (health) health.hidden = page !== "overview" || !health.textContent.trim();

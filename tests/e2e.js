@@ -25,8 +25,10 @@ const { chromium } = require("playwright");
     assert.equal(await page.locator("#metric-fortinet").innerText(), String(dashboardData.fortinet.length));
     assert.equal(await page.locator("#metric-cyber").innerText(), String(dashboardData.cyber.length));
     assert.equal(await page.locator("#metric-kev").innerText(), String(dashboardData.kev.length));
+    assert.equal(await page.locator("#workflow-health").isVisible(), true, "l’état des collectes doit être visible sur la vue d’ensemble");
     // Les rubriques sont des pages distinctes : ouvrir CVE avant de tester son champ.
     await page.locator('.nav-link[href="#cves"]').click();
+    assert.equal(await page.locator("#workflow-health").isVisible(), false, "l’état des collectes doit se masquer hors de la vue d’ensemble");
     // CISA KEV utilise le champ cveID (et non cve) : vérifier la recherche sur le schéma réel.
     const cveProbe = dashboardData.kev.find(item => item.cveID);
     assert.ok(cveProbe, "le catalogue KEV doit fournir un cveID pour tester la recherche");
@@ -42,6 +44,7 @@ const { chromium } = require("playwright");
     );
     await page.locator("#cve-search").fill("");
     await page.locator('.nav-link[href="#overview"]').click();
+    assert.equal(await page.locator("#workflow-health").isVisible(), true, "l’état des collectes doit réapparaître sur la vue d’ensemble");
     assert.equal(
       await page.locator("#cve-list .cve-card").count(),
       Math.min(dashboardData.kev.length, 30),
