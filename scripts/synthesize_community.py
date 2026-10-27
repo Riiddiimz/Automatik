@@ -346,7 +346,56 @@ def build_summary(items: list[dict]) -> str:
     return result
 
 
+def review_evidence_signature(incident: dict) -> tuple:
+    """Fingerprint the evidence used by the AI wording review."""
+    sources = []
+    for source in incident.get("sources", []):
+        if not isinstance(source, dict):
+            continue
+        sources.append((
+            str(source.get("url", "") or ""),
+            str(source.get("title", "") or ""),
+            str(source.get("summary", "") or ""),
+            str(source.get("symptom", "") or ""),
+            str(source.get("impact", "") or ""),
+            str(source.get("solution", "") or ""),
+            str(source.get("sourceType", "") or ""),
+            tuple(sorted(str(value) for value in (source.get("products", []) or []))),
+            tuple(sorted(str(value) for value in (source.get("versions", []) or []))),
+            tuple(sorted(str(value) for value in (source.get("fixVersions", []) or []))),
+        ))
+    return (
+        str(incident.get("title", "") or ""),
+        tuple(sorted(sources)),
+        tuple(sorted(str(value) for value in (incident.get("products", []) or []))),
+        tuple(sorted(str(value) for value in (incident.get("versions", []) or []))),
+        tuple(sorted(str(value) for value in (incident.get("fixVersions", []) or []))),
+    )
+
+
+def preserve_unchanged_ai_reviews(incidents: list[dict], previous_incidents: list[dict]) -> int:
+    """Carry forward AI wording only when the underlying evidence is unchanged."""
+    previous_by_id = {
+        str(item.get("id")): item
+        for item in previous_incidents
+        if isinstance(item, dict) and item.get("id")
+    }
+    carried = 0
+    for incident in incidents:
+        previous = previous_by_id.get(str(incident.get("id", "")))
+        if not previous or not isinstance(previous.get("aiReview"), dict):
+            continue
+        if review_evidence_signature(previous) != review_evidence_signature(incident):
+            continue
+        incident["aiReview"] = previous["aiReview"]
+        carried += 1
+    return carried
+
+
 def synthesize(data: dict, out: Path = DATA) -> dict:
+    previous_incidents = data.pop("_previousIncidents", data.get("incidents", []))
+    if not isinstance(previous_incidents, list):
+        previous_incidents = []
     topics = data.get("topics", [])
     enriched = []
     for raw in topics:
@@ -426,6 +475,16 @@ def synthesize(data: dict, out: Path = DATA) -> dict:
             "synthesisMethod": "Règles de preuve : article Fortinet versionné et explicite, ou au moins deux discussions distinctes; pas d'IA générative.",
         })
     incidents.sort(key=lambda x: (x["sourceCount"], x.get("lastSeen") or ""), reverse=True)
+    carried_reviews = preserve_unchanged_ai_reviews(incidents, previous_incidents)
+    if not carried_reviews:
+        for key in ("aiReviewGeneratedAt", "aiReviewModel", "aiReviewNote"):
+            data.pop(key, None)
+    data["aiReviewStatus"] = "pending"
+    data["aiReviewMessage"] = (
+        "La synthèse est actualisée; la relecture IA sera actualisée si le service est disponible."
+        if carried_reviews
+        else "Synthèse déterministe prête; relecture IA en attente."
+    )
     data["topics"] = enriched
     data["incidents"] = incidents
     data["incidentCount"] = len(incidents)
