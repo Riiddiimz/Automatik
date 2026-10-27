@@ -184,18 +184,41 @@ def apply_reviews(data: dict[str, Any], reviews: dict[str, dict[str, str]], revi
     )
 
 
+def record_review_status(data: dict[str, Any], status: str, message: str, checked_at: str) -> None:
+    """Expose whether the optional AI pass actually ran, without changing evidence fields."""
+    data["aiReviewStatus"] = status
+    data["aiReviewMessage"] = message
+    data["aiReviewCheckedAt"] = checked_at
+
+
+def save_data(data: dict[str, Any]) -> None:
+    DATA.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\\n", encoding="utf-8")
+
+
 def main() -> int:
     if not DATA.exists():
         raise SystemExit("data/community.json introuvable")
     data = json.loads(DATA.read_text(encoding="utf-8"))
     incidents = data.get("incidents", [])
+    checked_at = datetime.now(timezone.utc).isoformat()
     if not incidents:
-        print("Aucun incident à relire par Gemini.")
+        message = "Aucune fiche à relire par Gemini."
+        record_review_status(data, "skipped", message, checked_at)
+        save_data(data)
+        print(message)
         return 0
+
     api_key = os.environ.get("GEMINI_API_KEY", "").strip()
     if not api_key:
-        print("GEMINI_API_KEY absente : relecture IA ignorée, synthèse déterministe conservée.")
+        message = (
+            "GEMINI_API_KEY absente : aucune nouvelle relecture IA. "
+            "Les relectures précédentes ne sont conservées que si les preuves n'ont pas changé."
+        )
+        record_review_status(data, "skipped", message, checked_at)
+        save_data(data)
+        print(message)
         return 0
+
     items = build_review_input(data)
     expected_ids = {item["id"] for item in items if item.get("id")}
     reviews: dict[str, dict[str, str]] = {}
@@ -209,15 +232,25 @@ def main() -> int:
         if set(reviews) != expected_ids:
             raise ValueError("Gemini response set does not match collected incidents")
     except (OSError, ValueError, RuntimeError, TimeoutError) as exc:
-        # AI is optional: never break collection or erase the previous valid dataset.
-        print(f"Relecture Gemini ignorée ({type(exc).__name__}); synthèse déterministe conservée.")
+        message = (
+            f"Relecture Gemini indisponible ({type(exc).__name__}). "
+            "La synthèse déterministe reste publiée et les anciennes relectures valides sont conservées si leurs preuves sont inchangées."
+        )
+        record_review_status(data, "error", message, checked_at)
+        save_data(data)
+        print(message)
         return 0
+
     reviewed_at = datetime.now(timezone.utc).isoformat()
     apply_reviews(data, reviews, reviewed_at)
-    DATA.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-    print(f"Relecture Gemini appliquée à {len(reviews)} incidents; les données de preuve restent inchangées.")
+    review_status = "partial" if len(items) < len(incidents) else "success"
+    message = f"Relecture Gemini appliquée à {len(reviews)} fiche(s) sur {len(incidents)}."
+    if review_status == "partial":
+        message += " Les fiches restantes conservent la synthèse déterministe ou une relecture antérieure valide."
+    record_review_status(data, review_status, message, reviewed_at)
+    save_data(data)
+    print(message)
     return 0
-
 
 if __name__ == "__main__":
     raise SystemExit(main())
