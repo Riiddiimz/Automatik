@@ -129,7 +129,17 @@ async function loadCommunity() {
     if (warnings.length) {
       $("community-status").textContent += ` · ${warnings.length} avertissement(s) : ${warnings[0]}`;
     }
-    $("community-status").title = [communityData.synthesisNote, ...warnings].filter(Boolean).join("\n\n");
+    const aiReviewLabels = {
+      success: "Relecture IA effectuée",
+      partial: "Relecture IA partielle",
+      skipped: "Relecture IA non effectuée",
+      error: "Relecture IA indisponible",
+      pending: "Relecture IA en attente"
+    };
+    if (communityData.aiReviewStatus) {
+      $("community-status").textContent += ` · ${aiReviewLabels[communityData.aiReviewStatus] || "État de la relecture IA inconnu"}`;
+    }
+    $("community-status").title = [communityData.synthesisNote, ...warnings, communityData.aiReviewMessage].filter(Boolean).join("\n\n");
     renderCommunity();
   } catch (error) {
     $("community-status").textContent = "Flux Community indisponible. L’historique affiché n’a pas pu être chargé.";
