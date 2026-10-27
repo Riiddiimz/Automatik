@@ -22,7 +22,7 @@ def normalized_snapshot(data: dict[str, Any], dataset: str) -> dict[str, Any]:
     if dataset == "veille":
         snapshot.pop("generatedAt", None)
     elif dataset == "community":
-        for key in ("generatedAt", "synthesisGeneratedAt", "aiReviewGeneratedAt"):
+        for key in ("generatedAt", "synthesisGeneratedAt", "aiReviewGeneratedAt", "aiReviewCheckedAt"):
             snapshot.pop(key, None)
         for topic in snapshot.get("topics", []):
             if isinstance(topic, dict):
