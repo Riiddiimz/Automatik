@@ -332,9 +332,9 @@ def parse_date(value: str) -> str | None:
 
 
 def fetch_feed(url: str = EXTENDED_FEED_URL) -> bytes:
-    # The public feed may ignore "start". Try the documented Khoros-style
-    # "offset" parameter when a page repeats or the start-based request fails.
-    # If neither works, retain the unique entries and report incomplete coverage.
+    # The current public endpoint may ignore start-based pagination. If it does,
+    # make one bounded attempt to request all 500 records in a single response.
+    # If that is also capped, retain unique entries and explicitly report partial coverage.
     if url != EXTENDED_FEED_URL:
         offsets = [None]
     else:
@@ -343,7 +343,6 @@ def fetch_feed(url: str = EXTENDED_FEED_URL) -> bytes:
     all_entries = []
     seen = set()
     failures = []
-    page_mode = "start"
 
     def read_page(page_url: str):
         request = urllib.request.Request(
@@ -377,29 +376,37 @@ def fetch_feed(url: str = EXTENDED_FEED_URL) -> bytes:
             new_count += 1
         return new_count
 
-    for offset in offsets:
-        if offset is None:
-            page_url = url
-        else:
-            page_url = f"{FEED_URL}?count={FEED_PAGE_SIZE}&{page_mode}={offset}"
+    def try_larger_feed(reason: str) -> bool:
+        expanded_url = f"{FEED_URL}?count={EXTENDED_FEED_COUNT}"
+        try:
+            entries, atom = read_page(expanded_url)
+        except (OSError, urllib.error.URLError, TimeoutError, ET.ParseError, ValueError) as exc:
+            failures.append(
+                f"{reason}; tentative count={EXTENDED_FEED_COUNT} impossible: {type(exc).__name__}: {exc}"
+            )
+            return False
+        if not entries:
+            failures.append(f"{reason}; le flux count={EXTENDED_FEED_COUNT} ne contient aucune entrée.")
+            return False
+        if append_unique(entries, atom) == 0:
+            failures.append(
+                f"{reason}; le flux répète encore les mêmes sujets avec count={EXTENDED_FEED_COUNT}."
+            )
+            return False
+        return True
 
+    for offset in offsets:
+        page_url = url if offset is None else f"{FEED_URL}?count={FEED_PAGE_SIZE}&start={offset}"
         try:
             entries, atom = read_page(page_url)
         except (OSError, urllib.error.URLError, TimeoutError, ET.ParseError, ValueError) as exc:
-            if url == EXTENDED_FEED_URL and offset and page_mode == "start":
-                start_error = f"{page_url}: {type(exc).__name__}: {exc}"
-                page_mode = "offset"
-                page_url = f"{FEED_URL}?count={FEED_PAGE_SIZE}&offset={offset}"
-                try:
-                    entries, atom = read_page(page_url)
-                except (OSError, urllib.error.URLError, TimeoutError, ET.ParseError, ValueError) as offset_exc:
-                    failures.append(
-                        f"{start_error}; repli offset échoué ({page_url}): {type(offset_exc).__name__}: {offset_exc}"
-                    )
-                    break
-            else:
-                failures.append(f"{page_url}: {type(exc).__name__}: {exc}")
+            if url == EXTENDED_FEED_URL and offset:
+                try_larger_feed(
+                    f"Pagination start échouée à {offset} ({type(exc).__name__}: {exc})"
+                )
                 break
+            failures.append(f"{page_url}: {type(exc).__name__}: {exc}")
+            break
 
         if not entries:
             if not all_entries:
@@ -407,32 +414,16 @@ def fetch_feed(url: str = EXTENDED_FEED_URL) -> bytes:
             break
 
         new_entries = append_unique(entries, atom)
-        if url == EXTENDED_FEED_URL and offset and page_mode == "start" and new_entries == 0:
-            # A repeated start-based page is inconclusive: probe offset once before
-            # declaring the source unable to paginate.
-            offset_url = f"{FEED_URL}?count={FEED_PAGE_SIZE}&offset={offset}"
-            try:
-                offset_entries, offset_atom = read_page(offset_url)
-            except (OSError, urllib.error.URLError, TimeoutError, ET.ParseError, ValueError) as exc:
-                failures.append(
-                    f"Le paramètre start a répété les mêmes sujets; pagination offset impossible: {type(exc).__name__}: {exc}"
-                )
-                break
-            offset_new_entries = append_unique(offset_entries, offset_atom)
-            if offset_new_entries == 0:
-                failures.append(
-                    "Les paramètres start et offset semblent ignorés par le flux RSS; les pages suivantes répètent les mêmes sujets."
-                )
-                break
-            page_mode = "offset"
-            entries = offset_entries
-            new_entries = offset_new_entries
-        elif new_entries == 0:
-            failures.append(
-                f"Le paramètre {page_mode} semble ignoré par le flux RSS; les pages suivantes répètent les mêmes sujets."
+        if url == EXTENDED_FEED_URL and offset and new_entries == 0:
+            try_larger_feed(
+                f"Le paramètre start semble ignoré à {offset}; les sujets précédents se répètent"
             )
             break
-
+        if new_entries == 0:
+            failures.append(
+                "Le flux RSS a répété les mêmes sujets; aucune entrée distincte supplémentaire n'a été récupérée."
+            )
+            break
         if len(entries) < FEED_PAGE_SIZE:
             break
 
