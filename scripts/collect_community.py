@@ -619,7 +619,16 @@ def collect(fetcher=fetch_feed, out: Path = OUT, topic_fetcher=None) -> dict:
         "errors": errors,
         "topicCount": len(topics),
         "topics": topics,
+        # Temporary handoff: synthesis keeps prior AI copy only when source evidence
+        # and authoritative product/version fields are unchanged.
+        "_previousIncidents": previous.get("incidents", []),
     }
+    for key in (
+        "aiReviewGeneratedAt", "aiReviewModel", "aiReviewNote",
+        "aiReviewStatus", "aiReviewMessage", "aiReviewCheckedAt",
+    ):
+        if key in previous:
+            result[key] = previous[key]
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(json.dumps(result, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     return result
