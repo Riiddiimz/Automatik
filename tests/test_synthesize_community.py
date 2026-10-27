@@ -290,5 +290,82 @@ class CommunitySynthesisTests(unittest.TestCase):
         }
         self.assertEqual(synth.extract_sections(item), {"symptom": "", "impact": "", "solution": ""})
 
+
+    def test_unchanged_evidence_preserves_ai_review(self):
+        topics = [
+            {
+                "title": "FortiGate DNS over TLS broken in Proxy Mode",
+                "summary": "FortiOS 7.6.4 DNS over TLS fails.",
+                "url": "https://community.fortinet.com/support-forum-92/dns-dot-1",
+                "products": ["FortiGate"],
+                "date": "2026-10-22T08:00:00+00:00",
+            },
+            {
+                "title": "DNS over TLS fails in proxy mode on FortiGate",
+                "summary": "FortiOS version 7.6.4 has broken DNS over TLS.",
+                "url": "https://community.fortinet.com/support-forum-92/dns-dot-2",
+                "products": ["FortiGate"],
+                "date": "2026-10-21T08:00:00+00:00",
+            },
+        ]
+        with tempfile.TemporaryDirectory() as directory:
+            target = Path(directory) / "community.json"
+            previous = synth.synthesize({"topics": topics}, target)
+            previous["incidents"][0]["aiReview"] = {
+                "summary": "Reformulation relue par IA",
+                "reviewedAt": "2026-10-26T10:00:00+00:00",
+                "model": "gemini-3.5-flash-lite",
+            }
+            refreshed = synth.synthesize({
+                "topics": topics,
+                "_previousIncidents": previous["incidents"],
+                "aiReviewGeneratedAt": "2026-10-26T10:00:00+00:00",
+                "aiReviewModel": "gemini-3.5-flash-lite",
+                "aiReviewNote": "Relecture séparée",
+            }, target)
+
+        self.assertEqual(refreshed["incidents"][0]["aiReview"]["summary"], "Reformulation relue par IA")
+        self.assertEqual(refreshed["aiReviewGeneratedAt"], "2026-10-26T10:00:00+00:00")
+        self.assertNotIn("_previousIncidents", refreshed)
+        self.assertEqual(refreshed["aiReviewStatus"], "pending")
+
+    def test_changed_source_evidence_discards_stale_ai_review(self):
+        topics = [
+            {
+                "title": "FortiGate DNS over TLS broken in Proxy Mode",
+                "summary": "FortiOS 7.6.4 DNS over TLS fails.",
+                "url": "https://community.fortinet.com/support-forum-92/dns-dot-1",
+                "products": ["FortiGate"],
+                "date": "2026-10-22T08:00:00+00:00",
+            },
+            {
+                "title": "DNS over TLS fails in proxy mode on FortiGate",
+                "summary": "FortiOS version 7.6.4 has broken DNS over TLS.",
+                "url": "https://community.fortinet.com/support-forum-92/dns-dot-2",
+                "products": ["FortiGate"],
+                "date": "2026-10-21T08:00:00+00:00",
+            },
+        ]
+        with tempfile.TemporaryDirectory() as directory:
+            target = Path(directory) / "community.json"
+            previous = synth.synthesize({"topics": topics}, target)
+            previous["incidents"][0]["aiReview"] = {
+                "summary": "Ancienne reformulation",
+                "reviewedAt": "2026-10-26T10:00:00+00:00",
+                "model": "gemini-3.5-flash-lite",
+            }
+            changed_topics = [dict(topic) for topic in topics]
+            changed_topics[0]["summary"] = "FortiOS 7.6.4 DNS over TLS fails with a new documented symptom."
+            refreshed = synth.synthesize({
+                "topics": changed_topics,
+                "_previousIncidents": previous["incidents"],
+                "aiReviewGeneratedAt": "2026-10-26T10:00:00+00:00",
+                "aiReviewModel": "gemini-3.5-flash-lite",
+            }, target)
+
+        self.assertNotIn("aiReview", refreshed["incidents"][0])
+        self.assertNotIn("aiReviewGeneratedAt", refreshed)
+
+
 if __name__ == "__main__":
     unittest.main()
