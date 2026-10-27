@@ -1,5 +1,11 @@
+import json
+import os
+from pathlib import Path
+import tempfile
 import unittest
+from unittest.mock import patch
 
+from scripts import review_community_gemini as reviewer
 from scripts.review_community_gemini import (
     apply_reviews,
     build_review_input,
@@ -88,6 +94,48 @@ class GeminiReviewTests(unittest.TestCase):
         self.assertEqual(incident["solution"], original_solution)
         self.assertEqual(incident["aiReview"]["summary"], "Résumé IA")
         self.assertEqual(incident["aiReview"]["label"], "Relecture IA — à vérifier avec les sources")
+
+
+    def test_missing_api_key_records_skipped_status_and_keeps_existing_review(self):
+        data = json.loads(json.dumps(self.data))
+        data["incidents"][0]["aiReview"] = {
+            "summary": "Ancienne reformulation",
+            "reviewedAt": "2026-10-26T10:00:00+00:00",
+            "model": "gemini-3.5-flash-lite",
+        }
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "community.json"
+            path.write_text(json.dumps(data), encoding="utf-8")
+            with patch.object(reviewer, "DATA", path), patch.dict(os.environ, {"GEMINI_API_KEY": ""}):
+                self.assertEqual(reviewer.main(), 0)
+            saved = json.loads(path.read_text(encoding="utf-8"))
+
+        self.assertEqual(saved["aiReviewStatus"], "skipped")
+        self.assertIn("GEMINI_API_KEY absente", saved["aiReviewMessage"])
+        self.assertEqual(saved["incidents"][0]["aiReview"]["summary"], "Ancienne reformulation")
+
+    def test_api_error_records_failure_without_disclosing_diagnostic_or_erasing_review(self):
+        data = json.loads(json.dumps(self.data))
+        data["incidents"][0]["aiReview"] = {
+            "summary": "Reformulation toujours valide",
+            "reviewedAt": "2026-10-26T10:00:00+00:00",
+            "model": "gemini-3.5-flash-lite",
+        }
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "community.json"
+            path.write_text(json.dumps(data), encoding="utf-8")
+            with (
+                patch.object(reviewer, "DATA", path),
+                patch.dict(os.environ, {"GEMINI_API_KEY": "test-key"}),
+                patch.object(reviewer, "request_gemini", side_effect=RuntimeError("sensitive diagnostic")),
+            ):
+                self.assertEqual(reviewer.main(), 0)
+            saved = json.loads(path.read_text(encoding="utf-8"))
+
+        self.assertEqual(saved["aiReviewStatus"], "error")
+        self.assertNotIn("sensitive diagnostic", saved["aiReviewMessage"])
+        self.assertEqual(saved["incidents"][0]["aiReview"]["summary"], "Reformulation toujours valide")
+
 
 
 if __name__ == "__main__":
