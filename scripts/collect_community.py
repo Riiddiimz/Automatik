@@ -332,58 +332,112 @@ def parse_date(value: str) -> str | None:
 
 
 def fetch_feed(url: str = EXTENDED_FEED_URL) -> bytes:
-    # The public RSS endpoint caps responses at about 100 entries. Try Khoros-style
-    # start offsets to page through up to 500 topics; if offsets are ignored, dedupe
-    # and report the true coverage rather than claiming that 500 were retrieved.
+    # The public feed may ignore "start". Try the documented Khoros-style
+    # "offset" parameter when a page repeats or the start-based request fails.
+    # If neither works, retain the unique entries and report incomplete coverage.
     if url != EXTENDED_FEED_URL:
-        candidates = [url]
+        offsets = [None]
     else:
-        candidates = [f"{FEED_URL}?count={FEED_PAGE_SIZE}&start={offset}" for offset in range(0, EXTENDED_FEED_COUNT, FEED_PAGE_SIZE)]
+        offsets = range(0, EXTENDED_FEED_COUNT, FEED_PAGE_SIZE)
+
     all_entries = []
     seen = set()
     failures = []
-    for page_url in candidates:
+    page_mode = "start"
+
+    def read_page(page_url: str):
         request = urllib.request.Request(
             page_url,
             headers={"User-Agent": USER_AGENT, "Accept": "application/rss+xml, application/atom+xml, application/xml"},
         )
+        with urllib.request.urlopen(request, timeout=30) as response:
+            payload = response.read()
+        root = ET.fromstring(payload)
+        entries = root.findall(".//item")
+        atom = False
+        if not entries:
+            entries = root.findall(".//{http://www.w3.org/2005/Atom}entry")
+            atom = bool(entries)
+        return entries, atom
+
+    def append_unique(entries, atom: bool) -> int:
+        new_count = 0
+        for entry in entries:
+            if atom:
+                link_el = entry.find("{http://www.w3.org/2005/Atom}link")
+                key = link_el.get("href", "") if link_el is not None else ""
+            else:
+                key = (entry.findtext("link") or "").strip()
+            if not key:
+                key = ET.tostring(entry, encoding="unicode")
+            if key in seen:
+                continue
+            seen.add(key)
+            all_entries.append(entry)
+            new_count += 1
+        return new_count
+
+    for offset in offsets:
+        if offset is None:
+            page_url = url
+        else:
+            page_url = f"{FEED_URL}?count={FEED_PAGE_SIZE}&{page_mode}={offset}"
+
         try:
-            with urllib.request.urlopen(request, timeout=30) as response:
-                payload = response.read()
-            root = ET.fromstring(payload)
-            entries = root.findall(".//item")
-            atom = False
-            if not entries:
-                entries = root.findall(".//{http://www.w3.org/2005/Atom}entry")
-                atom = bool(entries)
-            if not entries:
-                if not all_entries:
-                    raise ValueError("flux RSS valide mais sans entrées")
-                break
-            new_entries = 0
-            for entry in entries:
-                if atom:
-                    link_el = entry.find("{http://www.w3.org/2005/Atom}link")
-                    key = link_el.get("href", "") if link_el is not None else ""
-                else:
-                    key = (entry.findtext("link") or "").strip()
-                if not key:
-                    key = ET.tostring(entry, encoding="unicode")
-                if key in seen:
-                    continue
-                seen.add(key)
-                all_entries.append(entry)
-                new_entries += 1
-            if len(entries) < FEED_PAGE_SIZE:
-                break
-            if new_entries == 0:
-                failures.append("Le paramètre start semble ignoré par le flux RSS; les pages suivantes répètent les mêmes sujets.")
-                break
+            entries, atom = read_page(page_url)
         except (OSError, urllib.error.URLError, TimeoutError, ET.ParseError, ValueError) as exc:
-            failures.append(f"{page_url}: {type(exc).__name__}: {exc}")
-            if not all_entries:
+            if url == EXTENDED_FEED_URL and offset and page_mode == "start":
+                failures.append(
+                    f"{page_url}: {type(exc).__name__}: {exc}; tentative avec offset."
+                )
+                page_mode = "offset"
+                page_url = f"{FEED_URL}?count={FEED_PAGE_SIZE}&offset={offset}"
+                try:
+                    entries, atom = read_page(page_url)
+                except (OSError, urllib.error.URLError, TimeoutError, ET.ParseError, ValueError) as offset_exc:
+                    failures.append(
+                        f"{page_url}: {type(offset_exc).__name__}: {offset_exc}"
+                    )
+                    break
+            else:
+                failures.append(f"{page_url}: {type(exc).__name__}: {exc}")
                 break
+
+        if not entries:
+            if not all_entries:
+                failures.append(f"{page_url}: flux RSS valide mais sans entrées")
             break
+
+        new_entries = append_unique(entries, atom)
+        if url == EXTENDED_FEED_URL and offset and page_mode == "start" and new_entries == 0:
+            # A repeated start-based page is inconclusive: probe offset once before
+            # declaring the source unable to paginate.
+            offset_url = f"{FEED_URL}?count={FEED_PAGE_SIZE}&offset={offset}"
+            try:
+                offset_entries, offset_atom = read_page(offset_url)
+            except (OSError, urllib.error.URLError, TimeoutError, ET.ParseError, ValueError) as exc:
+                failures.append(
+                    f"Le paramètre start a répété les mêmes sujets; pagination offset impossible: {type(exc).__name__}: {exc}"
+                )
+                break
+            offset_new_entries = append_unique(offset_entries, offset_atom)
+            if offset_new_entries == 0:
+                failures.append(
+                    "Les paramètres start et offset semblent ignorés par le flux RSS; les pages suivantes répètent les mêmes sujets."
+                )
+                break
+            page_mode = "offset"
+            entries = offset_entries
+            new_entries = offset_new_entries
+        elif new_entries == 0:
+            failures.append(
+                f"Le paramètre {page_mode} semble ignoré par le flux RSS; les pages suivantes répètent les mêmes sujets."
+            )
+            break
+
+        if len(entries) < FEED_PAGE_SIZE:
+            break
+
     if all_entries:
         combined = ET.Element("rss", {"version": "2.0"})
         channel = ET.SubElement(combined, "channel")
@@ -409,7 +463,6 @@ def fetch_feed(url: str = EXTENDED_FEED_URL) -> bytes:
     fetch_feed.last_url = None
     fetch_feed.last_errors = failures
     raise RuntimeError("Aucune page du flux Community n'a pu être récupérée: " + "; ".join(failures))
-
 
 def count_feed_entries(payload: bytes) -> int:
     """Count raw RSS/Atom entries before product filtering."""
