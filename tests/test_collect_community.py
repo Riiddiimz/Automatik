@@ -279,6 +279,36 @@ class CommunityFeedTests(unittest.TestCase):
         self.assertIn("offset=100", mocked.call_args_list[2].args[0].full_url)
         self.assertIn("offset=400", mocked.call_args_list[-1].args[0].full_url)
 
+    def test_fetch_feed_uses_offset_when_start_request_fails(self):
+        def page(start):
+            items = []
+            for index in range(start, start + 100):
+                items.append(
+                    f"<item><title>Topic {index}</title>"
+                    f"<link>https://community.fortinet.com/support-forum-92/topic-{index}</link>"
+                    f"<description>Public topic {index}</description></item>"
+                )
+            return io.BytesIO(
+                ("<rss version=\"2.0\"><channel>" + "".join(items) + "</channel></rss>").encode()
+            )
+
+        responses = [
+            page(0),
+            urllib.error.URLError("start-based page unavailable"),
+            page(100),
+            page(200),
+            page(300),
+            page(400),
+        ]
+        with patch.object(collector.urllib.request, "urlopen", side_effect=responses) as mocked:
+            payload = collector.fetch_feed()
+
+        self.assertEqual(collector.count_feed_entries(payload), 500)
+        self.assertEqual(collector.fetch_feed.last_errors, [])
+        self.assertEqual(mocked.call_count, 6)
+        self.assertIn("start=100", mocked.call_args_list[1].args[0].full_url)
+        self.assertIn("offset=100", mocked.call_args_list[2].args[0].full_url)
+
     def test_fetch_feed_reports_when_start_and_offset_are_both_ignored(self):
         def first_page():
             items = []
