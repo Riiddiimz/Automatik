@@ -253,10 +253,10 @@ class CommunityFeedTests(unittest.TestCase):
         self.assertFalse(any("500 demandées" in error for error in result["errors"]))
 
 
-    def test_fetch_feed_uses_count_500_when_start_is_ignored(self):
-        def page(start, count=100):
+    def test_fetch_feed_reports_when_start_is_ignored(self):
+        def page(start):
             items = []
-            for index in range(start, start + count):
+            for index in range(start, start + 100):
                 items.append(
                     f"<item><title>Topic {index}</title>"
                     f"<link>https://community.fortinet.com/support-forum-92/topic-{index}</link>"
@@ -266,68 +266,41 @@ class CommunityFeedTests(unittest.TestCase):
                 ("<rss version=\"2.0\"><channel>" + "".join(items) + "</channel></rss>").encode()
             )
 
-        # start=100 repeats page 0; count=500 should recover the full feed.
         with patch.object(
             collector.urllib.request,
             "urlopen",
-            side_effect=[page(0), page(0), page(0, 500)],
+            side_effect=[page(0), page(0)],
         ) as mocked:
-            payload = collector.fetch_feed()
-
-        self.assertEqual(collector.count_feed_entries(payload), 500)
-        self.assertEqual(collector.fetch_feed.last_errors, [])
-        self.assertEqual(mocked.call_count, 3)
-        self.assertIn("start=100", mocked.call_args_list[1].args[0].full_url)
-        self.assertIn("count=500", mocked.call_args_list[2].args[0].full_url)
-
-    def test_fetch_feed_uses_count_500_when_start_request_fails(self):
-        def page(start, count=100):
-            items = []
-            for index in range(start, start + count):
-                items.append(
-                    f"<item><title>Topic {index}</title>"
-                    f"<link>https://community.fortinet.com/support-forum-92/topic-{index}</link>"
-                    f"<description>Public topic {index}</description></item>"
-                )
-            return io.BytesIO(
-                ("<rss version=\"2.0\"><channel>" + "".join(items) + "</channel></rss>").encode()
-            )
-
-        with patch.object(
-            collector.urllib.request,
-            "urlopen",
-            side_effect=[page(0), urllib.error.URLError("start-based page unavailable"), page(0, 500)],
-        ) as mocked:
-            payload = collector.fetch_feed()
-
-        self.assertEqual(collector.count_feed_entries(payload), 500)
-        self.assertEqual(collector.fetch_feed.last_errors, [])
-        self.assertEqual(mocked.call_count, 3)
-        self.assertIn("start=100", mocked.call_args_list[1].args[0].full_url)
-        self.assertIn("count=500", mocked.call_args_list[2].args[0].full_url)
-
-    def test_fetch_feed_reports_when_count_500_is_also_limited(self):
-        def page(start, count=100):
-            items = []
-            for index in range(start, start + count):
-                items.append(
-                    f"<item><title>Topic {index}</title>"
-                    f"<link>https://community.fortinet.com/support-forum-92/topic-{index}</link>"
-                    f"<description>Public topic {index}</description></item>"
-                )
-            return io.BytesIO(
-                ("<rss version=\"2.0\"><channel>" + "".join(items) + "</channel></rss>").encode()
-            )
-
-        with patch.object(
-            collector.urllib.request,
-            "urlopen",
-            side_effect=[page(0), page(0), page(0)],
-        ):
             payload = collector.fetch_feed()
 
         self.assertEqual(collector.count_feed_entries(payload), 100)
-        self.assertTrue(any("count=500" in error for error in collector.fetch_feed.last_errors))
+        self.assertTrue(any("start" in error for error in collector.fetch_feed.last_errors))
+        self.assertEqual(mocked.call_count, 2)
+        self.assertIn("start=100", mocked.call_args_list[1].args[0].full_url)
+
+    def test_fetch_feed_reports_when_start_request_fails(self):
+        def page(start):
+            items = []
+            for index in range(start, start + 100):
+                items.append(
+                    f"<item><title>Topic {index}</title>"
+                    f"<link>https://community.fortinet.com/support-forum-92/topic-{index}</link>"
+                    f"<description>Public topic {index}</description></item>"
+                )
+            return io.BytesIO(
+                ("<rss version=\"2.0\"><channel>" + "".join(items) + "</channel></rss>").encode()
+            )
+
+        with patch.object(
+            collector.urllib.request,
+            "urlopen",
+            side_effect=[page(0), urllib.error.URLError("start-based page unavailable")],
+        ) as mocked:
+            payload = collector.fetch_feed()
+
+        self.assertEqual(collector.count_feed_entries(payload), 100)
+        self.assertTrue(any("Pagination Community impossible" in error for error in collector.fetch_feed.last_errors))
+        self.assertEqual(mocked.call_count, 2)
 
     def test_atom_feed_is_supported(self):
         payload = b"""<feed xmlns="http://www.w3.org/2005/Atom"><entry><title>FortiManager topic</title><link href="https://community.fortinet.com/t5/FortiManager/atom"/><updated>2026-10-21T08:00:00Z</updated><summary>Policy issue</summary></entry></feed>"""

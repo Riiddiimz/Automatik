@@ -332,9 +332,8 @@ def parse_date(value: str) -> str | None:
 
 
 def fetch_feed(url: str = EXTENDED_FEED_URL) -> bytes:
-    # The current public endpoint may ignore start-based pagination. If it does,
-    # make one bounded attempt to request all 500 records in a single response.
-    # If that is also capped, retain unique entries and explicitly report partial coverage.
+    # The current public endpoint repeats the same 100 topics for later start
+    # offsets. Stop when pagination fails instead of retrying unsupported parameters.
     if url != EXTENDED_FEED_URL:
         offsets = [None]
     else:
@@ -376,33 +375,14 @@ def fetch_feed(url: str = EXTENDED_FEED_URL) -> bytes:
             new_count += 1
         return new_count
 
-    def try_larger_feed(reason: str) -> bool:
-        expanded_url = f"{FEED_URL}?count={EXTENDED_FEED_COUNT}"
-        try:
-            entries, atom = read_page(expanded_url)
-        except (OSError, urllib.error.URLError, TimeoutError, ET.ParseError, ValueError) as exc:
-            failures.append(
-                f"{reason}; tentative count={EXTENDED_FEED_COUNT} impossible: {type(exc).__name__}: {exc}"
-            )
-            return False
-        if not entries:
-            failures.append(f"{reason}; le flux count={EXTENDED_FEED_COUNT} ne contient aucune entrée.")
-            return False
-        if append_unique(entries, atom) == 0:
-            failures.append(
-                f"{reason}; le flux répète encore les mêmes sujets avec count={EXTENDED_FEED_COUNT}."
-            )
-            return False
-        return True
-
     for offset in offsets:
         page_url = url if offset is None else f"{FEED_URL}?count={FEED_PAGE_SIZE}&start={offset}"
         try:
             entries, atom = read_page(page_url)
         except (OSError, urllib.error.URLError, TimeoutError, ET.ParseError, ValueError) as exc:
             if url == EXTENDED_FEED_URL and offset:
-                try_larger_feed(
-                    f"Pagination start échouée à {offset} ({type(exc).__name__}: {exc})"
+                failures.append(
+                    f"Pagination Community impossible à {offset}: {type(exc).__name__}: {exc}"
                 )
                 break
             failures.append(f"{page_url}: {type(exc).__name__}: {exc}")
@@ -415,8 +395,8 @@ def fetch_feed(url: str = EXTENDED_FEED_URL) -> bytes:
 
         new_entries = append_unique(entries, atom)
         if url == EXTENDED_FEED_URL and offset and new_entries == 0:
-            try_larger_feed(
-                f"Le paramètre start semble ignoré à {offset}; les sujets précédents se répètent"
+            failures.append(
+                f"Le flux Community ignore le paramètre start à {offset}; les sujets précédents se répètent."
             )
             break
         if new_entries == 0:
