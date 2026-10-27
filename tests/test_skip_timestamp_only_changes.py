@@ -16,6 +16,7 @@ class SnapshotComparisonTests(unittest.TestCase):
             "generatedAt": "2026-10-26T10:00:00+00:00",
             "synthesisGeneratedAt": "2026-10-26T10:00:01+00:00",
             "aiReviewGeneratedAt": "2026-10-26T10:00:02+00:00",
+            "aiReviewCheckedAt": "2026-10-26T10:00:03+00:00",
             "feedUrl": "https://community.fortinet.com/feed/topics?count=500",
             "partial": False,
             "errors": [],
@@ -46,6 +47,7 @@ class SnapshotComparisonTests(unittest.TestCase):
         current["generatedAt"] = "2026-10-26T16:00:00+00:00"
         current["synthesisGeneratedAt"] = "2026-10-26T16:00:01+00:00"
         current["aiReviewGeneratedAt"] = "2026-10-26T16:00:02+00:00"
+        current["aiReviewCheckedAt"] = "2026-10-26T16:00:03+00:00"
         current["topics"][0]["lastSeen"] = "2026-10-26T16:00:00+00:00"
         current["incidents"][0]["aiReview"]["reviewedAt"] = "2026-10-26T16:00:02+00:00"
         self.assertTrue(same_published_content(previous, current, "community"))
