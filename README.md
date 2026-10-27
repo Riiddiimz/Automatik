@@ -19,7 +19,7 @@ Une fiche est affichée uniquement si elle remplit l'un des critères suivants :
 
 Un article officiel ne compte jamais comme plusieurs utilisateurs. Les signalements isolés non documentés sont exclus. Lorsqu'une fiche officielle ne donne pas de version, l'interface affiche explicitement « Version : non précisée par la source » au lieu de suggérer une version. Les fiches restent des points de vigilance à vérifier, et non une confirmation que chaque équipement est concerné.
 
-Le regroupement actuel utilise des règles déterministes, des variantes de termes et une comparaison de titres. **Il n'utilise pas de modèle d'IA générative** et ne lit pas encore l'intégralité des réponses des discussions : des formulations très différentes peuvent donc ne pas être rapprochées, et les sources doivent être consultées avant toute décision technique.
+Le regroupement principal utilise des règles déterministes, des variantes de termes et une comparaison de titres. Une seconde passe facultative, `scripts/review_community_gemini.py`, peut utiliser Gemini pour reformuler en français les champs `summary`, `symptom`, `impact` et `solution`. Elle ne modifie pas les produits, versions affectées, versions de correctif, statuts ni URL. Les textes reformulés sont signalés « RELECTURE IA · À VÉRIFIER » et ne constituent pas une validation officielle. La collecte ne lit pas encore l'intégralité des réponses des discussions : des informations ajoutées dans les commentaires peuvent donc manquer du flux publié, et les sources doivent être consultées avant toute décision technique.
 
 Les versions sont extraites lorsqu'elles sont explicitement liées à un produit/firmware Fortinet ou à un parcours de mise à niveau. Les nombres décimaux sans lien clair avec une version de firmware (par exemple une version d'outil ou de plateforme) ne doivent pas être affichés comme versions Fortinet. La version de correctif mentionnée est présentée séparément lorsqu'un article Fortinet l'indique explicitement; elle n'est pas ajoutée aux versions affectées.
 
@@ -32,9 +32,9 @@ Les versions sont extraites lorsqu'elles sont explicitement liées à un produit
 - Le workflow **Vérification du projet** contrôle la syntaxe Python et JavaScript, les tests unitaires, les fichiers JSON et le parcours navigateur Playwright/Chromium.
 - Les modifications poussées sur `main` sont déployées par l'intégration Vercel du dépôt.
 
-Aucune clé d'API IA payante n'est nécessaire pour les collecteurs actuels.
+La collecte et la synthèse déterministe fonctionnent sans clé IA. Pour activer la relecture facultative, configure `GEMINI_API_KEY` dans les secrets GitHub Actions (jamais dans le dépôt). Le workflow utilise `gemini-3.5-flash-lite` et relit au maximum 40 fiches par exécution. Si la clé manque ou si l'appel échoue, le site affiche l'état de la relecture et conserve la synthèse déterministe; les relectures antérieures ne sont gardées que si leurs sources et champs probatoires n'ont pas changé. Les horodatages de contrôle seuls ne déclenchent pas de publication. Vérifie les quotas et conditions actuelles de Google AI Studio avant d'activer le service.
 
-Le fichier historique `scripts/scrap_commu_copie.py` est un outil manuel distinct : il demande une clé Gemini en argument et génère ses propres fichiers `historique.json`/rapports HTML. Il n'est appelé ni par le site ni par les workflows. Pour les données publiées dans `data/community.json`, la chaîne active est `scripts/collect_community.py` puis `scripts/synthesize_community.py` ; elle fonctionne sans clé IA.
+Le fichier historique `scripts/scrap_commu_copie.py` reste un outil manuel distinct : il demande une clé Gemini en argument et génère ses propres fichiers `historique.json`/rapports HTML. Il n'est appelé ni par le site ni par les workflows. Pour les données publiées dans `data/community.json`, la chaîne active est `scripts/collect_community.py`, puis `scripts/synthesize_community.py`, puis la relecture facultative `scripts/review_community_gemini.py`.
 
 ## Vérifier le projet
 
