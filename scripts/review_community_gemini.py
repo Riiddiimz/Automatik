@@ -192,7 +192,7 @@ def record_review_status(data: dict[str, Any], status: str, message: str, checke
 
 
 def save_data(data: dict[str, Any]) -> None:
-    DATA.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\\n", encoding="utf-8")
+    DATA.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
 
 def main() -> int:
