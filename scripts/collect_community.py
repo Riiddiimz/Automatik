@@ -387,16 +387,14 @@ def fetch_feed(url: str = EXTENDED_FEED_URL) -> bytes:
             entries, atom = read_page(page_url)
         except (OSError, urllib.error.URLError, TimeoutError, ET.ParseError, ValueError) as exc:
             if url == EXTENDED_FEED_URL and offset and page_mode == "start":
-                failures.append(
-                    f"{page_url}: {type(exc).__name__}: {exc}; tentative avec offset."
-                )
+                start_error = f"{page_url}: {type(exc).__name__}: {exc}"
                 page_mode = "offset"
                 page_url = f"{FEED_URL}?count={FEED_PAGE_SIZE}&offset={offset}"
                 try:
                     entries, atom = read_page(page_url)
                 except (OSError, urllib.error.URLError, TimeoutError, ET.ParseError, ValueError) as offset_exc:
                     failures.append(
-                        f"{page_url}: {type(offset_exc).__name__}: {offset_exc}"
+                        f"{start_error}; repli offset échoué ({page_url}): {type(offset_exc).__name__}: {offset_exc}"
                     )
                     break
             else:
