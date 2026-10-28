@@ -14,6 +14,20 @@ SPEC.loader.exec_module(collector)
 
 
 class CommunityFeedTests(unittest.TestCase):
+    def test_rss_extracts_multiple_versions_in_parenthesized_firmware_list(self):
+        payload = b"""<rss version="2.0"><channel>
+          <item>
+            <title>Some Website not loading with Deep Inspection</title>
+            <link>https://community.fortinet.com/support-forum-92/some-website-not-loading-with-deep-inspection-230891</link>
+            <pubDate>Wed, 28 Oct 2026 07:43:30 GMT</pubDate>
+            <description><![CDATA[Since about 2-3 hours some websites are timing out. We use different FortiGate models and different Firmware (7.6.8 / 7.4.13). Disabling the Antivirus profile appears to work.]]></description>
+          </item>
+        </channel></rss>"""
+        items = collector.parse_feed(payload)
+        self.assertEqual(len(items), 1)
+        self.assertEqual(items[0]["products"], ["FortiGate"])
+        self.assertEqual(items[0]["versions"], ["7.4.13", "7.6.8"])
+
     def test_rss_filters_fortinet_products_and_extracts_versions(self):
         payload = b"""<rss version="2.0"><channel>
           <item><title>FortiGate 7.4.12 VPN disconnects</title><link>https://community.fortinet.com/t5/FortiGate/abc</link><pubDate>Wed, 21 Oct 2026 08:00:00 GMT</pubDate><description><![CDATA[VPN drops after update &amp; reconnects]]></description></item>
