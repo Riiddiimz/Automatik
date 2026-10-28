@@ -353,5 +353,128 @@ class CommunityFeedTests(unittest.TestCase):
                 collector.collect(fetcher=lambda: unrelated, out=path)
 
 
+    def test_product_index_parser_ignores_navigation_and_extracts_title_version(self):
+        board = "https://community.fortinet.com/fortigate-3"
+        page = """
+        <html><body>
+          <a href="/fortigate-3/administrator-sso-authentication-fails-after-upgrade-to-fortios-7-6-8-230826">
+            Administrator SSO authentication fails after upgrade to FortiOS 7.6.8
+          </a>
+          <a href="/fortigate-3/index2.html">Load More</a>
+          <a href="/fortimanager-27/policy-install-fails-230815">Wrong product</a>
+          <a href="https://example.org/fortigate-3/external-230800">External link</a>
+          <a href="/fortigate-3/administrator-sso-authentication-fails-after-upgrade-to-fortios-7-6-8-230826">
+            Duplicate title
+          </a>
+        </body></html>
+        """
+        items = collector.parse_board_page(page, board, "FortiGate")
+        self.assertEqual(len(items), 1)
+        self.assertEqual(items[0]["title"], "Administrator SSO authentication fails after upgrade to FortiOS 7.6.8")
+        self.assertEqual(items[0]["products"], ["FortiGate"])
+        self.assertEqual(items[0]["versions"], ["7.6.8"])
+        self.assertIsNone(items[0]["date"])
+        self.assertEqual(items[0]["summary"], "")
+        self.assertEqual(items[0]["discoverySource"], "index produit public")
+
+    def test_product_index_pagination_stops_on_repeated_page_and_reports_it(self):
+        board = "https://community.fortinet.com/fortigate-3"
+        page = b"""<html><body>
+          <a href="/fortigate-3/vpn-fails-after-upgrade-230001">VPN fails after upgrade</a>
+        </body></html>"""
+        responses = [io.BytesIO(page), io.BytesIO(page)]
+
+        result = collector.fetch_board_topics(
+            board_sources={"FortiGate": board},
+            max_pages=3,
+            opener=lambda request, timeout: responses.pop(0),
+        )
+        self.assertEqual(result["topicCount"], 1)
+        self.assertEqual(result["pageCount"], 2)
+        self.assertEqual(len(result["topics"]), 1)
+        self.assertTrue(any("Pagination" in error and "répétée" in error for error in result["errors"]))
+
+    def test_collect_merges_board_topics_without_overwriting_rss_metadata(self):
+        link = "https://community.fortinet.com/fortigate-3/administrator-sso-authentication-fails-after-upgrade-to-fortios-7-6-8-230826"
+        payload = f"""<rss version="2.0"><channel>
+          <item>
+            <title>Administrator SSO authentication fails after upgrade to FortiOS 7.6.8</title>
+            <link>{link}</link>
+            <pubDate>Wed, 28 Oct 2026 05:00:00 GMT</pubDate>
+            <description><![CDATA[DescriptionAdministrator SSO fails. ScopeFortiOS 7.6.8. SolutionThe issue is scheduled for fix in FortiOS 7.6.9.]]></description>
+          </item>
+        </channel></rss>""".encode("utf-8")
+        board_only_url = "https://community.fortinet.com/fortimanager-27/policy-install-fails-230815"
+        board_items = [
+            {
+                "id": link, "url": link, "title": "Administrator SSO authentication fails after upgrade to FortiOS 7.6.8",
+                "date": None, "summary": "", "products": ["FortiGate"], "categories": ["FortiGate"],
+                "versions": ["7.6.8"], "fixVersions": [], "discoverySource": "index produit public",
+            },
+            {
+                "id": board_only_url, "url": board_only_url, "title": "FortiManager policy install fails",
+                "date": None, "summary": "", "products": ["FortiManager"], "categories": ["FortiManager"],
+                "versions": [], "fixVersions": [], "discoverySource": "index produit public",
+            },
+        ]
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "community.json"
+            result = collector.collect(
+                fetcher=lambda: payload,
+                out=path,
+                board_fetcher=lambda: {"topics": board_items, "errors": [], "pages": ["index"], "pageCount": 1},
+            )
+
+        matches = [topic for topic in result["topics"] if topic["url"] == link]
+        self.assertEqual(len(matches), 1)
+        self.assertIn("scheduled for fix", matches[0]["summary"])
+        self.assertEqual(matches[0]["versions"], ["7.6.8"])
+        self.assertEqual(matches[0]["date"], "2026-10-28T05:00:00+00:00")
+        self.assertTrue(any(topic["url"] == board_only_url for topic in result["topics"]))
+        self.assertEqual(result["boardTopicCount"], 2)
+        self.assertFalse(result["partial"])
+
+    def test_product_index_can_seed_collection_when_rss_fails(self):
+        url = "https://community.fortinet.com/fortiauthenticator-8/ldap-authentication-fails-230479"
+        board_topic = {
+            "id": url, "url": url, "title": "Troubleshooting Tip: LDAP authentication fails",
+            "date": None, "summary": "", "products": ["FortiAuthenticator"], "categories": ["FortiAuthenticator"],
+            "versions": [], "fixVersions": [], "discoverySource": "index produit public",
+        }
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "community.json"
+            result = collector.collect(
+                fetcher=lambda: (_ for _ in ()).throw(urllib.error.URLError("RSS offline")),
+                out=path,
+                board_fetcher=lambda: {"topics": [board_topic], "errors": [], "pages": ["index"], "pageCount": 1},
+            )
+        self.assertTrue(result["partial"])
+        self.assertEqual(result["topicCount"], 1)
+        self.assertEqual(result["topics"][0]["url"], url)
+        self.assertTrue(any("RSS Fortinet Community indisponible" in error for error in result["errors"]))
+
+    def test_board_source_failure_keeps_rss_topic_and_marks_collection_partial(self):
+        payload = b"""<rss version="2.0"><channel>
+          <item><title>FortiGate VPN connection fails</title>
+            <link>https://community.fortinet.com/support-forum-92/fortigate-vpn-fails-230001</link>
+            <description>VPN connection fails after update.</description>
+          </item>
+        </channel></rss>"""
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "community.json"
+            result = collector.collect(
+                fetcher=lambda: payload,
+                out=path,
+                board_fetcher=lambda: {
+                    "topics": [], "errors": ["Index Community FortiGate inaccessible (HTTP 403)."],
+                    "pages": [], "pageCount": 0,
+                },
+            )
+        self.assertTrue(result["partial"])
+        self.assertEqual(result["topicCount"], 1)
+        self.assertEqual(result["topics"][0]["title"], "FortiGate VPN connection fails")
+        self.assertTrue(any("403" in error for error in result["errors"]))
+
+
 if __name__ == "__main__":
     unittest.main()
