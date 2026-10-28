@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-28T05:39:35.554158+00:00",
+  "generatedAt": "2026-10-28T08:40:13.915335+00:00",
   "feedUrl": "https://community.fortinet.com/feed/topics?count=100&start=0",
   "feedItemCount": 100,
   "requestedFeedItemCount": 500,
@@ -8,8 +8,188 @@
     "Le flux Community ignore le paramètre start à 100; les sujets précédents se répètent.",
     "Le flux Community a renvoyé 100 entrées brutes sur 500 demandées; la couverture complète des 30 derniers jours n'est pas garantie."
   ],
-  "topicCount": 168,
+  "topicCount": 172,
   "topics": [
+    {
+      "id": "https://community.fortinet.com/forticlient-4/fortipam-retrieves-an-incorrect-forticlient-ems-serial-number-230914",
+      "title": "FortiPAM retrieves an incorrect FortiClient EMS serial number",
+      "url": "https://community.fortinet.com/forticlient-4/fortipam-retrieves-an-incorrect-forticlient-ems-serial-number-230914",
+      "date": "2026-10-28T08:16:14+00:00",
+      "summary": "DescriptionFortiPAM retrieves an incorrect FortiClient EMS serial number for synchronized tags, preventing ZTNA access for tagged devices.ScopeFortiPAM, FortiClient EMS.SolutionDevices with assigned tags in FortiClient EMS cannot access FortiPAM via ZTNA. The tags synchronized from FortiClient EMS to FortiPAM are associated with an incorrect serial number that does not match the actual FortiClient EMS console serial number. Root CauseFortiPAM retrieves the default tenant serial number instead of the specific tenant serial number in multi-tenant FortiClient EMS environments. This is identified as BUG 1343587. Permanent FixUpdate FortiClient EMS to version 7.4.9 or later. WorkaroundPerform the following steps to clear the invalid tags and refresh the synchronization: Clear the invalid tags associated with the incorrect serial number by running the following command on FortiPAM: diagnose endpoint tags remove-by-sn Restart the fabric connector daemon to refresh the data: diag test app fcnacd 99 Verify that the tags are synchronized with the correct serial number using the following commands: diagnose test application fcnacd 2 diagnose test application fcnacd 7",
+      "categories": [
+        "FortiClient"
+      ],
+      "products": [
+        "FortiClient EMS"
+      ],
+      "versions": [],
+      "fixVersions": [],
+      "status": "À vérifier",
+      "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
+      "source": "Fortinet Community",
+      "firstSeen": "2026-10-28T08:40:13.915335+00:00",
+      "lastSeen": "2026-10-28T08:40:13.915335+00:00",
+      "versionFamilies": [],
+      "potentialProblem": true
+    },
+    {
+      "id": "https://community.fortinet.com/support-forum-92/7-4-13-ipsec-issues-with-fortiems-client-230913",
+      "title": "7.4.13 IPsec issues with FortiEMS client",
+      "url": "https://community.fortinet.com/support-forum-92/7-4-13-ipsec-issues-with-fortiems-client-230913",
+      "date": "2026-10-28T07:54:47+00:00",
+      "summary": "Anyone run into this scenario?fortiems client 7.4.7 can connect to dialup tunnel on Fortigate running 7.4.13, but fortiems client 7.4.8 cannot.7.4.8 can connect to other fortigates we have on 7.4.11 with no issues, but once upgraded to 7.4.13 it breaks.",
+      "categories": [
+        "Support Forum"
+      ],
+      "products": [
+        "FortiGate"
+      ],
+      "versions": [
+        "7.4.13"
+      ],
+      "fixVersions": [],
+      "status": "À vérifier",
+      "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
+      "source": "Fortinet Community",
+      "firstSeen": "2026-10-28T08:40:13.915335+00:00",
+      "lastSeen": "2026-10-28T08:40:13.915335+00:00",
+      "versionFamilies": [
+        "7.4"
+      ],
+      "potentialProblem": false
+    },
+    {
+      "id": "https://community.fortinet.com/support-forum-92/some-website-not-loading-with-deep-inspection-230891",
+      "title": "Some Website not loading with Deep Inspection",
+      "url": "https://community.fortinet.com/support-forum-92/some-website-not-loading-with-deep-inspection-230891",
+      "date": "2026-10-28T07:43:30+00:00",
+      "summary": "Since about 2-3 hours some Website are not loading anymore when deep inspection is applied. Just timeout or connection reset after some time.We are using different Fortigate Models and different Firmware (7.6.8 / 7.4.13).Seems to be a global issue according to Reddit: https://www.reddit.com/r/fortinet/comments/1xgnrb3/some_websites_not_loading_webfiltering_enabled/ Changing the Policies (Flow Mode) from Deep inspection to Cert-Only works.EDIT: Disabling the Antivirus profile works also. Deep inspection still enabled, just AV disabled.",
+      "categories": [
+        "Support Forum"
+      ],
+      "products": [
+        "FortiGate"
+      ],
+      "versions": [],
+      "fixVersions": [],
+      "status": "À vérifier",
+      "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
+      "source": "Fortinet Community",
+      "firstSeen": "2026-10-27T12:08:38.529366+00:00",
+      "lastSeen": "2026-10-28T08:40:13.915335+00:00",
+      "versionFamilies": [],
+      "potentialProblem": false
+    },
+    {
+      "id": "https://community.fortinet.com/fortigate-3/automation-stitch-for-collecting-debug-log-when-ha-failover-230911",
+      "title": "Automation Stitch for collecting debug log when HA failover",
+      "url": "https://community.fortinet.com/fortigate-3/automation-stitch-for-collecting-debug-log-when-ha-failover-230911",
+      "date": "2026-10-28T07:28:16+00:00",
+      "summary": "DescriptionHow to use Automation Stitch to collect debug logs when a FortiGate high availability failover occurs.ScopeFortiGate.SolutionCreate the auto-script:When an HA member loss occurs, one of the common root causes is high CPU utilization. If the CPU is overloaded, the FortiGate may fail to process HA heartbeat packets in a timely manner, triggering a false-positive or actual cluster split/failure. To investigate whether high CPU usage contributed to the HA member drop, use the troubleshooting command below to capture the CPU usage at the time of the issue.config system auto-script edit \"Collect logs\" set script \"get system status get system performance status get system ha status diagnose sys top 1 200 1 diagnose sys top-mem 200\" next endCreate an automation action:In this example, the FTP server IP address is 10.207.2.82, the username is 'admin', and the password is 'password'. The FTP server can be changed to a TFTP server, and a username and password are not required for TFTP.The first action is the action to run the auto-script.The second action is the action to send the output to FTP server.config system automation-action edit \"Run collect logs\" set action-type cli-script set script \"execute auto-script start \\\"Collect logs\\\"\" set accprofile \"super_admin\" next edit \"Send to FTP server\" set action-type cli-script set script \"execute auto-script backup ftp \\\"Collect logs\\\" 10.207.2.82:21 admin password\" set accprofile \"super_admin\" next endCreate an automation trigger to trigger when a Heartbeat packet is lost:config system automation-trigger edit \"Heartbeat packet lost\" set event-type event-log set logid 37910 next endCreate an automation stitch:A 3-second delay was added to handle scenarios where the script output is extensive, ensuring sufficient time to transmit the completed results to the FTP server.config system automation-stitch edit \"HA peer lost\" set trigger \"Heartbeat packet lost\" config actions edit 1 set action \"Run collect logs\" set required enable next edit 2 set action \"Send to FTP server\" set delay 3 set required enable next end next endThe result on the FTP server:Below is an example of the debug log when the script runs normally:FGVM020000108306(Primary) # diagnose debug application autod -1 Debug messages will be on for 30 minutes. FGVM020000108306(Primary) # diagnose debug enable FGVM020000108306(Primary) # pid:2090-__handle_msg()-428: Subscriber:4 received package. pubid:0 pkgid:159 pkg_index:191 pid:2090-__handle_pkg_logs()-370: Subscriber:4 processing package size:487 logs:1 pickup:1 pid:2090-__subscr_close_cur_pkg()-141: close package size:487 logs:1 __action_cli_script_open()-151: cli script action:Run collect logs is called. svc ctx:0x558616f61a30 accprof:super_admin script: execute auto-script start \"Collect logs\" pid:2090-__handle_msg()-428: Subscriber:4 received package. pubid:0 pkgid:160 pkg_index:190 pid:2090-__handle_pkg_logs()-370: Subscriber:4 processing package size:2313 logs:3 pickup:3 pid:2090-__subscr_close_cur_pkg()-141: close package size:2313 logs:3 __read_cli_script_result()-97: cli script: autod.0 output: ========== #1, 2026-10-26 23:07:26 ========== FGVM020000108306(Primary) execute auto-script start \"Collect logs\" ======= end of #1, 2026-10-26 23:07:26 ====== __action_cli_script_close()-182: cli script action is done. script: execute auto-script start \"Collect logs\" output: ========== #1, 2026-10-26 23:07:26 ========== FGVM020000108306(Primary) execute auto-script start \"Collect logs\" ======= end of #1, 2026-10-26 23:07:26 ====== __enq_next_chain_action()-349: cur_action->result_out: { \"name\": \"Run collect logs\", \"status\": \"success\", \"results\": \"\\n========== #1, 2026-10-26 23:07:26 ==========\\nFGVM020000108306(Primary) execute auto-script start \\\"Collect logs\\\"\\n\\n======= end of #1, 2026-10-26 23:07:26 ======\\n\" }. pid:2090-__handle_msg()-428: Subscriber:4 received package. pubid:0 pkgid:161 pkg_index:191 pid:2090-__handle_pkg_logs()-370: Subscriber:4 processing package size:1188 logs:2 pickup:2 auto_event_pub_handle_log()-380: publish 22042 to subscr-node pid:2090-__subscr_close_cur_pkg()-141: close package size:1188 logs:2 pid:2090-__handle_msg()-428: Subscriber:4 received package. pubid:0 pkgid:162 pkg_index:190 pid:2090-__handle_pkg_logs()-370: Subscriber:4 processing package size:622 logs:1 pickup:1 auto_event_pub_handle_log()-380: publish 37892 to subscr-node pid:2090-__subscr_close_cur_pkg()-141: close package size:622 logs:1 pid:2090-__handle_msg()-428: Subscriber:4 received package. pubid:0 pkgid:163 pkg_index:191 pid:2090-__handle_pkg_logs()-370: Subscriber:4 processing package size:1984 logs:3 pickup:3 pid:2090-__subscr_close_cur_pkg()-141: close package size:1984 logs:3 __action_cli_script_open()-151: cli script action:Send to FTP server is called. svc ctx:0x558616e95a00 accprof:super_admin script: execute auto-script backup ftp \"Collect logs\" 10.207.2.82:21 admin password __read_cli_script_result()-97: cli script: autod.1 output: ==========",
+      "categories": [
+        "FortiGate"
+      ],
+      "products": [
+        "FortiGate"
+      ],
+      "versions": [],
+      "fixVersions": [],
+      "status": "À vérifier",
+      "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
+      "source": "Fortinet Community",
+      "firstSeen": "2026-10-28T08:40:13.915335+00:00",
+      "lastSeen": "2026-10-28T08:40:13.915335+00:00",
+      "versionFamilies": [],
+      "potentialProblem": false
+    },
+    {
+      "id": "https://community.fortinet.com/support-forum-92/install-failure-on-2-gb-ram-fortigates-after-fortimanager-7-6-8-upgrade-ssl-ssh-profile-udp-not-quic-230808",
+      "title": "Install failure on 2 GB RAM FortiGates after FortiManager 7.6.8 upgrade – ssl-ssh-profile udp-not-quic",
+      "url": "https://community.fortinet.com/support-forum-92/install-failure-on-2-gb-ram-fortigates-after-fortimanager-7-6-8-upgrade-ssl-ssh-profile-udp-not-quic-230808",
+      "date": "2026-10-28T06:53:53+00:00",
+      "summary": "Hi all,after upgrading FortiManager to 7.6.8, all installs to our FortiGate-50G devices (FortiOS 7.6.7) fail. FortiManager pushes an attribute to the default profile “custom-deep-inspection” that the 50G does not support:config firewall ssl-ssh-profile edit \"custom-deep-inspection\" config https set udp-not-quic allow end config dot set udp-not-quic allow end nextend---> generating verification report(vdom root: firewall ssl-ssh-profile \"custom-deep-inspection\" https:udp-not-quic) remote original: to be installed: allow(vdom root: firewall ssl-ssh-profile \"custom-deep-inspection\" dot:udp-not-quic) remote original: to be installed: allow<--- done generating verification report------- Start to retry ---------same result]install failedTask status: “verify state: install OK/verify FAIL” → “install and save finished status=FAILED”. No changes are applied.Running the command manually on the 50G:set udp-not-quic allowcommand parse error before 'udp-not-quic'Command fail. Return code -61A FortiGate-70G with the same FortiOS version accepts the command and installs fine, so this seems specific to 2 GB RAM models. The profile is unused and cannot be deleted (static entry), and an unset via CLI template doesn’t help either.Is this a known bug, and is there a workaround or fix version?Thanks!",
+      "products": [
+        "FortiGate",
+        "FortiManager"
+      ],
+      "versions": [
+        "7.6.7",
+        "7.6.8"
+      ],
+      "status": "À vérifier",
+      "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
+      "source": "Fortinet Community",
+      "firstSeen": "2026-10-23T07:37:30.171221+00:00",
+      "lastSeen": "2026-10-28T08:40:13.915335+00:00",
+      "versionFamilies": [
+        "7.6"
+      ],
+      "potentialProblem": true,
+      "categories": [
+        "Support Forum"
+      ],
+      "fixedVersions": [],
+      "fixVersions": []
+    },
+    {
+      "id": "https://community.fortinet.com/fortisoar-35/gui-inaccessible-after-upgrading-to-fortisoar-version-8-0-0-due-to-nginx-failure-230910",
+      "title": "GUI inaccessible after upgrading to FortiSOAR version 8.0.0 due to nginx failure",
+      "url": "https://community.fortinet.com/fortisoar-35/gui-inaccessible-after-upgrading-to-fortisoar-version-8-0-0-due-to-nginx-failure-230910",
+      "date": "2026-10-28T06:49:55+00:00",
+      "summary": "DescriptionThis article describes how to restore GUI access when nginx fails to start after upgrading FortiSOAR to version 8.0.0.ScopeFortiSOAR.SolutionAfter the upgrade, the FortiSOAR web portal is inaccessible, and the nginx service fails to start. The nginx error logs display the following message:[emerg] unknown directive \"ssl\" in /etc/nginx/conf.d/cyops-api.conf:217This occurs when /etc/nginx/conf.d/cyops-api.conf contains the standalone ssl on; directive. Previous nginx versions accepted this directive with a warning. nginx version 1.26.3, used in FortiSOAR 8.0.0, rejects it, preventing the service from starting.To correct the configuration and restore web portal access:Create a backup of the configuration file:sudo cp -p /etc/nginx/conf.d/cyops-api.conf /etc/nginx/conf.d/cyops-api.conf.before-fixOpen the configuration file:sudo vi /etc/nginx/conf.d/cyops-api.confLocate and remove the obsolete standalone directive:ssl on;If the ssl_protocols directive contains a duplicate TLSv1.3 value:ssl_protocols TLSv1.2 TLSv1.3 TLSv1.3;Replace it with:ssl_protocols TLSv1.2 TLSv1.3;In each /auth/ and /websocket/ location block, remove duplicate occurrences so that the following directive appears only once per block:proxy_ssl_protocols TLSv1.3;Ensure the following directive appears only once within the same server block:ssl_session_cache shared:SSL:10m;Save the file and exit the editor. Validate the configuration:sudo nginx -tConfirm the output reports that the configuration syntax is correct and the test is successful. If errors remain, resolve them before restarting nginx.Restart the nginx service:sudo systemctl restart nginxVerify the service status:sudo systemctl status nginx --no-pager -lConfirm the service shows as active (running), then verify that the FortiSOAR GUI is accessible.",
+      "categories": [
+        "FortiSOAR",
+        "FortiGate",
+        "FortiManager",
+        "FortiAP",
+        "FortiAuthenticator",
+        "FortiAnalyzer",
+        "FortiClient"
+      ],
+      "products": [
+        "FortiGate",
+        "FortiManager",
+        "FortiAnalyzer",
+        "FortiAuthenticator",
+        "FortiClient",
+        "FortiAP"
+      ],
+      "versions": [
+        "8.0.0"
+      ],
+      "fixVersions": [],
+      "status": "À vérifier",
+      "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
+      "source": "Fortinet Community",
+      "firstSeen": "2026-10-28T08:40:13.915335+00:00",
+      "lastSeen": "2026-10-28T08:40:13.915335+00:00",
+      "versionFamilies": [
+        "8.0"
+      ],
+      "potentialProblem": true
+    },
+    {
+      "id": "https://community.fortinet.com/support-forum-92/how-to-effectively-block-online-file-sharing-websites-when-fortiguard-categorizes-them-as-information-technology-230902",
+      "title": "How to Effectively Block Online File-Sharing Websites When FortiGuard Categorizes Them as Information Technology?",
+      "url": "https://community.fortinet.com/support-forum-92/how-to-effectively-block-online-file-sharing-websites-when-fortiguard-categorizes-them-as-information-technology-230902",
+      "date": "2026-10-28T06:03:24+00:00",
+      "summary": "Hello Fortinet Community,I am managing FortiGate firewalls in a healthcare environment, and I am facing a recurring challenge during network security inspections.The inspectors identify online file-sharing websites that are accessible through our network, and this has resulted in failed inspections.Some examples of these websites are:onetimedrop.app online-clipboard.online heave.ggThese websites provide online file-sharing or file-transfer functionality. However, they are categorized by FortiGuard under Information Technology rather than File Sharing and Storage.Current FortiGate Security ConfigurationI have already implemented the following controls:Web Filter: File Sharing and Storage is blocked. DNS Filter: File Sharing and Storage is blocked. Application Control: Cloud IT and Storage Backup applications are blocked.Despite these controls, the websites mentioned above remain accessible because their FortiGuard classification does not match the category I am blocking.My QuestionsIs there a recommended FortiGate configuration to block online file-sharing and file-transfer services regardless of their FortiGuard web-filter category? Is it possible to identify and block these services through Application Control, even when they are categorized as Information Technology? Does FortiGate provide a reliable method to detect file uploads and downloads to websites that offer temporary file hosting, anonymous file transfers, or online clipboard sharing? What is the recommended approach for handling the large number of new file-sharing websites that appear regularly, without manually adding every domain to a URL blocklist? Would blocking the Information Technology category be the only way to address this issue, or are there better alternatives that would avoid blocking legitimate IT-related websites? Are there additional security profiles, inspection methods, or FortiGuard features that can help address this gap?My objective is to prevent unauthorized online file-sharing services across the network, including newly created or previously unknown websites, while maintaining access to legitimate business and healthcare services.I would appreciate recommendations based on real-world FortiGate deployments and security best practices.Thank you for your support.",
+      "categories": [
+        "Support Forum"
+      ],
+      "products": [
+        "FortiGate"
+      ],
+      "versions": [],
+      "fixVersions": [],
+      "status": "À vérifier",
+      "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
+      "source": "Fortinet Community",
+      "firstSeen": "2026-10-27T17:59:20.871064+00:00",
+      "lastSeen": "2026-10-28T08:40:13.915335+00:00",
+      "versionFamilies": [],
+      "potentialProblem": false
+    },
     {
       "id": "https://community.fortinet.com/support-forum-92/since-7-4-13-build2933-emails-not-sent-if-username-exceeds-36-characters-230909",
       "title": "Since 7.4.13 build2933, emails not sent if username exceeds 36 characters",
@@ -28,7 +208,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-28T05:39:35.554158+00:00",
-      "lastSeen": "2026-10-28T05:39:35.554158+00:00",
+      "lastSeen": "2026-10-28T08:40:13.915335+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -53,56 +233,12 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-28T05:39:35.554158+00:00",
-      "lastSeen": "2026-10-28T05:39:35.554158+00:00",
+      "lastSeen": "2026-10-28T08:40:13.915335+00:00",
       "versionFamilies": [
         "7.0",
         "7.2"
       ],
       "potentialProblem": true
-    },
-    {
-      "id": "https://community.fortinet.com/support-forum-92/some-website-not-loading-with-deep-inspection-230891",
-      "title": "Some Website not loading with Deep Inspection",
-      "url": "https://community.fortinet.com/support-forum-92/some-website-not-loading-with-deep-inspection-230891",
-      "date": "2026-10-28T02:49:39+00:00",
-      "summary": "Since about 2-3 hours some Website are not loading anymore when deep inspection is applied. Just timeout or connection reset after some time.We are using different Fortigate Models and different Firmware (7.6.8 / 7.4.13).Seems to be a global issue according to Reddit: https://www.reddit.com/r/fortinet/comments/1xgnrb3/some_websites_not_loading_webfiltering_enabled/ Changing the Policies (Flow Mode) from Deep inspection to Cert-Only works.EDIT: Disabling the Antivirus profile works also. Deep inspection still enabled, just AV disabled.",
-      "categories": [
-        "Support Forum"
-      ],
-      "products": [
-        "FortiGate"
-      ],
-      "versions": [],
-      "fixVersions": [],
-      "status": "À vérifier",
-      "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
-      "source": "Fortinet Community",
-      "firstSeen": "2026-10-27T12:08:38.529366+00:00",
-      "lastSeen": "2026-10-28T05:39:35.554158+00:00",
-      "versionFamilies": [],
-      "potentialProblem": false
-    },
-    {
-      "id": "https://community.fortinet.com/support-forum-92/how-to-effectively-block-online-file-sharing-websites-when-fortiguard-categorizes-them-as-information-technology-230902",
-      "title": "How to Effectively Block Online File-Sharing Websites When FortiGuard Categorizes Them as Information Technology?",
-      "url": "https://community.fortinet.com/support-forum-92/how-to-effectively-block-online-file-sharing-websites-when-fortiguard-categorizes-them-as-information-technology-230902",
-      "date": "2026-10-28T02:47:44+00:00",
-      "summary": "Hello Fortinet Community,I am managing FortiGate firewalls in a healthcare environment, and I am facing a recurring challenge during network security inspections.The inspectors identify online file-sharing websites that are accessible through our network, and this has resulted in failed inspections.Some examples of these websites are:onetimedrop.app online-clipboard.online heave.ggThese websites provide online file-sharing or file-transfer functionality. However, they are categorized by FortiGuard under Information Technology rather than File Sharing and Storage.Current FortiGate Security ConfigurationI have already implemented the following controls:Web Filter: File Sharing and Storage is blocked. DNS Filter: File Sharing and Storage is blocked. Application Control: Cloud IT and Storage Backup applications are blocked.Despite these controls, the websites mentioned above remain accessible because their FortiGuard classification does not match the category I am blocking.My QuestionsIs there a recommended FortiGate configuration to block online file-sharing and file-transfer services regardless of their FortiGuard web-filter category? Is it possible to identify and block these services through Application Control, even when they are categorized as Information Technology? Does FortiGate provide a reliable method to detect file uploads and downloads to websites that offer temporary file hosting, anonymous file transfers, or online clipboard sharing? What is the recommended approach for handling the large number of new file-sharing websites that appear regularly, without manually adding every domain to a URL blocklist? Would blocking the Information Technology category be the only way to address this issue, or are there better alternatives that would avoid blocking legitimate IT-related websites? Are there additional security profiles, inspection methods, or FortiGuard features that can help address this gap?My objective is to prevent unauthorized online file-sharing services across the network, including newly created or previously unknown websites, while maintaining access to legitimate business and healthcare services.I would appreciate recommendations based on real-world FortiGate deployments and security best practices.Thank you for your support.",
-      "categories": [
-        "Support Forum"
-      ],
-      "products": [
-        "FortiGate"
-      ],
-      "versions": [],
-      "fixVersions": [],
-      "status": "À vérifier",
-      "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
-      "source": "Fortinet Community",
-      "firstSeen": "2026-10-27T17:59:20.871064+00:00",
-      "lastSeen": "2026-10-28T05:39:35.554158+00:00",
-      "versionFamilies": [],
-      "potentialProblem": false
     },
     {
       "id": "https://community.fortinet.com/customer-service-42/customer-service-note-email-interaction-when-working-tickets-with-fortinet-support-99820",
@@ -122,7 +258,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-28T05:39:35.554158+00:00",
-      "lastSeen": "2026-10-28T05:39:35.554158+00:00",
+      "lastSeen": "2026-10-28T08:40:13.915335+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -148,7 +284,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-25T08:49:02.456463+00:00",
-      "lastSeen": "2026-10-28T05:39:35.554158+00:00",
+      "lastSeen": "2026-10-28T08:40:13.915335+00:00",
       "versionFamilies": [
         "7.4"
       ],
@@ -171,7 +307,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-28T05:39:35.554158+00:00",
+      "lastSeen": "2026-10-28T08:40:13.915335+00:00",
       "versionFamilies": [],
       "potentialProblem": false,
       "categories": [
@@ -198,7 +334,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-27T08:27:15.325711+00:00",
-      "lastSeen": "2026-10-28T05:39:35.554158+00:00",
+      "lastSeen": "2026-10-28T08:40:13.915335+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -222,7 +358,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-27T17:59:20.871064+00:00",
-      "lastSeen": "2026-10-28T05:39:35.554158+00:00",
+      "lastSeen": "2026-10-28T08:40:13.915335+00:00",
       "versionFamilies": [
         "7.2"
       ],
@@ -250,7 +386,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-27T17:59:20.871064+00:00",
-      "lastSeen": "2026-10-28T05:39:35.554158+00:00",
+      "lastSeen": "2026-10-28T08:40:13.915335+00:00",
       "versionFamilies": [
         "7.4",
         "7.6",
@@ -276,7 +412,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-27T17:59:20.871064+00:00",
-      "lastSeen": "2026-10-28T05:39:35.554158+00:00",
+      "lastSeen": "2026-10-28T08:40:13.915335+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -302,7 +438,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-27T17:59:20.871064+00:00",
-      "lastSeen": "2026-10-28T05:39:35.554158+00:00",
+      "lastSeen": "2026-10-28T08:40:13.915335+00:00",
       "versionFamilies": [
         "7.4"
       ],
@@ -326,16 +462,16 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-27T17:59:20.871064+00:00",
-      "lastSeen": "2026-10-28T05:39:35.554158+00:00",
+      "lastSeen": "2026-10-28T08:40:13.915335+00:00",
       "versionFamilies": [],
       "potentialProblem": true
     },
     {
       "id": "https://community.fortinet.com/fortinac-f-57/fortinac-f-captive-portal-user-saml-sso-redirect-loop-caused-by-sp-url-portal-fqdn-mismatch-230903",
-      "title": "FortiNAC-F: Captive portal User SAML SSO redirect loop caused by SP URL / Portal FQDN mismatch",
+      "title": "FortiNAC-F: Captive portal User SAML SSO redirect loop caused by SP URL/Portal FQDN mismatch",
       "url": "https://community.fortinet.com/fortinac-f-57/fortinac-f-captive-portal-user-saml-sso-redirect-loop-caused-by-sp-url-portal-fqdn-mismatch-230903",
       "date": "2026-10-27T16:05:39+00:00",
-      "summary": "DescriptionThis article describes a captive portal redirect loop with User SAML SSO, and how to fix it. The user authenticates successfully at the IdP and is returned to the FortiNAC-F portal, but the device is never registered. The cause is a hostname mismatch: the SP URL of the User SAML SSO service connector is different from the captive portal Fully-Qualified Host Name set in Portal -> Portal SSL.ScopeFortiNAC-F 7.6.3 and later (User SAML SSO service connector). Observed on 7.6.7 build 0976.FortiAuthenticator as SAML IdP, including IdP proxy to Microsoft Entra ID. The same applies to any SAML IdP.Standalone and High Availability (1+1) deployments, L2 or L3 isolation.SolutionSymptoms:The rogue host is placed in the Registration VLAN and opens the captive portal.USER login redirects to the IdP. Authentication succeeds, the browser returns to FortiNAC-F, then lands back on the portal start page. Every new attempt repeats the cycle.The host stays Rogue, no SSO user record is created, and no CoA is sent to the controller.FortiAuthenticator shows the IdP side as successful, repeated on every attempt: Logging -> Log Access -> Logs, Log Type 20502 (SAML IdP SP_Request OK), Status Success, message \"SAML assertion request from SP ' ', send back response for user ' '.\"Common trigger: the portal FQDN or the connector SP URL was changed, for example during HA testing or troubleshooting, and the other value was not changed to match.CauseFortiNAC-F builds every SP value (SP Entity ID, ACS URL, SLS URL, SP metadata) from the connector's SP URL. The captive portal itself is served under the Fully-Qualified Host Name set in Portal > Portal SSL. When the two hostnames differ:The portal starts SSO. The AuthnRequest sends the SP ACS URL on the SP URL host, for example https://nacportal.example.com/registration/saml/ /acs.The IdP authenticates the user and the browser POSTs a valid, signed SAMLResponse to that ACS URL.That hostname is not the portal FQDN. FortiNAC-F answers the POST with its generic portal redirect (302 to https:// /registration/), the same response it sends to OS captive-probe URLs. The SAMLResponse is never handed to SAML processing.The portal session is still unauthenticated, so the portal offers the login again and the cycle repeats.The ACS POST lands on the wrong host, so login loops:FortiNAC's SAML SSO guide states that for User SAML SSO in HA the \"Captive Portal URL must remain consistent\". The redirect behaviour in step 3 is not described in the documentation; it was confirmed from the FortiNAC-F logs and the browser capture in a support case.Not the cause in this condition: the IdP or Entra ID configuration, the IdP certificate, attribute mapping, NTP, MAB or RADIUS, and HA failover itself. Known issue 1208434 (\"Users cannot register through the captive portal with SAML SSO authentication because of redirects\") is resolved in FortiNAC-F 7.6.7 and is a separate condition.How to identify:Compare the connector's SP hostname with the portal hostname, then confirm in the logs that the ACS POST was redirected rather than processed. All values below are examples.Compare the two hostnames.FortiNAC-F: Network > Service Connectors > > Service Provider Settings > SP URL. The SP Entity ID, SP ACS (Login) URL and SP SLS (Logout) URL are all built from this value.FortiNAC-F: Portal > Portal SSL > Fully-Qualified Host Name. This is the hostname the captive portal is served under.In the screenshot below, the SP URL is nacportal.example.com while the portal is served as secureportal.example.com.FortiAuthenticator holds the same SP values, taken from the imported SP metadata: Authentication -> SAML IdP -> Service Providers -> -> SP Metadata.Check FortiAuthenticator. The IdP returns a successful assertion on every attempt: Log Type 20502, Status Success, repeated each time the user retries.Check the browser capture (HAR or SAML-tracer). The AuthnRequest names the ACS URL on the SP URL host. The POST of the SAMLResponse to that URL returns a generic redirect to the portal start page:AuthnRequest AssertionConsumerServiceURL=\"https://nacportal.example.com/registration/saml/FAC_SAML/acs\" POST https://nacportal.example.com/registration/saml/FAC_SAML/acs (RelayState=&SAMLResponse=...) -> 302 Found Server: Apache Location: https://secureportal.example.com/registration/ Content-Type: text/html; charset=iso-8859-1 Content-Length: 228The browser then loads the portal start page again, with the host still unregistered:4. Check the FortiNAC-F logs (node in control). Use grab-log-snapshot, or tail live with diagnose tail -F output.nessus.access_log: the ACS POST gets the same generic 302 as OS captive-probe URLs (/connecttest.txt, /generate_204):192.168.67.25 - - [25/Oct/2026:10:17:11 +0000] \"POST /registration/saml/FAC_SAML/acs HTTP/1.1\" 302 228 192.168.67.25 - - [25/Oct/2026:10:13:01 +0000] \"GET /connecttest.txt HTTP/1.1\" 302 227output.nessus: SSO is started, but no SAML processing is logged for the ACS POST:INFO yams - captiveP",
+      "summary": "DescriptionThis article describes a captive portal redirect loop with User SAML SSO, and how to fix it. The user authenticates successfully at the IdP and is returned to the FortiNAC-F portal, but the device is never registered. The cause is a hostname mismatch: the SP URL of the User SAML SSO service connector is different from the captive portal Fully-Qualified Host Name set in Portal -> Portal SSL.ScopeFortiNAC-F 7.6.3 and later (User SAML SSO service connector). Observed on 7.6.7 build 0976.FortiAuthenticator as SAML IdP, including IdP proxy to Microsoft Entra ID. The same applies to any SAML IdP.Standalone and High Availability (1+1) deployments, L2 or L3 isolation.SolutionSymptoms:The rogue host is placed in the Registration VLAN and opens the captive portal.USER login redirects to the IdP. Authentication succeeds, the browser returns to FortiNAC-F, then lands back on the portal start page. Every new attempt repeats the cycle.The host stays Rogue, no SSO user record is created, and no CoA is sent to the controller.FortiAuthenticator shows the IdP side as successful, repeated on every attempt: Logging -> Log Access -> Logs, Log Type 20502 (SAML IdP SP_Request OK), Status Success, message \"SAML assertion request from SP ' ', send back response for user ' '.\"Common trigger: the portal FQDN or the connector SP URL was changed, for example during HA testing or troubleshooting, and the other value was not changed to match.Cause:FortiNAC-F builds every SP value (SP Entity ID, ACS URL, SLS URL, SP metadata) from the connector's SP URL. The captive portal itself is served under the Fully-Qualified Host Name set in Portal > Portal SSL. When the two hostnames differ:The portal starts SSO. The AuthnRequest sends the SP ACS URL on the SP URL host, for example https://nacportal.example.com/registration/saml/ /acs.The IdP authenticates the user and the browser POSTs a valid, signed SAMLResponse to that ACS URL.That hostname is not the portal FQDN. FortiNAC-F answers the POST with its generic portal redirect (302 to https:// /registration/), the same response it sends to OS captive-probe URLs. The SAMLResponse is never handed to SAML processing.The portal session is still unauthenticated, so the portal offers the login again, and the cycle repeats.The ACS POST lands on the wrong host, so login loops:FortiNAC's SAML SSO guide states that for User SAML SSO in HA the \"Captive Portal URL must remain consistent\". The redirect behaviour in step 3 is not described in the documentation; it was confirmed from the FortiNAC-F logs and the browser capture in a support case.Not the cause in this condition: the IdP or Entra ID configuration, the IdP certificate, attribute mapping, NTP, MAB or RADIUS, and HA failover itself. Known issue 1208434 (\"Users cannot register through the captive portal with SAML SSO authentication because of redirects\") is resolved in FortiNAC-F 7.6.7 and is a separate condition.How to identify:Compare the connector's SP hostname with the portal hostname, then confirm in the logs that the ACS POST was redirected rather than processed. All values below are examples.Compare the two hostnames.FortiNAC-F: Network -> Service Connectors -> -> Service Provider Settings -> SP URL. The SP Entity ID, SP ACS (Login) URL, and SP SLS (Logout) URL are all built from this value.FortiNAC-F: Portal -> Portal SSL -> Fully-Qualified Host Name. This is the hostname the captive portal is served under.In the screenshot below, the SP URL is nacportal.example.com, while the portal is served as secureportal.example.com.FortiAuthenticator holds the same SP values, taken from the imported SP metadata: Authentication -> SAML IdP -> Service Providers -> -> SP Metadata.Check FortiAuthenticator. The IdP returns a successful assertion on every attempt: Log Type 20502, Status Success, repeated each time the user retries.Check the browser capture (HAR or SAML-tracer). The AuthnRequest names the ACS URL on the SP URL host. The POST of the SAMLResponse to that URL returns a generic redirect to the portal start page:AuthnRequest AssertionConsumerServiceURL=\"https://nacportal.example.com/registration/saml/FAC_SAML/acs\" POST https://nacportal.example.com/registration/saml/FAC_SAML/acs (RelayState=&SAMLResponse=...) -> 302 Found Server: Apache Location: https://secureportal.example.com/registration/ Content-Type: text/html; charset=iso-8859-1 Content-Length: 228The browser then loads the portal start page again, with the host still unregistered:Check the FortiNAC-F logs (node in control). Use grab-log-snapshot, or tail live with diagnose tail -F output.nessus.access_log: the ACS POST gets the same generic 302 as OS captive-probe URLs (/connecttest.txt, /generate_204):192.168.67.25 - - [25/Oct/2026:10:17:11 +0000] \"POST /registration/saml/FAC_SAML/acs HTTP/1.1\" 302 228 192.168.67.25 - - [25/Oct/2026:10:13:01 +0000] \"GET /connecttest.txt HTTP/1.1\" 302 227output.nessus: SSO is started, but no SAML processing is logged for the ACS POST:INFO yams - c",
       "categories": [
         "FortiNAC-F"
       ],
@@ -348,7 +484,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-27T17:59:20.871064+00:00",
-      "lastSeen": "2026-10-28T05:39:35.554158+00:00",
+      "lastSeen": "2026-10-28T08:40:13.915335+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -369,7 +505,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-26T04:44:07.561963+00:00",
-      "lastSeen": "2026-10-28T05:39:35.554158+00:00",
+      "lastSeen": "2026-10-28T08:40:13.915335+00:00",
       "versionFamilies": [],
       "potentialProblem": false,
       "fixedVersions": [],
@@ -395,7 +531,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-27T14:08:03.762154+00:00",
-      "lastSeen": "2026-10-28T05:39:35.554158+00:00",
+      "lastSeen": "2026-10-28T08:40:13.915335+00:00",
       "versionFamilies": [
         "7.6"
       ],
@@ -422,7 +558,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-27T12:08:38.529366+00:00",
-      "lastSeen": "2026-10-28T05:39:35.554158+00:00",
+      "lastSeen": "2026-10-28T08:40:13.915335+00:00",
       "versionFamilies": [
         "7.6"
       ],
@@ -448,7 +584,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-27T12:08:38.529366+00:00",
-      "lastSeen": "2026-10-28T05:39:35.554158+00:00",
+      "lastSeen": "2026-10-28T08:40:13.915335+00:00",
       "versionFamilies": [
         "7.4"
       ],
@@ -474,7 +610,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-27T12:08:38.529366+00:00",
-      "lastSeen": "2026-10-28T05:39:35.554158+00:00",
+      "lastSeen": "2026-10-28T08:40:13.915335+00:00",
       "versionFamilies": [
         "7.2"
       ],
@@ -499,7 +635,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-27T12:08:38.529366+00:00",
-      "lastSeen": "2026-10-28T05:39:35.554158+00:00",
+      "lastSeen": "2026-10-28T08:40:13.915335+00:00",
       "versionFamilies": [],
       "potentialProblem": true
     },
@@ -518,7 +654,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-23T07:37:30.171221+00:00",
-      "lastSeen": "2026-10-28T05:39:35.554158+00:00",
+      "lastSeen": "2026-10-28T08:40:13.915335+00:00",
       "versionFamilies": [],
       "potentialProblem": false,
       "categories": [
@@ -543,7 +679,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-28T05:39:35.554158+00:00",
+      "lastSeen": "2026-10-28T08:40:13.915335+00:00",
       "versionFamilies": [
         "7.4"
       ],
@@ -568,7 +704,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-28T05:39:35.554158+00:00",
+      "lastSeen": "2026-10-28T08:40:13.915335+00:00",
       "versionFamilies": [],
       "potentialProblem": false,
       "categories": [
@@ -591,7 +727,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-24T07:14:22.584683+00:00",
-      "lastSeen": "2026-10-28T05:39:35.554158+00:00",
+      "lastSeen": "2026-10-28T08:40:13.915335+00:00",
       "versionFamilies": [],
       "potentialProblem": false,
       "categories": [
@@ -617,7 +753,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-25T08:49:02.456463+00:00",
-      "lastSeen": "2026-10-28T05:39:35.554158+00:00",
+      "lastSeen": "2026-10-28T08:40:13.915335+00:00",
       "versionFamilies": [],
       "potentialProblem": false,
       "fixedVersions": [],
@@ -641,7 +777,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-27T12:08:38.529366+00:00",
-      "lastSeen": "2026-10-28T05:39:35.554158+00:00",
+      "lastSeen": "2026-10-28T08:40:13.915335+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -663,7 +799,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-27T12:08:38.529366+00:00",
-      "lastSeen": "2026-10-28T05:39:35.554158+00:00",
+      "lastSeen": "2026-10-28T08:40:13.915335+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -685,7 +821,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-27T12:08:38.529366+00:00",
-      "lastSeen": "2026-10-28T05:39:35.554158+00:00",
+      "lastSeen": "2026-10-28T08:40:13.915335+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -708,7 +844,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-27T12:08:38.529366+00:00",
-      "lastSeen": "2026-10-28T05:39:35.554158+00:00",
+      "lastSeen": "2026-10-28T08:40:13.915335+00:00",
       "versionFamilies": [],
       "potentialProblem": true
     },
@@ -732,7 +868,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-27T12:08:38.529366+00:00",
-      "lastSeen": "2026-10-28T05:39:35.554158+00:00",
+      "lastSeen": "2026-10-28T08:40:13.915335+00:00",
       "versionFamilies": [
         "7.2"
       ],
@@ -754,7 +890,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-28T05:39:35.554158+00:00",
+      "lastSeen": "2026-10-28T08:40:13.915335+00:00",
       "versionFamilies": [
         "7.4"
       ],
@@ -788,7 +924,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-27T12:08:38.529366+00:00",
-      "lastSeen": "2026-10-28T05:39:35.554158+00:00",
+      "lastSeen": "2026-10-28T08:40:13.915335+00:00",
       "versionFamilies": [
         "8.0"
       ],
@@ -814,7 +950,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-27T12:08:38.529366+00:00",
-      "lastSeen": "2026-10-28T05:39:35.554158+00:00",
+      "lastSeen": "2026-10-28T08:40:13.915335+00:00",
       "versionFamilies": [
         "7.4"
       ],
@@ -839,7 +975,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-27T12:08:38.529366+00:00",
-      "lastSeen": "2026-10-28T05:39:35.554158+00:00",
+      "lastSeen": "2026-10-28T08:40:13.915335+00:00",
       "versionFamilies": [],
       "potentialProblem": true
     },
@@ -864,7 +1000,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-27T12:08:38.529366+00:00",
-      "lastSeen": "2026-10-28T05:39:35.554158+00:00",
+      "lastSeen": "2026-10-28T08:40:13.915335+00:00",
       "versionFamilies": [
         "8.0"
       ],
@@ -889,7 +1025,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-27T12:08:38.529366+00:00",
-      "lastSeen": "2026-10-28T05:39:35.554158+00:00",
+      "lastSeen": "2026-10-28T08:40:13.915335+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -913,7 +1049,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-27T08:27:15.325711+00:00",
-      "lastSeen": "2026-10-28T05:39:35.554158+00:00",
+      "lastSeen": "2026-10-28T08:40:13.915335+00:00",
       "versionFamilies": [
         "7.6"
       ],
@@ -937,7 +1073,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-27T08:27:15.325711+00:00",
-      "lastSeen": "2026-10-28T05:39:35.554158+00:00",
+      "lastSeen": "2026-10-28T08:40:13.915335+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -961,7 +1097,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-26T22:38:45.180998+00:00",
-      "lastSeen": "2026-10-28T05:39:35.554158+00:00",
+      "lastSeen": "2026-10-28T08:40:13.915335+00:00",
       "versionFamilies": [
         "7.4"
       ],
@@ -985,7 +1121,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-27T08:27:15.325711+00:00",
-      "lastSeen": "2026-10-28T05:39:35.554158+00:00",
+      "lastSeen": "2026-10-28T08:40:13.915335+00:00",
       "versionFamilies": [],
       "potentialProblem": true
     },
@@ -1033,7 +1169,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-24T07:14:22.584683+00:00",
-      "lastSeen": "2026-10-28T05:39:35.554158+00:00",
+      "lastSeen": "2026-10-28T08:40:13.915335+00:00",
       "versionFamilies": [
         "7.6"
       ],
@@ -1053,7 +1189,7 @@
       "title": "Using FortiAnalyzer to detect activities related to the PHP2Shell RCE Vulnerabilities",
       "url": "https://community.fortinet.com/fortianalyzer-6/using-fortianalyzer-to-detect-activities-related-to-the-php2shell-rce-vulnerabilities-230874",
       "date": "2026-10-27T06:51:49+00:00",
-      "summary": "DescriptionThis article describes how to use a custom event handler in FortiAnalyzer to raise alerts for incident response related to attacks that attempt to leverage the PHP2Shell Remote Code Execution Vulnerabilities (CVE-2026-109618 and CVE-2026-109619). A report is also provided to gain historical visibility into the logs.Note that this article provides alpha files, which are automatically generated. The article will be continually updated as more information becomes available.ScopeThis article contains the files necessary to load an event handler and report into the FortiAnalyzer for either a Fabric ADOM or a FortiGate ADOM. The Fabric report and event handler leverage logs from other Fortinet products that can be used to detect the attack in addition to FortiGate logs.For more information about this attack, see the following FortiGuard Outbreak Alert: PHP2Shell Remote Code Execution VulnerabilitiesSolutionWhat is included in Fortinet_PHP2Shell Remote Code Execution Vulnerabilities.zip:PHP2Shell Remote Code Execution Vulnerabilities_event-handler.json: This event handler helps identify PHP2Shell Remote Code Execution Vulnerabilities detected by FortiGate and other Fortinet products. This event handler is configured for Fabric ADOMs.PHP2Shell Remote Code Execution Vulnerabilities_report.dat: This report displays the findings on PHP2Shell Remote Code Execution Vulnerabilities from FortiGate and other Fortinet products. It is configured for Fabric ADOMs.fgt_PHP2Shell Remote Code Execution Vulnerabilities_event-handler.json: The event handler for FortiGate ADOMs is configured for FortiGate logs only.fgt_PHP2Shell Remote Code Execution Vulnerabilities_report.dat: The FortiGate ADOMs report includes only FortiGate charts.Detections included:ProductDetection typeIDFortiGateIPS signature (attack ID)62657, 62658FortiGateOT virtual patch10009977, 10009978FortiWebSignature ID1090502648Steps:Download the Fortinet_PHP2Shell Remote Code Execution Vulnerabilities.zip file (contains 4 files).Unzip Fortinet_PHP2Shell Remote Code Execution Vulnerabilities.zip.Import PHP2Shell Remote Code Execution Vulnerabilities_event-handler.json or fgt_PHP2Shell Remote Code Execution Vulnerabilities_event-handler.json event handler:Choose an ADOM (if ADOMs are enabled). The ADOM may be of the Fabric or FortiGate type.Go to the Event Handlers module.Select the Import option under More.Select the appropriate event handler depending on the ADOM type.Result: The event handler is enabled and will be triggered if the appropriate logs are received following the import of the event handler. Edit the event handler to customize the notification section.Import PHP2Shell Remote Code Execution Vulnerabilities_report.dat or fgt_PHP2Shell Remote Code Execution Vulnerabilities_report.dat to Reports:Choose an ADOM (if ADOMs are enabled). The ADOM may be of the Fabric or FortiGate type.Go to the Report module.Select the Import option under More.Select the appropriate file for the ADOM type to add the report to the ADOM.Result: The PHP2Shell Remote Code Execution Vulnerabilities_report can be run anytime, as determined by an admin user.",
+      "summary": "Description This article describes how to use a custom event handler in FortiAnalyzer to raise alerts for incident response related to attacks that attempt to leverage the PHP2Shell Remote Code Execution Vulnerabilities (CVE-2026-109618 and CVE-2026-109619). A report is also provided to gain historical visibility into the logs. Note that this article provides alpha files, which are automatically generated. The article will be continually updated as more information becomes available. Scope This article contains the files necessary to load an event handler and report into the FortiAnalyzer for either a Fabric ADOM or a FortiGate ADOM. The Fabric report and event handler leverage logs from other Fortinet products that can be used to detect the attack in addition to FortiGate logs. For more information about this attack, see the following FortiGuard Outbreak Alert: PHP2Shell Remote Code Execution Vulnerabilities Solution What is included in Fortinet_PHP2Shell Remote Code Execution Vulnerabilities.zip: PHP2Shell Remote Code Execution Vulnerabilities_event-handler.json: This event handler helps identify PHP2Shell Remote Code Execution Vulnerabilities detected by FortiGate and other Fortinet products. This event handler is configured for Fabric ADOMs. PHP2Shell Remote Code Execution Vulnerabilities_report.dat: This report displays the findings on PHP2Shell Remote Code Execution Vulnerabilities from FortiGate and other Fortinet products. It is configured for Fabric ADOMs. fgt_PHP2Shell Remote Code Execution Vulnerabilities_event-handler.json: The event handler for FortiGate ADOMs is configured for FortiGate logs only. fgt_PHP2Shell Remote Code Execution Vulnerabilities_report.dat: The FortiGate ADOMs report includes only FortiGate charts. Detections included: Product Detection type ID FortiGate IPS signature (attack ID) 62657, 62658 FortiGate OT virtual patch 10009977, 10009978 FortiWeb Signature ID 1090502648 Steps: Download the Fortinet_PHP2Shell Remote Code Execution Vulnerabilities.zip file (contains 4 files). Unzip Fortinet_PHP2Shell Remote Code Execution Vulnerabilities.zip. Import PHP2Shell Remote Code Execution Vulnerabilities_event-handler.json or fgt_PHP2Shell Remote Code Execution Vulnerabilities_event-handler.json event handler: Choose an ADOM (if ADOMs are enabled). The ADOM may be of the Fabric or FortiGate type. Go to the Event Handlers module. Select the Import option under More. Select the appropriate event handler depending on the ADOM type. Result: The event handler is enabled and will be triggered if the appropriate logs are received following the import of the event handler. Edit the event handler to customize the notification section. Import PHP2Shell Remote Code Execution Vulnerabilities_report.dat or fgt_PHP2Shell Remote Code Execution Vulnerabilities_report.dat to Reports: Choose an ADOM (if ADOMs are enabled). The ADOM may be of the Fabric or FortiGate type. Go to the Report module. Select the Import option under More. Select the appropriate file for the ADOM type to add the report to the ADOM. Result: The PHP2Shell Remote Code Execution Vulnerabilities_report can be run anytime, as determined by an admin user.",
       "categories": [
         "FortiAnalyzer"
       ],
@@ -1067,7 +1203,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-27T08:27:15.325711+00:00",
-      "lastSeen": "2026-10-28T05:39:35.554158+00:00",
+      "lastSeen": "2026-10-28T08:40:13.915335+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -1089,7 +1225,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-27T08:27:15.325711+00:00",
-      "lastSeen": "2026-10-28T05:39:35.554158+00:00",
+      "lastSeen": "2026-10-28T08:40:13.915335+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -1112,7 +1248,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-26T22:38:45.180998+00:00",
-      "lastSeen": "2026-10-28T05:39:35.554158+00:00",
+      "lastSeen": "2026-10-28T08:40:13.915335+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -1138,7 +1274,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-26T22:38:45.180998+00:00",
-      "lastSeen": "2026-10-28T05:39:35.554158+00:00",
+      "lastSeen": "2026-10-28T08:40:13.915335+00:00",
       "versionFamilies": [
         "7.0",
         "7.2",
@@ -1162,7 +1298,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-24T13:57:19.874191+00:00",
-      "lastSeen": "2026-10-28T05:39:35.554158+00:00",
+      "lastSeen": "2026-10-28T08:40:13.915335+00:00",
       "versionFamilies": [
         "7.2"
       ],
@@ -1191,7 +1327,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-26T22:38:45.180998+00:00",
-      "lastSeen": "2026-10-28T05:39:35.554158+00:00",
+      "lastSeen": "2026-10-28T08:40:13.915335+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -1213,7 +1349,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-26T08:51:24.766456+00:00",
-      "lastSeen": "2026-10-28T05:39:35.554158+00:00",
+      "lastSeen": "2026-10-28T08:40:13.915335+00:00",
       "versionFamilies": [],
       "potentialProblem": false,
       "fixVersions": []
@@ -1236,7 +1372,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-26T14:38:38.019574+00:00",
-      "lastSeen": "2026-10-28T05:39:35.554158+00:00",
+      "lastSeen": "2026-10-28T08:40:13.915335+00:00",
       "versionFamilies": [],
       "potentialProblem": true
     },
@@ -1254,7 +1390,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-28T05:39:35.554158+00:00",
+      "lastSeen": "2026-10-28T08:40:13.915335+00:00",
       "versionFamilies": [],
       "potentialProblem": true,
       "categories": [
@@ -1277,7 +1413,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T09:24:01.029989+00:00",
-      "lastSeen": "2026-10-28T05:39:35.554158+00:00",
+      "lastSeen": "2026-10-28T08:40:13.915335+00:00",
       "versionFamilies": [],
       "potentialProblem": false,
       "categories": [
@@ -1304,7 +1440,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-28T05:39:35.554158+00:00",
+      "lastSeen": "2026-10-28T08:40:13.915335+00:00",
       "versionFamilies": [
         "7.4"
       ],
@@ -1332,7 +1468,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-23T13:47:25.795786+00:00",
-      "lastSeen": "2026-10-28T05:39:35.554158+00:00",
+      "lastSeen": "2026-10-28T08:40:13.915335+00:00",
       "versionFamilies": [
         "7.4"
       ],
@@ -1357,7 +1493,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-24T07:14:22.584683+00:00",
-      "lastSeen": "2026-10-28T05:39:35.554158+00:00",
+      "lastSeen": "2026-10-28T08:40:13.915335+00:00",
       "versionFamilies": [],
       "potentialProblem": true,
       "categories": [
@@ -1386,7 +1522,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-28T05:39:35.554158+00:00",
+      "lastSeen": "2026-10-28T08:40:13.915335+00:00",
       "versionFamilies": [
         "7.2",
         "7.4",
@@ -1417,7 +1553,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-26T12:58:24.915805+00:00",
-      "lastSeen": "2026-10-28T05:39:35.554158+00:00",
+      "lastSeen": "2026-10-28T08:40:13.915335+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -1439,7 +1575,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-26T16:16:28.410579+00:00",
-      "lastSeen": "2026-10-28T05:39:35.554158+00:00",
+      "lastSeen": "2026-10-28T08:40:13.915335+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -1463,7 +1599,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-26T16:16:28.410579+00:00",
-      "lastSeen": "2026-10-28T05:39:35.554158+00:00",
+      "lastSeen": "2026-10-28T08:40:13.915335+00:00",
       "versionFamilies": [
         "7.6"
       ],
@@ -1491,7 +1627,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-26T14:41:22.213432+00:00",
-      "lastSeen": "2026-10-28T05:39:35.554158+00:00",
+      "lastSeen": "2026-10-28T08:40:13.915335+00:00",
       "versionFamilies": [
         "7.4"
       ],
@@ -1521,7 +1657,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-26T14:38:38.019574+00:00",
-      "lastSeen": "2026-10-28T05:39:35.554158+00:00",
+      "lastSeen": "2026-10-28T08:40:13.915335+00:00",
       "versionFamilies": [
         "6.6",
         "7.4"
@@ -1544,7 +1680,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-23T07:37:30.171221+00:00",
-      "lastSeen": "2026-10-28T05:39:35.554158+00:00",
+      "lastSeen": "2026-10-28T08:40:13.915335+00:00",
       "versionFamilies": [
         "7.6"
       ],
@@ -1574,7 +1710,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-26T14:38:38.019574+00:00",
-      "lastSeen": "2026-10-28T05:39:35.554158+00:00",
+      "lastSeen": "2026-10-28T08:40:13.915335+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -1597,7 +1733,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-26T14:38:38.019574+00:00",
-      "lastSeen": "2026-10-28T05:39:35.554158+00:00",
+      "lastSeen": "2026-10-28T08:40:13.915335+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -1621,40 +1757,11 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-26T14:38:38.019574+00:00",
-      "lastSeen": "2026-10-28T05:39:35.554158+00:00",
+      "lastSeen": "2026-10-28T08:40:13.915335+00:00",
       "versionFamilies": [
         "7.4"
       ],
       "potentialProblem": false
-    },
-    {
-      "id": "https://community.fortinet.com/support-forum-92/install-failure-on-2-gb-ram-fortigates-after-fortimanager-7-6-8-upgrade-ssl-ssh-profile-udp-not-quic-230808",
-      "title": "Install failure on 2 GB RAM FortiGates after FortiManager 7.6.8 upgrade – ssl-ssh-profile udp-not-quic",
-      "url": "https://community.fortinet.com/support-forum-92/install-failure-on-2-gb-ram-fortigates-after-fortimanager-7-6-8-upgrade-ssl-ssh-profile-udp-not-quic-230808",
-      "date": "2026-10-26T13:21:50+00:00",
-      "summary": "Hi all,after upgrading FortiManager to 7.6.8, all installs to our FortiGate-50G devices (FortiOS 7.6.7) fail. FortiManager pushes an attribute to the default profile “custom-deep-inspection” that the 50G does not support:config firewall ssl-ssh-profile edit \"custom-deep-inspection\" config https set udp-not-quic allow end config dot set udp-not-quic allow end nextend---> generating verification report(vdom root: firewall ssl-ssh-profile \"custom-deep-inspection\" https:udp-not-quic) remote original: to be installed: allow(vdom root: firewall ssl-ssh-profile \"custom-deep-inspection\" dot:udp-not-quic) remote original: to be installed: allow<--- done generating verification report------- Start to retry ---------same result]install failedTask status: “verify state: install OK/verify FAIL” → “install and save finished status=FAILED”. No changes are applied.Running the command manually on the 50G:set udp-not-quic allowcommand parse error before 'udp-not-quic'Command fail. Return code -61A FortiGate-70G with the same FortiOS version accepts the command and installs fine, so this seems specific to 2 GB RAM models. The profile is unused and cannot be deleted (static entry), and an unset via CLI template doesn’t help either.Is this a known bug, and is there a workaround or fix version?Thanks!",
-      "products": [
-        "FortiGate",
-        "FortiManager"
-      ],
-      "versions": [
-        "7.6.7",
-        "7.6.8"
-      ],
-      "status": "À vérifier",
-      "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
-      "source": "Fortinet Community",
-      "firstSeen": "2026-10-23T07:37:30.171221+00:00",
-      "lastSeen": "2026-10-28T05:39:35.554158+00:00",
-      "versionFamilies": [
-        "7.6"
-      ],
-      "potentialProblem": true,
-      "categories": [
-        "Support Forum"
-      ],
-      "fixedVersions": [],
-      "fixVersions": []
     },
     {
       "id": "https://community.fortinet.com/fortimanager-27/metadata-variables-in-cli-scripts-use-global-or-default-values-instead-of-mapped-per-device-vdom-values-230756",
@@ -1670,7 +1777,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-23T07:37:30.171221+00:00",
-      "lastSeen": "2026-10-28T05:39:35.554158+00:00",
+      "lastSeen": "2026-10-28T08:40:13.915335+00:00",
       "versionFamilies": [],
       "potentialProblem": false,
       "categories": [
@@ -1697,7 +1804,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-26T12:58:24.915805+00:00",
-      "lastSeen": "2026-10-28T05:39:35.554158+00:00",
+      "lastSeen": "2026-10-28T08:40:13.915335+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -1722,7 +1829,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-26T12:58:24.915805+00:00",
-      "lastSeen": "2026-10-28T05:39:35.554158+00:00",
+      "lastSeen": "2026-10-28T08:40:13.915335+00:00",
       "versionFamilies": [
         "7.4"
       ],
@@ -1746,7 +1853,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-26T12:58:24.915805+00:00",
-      "lastSeen": "2026-10-28T05:39:35.554158+00:00",
+      "lastSeen": "2026-10-28T08:40:13.915335+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -1768,7 +1875,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-26T09:30:25.828296+00:00",
-      "lastSeen": "2026-10-28T05:39:35.554158+00:00",
+      "lastSeen": "2026-10-28T08:40:13.915335+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -1789,7 +1896,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-25T16:15:19.386671+00:00",
-      "lastSeen": "2026-10-28T05:39:35.554158+00:00",
+      "lastSeen": "2026-10-28T08:40:13.915335+00:00",
       "versionFamilies": [],
       "potentialProblem": false,
       "fixedVersions": [],
@@ -1813,7 +1920,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-26T09:30:25.828296+00:00",
-      "lastSeen": "2026-10-28T05:39:35.554158+00:00",
+      "lastSeen": "2026-10-28T08:40:13.915335+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -4074,7 +4181,7 @@
   "aiReviewNote": "La relecture IA améliore la lisibilité mais ne constitue pas une validation officielle. Les produits, versions, correctifs, statuts et sources sont conservés depuis la synthèse déterministe.",
   "aiReviewStatus": "error",
   "aiReviewMessage": "Relecture Gemini indisponible (JSONDecodeError). La synthèse déterministe reste publiée et les anciennes relectures valides sont conservées si leurs preuves sont inchangées.",
-  "aiReviewCheckedAt": "2026-10-28T05:39:38.940029+00:00",
+  "aiReviewCheckedAt": "2026-10-28T08:40:18.334316+00:00",
   "incidents": [
     {
       "id": "incident-e576a6fb36fb",
@@ -4305,6 +4412,46 @@
         "reviewedAt": "2026-10-27T14:15:25.945798+00:00",
         "label": "Relecture IA — à vérifier avec les sources"
       }
+    },
+    {
+      "id": "incident-1ba322e8c3cb",
+      "title": "FortiPAM retrieves an incorrect FortiClient EMS serial number",
+      "summary": "DescriptionFortiPAM retrieves an incorrect FortiClient EMS serial number for synchronized tags, preventing ZTNA access for tagged devices.ScopeFortiPAM, FortiClient EMS.SolutionDevices with assigned tags in FortiClient EMS cannot access FortiPAM via ZTNA. The tags synchronized from FortiClient EMS to FortiPAM are associated with an incorrect serial number that does not match the actual FortiClient EMS console serial number.",
+      "symptom": "FortiPAM retrieves an incorrect FortiClient EMS serial number for synchronized tags, preventing ZTNA access for tagged devices",
+      "impact": "",
+      "solution": "Devices with assigned tags in FortiClient EMS cannot access FortiPAM via ZTNA. The tags synchronized from FortiClient EMS to FortiPAM are associated with an incorrect serial number that does not match the actual FortiClient EMS console serial number. Root CauseFortiPAM retrieves the default tenant serial number instead of the specific tenant serial number in multi-tenant FortiClient EMS environments. This is identified as BUG 1343587. Permanent FixUpdate FortiClient EMS to version 7.4.9 or later Contournement : Perform the following steps to clear the invalid tags and refresh the synchronization: Clear the invalid tags associated with the incorrect serial number by running the following command on FortiPAM: diagnose endpoint tags remove-by-sn Restart the fabric connector daemon to refresh the data: diag test app fcnacd 99 Verify that the tags are synchronized with the correct serial number using the following commands: diagnose test application fcnacd 2 diagnose test application fcnacd 7",
+      "products": [
+        "FortiClient EMS"
+      ],
+      "versions": [],
+      "versionFamilies": [],
+      "fixVersions": [],
+      "sourceCount": 1,
+      "forumReportCount": 0,
+      "documentedSourceCount": 1,
+      "sources": [
+        {
+          "title": "FortiPAM retrieves an incorrect FortiClient EMS serial number",
+          "url": "https://community.fortinet.com/forticlient-4/fortipam-retrieves-an-incorrect-forticlient-ems-serial-number-230914",
+          "date": "2026-10-28T08:16:14+00:00",
+          "summary": "DescriptionFortiPAM retrieves an incorrect FortiClient EMS serial number for synchronized tags, preventing ZTNA access for tagged devices.ScopeFortiPAM, FortiClient EMS.SolutionDevices with assigned tags in FortiClient EMS cannot access FortiPAM via ZTNA. The tags synchronized from FortiClient EMS to FortiPAM are associated with an incorrect serial number that does not match the actual FortiClient EMS console serial number. Root CauseFortiPAM retrieves the default tenant serial number instead of the specific tenant serial number in multi-tenant FortiClient EMS environments. This is identified as BUG 1343587. Permanent FixUpdate FortiClient EMS to version 7.4.9 or later. WorkaroundPerform the following steps to clear the invalid tags and refresh the synchronization: Clear the invalid tags associated with the incorrect serial number by running the following command on FortiPAM: diagnose endpoint tags remove-by-sn Restart the fabric connector daemon to refresh the data: diag test app fcna",
+          "products": [
+            "FortiClient EMS"
+          ],
+          "versions": [],
+          "versionFamilies": [],
+          "sourceType": "fortinet_article",
+          "fixVersions": [],
+          "symptom": "FortiPAM retrieves an incorrect FortiClient EMS serial number for synchronized tags, preventing ZTNA access for tagged devices",
+          "impact": "",
+          "solution": "Devices with assigned tags in FortiClient EMS cannot access FortiPAM via ZTNA. The tags synchronized from FortiClient EMS to FortiPAM are associated with an incorrect serial number that does not match the actual FortiClient EMS console serial number. Root CauseFortiPAM retrieves the default tenant serial number instead of the specific tenant serial number in multi-tenant FortiClient EMS environments. This is identified as BUG 1343587. Permanent FixUpdate FortiClient EMS to version 7.4.9 or later Contournement : Perform the following steps to clear the invalid tags and refresh the synchronization: Clear the invalid tags associated with the incorrect serial number by running the following command on FortiPAM: diagnose endpoint tags remove-by-sn Restart the fabric connector daemon to refresh the data: diag test app fcnacd 99 Verify that the tags are synchronized with the correct serial number using the following commands: diagnose test application fcnacd 2 diagnose test application fcnacd 7"
+        }
+      ],
+      "lastSeen": "2026-10-28T08:16:14+00:00",
+      "status": "Documenté par Fortinet (version non précisée)",
+      "confidence": "Documentation Fortinet (version non précisée)",
+      "evidenceType": "official_documentation",
+      "synthesisMethod": "Règles de preuve : article Fortinet versionné et explicite, ou au moins deux discussions distinctes; pas d'IA générative."
     },
     {
       "id": "incident-a4b77aece9b9",
@@ -5781,7 +5928,7 @@
       }
     }
   ],
-  "incidentCount": 30,
-  "synthesisGeneratedAt": "2026-10-28T05:39:38.842003+00:00",
+  "incidentCount": 31,
+  "synthesisGeneratedAt": "2026-10-28T08:40:18.240501+00:00",
   "synthesisNote": "Un point n'est affiché que s'il est documenté par un article Fortinet versionné et explicite, ou décrit dans au moins deux discussions distinctes d'utilisateurs. Les articles officiels ne comptent pas comme des personnes supplémentaires. Les signalements isolés non documentés sont exclus."
 }
