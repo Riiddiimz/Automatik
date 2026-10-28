@@ -379,5 +379,18 @@ class CommunitySynthesisTests(unittest.TestCase):
         self.assertNotIn("Plusieurs discussions", summary)
 
 
+    def test_unwatched_product_board_does_not_inherit_stale_cross_tags(self):
+        item = {
+            "title": "GUI inaccessible after upgrading to FortiSOAR version 8.0.0 due to nginx failure",
+            "summary": "DescriptionThe FortiSOAR GUI is inaccessible after upgrading to FortiSOAR 8.0.0. ScopeFortiSOAR. SolutionRemove the obsolete nginx directive.",
+            "url": "https://community.fortinet.com/fortisoar-35/gui-inaccessible-after-upgrading-to-fortisoar-version-8-0-0-due-to-nginx-failure-230910",
+            "products": ["FortiGate", "FortiManager", "FortiAnalyzer", "FortiAuthenticator", "FortiClient"],
+        }
+        self.assertEqual(synth.extract_products(item), [])
+        with tempfile.TemporaryDirectory() as directory:
+            result = synth.synthesize({"topics": [item]}, Path(directory) / "community.json")
+        self.assertEqual(result["incidentCount"], 0)
+
+
 if __name__ == "__main__":
     unittest.main()
