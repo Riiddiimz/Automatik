@@ -114,5 +114,37 @@ class SnapshotComparisonTests(unittest.TestCase):
             self.assertNotEqual(target.read_text(encoding="utf-8"), previous_text)
 
 
+    def test_material_community_json_compaction_is_kept(self):
+        previous = self.community_snapshot()
+        previous["topics"] = [
+            {
+                "id": f"https://community.fortinet.com/fortigate-3/topic-{index:06d}",
+                "title": f"FortiGate issue {index}",
+                "url": f"https://community.fortinet.com/fortigate-3/topic-{index:06d}",
+                "date": None,
+                "summary": "A" * 400,
+                "products": ["FortiGate"],
+                "versions": ["7.6.8"],
+                "fixVersions": [],
+                "discoverySource": "index produit public",
+                "firstSeen": "2026-10-26T10:00:00+00:00",
+                "lastSeen": "2026-10-26T10:00:00+00:00",
+                "detailCheckedAt": "2026-10-26T10:00:00+00:00",
+            }
+            for index in range(200)
+        ]
+        previous["topicCount"] = len(previous["topics"])
+        previous_text = json.dumps(previous, ensure_ascii=False, indent=2) + "\n"
+        compact_text = json.dumps(previous, ensure_ascii=False, indent=1) + "\n"
+        self.assertGreater(len(previous_text.encode("utf-8")), len(compact_text.encode("utf-8")) + 5000)
+
+        with tempfile.TemporaryDirectory() as directory:
+            target = Path(directory) / "community.json"
+            target.write_text(compact_text, encoding="utf-8")
+            restored = restore_previous_if_only_timestamps_changed(target, previous_text, "community")
+            self.assertFalse(restored)
+            self.assertEqual(target.read_text(encoding="utf-8"), compact_text)
+
+
 if __name__ == "__main__":
     unittest.main()
