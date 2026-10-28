@@ -330,7 +330,15 @@ def build_summary(items: list[dict]) -> str:
     best = max(items, key=lambda x: min(len(x.get("summary", "")), 1600))
     text = re.sub(r"\s+", " ", best.get("summary", "")).strip()
     if not text:
-        return "Plusieurs discussions semblent décrire un problème proche. Ouvrir les sources pour confirmer les symptômes et le périmètre."
+        if all(source_type(item) == "fortinet_article" for item in items):
+            return (
+                "La page d’index ne fournit pas de résumé détaillé. Consultez la fiche Fortinet "
+                "pour vérifier le périmètre, l’impact et la solution."
+            )
+        return (
+            "Les résumés ne sont pas disponibles dans les sources récupérées. Consultez les "
+            "discussions d’origine pour confirmer les symptômes et le périmètre."
+        )
     # Prefer a compact lead, stopping at the first clear sentence after a minimum useful length.
     sentences = re.split(r"(?<=[.!?])\s+(?=[A-Z])", text)
     selected = []
