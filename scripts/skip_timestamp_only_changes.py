@@ -49,8 +49,15 @@ def restore_previous_if_only_timestamps_changed(
 ) -> bool:
     """Restore the committed bytes when a run changed timestamps but no useful content."""
     previous = json.loads(previous_text)
-    current = json.loads(target.read_text(encoding="utf-8"))
+    current_text = target.read_text(encoding="utf-8")
+    current = json.loads(current_text)
     if not same_published_content(previous, current, dataset):
+        return False
+    # Preserve a one-time, material JSON compaction for the large Community
+    # dataset; otherwise the timestamp-only guard would undo the size reduction.
+    previous_size = len(previous_text.encode("utf-8"))
+    current_size = len(current_text.encode("utf-8"))
+    if dataset == "community" and current_size + 5000 < previous_size:
         return False
     target.write_text(previous_text, encoding="utf-8")
     return True
