@@ -717,7 +717,7 @@ def enrich_board_topic_metadata(
         if not url or not BOARD_DETAIL_RE.search(title):
             continue
         known = known_by_url.get(url, {})
-        if known.get("summary"):
+        if known.get("summary") and known.get("date"):
             continue
         checked_at = str(known.get("detailCheckedAt") or "")
         if checked_at and checked_at >= cutoff:
