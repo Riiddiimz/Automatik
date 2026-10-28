@@ -27,9 +27,10 @@ MAX_BOARD_PAGES = 3
 MAX_BOARD_DETAIL_LOOKUPS = 12
 DETAIL_FAILURE_RETRY_HOURS = 2
 BOARD_DETAIL_RE = re.compile(
-    r"\b(?:fail(?:s|ed|ure)?|not working|not supported|unsupported|unable|cannot|can\x27t|"
+    r"\b(?:fail(?:s|ed|ure)?|not working|not loading|not supported|unsupported|unable|cannot|can\x27t|"
     r"error|issue|bug|crash|stuck|disconnect(?:s|ed|ing)?|no longer|wrong|incorrect|"
-    r"unavailable|blocked|timeout|missing|regression|does not work)\b",
+    r"unavailable|blocked|timeout|missing|regression|does not work|slow|expired|expiration|"
+    r"invalid|authentication|certificate|connection reset)\b",
     re.I,
 )
 
@@ -41,6 +42,9 @@ BOARD_SOURCES = {
     "FortiAuthenticator": "https://community.fortinet.com/fortiauthenticator-8",
     "FortiAnalyzer": "https://community.fortinet.com/fortianalyzer-6",
     "FortiClient": "https://community.fortinet.com/forticlient-4",
+    # General user discussions expose recent cross-product incidents missed by
+    # the global RSS cap; parse only topics with a recognizable Fortinet product.
+    "Support Forum": "https://community.fortinet.com/support-forum-92",
 }
 
 PRODUCT_ALIASES = {
@@ -57,10 +61,11 @@ PRODUCT_ALIASES = {
 # product/firmware marker or appears in an explicit upgrade path.
 VERSION_CONTEXT_RE = re.compile(
     r"\b(?:fortios|fortigate|fortimanager|fortianalyzer|fortiauthenticator|"
-    r"forticlient(?:\s+(?:ems|vpn))?|fortiswitch|fortiap|firmware)\s*"
+    r"forticlient(?:\s+(?:ems|vpn))?|fortiswitch|fortiap|firmware)\s*[\(:-]?\s*"
     r"(?:version\s*)?v?(\d{1,2}\.\d{1,2}(?:\.\d{1,3})?)",
     re.I,
 )
+FIRMWARE_VERSION_LIST_RE = re.compile(r"\bfirmware\s*\(([^)]{1,120})\)", re.I)
 UPGRADE_PATH_RE = re.compile(
     r"\b(?:upgrad(?:e|ed|ing|es)|firmware update)\b[^.!?]{0,120}?"
     r"\b(?:from\s+)?(?:version\s*)?v?(\d{1,2}\.\d{1,2}(?:\.\d{1,3})?)\b"
@@ -317,6 +322,8 @@ def extract_versions(title: str, summary: str, url: str = "") -> list[str]:
         " ", text, flags=re.I,
     )
     found = set(VERSION_CONTEXT_RE.findall(text))
+    for version_list in FIRMWARE_VERSION_LIST_RE.findall(text):
+        found.update(re.findall(r"\b(\d{1,2}\.\d{1,2}(?:\.\d{1,3})?)\b", version_list))
     for source_version, target_version in UPGRADE_PATH_RE.findall(text):
         found.update((source_version, target_version))
     found.update(UPGRADE_TARGET_RE.findall(text))
@@ -557,6 +564,8 @@ class BoardTopicParser(HTMLParser):
         self.seen: set[str] = set()
 
     def handle_starttag(self, tag: str, attrs: list[tuple[str, str | None]]) -> None:
+        if self.anchor is not None and tag.lower() in {"div", "p", "h1", "h2", "h3", "h4", "li", "section", "article"}:
+            self.anchor["text"].append(" ")
         if tag.lower() != "a":
             return
         attributes = dict(attrs)
@@ -580,6 +589,8 @@ class BoardTopicParser(HTMLParser):
             self.anchor["text"].append(data)
 
     def handle_endtag(self, tag: str) -> None:
+        if self.anchor is not None and tag.lower() in {"div", "p", "h1", "h2", "h3", "h4", "li", "section", "article"}:
+            self.anchor["text"].append(" ")
         if tag.lower() != "a" or self.anchor is None:
             return
         anchor = self.anchor
@@ -592,8 +603,29 @@ class BoardTopicParser(HTMLParser):
         self.topics.append({"title": title, "url": url})
 
 
+def split_board_title_and_summary(raw_text: str, url: str) -> tuple[str, str]:
+    """Split a forum card's title from its preview using the public URL slug."""
+    text = clean(raw_text)
+    slug = urlparse(url).path.rstrip("/").rsplit("/", 1)[-1]
+    slug = re.sub(r"-\d{4,}$", "", slug)
+    slug_tokens = re.findall(r"[a-z0-9]+", slug.lower())
+    text_matches = list(re.finditer(r"[a-z0-9]+", text, re.I))
+    text_tokens = [match.group(0).lower() for match in text_matches]
+    common = 0
+    for slug_token, text_token in zip(slug_tokens, text_tokens):
+        if slug_token != text_token:
+            break
+        common += 1
+    if not slug_tokens or common < min(3, len(slug_tokens)) or common < len(slug_tokens) * 0.6:
+        return text, ""
+    title_end = text_matches[common - 1].end()
+    title = text[:title_end].strip(" \t\r\n-–:|")
+    summary = text[title_end:].strip(" \t\r\n-–:|")
+    return title or text, summary
+
+
 def parse_board_page(payload: str | bytes, board_url: str, product: str) -> list[dict]:
-    """Convert public index links into cautious, explicitly incomplete topic records."""
+    """Convert public product indexes into cautious topic records; preserve support-forum previews."""
     if isinstance(payload, bytes):
         payload = payload.decode("utf-8", errors="replace")
     parser = BoardTopicParser(board_url)
@@ -601,12 +633,24 @@ def parse_board_page(payload: str | bytes, board_url: str, product: str) -> list
     parser.close()
     result = []
     for entry in parser.topics:
-        title, url = entry["title"], entry["url"]
-        title_products = [
-            name for name, patterns in PRODUCT_ALIASES.items()
-            if any(re.search(pattern, title, re.I) for pattern in patterns)
-        ]
-        products = list(dict.fromkeys([product, *title_products]))
+        raw_text, url = entry["title"], entry["url"]
+        is_support_forum = product == "Support Forum"
+        if is_support_forum:
+            title, summary = split_board_title_and_summary(raw_text, url)
+            product_text = f"{title} {summary}"
+            products = [
+                name for name, patterns in PRODUCT_ALIASES.items()
+                if any(re.search(pattern, product_text, re.I) for pattern in patterns)
+            ]
+            if not products:
+                continue
+        else:
+            title, summary = raw_text, ""
+            title_products = [
+                name for name, patterns in PRODUCT_ALIASES.items()
+                if any(re.search(pattern, title, re.I) for pattern in patterns)
+            ]
+            products = list(dict.fromkeys([product, *title_products]))
         if "FortiClient EMS" in products:
             products = [name for name in products if name != "FortiClient"]
         result.append({
@@ -614,10 +658,10 @@ def parse_board_page(payload: str | bytes, board_url: str, product: str) -> list
             "title": title,
             "url": url,
             "date": None,
-            "summary": "",
+            "summary": summary[:5000],
             "products": products,
-            "versions": extract_versions(title, "", url),
-            "fixVersions": extract_fixed_versions(title, "", url),
+            "versions": extract_versions(title, summary, url),
+            "fixVersions": extract_fixed_versions(title, summary, url),
             "discoverySource": "index produit public",
         })
     return result
