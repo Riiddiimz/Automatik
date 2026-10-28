@@ -389,7 +389,7 @@ class CommunitySynthesisTests(unittest.TestCase):
         self.assertEqual(synth.extract_products(item), [])
         customer_service = {
             "title": "Customer Service Note: Email interaction when working tickets with Fortinet Support",
-            "summary": "General customer service process.",
+            "summary": "General customer service process mentioning FortiGate and FortiManager procedures.",
             "url": "https://community.fortinet.com/customer-service-42/customer-service-note-email-interaction-when-working-tickets-with-fortinet-support-99820",
             "products": ["FortiGate", "FortiManager", "FortiClient"],
         }
