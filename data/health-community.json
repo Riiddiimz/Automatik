@@ -1,9 +1,9 @@
 {
   "source": "community",
   "label": "Fortinet Community",
-  "status": "partial",
-  "checkedAt": "2026-10-28T08:40:48.764838+00:00",
+  "status": "error",
+  "checkedAt": "2026-10-28T08:40:59.429995+00:00",
   "lastSuccessAt": null,
-  "message": "La collecte s'est exécutée, mais certaines sources sont incomplètes : Le flux Community ignore le paramètre start à 100; les sujets précédents se répètent. Le flux Community a renvoyé 100 entrées brutes sur 500 demandées; la couverture complète des 30 derniers jours n'est pas garantie.",
-  "runUrl": "https://github.com/Riiddiimz/Automatik/actions/runs/40658443837"
+  "message": "Le workflow GitHub Actions a échoué. Les dernières données publiées sont conservées, mais peuvent être anciennes.",
+  "runUrl": "https://github.com/Riiddiimz/Automatik/actions/runs/40658476361"
 }
