@@ -883,7 +883,7 @@ def collect(fetcher=fetch_feed, out: Path = OUT, topic_fetcher=None, board_fetch
             continue
         key = raw_key.rstrip("/")
         old = merged.get(key, {})
-        merged[key] = {
+        record = {
             **old,
             **item,
             "id": key,
@@ -891,6 +891,18 @@ def collect(fetcher=fetch_feed, out: Path = OUT, topic_fetcher=None, board_fetch
             "firstSeen": old.get("firstSeen", now),
             "lastSeen": now,
         }
+        # A product index only supplies a title and link. It must never erase
+        # richer metadata collected earlier from RSS or a detail page.
+        if item.get("discoverySource") == "index produit public":
+            for field in ("date", "summary", "versions", "fixVersions", "statusNote"):
+                if old.get(field):
+                    record[field] = old[field]
+            for field in ("products", "categories"):
+                record[field] = list(dict.fromkeys([
+                    *(old.get(field) or []),
+                    *(item.get(field) or []),
+                ]))
+        merged[key] = record
 
     topics = sorted(
         merged.values(),
