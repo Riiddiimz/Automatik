@@ -554,5 +554,16 @@ class CommunityFeedTests(unittest.TestCase):
         self.assertTrue(all(item.get("detailCheckedAt") for item in result if item["url"] in calls))
 
 
+    def test_unwatched_product_board_does_not_inherit_cross_product_categories(self):
+        payload = b"""<rss version="2.0"><channel><item>
+          <title>GUI inaccessible after upgrading to FortiSOAR version 8.0.0 due to nginx failure</title>
+          <link>https://community.fortinet.com/fortisoar-35/gui-inaccessible-after-upgrading-to-fortisoar-version-8-0-0-due-to-nginx-failure-230910</link>
+          <description><![CDATA[DescriptionThe FortiSOAR GUI is inaccessible after upgrading to FortiSOAR 8.0.0. ScopeFortiSOAR. SolutionRemove the obsolete nginx directive.]]></description>
+          <category>FortiSOAR</category><category>FortiGate</category><category>FortiManager</category>
+          <category>FortiAnalyzer</category><category>FortiAuthenticator</category><category>FortiClient</category>
+        </item></channel></rss>"""
+        self.assertEqual(collector.parse_feed(payload), [])
+
+
 if __name__ == "__main__":
     unittest.main()
