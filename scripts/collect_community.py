@@ -924,6 +924,15 @@ def merge_discovered_topics(primary: list[dict], secondary: list[dict]) -> list[
                 *(existing.get(field) or []),
                 *(normalized.get(field) or []),
             ]))
+        # An index preview may reveal firmware versions that the capped RSS
+        # entry omitted. Merge these explicit values instead of letting an
+        # empty primary field erase the secondary discovery.
+        for field in ("versions", "fixVersions"):
+            versions = set(existing.get(field) or []) | set(normalized.get(field) or [])
+            combined[field] = sorted(
+                versions,
+                key=lambda version: tuple(int(part) for part in str(version).split(".")),
+            )
         for field in ("date", "summary"):
             if not combined.get(field) and normalized.get(field):
                 combined[field] = normalized[field]
