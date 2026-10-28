@@ -24,6 +24,28 @@ class CommunitySynthesisTests(unittest.TestCase):
         self.assertIn("7.6", families)
         self.assertIn("8.0", families)
 
+    def test_firmware_versions_listed_in_parentheses_survive_synthesis(self):
+        item = {
+            "title": "Some Website not loading with Deep Inspection",
+            "summary": (
+                "We use different FortiGate models and different Firmware "
+                "(7.6.8 / 7.4.13). Disabling the Antivirus profile appears to work."
+            ),
+            "url": "https://community.fortinet.com/support-forum-92/some-website-not-loading-with-deep-inspection-230891",
+            "products": ["FortiGate"],
+            "versions": [],
+            "fixVersions": [],
+            "date": "2026-10-28T07:43:30+00:00",
+        }
+        exact, families = synth.extract_versions(item)
+        self.assertEqual(exact, ["7.4.13", "7.6.8"])
+        self.assertEqual(families, ["7.4", "7.6"])
+
+        with tempfile.TemporaryDirectory() as directory:
+            result = synth.synthesize({"topics": [item]}, Path(directory) / "community.json")
+        self.assertEqual(result["topics"][0]["versions"], ["7.4.13", "7.6.8"])
+        self.assertEqual(result["topics"][0]["versionFamilies"], ["7.4", "7.6"])
+
     def test_unrelated_dotted_numbers_are_not_misread_as_firmware_versions(self):
         item = {
             "title": "CVE-2026-106175 record lists FortiPAM, FortiSASE and FortiOS/FortiProxy 7.0 as affected",
