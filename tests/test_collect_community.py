@@ -463,6 +463,29 @@ class CommunityFeedTests(unittest.TestCase):
         self.assertNotIn("detailAttemptedAt", recovered)
 
 
+    def test_support_forum_index_extracts_title_preview_product_and_versions(self):
+        board = "https://community.fortinet.com/support-forum-92"
+        page = """
+        <html><body>
+          <a href="/support-forum-92/some-website-not-loading-with-deep-inspection-230900">
+            <h3>Some Website not loading with Deep Inspection</h3>
+            <p>Since about 2-3 hours some websites are timing out. We use different FortiGate models and different Firmware (7.6.8 / 7.4.13). Disabling antivirus appears to work.</p>
+          </a>
+          <a href="/support-forum-92/general-network-question-230901">
+            <h3>General network question</h3>
+            <p>No Fortinet product is mentioned in this unrelated question.</p>
+          </a>
+        </body></html>
+        """
+        items = collector.parse_board_page(page, board, "Support Forum")
+        self.assertIn("Support Forum", collector.BOARD_SOURCES)
+        self.assertEqual(len(items), 1)
+        self.assertEqual(items[0]["title"], "Some Website not loading with Deep Inspection")
+        self.assertIn("timing out", items[0]["summary"])
+        self.assertEqual(items[0]["products"], ["FortiGate"])
+        self.assertEqual(items[0]["versions"], ["7.4.13", "7.6.8"])
+        self.assertIsNone(items[0]["date"])
+
     def test_product_index_pagination_stops_on_repeated_page_and_reports_it(self):
         board = "https://community.fortinet.com/fortigate-3"
         page = b"""<html><body>
