@@ -923,7 +923,7 @@ def collect(fetcher=fetch_feed, out: Path = OUT, topic_fetcher=None, board_fetch
 
 
 def main() -> int:
-    result = collect()
+    result = collect(board_fetcher=fetch_board_topics)
     print(f"Collecte terminée : {len(result.get('topics', []))} sujets conservés; partielle={result.get('partial', False)}")
     for error in result.get("errors", []):
         print(f"AVERTISSEMENT: {error}")
