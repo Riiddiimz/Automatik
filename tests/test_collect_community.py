@@ -476,5 +476,42 @@ class CommunityFeedTests(unittest.TestCase):
         self.assertTrue(any("403" in error for error in result["errors"]))
 
 
+    def test_board_index_refresh_preserves_richer_historical_metadata(self):
+        url = "https://community.fortinet.com/fortigate-3/administrator-sso-authentication-fails-after-upgrade-to-fortios-7-6-8-230826"
+        old_topic = {
+            "id": url, "url": url,
+            "title": "Administrator SSO authentication fails after upgrade to FortiOS 7.6.8",
+            "date": "2026-10-24T12:00:00+00:00",
+            "summary": "DescriptionSSO fails. ScopeFortiOS 7.6.8. SolutionUse another administrator authentication method.",
+            "products": ["FortiGate"], "categories": ["FortiGate"],
+            "versions": ["7.6.8"], "fixVersions": ["7.6.9"],
+            "statusNote": "Version affectée et correctif annoncés dans la fiche officielle.",
+            "firstSeen": "2026-10-24T12:00:00+00:00",
+        }
+        board_topic = {
+            "id": url, "url": url, "title": old_topic["title"],
+            "date": None, "summary": "", "products": ["FortiGate"], "categories": ["FortiGate"],
+            "versions": [], "fixVersions": [], "statusNote": "Index only",
+            "discoverySource": "index produit public",
+        }
+        unrelated = b"""<rss version="2.0"><channel>
+          <item><title>Unrelated topic</title><link>https://community.fortinet.com/support-forum-92/unrelated-230000</link><description>Not a Fortinet product issue.</description></item>
+        </channel></rss>"""
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "community.json"
+            path.write_text(json.dumps({"topics": [old_topic]}), encoding="utf-8")
+            result = collector.collect(
+                fetcher=lambda: unrelated,
+                out=path,
+                board_fetcher=lambda: {"topics": [board_topic], "errors": [], "pages": ["index"], "pageCount": 1},
+            )
+        topic = next(item for item in result["topics"] if item["url"] == url)
+        self.assertEqual(topic["date"], old_topic["date"])
+        self.assertEqual(topic["summary"], old_topic["summary"])
+        self.assertEqual(topic["versions"], ["7.6.8"])
+        self.assertEqual(topic["fixVersions"], ["7.6.9"])
+        self.assertEqual(topic["statusNote"], old_topic["statusNote"])
+
+
 if __name__ == "__main__":
     unittest.main()
