@@ -99,7 +99,7 @@ def extract_products(item: dict) -> list[str]:
         "fortiswitch": "FortiSwitch", "fortiap": "FortiAP",
     }
     primary = next((name for slug, name in board_aliases.items() if board.startswith(slug)), None)
-    unwatched_product_board = bool(re.fullmatch(r"forti[a-z0-9]+-\d+", board)) and not primary
+    unwatched_product_board = bool(board) and not primary and not board.startswith("support-forum") and board != "t5"
     # Prefer products explicitly named in the title; use the body only as a fallback.
     title_found = [name for name, pattern in PRODUCT_PATTERNS.items() if re.search(pattern, title, re.I)]
     if primary:
