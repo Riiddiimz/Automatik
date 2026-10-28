@@ -9,7 +9,7 @@ import re
 import urllib.error
 import urllib.request
 import xml.etree.ElementTree as ET
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from email.utils import parsedate_to_datetime
 from pathlib import Path
 from urllib.parse import urljoin, urlparse
@@ -24,6 +24,13 @@ USER_AGENT = "AutomatikCommunityWatch/1.0 (+https://github.com/Riiddiimz/Automat
 MAX_HISTORY = 1000
 MAX_TOPIC_PRODUCT_LOOKUPS = 8
 MAX_BOARD_PAGES = 3
+MAX_BOARD_DETAIL_LOOKUPS = 12
+BOARD_DETAIL_RE = re.compile(
+    r"\b(?:fail(?:s|ed|ure)?|not working|not supported|unsupported|unable|cannot|can\x27t|"
+    r"error|issue|bug|crash|stuck|disconnect(?:s|ed|ing)?|no longer|wrong|incorrect|"
+    r"unavailable|blocked|timeout|missing|regression|does not work)\b",
+    re.I,
+)
 
 # Secondary public discovery path for the product indexes.
 # EMS topics also appear in the FortiClient index and are classified from titles/tags.
