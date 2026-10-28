@@ -367,5 +367,17 @@ class CommunitySynthesisTests(unittest.TestCase):
         self.assertNotIn("aiReviewGeneratedAt", refreshed)
 
 
+    def test_index_only_official_source_does_not_claim_multiple_discussions(self):
+        item = {
+            "title": "Known issue in FortiOS 7.6.8",
+            "summary": "",
+            "url": "https://community.fortinet.com/fortigate-3/known-issue-in-fortios-7-6-8-230826",
+        }
+        summary = synth.build_summary([item])
+        self.assertIn("index", summary.lower())
+        self.assertIn("fiche Fortinet", summary)
+        self.assertNotIn("Plusieurs discussions", summary)
+
+
 if __name__ == "__main__":
     unittest.main()
