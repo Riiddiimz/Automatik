@@ -376,6 +376,9 @@ class CommunityFeedTests(unittest.TestCase):
         self.assertIsNone(items[0]["date"])
         self.assertEqual(items[0]["summary"], "")
         self.assertEqual(items[0]["discoverySource"], "index produit public")
+        self.assertNotIn("categories", items[0])
+        self.assertNotIn("statusNote", items[0])
+        self.assertNotIn("source", items[0])
 
     def test_product_index_pagination_stops_on_repeated_page_and_reports_it(self):
         board = "https://community.fortinet.com/fortigate-3"
