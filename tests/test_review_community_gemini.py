@@ -1,4 +1,5 @@
 import json
+import io
 import os
 from pathlib import Path
 import tempfile
@@ -136,6 +137,35 @@ class GeminiReviewTests(unittest.TestCase):
         self.assertNotIn("sensitive diagnostic", saved["aiReviewMessage"])
         self.assertEqual(saved["incidents"][0]["aiReview"]["summary"], "Reformulation toujours valide")
 
+
+
+    def test_review_batch_splits_when_model_json_is_truncated(self):
+        batch = [{"id": f"incident-{index}"} for index in range(4)]
+        calls = []
+
+        def fake_request(api_key, items):
+            calls.append([item["id"] for item in items])
+            if len(items) > 2:
+                raise reviewer.GeminiOutputJSONError("truncated")
+            return [{"id": item["id"]} for item in items]
+
+        with patch.object(reviewer, "request_gemini", side_effect=fake_request):
+            result = reviewer.review_batch("test-key", batch)
+
+        self.assertEqual(set(result), {item["id"] for item in batch})
+        self.assertEqual(calls[0], [item["id"] for item in batch])
+        self.assertEqual(len(calls), 3)
+
+    def test_request_gemini_wraps_malformed_model_json(self):
+        envelope = {
+            "candidates": [{
+                "content": {"parts": [{"text": '[{"id":"incident-test123"'}]}
+            }]
+        }
+        response = io.BytesIO(json.dumps(envelope).encode("utf-8"))
+        with patch.object(reviewer.urllib.request, "urlopen", return_value=response):
+            with self.assertRaises(reviewer.GeminiOutputJSONError):
+                reviewer.request_gemini("test-key", [{"id": "incident-test123"}])
 
 
 if __name__ == "__main__":
