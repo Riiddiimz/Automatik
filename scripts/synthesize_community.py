@@ -35,9 +35,10 @@ ISSUE_RE = re.compile(
     re.I,
 )
 VERSION_CONTEXT_RE = re.compile(
-    r"\b(?:fortios|fortigate|fortimanager|fortianalyzer|fortiauthenticator|forticlient(?:\s+(?:ems|vpn))?|fortiswitch|fortiap|firmware)\s*(?:version\s*)?v?(\d{1,2}\.\d{1,2}(?:\.\d{1,3})?)",
+    r"\b(?:fortios|fortigate|fortimanager|fortianalyzer|fortiauthenticator|forticlient(?:\s+(?:ems|vpn))?|fortiswitch|fortiap|firmware)\s*[\(:-]?\s*(?:version\s*)?v?(\d{1,2}\.\d{1,2}(?:\.\d{1,3})?)",
     re.I,
 )
+FIRMWARE_VERSION_LIST_RE = re.compile(r"\bfirmware\s*\(([^)]{1,120})\)", re.I)
 UPGRADE_PATH_RE = re.compile(
     r"\b(?:upgrad(?:e|ed|ing|es)|firmware update)\b[^.!?]{0,120}?\b(?:from\s+)?(?:version\s*)?v?(\d{1,2}\.\d{1,2}(?:\.\d{1,3})?)\b[^.!?]{0,80}?\bto\s+(?:version\s*)?v?(\d{1,2}\.\d{1,2}(?:\.\d{1,3})?)\b",
     re.I,
@@ -164,6 +165,8 @@ def extract_versions(item: dict) -> tuple[list[str], list[str]]:
         " ", text_without_ips, flags=re.I,
     )
     found = set(VERSION_CONTEXT_RE.findall(text_without_ips))
+    for version_list in FIRMWARE_VERSION_LIST_RE.findall(text_without_ips):
+        found.update(re.findall(r"\b(\d{1,2}\.\d{1,2}(?:\.\d{1,3})?)\b", version_list))
     for source_version, target_version in UPGRADE_PATH_RE.findall(text_without_ips):
         found.update((source_version, target_version))
     found.update(UPGRADE_TARGET_RE.findall(text_without_ips))
