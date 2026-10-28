@@ -25,6 +25,7 @@ MAX_HISTORY = 1000
 MAX_TOPIC_PRODUCT_LOOKUPS = 8
 MAX_BOARD_PAGES = 3
 MAX_BOARD_DETAIL_LOOKUPS = 12
+DETAIL_FAILURE_RETRY_HOURS = 2
 BOARD_DETAIL_RE = re.compile(
     r"\b(?:fail(?:s|ed|ure)?|not working|not supported|unsupported|unable|cannot|can\x27t|"
     r"error|issue|bug|crash|stuck|disconnect(?:s|ed|ing)?|no longer|wrong|incorrect|"
@@ -702,7 +703,8 @@ def enrich_board_topic_metadata(
 ) -> list[dict]:
     """Enrich a small, fair sample of likely problems; keep index-only fields explicitly unknown."""
     now = datetime.now(timezone.utc)
-    cutoff = (now - timedelta(hours=24)).isoformat()
+    success_cutoff = (now - timedelta(hours=24)).isoformat()
+    failure_cutoff = (now - timedelta(hours=DETAIL_FAILURE_RETRY_HOURS)).isoformat()
     known_by_url = {
         str(item.get("url") or item.get("id") or "").rstrip("/"): item
         for item in known_topics
@@ -719,8 +721,11 @@ def enrich_board_topic_metadata(
         known = known_by_url.get(url, {})
         if known.get("summary") and known.get("date"):
             continue
+        attempted_at = str(known.get("detailAttemptedAt") or "")
+        if attempted_at and attempted_at >= failure_cutoff:
+            continue
         checked_at = str(known.get("detailCheckedAt") or "")
-        if checked_at and checked_at >= cutoff:
+        if checked_at and checked_at >= success_cutoff:
             continue
         product = next(iter(item.get("categories") or item.get("products") or ["Autre"]), "Autre")
         grouped.setdefault(product, []).append(item)
@@ -749,12 +754,16 @@ def enrich_board_topic_metadata(
             if details.get("date"):
                 item["date"] = details["date"]
             item["detailCheckedAt"] = now.isoformat()
+            item.pop("detailAttemptedAt", None)
         except (OSError, urllib.error.URLError, TimeoutError, UnicodeError, ValueError) as exc:
             errors.append(
                 f"Enrichissement de la fiche Community impossible ({url}): "
                 f"{type(exc).__name__}: {exc}; le titre et le lien d’index sont conservés."
             )
-            item["detailCheckedAt"] = now.isoformat()
+            # A failed request is not a successful check. Retry after a short
+            # backoff rather than suppressing this URL for a full day.
+            item["detailAttemptedAt"] = now.isoformat()
+            item.pop("detailCheckedAt", None)
     return items
 
 
