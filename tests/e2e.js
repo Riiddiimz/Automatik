@@ -62,6 +62,9 @@ const { chromium } = require("playwright");
       return !status.includes("En attente de la première collecte");
     });
     assert.match(await page.locator("#community-status").innerText(), /points de vigilance retenus|Collecte partielle|état partiel publié|Flux Community indisponible/);
+    if (Number(data.boardPageCount) > 0) {
+      assert.ok((await page.locator("#community-status").innerText()).includes("Index produits :"), "la couverture des index produits doit être visible");
+    }
     if (data.aiReviewStatus) assert.match(await page.locator("#community-status").innerText(), /Relecture IA/);
     if (data.partial && (data.errors || []).length) {
       const communityStatusText = await page.locator("#community-status").innerText();
