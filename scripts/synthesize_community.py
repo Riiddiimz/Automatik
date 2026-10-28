@@ -99,6 +99,7 @@ def extract_products(item: dict) -> list[str]:
         "fortiswitch": "FortiSwitch", "fortiap": "FortiAP",
     }
     primary = next((name for slug, name in board_aliases.items() if board.startswith(slug)), None)
+    unwatched_product_board = bool(re.fullmatch(r"forti[a-z0-9]+-\d+", board)) and not primary
     # Prefer products explicitly named in the title; use the body only as a fallback.
     title_found = [name for name, pattern in PRODUCT_PATTERNS.items() if re.search(pattern, title, re.I)]
     if primary:
@@ -121,7 +122,9 @@ def extract_products(item: dict) -> list[str]:
         found = [name for name, pattern in PRODUCT_PATTERNS.items() if re.search(pattern, text, re.I)]
     if "FortiClient EMS" in found:
         found = [p for p in found if p != "FortiClient"]
-    return found or item.get("products", [])
+    if unwatched_product_board and not found:
+        return []
+    return found or ([] if unwatched_product_board else item.get("products", []))
 
 
 def extract_versions(item: dict) -> tuple[list[str], list[str]]:
