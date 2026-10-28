@@ -511,9 +511,9 @@ def parse_feed(payload: bytes) -> list[dict]:
             primary = next((product for prefix, product in board_products.items() if slug.startswith(prefix)), None)
             if primary:
                 products = list(dict.fromkeys([primary] + [p for p in products if p in title]))
-            elif re.fullmatch(r"forti[a-z0-9]+-\d+", slug):
-                # An unrelated Fortinet product board may expose broad cross-product tags.
-                # Trust only target products explicitly named in its title, not those tags.
+            elif not slug.startswith("support-forum") and slug != "t5":
+                # Non-forum boards can carry broad cross-product tags in RSS.
+                # Trust target products explicitly named in the title, not those tags.
                 products = [
                     name for name, patterns in PRODUCT_ALIASES.items()
                     if any(re.search(pattern, title, re.I) for pattern in patterns)
