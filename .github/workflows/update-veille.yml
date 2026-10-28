@@ -27,6 +27,8 @@ jobs:
     steps:
       - name: Récupérer le dépôt
         uses: actions/checkout@v4
+        with:
+          ref: main
       - name: Installer Python
         uses: actions/setup-python@v5
         with:
