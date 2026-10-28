@@ -721,6 +721,11 @@ def enrich_board_topic_metadata(
         known = known_by_url.get(url, {})
         if known.get("summary") and known.get("date"):
             continue
+        # A successful page fetch is terminal for this index-only enrichment,
+        # even when the public page exposes no metadata. Otherwise the same
+        # first topics would be fetched every 24 hours and starve older entries.
+        if known.get("detailFetchStatus") == "success":
+            continue
         attempted_at = str(known.get("detailAttemptedAt") or "")
         if attempted_at and attempted_at >= failure_cutoff:
             continue
@@ -754,6 +759,7 @@ def enrich_board_topic_metadata(
             if details.get("date"):
                 item["date"] = details["date"]
             item["detailCheckedAt"] = now.isoformat()
+            item["detailFetchStatus"] = "success"
             item.pop("detailAttemptedAt", None)
         except (OSError, urllib.error.URLError, TimeoutError, UnicodeError, ValueError) as exc:
             errors.append(
@@ -763,6 +769,7 @@ def enrich_board_topic_metadata(
             # A failed request is not a successful check. Retry after a short
             # backoff rather than suppressing this URL for a full day.
             item["detailAttemptedAt"] = now.isoformat()
+            item["detailFetchStatus"] = "failed"
             item.pop("detailCheckedAt", None)
     return items
 
