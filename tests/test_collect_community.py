@@ -380,6 +380,62 @@ class CommunityFeedTests(unittest.TestCase):
         self.assertNotIn("statusNote", items[0])
         self.assertNotIn("source", items[0])
 
+    def test_failed_board_detail_enrichment_retries_after_short_backoff(self):
+        url = "https://community.fortinet.com/fortigate-3/vpn-fails-after-upgrade-230001"
+        topic = {
+            "id": url,
+            "url": url,
+            "title": "FortiGate VPN fails after upgrade",
+            "products": ["FortiGate"],
+            "versions": [],
+            "fixVersions": [],
+            "discoverySource": "index produit public",
+        }
+        errors = []
+
+        def failing_fetch(_url):
+            raise urllib.error.URLError("temporary public page failure")
+
+        failed = collector.enrich_board_topic_metadata(
+            [dict(topic)], [], failing_fetch, errors, max_lookups=1
+        )[0]
+        self.assertIn("detailAttemptedAt", failed)
+        self.assertNotIn("detailCheckedAt", failed)
+        self.assertTrue(any("Enrichissement" in error for error in errors))
+
+        calls = []
+        collector.enrich_board_topic_metadata(
+            [dict(topic)],
+            [failed],
+            lambda requested_url: calls.append(requested_url) or {},
+            [],
+            max_lookups=1,
+        )
+        self.assertEqual(calls, [], "un échec récent doit respecter le délai de reprise")
+
+        old_failure = {
+            **failed,
+            "detailAttemptedAt": (
+                collector.datetime.now(collector.timezone.utc)
+                - collector.timedelta(hours=3)
+            ).isoformat(),
+        }
+        recovered = collector.enrich_board_topic_metadata(
+            [dict(topic)],
+            [old_failure],
+            lambda requested_url: {
+                "summary": "Le VPN échoue après une mise à niveau.",
+                "date": "2026-10-28T08:00:00+00:00",
+            },
+            [],
+            max_lookups=1,
+        )[0]
+        self.assertEqual(recovered["summary"], "Le VPN échoue après une mise à niveau.")
+        self.assertEqual(recovered["date"], "2026-10-28T08:00:00+00:00")
+        self.assertIn("detailCheckedAt", recovered)
+        self.assertNotIn("detailAttemptedAt", recovered)
+
+
     def test_product_index_pagination_stops_on_repeated_page_and_reports_it(self):
         board = "https://community.fortinet.com/fortigate-3"
         page = b"""<html><body>
