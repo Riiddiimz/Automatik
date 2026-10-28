@@ -27,6 +27,7 @@ def normalized_snapshot(data: dict[str, Any], dataset: str) -> dict[str, Any]:
         for topic in snapshot.get("topics", []):
             if isinstance(topic, dict):
                 topic.pop("lastSeen", None)
+                topic.pop("detailCheckedAt", None)
         for incident in snapshot.get("incidents", []):
             if not isinstance(incident, dict):
                 continue
