@@ -85,6 +85,11 @@ def validate_reviews(expected_ids: set[str], payload: Any) -> dict[str, dict[str
     return validated
 
 
+
+class GeminiOutputJSONError(ValueError):
+    """The model output could not be parsed as the requested JSON payload."""
+
+
 def parse_gemini_json(raw: str) -> Any:
     """Parse JSON responses even if the model unexpectedly wraps them in Markdown."""
     text = raw.strip()
@@ -157,7 +162,30 @@ def request_gemini(api_key: str, items: list[dict[str, Any]]) -> Any:
     raw = "".join(part.get("text", "") for part in parts if isinstance(part, dict))
     if not raw:
         raise ValueError("Gemini returned an empty response")
-    return parse_gemini_json(raw)
+    try:
+        return parse_gemini_json(raw)
+    except json.JSONDecodeError as exc:
+        raise GeminiOutputJSONError(
+            f"Réponse JSON Gemini invalide ou tronquée (ligne {exc.lineno}, colonne {exc.colno})."
+        ) from exc
+
+
+def review_batch(api_key: str, batch: list[dict[str, Any]]) -> dict[str, dict[str, str]]:
+    """Retry malformed model output with smaller batches instead of abandoning all reviews."""
+    expected_ids = {item["id"] for item in batch if item.get("id")}
+    try:
+        payload = request_gemini(api_key, batch)
+        return validate_reviews(expected_ids, payload)
+    except GeminiOutputJSONError:
+        if len(batch) <= 1:
+            raise
+        midpoint = max(1, len(batch) // 2)
+        left = review_batch(api_key, batch[:midpoint])
+        right = review_batch(api_key, batch[midpoint:])
+        overlap = set(left) & set(right)
+        if overlap:
+            raise ValueError("Gemini returned duplicate incident IDs after batch fallback")
+        return {**left, **right}
 
 
 def apply_reviews(data: dict[str, Any], reviews: dict[str, dict[str, str]], reviewed_at: str) -> None:
@@ -226,14 +254,17 @@ def main() -> int:
         # Small batches reduce the risk of truncated or invalid JSON responses.
         for offset in range(0, len(items), BATCH_SIZE):
             batch = items[offset:offset + BATCH_SIZE]
-            batch_ids = {item["id"] for item in batch if item.get("id")}
-            payload = request_gemini(api_key, batch)
-            reviews.update(validate_reviews(batch_ids, payload))
+            reviews.update(review_batch(api_key, batch))
         if set(reviews) != expected_ids:
             raise ValueError("Gemini response set does not match collected incidents")
     except (OSError, ValueError, RuntimeError, TimeoutError) as exc:
+        reason = (
+            "réponse JSON invalide après subdivision des lots"
+            if isinstance(exc, GeminiOutputJSONError)
+            else type(exc).__name__
+        )
         message = (
-            f"Relecture Gemini indisponible ({type(exc).__name__}). "
+            f"Relecture Gemini indisponible ({reason}). "
             "La synthèse déterministe reste publiée et les anciennes relectures valides sont conservées si leurs preuves sont inchangées."
         )
         record_review_status(data, "error", message, checked_at)
