@@ -510,7 +510,7 @@ class CommunityFeedTests(unittest.TestCase):
         self.assertEqual(topic["summary"], old_topic["summary"])
         self.assertEqual(topic["versions"], ["7.6.8"])
         self.assertEqual(topic["fixVersions"], ["7.6.9"])
-        self.assertEqual(topic["statusNote"], old_topic["statusNote"])
+        self.assertNotIn("statusNote", topic, "la note d’index obsolète ne doit pas rester après fusion")
 
 
     def test_public_topic_metadata_parser_extracts_description_and_date(self):
