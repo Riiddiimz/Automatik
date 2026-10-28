@@ -561,6 +561,12 @@ class CommunityFeedTests(unittest.TestCase):
           <description><![CDATA[DescriptionThe FortiSOAR GUI is inaccessible after upgrading to FortiSOAR 8.0.0. ScopeFortiSOAR. SolutionRemove the obsolete nginx directive.]]></description>
           <category>FortiSOAR</category><category>FortiGate</category><category>FortiManager</category>
           <category>FortiAnalyzer</category><category>FortiAuthenticator</category><category>FortiClient</category>
+        </item>
+        <item>
+          <title>Customer Service Note: Email interaction when working tickets with Fortinet Support</title>
+          <link>https://community.fortinet.com/customer-service-42/customer-service-note-email-interaction-when-working-tickets-with-fortinet-support-99820</link>
+          <description>General customer service process.</description>
+          <category>FortiGate</category><category>FortiManager</category><category>FortiClient</category>
         </item></channel></rss>"""
         self.assertEqual(collector.parse_feed(payload), [])
 
