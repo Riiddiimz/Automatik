@@ -125,6 +125,11 @@ async function loadCommunity() {
     $("community-status").textContent = communityData.partial
       ? `Dernier état partiel publié le ${date} — historique conservé`
       : `Dernier état publié : ${date} · ${communityData.incidentCount ?? communityData.incidents?.length ?? 0} points de vigilance retenus depuis ${communityData.topics?.length || 0} sujets`;
+    if (Number.isFinite(Number(communityData.boardPageCount)) && Number(communityData.boardPageCount) > 0) {
+      const pageCount = Number(communityData.boardPageCount);
+      const topicCount = Number(communityData.boardTopicCount || 0);
+      $("community-status").textContent += ` · Index produits : ${pageCount} page(s) consultée(s), ${topicCount} lien(s) repéré(s)`;
+    }
     const warnings = (communityData.errors || []).filter(Boolean);
     if (warnings.length) {
       $("community-status").textContent += ` · ${warnings.length} avertissement(s) : ${warnings[0]}`;
