@@ -380,6 +380,33 @@ class CommunityFeedTests(unittest.TestCase):
         self.assertNotIn("statusNote", items[0])
         self.assertNotIn("source", items[0])
 
+    def test_successful_empty_board_metadata_is_not_retried(self):
+        url = "https://community.fortinet.com/fortigate-3/vpn-fails-after-upgrade-230001"
+        topic = {
+            "id": url,
+            "url": url,
+            "title": "FortiGate VPN fails after upgrade",
+            "products": ["FortiGate"],
+            "versions": [],
+            "fixVersions": [],
+            "discoverySource": "index produit public",
+        }
+        checked = collector.enrich_board_topic_metadata(
+            [dict(topic)], [], lambda _url: {}, [], max_lookups=1
+        )[0]
+        self.assertEqual(checked["detailFetchStatus"], "success")
+        self.assertIn("detailCheckedAt", checked)
+
+        calls = []
+        collector.enrich_board_topic_metadata(
+            [dict(topic)],
+            [checked],
+            lambda requested_url: calls.append(requested_url) or {},
+            [],
+            max_lookups=1,
+        )
+        self.assertEqual(calls, [], "une page lue avec succès ne doit pas monopoliser les prochaines collectes")
+
     def test_failed_board_detail_enrichment_retries_after_short_backoff(self):
         url = "https://community.fortinet.com/fortigate-3/vpn-fails-after-upgrade-230001"
         topic = {
