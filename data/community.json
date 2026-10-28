@@ -1,15 +1,296 @@
 {
- "generatedAt": "2026-10-28T09:21:36.868396+00:00",
+ "generatedAt": "2026-10-28T12:51:52.053163+00:00",
  "feedUrl": "https://community.fortinet.com/feed/topics?count=100&start=0",
  "feedItemCount": 100,
  "requestedFeedItemCount": 500,
  "partial": true,
  "errors": [
   "Le flux Community ignore le paramètre start à 100; les sujets précédents se répètent.",
-  "Le flux Community a renvoyé 100 entrées brutes sur 500 demandées; la couverture complète des 30 derniers jours n'est pas garantie."
+  "Le flux Community a renvoyé 100 entrées brutes sur 500 demandées; la couverture complète des 30 derniers jours n'est pas garantie.",
+  "Index Community FortiGate page 5 inaccessible (TimeoutError: The read operation timed out); les données déjà collectées sont conservées.",
+  "Index Community FortiManager page 2 inaccessible (TimeoutError: The read operation timed out); les données déjà collectées sont conservées.",
+  "Index Community FortiAuthenticator page 2 inaccessible (TimeoutError: The read operation timed out); les données déjà collectées sont conservées.",
+  "Index Community FortiAnalyzer page 1 inaccessible (TimeoutError: The read operation timed out); les données déjà collectées sont conservées.",
+  "Index Community FortiClient page 1 inaccessible (TimeoutError: The read operation timed out); les données déjà collectées sont conservées.",
+  "Index Community Support Forum page 1 inaccessible (TimeoutError: The read operation timed out); les données déjà collectées sont conservées.",
+  "Enrichissement de la fiche Community impossible (https://community.fortinet.com/fortigate-3/troubleshooting-tip-fortigate-ha-peer-unable-to-join-the-cluster-due-to-one-way-ha-heartbeat-communication-230432): TimeoutError: The read operation timed out; le titre et le lien d’index sont conservés."
  ],
- "topicCount": 741,
+ "topicCount": 751,
  "topics": [
+  {
+   "id": "https://community.fortinet.com/fortigate-3/configuring-smtp-inspection-with-starttls-on-port-25-587-230507",
+   "title": "Configuring SMTP inspection with STARTTLS on port 25/587",
+   "url": "https://community.fortinet.com/fortigate-3/configuring-smtp-inspection-with-starttls-on-port-25-587-230507",
+   "date": null,
+   "summary": "",
+   "products": [
+    "FortiGate"
+   ],
+   "versions": [],
+   "fixVersions": [],
+   "discoverySource": "index produit public",
+   "firstSeen": "2026-10-28T12:51:52.053163+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
+   "versionFamilies": [],
+   "potentialProblem": false
+  },
+  {
+   "id": "https://community.fortinet.com/support-forum-92/need-fortigate-7-2-10-kvm-image-for-eve-ng-lab-230901",
+   "title": "Need FortiGate 7.2.10 KVM Image for EVE-NG lab",
+   "url": "https://community.fortinet.com/support-forum-92/need-fortigate-7-2-10-kvm-image-for-eve-ng-lab-230901",
+   "date": "2026-10-28T12:46:01+00:00",
+   "summary": "Hi,I need the FortiGate 7.2.10 KVM image for my EVE-NG lab. However, it is not showing up on the Fortinet support/download page where I normally get the images from. Could you please guide me on where and how I can download this specific version? Thank you very much.",
+   "categories": [
+    "Support Forum"
+   ],
+   "products": [
+    "FortiGate"
+   ],
+   "versions": [
+    "7.2.10"
+   ],
+   "fixVersions": [],
+   "status": "À vérifier",
+   "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
+   "source": "Fortinet Community",
+   "firstSeen": "2026-10-27T17:59:20.871064+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
+   "versionFamilies": [
+    "7.2"
+   ],
+   "potentialProblem": false
+  },
+  {
+   "id": "https://community.fortinet.com/fortigate-3/after-upgrading-to-fortios-version-7-6-8-fsso-admins-cannot-authenticate-via-saml-230931",
+   "title": "After upgrading to FortiOS version 7.6.8, FSSO Admins cannot authenticate via SAML",
+   "url": "https://community.fortinet.com/fortigate-3/after-upgrading-to-fortios-version-7-6-8-fsso-admins-cannot-authenticate-via-saml-230931",
+   "date": "2026-10-28T11:27:54+00:00",
+   "summary": "DescriptionAfter upgrading the FortiGate to FortiOS version 7.6.8, admins with FSSO enabled cannot log in via SAML authentication, as it fails to generate the SAML request to the Identity Provider.ScopeFortiGate.SolutionOnce the upgrade to v7.6.8 is performed, FSSO-enabled admins fail to authenticate via SAML. The system cannot redirect the user to the IDP (Identity Provider).This behavior is documented in the FortiOS version 7.6.8 release notes:CSF downstream GUI login fails with Security Fabric SAML SSOUse the following debug commands to verify the issue:diagnose debug reset diagnose debug console timestamp enable diagnose debug application fssod -1 diagnose debug application fnbamd -1 diagnose debug enable Attempt to log in using SAML. If the issue matches the debug, it shows an error:[http_authd] http_authd_saml_sp_login_handler[457] -- Failed to generate SAML request to IDP.This matches a known issue that has a fix in firmware version 7.6.9.For the time being, use this workaround:Use a local administrator account.Use an account that does not rely on SAML SSO authentication.",
+   "products": [
+    "FortiGate"
+   ],
+   "versions": [
+    "7.6.8"
+   ],
+   "fixVersions": [],
+   "categories": [
+    "FortiGate"
+   ],
+   "status": "À vérifier",
+   "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
+   "source": "Fortinet Community",
+   "firstSeen": "2026-10-28T12:51:52.053163+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
+   "versionFamilies": [
+    "7.6"
+   ],
+   "potentialProblem": true
+  },
+  {
+   "id": "https://community.fortinet.com/fortigate-3/fortisase-secure-edge-tunnel-stays-down-after-a-fortios-upgrade-because-of-a-diffie-hellman-group-mismatch-230930",
+   "title": "FortiSASE secure edge tunnel stays down after a FortiOS upgrade because of a Diffie-Hellman group mismatch",
+   "url": "https://community.fortinet.com/fortigate-3/fortisase-secure-edge-tunnel-stays-down-after-a-fortios-upgrade-because-of-a-diffie-hellman-group-mismatch-230930",
+   "date": "2026-10-28T10:56:11+00:00",
+   "summary": "DescriptionFortiGate secure edge tunnel to FortiSASE stops negotiating after the FortiGate is upgraded to FortiOS 7.6.5, why the tunnel comes up when the Diffie-Hellman (DH) groups are set to 5 and 14 and then drops again with the groups back at 20 and 21, and how to fix the condition permanently.This article also explains why the tunnel settings on FortiManager are not the source of truth for this tunnel, and how to make the workaround persist on FortiOS builds that do not contain the code fix.ScopeFortiGate configured as a FortiSASE secure edge, FortiOS 7.6.5 and 7.6.6. FortiSASE. FortiManager used as the management station for the FortiGate. FortiOS 7.6.7 and later are not affected.SolutionSymptomA FortiGate operating as a FortiSASE secure edge has a VDOM, commonly named SASE, configured for LAN extension. The tunnel to the FortiSASE edge service is not created by an administrator. FortiOS creates and maintains it automatically, under a phase 1 interface named with the prefix ul-, for example ul-npu0_vlink1, and the interface carries the description \"[fgconn] Do NOT edit. Automatically generated by extension controller\".After the FortiGate is upgraded to FortiOS 7.6.5 or 7.6.6, the tunnel no longer establishes. The VPN logs show a large number of IKEv2 phase 1 proposals sent to the FortiSASE peer with no answer, each cycle ending in a negotiation timeout. The responder cookie in those log entries is all zeroes, which means the peer never replied. See the following logs for examples of Fortinet Tunnel ID, local IP, and interface names.date=2026-10-12 time=23:10:55 type=VPN subtype=tunnel action=tunnel-down vd=SASE vpntunnel=\"ul-npu0_vlink1\" duration=28678 locip=172.16.10.90 remip=192.0.2.10 remport=4500 locport=4500 version=\"IKEv2\" role=\"initiator\" date=2026-10-12 time=23:17:46 type=VPN subtype=phase1 logid=0101037127 action=SA_INIT vpntunnel=\"ul-npu0_vlink1\" status=\"success\" locip=172.16.10.90 locport=4500 remip=192.0.2.10 remport=4500 outintf=\"npu0_vlink1\" cookies=\"2999982861c3180a/0000000000000000\" version=\"IKEv2\" role=\"initiator\" date=2026-10-12 time=23:18:03 type=VPN subtype=phase1 logid=0101037124 action=negotiate vpntunnel=\"ul-npu0_vlink1\" status=\"fail\" error=\"ike negotiation timeout\" duration=15 date=2026-10-12 time=23:18:16 type=VPN subtype=tunnel logid=0101037142 action=auto_transport_switch vpntunnel=\"ul-npu0_vlink1\" msg=\"switch auto transport from udp to tcp\"The three entries repeat on a short cycle. In one hour of logs, a single FortiGate sent 109 IKEv2 phase 1 proposals to 192.0.2.10 and received no reply, and the same FortiGate logged 54 transport switches from UDP to TCP. No tunnel-up event appears after the initial drop.The second part of the symptom is the temporary fix. Setting the DH groups on the FortiGate to 5 and 14 brings the tunnel up. Some time later the tunnel drops, and the DH groups read 20 and 21 again. The FortiGate is not losing the change at random, as explained under \"Why the configuration reverts\".Root causeFortiOS 7.6.5 changed the default phase 1 and phase 2 DH group list from 14 and 5 to 20 and 21. The change is documented in the FortiOS 7.6.5 Release Notes, section Changes in default behavior. The FortiGate administration guide states the current default: by default, FortiGate uses DH group 20 and 21 when a VPN is configured from the GUI or CLI.FortiSASE continues to use DH groups 14 and 5 for this tunnel type, as documented in the FortiSASE deployment guides, section IPsec configuration. The tunnel created by the extension controller inherits the FortiOS default, which on FortiOS 7.6.5 and 7.6.6 is 20 and 21 with no other group in the list.The two ends therefore share no DH group. The FortiGate sends an IKEv2 IKE_SA_INIT proposal offering groups 20 and 21, the peer has no matching group, and the exchange never completes. The proposal payload in the IKE debug of an affected FortiGate contains the DH group values 0x14 (20) and 0x15 (21) only.The transport setting adds a second delay on top of the mismatch. These tunnels are created with transport set to auto. When the UDP attempt fails, FortiOS opens a TCP session to the peer on port 4500, and that session also fails, so each negotiation window is consumed before the FortiGate returns to UDP. The log entries with action auto_transport_switch and the IKE debug line 'auto transport timeout, use tcp port 4500' identify this behavior.Why the configuration revertsThe tunnel is an object owned by the FortiSASE connection controller on the FortiGate. When the controller re-creates the tunnel, it applies the FortiOS default DH group list, which replaces any manual change and any value that came from FortiManager. A tunnel reset on the FortiSASE side is enough to trigger that rebuild. This is why the tunnel comes up after the DH groups are set to 5 and 14, works for a period, and then drops with the groups back at 20 and 21.This also explains a common source of confusion when the FortiGate is managed by FortiManager. The Forti",
+   "products": [
+    "FortiGate",
+    "FortiManager"
+   ],
+   "versions": [
+    "7.6.5",
+    "7.6.7"
+   ],
+   "fixVersions": [],
+   "categories": [
+    "FortiGate"
+   ],
+   "status": "À vérifier",
+   "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
+   "source": "Fortinet Community",
+   "firstSeen": "2026-10-28T12:51:52.053163+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
+   "versionFamilies": [
+    "7.6"
+   ],
+   "potentialProblem": true
+  },
+  {
+   "id": "https://community.fortinet.com/fortiappsec-cloud-60/information-required-for-fortiappsec-cloud-troubleshooting-230928",
+   "title": "Information required for FortiAppSec Cloud troubleshooting",
+   "url": "https://community.fortinet.com/fortiappsec-cloud-60/information-required-for-fortiappsec-cloud-troubleshooting-230928",
+   "date": "2026-10-28T10:51:23+00:00",
+   "summary": "DescriptionThis article describes the essential information required when troubleshooting issues related to FortiAppSec Cloud. Providing the information outlined below helps Fortinet Support understand the issue, identify its scope, and investigate it more efficiently.ScopeFortiAppSec Cloud.SolutionRequired information.When opening a FortiAppSec Cloud support case, provide the following information:Application information.Application name.Application domain/FQDN.Affected URL(s) or specific application endpoints.Issue description.A clear and detailed description of the issue.Expected behavior and actual behavior.Exact error message or HTTP status code, if applicable.Date and time when the issue occurred.Scope and impact.Number of affected users (single user or multiple users).Impact across users, including whether all users or only specific users are affected.Scope of the issue, such as the entire application or specific pages, URLs, or functionalities.Frequency of occurrence (consistent or intermittent).Previous working status.Previous operational status of the application.Date and time when the issue was first observed.Application deployment status (newly onboarded application or existing application).Recent changes to the application, origin server, DNS, network, or FortiAppSec Cloud configuration before the issue started.Testing and reproduction.Steps required to reproduce the issue.Reproducibility results, including whether the issue occurs consistently or intermittently.Testing results from different browsers, devices, or networks, if available.Additional evidence.Depending on the nature of the issue, provide the following information and supporting evidence:Connectivity or performance issues: HAR files captured from both working and non-working scenarios, if available.Application errors: Screenshots and exact error messages displayed.Other issues: Relevant logs, screenshots, timestamps, or additional information that may help with the investigation.Note: HAR files may contain sensitive information, including session cookies, authentication tokens, and other credentials. Review and sanitize the files before sharing them with Fortinet Support.",
+   "categories": [
+    "FortiAppSec Cloud"
+   ],
+   "products": [
+    "FortiAP"
+   ],
+   "versions": [],
+   "fixVersions": [],
+   "status": "À vérifier",
+   "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
+   "source": "Fortinet Community",
+   "firstSeen": "2026-10-28T12:51:52.053163+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
+   "versionFamilies": [],
+   "potentialProblem": true
+  },
+  {
+   "id": "https://community.fortinet.com/fortigate-3/error-failed-to-save-changes-while-saving-custom-application-control-signature-230926",
+   "title": "Error \"Failed to save changes\" while saving custom Application Control signature",
+   "url": "https://community.fortinet.com/fortigate-3/error-failed-to-save-changes-while-saving-custom-application-control-signature-230926",
+   "date": "2026-10-28T10:25:37+00:00",
+   "summary": "DescriptionSteps to resolve the \"Failed to save changes\" error encountered when saving a custom Application Control signature.ScopeFortiGate.SolutionA syntax error can occur when saving a custom Application Control signature if the signature definition contains line breaks or formatting that prevents the parser from correctly interpreting the opening and closing parentheses.When attempting to save a custom Application Control signature, the GUI displays the error \"Failed to save changes\".To investigate the issue, run the following commands.diagnose debug disable diagnose debug reset diagnose debug console timestamp enable diagnose debug cli 8 diagnose debug cmdb-trace diagnose debug enableThe CLI and CMDB trace debug output indicates that the closing or opening parenthesis cannot be identified. This can occur when the signature definition is formatted across multiple lines in a way that the parser cannot recognize.kvm42 # 0: config application custom 0: edit \"OutboundTSTServerCommunication\" 0: set comment '' 0: set signature \"F-SBID( 0: --attack_id 9901; 0: --name \\\"Outbound.TST.Server.Communication\\\"; 0: --default_action drop_session; 0: --service HTTP; 0: --protocol tcp; 0: --app_cat 25; 0: --flow from_client; 0: --pattern \\\"/.well-known/tst.json\\\"; 0: --context uri; 0: --no_case; 0: --weight 40; 0: )\" 0: unset protocol 0: unset technology 0: unset behavior 0: unset vendor [error] line 1 offset 8: F-SBID( ^^^ closing round bracket not found [error] line 2 offset 18: --attack_id 9901; ^^^ closing round bracket not found [error] line 3 offset 44: rver.Communication\"; ^^^ closing round bracket not found [error] line 4 offset 31: action drop_session; ^^^ closing round bracket not found [error] line 5 offset 16: --service HTTP; ^^^ closing round bracket not found [error] line 6 offset 16: --protocol tcp; ^^^ closing round bracket not found [error] line 7 offset 14: --app_cat 25; ^^^ closing round bracket not found [error] line 8 offset 20: --flow from_client; ^^^ closing round bracket not found [error] line 9 offset 35: ell-known/mcp.json\"; ^^^ closing round bracket not found [error] line 10 offset 15: --context uri; ^^^ closing round bracket not found [error] line 11 offset 11: --no_case; ^^^ closing round bracket not found [error] line 12 offset 13: --weight 40; ^^^ closing round bracket not found [error] line 13 offset 1: ) ^^^ open bracet not found -2: end The debug output reports syntax errors, including closing round bracket not found and open bracket not found. These errors indicate that the signature parser cannot correctly interpret the signature definition.To resolve the issue, enter the custom Application Control signature as a single continuous string, keeping the opening F-SBID( and closing ) within the same string and avoiding unnecessary line breaks.Navigate to the custom Application Control signature configuration in the FortiGate GUI and update the signature definition to use the following format.Select Save to apply the changes.The following debug output confirms that the signature is accepted, and the configuration is saved successfully.kvm42 # 0: config application custom 0: edit \"OutboundTSTServerCommunication\" 0: set comment '' 0: set signature \"F-SBID( --attack_id 9901; --name \\\"Outbound.TST.Server.Communication\\\"; --default_action drop_session; --service HTTP; --protocol tcp; --app_cat 25; --flow from_client; --pattern \\\"/.well-known/tst.json\\\"; --context uri; --no_case; --weight 40; )\" 0: unset protocol 0: unset technology 0: unset behavior 0: unset vendor 0: end [show_walker_construct:85] open('/tmp/system.conf.2285.xmxxc1) to save config of 'root' write config file success, prepare to save '/tmp/system.conf.2285.xmxxc1' to '/data/./config/sys_vd_root+root.conf.gz' on flash flash: block_sz=4096, free_blocks=23953 [__create_file_new_version:312] the new version config file '/data/./config/sys_vd_root+root.conf.gz.v000000024' is created [symlink_config_file:379] a new version of '/data/./config/sys_vd_root+root.conf.gz' is created: /data/./config/sys_vd_root+root.conf.gz.v000000024 [symlink_config_file:423] the old version '/data/./config/sys_vd_root+root.conf.gz.v000000023' is deleted [symlink_config_file:425] '/data/./config/sys_vd_root+root.conf.gz' has been symlink'ed to the new version '/data/./config/sys_vd_root+root.conf.gz.v000000024'. The o ld version '/data/./config/sys_vd_root+root.conf.gz.v000000023' has been deleted zip config file /data/./config/sys_vd_root+root.conf.gz success! The configuration save process completes successfully, and the custom Application Control signature is added.",
+   "products": [
+    "FortiGate"
+   ],
+   "versions": [],
+   "fixVersions": [],
+   "categories": [
+    "FortiGate"
+   ],
+   "status": "À vérifier",
+   "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
+   "source": "Fortinet Community",
+   "firstSeen": "2026-10-28T12:51:52.053163+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
+   "versionFamilies": [],
+   "potentialProblem": true
+  },
+  {
+   "id": "https://community.fortinet.com/support-forum-92/since-7-4-13-build2933-emails-not-sent-if-username-exceeds-36-characters-230909",
+   "title": "Since 7.4.13 build2933, emails not sent if username exceeds 36 characters",
+   "url": "https://community.fortinet.com/support-forum-92/since-7-4-13-build2933-emails-not-sent-if-username-exceeds-36-characters-230909",
+   "date": "2026-10-28T10:14:47+00:00",
+   "summary": "Since the update to version 7.4.13 build2933, emails are no longer sent to users whose username exceeds 36 characters.I am referring to the emails containing the QR code for FortiToken Mobile. Version: FortiGate-901G v7.4.13,build2933,260929 (GA.M)",
+   "categories": [
+    "Support Forum"
+   ],
+   "products": [
+    "FortiGate"
+   ],
+   "versions": [],
+   "fixVersions": [],
+   "status": "À vérifier",
+   "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
+   "source": "Fortinet Community",
+   "firstSeen": "2026-10-28T05:39:35.554158+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
+   "versionFamilies": [],
+   "potentialProblem": true
+  },
+  {
+   "id": "https://community.fortinet.com/fortimanager-27/fortimanager-firmware-upgrade-preview-shows-no-record-found-even-with-an-assigned-device-230925",
+   "title": "FortiManager firmware upgrade preview shows \"No record found\" even with an assigned device",
+   "url": "https://community.fortinet.com/fortimanager-27/fortimanager-firmware-upgrade-preview-shows-no-record-found-even-with-an-assigned-device-230925",
+   "date": "2026-10-28T10:08:28+00:00",
+   "summary": "DescriptionAn explanation for a \"No record found\" message occurring in the Firmware Upgrade Preview of a Firmware Template in FortiManager even when a device is assigned to the template. Steps to resolve it are provided.ScopeFortiManager.FortiGate.SolutionThe Firmware Upgrade Preview only lists devices that match the platform selected in the template. If the template platform is different from the platform of the assigned device, the preview has nothing to calculate and shows \"No record found\". No other error is shown, and the device still appears under \"Assigned to Device/Group\".This is easy to miss with virtual FortiGates, because several platform names look similar (for example FortiGate-VM64 and FortiGate-VM64-KVM).The device platform shows in the FortiGate CLI:FGT-SPOKE # get sys status Version: FortiGate-VM64-KVM v7.4.9,build2829,250924 (GA.M) First GA patch build date: 230509 Current Security Level: High Firmware Signature: certified Virus-DB: 1.00000(2018-04-09 18:07) Extended DB: 1.00000(2018-04-09 18:07) ....................... ............... .........The template platform is FortiGate-VM64, which does not match FortiGate-VM64-KVM.To avoid this, set the template Platform to \"GA Versions\" instead of a specific platform. The template is then not tied to one platform, and the Firmware Upgrade Preview selects the correct FortiGate platform for each assigned device.Go to Device Manager -> Firmware Templates and edit the template.In \"Edit Upgrade Firmware\", set Platform to \"GA Versions\".Select the target version under \"Upgrade to\".Save the template and open the Upgrade Preview.Related article:Troubleshooting Tip: Unable to select Setup Firmware Upgrade for FortiGate",
+   "products": [
+    "FortiManager",
+    "FortiGate"
+   ],
+   "versions": [],
+   "fixVersions": [],
+   "categories": [
+    "FortiManager"
+   ],
+   "status": "À vérifier",
+   "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
+   "source": "Fortinet Community",
+   "firstSeen": "2026-10-28T12:51:52.053163+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
+   "versionFamilies": [],
+   "potentialProblem": true
+  },
+  {
+   "id": "https://community.fortinet.com/fortigate-3/high-packet-drops-occur-during-traffic-bursts-on-a-fortigate-vm-hosted-in-google-cloud-platform-230924",
+   "title": "High packet drops occur during traffic bursts on a FortiGate VM hosted in Google Cloud Platform",
+   "url": "https://community.fortinet.com/fortigate-3/high-packet-drops-occur-during-traffic-bursts-on-a-fortigate-vm-hosted-in-google-cloud-platform-230924",
+   "date": "2026-10-28T10:04:38+00:00",
+   "summary": "DescriptionThis article describes the case when a FortiGate VM hosted on Google Cloud Platform (GCP) experiences significant packet loss and latency during high bursts of traffic. While interface-level counters do not show RX drops, the internal RX queue statistics indicate drops.ScopeFortiGate VM, GCP.SolutionThe issue is caused by RX queue buffer exhaustion. When the GCP instance presents only one RX queue, the ring buffer descriptors are exhausted during traffic bursts, leading to packet drops. This occurs even if the CPU utilization is not high, as the bottleneck is at the NIC descriptor level rather than the CPU processing level.The following command will list the interface counters. Notice that all the RX drops are zero.diagnose hardware deviceinfo nic port1 Name: port1 Driver: gve Version: 1.3.0 Bus: 0000:00:04.0 HWaddr: 42:01:0a:5c:1a:02 State: up Link: up Mtu: 1460 Supported: Advertised: Speed: 32000half Auto: disabled Rx packets: 14891007 Rx bytes: 1101897774 Rx compressed: 0 Rx dropped: 0 Rx errors: 0 Rx Length err: 0 Use the command below to get more detailed interface stats; it lists the drops on the RX queue.diagnose hardware deviceinfo nic-stats port1 port1 statistics: rx_packets: 1833537831 tx_packets: 1329988458 rx_bytes: 1997339306123 tx_bytes: 1541708454631 -- output trimmed--- rx_queue_drop_cnt[0]: 1716637 rx_no_buffers_posted[0]: 1716637 rx_drops_packet_over_mru[0]: 0 rx_drops_invalid_checksum[0]: 0A non-zero and incrementing values of the counters (rx_queue_drop_cnt and rx_no_buffers_posted) indicate that packets are being dropped at the queue level as the NIC has run out of available descriptors.To resolve the buffer exhaustion, increase the number of RX queues. This provides more descriptors and allows multiple CPUs to process packets in parallel. In Google Cloud Platform, this is achieved by changing the VM instance type to a supported machine series that provides multiple queues.It is possible to notice more queue indexes ([0], [1]) when RX queues are increased.diagnose hardware deviceinfo nic-stats port1 ---output clipped--- Rx dropped: 0 Tx dropped: 0 rx_dropped: 0 tx_dropped: 0 rx_desc_err_dropped_pkt: 0 rx_dropped_pkt[0]: 0 <-- rx_queue_drop_cnt[0]: 0 rx_drops_packet_over_mru[0]: 0 rx_drops_invalid_checksum[0]: 0 rx_dropped_pkt[1]: 0 <-- rx_queue_drop_cnt[1]: 0 rx_drops_packet_over_mru[1]: 0 rx_drops_invalid_checksum[1]: 0",
+   "products": [
+    "FortiGate"
+   ],
+   "versions": [],
+   "fixVersions": [],
+   "categories": [
+    "FortiGate"
+   ],
+   "status": "À vérifier",
+   "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
+   "source": "Fortinet Community",
+   "firstSeen": "2026-10-28T12:51:52.053163+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
+   "versionFamilies": [],
+   "potentialProblem": true
+  },
+  {
+   "id": "https://community.fortinet.com/forticlient-4/how-to-disable-the-http-trace-method-on-forticlient-ems-for-linux-230923",
+   "title": "How to disable the HTTP TRACE method on FortiClient EMS for Linux",
+   "url": "https://community.fortinet.com/forticlient-4/how-to-disable-the-http-trace-method-on-forticlient-ems-for-linux-230923",
+   "date": "2026-10-28T10:01:22+00:00",
+   "summary": "DescriptionSteps to disable the HTTP TRACE method on FortiClient EMS for Linux when vulnerability scanners report that the Apache web server accepts HTTP TRACE requests.ScopeFortiClient EMS.SolutionThe Apache web server used by FortiClient EMS may allow HTTP TRACE requests depending on the underlying Linux distribution and its default Apache configuration.On some RHEL deployments, HTTP TRACE requests may return HTTP 200 OK and echo the original request. On Debian/Ubuntu deployments, Apache may reject these requests by default.To disable the HTTP TRACE method, follow these steps.Verify the HTTP TRACE behavior.From a Windows machine with connectivity to EMS, open PowerShell and execute the following:curl.exe -ki -X TRACE https:// /When TRACE is enabled, the server may return the following:HTTP/1.1 200 OK Server: Apache Content-Type: message/http TRACE / HTTP/1.1 Host: Modify the Apache configuration.Access the underlying Linux operating system with administrative privileges.For RHEL, edit:/etc/httpd/conf/httpd.confFor Debian/Ubuntu, edit the following:/etc/apache2/apache2.confAdd the following directive to the Apache configuration:TraceEnable OffValidate the configuration and restart Apache.For RHEL:sudo httpd -t sudo systemctl restart httpd sudo systemctl status httpdFor Debian/Ubuntu:sudo apache2ctl configtest sudo systemctl restart apache2 sudo systemctl status apache2Ensure the configuration validation completes successfully before restarting the service.Note: Restarting Apache may temporarily interrupt EMS web services. Perform the change during a maintenance window.Verify that HTTP TRACE is disabled.Repeat the TRACE request:curl.exe -ki -X TRACE https:// /The expected response is:HTTP/1.1 405 Method Not AllowedThe server should no longer return HTTP 200 OK with the original TRACE request echoed in the response body.For FortiClient EMS HA deployments, apply the configuration change and verify the results on each EMS application server.",
+   "categories": [
+    "FortiClient"
+   ],
+   "products": [
+    "FortiClient EMS"
+   ],
+   "versions": [],
+   "fixVersions": [],
+   "status": "À vérifier",
+   "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
+   "source": "Fortinet Community",
+   "firstSeen": "2026-10-28T12:51:52.053163+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
+   "versionFamilies": [],
+   "potentialProblem": false
+  },
+  {
+   "id": "https://community.fortinet.com/fortiportal-29/understanding-fortiportal-policy-package-installation-flow-in-fortimanager-json-api-debug-230920",
+   "title": "Understanding FortiPortal policy package installation flow in FortiManager JSON API debug",
+   "url": "https://community.fortinet.com/fortiportal-29/understanding-fortiportal-policy-package-installation-flow-in-fortimanager-json-api-debug-230920",
+   "date": "2026-10-28T09:28:19+00:00",
+   "summary": "DescriptionThis article describes the JSON API flow between FortiPortal and FortiManager when a firewall policy is modified from FortiPortal and the policy package is installed.The FortiManager JSON API debug can be used to identify the configuration sent by FortiPortal, the installation preview process, and the final policy package installation task.ScopeFortiPortal, FortiManager.SolutionThe following debug commands can be used on FortiManager to capture the JSON API requests sent from FortiPortal:diagnose debug reset diagnose debug service sys 255 diagnose debug service main 255 diagnose debug enableWhen a firewall policy is modified from FortiPortal, FortiPortal sends an API update request to the corresponding policy object in the FortiManager policy package.In the following example, firewall policy ID 2 in policy package FGT-1 was modified from FortiPortal.The FortiPortal IP address has been replaced with in the debug output.Policy configuration change from FortiPortal.The following API request is seen on FortiManager when the policy is saved from FortiPortal:Request [unknown-daemon:1441]: { \"cid\": 1441, \"method\": \"update\", \"params\": [{ \"data\": { \"action\": 1, \"anti-replay\": 1, \"application-list\": [], \"auto-asic-offload\": 1, \"av-profile\": [], \"block-notification\": 0, \"captive-portal-exempt\": 0, \"capture-packet\": 0, \"casb-profile\": [], \"cgn-resource-quota\": 16, \"cgn-session-quota\": 16777215, \"comments\": \"\", \"custom-log-fields\": [], \"delay-tcp-npu-session\": 0, \"diameter-filter-profile\": [], \"diffserv-forward\": 0, \"diffserv-reverse\": 0, \"disclaimer\": 0, \"dnsfilter-profile\": [], \"dsri\": 0, \"dstaddr\": [\"all\"], \"dstaddr-negate\": 0, \"dstaddr6\": [], \"dstaddr6-negate\": 0, \"dstintf\": [\"port1\"], \"dynamic-shaping\": 0, \"email-collect\": 0, \"emailfilter-profile\": [], \"fec\": 0, \"file-filter-profile\": [], \"fixedport\": 0, \"fsso-agent-for-ntlm\": [], \"fsso-groups\": [], \"geoip-anycast\": 0, \"geoip-match\": 0, \"groups\": [\"New_Group\"], \"icap-profile\": null, \"inspection-mode\": 1, \"internet-service\": 0, \"internet-service-custom\": [], \"internet-service-custom-group\": [], \"internet-service-group\": [], \"internet-service-name\": [], \"internet-service-negate\": 0, \"internet-service-src\": 0, \"internet-service-src-custom\": [], \"internet-service-src-custom-group\": [], \"internet-service-src-group\": [], \"internet-service-src-name\": [], \"internet-service-src-negate\": 0, \"internet-service6\": 0, \"internet-service6-custom\": [], \"internet-service6-custom-group\": [], \"internet-service6-group\": [], \"internet-service6-name\": [], \"internet-service6-negate\": 0, \"internet-service6-src\": 0, \"internet-service6-src-custom\": [], \"internet-service6-src-custom-group\": [], \"internet-service6-src-group\": [], \"internet-service6-src-name\": [], \"internet-service6-src-negate\": 0, \"ip-version-type\": \"ipv4\", \"ippool\": 0, \"ips-sensor\": [], \"logtraffic\": 3, \"logtraffic-start\": 0, \"match-vip\": 1, \"match-vip-only\": 0, \"name\": \"test\", \"nat\": 1, \"nat46\": 0, \"nat64\": 0, \"natip\": [\"0.0.0.0\", \"0.0.0.0\"], \"np-acceleration\": 1, \"passive-wan-health-measurement\": 0, \"pcp-inbound\": 0, \"pcp-outbound\": 0, \"pcp-poolname\": [], \"per-ip-shaper\": [], \"permit-any-host\": 0, \"permit-stun-host\": 0, \"policy-behaviour-type\": \"standard\", \"policy-expiry\": 0, \"policy-expiry-date\": \"0000-00-00 00:00:00\", \"policy-expiry-date-utc\": null, \"policyid\": 2, \"poolname\": null, \"poolname6\": null, \"port-preserve\": 1, \"profile-group\": null, \"profile-protocol-options\": [\"default\"], \"radius-mac-auth-bypass\": 0, \"replacemsg-override-group\": [], \"reputation-minimum\": 0, \"reputation-minimum6\": 0, \"rtp-nat\": 0, \"schedule\": [\"always\"], \"schedule-timeout\": 0, \"sctp-filter-profile\": [], \"service\": [\"ALL\"], \"service-negate\": 0, \"session-ttl\": \"0\", \"sgt\": [], \"sgt-check\": 0, \"src-vendor-mac\": [], \"srcaddr\": [\"all\"], \"srcaddr-negate\": 0, \"srcaddr6\": [], \"srcaddr6-negate\": 0, \"srcintf\": [\"port3\"], \"ssl-ssh-profile\": [\"no-inspection\"], \"status\": 1, \"tcp-mss-receiver\": 0, \"tcp-mss-sender\": 0, \"tcp-session-without-syn\": 2, \"timeout-send-rst\": 0, \"tos-mask\": \"0x00\", \"traffic-shaper\": [], \"traffic-shaper-reverse\": [], \"users\": [], \"utm-status\": 0, \"uuid\": \"30e34360-a76c-51f1-feb4-cc0766a889ef\", \"videofilter-profile\": [], \"vlan-cos-fwd\": 255, \"vlan-cos-rev\": 255, \"vlan-filter\": null, \"voip-profile\": null, \"waf-profile\": null, \"wccp\": 0, \"webcache-https\": 0, \"webfilter-profile\": [], \"ztna-ems-tag\": null, \"ztna-status\": 0, \"ztna-tags-match-logic\": 0 }, \"url\": \"pm\\/config\\/adom\\/BranchesFGTs\\/pkg\\/FGT-1\\/firewall\\/policy\\/2\" }], \"rpcsrc\": \" \", \"session\": \"******\", \"src\": \" \" }This confirms that FortiPortal is updating firewall policy ID 2 in policy package FGT-1 under the BranchesFGTs ADOM.The API request contains the complete policy configuration after the change and not only the modified parameter.Starting the installation process from FortiPortal.When the installation process is started from FortiPortal, the following request is sent to FortiManager:Request [unknown-daemon:1455]: { \"cid\": 1455, \"id\": 1, \"method\": \"exec\", \"param",
+   "categories": [
+    "FortiPortal"
+   ],
+   "products": [
+    "FortiManager"
+   ],
+   "versions": [],
+   "fixVersions": [],
+   "status": "À vérifier",
+   "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
+   "source": "Fortinet Community",
+   "firstSeen": "2026-10-28T12:51:52.053163+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
+   "versionFamilies": [],
+   "potentialProblem": false
+  },
+  {
+   "id": "https://community.fortinet.com/fortisase-58/forticlient-telemetry-disconnect-after-connect-sia-230918",
+   "title": "FortiClient Telemetry disconnect after connect SIA",
+   "url": "https://community.fortinet.com/fortisase-58/forticlient-telemetry-disconnect-after-connect-sia-230918",
+   "date": "2026-10-28T09:22:44+00:00",
+   "summary": "DescriptionSteps to investigate the FortiClient telemetry being disconnected after connecting to SIA.ScopeFortiSASE.SolutionVerify that the FortiSASE endpoint can access the following domains on TCP port 443:forticlient-emsproxy.forticloud.comforticlient.forticloud.comforticlient-dispatch.forticloud.comWhen applying tags in all policies, there may be an issue if tags are not synced.The DNS resolution with forticlient-emsproxy.forticloud.com should not be denied.If the inquiry above or connection to the forticlient-emsproxy.forticloud.com is down, it means that the FortiClient telemetry is down, which causes the following tags policies cannot match.To avoid this issue, ensure there is a \"Fortinet\" policy on top of all policies without any tags and groups:The policy above will ensure the FortiClient can communicate with the EMS cloud properly.",
+   "categories": [
+    "FortiSASE"
+   ],
+   "products": [
+    "FortiClient"
+   ],
+   "versions": [],
+   "fixVersions": [],
+   "status": "À vérifier",
+   "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
+   "source": "Fortinet Community",
+   "firstSeen": "2026-10-28T12:51:52.053163+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
+   "versionFamilies": [],
+   "potentialProblem": true
+  },
   {
    "id": "https://community.fortinet.com/fortigate-3/technical-tip-using-sd-wan-rules-to-steer-bgp-connections-on-fortigate-230530",
    "title": "Technical Tip: Using SD-WAN rules to steer BGP connections on FortiGate",
@@ -23,7 +304,7 @@
    "fixVersions": [],
    "discoverySource": "index produit public",
    "firstSeen": "2026-10-28T09:19:39.874101+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [],
    "potentialProblem": false
   },
@@ -40,7 +321,7 @@
    "fixVersions": [],
    "discoverySource": "index produit public",
    "firstSeen": "2026-10-28T09:19:39.874101+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [],
    "potentialProblem": false
   },
@@ -57,7 +338,7 @@
    "fixVersions": [],
    "discoverySource": "index produit public",
    "firstSeen": "2026-10-28T09:19:39.874101+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [],
    "potentialProblem": false
   },
@@ -91,7 +372,7 @@
    "fixVersions": [],
    "discoverySource": "index produit public",
    "firstSeen": "2026-10-28T09:19:39.874101+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [],
    "potentialProblem": false
   },
@@ -108,7 +389,7 @@
    "fixVersions": [],
    "discoverySource": "index produit public",
    "firstSeen": "2026-10-28T09:19:39.874101+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [],
    "potentialProblem": false
   },
@@ -125,7 +406,7 @@
    "fixVersions": [],
    "discoverySource": "index produit public",
    "firstSeen": "2026-10-28T09:19:39.874101+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [],
    "potentialProblem": false
   },
@@ -142,7 +423,7 @@
    "fixVersions": [],
    "discoverySource": "index produit public",
    "firstSeen": "2026-10-28T09:19:39.874101+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [],
    "potentialProblem": false
   },
@@ -159,7 +440,7 @@
    "fixVersions": [],
    "discoverySource": "index produit public",
    "firstSeen": "2026-10-28T09:19:39.874101+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [],
    "potentialProblem": false
   },
@@ -176,7 +457,7 @@
    "fixVersions": [],
    "discoverySource": "index produit public",
    "firstSeen": "2026-10-28T09:19:39.874101+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [],
    "potentialProblem": false
   },
@@ -193,7 +474,7 @@
    "fixVersions": [],
    "discoverySource": "index produit public",
    "firstSeen": "2026-10-28T09:19:39.874101+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [],
    "potentialProblem": false
   },
@@ -210,9 +491,11 @@
    "fixVersions": [],
    "discoverySource": "index produit public",
    "firstSeen": "2026-10-28T09:19:39.874101+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [],
-   "potentialProblem": true
+   "potentialProblem": true,
+   "detailAttemptedAt": "2026-10-28T12:54:18.539337+00:00",
+   "detailFetchStatus": "failed"
   },
   {
    "id": "https://community.fortinet.com/fortigate-3/technical-tip-fortigate-console-shows-too-many-entries-in-all-tables-of-casb-saas-application-after-downgrading-from-fortios-v8-0-230428",
@@ -229,7 +512,7 @@
    "fixVersions": [],
    "discoverySource": "index produit public",
    "firstSeen": "2026-10-28T09:19:39.874101+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [
     "8.0"
    ],
@@ -248,7 +531,7 @@
    "fixVersions": [],
    "discoverySource": "index produit public",
    "firstSeen": "2026-10-28T09:19:39.874101+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [],
    "potentialProblem": false
   },
@@ -4003,7 +4286,7 @@
    "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
    "source": "Fortinet Community",
    "firstSeen": "2026-10-28T09:17:13.697624+00:00",
-   "lastSeen": "2026-10-28T09:20:45.085895+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [],
    "potentialProblem": true
   },
@@ -4027,7 +4310,7 @@
    "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
    "source": "Fortinet Community",
    "firstSeen": "2026-10-28T08:40:13.915335+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [
     "7.4"
    ],
@@ -4046,7 +4329,7 @@
    "fixVersions": [],
    "discoverySource": "index produit public",
    "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [],
    "potentialProblem": true
   },
@@ -4063,7 +4346,7 @@
    "fixVersions": [],
    "discoverySource": "index produit public",
    "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [],
    "potentialProblem": false
   },
@@ -4082,7 +4365,7 @@
    "fixVersions": [],
    "discoverySource": "index produit public",
    "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [
     "8.0"
    ],
@@ -4101,7 +4384,7 @@
    "fixVersions": [],
    "discoverySource": "index produit public",
    "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [],
    "potentialProblem": false
   },
@@ -4118,7 +4401,7 @@
    "fixVersions": [],
    "discoverySource": "index produit public",
    "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [],
    "potentialProblem": false
   },
@@ -4135,7 +4418,7 @@
    "fixVersions": [],
    "discoverySource": "index produit public",
    "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [],
    "potentialProblem": true
   },
@@ -4152,7 +4435,7 @@
    "fixVersions": [],
    "discoverySource": "index produit public",
    "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [],
    "potentialProblem": false
   },
@@ -4169,7 +4452,7 @@
    "fixVersions": [],
    "discoverySource": "index produit public",
    "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [],
    "potentialProblem": false
   },
@@ -4186,7 +4469,7 @@
    "fixVersions": [],
    "discoverySource": "index produit public",
    "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [],
    "potentialProblem": false
   },
@@ -4203,7 +4486,7 @@
    "fixVersions": [],
    "discoverySource": "index produit public",
    "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [],
    "potentialProblem": false
   },
@@ -4220,7 +4503,7 @@
    "fixVersions": [],
    "discoverySource": "index produit public",
    "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [],
    "potentialProblem": false
   },
@@ -4237,7 +4520,7 @@
    "fixVersions": [],
    "discoverySource": "index produit public",
    "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [],
    "potentialProblem": false
   },
@@ -4254,7 +4537,7 @@
    "fixVersions": [],
    "discoverySource": "index produit public",
    "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [],
    "potentialProblem": false
   },
@@ -4271,7 +4554,7 @@
    "fixVersions": [],
    "discoverySource": "index produit public",
    "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [],
    "potentialProblem": false
   },
@@ -4289,7 +4572,7 @@
    "fixVersions": [],
    "discoverySource": "index produit public",
    "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [],
    "potentialProblem": false
   },
@@ -4307,7 +4590,7 @@
    "fixVersions": [],
    "discoverySource": "index produit public",
    "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [],
    "potentialProblem": false
   },
@@ -4325,7 +4608,7 @@
    "fixVersions": [],
    "discoverySource": "index produit public",
    "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [],
    "potentialProblem": false
   },
@@ -4849,7 +5132,7 @@
    "fixVersions": [],
    "discoverySource": "index produit public",
    "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [],
    "potentialProblem": false
   },
@@ -4866,7 +5149,7 @@
    "fixVersions": [],
    "discoverySource": "index produit public",
    "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [],
    "potentialProblem": false
   },
@@ -4883,7 +5166,7 @@
    "fixVersions": [],
    "discoverySource": "index produit public",
    "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [],
    "potentialProblem": false
   },
@@ -4900,7 +5183,7 @@
    "fixVersions": [],
    "discoverySource": "index produit public",
    "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [],
    "potentialProblem": false
   },
@@ -4917,7 +5200,7 @@
    "fixVersions": [],
    "discoverySource": "index produit public",
    "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [],
    "potentialProblem": false
   },
@@ -4934,7 +5217,7 @@
    "fixVersions": [],
    "discoverySource": "index produit public",
    "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [],
    "potentialProblem": false
   },
@@ -4951,7 +5234,7 @@
    "fixVersions": [],
    "discoverySource": "index produit public",
    "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [],
    "potentialProblem": false
   },
@@ -7209,7 +7492,7 @@
    "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
    "source": "Fortinet Community",
    "firstSeen": "2026-10-28T08:40:13.915335+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [],
    "potentialProblem": true,
    "discoverySource": "index produit public"
@@ -7235,7 +7518,7 @@
    "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
    "source": "Fortinet Community",
    "firstSeen": "2026-10-27T12:08:38.529366+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [
     "7.4",
     "7.6"
@@ -7260,7 +7543,7 @@
    "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
    "source": "Fortinet Community",
    "firstSeen": "2026-10-28T08:40:13.915335+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [],
    "potentialProblem": true,
    "discoverySource": "index produit public"
@@ -7283,7 +7566,7 @@
    "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
    "source": "Fortinet Community",
    "firstSeen": "2026-10-23T07:37:30.171221+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [
     "7.6"
    ],
@@ -7318,7 +7601,7 @@
    "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
    "source": "Fortinet Community",
    "firstSeen": "2026-10-28T08:40:13.915335+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [
     "8.0"
    ],
@@ -7342,31 +7625,9 @@
    "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
    "source": "Fortinet Community",
    "firstSeen": "2026-10-27T17:59:20.871064+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [],
    "potentialProblem": false
-  },
-  {
-   "id": "https://community.fortinet.com/support-forum-92/since-7-4-13-build2933-emails-not-sent-if-username-exceeds-36-characters-230909",
-   "title": "Since 7.4.13 build2933, emails not sent if username exceeds 36 characters",
-   "url": "https://community.fortinet.com/support-forum-92/since-7-4-13-build2933-emails-not-sent-if-username-exceeds-36-characters-230909",
-   "date": "2026-10-28T05:03:39+00:00",
-   "summary": "Since the update to version 7.4.13 build2933, emails are no longer sent to users whose username exceeds 36 characters.I am referring to the emails containing the QR code for FortiToken Mobile. Version: FortiGate-901G v7.4.13,build2933,260929 (GA.M)",
-   "categories": [
-    "Support Forum"
-   ],
-   "products": [
-    "FortiGate"
-   ],
-   "versions": [],
-   "fixVersions": [],
-   "status": "À vérifier",
-   "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
-   "source": "Fortinet Community",
-   "firstSeen": "2026-10-28T05:39:35.554158+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
-   "versionFamilies": [],
-   "potentialProblem": true
   },
   {
    "id": "https://community.fortinet.com/support-forum-92/cannot-access-the-console-because-it-is-stuck-230908",
@@ -7389,7 +7650,7 @@
    "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
    "source": "Fortinet Community",
    "firstSeen": "2026-10-28T05:39:35.554158+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [
     "7.0",
     "7.2"
@@ -7438,7 +7699,7 @@
    "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
    "source": "Fortinet Community",
    "firstSeen": "2026-10-25T08:49:02.456463+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [
     "7.4"
    ],
@@ -7461,7 +7722,7 @@
    "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
    "source": "Fortinet Community",
    "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [],
    "potentialProblem": false,
    "categories": [
@@ -7488,35 +7749,9 @@
    "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
    "source": "Fortinet Community",
    "firstSeen": "2026-10-27T08:27:15.325711+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [],
    "potentialProblem": true
-  },
-  {
-   "id": "https://community.fortinet.com/support-forum-92/need-fortigate-7-2-10-kvm-image-for-eve-ng-lab-230901",
-   "title": "Need FortiGate 7.2.10 KVM Image for EVE-NG lab",
-   "url": "https://community.fortinet.com/support-forum-92/need-fortigate-7-2-10-kvm-image-for-eve-ng-lab-230901",
-   "date": "2026-10-27T17:43:18+00:00",
-   "summary": "Hi,I need the FortiGate 7.2.10 KVM image for my EVE-NG lab. However, it is not showing up on the Fortinet support/download page where I normally get the images from. Could you please guide me on where and how I can download this specific version? Thank you very much.",
-   "categories": [
-    "Support Forum"
-   ],
-   "products": [
-    "FortiGate"
-   ],
-   "versions": [
-    "7.2.10"
-   ],
-   "fixVersions": [],
-   "status": "À vérifier",
-   "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
-   "source": "Fortinet Community",
-   "firstSeen": "2026-10-27T17:59:20.871064+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
-   "versionFamilies": [
-    "7.2"
-   ],
-   "potentialProblem": false
   },
   {
    "id": "https://community.fortinet.com/fortigate-3/slow-downloads-through-the-explicit-web-proxy-when-tcp-option-is-disabled-230907",
@@ -7540,7 +7775,7 @@
    "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
    "source": "Fortinet Community",
    "firstSeen": "2026-10-27T17:59:20.871064+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [
     "7.4",
     "7.6",
@@ -7569,7 +7804,7 @@
    "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
    "source": "Fortinet Community",
    "firstSeen": "2026-10-27T17:59:20.871064+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [
     "7.4"
    ],
@@ -7597,7 +7832,7 @@
    "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
    "source": "Fortinet Community",
    "firstSeen": "2026-10-27T17:59:20.871064+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [
     "7.4"
    ],
@@ -7621,7 +7856,7 @@
    "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
    "source": "Fortinet Community",
    "firstSeen": "2026-10-27T17:59:20.871064+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [],
    "potentialProblem": true
   },
@@ -7662,7 +7897,7 @@
    "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
    "source": "Fortinet Community",
    "firstSeen": "2026-10-26T04:44:07.561963+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [],
    "potentialProblem": false,
    "fixedVersions": [],
@@ -7688,7 +7923,7 @@
    "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
    "source": "Fortinet Community",
    "firstSeen": "2026-10-27T14:08:03.762154+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [
     "7.6"
    ],
@@ -7715,7 +7950,7 @@
    "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
    "source": "Fortinet Community",
    "firstSeen": "2026-10-27T12:08:38.529366+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [
     "7.6"
    ],
@@ -7742,7 +7977,7 @@
    "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
    "source": "Fortinet Community",
    "firstSeen": "2026-10-27T12:08:38.529366+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [
     "7.4"
    ],
@@ -7769,7 +8004,7 @@
    "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
    "source": "Fortinet Community",
    "firstSeen": "2026-10-27T12:08:38.529366+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [
     "7.2"
    ],
@@ -7795,7 +8030,7 @@
    "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
    "source": "Fortinet Community",
    "firstSeen": "2026-10-27T12:08:38.529366+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [],
    "potentialProblem": true,
    "discoverySource": "index produit public"
@@ -7815,7 +8050,7 @@
    "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
    "source": "Fortinet Community",
    "firstSeen": "2026-10-23T07:37:30.171221+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [],
    "potentialProblem": true,
    "categories": [
@@ -7840,7 +8075,7 @@
    "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
    "source": "Fortinet Community",
    "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [
     "7.4"
    ],
@@ -7865,7 +8100,7 @@
    "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
    "source": "Fortinet Community",
    "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [],
    "potentialProblem": false,
    "categories": [
@@ -7888,7 +8123,7 @@
    "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
    "source": "Fortinet Community",
    "firstSeen": "2026-10-24T07:14:22.584683+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [],
    "potentialProblem": false,
    "categories": [
@@ -7914,7 +8149,7 @@
    "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
    "source": "Fortinet Community",
    "firstSeen": "2026-10-25T08:49:02.456463+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [],
    "potentialProblem": false,
    "fixedVersions": [],
@@ -7938,7 +8173,7 @@
    "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
    "source": "Fortinet Community",
    "firstSeen": "2026-10-27T12:08:38.529366+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [],
    "potentialProblem": false
   },
@@ -7960,7 +8195,7 @@
    "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
    "source": "Fortinet Community",
    "firstSeen": "2026-10-27T12:08:38.529366+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [],
    "potentialProblem": false
   },
@@ -7982,7 +8217,7 @@
    "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
    "source": "Fortinet Community",
    "firstSeen": "2026-10-27T12:08:38.529366+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [],
    "potentialProblem": false,
    "discoverySource": "index produit public"
@@ -8008,7 +8243,7 @@
    "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
    "source": "Fortinet Community",
    "firstSeen": "2026-10-27T12:08:38.529366+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [
     "7.4"
    ],
@@ -8034,7 +8269,7 @@
    "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
    "source": "Fortinet Community",
    "firstSeen": "2026-10-27T12:08:38.529366+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [
     "7.2"
    ],
@@ -8057,7 +8292,7 @@
    "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
    "source": "Fortinet Community",
    "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [
     "7.4"
    ],
@@ -8091,7 +8326,7 @@
    "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
    "source": "Fortinet Community",
    "firstSeen": "2026-10-27T12:08:38.529366+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [
     "8.0"
    ],
@@ -8118,7 +8353,7 @@
    "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
    "source": "Fortinet Community",
    "firstSeen": "2026-10-27T12:08:38.529366+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [
     "7.4"
    ],
@@ -8143,7 +8378,7 @@
    "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
    "source": "Fortinet Community",
    "firstSeen": "2026-10-27T12:08:38.529366+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [],
    "potentialProblem": true,
    "discoverySource": "index produit public"
@@ -8169,7 +8404,7 @@
    "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
    "source": "Fortinet Community",
    "firstSeen": "2026-10-27T12:08:38.529366+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [
     "8.0"
    ],
@@ -8181,7 +8416,7 @@
    "title": "How to save a FortiManager API session as a variable in Postman and reuse it in other API requests",
    "url": "https://community.fortinet.com/fortimanager-27/how-to-save-a-fortimanager-api-session-as-a-variable-in-postman-and-reuse-it-in-other-api-requests-230879",
    "date": "2026-10-27T08:57:28+00:00",
-   "summary": "DescriptionHow to save and reuse API sessions in Postman without having to copy and paste them every time.ScopeFortiManager, FortiAnalyzer.SolutionWhen using Postman to send API requests to FortiManager, you may need to copy and paste the session ID to other requests. This process can be time-consuming, especially if there are many requests in Postman. To solve this, you can use scripts in Postman to save the session as a variable every time a login API request is sent to FortiManager. First, create an Environment in Postman to store the variable(s): Next, create the POST request for API login to FortiManager in Postman: In the same request page, click on the Scripts tab, then select Post-response: You can then enter the following JavaScript code:let session = pm.response.json().session; pm.environment.set(\"session\", session); The first line of the code reads the “session” attribute from the API response.The second line of the code saves it as a variable in the Environment. When you run the request, Postman will save the session ID into the Environment.Before request: After request:This variable can now be referenced and used in other requests in Postman using the following variable format: {{session}}",
+   "summary": "DescriptionHow to save and reuse API sessions in Postman without having to copy and paste them every time.ScopeFortiManager, FortiAnalyzer.SolutionWhen using Postman to send API requests to FortiManager, you may need to copy and paste the session ID to other requests. This process can be time-consuming, especially if there are many requests in Postman. To solve this, you can use scripts in Postman to save the session as a variable every time a login API request is sent to FortiManager. First, create an Environment in Postman to store the variable(s): Next, create the POST request for API login to FortiManager in Postman: In the same request page, click on the Scripts tab, then select Post-response: You can then enter the following JavaScript code:let session = pm.response.json().session; pm.environment.set(\"session\", session); The first line of the code reads the “session” attribute from the API response.The second line of the code saves it as a variable in the Environment. When you run the request, Postman will save the session ID into the Environment.Before request: After request:This variable can now be referenced and used in other requests in Postman using the following variable format: {{session}}Related Articles:Technical Tip: Using FortiManager/FortiAnalyzer API",
    "categories": [
     "FortiManager"
    ],
@@ -8195,7 +8430,7 @@
    "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
    "source": "Fortinet Community",
    "firstSeen": "2026-10-27T12:08:38.529366+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [],
    "potentialProblem": false,
    "discoverySource": "index produit public"
@@ -8220,7 +8455,7 @@
    "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
    "source": "Fortinet Community",
    "firstSeen": "2026-10-27T08:27:15.325711+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [
     "7.6"
    ],
@@ -8245,7 +8480,7 @@
    "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
    "source": "Fortinet Community",
    "firstSeen": "2026-10-27T08:27:15.325711+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [],
    "potentialProblem": false,
    "discoverySource": "index produit public"
@@ -8270,7 +8505,7 @@
    "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
    "source": "Fortinet Community",
    "firstSeen": "2026-10-26T22:38:45.180998+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [
     "7.4"
    ],
@@ -8294,7 +8529,7 @@
    "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
    "source": "Fortinet Community",
    "firstSeen": "2026-10-27T08:27:15.325711+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [],
    "potentialProblem": true,
    "discoverySource": "index produit public"
@@ -8343,7 +8578,7 @@
    "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
    "source": "Fortinet Community",
    "firstSeen": "2026-10-24T07:14:22.584683+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [
     "7.6"
    ],
@@ -8378,7 +8613,7 @@
    "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
    "source": "Fortinet Community",
    "firstSeen": "2026-10-27T08:27:15.325711+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [],
    "potentialProblem": false,
    "discoverySource": "index produit public"
@@ -8401,7 +8636,7 @@
    "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
    "source": "Fortinet Community",
    "firstSeen": "2026-10-27T08:27:15.325711+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [],
    "potentialProblem": false,
    "discoverySource": "index produit public"
@@ -8425,7 +8660,7 @@
    "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
    "source": "Fortinet Community",
    "firstSeen": "2026-10-26T22:38:45.180998+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [],
    "potentialProblem": false
   },
@@ -8451,7 +8686,7 @@
    "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
    "source": "Fortinet Community",
    "firstSeen": "2026-10-26T22:38:45.180998+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [
     "7.0",
     "7.2",
@@ -8475,7 +8710,7 @@
    "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
    "source": "Fortinet Community",
    "firstSeen": "2026-10-24T13:57:19.874191+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [
     "7.2"
    ],
@@ -8506,7 +8741,7 @@
    "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
    "source": "Fortinet Community",
    "firstSeen": "2026-10-26T22:38:45.180998+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [
     "7.0"
    ],
@@ -8530,7 +8765,7 @@
    "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
    "source": "Fortinet Community",
    "firstSeen": "2026-10-26T08:51:24.766456+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [],
    "potentialProblem": false,
    "fixVersions": []
@@ -8553,7 +8788,7 @@
    "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
    "source": "Fortinet Community",
    "firstSeen": "2026-10-26T14:38:38.019574+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [],
    "potentialProblem": true
   },
@@ -8571,7 +8806,7 @@
    "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
    "source": "Fortinet Community",
    "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [],
    "potentialProblem": true,
    "categories": [
@@ -8594,7 +8829,7 @@
    "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
    "source": "Fortinet Community",
    "firstSeen": "2026-10-22T09:24:01.029989+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [],
    "potentialProblem": true,
    "categories": [
@@ -8621,7 +8856,7 @@
    "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
    "source": "Fortinet Community",
    "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [
     "7.4"
    ],
@@ -8649,7 +8884,7 @@
    "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
    "source": "Fortinet Community",
    "firstSeen": "2026-10-23T13:47:25.795786+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [
     "7.4"
    ],
@@ -8674,7 +8909,7 @@
    "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
    "source": "Fortinet Community",
    "firstSeen": "2026-10-24T07:14:22.584683+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [],
    "potentialProblem": true,
    "categories": [
@@ -8703,7 +8938,7 @@
    "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
    "source": "Fortinet Community",
    "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [
     "7.2",
     "7.4",
@@ -8734,7 +8969,7 @@
    "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
    "source": "Fortinet Community",
    "firstSeen": "2026-10-26T12:58:24.915805+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [],
    "potentialProblem": false,
    "discoverySource": "index produit public"
@@ -8757,7 +8992,7 @@
    "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
    "source": "Fortinet Community",
    "firstSeen": "2026-10-26T16:16:28.410579+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [],
    "potentialProblem": false
   },
@@ -8781,7 +9016,7 @@
    "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
    "source": "Fortinet Community",
    "firstSeen": "2026-10-26T16:16:28.410579+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [
     "7.6"
    ],
@@ -8811,7 +9046,7 @@
    "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
    "source": "Fortinet Community",
    "firstSeen": "2026-10-26T14:41:22.213432+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [
     "6.6",
     "7.4"
@@ -8842,7 +9077,7 @@
    "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
    "source": "Fortinet Community",
    "firstSeen": "2026-10-26T14:38:38.019574+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [
     "6.6",
     "7.4"
@@ -8866,7 +9101,7 @@
    "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
    "source": "Fortinet Community",
    "firstSeen": "2026-10-23T07:37:30.171221+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [
     "7.6"
    ],
@@ -8929,9 +9164,6 @@
    "url": "https://community.fortinet.com/fortigate-3/understanding-and-managing-frequent-ha-audit-log-0108035018-230857",
    "date": "2026-10-26T13:32:57+00:00",
    "summary": "DescriptionAfter upgrading to FortiOS 7.4.13, you may observe frequent event logs on a FortiGate High Availability (HA) cluster with log ID 0108035018.A sample log message appears as follows:date=2026-10-23 time=10:33:00 logid=\"0108035018\" type=\"event\" subtype=\"ha\" level=\"information\" vd=\"root\" logdesc=\"HA secondary received CLI commands\" user=\"FGT_ha_admin\" ui=\"ha_daemon\" msg=\"Received CMD from ip:169.254.0.1 vdom:vsys_ha type:1, msg_type:66\"In FortiOS 7.4.13, security audit logging was added to record commands exchanged between HA cluster members across the internal heartbeat channel.Before FortiOS 7.4.13, these internal exchanges occurred silently. In FortiOS 7.4.13, each received command generates an informational event log.ScopeFortiOS 7.4.13.SolutionThese logs are purely informational. They do not cause packet loss, do not trigger failovers, and do not indicate a configuration defect.You can confirm that your cluster is healthy, or configure a log filter to exclude this message if you prefer not to retain it.Confirm HA Cluster SynchronizationTo verify that the cluster is healthy and in sync, run the following commands on the primary FortiGate:get system ha status diagnose sys ha statusVerify that both cluster members show an in-sync state and that the secondary node is reachable over all configured heartbeat interfaces.Filter the Log from Local Disk Storage (Optional)If your FortiGate has an onboard disk and you wish to stop recording this informational log to disk, configure a free-style exclusion filter in the CLI:config log disk filter config free-style edit 1 set category event set filter \"(logid 0108035018)\" set filter-type exclude next end endFilter the Log from FortiAnalyzer (Optional)If you send logs to FortiAnalyzer and wish to exclude this message, apply a free-style filter on the FortiGate:config log fortianalyzer filter config free-style edit 1 set category event set filter \"(logid 0108035018)\" set filter-type exclude next end end",
-   "categories": [
-    "FortiGate"
-   ],
    "products": [
     "FortiGate"
    ],
@@ -8939,11 +9171,8 @@
     "7.4.13"
    ],
    "fixVersions": [],
-   "status": "À vérifier",
-   "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
-   "source": "Fortinet Community",
    "firstSeen": "2026-10-26T14:38:38.019574+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [
     "7.4"
    ],
@@ -8960,16 +9189,10 @@
     "FortiManager"
    ],
    "versions": [],
-   "status": "À vérifier",
-   "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
-   "source": "Fortinet Community",
    "firstSeen": "2026-10-23T07:37:30.171221+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [],
    "potentialProblem": false,
-   "categories": [
-    "FortiManager"
-   ],
    "fixedVersions": [],
    "fixVersions": [],
    "discoverySource": "index produit public"
@@ -9051,19 +9274,13 @@
    "url": "https://community.fortinet.com/fortimanager-27/how-to-create-a-cli-script-that-runs-automatically-after-every-policy-package-or-device-settings-installation-on-fortimanager-230848",
    "date": "2026-10-26T09:20:49+00:00",
    "summary": "DescriptionThis article describes how to create a CLI script on FortiManager and configure it to run automatically on the FortiGate after every device install (policy package or device settings installation).ScopeFortiManager 7.x and 8.x.SolutionSome settings are changed or reverted by an install from FortiManager, or cannot be managed from the policy package or device database. A CLI script that runs directly on the FortiGate after each install can restore the required configuration without a manual step.For this, create a script with the target \"Remote FortiGate Directly (via CLI)\", then enable \"Automatic execute after each device install\" in the script schedule.Step 1: Create the scriptGo to \"Device Manager\" -> Script.Select \"Create New\".Enter a name for the script (for example, \"post-install-script\").Set \"Type\" to \"CLI Script\".Set \"Run script on\" to \"Remote FortiGate Directly (via CLI)\".In \"Script Detail\", enter the CLI commands to run on the FortiGate. For example, for a FortiGate with VDOMs enabled:config vdom edit root config set end next endFor a FortiGate without VDOMs, enter the commands without the \"config vdom\" and \"edit root\" lines:config set endSelect \"OK\".Step 2: Run the script automatically after every installEnable the scheduled and automatic script options in the FortiManager CLI:config system admin setting set show_automatic_script enable set show_schedule_script enable endGo to \"Device Manager\" -> \"Scripts\".Right-click the CLI script and select \"Schedule Script\".Select the FortiGate devices that the script will run on.Select \"Enable Automatic execute after each device install\".Select \"OK\".Once enabled, the script runs on the selected FortiGate devices after each install, including every policy package installation and device settings installation. No manual step is needed.VerificationInstall a policy package or the device settings to one of the selected FortiGate devices.When the installation finishes, go to \"Device Manager\" -> \"Scripts\" and open the script execution history (\"Script Log\") to check that the script ran on the device.On the FortiGate CLI, check that the configuration was applied. For example:show full | grep Note:\"Automatic execute after each device install\" is only available when \"Run script on\" is set to \"Remote FortiGate Directly (via CLI)\". It cannot be used with scripts that target \"Policy Package\" or \"ADOM Database\".When \"Automatic execute after each device install\" is enabled, a time-based schedule (one time, daily, weekly, monthly) cannot be configured for the same script.A script that runs directly on the FortiGate triggers an automatic retrieve back to FortiManager. The policy package status may temporarily show \"Unknown\".The script runs after the install, so the change is applied on the FortiGate but does not become part of the policy package or the device database in FortiManager. The next install can overwrite it, which is why the script runs after every install.Related documents:Troubleshooting Tip: Useful workaround when FortiManager does not install configuration as expectedTechnical Tip: CLI Script behavior to run in FortiManager",
-   "categories": [
-    "FortiManager"
-   ],
    "products": [
     "FortiManager"
    ],
    "versions": [],
    "fixVersions": [],
-   "status": "À vérifier",
-   "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
-   "source": "Fortinet Community",
    "firstSeen": "2026-10-26T09:30:25.828296+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [],
    "potentialProblem": false,
    "discoverySource": "index produit public"
@@ -9127,7 +9344,7 @@
    ],
    "fixedVersions": [],
    "firstSeen": "2026-10-26T08:51:24.766456+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [
     "7.4"
    ],
@@ -9147,7 +9364,7 @@
    "versions": [],
    "fixedVersions": [],
    "firstSeen": "2026-10-26T08:51:24.766456+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [],
    "potentialProblem": false,
    "fixVersions": [],
@@ -9165,7 +9382,7 @@
    "versions": [],
    "fixedVersions": [],
    "firstSeen": "2026-10-26T08:51:24.766456+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [],
    "potentialProblem": false,
    "fixVersions": [],
@@ -9185,7 +9402,7 @@
    ],
    "fixedVersions": [],
    "firstSeen": "2026-10-26T08:51:24.766456+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [
     "7.6"
    ],
@@ -9223,7 +9440,7 @@
    "versions": [],
    "fixedVersions": [],
    "firstSeen": "2026-10-26T08:51:24.766456+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [],
    "potentialProblem": true,
    "fixVersions": [],
@@ -9392,7 +9609,7 @@
    ],
    "versions": [],
    "firstSeen": "2026-10-24T07:14:22.584683+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [],
    "potentialProblem": false,
    "fixedVersions": [],
@@ -9447,7 +9664,7 @@
    ],
    "versions": [],
    "firstSeen": "2026-10-24T07:14:22.584683+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [],
    "potentialProblem": false,
    "fixedVersions": [],
@@ -9484,7 +9701,7 @@
    ],
    "versions": [],
    "firstSeen": "2026-10-24T07:14:22.584683+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [],
    "potentialProblem": true,
    "fixedVersions": [],
@@ -9521,7 +9738,7 @@
    ],
    "versions": [],
    "firstSeen": "2026-10-23T13:47:25.795786+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [],
    "potentialProblem": true,
    "fixedVersions": [],
@@ -9588,7 +9805,7 @@
     "7.4"
    ],
    "firstSeen": "2026-10-23T13:47:25.795786+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [
     "7.4"
    ],
@@ -9636,7 +9853,7 @@
    ],
    "versions": [],
    "firstSeen": "2026-10-23T07:37:30.171221+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [],
    "potentialProblem": false,
    "fixedVersions": [],
@@ -9657,7 +9874,7 @@
     "7.6.8"
    ],
    "firstSeen": "2026-10-23T07:37:30.171221+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [
     "7.6"
    ],
@@ -9677,7 +9894,7 @@
    ],
    "versions": [],
    "firstSeen": "2026-10-23T07:37:30.171221+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [],
    "potentialProblem": true,
    "fixedVersions": [],
@@ -9739,7 +9956,7 @@
    "fixVersions": [],
    "discoverySource": "index produit public",
    "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [
     "7.6"
    ],
@@ -9907,7 +10124,7 @@
    ],
    "versions": [],
    "firstSeen": "2026-10-22T09:24:01.029989+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [],
    "potentialProblem": true,
    "fixedVersions": [],
@@ -9925,7 +10142,7 @@
    ],
    "versions": [],
    "firstSeen": "2026-10-22T09:24:01.029989+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [],
    "potentialProblem": false,
    "fixedVersions": [],
@@ -9943,7 +10160,7 @@
    ],
    "versions": [],
    "firstSeen": "2026-10-22T09:24:01.029989+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [],
    "potentialProblem": false,
    "fixedVersions": [],
@@ -9961,7 +10178,7 @@
    ],
    "versions": [],
    "firstSeen": "2026-10-22T09:24:01.029989+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [],
    "potentialProblem": false,
    "fixedVersions": [],
@@ -9979,7 +10196,7 @@
    ],
    "versions": [],
    "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [],
    "potentialProblem": true,
    "fixedVersions": [],
@@ -9997,7 +10214,7 @@
    ],
    "versions": [],
    "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [],
    "potentialProblem": false,
    "fixedVersions": [],
@@ -10015,7 +10232,7 @@
    ],
    "versions": [],
    "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [],
    "potentialProblem": true,
    "fixedVersions": [],
@@ -10033,7 +10250,7 @@
    ],
    "versions": [],
    "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [],
    "potentialProblem": false,
    "fixedVersions": [],
@@ -10051,7 +10268,7 @@
    ],
    "versions": [],
    "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [],
    "potentialProblem": true,
    "fixedVersions": [],
@@ -10069,7 +10286,7 @@
    ],
    "versions": [],
    "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [],
    "potentialProblem": false,
    "fixedVersions": [],
@@ -10087,7 +10304,7 @@
    ],
    "versions": [],
    "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [],
    "potentialProblem": false,
    "fixedVersions": [],
@@ -10105,7 +10322,7 @@
    ],
    "versions": [],
    "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [],
    "potentialProblem": false,
    "fixedVersions": [],
@@ -10123,7 +10340,7 @@
    ],
    "versions": [],
    "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [],
    "potentialProblem": true,
    "fixedVersions": [],
@@ -10141,7 +10358,7 @@
    ],
    "versions": [],
    "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [],
    "potentialProblem": false,
    "fixedVersions": [],
@@ -10159,7 +10376,7 @@
    ],
    "versions": [],
    "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [],
    "potentialProblem": false,
    "fixedVersions": [],
@@ -10177,7 +10394,7 @@
    ],
    "versions": [],
    "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [],
    "potentialProblem": false,
    "fixedVersions": [],
@@ -10214,7 +10431,7 @@
    ],
    "versions": [],
    "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [],
    "potentialProblem": false,
    "fixedVersions": [],
@@ -10232,7 +10449,7 @@
    ],
    "versions": [],
    "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [],
    "potentialProblem": false,
    "fixedVersions": [],
@@ -10250,7 +10467,7 @@
    ],
    "versions": [],
    "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [],
    "potentialProblem": false,
    "fixedVersions": [],
@@ -10268,7 +10485,7 @@
    ],
    "versions": [],
    "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [],
    "potentialProblem": false,
    "fixedVersions": [],
@@ -10286,7 +10503,7 @@
    ],
    "versions": [],
    "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [],
    "potentialProblem": false,
    "fixedVersions": [],
@@ -10419,7 +10636,7 @@
     "7.2"
    ],
    "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [
     "7.2"
    ],
@@ -10505,7 +10722,7 @@
    ],
    "versions": [],
    "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [],
    "potentialProblem": false,
    "fixedVersions": [],
@@ -10574,7 +10791,7 @@
    ],
    "versions": [],
    "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [],
    "potentialProblem": true,
    "fixedVersions": [],
@@ -10593,7 +10810,7 @@
    ],
    "versions": [],
    "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [],
    "potentialProblem": true,
    "fixedVersions": [],
@@ -10652,7 +10869,7 @@
    ],
    "versions": [],
    "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [],
    "potentialProblem": true,
    "fixedVersions": [],
@@ -10856,7 +11073,7 @@
    ],
    "versions": [],
    "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [],
    "potentialProblem": true,
    "fixedVersions": [],
@@ -10875,7 +11092,7 @@
    ],
    "versions": [],
    "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [],
    "potentialProblem": false,
    "fixedVersions": [],
@@ -10978,7 +11195,7 @@
    ],
    "versions": [],
    "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [],
    "potentialProblem": true,
    "fixedVersions": [],
@@ -10998,7 +11215,7 @@
    ],
    "versions": [],
    "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [],
    "potentialProblem": true,
    "fixedVersions": [],
@@ -11079,7 +11296,7 @@
    "fixVersions": [],
    "discoverySource": "index produit public",
    "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [],
    "potentialProblem": true,
    "detailCheckedAt": "2026-10-28T08:49:14.101595+00:00"
@@ -11097,7 +11314,7 @@
    "fixVersions": [],
    "discoverySource": "index produit public",
    "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [],
    "potentialProblem": true,
    "detailCheckedAt": "2026-10-28T08:49:14.101595+00:00"
@@ -11116,7 +11333,7 @@
    "fixVersions": [],
    "discoverySource": "index produit public",
    "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [],
    "potentialProblem": true,
    "detailCheckedAt": "2026-10-28T08:46:27.055691+00:00"
@@ -11135,7 +11352,7 @@
    "fixVersions": [],
    "discoverySource": "index produit public",
    "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [],
    "potentialProblem": true,
    "detailCheckedAt": "2026-10-28T08:50:28.851621+00:00"
@@ -11153,7 +11370,7 @@
    "fixVersions": [],
    "discoverySource": "index produit public",
    "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [],
    "potentialProblem": true,
    "detailCheckedAt": "2026-10-28T08:50:28.851621+00:00"
@@ -11171,7 +11388,7 @@
    "fixVersions": [],
    "discoverySource": "index produit public",
    "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [],
    "potentialProblem": true,
    "detailCheckedAt": "2026-10-28T08:50:28.851621+00:00"
@@ -11189,7 +11406,7 @@
    "fixVersions": [],
    "discoverySource": "index produit public",
    "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [],
    "potentialProblem": true,
    "detailCheckedAt": "2026-10-28T08:51:12.517913+00:00"
@@ -11207,7 +11424,7 @@
    "fixVersions": [],
    "discoverySource": "index produit public",
    "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [],
    "potentialProblem": false,
    "detailCheckedAt": "2026-10-28T09:09:38.942982+00:00",
@@ -11228,7 +11445,7 @@
    "fixVersions": [],
    "discoverySource": "index produit public",
    "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [
     "8.0"
    ],
@@ -11248,7 +11465,7 @@
    "fixVersions": [],
    "discoverySource": "index produit public",
    "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [],
    "potentialProblem": true,
    "detailCheckedAt": "2026-10-28T08:51:12.517913+00:00"
@@ -11266,7 +11483,7 @@
    "fixVersions": [],
    "discoverySource": "index produit public",
    "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [],
    "potentialProblem": false,
    "detailCheckedAt": "2026-10-28T08:51:46.911648+00:00"
@@ -11284,7 +11501,7 @@
    "fixVersions": [],
    "discoverySource": "index produit public",
    "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [],
    "potentialProblem": true,
    "detailCheckedAt": "2026-10-28T08:51:46.911648+00:00"
@@ -11320,7 +11537,7 @@
    "fixVersions": [],
    "discoverySource": "index produit public",
    "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [],
    "potentialProblem": true,
    "detailCheckedAt": "2026-10-28T08:51:46.911648+00:00"
@@ -11338,7 +11555,7 @@
    "fixVersions": [],
    "discoverySource": "index produit public",
    "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [],
    "potentialProblem": true,
    "detailCheckedAt": "2026-10-28T08:54:07.772145+00:00"
@@ -11383,7 +11600,7 @@
    "detailCheckedAt": "2026-10-28T09:19:49.512182+00:00",
    "detailFetchStatus": "success",
    "firstSeen": "2026-10-28T09:19:39.874101+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [
     "7.6"
    ],
@@ -11404,7 +11621,7 @@
    "detailCheckedAt": "2026-10-28T09:19:49.512182+00:00",
    "detailFetchStatus": "success",
    "firstSeen": "2026-10-28T09:19:39.874101+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [],
    "potentialProblem": true
   },
@@ -11421,7 +11638,7 @@
    "fixVersions": [],
    "discoverySource": "index produit public",
    "firstSeen": "2026-10-28T09:19:39.874101+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [],
    "potentialProblem": true,
    "detailCheckedAt": "2026-10-28T09:20:52.006558+00:00",
@@ -11482,7 +11699,7 @@
    "fixVersions": [],
    "discoverySource": "index produit public",
    "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [],
    "potentialProblem": true,
    "detailCheckedAt": "2026-10-28T08:46:27.055691+00:00"
@@ -11502,7 +11719,7 @@
    "fixVersions": [],
    "discoverySource": "index produit public",
    "firstSeen": "2026-10-28T09:19:39.874101+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [
     "7.6"
    ],
@@ -11524,7 +11741,7 @@
    "fixVersions": [],
    "discoverySource": "index produit public",
    "firstSeen": "2026-10-28T09:19:39.874101+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [],
    "potentialProblem": true,
    "detailCheckedAt": "2026-10-28T09:21:44.471909+00:00",
@@ -11543,7 +11760,7 @@
    "fixVersions": [],
    "discoverySource": "index produit public",
    "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [],
    "potentialProblem": true,
    "detailCheckedAt": "2026-10-28T08:46:50.571715+00:00"
@@ -11561,7 +11778,7 @@
    "fixVersions": [],
    "discoverySource": "index produit public",
    "firstSeen": "2026-10-28T09:19:39.874101+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [],
    "potentialProblem": true,
    "detailCheckedAt": "2026-10-28T09:21:44.471909+00:00",
@@ -11582,7 +11799,7 @@
    "fixVersions": [],
    "discoverySource": "index produit public",
    "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [],
    "potentialProblem": true,
    "detailCheckedAt": "2026-10-28T08:46:50.571715+00:00"
@@ -11620,7 +11837,7 @@
    "fixVersions": [],
    "discoverySource": "index produit public",
    "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [],
    "potentialProblem": true,
    "detailCheckedAt": "2026-10-28T08:46:27.055691+00:00"
@@ -11640,7 +11857,7 @@
    "fixVersions": [],
    "discoverySource": "index produit public",
    "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [
     "6.6"
    ],
@@ -11662,7 +11879,7 @@
    "fixVersions": [],
    "discoverySource": "index produit public",
    "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [],
    "potentialProblem": true,
    "detailCheckedAt": "2026-10-28T08:46:50.571715+00:00"
@@ -11680,7 +11897,7 @@
    "fixVersions": [],
    "discoverySource": "index produit public",
    "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [],
    "potentialProblem": true,
    "detailCheckedAt": "2026-10-28T08:46:50.571715+00:00"
@@ -11698,7 +11915,7 @@
    "fixVersions": [],
    "discoverySource": "index produit public",
    "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [],
    "potentialProblem": true,
    "detailCheckedAt": "2026-10-28T08:47:26.132001+00:00"
@@ -11717,7 +11934,7 @@
    "fixVersions": [],
    "discoverySource": "index produit public",
    "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [],
    "potentialProblem": true,
    "detailCheckedAt": "2026-10-28T08:47:26.132001+00:00"
@@ -11793,7 +12010,7 @@
    "fixVersions": [],
    "discoverySource": "index produit public",
    "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [],
    "potentialProblem": true,
    "detailCheckedAt": "2026-10-28T08:47:26.132001+00:00"
@@ -11830,7 +12047,7 @@
    "fixVersions": [],
    "discoverySource": "index produit public",
    "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [],
    "potentialProblem": true,
    "detailCheckedAt": "2026-10-28T08:48:38.614941+00:00"
@@ -11868,7 +12085,7 @@
    "fixVersions": [],
    "discoverySource": "index produit public",
    "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [],
    "potentialProblem": true,
    "detailCheckedAt": "2026-10-28T08:48:38.614941+00:00"
@@ -11941,7 +12158,7 @@
    "fixVersions": [],
    "discoverySource": "index produit public",
    "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [],
    "potentialProblem": true,
    "detailCheckedAt": "2026-10-28T09:09:38.942982+00:00",
@@ -11962,7 +12179,7 @@
    "fixVersions": [],
    "discoverySource": "index produit public",
    "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [
     "8.0"
    ],
@@ -11982,7 +12199,7 @@
    "fixVersions": [],
    "discoverySource": "index produit public",
    "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [],
    "potentialProblem": true,
    "detailCheckedAt": "2026-10-28T08:49:14.101595+00:00"
@@ -12000,7 +12217,7 @@
    "fixVersions": [],
    "discoverySource": "index produit public",
    "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [],
    "potentialProblem": true,
    "detailCheckedAt": "2026-10-28T08:50:28.851621+00:00"
@@ -12261,7 +12478,7 @@
    "fixVersions": [],
    "discoverySource": "index produit public",
    "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [
     "6.6"
    ],
@@ -12281,7 +12498,7 @@
    "fixVersions": [],
    "discoverySource": "index produit public",
    "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [],
    "potentialProblem": false,
    "detailCheckedAt": "2026-10-28T08:51:12.517913+00:00"
@@ -12299,7 +12516,7 @@
    "fixVersions": [],
    "discoverySource": "index produit public",
    "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-   "lastSeen": "2026-10-28T09:21:36.868396+00:00",
+   "lastSeen": "2026-10-28T12:51:52.053163+00:00",
    "versionFamilies": [],
    "potentialProblem": true,
    "detailCheckedAt": "2026-10-28T08:51:12.517913+00:00"
@@ -14120,14 +14337,14 @@
    "detailFetchStatus": "success"
   }
  ],
- "boardPageCount": 30,
- "boardTopicCount": 713,
+ "boardPageCount": 6,
+ "boardTopicCount": 151,
  "aiReviewGeneratedAt": "2026-10-28T09:22:22.051322+00:00",
  "aiReviewModel": "gemini-3.5-flash-lite",
  "aiReviewNote": "La relecture IA améliore la lisibilité mais ne constitue pas une validation officielle. Les produits, versions, correctifs, statuts et sources sont conservés depuis la synthèse déterministe.",
- "aiReviewStatus": "partial",
- "aiReviewMessage": "Relecture Gemini appliquée à 40 fiche(s) sur 125. Les fiches restantes conservent la synthèse déterministe ou une relecture antérieure valide.",
- "aiReviewCheckedAt": "2026-10-28T09:22:22.051322+00:00",
+ "aiReviewStatus": "error",
+ "aiReviewMessage": "Relecture Gemini indisponible (RuntimeError). La synthèse déterministe reste publiée et les anciennes relectures valides sont conservées si leurs preuves sont inchangées.",
+ "aiReviewCheckedAt": "2026-10-28T12:54:32.009433+00:00",
  "incidents": [
   {
    "id": "incident-8ab354e702e7",
@@ -14675,6 +14892,186 @@
     "reviewedAt": "2026-10-28T09:22:22.051322+00:00",
     "label": "Relecture IA — à vérifier avec les sources"
    }
+  },
+  {
+   "id": "incident-cdeac0cf3822",
+   "title": "After upgrading to FortiOS version 7.6.8, FSSO Admins cannot authenticate via SAML",
+   "summary": "DescriptionAfter upgrading the FortiGate to FortiOS version 7.6.8, admins with FSSO enabled cannot log in via SAML authentication, as it fails to generate the SAML request to the Identity Provider.ScopeFortiGate.SolutionOnce the upgrade to v7.6.8 is performed, FSSO-enabled admins fail to authenticate via SAML. The system cannot redirect the user to the IDP (Identity Provider).This behavior is documented in the FortiOS version 7.6.8 release notes:CSF downstream GUI login fails with Security Fabric SAML SSOUse the following debug commands to verify the…",
+   "symptom": "After upgrading the FortiGate to FortiOS version 7.6.8, admins with FSSO enabled cannot log in via SAML authentication, as it fails to generate the SAML request to the Identity Provider",
+   "impact": "",
+   "solution": "Once the upgrade to v7.6.8 is performed, FSSO-enabled admins fail to authenticate via SAML. The system cannot redirect the user to the IDP (Identity Provider).This behavior is documented in the FortiOS version 7.6.8 release notes:CSF downstream GUI login fails with Security Fabric SAML SSOUse the following debug commands to verify the issue:diagnose debug reset diagnose debug console timestamp enable diagnose debug application fssod -1 diagnose debug application fnbamd -1 diagnose debug enable Attempt to log in using SAML. If the issue matches the debug, it shows an error:[http_authd] http_authd_saml_sp_login_handler[457] -- Failed to generate SAML request to IDP.This matches a known issue that has a fix in firmware version 7.6.9.For the time being, use this workaround:Use a local administrator account.Use an account that does not rely on SAML SSO authentication",
+   "products": [
+    "FortiGate"
+   ],
+   "versions": [
+    "7.6.8"
+   ],
+   "versionFamilies": [
+    "7.6"
+   ],
+   "fixVersions": [],
+   "sourceCount": 1,
+   "forumReportCount": 0,
+   "documentedSourceCount": 1,
+   "sources": [
+    {
+     "title": "After upgrading to FortiOS version 7.6.8, FSSO Admins cannot authenticate via SAML",
+     "url": "https://community.fortinet.com/fortigate-3/after-upgrading-to-fortios-version-7-6-8-fsso-admins-cannot-authenticate-via-saml-230931",
+     "date": "2026-10-28T11:27:54+00:00",
+     "summary": "DescriptionAfter upgrading the FortiGate to FortiOS version 7.6.8, admins with FSSO enabled cannot log in via SAML authentication, as it fails to generate the SAML request to the Identity Provider.ScopeFortiGate.SolutionOnce the upgrade to v7.6.8 is performed, FSSO-enabled admins fail to authenticate via SAML. The system cannot redirect the user to the IDP (Identity Provider).This behavior is documented in the FortiOS version 7.6.8 release notes:CSF downstream GUI login fails with Security Fabric SAML SSOUse the following debug commands to verify the issue:diagnose debug reset diagnose debug console timestamp enable diagnose debug application fssod -1 diagnose debug application fnbamd -1 diagnose debug enable Attempt to log in using SAML. If the issue matches the debug, it shows an error:[http_authd] http_authd_saml_sp_login_handler[457] -- Failed to generate SAML request to IDP.This matches a known issue that has a fix in firmware version 7.6.9.For the time being, use this workaround:",
+     "products": [
+      "FortiGate"
+     ],
+     "versions": [
+      "7.6.8"
+     ],
+     "versionFamilies": [
+      "7.6"
+     ],
+     "sourceType": "fortinet_article",
+     "fixVersions": [],
+     "symptom": "After upgrading the FortiGate to FortiOS version 7.6.8, admins with FSSO enabled cannot log in via SAML authentication, as it fails to generate the SAML request to the Identity Provider",
+     "impact": "",
+     "solution": "Once the upgrade to v7.6.8 is performed, FSSO-enabled admins fail to authenticate via SAML. The system cannot redirect the user to the IDP (Identity Provider).This behavior is documented in the FortiOS version 7.6.8 release notes:CSF downstream GUI login fails with Security Fabric SAML SSOUse the following debug commands to verify the issue:diagnose debug reset diagnose debug console timestamp enable diagnose debug application fssod -1 diagnose debug application fnbamd -1 diagnose debug enable Attempt to log in using SAML. If the issue matches the debug, it shows an error:[http_authd] http_authd_saml_sp_login_handler[457] -- Failed to generate SAML request to IDP.This matches a known issue that has a fix in firmware version 7.6.9.For the time being, use this workaround:Use a local administrator account.Use an account that does not rely on SAML SSO authentication"
+    }
+   ],
+   "lastSeen": "2026-10-28T11:27:54+00:00",
+   "status": "Documenté par Fortinet (version identifiée)",
+   "confidence": "Documentation Fortinet versionnée",
+   "evidenceType": "official_documentation",
+   "synthesisMethod": "Règles de preuve : article Fortinet versionné et explicite, ou au moins deux discussions distinctes; pas d'IA générative."
+  },
+  {
+   "id": "incident-80e5dbc39326",
+   "title": "FortiSASE secure edge tunnel stays down after a FortiOS upgrade because of a Diffie-Hellman group mismatch",
+   "summary": "DescriptionFortiGate secure edge tunnel to FortiSASE stops negotiating after the FortiGate is upgraded to FortiOS 7.6.5, why the tunnel comes up when the Diffie-Hellman (DH) groups are set to 5 and 14 and then drops again with the groups back at 20 and 21, and how to fix the condition permanently.This article also explains why the tunnel settings on FortiManager are not the source of truth for this tunnel, and how to make the workaround persist on FortiOS builds that do not contain the code fix.ScopeFortiGate configured as a FortiSASE secure edge,…",
+   "symptom": "FortiGate secure edge tunnel to FortiSASE stops negotiating after the FortiGate is upgraded to FortiOS 7.6.5, why the tunnel comes up when the Diffie-Hellman (DH) groups are set to 5 and 14 and then drops again with the groups back at 20 and 21, and how to fix the condition permanently.This article also explains why the tunnel settings on FortiManager are not the source of truth for this tunnel, and how to make the workaround persist on FortiOS builds that do not contain the code fix",
+   "impact": "",
+   "solution": "SymptomA FortiGate operating as a FortiSASE secure edge has a VDOM, commonly named SASE, configured for LAN extension. The tunnel to the FortiSASE edge service is not created by an administrator. FortiOS creates and maintains it automatically, under a phase 1 interface named with the prefix ul-, for example ul-npu0_vlink1, and the interface carries the description \"[fgconn] Do NOT edit. Automatically generated by extension controller\".After the FortiGate is upgraded to FortiOS 7.6.5 or 7.6.6, the tunnel no longer establishes. The VPN logs show a large number of IKEv2 phase 1 proposals sent to the FortiSASE peer with no answer, each cycle ending in a negotiation timeout. The responder cookie in those log entries is all zeroes, which means the peer never replied. See the following logs for examples of Fortinet Tunnel ID, local IP, and interface names.date=2026-10-12 time=23:10:55 type=VPN subtype=tunnel action=tunnel-down vd=SASE vpntunnel=\"ul-npu0_vlink1\" duration=28678 locip=172.16.10.90 remip=192.0.2.10 remport=4500 locport=4500 version=\"IKEv2\" role=\"initiator\" date=2026-10-12 time=23:17:46 type=VPN subtype=phase1 logid=0101037127 action=SA_INIT vpntunnel=\"ul-npu0_vlink1\" status=\"",
+   "products": [
+    "FortiGate",
+    "FortiManager"
+   ],
+   "versions": [
+    "7.6.5",
+    "7.6.7"
+   ],
+   "versionFamilies": [
+    "7.6"
+   ],
+   "fixVersions": [],
+   "sourceCount": 1,
+   "forumReportCount": 0,
+   "documentedSourceCount": 1,
+   "sources": [
+    {
+     "title": "FortiSASE secure edge tunnel stays down after a FortiOS upgrade because of a Diffie-Hellman group mismatch",
+     "url": "https://community.fortinet.com/fortigate-3/fortisase-secure-edge-tunnel-stays-down-after-a-fortios-upgrade-because-of-a-diffie-hellman-group-mismatch-230930",
+     "date": "2026-10-28T10:56:11+00:00",
+     "summary": "DescriptionFortiGate secure edge tunnel to FortiSASE stops negotiating after the FortiGate is upgraded to FortiOS 7.6.5, why the tunnel comes up when the Diffie-Hellman (DH) groups are set to 5 and 14 and then drops again with the groups back at 20 and 21, and how to fix the condition permanently.This article also explains why the tunnel settings on FortiManager are not the source of truth for this tunnel, and how to make the workaround persist on FortiOS builds that do not contain the code fix.ScopeFortiGate configured as a FortiSASE secure edge, FortiOS 7.6.5 and 7.6.6. FortiSASE. FortiManager used as the management station for the FortiGate. FortiOS 7.6.7 and later are not affected.SolutionSymptomA FortiGate operating as a FortiSASE secure edge has a VDOM, commonly named SASE, configured for LAN extension. The tunnel to the FortiSASE edge service is not created by an administrator. FortiOS creates and maintains it automatically, under a phase 1 interface named with the prefix ul-, f",
+     "products": [
+      "FortiGate",
+      "FortiManager"
+     ],
+     "versions": [
+      "7.6.5",
+      "7.6.7"
+     ],
+     "versionFamilies": [
+      "7.6"
+     ],
+     "sourceType": "fortinet_article",
+     "fixVersions": [],
+     "symptom": "FortiGate secure edge tunnel to FortiSASE stops negotiating after the FortiGate is upgraded to FortiOS 7.6.5, why the tunnel comes up when the Diffie-Hellman (DH) groups are set to 5 and 14 and then drops again with the groups back at 20 and 21, and how to fix the condition permanently.This article also explains why the tunnel settings on FortiManager are not the source of truth for this tunnel, and how to make the workaround persist on FortiOS builds that do not contain the code fix",
+     "impact": "",
+     "solution": "SymptomA FortiGate operating as a FortiSASE secure edge has a VDOM, commonly named SASE, configured for LAN extension. The tunnel to the FortiSASE edge service is not created by an administrator. FortiOS creates and maintains it automatically, under a phase 1 interface named with the prefix ul-, for example ul-npu0_vlink1, and the interface carries the description \"[fgconn] Do NOT edit. Automatically generated by extension controller\".After the FortiGate is upgraded to FortiOS 7.6.5 or 7.6.6, the tunnel no longer establishes. The VPN logs show a large number of IKEv2 phase 1 proposals sent to the FortiSASE peer with no answer, each cycle ending in a negotiation timeout. The responder cookie in those log entries is all zeroes, which means the peer never replied. See the following logs for examples of Fortinet Tunnel ID, local IP, and interface names.date=2026-10-12 time=23:10:55 type=VPN subtype=tunnel action=tunnel-down vd=SASE vpntunnel=\"ul-npu0_vlink1\" duration=28678 locip=172.16.10.90 remip=192.0.2.10 remport=4500 locport=4500 version=\"IKEv2\" role=\"initiator\" date=2026-10-12 time=23:17:46 type=VPN subtype=phase1 logid=0101037127 action=SA_INIT vpntunnel=\"ul-npu0_vlink1\" status=\""
+    }
+   ],
+   "lastSeen": "2026-10-28T10:56:11+00:00",
+   "status": "Documenté par Fortinet (version identifiée)",
+   "confidence": "Documentation Fortinet versionnée",
+   "evidenceType": "official_documentation",
+   "synthesisMethod": "Règles de preuve : article Fortinet versionné et explicite, ou au moins deux discussions distinctes; pas d'IA générative."
+  },
+  {
+   "id": "incident-c80e9a5cda8c",
+   "title": "Error \"Failed to save changes\" while saving custom Application Control signature",
+   "summary": "DescriptionSteps to resolve the \"Failed to save changes\" error encountered when saving a custom Application Control signature.ScopeFortiGate.SolutionA syntax error can occur when saving a custom Application Control signature if the signature definition contains line breaks or formatting that prevents the parser from correctly interpreting the opening and closing parentheses.When attempting to save a custom Application Control signature, the GUI displays the error \"Failed to save changes\".To investigate the issue, run the following commands.diagnose…",
+   "symptom": "Steps to resolve the \"Failed to save changes\" error encountered when saving a custom Application Control signature",
+   "impact": "",
+   "solution": "A syntax error can occur when saving a custom Application Control signature if the signature definition contains line breaks or formatting that prevents the parser from correctly interpreting the opening and closing parentheses.When attempting to save a custom Application Control signature, the GUI displays the error \"Failed to save changes\".To investigate the issue, run the following commands.diagnose debug disable diagnose debug reset diagnose debug console timestamp enable diagnose debug cli 8 diagnose debug cmdb-trace diagnose debug enableThe CLI and CMDB trace debug output indicates that the closing or opening parenthesis cannot be identified. This can occur when the signature definition is formatted across multiple lines in a way that the parser cannot recognize.kvm42 # 0: config application custom 0: edit \"OutboundTSTServerCommunication\" 0: set comment '' 0: set signature \"F-SBID( 0: --attack_id 9901; 0: --name \\\"Outbound.TST.Server.Communication\\\"; 0: --default_action drop_session; 0: --service HTTP; 0: --protocol tcp; 0: --app_cat 25; 0: --flow from_client; 0: --pattern \\\"/.well-known/tst.json\\\"; 0: --context uri; 0: --no_case; 0: --weight 40; 0: )\" 0: unset protocol 0: un",
+   "products": [
+    "FortiGate"
+   ],
+   "versions": [],
+   "versionFamilies": [],
+   "fixVersions": [],
+   "sourceCount": 1,
+   "forumReportCount": 0,
+   "documentedSourceCount": 1,
+   "sources": [
+    {
+     "title": "Error \"Failed to save changes\" while saving custom Application Control signature",
+     "url": "https://community.fortinet.com/fortigate-3/error-failed-to-save-changes-while-saving-custom-application-control-signature-230926",
+     "date": "2026-10-28T10:25:37+00:00",
+     "summary": "DescriptionSteps to resolve the \"Failed to save changes\" error encountered when saving a custom Application Control signature.ScopeFortiGate.SolutionA syntax error can occur when saving a custom Application Control signature if the signature definition contains line breaks or formatting that prevents the parser from correctly interpreting the opening and closing parentheses.When attempting to save a custom Application Control signature, the GUI displays the error \"Failed to save changes\".To investigate the issue, run the following commands.diagnose debug disable diagnose debug reset diagnose debug console timestamp enable diagnose debug cli 8 diagnose debug cmdb-trace diagnose debug enableThe CLI and CMDB trace debug output indicates that the closing or opening parenthesis cannot be identified. This can occur when the signature definition is formatted across multiple lines in a way that the parser cannot recognize.kvm42 # 0: config application custom 0: edit \"OutboundTSTServerCommunica",
+     "products": [
+      "FortiGate"
+     ],
+     "versions": [],
+     "versionFamilies": [],
+     "sourceType": "fortinet_article",
+     "fixVersions": [],
+     "symptom": "Steps to resolve the \"Failed to save changes\" error encountered when saving a custom Application Control signature",
+     "impact": "",
+     "solution": "A syntax error can occur when saving a custom Application Control signature if the signature definition contains line breaks or formatting that prevents the parser from correctly interpreting the opening and closing parentheses.When attempting to save a custom Application Control signature, the GUI displays the error \"Failed to save changes\".To investigate the issue, run the following commands.diagnose debug disable diagnose debug reset diagnose debug console timestamp enable diagnose debug cli 8 diagnose debug cmdb-trace diagnose debug enableThe CLI and CMDB trace debug output indicates that the closing or opening parenthesis cannot be identified. This can occur when the signature definition is formatted across multiple lines in a way that the parser cannot recognize.kvm42 # 0: config application custom 0: edit \"OutboundTSTServerCommunication\" 0: set comment '' 0: set signature \"F-SBID( 0: --attack_id 9901; 0: --name \\\"Outbound.TST.Server.Communication\\\"; 0: --default_action drop_session; 0: --service HTTP; 0: --protocol tcp; 0: --app_cat 25; 0: --flow from_client; 0: --pattern \\\"/.well-known/tst.json\\\"; 0: --context uri; 0: --no_case; 0: --weight 40; 0: )\" 0: unset protocol 0: un"
+    }
+   ],
+   "lastSeen": "2026-10-28T10:25:37+00:00",
+   "status": "Documenté par Fortinet (version non précisée)",
+   "confidence": "Documentation Fortinet (version non précisée)",
+   "evidenceType": "official_documentation",
+   "synthesisMethod": "Règles de preuve : article Fortinet versionné et explicite, ou au moins deux discussions distinctes; pas d'IA générative."
+  },
+  {
+   "id": "incident-7f18edaf7bdf",
+   "title": "High packet drops occur during traffic bursts on a FortiGate VM hosted in Google Cloud Platform",
+   "summary": "DescriptionThis article describes the case when a FortiGate VM hosted on Google Cloud Platform (GCP) experiences significant packet loss and latency during high bursts of traffic. While interface-level counters do not show RX drops, the internal RX queue statistics indicate drops.ScopeFortiGate VM, GCP.SolutionThe issue is caused by RX queue buffer exhaustion. When the GCP instance presents only one RX queue, the ring buffer descriptors are exhausted during traffic bursts, leading to packet drops.",
+   "symptom": "This article describes the case when a FortiGate VM hosted on Google Cloud Platform (GCP) experiences significant packet loss and latency during high bursts of traffic. While interface-level counters do not show RX drops, the internal RX queue statistics indicate drops",
+   "impact": "",
+   "solution": "The issue is caused by RX queue buffer exhaustion. When the GCP instance presents only one RX queue, the ring buffer descriptors are exhausted during traffic bursts, leading to packet drops. This occurs even if the CPU utilization is not high, as the bottleneck is at the NIC descriptor level rather than the CPU processing level.The following command will list the interface counters. Notice that all the RX drops are zero.diagnose hardware deviceinfo nic port1 Name: port1 Driver: gve Version: 1.3.0 Bus: 0000:00:04.0 HWaddr: 42:01:0a:5c:1a:02 State: up Link: up Mtu: 1460 Supported: Advertised: Speed: 32000half Auto: disabled Rx packets: 14891007 Rx bytes: 1101897774 Rx compressed: 0 Rx dropped: 0 Rx errors: 0 Rx Length err: 0 Use the command below to get more detailed interface stats; it lists the drops on the RX queue.diagnose hardware deviceinfo nic-stats port1 port1 statistics: rx_packets: 1833537831 tx_packets: 1329988458 rx_bytes: 1997339306123 tx_bytes: 1541708454631 -- output trimmed--- rx_queue_drop_cnt[0]: 1716637 rx_no_buffers_posted[0]: 1716637 rx_drops_packet_over_mru[0]: 0 rx_drops_invalid_checksum[0]: 0A non-zero and incrementing values of the counters (rx_queue_drop_cnt",
+   "products": [
+    "FortiGate"
+   ],
+   "versions": [],
+   "versionFamilies": [],
+   "fixVersions": [],
+   "sourceCount": 1,
+   "forumReportCount": 0,
+   "documentedSourceCount": 1,
+   "sources": [
+    {
+     "title": "High packet drops occur during traffic bursts on a FortiGate VM hosted in Google Cloud Platform",
+     "url": "https://community.fortinet.com/fortigate-3/high-packet-drops-occur-during-traffic-bursts-on-a-fortigate-vm-hosted-in-google-cloud-platform-230924",
+     "date": "2026-10-28T10:04:38+00:00",
+     "summary": "DescriptionThis article describes the case when a FortiGate VM hosted on Google Cloud Platform (GCP) experiences significant packet loss and latency during high bursts of traffic. While interface-level counters do not show RX drops, the internal RX queue statistics indicate drops.ScopeFortiGate VM, GCP.SolutionThe issue is caused by RX queue buffer exhaustion. When the GCP instance presents only one RX queue, the ring buffer descriptors are exhausted during traffic bursts, leading to packet drops. This occurs even if the CPU utilization is not high, as the bottleneck is at the NIC descriptor level rather than the CPU processing level.The following command will list the interface counters. Notice that all the RX drops are zero.diagnose hardware deviceinfo nic port1 Name: port1 Driver: gve Version: 1.3.0 Bus: 0000:00:04.0 HWaddr: 42:01:0a:5c:1a:02 State: up Link: up Mtu: 1460 Supported: Advertised: Speed: 32000half Auto: disabled Rx packets: 14891007 Rx bytes: 1101897774 Rx compressed: 0",
+     "products": [
+      "FortiGate"
+     ],
+     "versions": [],
+     "versionFamilies": [],
+     "sourceType": "fortinet_article",
+     "fixVersions": [],
+     "symptom": "This article describes the case when a FortiGate VM hosted on Google Cloud Platform (GCP) experiences significant packet loss and latency during high bursts of traffic. While interface-level counters do not show RX drops, the internal RX queue statistics indicate drops",
+     "impact": "",
+     "solution": "The issue is caused by RX queue buffer exhaustion. When the GCP instance presents only one RX queue, the ring buffer descriptors are exhausted during traffic bursts, leading to packet drops. This occurs even if the CPU utilization is not high, as the bottleneck is at the NIC descriptor level rather than the CPU processing level.The following command will list the interface counters. Notice that all the RX drops are zero.diagnose hardware deviceinfo nic port1 Name: port1 Driver: gve Version: 1.3.0 Bus: 0000:00:04.0 HWaddr: 42:01:0a:5c:1a:02 State: up Link: up Mtu: 1460 Supported: Advertised: Speed: 32000half Auto: disabled Rx packets: 14891007 Rx bytes: 1101897774 Rx compressed: 0 Rx dropped: 0 Rx errors: 0 Rx Length err: 0 Use the command below to get more detailed interface stats; it lists the drops on the RX queue.diagnose hardware deviceinfo nic-stats port1 port1 statistics: rx_packets: 1833537831 tx_packets: 1329988458 rx_bytes: 1997339306123 tx_bytes: 1541708454631 -- output trimmed--- rx_queue_drop_cnt[0]: 1716637 rx_no_buffers_posted[0]: 1716637 rx_drops_packet_over_mru[0]: 0 rx_drops_invalid_checksum[0]: 0A non-zero and incrementing values of the counters (rx_queue_drop_cnt"
+    }
+   ],
+   "lastSeen": "2026-10-28T10:04:38+00:00",
+   "status": "Documenté par Fortinet (version non précisée)",
+   "confidence": "Documentation Fortinet (version non précisée)",
+   "evidenceType": "official_documentation",
+   "synthesisMethod": "Règles de preuve : article Fortinet versionné et explicite, ou au moins deux discussions distinctes; pas d'IA générative."
   },
   {
    "id": "incident-1ba322e8c3cb",
@@ -20263,7 +20660,7 @@
    }
   }
  ],
- "incidentCount": 125,
- "synthesisGeneratedAt": "2026-10-28T09:21:52.490868+00:00",
+ "incidentCount": 129,
+ "synthesisGeneratedAt": "2026-10-28T12:54:31.932078+00:00",
  "synthesisNote": "Un point n'est affiché que s'il est documenté par un article Fortinet versionné et explicite, ou décrit dans au moins deux discussions distinctes d'utilisateurs. Les articles officiels ne comptent pas comme des personnes supplémentaires. Les signalements isolés non documentés sont exclus."
 }
