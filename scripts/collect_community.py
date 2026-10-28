@@ -849,6 +849,8 @@ def collect(fetcher=fetch_feed, out: Path = OUT, topic_fetcher=None, board_fetch
             )
 
     if not fresh:
+        if not any("aucun sujet Fortinet reconnu" in error for error in errors):
+            errors.append("Flux RSS accessible mais aucun sujet Fortinet reconnu; collecte partielle.")
         if not previous.get("topics"):
             raise RuntimeError(
                 "Aucune source Community n’a fourni de sujet Fortinet reconnu et aucun historique exploitable n’existe."
