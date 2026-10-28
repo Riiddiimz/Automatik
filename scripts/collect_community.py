@@ -530,6 +530,206 @@ def parse_feed(payload: bytes) -> list[dict]:
     return result
 
 
+
+class BoardTopicParser(HTMLParser):
+    """Extract topic links from one public product index, ignoring site navigation."""
+
+    def __init__(self, board_url: str):
+        super().__init__(convert_charrefs=True)
+        self.board_path = urlparse(board_url).path.rstrip("/")
+        self.anchor: dict | None = None
+        self.topics: list[dict] = []
+        self.seen: set[str] = set()
+
+    def handle_starttag(self, tag: str, attrs: list[tuple[str, str | None]]) -> None:
+        if tag.lower() != "a":
+            return
+        attributes = dict(attrs)
+        href = (attributes.get("href") or "").strip()
+        if not href:
+            return
+        absolute = urljoin("https://community.fortinet.com/", href)
+        parsed = urlparse(absolute)
+        if parsed.scheme != "https" or parsed.netloc.lower() != "community.fortinet.com":
+            return
+        path = parsed.path.rstrip("/")
+        if not path.startswith(self.board_path + "/"):
+            return
+        if not re.search(r"-\d{4,}$", path):
+            return
+        url = f"https://community.fortinet.com{path}"
+        self.anchor = {"url": url, "text": []}
+
+    def handle_data(self, data: str) -> None:
+        if self.anchor is not None:
+            self.anchor["text"].append(data)
+
+    def handle_endtag(self, tag: str) -> None:
+        if tag.lower() != "a" or self.anchor is None:
+            return
+        anchor = self.anchor
+        self.anchor = None
+        title = clean("".join(anchor["text"]))
+        url = anchor["url"]
+        if not title or url in self.seen:
+            return
+        self.seen.add(url)
+        self.topics.append({"title": title, "url": url})
+
+
+def parse_board_page(payload: str | bytes, board_url: str, product: str) -> list[dict]:
+    """Convert public index links into cautious, explicitly incomplete topic records."""
+    if isinstance(payload, bytes):
+        payload = payload.decode("utf-8", errors="replace")
+    parser = BoardTopicParser(board_url)
+    parser.feed(payload)
+    parser.close()
+    result = []
+    for entry in parser.topics:
+        title, url = entry["title"], entry["url"]
+        title_products = [
+            name for name, patterns in PRODUCT_ALIASES.items()
+            if any(re.search(pattern, title, re.I) for pattern in patterns)
+        ]
+        products = list(dict.fromkeys([product, *title_products]))
+        if "FortiClient EMS" in products:
+            products = [name for name in products if name != "FortiClient"]
+        result.append({
+            "id": url,
+            "title": title,
+            "url": url,
+            "date": None,
+            "summary": "",
+            "categories": [product],
+            "products": products,
+            "versions": extract_versions(title, "", url),
+            "fixVersions": extract_fixed_versions(title, "", url),
+            "status": "À vérifier",
+            "statusNote": (
+                "Sujet repéré dans l’index produit public; la date et le résumé détaillé "
+                "ne sont pas fournis par cette page d’index."
+            ),
+            "source": "Fortinet Community",
+            "discoverySource": "index produit public",
+        })
+    return result
+
+
+def fetch_board_topics(
+    board_sources: dict[str, str] | None = None,
+    max_pages: int = MAX_BOARD_PAGES,
+    opener=None,
+) -> dict:
+    """Read a bounded set of public product-index pages without bypassing access controls."""
+    sources = BOARD_SOURCES if board_sources is None else board_sources
+    open_url = opener or urllib.request.urlopen
+    discovered: dict[str, dict] = {}
+    errors: list[str] = []
+    pages: list[str] = []
+
+    for product, board_url in sources.items():
+        board_seen: set[str] = set()
+        for page_number in range(1, max_pages + 1):
+            page_url = (
+                board_url.rstrip("/")
+                if page_number == 1
+                else f"{board_url.rstrip('/')}/index{page_number}.html"
+            )
+            request = urllib.request.Request(
+                page_url,
+                headers={
+                    "User-Agent": USER_AGENT,
+                    "Accept": "text/html,application/xhtml+xml",
+                },
+            )
+            try:
+                with open_url(request, timeout=12) as response:
+                    payload = response.read(1_500_000)
+            except urllib.error.HTTPError as exc:
+                if exc.code == 404 and page_number > 1:
+                    break
+                errors.append(
+                    f"Index Community {product} page {page_number} inaccessible "
+                    f"(HTTP {exc.code}); les données déjà collectées sont conservées."
+                )
+                break
+            except (OSError, urllib.error.URLError, TimeoutError, UnicodeError) as exc:
+                errors.append(
+                    f"Index Community {product} page {page_number} inaccessible "
+                    f"({type(exc).__name__}: {exc}); les données déjà collectées sont conservées."
+                )
+                break
+
+            entries = parse_board_page(payload, board_url, product)
+            pages.append(page_url)
+            if not entries:
+                if page_number == 1:
+                    errors.append(
+                        f"Aucun sujet exploitable dans l’index public {product}; "
+                        "la page peut être incomplète ou avoir changé."
+                    )
+                break
+
+            new_entries = [entry for entry in entries if entry["url"] not in board_seen]
+            if not new_entries:
+                errors.append(
+                    f"Pagination de l’index Community {product} répétée à la page {page_number}; arrêt de cette source."
+                )
+                break
+            board_seen.update(entry["url"] for entry in new_entries)
+
+            for entry in new_entries:
+                key = entry["url"]
+                if key not in discovered:
+                    discovered[key] = entry
+                    continue
+                existing = discovered[key]
+                existing["products"] = list(dict.fromkeys([
+                    *(existing.get("products") or []),
+                    *(entry.get("products") or []),
+                ]))
+                existing["categories"] = list(dict.fromkeys([
+                    *(existing.get("categories") or []),
+                    *(entry.get("categories") or []),
+                ]))
+
+    return {
+        "topics": list(discovered.values()),
+        "errors": errors,
+        "pages": pages,
+        "pageCount": len(pages),
+        "topicCount": len(discovered),
+    }
+
+
+def merge_discovered_topics(primary: list[dict], secondary: list[dict]) -> list[dict]:
+    """Merge RSS and index discoveries by canonical URL, preferring richer RSS metadata."""
+    merged: dict[str, dict] = {}
+    for item in [*primary, *secondary]:
+        raw_key = item.get("url") or item.get("id")
+        if not isinstance(raw_key, str) or not raw_key.strip():
+            continue
+        key = raw_key.rstrip("/")
+        normalized = {**item, "id": key, "url": item.get("url") or key}
+        if key not in merged:
+            merged[key] = normalized
+            continue
+        existing = merged[key]
+        combined = {**normalized, **existing}
+        for field in ("products", "categories"):
+            combined[field] = list(dict.fromkeys([
+                *(existing.get(field) or []),
+                *(normalized.get(field) or []),
+            ]))
+        for field in ("date", "summary"):
+            if not combined.get(field) and normalized.get(field):
+                combined[field] = normalized[field]
+        if not combined.get("discoverySource") and normalized.get("discoverySource"):
+            combined["discoverySource"] = normalized["discoverySource"]
+        merged[key] = combined
+    return list(merged.values())
+
+
 def legacy_tag_recheck_candidates(previous: dict, observed_ids: set[str]) -> list[dict]:
     """Repair older support-forum entries polluted by global product navigation."""
     candidates = []
