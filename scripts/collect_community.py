@@ -775,12 +775,19 @@ def load_previous(path: Path = OUT) -> dict:
     return {"topics": []}
 
 
-def collect(fetcher=fetch_feed, out: Path = OUT, topic_fetcher=None) -> dict:
+def collect(fetcher=fetch_feed, out: Path = OUT, topic_fetcher=None, board_fetcher=None) -> dict:
     previous = load_previous(out)
     now = datetime.now(timezone.utc).isoformat()
-    errors = []
+    errors: list[str] = []
+    raw_feed_count = 0
+    feed_url = getattr(fetcher, "last_url", None) or previous.get("feedUrl", FEED_URL)
+    fresh: list[dict] = []
+    board_page_count = 0
+    board_topic_count = 0
+
     if topic_fetcher is None and fetcher is fetch_feed:
         topic_fetcher = fetch_topic_products
+
     try:
         feed_payload = fetcher()
         raw_feed_count = count_feed_entries(feed_payload)
@@ -792,9 +799,7 @@ def collect(fetcher=fetch_feed, out: Path = OUT, topic_fetcher=None) -> dict:
         if topic_fetcher:
             stale_candidates = legacy_tag_recheck_candidates(previous, observed_ids)
             repaired = enrich_unclassified_topics(stale_candidates, topic_fetcher, errors)
-            by_id = {item.get("id") or item.get("url"): item for item in fresh}
-            by_id.update({item.get("id") or item.get("url"): item for item in repaired})
-            fresh = list(by_id.values())
+            fresh = merge_discovered_topics(fresh, repaired)
 
         if not fresh and fetcher is fetch_feed and feed_url == EXTENDED_FEED_URL:
             # A syntactically valid but empty extended response is not evidence
@@ -807,15 +812,12 @@ def collect(fetcher=fetch_feed, out: Path = OUT, topic_fetcher=None) -> dict:
             if topic_fetcher:
                 stale_candidates = legacy_tag_recheck_candidates(previous, observed_ids)
                 repaired = enrich_unclassified_topics(stale_candidates, topic_fetcher, errors)
-                by_id = {item.get("id") or item.get("url"): item for item in fallback}
-                by_id.update({item.get("id") or item.get("url"): item for item in repaired})
-                fallback = list(by_id.values())
+                fallback = merge_discovered_topics(fallback, repaired)
             if fallback:
                 fresh = fallback
                 feed_url = getattr(fetcher, "last_url", None) or FEED_URL
                 errors.append("Flux étendu accessible mais sans sujets reconnus; repli sur le flux standard.")
-        if not fresh:
-            raise ValueError("flux accessible mais aucun sujet Fortinet reconnu; collecte considérée partielle")
+
         errors.extend(getattr(fetcher, "last_errors", []))
         if fetcher is fetch_feed and feed_url == EXTENDED_FEED_URL and raw_feed_count < EXTENDED_FEED_COUNT:
             errors.append(
@@ -824,26 +826,75 @@ def collect(fetcher=fetch_feed, out: Path = OUT, topic_fetcher=None) -> dict:
             )
     except (OSError, urllib.error.URLError, ET.ParseError, ValueError, TimeoutError) as exc:
         errors.extend(getattr(fetcher, "last_errors", []))
-        errors.append(f"Fortinet Community: {type(exc).__name__}: {exc}")
+        errors.append(f"Flux RSS Fortinet Community indisponible: {type(exc).__name__}: {exc}")
+
+    if board_fetcher is not None:
+        try:
+            board_result = board_fetcher()
+            if not isinstance(board_result, dict):
+                raise ValueError("le collecteur des index produit n’a pas renvoyé un objet de résultat")
+            board_items = board_result.get("topics", [])
+            if not isinstance(board_items, list):
+                raise ValueError("la liste de sujets des index produit est invalide")
+            board_errors = board_result.get("errors", [])
+            if isinstance(board_errors, list):
+                errors.extend(str(error) for error in board_errors if error)
+            board_page_count = int(board_result.get("pageCount", len(board_result.get("pages", []))) or 0)
+            board_topic_count = len(board_items)
+            fresh = merge_discovered_topics(fresh, board_items)
+        except (OSError, urllib.error.URLError, ValueError, TimeoutError) as exc:
+            errors.append(
+                f"Index produit Fortinet Community indisponibles: {type(exc).__name__}: {exc}; "
+                "les données RSS et l’historique sont conservés."
+            )
+
+    if not fresh:
         if not previous.get("topics"):
-            raise RuntimeError("Le flux a échoué et aucun historique exploitable n'existe.") from exc
+            raise RuntimeError(
+                "Aucune source Community n’a fourni de sujet Fortinet reconnu et aucun historique exploitable n’existe."
+            )
         result = {
             **previous,
             "generatedAt": now,
-            "feedUrl": getattr(fetcher, "last_url", None) or previous.get("feedUrl", FEED_URL),
+            "feedUrl": feed_url or previous.get("feedUrl", FEED_URL),
             "partial": True,
-            "errors": errors,
+            "errors": errors or ["Aucune source n’a fourni de nouveau sujet; l’historique existant est conservé."],
         }
+        if board_fetcher is not None:
+            result["boardPageCount"] = board_page_count
+            result["boardTopicCount"] = board_topic_count
         out.parent.mkdir(parents=True, exist_ok=True)
         out.write_text(json.dumps(result, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
         return result
 
-    merged = {item.get("id") or item.get("url"): item for item in previous.get("topics", []) if item.get("id") or item.get("url")}
+    merged = {}
+    for item in previous.get("topics", []):
+        if not isinstance(item, dict):
+            continue
+        raw_key = item.get("id") or item.get("url")
+        if isinstance(raw_key, str) and raw_key.strip():
+            merged[raw_key.rstrip("/")] = item
+
     for item in fresh:
-        key = item["id"]
+        raw_key = item.get("id") or item.get("url")
+        if not isinstance(raw_key, str) or not raw_key.strip():
+            continue
+        key = raw_key.rstrip("/")
         old = merged.get(key, {})
-        merged[key] = {**old, **item, "firstSeen": old.get("firstSeen", now), "lastSeen": now}
-    topics = sorted(merged.values(), key=lambda item: item.get("date") or item.get("firstSeen") or "", reverse=True)[:MAX_HISTORY]
+        merged[key] = {
+            **old,
+            **item,
+            "id": key,
+            "url": item.get("url") or old.get("url") or key,
+            "firstSeen": old.get("firstSeen", now),
+            "lastSeen": now,
+        }
+
+    topics = sorted(
+        merged.values(),
+        key=lambda item: item.get("date") or item.get("firstSeen") or "",
+        reverse=True,
+    )[:MAX_HISTORY]
     result = {
         "generatedAt": now,
         "feedUrl": feed_url,
@@ -853,10 +904,11 @@ def collect(fetcher=fetch_feed, out: Path = OUT, topic_fetcher=None) -> dict:
         "errors": errors,
         "topicCount": len(topics),
         "topics": topics,
-        # Temporary handoff: synthesis keeps prior AI copy only when source evidence
-        # and authoritative product/version fields are unchanged.
         "_previousIncidents": previous.get("incidents", []),
     }
+    if board_fetcher is not None:
+        result["boardPageCount"] = board_page_count
+        result["boardTopicCount"] = board_topic_count
     for key in (
         "aiReviewGeneratedAt", "aiReviewModel", "aiReviewNote",
         "aiReviewStatus", "aiReviewMessage", "aiReviewCheckedAt",
