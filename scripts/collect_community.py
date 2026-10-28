@@ -12,6 +12,7 @@ import xml.etree.ElementTree as ET
 from datetime import datetime, timezone
 from email.utils import parsedate_to_datetime
 from pathlib import Path
+from urllib.parse import urljoin, urlparse
 
 ROOT = Path(__file__).resolve().parents[1]
 FEED_URL = "https://community.fortinet.com/feed/topics"
@@ -20,8 +21,19 @@ FEED_PAGE_SIZE = 100
 EXTENDED_FEED_URL = f"{FEED_URL}?count={FEED_PAGE_SIZE}&start=0"
 OUT = ROOT / "data" / "community.json"
 USER_AGENT = "AutomatikCommunityWatch/1.0 (+https://github.com/Riiddiimz/Automatik)"
-MAX_HISTORY = 500
+MAX_HISTORY = 1000
 MAX_TOPIC_PRODUCT_LOOKUPS = 8
+MAX_BOARD_PAGES = 3
+
+# Secondary public discovery path for the product indexes.
+# EMS topics also appear in the FortiClient index and are classified from titles/tags.
+BOARD_SOURCES = {
+    "FortiGate": "https://community.fortinet.com/fortigate-3",
+    "FortiManager": "https://community.fortinet.com/fortimanager-27",
+    "FortiAuthenticator": "https://community.fortinet.com/fortiauthenticator-8",
+    "FortiAnalyzer": "https://community.fortinet.com/fortianalyzer-6",
+    "FortiClient": "https://community.fortinet.com/forticlient-4",
+}
 
 PRODUCT_ALIASES = {
     "FortiGate": (r"\bforti[- ]?gates?\b", r"\bfortios\b"),
