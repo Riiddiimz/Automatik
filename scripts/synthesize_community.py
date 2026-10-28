@@ -118,7 +118,9 @@ def extract_products(item: dict) -> list[str]:
                 ]
                 found = list(dict.fromkeys(found + scope_products))
     else:
-        text = title + " " + summary
+        # On a non-forum board, body text can mention many unrelated products.
+        # Match the title only; support-forum discussions may use title and body.
+        text = title if unwatched_product_board else title + " " + summary
         found = [name for name, pattern in PRODUCT_PATTERNS.items() if re.search(pattern, text, re.I)]
     if "FortiClient EMS" in found:
         found = [p for p in found if p != "FortiClient"]
