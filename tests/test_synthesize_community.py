@@ -387,6 +387,13 @@ class CommunitySynthesisTests(unittest.TestCase):
             "products": ["FortiGate", "FortiManager", "FortiAnalyzer", "FortiAuthenticator", "FortiClient"],
         }
         self.assertEqual(synth.extract_products(item), [])
+        customer_service = {
+            "title": "Customer Service Note: Email interaction when working tickets with Fortinet Support",
+            "summary": "General customer service process.",
+            "url": "https://community.fortinet.com/customer-service-42/customer-service-note-email-interaction-when-working-tickets-with-fortinet-support-99820",
+            "products": ["FortiGate", "FortiManager", "FortiClient"],
+        }
+        self.assertEqual(synth.extract_products(customer_service), [])
         with tempfile.TemporaryDirectory() as directory:
             result = synth.synthesize({"topics": [item]}, Path(directory) / "community.json")
         self.assertEqual(result["incidentCount"], 0)
