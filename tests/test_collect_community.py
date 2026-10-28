@@ -514,6 +514,29 @@ class CommunityFeedTests(unittest.TestCase):
         self.assertEqual(merged[0]["versions"], ["7.4.13", "7.6.8"])
         self.assertEqual(merged[0]["summary"], "RSS summary retained")
 
+    def test_default_board_pagination_reaches_fifth_page(self):
+        board = "https://community.fortinet.com/fortigate-3"
+
+        def opener(request, timeout):
+            match = re.search(r"/index(\d+)\.html$", request.full_url)
+            page_number = int(match.group(1)) if match else 1
+            url = (
+                f"/fortigate-3/vpn-fails-after-upgrade-{230000 + page_number}"
+            )
+            page = (
+                f'<html><body><a href="{url}">'
+                f'FortiGate VPN fails after upgrade {page_number}</a></body></html>'
+            )
+            return io.BytesIO(page.encode())
+
+        result = collector.fetch_board_topics(
+            board_sources={"FortiGate": board},
+            opener=opener,
+        )
+        self.assertEqual(collector.MAX_BOARD_PAGES, 5)
+        self.assertEqual(result["pageCount"], 5)
+        self.assertEqual(result["topicCount"], 5)
+
     def test_product_index_pagination_stops_on_repeated_page_and_reports_it(self):
         board = "https://community.fortinet.com/fortigate-3"
         page = b"""<html><body>
