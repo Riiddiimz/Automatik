@@ -1018,7 +1018,7 @@ def collect(fetcher=fetch_feed, out: Path = OUT, topic_fetcher=None, board_fetch
             result["boardPageCount"] = board_page_count
             result["boardTopicCount"] = board_topic_count
         out.parent.mkdir(parents=True, exist_ok=True)
-        out.write_text(json.dumps(result, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+        out.write_text(json.dumps(result, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
         return result
 
     merged = {}
@@ -1083,7 +1083,7 @@ def collect(fetcher=fetch_feed, out: Path = OUT, topic_fetcher=None, board_fetch
         if key in previous:
             result[key] = previous[key]
     out.parent.mkdir(parents=True, exist_ok=True)
-    out.write_text(json.dumps(result, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    out.write_text(json.dumps(result, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
     return result
 
 
