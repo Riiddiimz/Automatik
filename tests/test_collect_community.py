@@ -513,5 +513,46 @@ class CommunityFeedTests(unittest.TestCase):
         self.assertEqual(topic["statusNote"], old_topic["statusNote"])
 
 
+    def test_public_topic_metadata_parser_extracts_description_and_date(self):
+        page = """<html><head>
+          <meta property="og:description" content="Description: VPN fails after firmware upgrade.">
+          <meta property="article:published_time" content="2026-10-27T10:00:00Z">
+        </head><body></body></html>"""
+        result = collector.parse_topic_metadata(page)
+        self.assertEqual(result["summary"], "Description: VPN fails after firmware upgrade.")
+        self.assertEqual(result["date"], "2026-10-27T10:00:00+00:00")
+
+    def test_detail_enrichment_is_bounded_and_fair_across_products(self):
+        gate_urls = [
+            "https://community.fortinet.com/fortigate-3/vpn-fails-after-upgrade-230101",
+            "https://community.fortinet.com/fortigate-3/fortigate-error-after-upgrade-230102",
+        ]
+        manager_url = "https://community.fortinet.com/fortimanager-27/policy-install-error-230103"
+        items = [
+            {
+                "id": url, "url": url, "title": title, "date": None, "summary": "",
+                "categories": [product], "products": [product], "discoverySource": "index produit public",
+            }
+            for url, title, product in [
+                (gate_urls[0], "FortiGate VPN fails after upgrade", "FortiGate"),
+                (gate_urls[1], "FortiGate error after upgrade", "FortiGate"),
+                (manager_url, "FortiManager policy install error", "FortiManager"),
+            ]
+        ]
+        calls = []
+
+        def fetcher(url):
+            calls.append(url)
+            return {"summary": "Public page summary.", "date": "2026-10-27T10:00:00+00:00"}
+
+        result = collector.enrich_board_topic_metadata(items, [], fetcher, [], max_lookups=2)
+        self.assertEqual(len(calls), 2)
+        self.assertIn(gate_urls[0], calls)
+        self.assertIn(manager_url, calls)
+        self.assertNotIn(gate_urls[1], calls)
+        self.assertTrue(all(item.get("summary") == "Public page summary." for item in result if item["url"] in calls))
+        self.assertTrue(all(item.get("detailCheckedAt") for item in result if item["url"] in calls))
+
+
 if __name__ == "__main__":
     unittest.main()
