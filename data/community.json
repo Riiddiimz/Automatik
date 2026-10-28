@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-28T08:54:50.728296+00:00",
+  "generatedAt": "2026-10-28T08:55:34.907867+00:00",
   "feedUrl": "https://community.fortinet.com/feed/topics?count=100&start=0",
   "feedItemCount": 100,
   "requestedFeedItemCount": 500,
@@ -23,7 +23,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": true
     },
@@ -40,7 +40,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -59,7 +59,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [
         "8.0"
       ],
@@ -78,7 +78,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -95,7 +95,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -112,7 +112,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": true
     },
@@ -129,7 +129,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -146,7 +146,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -163,7 +163,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -180,7 +180,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -197,7 +197,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -214,7 +214,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -231,7 +231,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -248,7 +248,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -266,7 +266,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -284,7 +284,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -302,7 +302,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -319,7 +319,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -337,7 +337,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -354,7 +354,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -371,7 +371,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -389,7 +389,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -406,7 +406,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -424,7 +424,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -441,7 +441,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -460,7 +460,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [
         "7.6"
       ],
@@ -480,7 +480,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -498,7 +498,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -515,7 +515,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -533,7 +533,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -551,7 +551,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -568,7 +568,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -586,7 +586,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -603,7 +603,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -620,7 +620,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -638,7 +638,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -655,7 +655,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -672,7 +672,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -689,7 +689,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -706,7 +706,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -723,7 +723,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -740,7 +740,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -757,7 +757,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -775,7 +775,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -792,7 +792,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -809,7 +809,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -826,7 +826,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -843,7 +843,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -860,7 +860,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -877,7 +877,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -894,7 +894,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -911,7 +911,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -928,7 +928,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -945,7 +945,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -962,7 +962,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -979,7 +979,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -996,7 +996,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -1013,7 +1013,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -1030,7 +1030,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -1049,7 +1049,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [
         "8.0"
       ],
@@ -1068,26 +1068,9 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
-    },
-    {
-      "id": "https://community.fortinet.com/fortiauthenticator-8/troubleshooting-tip-fortitoken-stuck-in-pending-status-after-email-sending-failure-228677",
-      "title": "Troubleshooting Tip: FortiToken stuck in pending status after email sending failure",
-      "url": "https://community.fortinet.com/fortiauthenticator-8/troubleshooting-tip-fortitoken-stuck-in-pending-status-after-email-sending-failure-228677",
-      "date": null,
-      "summary": "",
-      "products": [
-        "FortiAuthenticator"
-      ],
-      "versions": [],
-      "fixVersions": [],
-      "discoverySource": "index produit public",
-      "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
-      "versionFamilies": [],
-      "potentialProblem": true
     },
     {
       "id": "https://community.fortinet.com/fortiauthenticator-8/technical-tip-how-to-break-active-passive-high-availability-ha-cluster-between-two-fortiauthenticator-devices-228617",
@@ -1102,7 +1085,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -1119,7 +1102,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -1136,7 +1119,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -1153,7 +1136,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -1170,7 +1153,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -1187,7 +1170,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -1204,41 +1187,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
-      "versionFamilies": [],
-      "potentialProblem": false
-    },
-    {
-      "id": "https://community.fortinet.com/fortiauthenticator-8/troubleshooting-tip-how-to-resolve-error-code-aadsts75011-228181",
-      "title": "Troubleshooting Tip: How to resolve error code 'AADSTS75011'",
-      "url": "https://community.fortinet.com/fortiauthenticator-8/troubleshooting-tip-how-to-resolve-error-code-aadsts75011-228181",
-      "date": null,
-      "summary": "",
-      "products": [
-        "FortiAuthenticator"
-      ],
-      "versions": [],
-      "fixVersions": [],
-      "discoverySource": "index produit public",
-      "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
-      "versionFamilies": [],
-      "potentialProblem": true
-    },
-    {
-      "id": "https://community.fortinet.com/fortiauthenticator-8/troubleshooting-tip-fortiauthenticator-routing-issue-with-node-specific-gateway-for-high-availability-cluster-227687",
-      "title": "Troubleshooting Tip: FortiAuthenticator routing issue with node-specific gateway for High Availability cluster",
-      "url": "https://community.fortinet.com/fortiauthenticator-8/troubleshooting-tip-fortiauthenticator-routing-issue-with-node-specific-gateway-for-high-availability-cluster-227687",
-      "date": null,
-      "summary": "",
-      "products": [
-        "FortiAuthenticator"
-      ],
-      "versions": [],
-      "fixVersions": [],
-      "discoverySource": "index produit public",
-      "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -1255,7 +1204,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -1272,7 +1221,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -1289,7 +1238,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -1306,27 +1255,9 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
-    },
-    {
-      "id": "https://community.fortinet.com/fortiauthenticator-8/troubleshooting-tip-when-using-fsso-based-on-radius-accouting-fortigate-fails-to-apply-correct-policy-227427",
-      "title": "Troubleshooting Tip: When using FSSO based on RADIUS Accouting, FortiGate fails to apply correct policy",
-      "url": "https://community.fortinet.com/fortiauthenticator-8/troubleshooting-tip-when-using-fsso-based-on-radius-accouting-fortigate-fails-to-apply-correct-policy-227427",
-      "date": null,
-      "summary": "",
-      "products": [
-        "FortiAuthenticator",
-        "FortiGate"
-      ],
-      "versions": [],
-      "fixVersions": [],
-      "discoverySource": "index produit public",
-      "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
-      "versionFamilies": [],
-      "potentialProblem": true
     },
     {
       "id": "https://community.fortinet.com/fortiauthenticator-8/technical-tip-considerations-for-using-local-users-with-administrator-role-as-remote-admin-in-radius-clients-227409",
@@ -1341,7 +1272,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -1358,26 +1289,9 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
-    },
-    {
-      "id": "https://community.fortinet.com/fortiauthenticator-8/troubleshooting-tip-error-during-captive-portal-user-registration-under-high-load-227364",
-      "title": "Troubleshooting Tip: Error during captive portal user registration under high load",
-      "url": "https://community.fortinet.com/fortiauthenticator-8/troubleshooting-tip-error-during-captive-portal-user-registration-under-high-load-227364",
-      "date": null,
-      "summary": "",
-      "products": [
-        "FortiAuthenticator"
-      ],
-      "versions": [],
-      "fixVersions": [],
-      "discoverySource": "index produit public",
-      "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
-      "versionFamilies": [],
-      "potentialProblem": true
     },
     {
       "id": "https://community.fortinet.com/fortiauthenticator-8/technical-tip-understanding-the-user-licensing-on-fortiauthenticator-227233",
@@ -1392,7 +1306,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -1409,26 +1323,9 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
-    },
-    {
-      "id": "https://community.fortinet.com/fortiauthenticator-8/troubleshooting-tip-authentication-fails-with-unable-to-find-authpolicy-to-process-despite-matching-radius-client-and-policy-227205",
-      "title": "Troubleshooting Tip: Authentication fails with 'Unable to find authpolicy to process' despite matching RADIUS client and policy",
-      "url": "https://community.fortinet.com/fortiauthenticator-8/troubleshooting-tip-authentication-fails-with-unable-to-find-authpolicy-to-process-despite-matching-radius-client-and-policy-227205",
-      "date": null,
-      "summary": "",
-      "products": [
-        "FortiAuthenticator"
-      ],
-      "versions": [],
-      "fixVersions": [],
-      "discoverySource": "index produit public",
-      "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
-      "versionFamilies": [],
-      "potentialProblem": true
     },
     {
       "id": "https://community.fortinet.com/fortiauthenticator-8/technical-tip-deploying-fortiauthenticator-vm-on-google-cloud-platform-227181",
@@ -1443,7 +1340,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -1461,7 +1358,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -1478,7 +1375,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -1495,7 +1392,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -1513,7 +1410,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -1531,64 +1428,9 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
-    },
-    {
-      "id": "https://community.fortinet.com/fortiauthenticator-8/technical-tip-recovering-standby-fortiauthenticator-vm-after-storage-failure-226265",
-      "title": "Technical Tip: Recovering standby FortiAuthenticator VM after storage failure",
-      "url": "https://community.fortinet.com/fortiauthenticator-8/technical-tip-recovering-standby-fortiauthenticator-vm-after-storage-failure-226265",
-      "date": null,
-      "summary": "",
-      "products": [
-        "FortiAuthenticator"
-      ],
-      "versions": [],
-      "fixVersions": [],
-      "discoverySource": "index produit public",
-      "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
-      "versionFamilies": [],
-      "potentialProblem": true
-    },
-    {
-      "id": "https://community.fortinet.com/fortiauthenticator-8/troubleshooting-tip-remote-ldap-authentication-failure-due-to-dn-character-limits-225948",
-      "title": "Troubleshooting Tip: Remote LDAP authentication failure due to DN character limits",
-      "url": "https://community.fortinet.com/fortiauthenticator-8/troubleshooting-tip-remote-ldap-authentication-failure-due-to-dn-character-limits-225948",
-      "date": null,
-      "summary": "",
-      "products": [
-        "FortiAuthenticator"
-      ],
-      "versions": [],
-      "fixVersions": [],
-      "discoverySource": "index produit public",
-      "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
-      "versionFamilies": [],
-      "potentialProblem": true
-    },
-    {
-      "id": "https://community.fortinet.com/fortiauthenticator-8/technical-tip-workaround-for-500-internal-server-error-encountered-during-self-registration-with-sms-following-upgrade-to-v6-6-6-v8-0-1-224103",
-      "title": "Technical Tip: Workaround for '500 Internal Server Error' encountered during self-registration with SMS following upgrade to v6.6.6, v8.0.1",
-      "url": "https://community.fortinet.com/fortiauthenticator-8/technical-tip-workaround-for-500-internal-server-error-encountered-during-self-registration-with-sms-following-upgrade-to-v6-6-6-v8-0-1-224103",
-      "date": null,
-      "summary": "",
-      "products": [
-        "FortiAuthenticator"
-      ],
-      "versions": [
-        "6.6.6"
-      ],
-      "fixVersions": [],
-      "discoverySource": "index produit public",
-      "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
-      "versionFamilies": [
-        "6.6"
-      ],
-      "potentialProblem": true
     },
     {
       "id": "https://community.fortinet.com/fortiauthenticator-8/technical-tip-how-to-join-fortiauthenticator-to-multiple-domains-224882",
@@ -1603,7 +1445,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -1620,7 +1462,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -1637,7 +1479,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -1655,7 +1497,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -1672,7 +1514,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -1689,7 +1531,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -1706,7 +1548,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -1723,7 +1565,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -1741,7 +1583,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -1758,7 +1600,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -1776,7 +1618,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -1793,7 +1635,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -1810,7 +1652,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -1827,7 +1669,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -1844,7 +1686,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -1864,7 +1706,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [
         "7.6"
       ],
@@ -1883,7 +1725,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -1902,7 +1744,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [
         "7.6"
       ],
@@ -1921,7 +1763,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -1939,7 +1781,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -1956,7 +1798,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -1973,7 +1815,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -1990,7 +1832,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -2007,7 +1849,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -2024,7 +1866,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -2041,7 +1883,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -2058,7 +1900,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -2075,7 +1917,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -2093,7 +1935,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -2111,7 +1953,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -2128,7 +1970,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -2145,7 +1987,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -2162,7 +2004,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -2180,7 +2022,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -2197,7 +2039,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -2214,7 +2056,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -2231,7 +2073,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -2249,7 +2091,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -2267,7 +2109,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": true
     },
@@ -2284,7 +2126,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -2301,7 +2143,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -2318,7 +2160,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -2335,7 +2177,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -2352,7 +2194,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -2369,7 +2211,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -2387,7 +2229,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -2404,7 +2246,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -2422,7 +2264,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -2439,7 +2281,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -2457,7 +2299,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -2474,7 +2316,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -2491,7 +2333,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -2508,7 +2350,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -2525,7 +2367,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -2542,7 +2384,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -2559,7 +2401,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -2576,7 +2418,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -2593,7 +2435,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -2611,7 +2453,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -2629,7 +2471,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -2646,7 +2488,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -2664,7 +2506,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -2681,7 +2523,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -2701,7 +2543,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [
         "7.2",
         "7.4"
@@ -2721,7 +2563,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -2738,7 +2580,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -2755,7 +2597,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -2772,7 +2614,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -2789,7 +2631,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -2806,7 +2648,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -2823,7 +2665,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -2843,7 +2685,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [
         "7.4"
       ],
@@ -2862,7 +2704,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -2879,7 +2721,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": true
     },
@@ -2897,7 +2739,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -2914,7 +2756,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -2931,7 +2773,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -2948,7 +2790,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -2965,7 +2807,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -2982,7 +2824,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -2999,7 +2841,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -3016,7 +2858,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -3033,7 +2875,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -3050,7 +2892,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -3067,7 +2909,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -3084,7 +2926,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -3101,7 +2943,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -3118,7 +2960,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -3135,7 +2977,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -3152,7 +2994,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -3169,7 +3011,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -3186,7 +3028,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -3203,7 +3045,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -3220,7 +3062,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -3237,7 +3079,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -3254,7 +3096,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -3271,7 +3113,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -3289,7 +3131,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -3306,7 +3148,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -3323,7 +3165,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -3340,7 +3182,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -3357,7 +3199,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -3374,7 +3216,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -3391,7 +3233,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -3408,7 +3250,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -3425,7 +3267,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -3442,7 +3284,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -3459,7 +3301,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -3481,7 +3323,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-28T08:40:13.915335+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": true,
       "discoverySource": "index produit public"
@@ -3506,7 +3348,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-28T08:40:13.915335+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [
         "7.4"
       ],
@@ -3530,7 +3372,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-27T12:08:38.529366+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -3552,7 +3394,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-28T08:40:13.915335+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false,
       "discoverySource": "index produit public"
@@ -3575,7 +3417,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-23T07:37:30.171221+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [
         "7.6"
       ],
@@ -3610,7 +3452,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-28T08:40:13.915335+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [
         "8.0"
       ],
@@ -3634,7 +3476,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-27T17:59:20.871064+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -3656,7 +3498,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-28T05:39:35.554158+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -3681,7 +3523,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-28T05:39:35.554158+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [
         "7.0",
         "7.2"
@@ -3697,9 +3539,7 @@
       "categories": [
         "Customer Service"
       ],
-      "products": [
-        "FortiGate"
-      ],
+      "products": [],
       "versions": [],
       "fixVersions": [],
       "status": "À vérifier",
@@ -3732,7 +3572,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-25T08:49:02.456463+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [
         "7.4"
       ],
@@ -3755,7 +3595,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false,
       "categories": [
@@ -3782,7 +3622,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-27T08:27:15.325711+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -3806,7 +3646,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-27T17:59:20.871064+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [
         "7.2"
       ],
@@ -3834,7 +3674,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-27T17:59:20.871064+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [
         "7.4",
         "7.6",
@@ -3861,7 +3701,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-27T17:59:20.871064+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -3887,7 +3727,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-27T17:59:20.871064+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [
         "7.4"
       ],
@@ -3911,7 +3751,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-27T17:59:20.871064+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": true
     },
@@ -3924,9 +3764,7 @@
       "categories": [
         "FortiNAC-F"
       ],
-      "products": [
-        "FortiAuthenticator"
-      ],
+      "products": [],
       "versions": [],
       "fixVersions": [],
       "status": "À vérifier",
@@ -3954,7 +3792,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-26T04:44:07.561963+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false,
       "fixedVersions": [],
@@ -3980,7 +3818,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-27T14:08:03.762154+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [
         "7.6"
       ],
@@ -4007,7 +3845,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-27T12:08:38.529366+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [
         "7.6"
       ],
@@ -4034,7 +3872,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-27T12:08:38.529366+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [
         "7.4"
       ],
@@ -4061,7 +3899,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-27T12:08:38.529366+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [
         "7.2"
       ],
@@ -4087,7 +3925,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-27T12:08:38.529366+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": true,
       "discoverySource": "index produit public"
@@ -4107,7 +3945,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-23T07:37:30.171221+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false,
       "categories": [
@@ -4132,7 +3970,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [
         "7.4"
       ],
@@ -4157,7 +3995,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false,
       "categories": [
@@ -4180,7 +4018,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-24T07:14:22.584683+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false,
       "categories": [
@@ -4206,7 +4044,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-25T08:49:02.456463+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false,
       "fixedVersions": [],
@@ -4230,7 +4068,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-27T12:08:38.529366+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -4252,7 +4090,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-27T12:08:38.529366+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -4274,7 +4112,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-27T12:08:38.529366+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false,
       "discoverySource": "index produit public"
@@ -4298,7 +4136,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-27T12:08:38.529366+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": true
     },
@@ -4322,7 +4160,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-27T12:08:38.529366+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [
         "7.2"
       ],
@@ -4345,7 +4183,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [
         "7.4"
       ],
@@ -4379,7 +4217,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-27T12:08:38.529366+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [
         "8.0"
       ],
@@ -4406,7 +4244,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-27T12:08:38.529366+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [
         "7.4"
       ],
@@ -4431,7 +4269,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-27T12:08:38.529366+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": true,
       "discoverySource": "index produit public"
@@ -4457,7 +4295,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-27T12:08:38.529366+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [
         "8.0"
       ],
@@ -4483,7 +4321,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-27T12:08:38.529366+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false,
       "discoverySource": "index produit public"
@@ -4508,7 +4346,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-27T08:27:15.325711+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [
         "7.6"
       ],
@@ -4533,7 +4371,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-27T08:27:15.325711+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false,
       "discoverySource": "index produit public"
@@ -4558,7 +4396,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-26T22:38:45.180998+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [
         "7.4"
       ],
@@ -4582,7 +4420,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-27T08:27:15.325711+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": true,
       "discoverySource": "index produit public"
@@ -4631,7 +4469,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-24T07:14:22.584683+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [
         "7.6"
       ],
@@ -4666,7 +4504,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-27T08:27:15.325711+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false,
       "discoverySource": "index produit public"
@@ -4689,7 +4527,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-27T08:27:15.325711+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false,
       "discoverySource": "index produit public"
@@ -4713,7 +4551,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-26T22:38:45.180998+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -4739,7 +4577,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-26T22:38:45.180998+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [
         "7.0",
         "7.2",
@@ -4763,7 +4601,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-24T13:57:19.874191+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [
         "7.2"
       ],
@@ -4792,7 +4630,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-26T22:38:45.180998+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -4814,7 +4652,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-26T08:51:24.766456+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false,
       "fixVersions": []
@@ -4837,7 +4675,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-26T14:38:38.019574+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": true
     },
@@ -4855,7 +4693,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": true,
       "categories": [
@@ -4878,7 +4716,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T09:24:01.029989+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false,
       "categories": [
@@ -4905,7 +4743,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [
         "7.4"
       ],
@@ -4933,7 +4771,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-23T13:47:25.795786+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [
         "7.4"
       ],
@@ -4958,7 +4796,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-24T07:14:22.584683+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": true,
       "categories": [
@@ -4987,7 +4825,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [
         "7.2",
         "7.4",
@@ -5018,7 +4856,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-26T12:58:24.915805+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false,
       "discoverySource": "index produit public"
@@ -5041,7 +4879,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-26T16:16:28.410579+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -5065,7 +4903,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-26T16:16:28.410579+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [
         "7.6"
       ],
@@ -5094,7 +4932,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-26T14:41:22.213432+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [
         "7.4"
       ],
@@ -5124,7 +4962,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-26T14:38:38.019574+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [
         "6.6",
         "7.4"
@@ -5148,7 +4986,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-23T07:37:30.171221+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [
         "7.6"
       ],
@@ -5178,7 +5016,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-26T14:38:38.019574+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -5201,7 +5039,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-26T14:38:38.019574+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -5225,7 +5063,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-26T14:38:38.019574+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [
         "7.4"
       ],
@@ -5246,7 +5084,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-23T07:37:30.171221+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false,
       "categories": [
@@ -5274,7 +5112,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-26T12:58:24.915805+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -5299,7 +5137,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-26T12:58:24.915805+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [
         "7.4"
       ],
@@ -5323,7 +5161,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-26T12:58:24.915805+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -5345,7 +5183,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-26T09:30:25.828296+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false,
       "discoverySource": "index produit public"
@@ -5367,7 +5205,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-25T16:15:19.386671+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false,
       "fixedVersions": [],
@@ -5391,7 +5229,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-26T09:30:25.828296+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -5409,7 +5247,7 @@
       ],
       "fixedVersions": [],
       "firstSeen": "2026-10-26T08:51:24.766456+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [
         "7.4"
       ],
@@ -5429,7 +5267,7 @@
       "versions": [],
       "fixedVersions": [],
       "firstSeen": "2026-10-26T08:51:24.766456+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false,
       "fixVersions": [],
@@ -5447,7 +5285,7 @@
       "versions": [],
       "fixedVersions": [],
       "firstSeen": "2026-10-26T08:51:24.766456+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false,
       "fixVersions": [],
@@ -5467,7 +5305,7 @@
       ],
       "fixedVersions": [],
       "firstSeen": "2026-10-26T08:51:24.766456+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [
         "7.6"
       ],
@@ -5487,7 +5325,7 @@
       "versions": [],
       "fixedVersions": [],
       "firstSeen": "2026-10-26T08:51:24.766456+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false,
       "fixVersions": [],
@@ -5505,7 +5343,7 @@
       "versions": [],
       "fixedVersions": [],
       "firstSeen": "2026-10-26T08:51:24.766456+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": true,
       "fixVersions": [],
@@ -5681,7 +5519,7 @@
       ],
       "versions": [],
       "firstSeen": "2026-10-24T07:14:22.584683+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false,
       "fixedVersions": [],
@@ -5699,7 +5537,7 @@
       ],
       "versions": [],
       "firstSeen": "2026-10-24T07:14:22.584683+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false,
       "fixedVersions": [],
@@ -5764,7 +5602,7 @@
       ],
       "versions": [],
       "firstSeen": "2026-10-24T07:14:22.584683+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false,
       "fixedVersions": [],
@@ -5806,7 +5644,7 @@
       ],
       "versions": [],
       "firstSeen": "2026-10-24T07:14:22.584683+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": true,
       "fixedVersions": [],
@@ -5848,7 +5686,7 @@
       ],
       "versions": [],
       "firstSeen": "2026-10-23T13:47:25.795786+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": true,
       "fixedVersions": [],
@@ -5925,7 +5763,7 @@
         "7.4"
       ],
       "firstSeen": "2026-10-23T13:47:25.795786+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [
         "7.4"
       ],
@@ -5973,7 +5811,7 @@
       ],
       "versions": [],
       "firstSeen": "2026-10-23T07:37:30.171221+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false,
       "fixedVersions": [],
@@ -5994,7 +5832,7 @@
         "7.6.8"
       ],
       "firstSeen": "2026-10-23T07:37:30.171221+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [
         "7.6"
       ],
@@ -6014,7 +5852,7 @@
       ],
       "versions": [],
       "firstSeen": "2026-10-23T07:37:30.171221+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": true,
       "fixedVersions": [],
@@ -6031,9 +5869,7 @@
       "categories": [
         "FortiRecon"
       ],
-      "products": [
-        "FortiGate"
-      ],
+      "products": [],
       "versions": [],
       "fixedVersions": [],
       "status": "À vérifier",
@@ -6083,7 +5919,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [
         "7.6"
       ],
@@ -6244,8 +6080,7 @@
       "date": "2026-10-22T10:25:25+00:00",
       "summary": "DescriptionReasons why FortiNAC-F answers MAB requests for FortiGate-managed FortiAPs with an Access-Accept that carries no VLAN, and how to fix it. The fix is one global setting: Enable Network Access Policy for Wireless Access Points, under System -> Settings -> Network Device.ScopeFortiNAC-F 7.6.x (validated on 7.6.7).FortiGate acting as wireless controller for FortiAPs, modeled in FortiNAC Network -> Inventory.FortiAPs connected to a third-party access switch (example: Aruba CX 6200) that uses FortiNAC as RADIUS server for MAC Authentication Bypass (MAB).SolutionSymptoms:The FortiAP's switch port stays in the static access VLAN instead of moving to the VLAN set in the Network Access Policy.The FortiAP appears under the FortiGate in Network -> Inventory as a Wireless Access Point.Searching the AP MAC in Users & Hosts -> Hosts returns nothing.Device Profiling Rules (for example Vendor OUI, type Wireless Access Point) never process the AP.Network Access Policies whose User/Host Profile matches the AP MAC never match.Deleting the AP from Inventory makes the policy work temporarily; the AP returns under the FortiGate at the next poll or reconnect.The RADIUS log shows an Access-Accept with no VLAN attributes (example values):[Access-Request] AA-BB-CC-DD-EE-FF USER [aabbccddeeff] DEVICE [10.0.0.10] ATTRIBUTES [ User-Name = aabbccddeeff, Service-Type = Call-Check, Calling-Station-Id = AA-BB-CC-DD-EE-FF, NAS-Identifier = ACCESS-SW-01, NAS-Port-Type = Ethernet, NAS-Port-Id = 1/1/2 ] [Access-Accept] AA-BB-CC-DD-EE-FF USER [aabbccddeeff] DEVICE [10.0.0.10] ATTRIBUTES [ REST-HTTP-Status-Code = 200, Cleartext-Password = \"aabbccddeeff\", Class = 0x..., Hint = \"...\", Tmp-String-1 = \"request\" ]The Access-Accept carries no Tunnel-Type, Tunnel-Medium-Type or Tunnel-Private-Group-ID, so the switch keeps the port in its default VLAN.Cause:This is expected behavior. FortiNAC models FortiGate-managed FortiAPs as network devices (Inventory elements), not as hosts. When a Wireless Access Point connects to a managed switch port, FortiNAC changes the port type to WAP Uplink.By default, FortiNAC does not evaluate Network Access Policies for Wireless Access Points and does not enforce any policy on a WAP Uplink port. With no host record and no applicable policy, the MAB Access-Accept carries no VLAN.SolutionEnable Network Access Policy evaluation for Wireless Access Points. No other change is required when the Network Access Policy and port configuration are already in place.In the FortiNAC GUI, go to System -> Settings -> Network Device.Select Enable Network Access Policy for Wireless Access Points.Select Save Settings.Confirm the switch port where the FortiAP connects is a member of the Role-Based Access port group. This is required for the setting to take effect.Optional: Set Wireless Access Point Enforcement Group to a port group. FortiNAC adds a port to it when a Wireless Access Point connects; it does not remove the port automatically.Reconnect the FortiAP or bounce its switch port so a new MAB request is sent.Verification:The RADIUS Access-Accept for the AP MAC now includes Tunnel-Type = VLAN, Tunnel-Medium-Type = IEEE-802 and Tunnel-Private-Group-ID = the policy VLAN.Network -> Inventory -> switch -> Ports: The AP port shows the expected VLAN, and Port Changes records the change.Verify the VLAN assigned to the switch port interface.Notes:Deleting FortiAPs from Inventory is not a workaround; FortiNAC re-adds them under the FortiGate.The AP port must not be in the Authorized Access Points group, which prevents VLAN switching on the port.If the port is also in Reset Forced Default, set its Default VLAN equal to the policy VLAN to avoid the VLAN cycling between the two.Confirm RADIUS and VLAN switching are enabled in the switch Model Configuration, with a RADIUS attribute group that includes RFC VLAN attributes.Tunnel-mode SSIDs are preferred. With bridge-mode SSIDs, wireless client MACs also appear on the AP port, which can affect port classification and MAB on the switch.Alternative: Network Device Roles (role assigned to the FortiAP + mapping by port group and VLAN), with the port in Role-Based Access.Related articles:Administration Guide (FortiNAC-F 7.6): Network device settingsAdministration Guide (FortiNAC-F 7.6): Network device rolesWAP behavior when connected to WAP Uplink ports",
       "products": [
-        "FortiGate",
-        "FortiAP"
+        "FortiGate"
       ],
       "versions": [],
       "status": "À vérifier",
@@ -6272,7 +6107,7 @@
       ],
       "versions": [],
       "firstSeen": "2026-10-22T09:24:01.029989+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": true,
       "fixedVersions": [],
@@ -6290,7 +6125,7 @@
       ],
       "versions": [],
       "firstSeen": "2026-10-22T09:24:01.029989+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false,
       "fixedVersions": [],
@@ -6308,7 +6143,7 @@
       ],
       "versions": [],
       "firstSeen": "2026-10-22T09:24:01.029989+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false,
       "fixedVersions": [],
@@ -6326,7 +6161,7 @@
       ],
       "versions": [],
       "firstSeen": "2026-10-22T09:24:01.029989+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false,
       "fixedVersions": [],
@@ -6344,7 +6179,7 @@
       ],
       "versions": [],
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": true,
       "fixedVersions": [],
@@ -6362,7 +6197,7 @@
       ],
       "versions": [],
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false,
       "fixedVersions": [],
@@ -6380,7 +6215,7 @@
       ],
       "versions": [],
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false,
       "fixedVersions": [],
@@ -6398,7 +6233,7 @@
       ],
       "versions": [],
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": true,
       "fixedVersions": [],
@@ -6416,7 +6251,7 @@
       ],
       "versions": [],
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false,
       "fixedVersions": [],
@@ -6434,7 +6269,7 @@
       ],
       "versions": [],
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": true,
       "fixedVersions": [],
@@ -6452,7 +6287,7 @@
       ],
       "versions": [],
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false,
       "fixedVersions": [],
@@ -6470,7 +6305,7 @@
       ],
       "versions": [],
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false,
       "fixedVersions": [],
@@ -6488,7 +6323,7 @@
       ],
       "versions": [],
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false,
       "fixedVersions": [],
@@ -6506,7 +6341,7 @@
       ],
       "versions": [],
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": true,
       "fixedVersions": [],
@@ -6524,7 +6359,7 @@
       ],
       "versions": [],
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false,
       "fixedVersions": [],
@@ -6542,7 +6377,7 @@
       ],
       "versions": [],
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false,
       "fixedVersions": [],
@@ -6560,7 +6395,7 @@
       ],
       "versions": [],
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false,
       "fixedVersions": [],
@@ -6579,7 +6414,7 @@
       ],
       "versions": [],
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false,
       "fixedVersions": [],
@@ -6597,7 +6432,7 @@
       ],
       "versions": [],
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false,
       "fixedVersions": [],
@@ -6615,7 +6450,7 @@
       ],
       "versions": [],
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false,
       "fixedVersions": [],
@@ -6633,7 +6468,7 @@
       ],
       "versions": [],
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false,
       "fixedVersions": [],
@@ -6651,7 +6486,7 @@
       ],
       "versions": [],
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false,
       "fixedVersions": [],
@@ -6669,7 +6504,7 @@
       ],
       "versions": [],
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false,
       "fixedVersions": [],
@@ -6802,7 +6637,7 @@
         "7.2"
       ],
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [
         "7.2"
       ],
@@ -6951,7 +6786,7 @@
       ],
       "versions": [],
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": true,
       "fixedVersions": [],
@@ -6970,7 +6805,7 @@
       ],
       "versions": [],
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": true,
       "fixedVersions": [],
@@ -7039,7 +6874,7 @@
       ],
       "versions": [],
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": true,
       "fixedVersions": [],
@@ -7232,9 +7067,7 @@
       "url": "https://community.fortinet.com/fortinac-f-57/netflow-network-sessions-stop-populating-after-upgrading-to-fortinac-f-7-6-7-230706",
       "date": "2026-10-20T16:21:40+00:00",
       "summary": "DescriptionThis article describes a behaviour where FortiNAC-F stops adding entries to Users & Hosts -> Network Sessions after an upgrade to 7.6.7, in deployments that use NetFlow as a device profiling source.The appliance continues to receive and queue NetFlow packets normally, and existing session records remain visible, but no new records are created. Device Profiling rules that rely on the Network Traffic method therefore stop matching, and no error, warning or exception is written to output.master.The behavior is independent of FortiGate firewall session polling, and affects setups where NetFlow is the only configured session source as well as setups where both are enabled.ScopeFortiNAC-F 7.6.7, using NetFlow as a device profiling source (Network Traffic profiling method).Any NetFlow exporter supported by FortiNAC, including FortiGate.SolutionThe steps below confirm the behavior and separate it from the configuration faults that produce the same empty Network Sessions view. Work through them in order: each one eliminates a different cause, and only the last step is specific to this issue.Confirm the symptom:In the FortiNAC-F UI, navigate to Users & Hosts -> Network Sessions. S",
-      "products": [
-        "FortiGate"
-      ],
+      "products": [],
       "versions": [
         "7.6.7"
       ],
@@ -7261,7 +7094,7 @@
       ],
       "versions": [],
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": true,
       "fixedVersions": [],
@@ -7280,7 +7113,7 @@
       ],
       "versions": [],
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false,
       "fixedVersions": [],
@@ -7387,7 +7220,7 @@
       ],
       "versions": [],
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": true,
       "fixedVersions": [],
@@ -7407,7 +7240,7 @@
       ],
       "versions": [],
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": true,
       "fixedVersions": [],
@@ -7471,7 +7304,7 @@
       ],
       "versions": [],
       "firstSeen": "2026-10-23T07:37:30.171221+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": true,
       "fixedVersions": [],
@@ -7492,7 +7325,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": true,
       "detailCheckedAt": "2026-10-28T08:49:14.101595+00:00"
@@ -7510,7 +7343,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": true,
       "detailCheckedAt": "2026-10-28T08:49:14.101595+00:00"
@@ -7529,7 +7362,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": true,
       "detailCheckedAt": "2026-10-28T08:46:27.055691+00:00"
@@ -7548,7 +7381,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": true,
       "detailCheckedAt": "2026-10-28T08:50:28.851621+00:00"
@@ -7566,7 +7399,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": true,
       "detailCheckedAt": "2026-10-28T08:50:28.851621+00:00"
@@ -7584,7 +7417,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": true,
       "detailCheckedAt": "2026-10-28T08:50:28.851621+00:00"
@@ -7602,7 +7435,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": true,
       "detailCheckedAt": "2026-10-28T08:51:12.517913+00:00"
@@ -7622,7 +7455,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [
         "8.0"
       ],
@@ -7642,7 +7475,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": true,
       "detailCheckedAt": "2026-10-28T08:51:12.517913+00:00"
@@ -7660,7 +7493,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false,
       "detailCheckedAt": "2026-10-28T08:51:46.911648+00:00"
@@ -7678,7 +7511,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": true,
       "detailCheckedAt": "2026-10-28T08:51:46.911648+00:00"
@@ -7696,7 +7529,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": true,
       "detailCheckedAt": "2026-10-28T08:46:27.055691+00:00"
@@ -7714,7 +7547,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": true,
       "detailCheckedAt": "2026-10-28T08:51:46.911648+00:00"
@@ -7732,7 +7565,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": true,
       "detailCheckedAt": "2026-10-28T08:54:07.772145+00:00"
@@ -7753,7 +7586,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [
         "7.4"
       ],
@@ -7775,7 +7608,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [
         "7.4"
       ],
@@ -7795,7 +7628,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": true,
       "detailCheckedAt": "2026-10-28T08:46:27.055691+00:00"
@@ -7813,7 +7646,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": true,
       "detailCheckedAt": "2026-10-28T08:46:50.571715+00:00"
@@ -7833,7 +7666,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": true,
       "detailCheckedAt": "2026-10-28T08:46:50.571715+00:00"
@@ -7851,7 +7684,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": true,
       "detailCheckedAt": "2026-10-28T08:46:50.571715+00:00"
@@ -7871,7 +7704,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": true,
       "detailCheckedAt": "2026-10-28T08:46:27.055691+00:00"
@@ -7891,7 +7724,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [
         "6.6"
       ],
@@ -7913,7 +7746,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": true,
       "detailCheckedAt": "2026-10-28T08:46:50.571715+00:00"
@@ -7931,7 +7764,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": true,
       "detailCheckedAt": "2026-10-28T08:46:50.571715+00:00"
@@ -7949,7 +7782,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": true,
       "detailCheckedAt": "2026-10-28T08:47:26.132001+00:00"
@@ -7968,7 +7801,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": true,
       "detailCheckedAt": "2026-10-28T08:47:26.132001+00:00"
@@ -7986,7 +7819,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": true,
       "detailCheckedAt": "2026-10-28T08:47:26.132001+00:00"
@@ -8004,7 +7837,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": true,
       "detailCheckedAt": "2026-10-28T08:47:26.132001+00:00"
@@ -8024,7 +7857,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [
         "7.4"
       ],
@@ -8044,7 +7877,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": true,
       "detailCheckedAt": "2026-10-28T08:47:26.132001+00:00"
@@ -8063,7 +7896,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": true,
       "detailCheckedAt": "2026-10-28T08:47:26.132001+00:00"
@@ -8081,7 +7914,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": true,
       "detailCheckedAt": "2026-10-28T08:48:38.614941+00:00"
@@ -8099,7 +7932,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": true,
       "detailCheckedAt": "2026-10-28T08:48:38.614941+00:00"
@@ -8119,7 +7952,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": true,
       "detailCheckedAt": "2026-10-28T08:48:38.614941+00:00"
@@ -8137,7 +7970,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": true,
       "detailCheckedAt": "2026-10-28T08:48:38.614941+00:00"
@@ -8156,7 +7989,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": true,
       "detailCheckedAt": "2026-10-28T08:48:38.614941+00:00"
@@ -8174,7 +8007,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": true,
       "detailCheckedAt": "2026-10-28T08:48:38.614941+00:00"
@@ -8194,7 +8027,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [
         "8.0"
       ],
@@ -8214,7 +8047,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": true,
       "detailCheckedAt": "2026-10-28T08:49:14.101595+00:00"
@@ -8232,7 +8065,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": true,
       "detailCheckedAt": "2026-10-28T08:50:28.851621+00:00"
@@ -8250,7 +8083,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": true,
       "detailCheckedAt": "2026-10-28T08:49:14.101595+00:00"
@@ -8268,7 +8101,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": true,
       "detailCheckedAt": "2026-10-28T08:48:38.614941+00:00"
@@ -8287,7 +8120,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": true,
       "detailCheckedAt": "2026-10-28T08:49:14.101595+00:00"
@@ -8305,7 +8138,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": true,
       "detailCheckedAt": "2026-10-28T08:49:14.101595+00:00"
@@ -8323,7 +8156,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": true,
       "detailCheckedAt": "2026-10-28T08:49:14.101595+00:00"
@@ -8341,7 +8174,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": true,
       "detailCheckedAt": "2026-10-28T08:50:28.851621+00:00"
@@ -8360,7 +8193,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": true,
       "detailCheckedAt": "2026-10-28T08:50:28.851621+00:00"
@@ -8378,7 +8211,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": true,
       "detailCheckedAt": "2026-10-28T08:50:28.851621+00:00"
@@ -8396,7 +8229,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": true,
       "detailCheckedAt": "2026-10-28T08:46:27.055691+00:00"
@@ -8414,7 +8247,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": true,
       "detailCheckedAt": "2026-10-28T08:51:12.517913+00:00"
@@ -8432,7 +8265,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": true,
       "detailCheckedAt": "2026-10-28T08:51:12.517913+00:00"
@@ -8452,7 +8285,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [
         "7.2"
       ],
@@ -8473,7 +8306,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": true,
       "detailCheckedAt": "2026-10-28T08:51:12.517913+00:00"
@@ -8493,7 +8326,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [
         "6.6"
       ],
@@ -8513,7 +8346,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false,
       "detailCheckedAt": "2026-10-28T08:51:12.517913+00:00"
@@ -8531,7 +8364,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": true,
       "detailCheckedAt": "2026-10-28T08:51:12.517913+00:00"
@@ -8549,7 +8382,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": true,
       "detailCheckedAt": "2026-10-28T08:50:28.851621+00:00"
@@ -8567,7 +8400,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": true,
       "detailCheckedAt": "2026-10-28T08:51:12.517913+00:00"
@@ -8585,7 +8418,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": true,
       "detailCheckedAt": "2026-10-28T08:51:46.911648+00:00"
@@ -8604,7 +8437,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": true,
       "detailCheckedAt": "2026-10-28T08:50:28.851621+00:00"
@@ -8624,7 +8457,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [
         "7.6"
       ],
@@ -8645,7 +8478,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": true,
       "detailCheckedAt": "2026-10-28T08:51:46.911648+00:00"
@@ -8663,7 +8496,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": true,
       "detailCheckedAt": "2026-10-28T08:51:46.911648+00:00"
@@ -8683,7 +8516,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [
         "8.0"
       ],
@@ -8706,7 +8539,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [
         "7.6"
       ],
@@ -8729,7 +8562,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [
         "7.4"
       ],
@@ -8749,7 +8582,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": true,
       "detailCheckedAt": "2026-10-28T08:46:50.571715+00:00"
@@ -8767,7 +8600,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": true,
       "detailCheckedAt": "2026-10-28T08:51:46.911648+00:00"
@@ -8785,7 +8618,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": true,
       "detailCheckedAt": "2026-10-28T08:54:07.772145+00:00"
@@ -8803,7 +8636,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": true,
       "detailCheckedAt": "2026-10-28T08:54:07.772145+00:00"
@@ -8821,7 +8654,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": true,
       "detailCheckedAt": "2026-10-28T08:54:07.772145+00:00"
@@ -8841,7 +8674,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [
         "7.4"
       ],
@@ -8861,7 +8694,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": true,
       "detailCheckedAt": "2026-10-28T08:51:46.911648+00:00"
@@ -8883,7 +8716,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [
         "8.0"
       ],
@@ -8903,7 +8736,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": true,
       "detailCheckedAt": "2026-10-28T08:54:53.541570+00:00"
@@ -8921,7 +8754,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": true,
       "detailCheckedAt": "2026-10-28T08:51:46.911648+00:00"
@@ -8939,7 +8772,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": true,
       "detailCheckedAt": "2026-10-28T08:54:07.772145+00:00"
@@ -8959,7 +8792,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [
         "6.6"
       ],
@@ -8980,7 +8813,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": true,
       "detailCheckedAt": "2026-10-28T08:51:46.911648+00:00"
@@ -9000,7 +8833,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [
         "8.0"
       ],
@@ -9020,7 +8853,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": true,
       "detailCheckedAt": "2026-10-28T08:54:53.541570+00:00"
@@ -9038,7 +8871,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": true,
       "detailCheckedAt": "2026-10-28T08:54:53.541570+00:00"
@@ -9061,7 +8894,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [
         "7.2",
         "7.4",
@@ -9083,7 +8916,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": true,
       "detailCheckedAt": "2026-10-28T08:54:53.541570+00:00"
@@ -9101,7 +8934,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": true,
       "detailCheckedAt": "2026-10-28T08:54:53.541570+00:00"
@@ -9119,7 +8952,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": true,
       "detailCheckedAt": "2026-10-28T08:54:53.541570+00:00"
@@ -9137,7 +8970,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": true,
       "detailCheckedAt": "2026-10-28T08:54:07.772145+00:00"
@@ -9155,7 +8988,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": true,
       "detailCheckedAt": "2026-10-28T08:54:53.541570+00:00"
@@ -9175,7 +9008,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [
         "7.4"
       ],
@@ -9197,12 +9030,30 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [
         "7.2"
       ],
       "potentialProblem": true,
       "detailCheckedAt": "2026-10-28T08:54:07.772145+00:00"
+    },
+    {
+      "id": "https://community.fortinet.com/fortiauthenticator-8/troubleshooting-tip-fortitoken-stuck-in-pending-status-after-email-sending-failure-228677",
+      "title": "Troubleshooting Tip: FortiToken stuck in pending status after email sending failure",
+      "url": "https://community.fortinet.com/fortiauthenticator-8/troubleshooting-tip-fortitoken-stuck-in-pending-status-after-email-sending-failure-228677",
+      "date": "2026-07-03T15:11:48+00:00",
+      "summary": "DescriptionThis article describes a technical issue where the FortiToken status is displayed as 'Pending' in FortiAuthenticator after a failure in sending the email with the activation code to the users. The FortiToken does not return to available status automatically.ScopeFortiAuthenticator.Solutio...",
+      "products": [
+        "FortiAuthenticator"
+      ],
+      "versions": [],
+      "fixVersions": [],
+      "discoverySource": "index produit public",
+      "firstSeen": "2026-10-28T08:42:42.085334+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
+      "versionFamilies": [],
+      "potentialProblem": true,
+      "detailCheckedAt": "2026-10-28T08:55:37.377802+00:00"
     },
     {
       "id": "https://community.fortinet.com/fortianalyzer-6/technical-tip-fortianalyzer-command-execution-diagnose-fortilogd-logvol-adom-output-shows-wrong-values-228623",
@@ -9217,7 +9068,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": true,
       "detailCheckedAt": "2026-10-28T08:47:26.132001+00:00"
@@ -9235,7 +9086,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": true,
       "detailCheckedAt": "2026-10-28T08:47:26.132001+00:00"
@@ -9253,7 +9104,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false,
       "detailCheckedAt": "2026-10-28T08:54:07.772145+00:00"
@@ -9273,7 +9124,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [
         "7.0"
       ],
@@ -9293,7 +9144,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": true,
       "detailCheckedAt": "2026-10-28T08:54:53.541570+00:00"
@@ -9311,7 +9162,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": false,
       "detailCheckedAt": "2026-10-28T08:48:38.614941+00:00"
@@ -9330,10 +9181,28 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": true,
       "detailCheckedAt": "2026-10-28T08:48:38.614941+00:00"
+    },
+    {
+      "id": "https://community.fortinet.com/fortiauthenticator-8/troubleshooting-tip-how-to-resolve-error-code-aadsts75011-228181",
+      "title": "Troubleshooting Tip: How to resolve error code 'AADSTS75011'",
+      "url": "https://community.fortinet.com/fortiauthenticator-8/troubleshooting-tip-how-to-resolve-error-code-aadsts75011-228181",
+      "date": "2026-06-10T06:13:41+00:00",
+      "summary": "DescriptionThis article describes how to resolve the error code 'AADSTS75011' when FortiAuthenticator is the SAML IdP Proxy, and Azure is the Identity Provider.ScopeFortiAuthenticator.SolutionFortiAuthenticator is configured as an IdP Proxy, see SAML IdP proxy for Azure for reference.The users will...",
+      "products": [
+        "FortiAuthenticator"
+      ],
+      "versions": [],
+      "fixVersions": [],
+      "discoverySource": "index produit public",
+      "firstSeen": "2026-10-28T08:42:42.085334+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
+      "versionFamilies": [],
+      "potentialProblem": true,
+      "detailCheckedAt": "2026-10-28T08:55:37.377802+00:00"
     },
     {
       "id": "https://community.fortinet.com/forticlient-4/technical-tip-ztna-ssh-using-ip-address-may-fail-in-non-proxy-mode-on-macos-26-3-1-228124",
@@ -9348,7 +9217,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": true,
       "detailCheckedAt": "2026-10-28T08:54:53.541570+00:00"
@@ -9368,7 +9237,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [
         "7.4"
       ],
@@ -9388,7 +9257,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": true,
       "detailCheckedAt": "2026-10-28T08:49:14.101595+00:00"
@@ -9407,10 +9276,87 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": true,
       "detailCheckedAt": "2026-10-28T08:49:14.101595+00:00"
+    },
+    {
+      "id": "https://community.fortinet.com/fortiauthenticator-8/troubleshooting-tip-fortiauthenticator-routing-issue-with-node-specific-gateway-for-high-availability-cluster-227687",
+      "title": "Troubleshooting Tip: FortiAuthenticator routing issue with node-specific gateway for High Availability cluster",
+      "url": "https://community.fortinet.com/fortiauthenticator-8/troubleshooting-tip-fortiauthenticator-routing-issue-with-node-specific-gateway-for-high-availability-cluster-227687",
+      "date": "2026-05-22T08:53:50+00:00",
+      "summary": "DescriptionThis article describes a High Availability issue with FortiAuthenticator where the node-specific gateway overrides the static routing after a reboot. The article provides a step-by-step guide to resolving this issue.ScopeFortiAuthenticator.SolutionTo resolve the High Availability issue wi...",
+      "products": [
+        "FortiAuthenticator"
+      ],
+      "versions": [],
+      "fixVersions": [],
+      "discoverySource": "index produit public",
+      "firstSeen": "2026-10-28T08:42:42.085334+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
+      "versionFamilies": [],
+      "potentialProblem": false,
+      "detailCheckedAt": "2026-10-28T08:55:37.377802+00:00"
+    },
+    {
+      "id": "https://community.fortinet.com/fortiauthenticator-8/troubleshooting-tip-when-using-fsso-based-on-radius-accouting-fortigate-fails-to-apply-correct-policy-227427",
+      "title": "Troubleshooting Tip: When using FSSO based on RADIUS Accouting, FortiGate fails to apply correct policy",
+      "url": "https://community.fortinet.com/fortiauthenticator-8/troubleshooting-tip-when-using-fsso-based-on-radius-accouting-fortigate-fails-to-apply-correct-policy-227427",
+      "date": "2026-05-11T05:48:23+00:00",
+      "summary": "DescriptionThis article describes a technical solution to resolve issues with FortiAuthenticator and FortiGate, where the correct policy is not being applied to users on wired networks, and the username is not displayed on the replacement message when accessing a blocked site.ScopeFortiAuthenticator...",
+      "products": [
+        "FortiAuthenticator",
+        "FortiGate"
+      ],
+      "versions": [],
+      "fixVersions": [],
+      "discoverySource": "index produit public",
+      "firstSeen": "2026-10-28T08:42:42.085334+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
+      "versionFamilies": [],
+      "potentialProblem": true,
+      "detailCheckedAt": "2026-10-28T08:55:37.377802+00:00"
+    },
+    {
+      "id": "https://community.fortinet.com/fortiauthenticator-8/troubleshooting-tip-error-during-captive-portal-user-registration-under-high-load-227364",
+      "title": "Troubleshooting Tip: Error during captive portal user registration under high load",
+      "url": "https://community.fortinet.com/fortiauthenticator-8/troubleshooting-tip-error-during-captive-portal-user-registration-under-high-load-227364",
+      "date": "2026-05-07T05:40:29+00:00",
+      "summary": "DescriptionThis article describes how to troubleshoot a high load of users registering for captive portal user self-registration.ScopeFortiAuthenticator v6.6.8 build 1890.SolutionTo confirm this issue need to run RADIUS debug on FortiAuthenticator. To do so, head to https://fac-ip/debug/radius and e...",
+      "products": [
+        "FortiAuthenticator"
+      ],
+      "versions": [
+        "6.6.8"
+      ],
+      "fixVersions": [],
+      "discoverySource": "index produit public",
+      "firstSeen": "2026-10-28T08:42:42.085334+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
+      "versionFamilies": [
+        "6.6"
+      ],
+      "potentialProblem": true,
+      "detailCheckedAt": "2026-10-28T08:55:37.377802+00:00"
+    },
+    {
+      "id": "https://community.fortinet.com/fortiauthenticator-8/troubleshooting-tip-authentication-fails-with-unable-to-find-authpolicy-to-process-despite-matching-radius-client-and-policy-227205",
+      "title": "Troubleshooting Tip: Authentication fails with 'Unable to find authpolicy to process' despite matching RADIUS client and policy",
+      "url": "https://community.fortinet.com/fortiauthenticator-8/troubleshooting-tip-authentication-fails-with-unable-to-find-authpolicy-to-process-despite-matching-radius-client-and-policy-227205",
+      "date": "2026-04-29T09:40:19+00:00",
+      "summary": "DescriptionThis article describes reasons for the error 'Unable to find authpolicy to process' when using overlapping ranges and subnets in a single RADIUS policy. ScopeFortiAuthenticator. SolutionThe article uses the following IPs to illustrate the issue:RADIUS client (FortiGate): 10.252.252.250.Su...",
+      "products": [
+        "FortiAuthenticator"
+      ],
+      "versions": [],
+      "fixVersions": [],
+      "discoverySource": "index produit public",
+      "firstSeen": "2026-10-28T08:42:42.085334+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
+      "versionFamilies": [],
+      "potentialProblem": true,
+      "detailCheckedAt": "2026-10-28T08:55:37.377802+00:00"
     },
     {
       "id": "https://community.fortinet.com/fortianalyzer-6/troubleshooting-tip-fortianalyzer-log-retention-days-showing-incorrect-value-227099",
@@ -9425,10 +9371,68 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": true,
       "detailCheckedAt": "2026-10-28T08:50:28.851621+00:00"
+    },
+    {
+      "id": "https://community.fortinet.com/fortiauthenticator-8/technical-tip-recovering-standby-fortiauthenticator-vm-after-storage-failure-226265",
+      "title": "Technical Tip: Recovering standby FortiAuthenticator VM after storage failure",
+      "url": "https://community.fortinet.com/fortiauthenticator-8/technical-tip-recovering-standby-fortiauthenticator-vm-after-storage-failure-226265",
+      "date": "2026-03-29T19:34:06+00:00",
+      "summary": "Description This article describes the procedure to recover a standby FortiAuthenticator virtual machine after a storage failure. In this scenario, recovery can be performed using the same IP address from the faulty virtual machine. Scope FortiAuthenticator. Solution Back up the configu...",
+      "products": [
+        "FortiAuthenticator"
+      ],
+      "versions": [],
+      "fixVersions": [],
+      "discoverySource": "index produit public",
+      "firstSeen": "2026-10-28T08:42:42.085334+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
+      "versionFamilies": [],
+      "potentialProblem": true,
+      "detailCheckedAt": "2026-10-28T08:55:37.377802+00:00"
+    },
+    {
+      "id": "https://community.fortinet.com/fortiauthenticator-8/troubleshooting-tip-remote-ldap-authentication-failure-due-to-dn-character-limits-225948",
+      "title": "Troubleshooting Tip: Remote LDAP authentication failure due to DN character limits",
+      "url": "https://community.fortinet.com/fortiauthenticator-8/troubleshooting-tip-remote-ldap-authentication-failure-due-to-dn-character-limits-225948",
+      "date": "2026-03-23T15:06:18+00:00",
+      "summary": "Description This article describes how, in certain environments, remote LDAP users may fail to authenticate with FortiAuthenticator even when their credentials appear correct. This often occurs when the user's Distinguished Name (DN) is exceptionally long. Scope FortiAuthenticator (All versions...",
+      "products": [
+        "FortiAuthenticator"
+      ],
+      "versions": [],
+      "fixVersions": [],
+      "discoverySource": "index produit public",
+      "firstSeen": "2026-10-28T08:42:42.085334+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
+      "versionFamilies": [],
+      "potentialProblem": true,
+      "detailCheckedAt": "2026-10-28T08:55:37.377802+00:00"
+    },
+    {
+      "id": "https://community.fortinet.com/fortiauthenticator-8/technical-tip-workaround-for-500-internal-server-error-encountered-during-self-registration-with-sms-following-upgrade-to-v6-6-6-v8-0-1-224103",
+      "title": "Technical Tip: Workaround for '500 Internal Server Error' encountered during self-registration with SMS following upgrade to v6.6.6, v8.0.1",
+      "url": "https://community.fortinet.com/fortiauthenticator-8/technical-tip-workaround-for-500-internal-server-error-encountered-during-self-registration-with-sms-following-upgrade-to-v6-6-6-v8-0-1-224103",
+      "date": "2026-03-18T11:03:52+00:00",
+      "summary": "Description This article describes how to work around the 500 Internal Server Error returned during self-registration with SMS in the self-service portal after upgrading to version 6.6.6 or 8.0.1. Scope FortiAuthenticator v6.6.6, v8.0.1. Solution In the affected firmware versions, if a...",
+      "products": [
+        "FortiAuthenticator"
+      ],
+      "versions": [
+        "6.6.6"
+      ],
+      "fixVersions": [],
+      "discoverySource": "index produit public",
+      "firstSeen": "2026-10-28T08:42:42.085334+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
+      "versionFamilies": [
+        "6.6"
+      ],
+      "potentialProblem": true,
+      "detailCheckedAt": "2026-10-28T08:55:37.377802+00:00"
     },
     {
       "id": "https://community.fortinet.com/fortianalyzer-6/troubleshooting-tip-fortianalyzer-shows-unable-to-run-report-when-user-try-to-generate-a-report-225404",
@@ -9443,7 +9447,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [],
       "potentialProblem": true,
       "detailCheckedAt": "2026-10-28T08:50:28.851621+00:00"
@@ -9463,7 +9467,7 @@
       "fixVersions": [],
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:54:50.728296+00:00",
+      "lastSeen": "2026-10-28T08:55:34.907867+00:00",
       "versionFamilies": [
         "7.2"
       ],
@@ -9476,9 +9480,9 @@
   "aiReviewGeneratedAt": "2026-10-28T08:55:22.321407+00:00",
   "aiReviewModel": "gemini-3.5-flash-lite",
   "aiReviewNote": "La relecture IA améliore la lisibilité mais ne constitue pas une validation officielle. Les produits, versions, correctifs, statuts et sources sont conservés depuis la synthèse déterministe.",
-  "aiReviewStatus": "partial",
-  "aiReviewMessage": "Relecture Gemini appliquée à 40 fiche(s) sur 92. Les fiches restantes conservent la synthèse déterministe ou une relecture antérieure valide.",
-  "aiReviewCheckedAt": "2026-10-28T08:55:22.321407+00:00",
+  "aiReviewStatus": "error",
+  "aiReviewMessage": "Relecture Gemini indisponible (JSONDecodeError). La synthèse déterministe reste publiée et les anciennes relectures valides sont conservées si leurs preuves sont inchangées.",
+  "aiReviewCheckedAt": "2026-10-28T08:55:44.261916+00:00",
   "incidents": [
     {
       "id": "incident-e576a6fb36fb",
@@ -13823,6 +13827,46 @@
       "synthesisMethod": "Règles de preuve : article Fortinet versionné et explicite, ou au moins deux discussions distinctes; pas d'IA générative."
     },
     {
+      "id": "incident-31e9cf8b27b7",
+      "title": "Troubleshooting Tip: How to resolve error code 'AADSTS75011'",
+      "summary": "DescriptionThis article describes how to resolve the error code 'AADSTS75011' when FortiAuthenticator is the SAML IdP Proxy, and Azure is the Identity Provider.ScopeFortiAuthenticator.SolutionFortiAuthenticator is configured as an IdP Proxy, see SAML IdP proxy for Azure for reference.The users will...",
+      "symptom": "This article describes how to resolve the error code 'AADSTS75011' when FortiAuthenticator is the SAML IdP Proxy, and Azure is the Identity Provider",
+      "impact": "",
+      "solution": "FortiAuthenticator is configured as an IdP Proxy, see SAML IdP proxy for Azure for reference.The users will",
+      "products": [
+        "FortiAuthenticator"
+      ],
+      "versions": [],
+      "versionFamilies": [],
+      "fixVersions": [],
+      "sourceCount": 1,
+      "forumReportCount": 0,
+      "documentedSourceCount": 1,
+      "sources": [
+        {
+          "title": "Troubleshooting Tip: How to resolve error code 'AADSTS75011'",
+          "url": "https://community.fortinet.com/fortiauthenticator-8/troubleshooting-tip-how-to-resolve-error-code-aadsts75011-228181",
+          "date": "2026-06-10T06:13:41+00:00",
+          "summary": "DescriptionThis article describes how to resolve the error code 'AADSTS75011' when FortiAuthenticator is the SAML IdP Proxy, and Azure is the Identity Provider.ScopeFortiAuthenticator.SolutionFortiAuthenticator is configured as an IdP Proxy, see SAML IdP proxy for Azure for reference.The users will...",
+          "products": [
+            "FortiAuthenticator"
+          ],
+          "versions": [],
+          "versionFamilies": [],
+          "sourceType": "fortinet_article",
+          "fixVersions": [],
+          "symptom": "This article describes how to resolve the error code 'AADSTS75011' when FortiAuthenticator is the SAML IdP Proxy, and Azure is the Identity Provider",
+          "impact": "",
+          "solution": "FortiAuthenticator is configured as an IdP Proxy, see SAML IdP proxy for Azure for reference.The users will"
+        }
+      ],
+      "lastSeen": "2026-06-10T06:13:41+00:00",
+      "status": "Documenté par Fortinet (version non précisée)",
+      "confidence": "Documentation Fortinet (version non précisée)",
+      "evidenceType": "official_documentation",
+      "synthesisMethod": "Règles de preuve : article Fortinet versionné et explicite, ou au moins deux discussions distinctes; pas d'IA générative."
+    },
+    {
       "id": "incident-393ea63786cd",
       "title": "Technical Tip: Configure event handlers for failed login attempts on FortiGate and FortiAnalyzer devices",
       "summary": "DescriptionThis article describes the steps to configure event handlers for failed login attempts on FortiGate and FortiAnalyzer devices.ScopeFortiAnalyzer, FortiGate.SolutionThere are situations where it is needed to receive a notification when the admin user for FortiGate access or FortiAnalyzer a...",
@@ -13865,6 +13909,136 @@
       "synthesisMethod": "Règles de preuve : article Fortinet versionné et explicite, ou au moins deux discussions distinctes; pas d'IA générative."
     },
     {
+      "id": "incident-87b319bc0d70",
+      "title": "Troubleshooting Tip: When using FSSO based on RADIUS Accouting, FortiGate fails to apply correct policy",
+      "summary": "DescriptionThis article describes a technical solution to resolve issues with FortiAuthenticator and FortiGate, where the correct policy is not being applied to users on wired networks, and the username is not displayed on the replacement message when accessing a blocked site.ScopeFortiAuthenticator...",
+      "symptom": "This article describes a technical solution to resolve issues with FortiAuthenticator and FortiGate, where the correct policy is not being applied to users on wired networks, and the username is not displayed on the replacement message when accessing a blocked site",
+      "impact": "",
+      "solution": "",
+      "products": [
+        "FortiAuthenticator",
+        "FortiGate"
+      ],
+      "versions": [],
+      "versionFamilies": [],
+      "fixVersions": [],
+      "sourceCount": 1,
+      "forumReportCount": 0,
+      "documentedSourceCount": 1,
+      "sources": [
+        {
+          "title": "Troubleshooting Tip: When using FSSO based on RADIUS Accouting, FortiGate fails to apply correct policy",
+          "url": "https://community.fortinet.com/fortiauthenticator-8/troubleshooting-tip-when-using-fsso-based-on-radius-accouting-fortigate-fails-to-apply-correct-policy-227427",
+          "date": "2026-05-11T05:48:23+00:00",
+          "summary": "DescriptionThis article describes a technical solution to resolve issues with FortiAuthenticator and FortiGate, where the correct policy is not being applied to users on wired networks, and the username is not displayed on the replacement message when accessing a blocked site.ScopeFortiAuthenticator...",
+          "products": [
+            "FortiAuthenticator",
+            "FortiGate"
+          ],
+          "versions": [],
+          "versionFamilies": [],
+          "sourceType": "fortinet_article",
+          "fixVersions": [],
+          "symptom": "This article describes a technical solution to resolve issues with FortiAuthenticator and FortiGate, where the correct policy is not being applied to users on wired networks, and the username is not displayed on the replacement message when accessing a blocked site",
+          "impact": "",
+          "solution": ""
+        }
+      ],
+      "lastSeen": "2026-05-11T05:48:23+00:00",
+      "status": "Documenté par Fortinet (version non précisée)",
+      "confidence": "Documentation Fortinet (version non précisée)",
+      "evidenceType": "official_documentation",
+      "synthesisMethod": "Règles de preuve : article Fortinet versionné et explicite, ou au moins deux discussions distinctes; pas d'IA générative."
+    },
+    {
+      "id": "incident-c73014cdbb69",
+      "title": "Troubleshooting Tip: Error during captive portal user registration under high load",
+      "summary": "DescriptionThis article describes how to troubleshoot a high load of users registering for captive portal user self-registration.ScopeFortiAuthenticator v6.6.8 build 1890.SolutionTo confirm this issue need to run RADIUS debug on FortiAuthenticator. To do so, head to https://fac-ip/debug/radius and e...",
+      "symptom": "This article describes how to troubleshoot a high load of users registering for captive portal user self-registration",
+      "impact": "",
+      "solution": "To confirm this issue need to run RADIUS debug on FortiAuthenticator. To do so, head to https://fac-ip/debug/radius and e",
+      "products": [
+        "FortiAuthenticator"
+      ],
+      "versions": [
+        "6.6.8"
+      ],
+      "versionFamilies": [
+        "6.6"
+      ],
+      "fixVersions": [],
+      "sourceCount": 1,
+      "forumReportCount": 0,
+      "documentedSourceCount": 1,
+      "sources": [
+        {
+          "title": "Troubleshooting Tip: Error during captive portal user registration under high load",
+          "url": "https://community.fortinet.com/fortiauthenticator-8/troubleshooting-tip-error-during-captive-portal-user-registration-under-high-load-227364",
+          "date": "2026-05-07T05:40:29+00:00",
+          "summary": "DescriptionThis article describes how to troubleshoot a high load of users registering for captive portal user self-registration.ScopeFortiAuthenticator v6.6.8 build 1890.SolutionTo confirm this issue need to run RADIUS debug on FortiAuthenticator. To do so, head to https://fac-ip/debug/radius and e...",
+          "products": [
+            "FortiAuthenticator"
+          ],
+          "versions": [
+            "6.6.8"
+          ],
+          "versionFamilies": [
+            "6.6"
+          ],
+          "sourceType": "fortinet_article",
+          "fixVersions": [],
+          "symptom": "This article describes how to troubleshoot a high load of users registering for captive portal user self-registration",
+          "impact": "",
+          "solution": "To confirm this issue need to run RADIUS debug on FortiAuthenticator. To do so, head to https://fac-ip/debug/radius and e"
+        }
+      ],
+      "lastSeen": "2026-05-07T05:40:29+00:00",
+      "status": "Documenté par Fortinet (version identifiée)",
+      "confidence": "Documentation Fortinet versionnée",
+      "evidenceType": "official_documentation",
+      "synthesisMethod": "Règles de preuve : article Fortinet versionné et explicite, ou au moins deux discussions distinctes; pas d'IA générative."
+    },
+    {
+      "id": "incident-d4306e4917b6",
+      "title": "Troubleshooting Tip: Authentication fails with 'Unable to find authpolicy to process' despite matching RADIUS client and policy",
+      "summary": "DescriptionThis article describes reasons for the error 'Unable to find authpolicy to process' when using overlapping ranges and subnets in a single RADIUS policy. ScopeFortiAuthenticator. SolutionThe article uses the following IPs to illustrate the issue:RADIUS client (FortiGate): 10.252.252.250.Su...",
+      "symptom": "This article describes reasons for the error 'Unable to find authpolicy to process' when using overlapping ranges and subnets in a single RADIUS policy",
+      "impact": "",
+      "solution": "The article uses the following IPs to illustrate the issue:RADIUS client (FortiGate): 10.252.252.250.Su",
+      "products": [
+        "FortiAuthenticator"
+      ],
+      "versions": [],
+      "versionFamilies": [],
+      "fixVersions": [],
+      "sourceCount": 1,
+      "forumReportCount": 0,
+      "documentedSourceCount": 1,
+      "sources": [
+        {
+          "title": "Troubleshooting Tip: Authentication fails with 'Unable to find authpolicy to process' despite matching RADIUS client and policy",
+          "url": "https://community.fortinet.com/fortiauthenticator-8/troubleshooting-tip-authentication-fails-with-unable-to-find-authpolicy-to-process-despite-matching-radius-client-and-policy-227205",
+          "date": "2026-04-29T09:40:19+00:00",
+          "summary": "DescriptionThis article describes reasons for the error 'Unable to find authpolicy to process' when using overlapping ranges and subnets in a single RADIUS policy. ScopeFortiAuthenticator. SolutionThe article uses the following IPs to illustrate the issue:RADIUS client (FortiGate): 10.252.252.250.Su...",
+          "products": [
+            "FortiAuthenticator"
+          ],
+          "versions": [],
+          "versionFamilies": [],
+          "sourceType": "fortinet_article",
+          "fixVersions": [],
+          "symptom": "This article describes reasons for the error 'Unable to find authpolicy to process' when using overlapping ranges and subnets in a single RADIUS policy",
+          "impact": "",
+          "solution": "The article uses the following IPs to illustrate the issue:RADIUS client (FortiGate): 10.252.252.250.Su"
+        }
+      ],
+      "lastSeen": "2026-04-29T09:40:19+00:00",
+      "status": "Documenté par Fortinet (version non précisée)",
+      "confidence": "Documentation Fortinet (version non précisée)",
+      "evidenceType": "official_documentation",
+      "synthesisMethod": "Règles de preuve : article Fortinet versionné et explicite, ou au moins deux discussions distinctes; pas d'IA générative."
+    },
+    {
       "id": "incident-f16cbe204c0f",
       "title": "Troubleshooting Tip: FortiAnalyzer log retention days showing incorrect value",
       "summary": "DescriptionThis article describes a situation where the FortiAnalyzer log retention days show an incorrect value.ScopeFortiAnalyzer.SolutionContext: Despite being configured to retain logs for 365 days, the user experiences an issue where the FortiAnalyzer is showing a higher number of retention day...",
@@ -13901,6 +14075,94 @@
       "lastSeen": "2026-04-27T00:03:47+00:00",
       "status": "Documenté par Fortinet (version non précisée)",
       "confidence": "Documentation Fortinet (version non précisée)",
+      "evidenceType": "official_documentation",
+      "synthesisMethod": "Règles de preuve : article Fortinet versionné et explicite, ou au moins deux discussions distinctes; pas d'IA générative."
+    },
+    {
+      "id": "incident-e6ebb2f786d9",
+      "title": "Technical Tip: Recovering standby FortiAuthenticator VM after storage failure",
+      "summary": "Description This article describes the procedure to recover a standby FortiAuthenticator virtual machine after a storage failure. In this scenario, recovery can be performed using the same IP address from the faulty virtual machine. Scope FortiAuthenticator. Solution Back up the configu...",
+      "symptom": "This article describes the procedure to recover a standby FortiAuthenticator virtual machine after a storage failure. In this scenario, recovery can be performed using the same IP address from the faulty virtual machine",
+      "impact": "",
+      "solution": "Back up the configu",
+      "products": [
+        "FortiAuthenticator"
+      ],
+      "versions": [],
+      "versionFamilies": [],
+      "fixVersions": [],
+      "sourceCount": 1,
+      "forumReportCount": 0,
+      "documentedSourceCount": 1,
+      "sources": [
+        {
+          "title": "Technical Tip: Recovering standby FortiAuthenticator VM after storage failure",
+          "url": "https://community.fortinet.com/fortiauthenticator-8/technical-tip-recovering-standby-fortiauthenticator-vm-after-storage-failure-226265",
+          "date": "2026-03-29T19:34:06+00:00",
+          "summary": "Description This article describes the procedure to recover a standby FortiAuthenticator virtual machine after a storage failure. In this scenario, recovery can be performed using the same IP address from the faulty virtual machine. Scope FortiAuthenticator. Solution Back up the configu...",
+          "products": [
+            "FortiAuthenticator"
+          ],
+          "versions": [],
+          "versionFamilies": [],
+          "sourceType": "fortinet_article",
+          "fixVersions": [],
+          "symptom": "This article describes the procedure to recover a standby FortiAuthenticator virtual machine after a storage failure. In this scenario, recovery can be performed using the same IP address from the faulty virtual machine",
+          "impact": "",
+          "solution": "Back up the configu"
+        }
+      ],
+      "lastSeen": "2026-03-29T19:34:06+00:00",
+      "status": "Documenté par Fortinet (version non précisée)",
+      "confidence": "Documentation Fortinet (version non précisée)",
+      "evidenceType": "official_documentation",
+      "synthesisMethod": "Règles de preuve : article Fortinet versionné et explicite, ou au moins deux discussions distinctes; pas d'IA générative."
+    },
+    {
+      "id": "incident-b46bf24686f7",
+      "title": "Technical Tip: Workaround for '500 Internal Server Error' encountered during self-registration with SMS following upgrade to v6.6.6, v8.0.1",
+      "summary": "Description This article describes how to work around the 500 Internal Server Error returned during self-registration with SMS in the self-service portal after upgrading to version 6.6.6 or 8.0.1. Scope FortiAuthenticator v6.6.6, v8.0.1. Solution In the affected firmware versions, if a...",
+      "symptom": "This article describes how to work around the 500 Internal Server Error returned during self-registration with SMS in the self-service portal after upgrading to version 6.6.6 or 8.0.1",
+      "impact": "",
+      "solution": "In the affected firmware versions, if a",
+      "products": [
+        "FortiAuthenticator"
+      ],
+      "versions": [
+        "6.6.6"
+      ],
+      "versionFamilies": [
+        "6.6"
+      ],
+      "fixVersions": [],
+      "sourceCount": 1,
+      "forumReportCount": 0,
+      "documentedSourceCount": 1,
+      "sources": [
+        {
+          "title": "Technical Tip: Workaround for '500 Internal Server Error' encountered during self-registration with SMS following upgrade to v6.6.6, v8.0.1",
+          "url": "https://community.fortinet.com/fortiauthenticator-8/technical-tip-workaround-for-500-internal-server-error-encountered-during-self-registration-with-sms-following-upgrade-to-v6-6-6-v8-0-1-224103",
+          "date": "2026-03-18T11:03:52+00:00",
+          "summary": "Description This article describes how to work around the 500 Internal Server Error returned during self-registration with SMS in the self-service portal after upgrading to version 6.6.6 or 8.0.1. Scope FortiAuthenticator v6.6.6, v8.0.1. Solution In the affected firmware versions, if a...",
+          "products": [
+            "FortiAuthenticator"
+          ],
+          "versions": [
+            "6.6.6"
+          ],
+          "versionFamilies": [
+            "6.6"
+          ],
+          "sourceType": "fortinet_article",
+          "fixVersions": [],
+          "symptom": "This article describes how to work around the 500 Internal Server Error returned during self-registration with SMS in the self-service portal after upgrading to version 6.6.6 or 8.0.1",
+          "impact": "",
+          "solution": "In the affected firmware versions, if a"
+        }
+      ],
+      "lastSeen": "2026-03-18T11:03:52+00:00",
+      "status": "Documenté par Fortinet (version identifiée)",
+      "confidence": "Documentation Fortinet versionnée",
       "evidenceType": "official_documentation",
       "synthesisMethod": "Règles de preuve : article Fortinet versionné et explicite, ou au moins deux discussions distinctes; pas d'IA générative."
     },
@@ -14053,7 +14315,7 @@
       }
     }
   ],
-  "incidentCount": 92,
-  "synthesisGeneratedAt": "2026-10-28T08:55:02.005092+00:00",
+  "incidentCount": 98,
+  "synthesisGeneratedAt": "2026-10-28T08:55:44.189104+00:00",
   "synthesisNote": "Un point n'est affiché que s'il est documenté par un article Fortinet versionné et explicite, ou décrit dans au moins deux discussions distinctes d'utilisateurs. Les articles officiels ne comptent pas comme des personnes supplémentaires. Les signalements isolés non documentés sont exclus."
 }
