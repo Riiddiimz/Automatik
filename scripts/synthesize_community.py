@@ -30,7 +30,7 @@ ISSUE_RE = re.compile(
     r"does not work|doesn't work|not responding|does not respond|no response from|rejects? authentication|crash(?:es|ed)?|hang(?:s|ing)?|drop(?:s|ped|ping)?|"
     r"disconnect(?:s|ed|ion)?|intermittent|regression|unexpected|incorrect|wrong|"
     r"no longer|after upgrade|since upgrade|change(?:d|s)? behavior|behavio[u]?r change|"
-    r"not displayed|not shown|not included|not supported|cannot|can't|cannot save|packet loss|bypass(?:es|ed)?|"
+    r"not displayed|not shown|not included|not loading|not supported|cannot|can't|cannot save|packet loss|connection reset|bypass(?:es|ed)?|"
     r"fails to|missing|stuck|timeout|timed out)\b",
     re.I,
 )
@@ -184,7 +184,13 @@ def looks_like_problem(item: dict) -> bool:
         return False
     if ISSUE_RE.search(title):
         return True
-    return bool(re.search(r"\b(known issue|known bug|bug id|regression|issue occurs|failure occurs|stops working|not working|broken after upgrade)\b", summary[:1200], re.I))
+    return bool(
+        ISSUE_RE.search(summary[:1200])
+        or re.search(
+            r"\b(known issue|known bug|bug id|regression|issue occurs|failure occurs|stops working|not working|broken after upgrade)\b",
+            summary[:1200], re.I,
+        )
+    )
 
 
 def title_tokens(item: dict) -> set[str]:
