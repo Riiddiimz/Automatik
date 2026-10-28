@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-27T22:12:43.699410+00:00",
+  "generatedAt": "2026-10-28T05:40:36.021599+00:00",
   "fortinet": [
     {
       "source": "FortiGuard PSIRT",
@@ -163,6 +163,14 @@
     }
   ],
   "cyber": [
+    {
+      "source": "FortiGuard Outbreak Alerts",
+      "label": "FortiGuard Outbreak Alerts",
+      "title": "Node2Shell Remote Code Execution",
+      "url": "https://fortiguard.fortinet.com/outbreak-alert/node2shell",
+      "date": "2026-10-27T07:00:00+00:00",
+      "summary": "CVE-2026-111497 is an out-of-bounds write vulnerability in Google's Brotli decoder, a component used to decompress data encoded with the Brotli compression algorithm. Brotli is widely used in web communications and is incorporated into software libraries, runtimes, and HTTP clients, including Node.js."
+    },
     {
       "source": "FortiGuard Outbreak Alerts",
       "label": "FortiGuard Outbreak Alerts",
@@ -866,14 +874,6 @@
       "url": "https://feeds.fortinet.com/~/932275703/0/fortinet/blog/ciso-collective~Debunking-Common-Cloud-Security-Misconceptions",
       "date": "2025-12-08T14:00:00+00:00",
       "summary": "Although cloud providers secure their own platforms, cloud security is a shared responsibility. Learn how CISOs can overcome misconceptions, strengthen visibility, and protect their multi-cloud environments. &#160; &#160; &#160; &#160; &nbsp;&#160;"
-    },
-    {
-      "source": "FortiGuard Outbreak Alerts",
-      "label": "FortiGuard Outbreak Alerts",
-      "title": "UNC1549 Critical Infrastructure Espionage Attack",
-      "url": "https://fortiguard.fortinet.com/outbreak-alert/unc1549-espionage-attack",
-      "date": "2025-12-02T08:00:00+00:00",
-      "summary": "A suspected Iran-linked espionage group tracked as UNC1549 is actively targeting aerospace, defense, and telecommunications organizations across Europe and other regions. The threat actor employs a combination of highly tailored spear-phishing, credential theft from third-party services, and the abuse of virtual desktop infrastructure such as Citrix, VMware,"
     },
     {
       "source": "Fortinet CISO Collective",
