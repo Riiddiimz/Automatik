@@ -151,6 +151,23 @@ class CommunitySynthesisTests(unittest.TestCase):
         self.assertFalse(synth.similar(a, b))
 
 
+    def test_deep_inspection_not_loading_is_detected_but_single_report_stays_unpublished(self):
+        item = {
+            "title": "Some Website not loading with Deep Inspection",
+            "summary": (
+                "Websites time out or reset when deep inspection is enabled. "
+                "Different FortiGate models and firmware (7.6.8 / 7.4.13) are affected."
+            ),
+            "url": "https://community.fortinet.com/support-forum-92/some-website-not-loading-with-deep-inspection-230891",
+            "products": ["FortiGate"],
+            "date": "2026-10-28T07:43:30+00:00",
+        }
+        self.assertTrue(synth.looks_like_problem(item))
+        with tempfile.TemporaryDirectory() as directory:
+            result = synth.synthesize({"topics": [item]}, Path(directory) / "community.json")
+        self.assertTrue(result["topics"][0]["potentialProblem"])
+        self.assertEqual(result["incidentCount"], 0, "un seul fil utilisateur ne confirme pas un incident récurrent")
+
     def test_single_unconfirmed_user_report_is_excluded(self):
         data = {"topics": [
             {"title": "FortiGate VPN disconnects after upgrade", "summary": "VPN disconnects on my device.", "url": "https://community.fortinet.com/support-forum-92/one-report", "products": ["FortiGate"], "date": "2026-10-22"}
