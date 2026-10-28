@@ -26,6 +26,7 @@ class SnapshotComparisonTests(unittest.TestCase):
                 "title": "VPN disconnects",
                 "summary": "VPN disconnects after upgrade.",
                 "lastSeen": "2026-10-26T10:00:00+00:00",
+                "detailCheckedAt": "2026-10-26T10:00:04+00:00",
                 "firstSeen": "2026-10-20T10:00:00+00:00",
             }],
             "incidentCount": 1,
@@ -49,6 +50,7 @@ class SnapshotComparisonTests(unittest.TestCase):
         current["aiReviewGeneratedAt"] = "2026-10-26T16:00:02+00:00"
         current["aiReviewCheckedAt"] = "2026-10-26T16:00:03+00:00"
         current["topics"][0]["lastSeen"] = "2026-10-26T16:00:00+00:00"
+        current["topics"][0]["detailCheckedAt"] = "2026-10-26T16:00:04+00:00"
         current["incidents"][0]["aiReview"]["reviewedAt"] = "2026-10-26T16:00:02+00:00"
         self.assertTrue(same_published_content(previous, current, "community"))
 
