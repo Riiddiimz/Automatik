@@ -614,16 +614,9 @@ def parse_board_page(payload: str | bytes, board_url: str, product: str) -> list
             "url": url,
             "date": None,
             "summary": "",
-            "categories": [product],
             "products": products,
             "versions": extract_versions(title, "", url),
             "fixVersions": extract_fixed_versions(title, "", url),
-            "status": "À vérifier",
-            "statusNote": (
-                "Sujet repéré dans l’index produit public; la date et le résumé détaillé "
-                "ne sont pas fournis par cette page d’index."
-            ),
-            "source": "Fortinet Community",
             "discoverySource": "index produit public",
         })
     return result
@@ -874,7 +867,9 @@ def merge_discovered_topics(primary: list[dict], secondary: list[dict]) -> list[
         for field in ("date", "summary"):
             if not combined.get(field) and normalized.get(field):
                 combined[field] = normalized[field]
-        if not combined.get("discoverySource") and normalized.get("discoverySource"):
+        if existing.get("summary"):
+            combined.pop("discoverySource", None)
+        elif not combined.get("discoverySource") and normalized.get("discoverySource"):
             combined["discoverySource"] = normalized["discoverySource"]
         merged[key] = combined
     return list(merged.values())
@@ -1051,14 +1046,15 @@ def collect(fetcher=fetch_feed, out: Path = OUT, topic_fetcher=None, board_fetch
         # A product index only supplies a title and link. It must never erase
         # richer metadata collected earlier from RSS or a detail page.
         if item.get("discoverySource") == "index produit public":
-            for field in ("date", "summary", "versions", "fixVersions", "statusNote"):
+            for field in ("date", "summary", "versions", "fixVersions"):
                 if old.get(field):
                     record[field] = old[field]
-            for field in ("products", "categories"):
-                record[field] = list(dict.fromkeys([
-                    *(old.get(field) or []),
-                    *(item.get(field) or []),
-                ]))
+            record["products"] = list(dict.fromkeys([
+                *(old.get("products") or []),
+                *(item.get("products") or []),
+            ]))
+            for field in ("categories", "status", "statusNote", "source"):
+                record.pop(field, None)
         merged[key] = record
 
     topics = sorted(
