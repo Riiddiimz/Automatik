@@ -486,6 +486,20 @@ class CommunityFeedTests(unittest.TestCase):
         self.assertEqual(items[0]["versions"], ["7.4.13", "7.6.8"])
         self.assertIsNone(items[0]["date"])
 
+        rss_topic = {
+            "id": items[0]["url"],
+            "url": items[0]["url"],
+            "title": items[0]["title"],
+            "summary": "RSS summary retained",
+            "products": ["FortiGate"],
+            "versions": [],
+            "fixVersions": [],
+            "date": "2026-10-28T07:43:30+00:00",
+        }
+        merged = collector.merge_discovered_topics([rss_topic], items)
+        self.assertEqual(merged[0]["versions"], ["7.4.13", "7.6.8"])
+        self.assertEqual(merged[0]["summary"], "RSS summary retained")
+
     def test_product_index_pagination_stops_on_repeated_page_and_reports_it(self):
         board = "https://community.fortinet.com/fortigate-3"
         page = b"""<html><body>
