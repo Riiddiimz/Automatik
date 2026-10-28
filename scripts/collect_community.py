@@ -918,7 +918,7 @@ def load_previous(path: Path = OUT) -> dict:
     return {"topics": []}
 
 
-def collect(fetcher=fetch_feed, out: Path = OUT, topic_fetcher=None, board_fetcher=None) -> dict:
+def collect(fetcher=fetch_feed, out: Path = OUT, topic_fetcher=None, board_fetcher=None, detail_fetcher=None) -> dict:
     previous = load_previous(out)
     now = datetime.now(timezone.utc).isoformat()
     errors: list[str] = []
@@ -984,6 +984,13 @@ def collect(fetcher=fetch_feed, out: Path = OUT, topic_fetcher=None, board_fetch
                 errors.extend(str(error) for error in board_errors if error)
             board_page_count = int(board_result.get("pageCount", len(board_result.get("pages", []))) or 0)
             board_topic_count = len(board_items)
+            if detail_fetcher is not None:
+                board_items = enrich_board_topic_metadata(
+                    board_items,
+                    [*previous.get("topics", []), *fresh],
+                    detail_fetcher,
+                    errors,
+                )
             fresh = merge_discovered_topics(fresh, board_items)
         except (OSError, urllib.error.URLError, ValueError, TimeoutError) as exc:
             errors.append(
@@ -1078,7 +1085,7 @@ def collect(fetcher=fetch_feed, out: Path = OUT, topic_fetcher=None, board_fetch
 
 
 def main() -> int:
-    result = collect(board_fetcher=fetch_board_topics)
+    result = collect(board_fetcher=fetch_board_topics, detail_fetcher=fetch_topic_metadata)
     print(f"Collecte terminée : {len(result.get('topics', []))} sujets conservés; partielle={result.get('partial', False)}")
     for error in result.get("errors", []):
         print(f"AVERTISSEMENT: {error}")
