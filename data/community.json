@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-28T08:44:38.242220+00:00",
+  "generatedAt": "2026-10-28T08:45:11.697482+00:00",
   "feedUrl": "https://community.fortinet.com/feed/topics?count=100&start=0",
   "feedItemCount": 100,
   "requestedFeedItemCount": 500,
@@ -31,7 +31,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [
         "7.6"
       ],
@@ -56,7 +56,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": true
     },
@@ -79,7 +79,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": true
     },
@@ -102,7 +102,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": true
     },
@@ -125,7 +125,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -149,7 +149,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": true
     },
@@ -174,7 +174,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [
         "8.0"
       ],
@@ -199,7 +199,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -222,7 +222,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": true
     },
@@ -245,7 +245,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": true
     },
@@ -268,7 +268,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -291,7 +291,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": true
     },
@@ -314,7 +314,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": true
     },
@@ -339,7 +339,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [
         "8.0"
       ],
@@ -364,7 +364,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -387,7 +387,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": true
     },
@@ -410,7 +410,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -433,7 +433,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -456,7 +456,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -479,7 +479,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": true
     },
@@ -502,7 +502,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -525,7 +525,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -548,7 +548,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -571,7 +571,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": true
     },
@@ -594,7 +594,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": true
     },
@@ -618,7 +618,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": true
     },
@@ -641,7 +641,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -664,7 +664,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -688,7 +688,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -712,7 +712,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -735,7 +735,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": true
     },
@@ -760,7 +760,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": true
     },
@@ -784,7 +784,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -808,7 +808,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": true
     },
@@ -831,7 +831,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": true
     },
@@ -854,7 +854,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -877,7 +877,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": true
     },
@@ -901,7 +901,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -924,7 +924,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": true
     },
@@ -947,7 +947,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -970,7 +970,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -994,7 +994,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -1017,7 +1017,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -1041,7 +1041,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": true
     },
@@ -1065,7 +1065,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -1088,7 +1088,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": true
     },
@@ -1111,7 +1111,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -1136,7 +1136,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [
         "7.6"
       ],
@@ -1161,7 +1161,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": true
     },
@@ -1185,7 +1185,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -1208,7 +1208,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": true
     },
@@ -1231,7 +1231,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": true
     },
@@ -1254,7 +1254,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": true
     },
@@ -1278,7 +1278,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -1301,7 +1301,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -1324,7 +1324,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": true
     },
@@ -1348,7 +1348,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -1372,7 +1372,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": true
     },
@@ -1395,7 +1395,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": true
     },
@@ -1418,7 +1418,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": true
     },
@@ -1441,7 +1441,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": true
     },
@@ -1465,7 +1465,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -1488,7 +1488,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -1512,7 +1512,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -1535,7 +1535,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": true
     },
@@ -1558,7 +1558,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -1581,7 +1581,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -1605,7 +1605,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": true
     },
@@ -1629,7 +1629,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -1652,7 +1652,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -1676,7 +1676,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": true
     },
@@ -1699,7 +1699,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": true
     },
@@ -1722,7 +1722,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -1745,7 +1745,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -1768,7 +1768,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": true
     },
@@ -1791,7 +1791,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -1814,7 +1814,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -1837,7 +1837,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": true
     },
@@ -1860,7 +1860,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -1887,7 +1887,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [
         "8.0"
       ],
@@ -1912,7 +1912,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -1935,7 +1935,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": true
     },
@@ -1959,7 +1959,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -1982,7 +1982,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -2005,7 +2005,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -2028,7 +2028,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": true
     },
@@ -2051,7 +2051,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -2074,7 +2074,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -2097,7 +2097,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": true
     },
@@ -2120,7 +2120,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": true
     },
@@ -2145,7 +2145,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [
         "6.6"
       ],
@@ -2170,7 +2170,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": true
     },
@@ -2194,7 +2194,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": true
     },
@@ -2217,7 +2217,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": true
     },
@@ -2240,7 +2240,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -2263,7 +2263,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": true
     },
@@ -2287,7 +2287,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": true
     },
@@ -2310,7 +2310,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -2333,7 +2333,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -2358,7 +2358,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [
         "8.0"
       ],
@@ -2383,7 +2383,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -2406,7 +2406,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -2429,7 +2429,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": true
     },
@@ -2452,7 +2452,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": true
     },
@@ -2475,7 +2475,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -2498,7 +2498,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -2523,7 +2523,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [
         "6.6"
       ],
@@ -2548,7 +2548,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -2571,7 +2571,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": true
     },
@@ -2594,7 +2594,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": true
     },
@@ -2617,7 +2617,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": true
     },
@@ -2640,7 +2640,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -2663,7 +2663,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": true
     },
@@ -2688,7 +2688,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [
         "8.0"
       ],
@@ -2713,7 +2713,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -2736,7 +2736,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": true
     },
@@ -2759,7 +2759,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": true
     },
@@ -2784,7 +2784,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [
         "6.6"
       ],
@@ -2809,7 +2809,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -2832,7 +2832,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": true
     },
@@ -2855,7 +2855,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": true
     },
@@ -2878,7 +2878,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": true
     },
@@ -2901,7 +2901,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": true
     },
@@ -2924,7 +2924,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": true
     },
@@ -2947,7 +2947,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -2970,7 +2970,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": true
     },
@@ -2995,7 +2995,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [
         "8.0"
       ],
@@ -3020,7 +3020,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -3043,7 +3043,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": true
     },
@@ -3066,7 +3066,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -3089,7 +3089,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -3112,7 +3112,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -3135,7 +3135,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -3158,7 +3158,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -3181,7 +3181,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -3204,7 +3204,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -3227,7 +3227,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": true
     },
@@ -3250,7 +3250,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -3273,7 +3273,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -3296,7 +3296,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -3319,7 +3319,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -3342,7 +3342,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -3366,7 +3366,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": true
     },
@@ -3389,7 +3389,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -3412,7 +3412,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -3435,7 +3435,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": true
     },
@@ -3458,7 +3458,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -3481,7 +3481,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -3504,7 +3504,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": true
     },
@@ -3527,7 +3527,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -3551,7 +3551,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -3574,7 +3574,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -3597,7 +3597,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -3621,7 +3621,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -3645,7 +3645,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -3668,7 +3668,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": true
     },
@@ -3691,7 +3691,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": true
     },
@@ -3716,7 +3716,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [
         "6.6"
       ],
@@ -3741,7 +3741,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -3764,7 +3764,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -3787,7 +3787,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -3811,7 +3811,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -3834,7 +3834,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -3857,7 +3857,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -3880,7 +3880,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -3903,7 +3903,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -3927,7 +3927,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -3950,7 +3950,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -3974,7 +3974,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -3997,7 +3997,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -4020,7 +4020,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -4043,7 +4043,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": true
     },
@@ -4066,7 +4066,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -4089,7 +4089,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -4115,7 +4115,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [
         "7.6"
       ],
@@ -4142,7 +4142,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [
         "7.6"
       ],
@@ -4167,7 +4167,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": true
     },
@@ -4190,7 +4190,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -4215,7 +4215,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [
         "7.6"
       ],
@@ -4240,7 +4240,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -4264,7 +4264,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -4287,7 +4287,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -4310,7 +4310,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -4333,7 +4333,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -4356,7 +4356,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -4379,7 +4379,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -4402,7 +4402,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -4425,7 +4425,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -4448,7 +4448,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -4472,7 +4472,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -4496,7 +4496,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -4519,7 +4519,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": true
     },
@@ -4542,7 +4542,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -4565,7 +4565,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": true
     },
@@ -4588,7 +4588,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -4611,7 +4611,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -4635,7 +4635,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -4658,7 +4658,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -4681,7 +4681,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -4705,7 +4705,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": true
     },
@@ -4728,7 +4728,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -4751,7 +4751,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": true
     },
@@ -4775,7 +4775,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": true
     },
@@ -4798,7 +4798,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -4822,7 +4822,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -4846,7 +4846,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": true
     },
@@ -4869,7 +4869,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -4892,7 +4892,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -4915,7 +4915,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -4938,7 +4938,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -4961,7 +4961,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -4984,7 +4984,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -5007,7 +5007,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": true
     },
@@ -5031,7 +5031,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -5054,7 +5054,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -5078,7 +5078,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -5101,7 +5101,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -5125,7 +5125,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -5148,7 +5148,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -5171,7 +5171,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -5194,7 +5194,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -5217,7 +5217,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -5240,7 +5240,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -5263,7 +5263,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": true
     },
@@ -5286,7 +5286,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": true
     },
@@ -5309,7 +5309,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -5332,7 +5332,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -5355,7 +5355,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -5379,7 +5379,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -5403,7 +5403,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -5426,7 +5426,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -5449,7 +5449,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": true
     },
@@ -5474,7 +5474,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [
         "7.4"
       ],
@@ -5499,7 +5499,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": true
     },
@@ -5523,7 +5523,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -5546,7 +5546,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": true
     },
@@ -5569,7 +5569,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -5595,7 +5595,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [
         "7.2",
         "7.4"
@@ -5621,7 +5621,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": true
     },
@@ -5644,7 +5644,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": true
     },
@@ -5667,7 +5667,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -5690,7 +5690,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -5713,7 +5713,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": true
     },
@@ -5736,7 +5736,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": true
     },
@@ -5759,7 +5759,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -5782,7 +5782,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -5805,7 +5805,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -5828,7 +5828,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": true
     },
@@ -5851,7 +5851,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -5874,7 +5874,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -5900,7 +5900,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [
         "7.4"
       ],
@@ -5925,7 +5925,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -5948,7 +5948,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": true
     },
@@ -5971,7 +5971,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": true
     },
@@ -5994,7 +5994,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": true
     },
@@ -6018,7 +6018,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -6041,7 +6041,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -6064,7 +6064,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -6087,7 +6087,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -6110,7 +6110,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": true
     },
@@ -6133,7 +6133,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -6156,7 +6156,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -6179,7 +6179,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -6202,7 +6202,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": true
     },
@@ -6225,7 +6225,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -6248,7 +6248,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -6271,7 +6271,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -6294,7 +6294,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -6317,7 +6317,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -6340,7 +6340,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": true
     },
@@ -6363,7 +6363,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": true
     },
@@ -6386,7 +6386,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -6409,7 +6409,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": true
     },
@@ -6432,7 +6432,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -6455,7 +6455,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -6478,7 +6478,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -6501,7 +6501,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": true
     },
@@ -6524,7 +6524,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -6551,7 +6551,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [
         "7.4",
         "7.6"
@@ -6577,7 +6577,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -6600,7 +6600,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -6623,7 +6623,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -6646,7 +6646,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -6669,7 +6669,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -6692,7 +6692,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": true
     },
@@ -6715,7 +6715,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -6739,7 +6739,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -6762,7 +6762,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -6785,7 +6785,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": true
     },
@@ -6808,7 +6808,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -6831,7 +6831,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": true
     },
@@ -6854,7 +6854,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -6877,7 +6877,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -6900,7 +6900,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -6923,7 +6923,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -6946,7 +6946,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -6969,7 +6969,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": true
     },
@@ -6992,7 +6992,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": true
     },
@@ -7015,7 +7015,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -7038,7 +7038,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -7061,7 +7061,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -7084,7 +7084,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": true
     },
@@ -7107,7 +7107,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -7130,7 +7130,7 @@
       "source": "Fortinet Community",
       "discoverySource": "index produit public",
       "firstSeen": "2026-10-28T08:42:42.085334+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -7152,7 +7152,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-28T08:40:13.915335+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": true,
       "discoverySource": "index produit public"
@@ -7177,7 +7177,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-28T08:40:13.915335+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [
         "7.4"
       ],
@@ -7201,7 +7201,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-27T12:08:38.529366+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -7223,7 +7223,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-28T08:40:13.915335+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false,
       "discoverySource": "index produit public"
@@ -7246,7 +7246,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-23T07:37:30.171221+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [
         "7.6"
       ],
@@ -7288,7 +7288,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-28T08:40:13.915335+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [
         "8.0"
       ],
@@ -7312,7 +7312,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-27T17:59:20.871064+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -7334,7 +7334,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-28T05:39:35.554158+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -7359,7 +7359,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-28T05:39:35.554158+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [
         "7.0",
         "7.2"
@@ -7384,7 +7384,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-28T05:39:35.554158+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -7410,7 +7410,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-25T08:49:02.456463+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [
         "7.4"
       ],
@@ -7433,7 +7433,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false,
       "categories": [
@@ -7460,7 +7460,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-27T08:27:15.325711+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -7484,7 +7484,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-27T17:59:20.871064+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [
         "7.2"
       ],
@@ -7512,7 +7512,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-27T17:59:20.871064+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [
         "7.4",
         "7.6",
@@ -7539,7 +7539,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-27T17:59:20.871064+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -7565,7 +7565,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-27T17:59:20.871064+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [
         "7.4"
       ],
@@ -7589,7 +7589,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-27T17:59:20.871064+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": true
     },
@@ -7611,7 +7611,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-27T17:59:20.871064+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -7632,7 +7632,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-26T04:44:07.561963+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false,
       "fixedVersions": [],
@@ -7658,7 +7658,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-27T14:08:03.762154+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [
         "7.6"
       ],
@@ -7685,7 +7685,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-27T12:08:38.529366+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [
         "7.6"
       ],
@@ -7712,7 +7712,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-27T12:08:38.529366+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [
         "7.4"
       ],
@@ -7739,7 +7739,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-27T12:08:38.529366+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [
         "7.2"
       ],
@@ -7765,7 +7765,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-27T12:08:38.529366+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": true,
       "discoverySource": "index produit public"
@@ -7785,7 +7785,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-23T07:37:30.171221+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false,
       "categories": [
@@ -7810,7 +7810,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [
         "7.4"
       ],
@@ -7835,7 +7835,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false,
       "categories": [
@@ -7858,7 +7858,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-24T07:14:22.584683+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false,
       "categories": [
@@ -7884,7 +7884,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-25T08:49:02.456463+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false,
       "fixedVersions": [],
@@ -7908,7 +7908,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-27T12:08:38.529366+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -7930,7 +7930,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-27T12:08:38.529366+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -7952,7 +7952,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-27T12:08:38.529366+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false,
       "discoverySource": "index produit public"
@@ -7976,7 +7976,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-27T12:08:38.529366+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": true
     },
@@ -8000,7 +8000,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-27T12:08:38.529366+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [
         "7.2"
       ],
@@ -8023,7 +8023,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [
         "7.4"
       ],
@@ -8057,7 +8057,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-27T12:08:38.529366+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [
         "8.0"
       ],
@@ -8084,7 +8084,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-27T12:08:38.529366+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [
         "7.4"
       ],
@@ -8109,7 +8109,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-27T12:08:38.529366+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": true,
       "discoverySource": "index produit public"
@@ -8135,7 +8135,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-27T12:08:38.529366+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [
         "8.0"
       ],
@@ -8161,7 +8161,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-27T12:08:38.529366+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false,
       "discoverySource": "index produit public"
@@ -8186,7 +8186,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-27T08:27:15.325711+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [
         "7.6"
       ],
@@ -8211,7 +8211,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-27T08:27:15.325711+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false,
       "discoverySource": "index produit public"
@@ -8236,7 +8236,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-26T22:38:45.180998+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [
         "7.4"
       ],
@@ -8260,7 +8260,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-27T08:27:15.325711+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": true,
       "discoverySource": "index produit public"
@@ -8309,7 +8309,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-24T07:14:22.584683+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [
         "7.6"
       ],
@@ -8344,7 +8344,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-27T08:27:15.325711+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false,
       "discoverySource": "index produit public"
@@ -8367,7 +8367,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-27T08:27:15.325711+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false,
       "discoverySource": "index produit public"
@@ -8391,7 +8391,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-26T22:38:45.180998+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -8417,7 +8417,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-26T22:38:45.180998+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [
         "7.0",
         "7.2",
@@ -8441,7 +8441,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-24T13:57:19.874191+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [
         "7.2"
       ],
@@ -8470,7 +8470,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-26T22:38:45.180998+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -8492,7 +8492,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-26T08:51:24.766456+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false,
       "fixVersions": []
@@ -8515,7 +8515,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-26T14:38:38.019574+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": true
     },
@@ -8533,7 +8533,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": true,
       "categories": [
@@ -8556,7 +8556,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T09:24:01.029989+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false,
       "categories": [
@@ -8583,7 +8583,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [
         "7.4"
       ],
@@ -8611,7 +8611,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-23T13:47:25.795786+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [
         "7.4"
       ],
@@ -8636,7 +8636,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-24T07:14:22.584683+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": true,
       "categories": [
@@ -8665,7 +8665,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [
         "7.2",
         "7.4",
@@ -8696,7 +8696,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-26T12:58:24.915805+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false,
       "discoverySource": "index produit public"
@@ -8719,7 +8719,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-26T16:16:28.410579+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -8743,7 +8743,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-26T16:16:28.410579+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [
         "7.6"
       ],
@@ -8772,7 +8772,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-26T14:41:22.213432+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [
         "7.4"
       ],
@@ -8802,7 +8802,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-26T14:38:38.019574+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [
         "6.6",
         "7.4"
@@ -8826,7 +8826,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-23T07:37:30.171221+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [
         "7.6"
       ],
@@ -8856,7 +8856,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-26T14:38:38.019574+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -8879,7 +8879,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-26T14:38:38.019574+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -8903,7 +8903,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-26T14:38:38.019574+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [
         "7.4"
       ],
@@ -8924,7 +8924,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-23T07:37:30.171221+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false,
       "categories": [
@@ -8952,7 +8952,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-26T12:58:24.915805+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -8977,7 +8977,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-26T12:58:24.915805+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [
         "7.4"
       ],
@@ -9001,7 +9001,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-26T12:58:24.915805+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -9023,7 +9023,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-26T09:30:25.828296+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false,
       "discoverySource": "index produit public"
@@ -9045,7 +9045,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-25T16:15:19.386671+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false,
       "fixedVersions": [],
@@ -9069,7 +9069,7 @@
       "statusNote": "Le flux RSS seul ne permet pas de confirmer qu'une solution est validée.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-26T09:30:25.828296+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false
     },
@@ -9093,7 +9093,7 @@
       "statusNote": "Sujet repéré dans l’index produit public; la date et le résumé détaillé ne sont pas fournis par cette page d’index.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-26T08:51:24.766456+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [
         "7.4"
       ],
@@ -9119,7 +9119,7 @@
       "statusNote": "Sujet repéré dans l’index produit public; la date et le résumé détaillé ne sont pas fournis par cette page d’index.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-26T08:51:24.766456+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": true,
       "fixVersions": [],
@@ -9143,7 +9143,7 @@
       "statusNote": "Sujet repéré dans l’index produit public; la date et le résumé détaillé ne sont pas fournis par cette page d’index.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-26T08:51:24.766456+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false,
       "fixVersions": [],
@@ -9167,7 +9167,7 @@
       "statusNote": "Sujet repéré dans l’index produit public; la date et le résumé détaillé ne sont pas fournis par cette page d’index.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-26T08:51:24.766456+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false,
       "fixVersions": [],
@@ -9193,7 +9193,7 @@
       "statusNote": "Sujet repéré dans l’index produit public; la date et le résumé détaillé ne sont pas fournis par cette page d’index.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-26T08:51:24.766456+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [
         "7.6"
       ],
@@ -9219,7 +9219,7 @@
       "statusNote": "Sujet repéré dans l’index produit public; la date et le résumé détaillé ne sont pas fournis par cette page d’index.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-26T08:51:24.766456+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false,
       "fixVersions": [],
@@ -9397,7 +9397,7 @@
       "statusNote": "Sujet repéré dans l’index produit public; la date et le résumé détaillé ne sont pas fournis par cette page d’index.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-24T07:14:22.584683+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false,
       "categories": [
@@ -9421,7 +9421,7 @@
       "statusNote": "Sujet repéré dans l’index produit public; la date et le résumé détaillé ne sont pas fournis par cette page d’index.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-24T07:14:22.584683+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false,
       "categories": [
@@ -9446,7 +9446,7 @@
       "statusNote": "Sujet repéré dans l’index produit public; la date et le résumé détaillé ne sont pas fournis par cette page d’index.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-24T07:14:22.584683+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false,
       "categories": [
@@ -9470,7 +9470,7 @@
       "statusNote": "Sujet repéré dans l’index produit public; la date et le résumé détaillé ne sont pas fournis par cette page d’index.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-24T07:14:22.584683+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": true,
       "categories": [
@@ -9586,7 +9586,7 @@
       "statusNote": "Sujet repéré dans l’index produit public; la date et le résumé détaillé ne sont pas fournis par cette page d’index.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-23T13:47:25.795786+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": true,
       "categories": [
@@ -9610,7 +9610,7 @@
       "statusNote": "Sujet repéré dans l’index produit public; la date et le résumé détaillé ne sont pas fournis par cette page d’index.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-23T13:47:25.795786+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": true,
       "categories": [
@@ -9717,7 +9717,7 @@
       "statusNote": "Sujet repéré dans l’index produit public; la date et le résumé détaillé ne sont pas fournis par cette page d’index.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-23T07:37:30.171221+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false,
       "categories": [
@@ -9744,7 +9744,7 @@
       "statusNote": "Sujet repéré dans l’index produit public; la date et le résumé détaillé ne sont pas fournis par cette page d’index.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-23T07:37:30.171221+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [
         "7.6"
       ],
@@ -9770,7 +9770,7 @@
       "statusNote": "Sujet repéré dans l’index produit public; la date et le résumé détaillé ne sont pas fournis par cette page d’index.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-23T07:37:30.171221+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": true,
       "categories": [
@@ -9794,7 +9794,7 @@
       "statusNote": "Sujet repéré dans l’index produit public; la date et le résumé détaillé ne sont pas fournis par cette page d’index.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-23T07:37:30.171221+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": true,
       "categories": [
@@ -10035,7 +10035,7 @@
       "statusNote": "Sujet repéré dans l’index produit public; la date et le résumé détaillé ne sont pas fournis par cette page d’index.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T09:24:01.029989+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": true,
       "categories": [
@@ -10059,7 +10059,7 @@
       "statusNote": "Sujet repéré dans l’index produit public; la date et le résumé détaillé ne sont pas fournis par cette page d’index.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T09:24:01.029989+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false,
       "categories": [
@@ -10083,7 +10083,7 @@
       "statusNote": "Sujet repéré dans l’index produit public; la date et le résumé détaillé ne sont pas fournis par cette page d’index.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T09:24:01.029989+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false,
       "categories": [
@@ -10107,7 +10107,7 @@
       "statusNote": "Sujet repéré dans l’index produit public; la date et le résumé détaillé ne sont pas fournis par cette page d’index.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T09:24:01.029989+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false,
       "fixedVersions": [],
@@ -10131,7 +10131,7 @@
       "statusNote": "Sujet repéré dans l’index produit public; la date et le résumé détaillé ne sont pas fournis par cette page d’index.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": true,
       "categories": [
@@ -10156,7 +10156,7 @@
       "statusNote": "Sujet repéré dans l’index produit public; la date et le résumé détaillé ne sont pas fournis par cette page d’index.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": true,
       "categories": [
@@ -10180,7 +10180,7 @@
       "statusNote": "Sujet repéré dans l’index produit public; la date et le résumé détaillé ne sont pas fournis par cette page d’index.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false,
       "categories": [
@@ -10204,7 +10204,7 @@
       "statusNote": "Sujet repéré dans l’index produit public; la date et le résumé détaillé ne sont pas fournis par cette page d’index.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false,
       "categories": [
@@ -10228,7 +10228,7 @@
       "statusNote": "Sujet repéré dans l’index produit public; la date et le résumé détaillé ne sont pas fournis par cette page d’index.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": true,
       "categories": [
@@ -10252,7 +10252,7 @@
       "statusNote": "Sujet repéré dans l’index produit public; la date et le résumé détaillé ne sont pas fournis par cette page d’index.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false,
       "categories": [
@@ -10276,7 +10276,7 @@
       "statusNote": "Sujet repéré dans l’index produit public; la date et le résumé détaillé ne sont pas fournis par cette page d’index.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": true,
       "categories": [
@@ -10300,7 +10300,7 @@
       "statusNote": "Sujet repéré dans l’index produit public; la date et le résumé détaillé ne sont pas fournis par cette page d’index.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": true,
       "categories": [
@@ -10324,7 +10324,7 @@
       "statusNote": "Sujet repéré dans l’index produit public; la date et le résumé détaillé ne sont pas fournis par cette page d’index.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": true,
       "categories": [
@@ -10348,7 +10348,7 @@
       "statusNote": "Sujet repéré dans l’index produit public; la date et le résumé détaillé ne sont pas fournis par cette page d’index.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false,
       "categories": [
@@ -10372,7 +10372,7 @@
       "statusNote": "Sujet repéré dans l’index produit public; la date et le résumé détaillé ne sont pas fournis par cette page d’index.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false,
       "categories": [
@@ -10396,7 +10396,7 @@
       "statusNote": "Sujet repéré dans l’index produit public; la date et le résumé détaillé ne sont pas fournis par cette page d’index.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": true,
       "categories": [
@@ -10420,7 +10420,7 @@
       "statusNote": "Sujet repéré dans l’index produit public; la date et le résumé détaillé ne sont pas fournis par cette page d’index.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false,
       "categories": [
@@ -10444,7 +10444,7 @@
       "statusNote": "Sujet repéré dans l’index produit public; la date et le résumé détaillé ne sont pas fournis par cette page d’index.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": true,
       "fixedVersions": [],
@@ -10468,7 +10468,7 @@
       "statusNote": "Sujet repéré dans l’index produit public; la date et le résumé détaillé ne sont pas fournis par cette page d’index.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false,
       "fixedVersions": [],
@@ -10492,7 +10492,7 @@
       "statusNote": "Sujet repéré dans l’index produit public; la date et le résumé détaillé ne sont pas fournis par cette page d’index.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false,
       "fixedVersions": [],
@@ -10516,7 +10516,7 @@
       "statusNote": "Sujet repéré dans l’index produit public; la date et le résumé détaillé ne sont pas fournis par cette page d’index.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": true,
       "fixedVersions": [],
@@ -10540,7 +10540,7 @@
       "statusNote": "Sujet repéré dans l’index produit public; la date et le résumé détaillé ne sont pas fournis par cette page d’index.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false,
       "fixedVersions": [],
@@ -10565,7 +10565,7 @@
       "statusNote": "Sujet repéré dans l’index produit public; la date et le résumé détaillé ne sont pas fournis par cette page d’index.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false,
       "fixedVersions": [],
@@ -10589,7 +10589,7 @@
       "statusNote": "Sujet repéré dans l’index produit public; la date et le résumé détaillé ne sont pas fournis par cette page d’index.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false,
       "fixedVersions": [],
@@ -10613,7 +10613,7 @@
       "statusNote": "Sujet repéré dans l’index produit public; la date et le résumé détaillé ne sont pas fournis par cette page d’index.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false,
       "fixedVersions": [],
@@ -10637,7 +10637,7 @@
       "statusNote": "Sujet repéré dans l’index produit public; la date et le résumé détaillé ne sont pas fournis par cette page d’index.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false,
       "fixedVersions": [],
@@ -10661,7 +10661,7 @@
       "statusNote": "Sujet repéré dans l’index produit public; la date et le résumé détaillé ne sont pas fournis par cette page d’index.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false,
       "fixedVersions": [],
@@ -10685,7 +10685,7 @@
       "statusNote": "Sujet repéré dans l’index produit public; la date et le résumé détaillé ne sont pas fournis par cette page d’index.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": true,
       "fixedVersions": [],
@@ -10710,7 +10710,7 @@
       "statusNote": "Sujet repéré dans l’index produit public; la date et le résumé détaillé ne sont pas fournis par cette page d’index.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": true,
       "fixedVersions": [],
@@ -10734,7 +10734,7 @@
       "statusNote": "Sujet repéré dans l’index produit public; la date et le résumé détaillé ne sont pas fournis par cette page d’index.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false,
       "fixedVersions": [],
@@ -10758,7 +10758,7 @@
       "statusNote": "Sujet repéré dans l’index produit public; la date et le résumé détaillé ne sont pas fournis par cette page d’index.",
       "source": "Fortinet Community",
       "firstSeen": "2026-10-22T08:39:26.783874+00:00",
-      "lastSeen": "2026-10-28T08:44:38.242220+00:00",
+      "lastSeen": "2026-10-28T08:45:11.697482+00:00",
       "versionFamilies": [],
       "potentialProblem": false,
       "fixedVersions": [],
@@ -11396,12 +11396,12 @@
   ],
   "boardPageCount": 15,
   "boardTopicCount": 376,
-  "aiReviewGeneratedAt": "2026-10-28T08:42:58.595960+00:00",
+  "aiReviewGeneratedAt": "2026-10-28T08:45:25.920762+00:00",
   "aiReviewModel": "gemini-3.5-flash-lite",
   "aiReviewNote": "La relecture IA améliore la lisibilité mais ne constitue pas une validation officielle. Les produits, versions, correctifs, statuts et sources sont conservés depuis la synthèse déterministe.",
-  "aiReviewStatus": "error",
-  "aiReviewMessage": "Relecture Gemini indisponible (JSONDecodeError). La synthèse déterministe reste publiée et les anciennes relectures valides sont conservées si leurs preuves sont inchangées.",
-  "aiReviewCheckedAt": "2026-10-28T08:44:51.416009+00:00",
+  "aiReviewStatus": "success",
+  "aiReviewMessage": "Relecture Gemini appliquée à 16 fiche(s) sur 16.",
+  "aiReviewCheckedAt": "2026-10-28T08:45:25.920762+00:00",
   "incidents": [
     {
       "id": "incident-e576a6fb36fb",
@@ -11474,13 +11474,13 @@
       "evidenceType": "repeated_reports",
       "synthesisMethod": "Règles de preuve : article Fortinet versionné et explicite, ou au moins deux discussions distinctes; pas d'IA générative.",
       "aiReview": {
-        "summary": "Des appareils clients ne peuvent plus se connecter au Wi-Fi après la mise à niveau d'un environnement FortiGate 101F et FortiAP 231F vers FortiOS 7.4.13.",
-        "symptom": "Des appareils clients ne parviennent pas à se connecter au Wi-Fi après la mise à niveau vers FortiOS 7.4.13, et de nombreux points d'accès ne se connectent plus au pare-feu.",
+        "summary": "Des appareils clients ne peuvent plus se connecter au Wi-Fi après la mise à niveau vers FortiOS 7.4.13 dans un environnement FortiGate 101F et FortiAP 231F.",
+        "symptom": "Des appareils clients ne parviennent pas à se connecter au Wi-Fi après la mise à niveau de l'environnement vers FortiOS 7.4.13, et de nombreux points d'accès ne se connectent plus au pare-feu.",
         "impact": "",
         "solution": "",
-        "note": "Les sources proviennent de discussions d'utilisateurs sans confirmation officielle ni solution documentée.",
+        "note": "Les sources proviennent de discussions d'utilisateurs sur un forum et ne constituent pas une confirmation officielle de Fortinet.",
         "model": "gemini-3.5-flash-lite",
-        "reviewedAt": "2026-10-28T08:42:58.595960+00:00",
+        "reviewedAt": "2026-10-28T08:45:25.920762+00:00",
         "label": "Relecture IA — à vérifier avec les sources"
       }
     },
@@ -11555,13 +11555,13 @@
       "evidenceType": "official_documentation",
       "synthesisMethod": "Règles de preuve : article Fortinet versionné et explicite, ou au moins deux discussions distinctes; pas d'IA générative.",
       "aiReview": {
-        "summary": "Échec d'installation dans FortiManager 7.6.8 lors du déploiement de paramètres 'ssl-ssh-profile' non pris en charge sur les appareils FortiGate disposant de 2 Go de mémoire.",
-        "symptom": "Échec de l'installation de la configuration en raison de l'option 'udp-not-quic' sous 'config firewall ssl-ssh-profile' sur les modèles FortiGate avec 2 Go de mémoire.",
+        "summary": "Échec d'installation sur les modèles FortiGate disposant de 2 Go de mémoire lors de l'utilisation de FortiManager version 7.6.8, en raison de l'option 'udp-not-quic'.",
+        "symptom": "Échec de l'installation des configurations de profils SSL/SSH depuis FortiManager vers les appareils FortiGate équipés de 2 Go de mémoire.",
         "impact": "",
-        "solution": "Définir 'udp-not-quic' sur 'block' dans les sections https et dot des profils SSL/SSH concernés via l'interface ou la configuration CLI.",
-        "note": "Problème répertorié sous le bug ID 1352524.",
+        "solution": "Définir 'udp-not-quic' sur 'block' dans les sections https et dot des profils SSL/SSH concernés, via l'interface graphique dans Policy & Objects > Advanced ou l'onglet CLI Configurations.",
+        "note": "Référence au bogue ID 1352524.",
         "model": "gemini-3.5-flash-lite",
-        "reviewedAt": "2026-10-28T08:42:58.595960+00:00",
+        "reviewedAt": "2026-10-28T08:45:25.920762+00:00",
         "label": "Relecture IA — à vérifier avec les sources"
       }
     },
@@ -11634,12 +11634,12 @@
       "synthesisMethod": "Règles de preuve : article Fortinet versionné et explicite, ou au moins deux discussions distinctes; pas d'IA générative.",
       "aiReview": {
         "summary": "Les ports SFP 1GbE peuvent cesser de transférer du trafic sur les modèles FortiGate 1800F et 1801F après une mise à niveau vers FortiOS 7.6.8.",
-        "symptom": "Les ports SFP 1GbE (ports 17-24) ne parviennent pas à traiter le trafic après la mise à niveau vers FortiOS 7.6.8.",
+        "symptom": "Les ports SFP 1GbE (ports 17 à 24) ne parviennent pas à traiter le trafic après la mise à niveau.",
         "impact": "",
-        "solution": "Ce problème est suivi sous le bug ID 1353422. Contacter le support technique de Fortinet pour valider l'application du correctif et obtenir un build spécial.",
-        "note": "Problème lié à une mise à jour de pilote interne.",
+        "solution": "Contacter le support technique de Fortinet pour valider l'application du problème et obtenir un build spécial.",
+        "note": "Référence au bogue ID 1353422.",
         "model": "gemini-3.5-flash-lite",
-        "reviewedAt": "2026-10-28T08:42:58.595960+00:00",
+        "reviewedAt": "2026-10-28T08:45:25.920762+00:00",
         "label": "Relecture IA — à vérifier avec les sources"
       }
     },
@@ -11707,13 +11707,13 @@
       "evidenceType": "official_documentation",
       "synthesisMethod": "Règles de preuve : article Fortinet versionné et explicite, ou au moins deux discussions distinctes; pas d'IA générative.",
       "aiReview": {
-        "summary": "FortiGate cesse d'accepter les nouvelles connexions SSL VPN en raison d'un dysfonctionnement du processus fnbamd.",
-        "symptom": "Arrêt de l'acceptation des connexions SSL VPN pour les utilisateurs locaux et distants, associé à des plantages répétés du processus fnbamd.",
+        "summary": "FortiGate cesse d'accepter les nouvelles connexions SSL VPN en raison de plantages du processus fnbamd.",
+        "symptom": "Arrêt de l'acceptation des nouvelles connexions SSL VPN pour les utilisateurs locaux et distants, avec des plantages répétés du processus fnbamd visibles dans les journaux de plantage.",
         "impact": "",
-        "solution": "Vérifier le journal des plantages avec 'diagnose debug crashlog read' et collecter les traces de débogage VPN pour identifier le blocage du processus fnbamd.",
-        "note": "Article de type guide de dépannage (troubleshooting tip).",
+        "solution": "Vérifier les journaux de plantage et collecter les débogages VPN pour valider si le processus fnbamd reste bloqué.",
+        "note": "Article de type dépannage sans solution corrective définitive documentée dans les extraits.",
         "model": "gemini-3.5-flash-lite",
-        "reviewedAt": "2026-10-28T08:42:58.595960+00:00",
+        "reviewedAt": "2026-10-28T08:45:25.920762+00:00",
         "label": "Relecture IA — à vérifier avec les sources"
       }
     },
@@ -11757,13 +11757,13 @@
       "evidenceType": "official_documentation",
       "synthesisMethod": "Règles de preuve : article Fortinet versionné et explicite, ou au moins deux discussions distinctes; pas d'IA générative.",
       "aiReview": {
-        "summary": "FortiPAM récupère un numéro de série FortiClient EMS incorrect pour les tags synchronisés, ce qui bloque l'accès ZTNA.",
-        "symptom": "Impossibilité pour les appareils tagués d'accéder à FortiPAM via ZTNA en raison de tags associés à un mauvais numéro de série EMS.",
+        "summary": "FortiPAM récupère un numéro de série incorrect pour FortiClient EMS lors de la synchronisation des étiquettes dans les environnements multi-locataires.",
+        "symptom": "Les appareils possédant des étiquettes attribuées dans FortiClient EMS ne peuvent pas accéder à FortiPAM via ZTNA.",
         "impact": "",
-        "solution": "Mettre à jour FortiClient EMS vers la version 7.4.9 ou ultérieure. En contournement, supprimer les tags invalides avec la commande 'diagnose endpoint tags remove-by-sn' sur FortiPAM et redémarrer le démon connecteur.",
-        "note": "Problème identifié sous le bug ID 1343587 lié aux environnements multi-tenant.",
+        "solution": "Mettre à jour FortiClient EMS vers la version 7.4.9 ou ultérieure. En guise de contournement, supprimer les étiquettes invalides via la commande 'diagnose endpoint tags remove-by-sn' sur FortiPAM, puis redémarrer le démon du connecteur de fabric avec 'diag test app fcnacd 99'.",
+        "note": "Référence au bogue ID 1343587.",
         "model": "gemini-3.5-flash-lite",
-        "reviewedAt": "2026-10-28T08:42:58.595960+00:00",
+        "reviewedAt": "2026-10-28T08:45:25.920762+00:00",
         "label": "Relecture IA — à vérifier avec les sources"
       }
     },
@@ -11815,13 +11815,13 @@
       "evidenceType": "official_documentation",
       "synthesisMethod": "Règles de preuve : article Fortinet versionné et explicite, ou au moins deux discussions distinctes; pas d'IA générative.",
       "aiReview": {
-        "summary": "Impossibilité de supprimer le compte administrateur par défaut dans FortiManager après une migration vers un environnement Nutanix AHV.",
-        "symptom": "L'administrateur ne peut pas supprimer le compte 'admin' et un code d'erreur -29 est affiché.",
+        "summary": "Impossibilité de supprimer le compte administrateur par défaut de FortiManager après une migration vers un environnement Nutanix AHV.",
+        "symptom": "Échec de la suppression du compte admin avec un retour d'erreur indiquant que l'utilisateur ne peut pas être supprimé (code de retour -29).",
         "impact": "",
-        "solution": "Mettre à niveau vers FortiManager 7.6.8 ou 8.0.1 pour corriger ce problème connu présent dans la version 7.4.11.",
-        "note": "Problème signalé après une migration vers AHV.",
+        "solution": "Mettre à niveau FortiManager vers la version 7.6.8 ou 8.0.1.",
+        "note": "Problème signalé sur FortiManager 7.4.11 et 7.6.7.",
         "model": "gemini-3.5-flash-lite",
-        "reviewedAt": "2026-10-28T08:42:58.595960+00:00",
+        "reviewedAt": "2026-10-28T08:45:25.920762+00:00",
         "label": "Relecture IA — à vérifier avec les sources"
       }
     },
@@ -11867,13 +11867,13 @@
       "evidenceType": "official_documentation",
       "synthesisMethod": "Règles de preuve : article Fortinet versionné et explicite, ou au moins deux discussions distinctes; pas d'IA générative.",
       "aiReview": {
-        "summary": "Délai de transition d'un port FortiSwitch vers le VLAN Invité configuré après un refus d'authentification RADIUS lors de l'utilisation de 802.1X et MAB.",
-        "symptom": "Un délai d'environ une minute se produit pour basculer du VLAN par défaut vers le VLAN Invité après une réponse Access-Reject du serveur RADIUS.",
+        "summary": "Cet article décrit un délai lors du passage d'un port FortiSwitch au VLAN invité configuré après le rejet d'une requête d'authentification par un serveur RADIUS, et indique que la modification de la priorité d'authentification dans la politique de sécurité 802.1X peut réduire ce délai.",
+        "symptom": "Lorsqu'un appareil se connecte à un port FortiSwitch configuré pour le 802.1X et le MAC Authentication Bypass (MAB), le port peut mettre environ une minute pour passer du VLAN par défaut au VLAN invité après une réponse Access-Reject du serveur RADIUS.",
         "impact": "",
-        "solution": "Mettre à jour la priorité d'authentification de « legacy » à « dot1x-mab » dans la politique de sécurité 802.1X via la CLI FortiGate.",
+        "solution": "Se connecter à la CLI du FortiGate et modifier la priorité d'authentification de « legacy » à « dot1x-mab » dans la politique de sécurité 802.1X concernée.",
         "note": "L'impact n'est pas documenté dans les sources.",
         "model": "gemini-3.5-flash-lite",
-        "reviewedAt": "2026-10-28T08:42:58.595960+00:00",
+        "reviewedAt": "2026-10-28T08:45:25.920762+00:00",
         "label": "Relecture IA — à vérifier avec les sources"
       }
     },
@@ -11931,13 +11931,13 @@
       "evidenceType": "official_documentation",
       "synthesisMethod": "Règles de preuve : article Fortinet versionné et explicite, ou au moins deux discussions distinctes; pas d'IA générative.",
       "aiReview": {
-        "summary": "Échec des opérations de mise à niveau ou de rétrogradation du micrologiciel de la version v8.0.1 vers v8.0.x via l'interface graphique sur les appareils FortiGate de série G.",
-        "symptom": "L'état de l'appareil affiche « Online - Upgrade failed » et le statut de mise à niveau indique « Upgrade failed », avec des erreurs dans la console telles que l'échec de la récupération de la clé de chiffrement de l'image.",
+        "summary": "Cet article décrit un problème connu affectant les appareils FortiGate de série G où la mise à niveau ou la rétrogradation entre la version v8.0.1 et v8.0.x via l'interface graphique échoue avec le statut d'erreur « Upgrade Failed ».",
+        "symptom": "Lors d'une tentative de mise à niveau ou de rétrogradation du micrologiciel via l'interface graphique, le statut de l'appareil affiche « Online - Upgrade failed » et le statut de mise à niveau affiche « Upgrade failed ».",
         "impact": "",
         "solution": "Mettre à niveau le micrologiciel en utilisant TFTP via la CLI.",
         "note": "L'impact n'est pas documenté dans les sources.",
         "model": "gemini-3.5-flash-lite",
-        "reviewedAt": "2026-10-28T08:42:58.595960+00:00",
+        "reviewedAt": "2026-10-28T08:45:25.920762+00:00",
         "label": "Relecture IA — à vérifier avec les sources"
       }
     },
@@ -11983,13 +11983,13 @@
       "evidenceType": "official_documentation",
       "synthesisMethod": "Règles de preuve : article Fortinet versionné et explicite, ou au moins deux discussions distinctes; pas d'IA générative.",
       "aiReview": {
-        "summary": "Erreur lors de l'importation d'un package de politiques de FortiGate vers FortiManager en raison d'un attribut de mot de passe chiffré.",
-        "symptom": "Le rapport d'importation indique un échec sur « system external-resource » avec le message indiquant l'impossibilité de copier l'attribut de mot de passe à partir d'un appareil chiffré par clé privée.",
+        "summary": "Cet article décrit comment résoudre une erreur d'importation de package de politiques indiquant « Can not copy password attribute password from private key encrypted device » sur FortiManager.",
+        "symptom": "Le rapport de téléchargement d'importation indique une erreur d'échec pour « system external-resource » avec le détail « Can not copy password attribute password from private key encrypted device ».",
         "impact": "",
-        "solution": "Désactiver « private-data-encryption » dans le gestionnaire d'appareils de FortiManager sous les configurations CLI du système pour le FortiGate concerné.",
+        "solution": "Désactiver « private-data-encryption » dans Device Manager -> Device & Groups -> sélectionner le FortiGate -> CLI Configurations -> System -> Global.",
         "note": "L'impact n'est pas documenté dans les sources.",
         "model": "gemini-3.5-flash-lite",
-        "reviewedAt": "2026-10-28T08:42:58.595960+00:00",
+        "reviewedAt": "2026-10-28T08:45:25.920762+00:00",
         "label": "Relecture IA — à vérifier avec les sources"
       }
     },
@@ -12043,13 +12043,13 @@
       "evidenceType": "official_documentation",
       "synthesisMethod": "Règles de preuve : article Fortinet versionné et explicite, ou au moins deux discussions distinctes; pas d'IA générative.",
       "aiReview": {
-        "summary": "blocage et échec du processus de redémarrage lors d'une mise à niveau d'un FortiGate 201G de la version FortiOS 8.0.1 à 8.0.2 via l'interface graphique.",
-        "symptom": "Le processus reste bloqué à l'étape de redémarrage de la nouvelle version et la console affiche la vérification de l'image OK suivie d'un échec de récupération de la clé de chiffrement de l'image.",
+        "summary": "Cet article indique que la mise à niveau d'un FortiGate 201G de la version FortiOS 8.0.1 vers 8.0.2 via l'interface graphique peut entraîner le blocage et l'échec du processus de redémarrage.",
+        "symptom": "Le système initie le redémarrage mais se bloque à l'étape « Rebooting new firmware », et la console affiche « Image verification OK! » suivi de « Failed to get the image encryption key! ».",
         "impact": "",
         "solution": "",
         "note": "L'impact et la solution ne sont pas documentés dans les sources.",
         "model": "gemini-3.5-flash-lite",
-        "reviewedAt": "2026-10-28T08:42:58.595960+00:00",
+        "reviewedAt": "2026-10-28T08:45:25.920762+00:00",
         "label": "Relecture IA — à vérifier avec les sources"
       }
     },
@@ -12101,13 +12101,13 @@
       "evidenceType": "official_documentation",
       "synthesisMethod": "Règles de preuve : article Fortinet versionné et explicite, ou au moins deux discussions distinctes; pas d'IA générative.",
       "aiReview": {
-        "summary": "Blocage des messages de chat pour Copilot après une mise à niveau vers la version 7.6.8 lorsque FortiGate est utilisé comme proxy explicite avec les paramètres par défaut.",
-        "symptom": "Les utilisateurs voient un message d'erreur et les journaux de trafic indiquent que le trafic est autorisé par l'UTM mais refusé par le proxy car l'URI est trop long.",
+        "summary": "Cet article décrit un comportement où, après une mise à niveau vers la version 7.6.8 lors de l'utilisation de FortiGate comme proxy explicite avec les paramètres par défaut, les messages de chat pour Copilot sont bloqués.",
+        "symptom": "Les utilisateurs essayant de parler à Copilot voient un message d'erreur apparaître, et les journaux de trafic de transfert indiquent que le trafic est refusé par le proxy en raison d'un URI trop long (« traffic denied because uri too long »).",
         "impact": "",
-        "solution": "Modifier la limite de longueur maximale des requêtes du proxy web à l'aide des commandes CLI appropriées.",
+        "solution": "Modifier la limite de longueur maximale des requêtes pour le proxy explicite à l'aide des commandes de configuration web-proxy profile.",
         "note": "L'impact n'est pas documenté dans les sources.",
         "model": "gemini-3.5-flash-lite",
-        "reviewedAt": "2026-10-28T08:42:58.595960+00:00",
+        "reviewedAt": "2026-10-28T08:45:25.920762+00:00",
         "label": "Relecture IA — à vérifier avec les sources"
       }
     },
@@ -12151,13 +12151,13 @@
       "evidenceType": "official_documentation",
       "synthesisMethod": "Règles de preuve : article Fortinet versionné et explicite, ou au moins deux discussions distinctes; pas d'IA générative.",
       "aiReview": {
-        "summary": "Échec de l'authentification LDAPS causé par une configuration incorrecte de l'attribut de membre.",
-        "symptom": "Les utilisateurs ne peuvent pas s'authentifier via LDAPS et l'authentification échoue lors de la phase de correspondance des groupes car le FortiGate utilise l'attribut tokenGroups qui renvoie zéro valeur.",
+        "summary": "Cet article décrit comment résoudre un échec d'authentification des utilisateurs via LDAPS lorsque l'attribut member-attr est mal configuré sur tokenGroups, empêchant FortiGate de faire correspondre les utilisateurs à leurs groupes.",
+        "symptom": "Les utilisateurs ne peuvent pas s'authentifier via LDAPS bien que le serveur LDAP renvoie une réponse de succès, l'authentification échouant pendant la phase de correspondance des groupes.",
         "impact": "",
         "solution": "",
-        "note": "L'impact et la solution corrective explicite ne sont pas documentés dans les sources.",
+        "note": "L'impact et la solution explicite de correction ne sont pas documentés dans les sources, seul le diagnostic est décrit.",
         "model": "gemini-3.5-flash-lite",
-        "reviewedAt": "2026-10-28T08:42:58.595960+00:00",
+        "reviewedAt": "2026-10-28T08:45:25.920762+00:00",
         "label": "Relecture IA — à vérifier avec les sources"
       }
     },
@@ -12213,13 +12213,13 @@
       "evidenceType": "official_documentation",
       "synthesisMethod": "Règles de preuve : article Fortinet versionné et explicite, ou au moins deux discussions distinctes; pas d'IA générative.",
       "aiReview": {
-        "summary": "Après une mise à niveau vers FortiOS 7.6.8, l'authentification SSO des administrateurs échoue.",
-        "symptom": "L'authentification SSO des administrateurs échoue après la mise à niveau vers FortiOS 7.6.8, nécessitant l'utilisation d'un compte administrateur local ou RADIUS/LDAP/TACACS+.",
+        "summary": "Après la mise à niveau vers FortiOS 7.6.8, l'authentification SSO des administrateurs échoue.",
+        "symptom": "L'authentification SSO des administrateurs échoue après la mise à niveau vers FortiOS 7.6.8, nécessitant un compte administrateur local ou RADIUS/LDAP/TACACS+.",
         "impact": "",
-        "solution": "L'authentification SSO des administrateurs échoue avec le message d'erreur \"Single Sign-On Failed\" sans présenter d'option pour saisir les identifiants. Les méthodes de connexion affectées incluent FortiCloud SSO, le SSO tiers (ex. Entra ID) et le Security Fabric SSO avec le FortiGate racine comme IdP.",
-        "note": "Informations limitées aux détails fournis par l'article Fortinet.",
+        "solution": "L'authentification SSO échoue avec le message d'erreur \"Single Sign-On Failed\" sans présenter d'option pour saisir les identifiants administrateur SSO. Les méthodes concernées incluent le SSO FortiCloud, le SSO tiers et le SSO Security Fabric (avec le FortiGate racine comme IdP).",
+        "note": "Informations limitées aux données sources fournies.",
         "model": "gemini-3.5-flash-lite",
-        "reviewedAt": "2026-10-28T08:42:58.595960+00:00",
+        "reviewedAt": "2026-10-28T08:45:25.920762+00:00",
         "label": "Relecture IA — à vérifier avec les sources"
       }
     },
@@ -12271,13 +12271,13 @@
       "evidenceType": "official_documentation",
       "synthesisMethod": "Règles de preuve : article Fortinet versionné et explicite, ou au moins deux discussions distinctes; pas d'IA générative.",
       "aiReview": {
-        "summary": "Erreur de vérification de signature lors de la mise à niveau de la plateforme FortiGate 30/31G vers FortiOS 7.6.8.",
-        "symptom": "Affichage d'un message \"This Firmware didn't pass the signature verification.\" lors du téléchargement ou du chargement de l'image de mise à niveau vers FortiOS 7.6.8.",
+        "summary": "Problème lors de la mise à niveau de la plateforme FortiGate 30/31G vers FortiOS 7.6.8 avec une erreur de vérification de signature.",
+        "symptom": "Apparition du message d'erreur \"This Firmware didn't pass the signature verification.\" lors du téléchargement ou du chargement de l'image de mise à niveau vers FortiOS 7.6.8.",
         "impact": "",
-        "solution": "Mettre d'abord à niveau vers FortiOS 7.6.7 STS build 8767 (nécessite l'ouverture d'un ticket TAC) avant de procéder à la mise à niveau vers FortiOS 7.6.8 GA.",
-        "note": "Informations limitées aux détails fournis par l'article Fortinet.",
+        "solution": "Il s'agit d'un problème connu sur la plateforme 30/31G. La solution consiste à effectuer la mise à niveau vers FortiOS 7.6.7 STS build 8767 (obtenue via un ticket TAC) avant de procéder à la mise à niveau vers FortiOS 7.6.8 GA.",
+        "note": "Informations limitées aux données sources fournies.",
         "model": "gemini-3.5-flash-lite",
-        "reviewedAt": "2026-10-28T08:42:58.595960+00:00",
+        "reviewedAt": "2026-10-28T08:45:25.920762+00:00",
         "label": "Relecture IA — à vérifier avec les sources"
       }
     },
@@ -12337,9 +12337,9 @@
         "symptom": "",
         "impact": "",
         "solution": "",
-        "note": "Aucun contenu détaillé disponible dans la source.",
+        "note": "Données sources insuffisantes pour renseigner les champs.",
         "model": "gemini-3.5-flash-lite",
-        "reviewedAt": "2026-10-28T08:42:58.595960+00:00",
+        "reviewedAt": "2026-10-28T08:45:25.920762+00:00",
         "label": "Relecture IA — à vérifier avec les sources"
       }
     },
@@ -12397,14 +12397,14 @@
         "symptom": "",
         "impact": "",
         "solution": "",
-        "note": "Aucun contenu détaillé disponible dans la source.",
+        "note": "Données sources insuffisantes pour renseigner les champs.",
         "model": "gemini-3.5-flash-lite",
-        "reviewedAt": "2026-10-28T08:42:58.595960+00:00",
+        "reviewedAt": "2026-10-28T08:45:25.920762+00:00",
         "label": "Relecture IA — à vérifier avec les sources"
       }
     }
   ],
   "incidentCount": 16,
-  "synthesisGeneratedAt": "2026-10-28T08:44:51.314119+00:00",
+  "synthesisGeneratedAt": "2026-10-28T08:45:17.150906+00:00",
   "synthesisNote": "Un point n'est affiché que s'il est documenté par un article Fortinet versionné et explicite, ou décrit dans au moins deux discussions distinctes d'utilisateurs. Les articles officiels ne comptent pas comme des personnes supplémentaires. Les signalements isolés non documentés sont exclus."
 }
