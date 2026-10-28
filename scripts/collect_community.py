@@ -622,6 +622,142 @@ def parse_board_page(payload: str | bytes, board_url: str, product: str) -> list
     return result
 
 
+class TopicMetadataParser(HTMLParser):
+    """Read ordinary public metadata without relying on private endpoints."""
+
+    def __init__(self):
+        super().__init__(convert_charrefs=True)
+        self.meta: dict[str, str] = {}
+        self.time_values: list[str] = []
+
+    def handle_starttag(self, tag: str, attrs: list[tuple[str, str | None]]) -> None:
+        attributes = dict(attrs)
+        if tag.lower() == "meta":
+            key = (
+                attributes.get("property")
+                or attributes.get("name")
+                or attributes.get("itemprop")
+                or ""
+            ).strip().lower()
+            value = (attributes.get("content") or "").strip()
+            if key and value and key not in self.meta:
+                self.meta[key] = value
+        elif tag.lower() == "time":
+            value = (attributes.get("datetime") or "").strip()
+            if value:
+                self.time_values.append(value)
+
+
+def parse_topic_metadata(payload: str | bytes) -> dict:
+    """Extract only explicit public page description and publication/update date."""
+    if isinstance(payload, bytes):
+        payload = payload.decode("utf-8", errors="replace")
+    parser = TopicMetadataParser()
+    parser.feed(payload)
+    parser.close()
+    summary = next((
+        parser.meta[key]
+        for key in ("og:description", "description", "twitter:description", "dc.description")
+        if parser.meta.get(key)
+    ), "")
+    date_value = next((
+        parser.meta[key]
+        for key in (
+            "article:published_time", "datepublished", "datecreated",
+            "dc.date.issued", "date", "og:updated_time", "article:modified_time",
+        )
+        if parser.meta.get(key)
+    ), "")
+    if not date_value and parser.time_values:
+        date_value = parser.time_values[0]
+    return {
+        "summary": clean(summary)[:5000],
+        "date": parse_date(date_value) if date_value else None,
+    }
+
+
+def fetch_topic_metadata(url: str) -> dict:
+    """Fetch metadata from an ordinary public Community topic URL."""
+    parsed = urlparse(url)
+    if parsed.scheme != "https" or parsed.netloc.lower() != "community.fortinet.com":
+        raise ValueError("URL Community invalide; seule la source publique Fortinet est autorisée.")
+    request = urllib.request.Request(
+        url,
+        headers={
+            "User-Agent": USER_AGENT,
+            "Accept": "text/html,application/xhtml+xml",
+        },
+    )
+    with urllib.request.urlopen(request, timeout=12) as response:
+        payload = response.read(1_000_000)
+    return parse_topic_metadata(payload)
+
+
+def enrich_board_topic_metadata(
+    items: list[dict],
+    known_topics: list[dict],
+    detail_fetcher,
+    errors: list[str],
+    max_lookups: int = MAX_BOARD_DETAIL_LOOKUPS,
+) -> list[dict]:
+    """Enrich a small, fair sample of likely problems; keep index-only fields explicitly unknown."""
+    now = datetime.now(timezone.utc)
+    cutoff = (now - timedelta(hours=24)).isoformat()
+    known_by_url = {
+        str(item.get("url") or item.get("id") or "").rstrip("/"): item
+        for item in known_topics
+        if isinstance(item, dict) and (item.get("url") or item.get("id"))
+    }
+    grouped: dict[str, list[dict]] = {}
+    for item in items:
+        if item.get("discoverySource") != "index produit public":
+            continue
+        title = item.get("title", "")
+        url = str(item.get("url") or "").rstrip("/")
+        if not url or not BOARD_DETAIL_RE.search(title):
+            continue
+        known = known_by_url.get(url, {})
+        if known.get("summary"):
+            continue
+        checked_at = str(known.get("detailCheckedAt") or "")
+        if checked_at and checked_at >= cutoff:
+            continue
+        product = next(iter(item.get("categories") or item.get("products") or ["Autre"]), "Autre")
+        grouped.setdefault(product, []).append(item)
+
+    # Round-robin product families so FortiGate volume cannot starve the others.
+    product_order = list(BOARD_SOURCES) + [p for p in grouped if p not in BOARD_SOURCES]
+    selected: list[dict] = []
+    while len(selected) < max_lookups:
+        added = False
+        for product in product_order:
+            candidates = grouped.get(product) or []
+            if candidates and len(selected) < max_lookups:
+                selected.append(candidates.pop(0))
+                added = True
+        if not added:
+            break
+
+    for item in selected:
+        url = item["url"]
+        try:
+            details = detail_fetcher(url)
+            if not isinstance(details, dict):
+                raise ValueError("la page détaillée n’a pas renvoyé de métadonnées valides")
+            if details.get("summary"):
+                item["summary"] = clean(str(details["summary"]))[:5000]
+            if details.get("date"):
+                item["date"] = details["date"]
+            item["detailCheckedAt"] = now.isoformat()
+        except (OSError, urllib.error.URLError, TimeoutError, UnicodeError, ValueError) as exc:
+            errors.append(
+                f"Enrichissement de la fiche Community impossible ({url}): "
+                f"{type(exc).__name__}: {exc}; le titre et le lien d’index sont conservés."
+            )
+            item["detailCheckedAt"] = now.isoformat()
+    return items
+
+
 def fetch_board_topics(
     board_sources: dict[str, str] | None = None,
     max_pages: int = MAX_BOARD_PAGES,
