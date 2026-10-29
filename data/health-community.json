@@ -2,8 +2,8 @@
   "source": "community",
   "label": "Fortinet Community",
   "status": "partial",
-  "checkedAt": "2026-10-29T12:58:46.122189+00:00",
+  "checkedAt": "2026-10-29T22:44:38.819533+00:00",
   "lastSuccessAt": null,
   "message": "La collecte s'est exécutée, mais certaines sources sont incomplètes : Le flux Community ignore le paramètre start à 100; les sujets précédents se répètent. Le flux Community a renvoyé 100 entrées brutes sur 500 demandées; la couverture complète des 30 derniers jours n'est pas garantie.",
-  "runUrl": "https://github.com/Riiddiimz/Automatik/actions/runs/40877612361"
+  "runUrl": "https://github.com/Riiddiimz/Automatik/actions/runs/40968011140"
 }
