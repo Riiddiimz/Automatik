@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-28T22:34:00.830880+00:00",
+  "generatedAt": "2026-10-29T22:44:35.221359+00:00",
   "fortinet": [
     {
       "source": "FortiGuard PSIRT",
@@ -127,7 +127,7 @@
       "title": "Cron Job Injection in Remote Backup",
       "url": "https://fortiguard.fortinet.com/psirt/FG-IR-26-167",
       "date": "2026-09-08T07:00:00+00:00",
-      "summary": "CVSSv3 Score: 7.2 An Improper Neutralization of Special Elements used in a Command ('Command Injection') vulnerability [CWE-77] in FortiSandbox may allow a privileged attacker to execute unauthorized code or commands via crafted HTTP requests. Revised on 2026-09-08 00:00:00"
+      "summary": "CVSSv3 Score: 6.7 An Improper Neutralization of Special Elements used in a Command ('Command Injection') vulnerability [CWE-77] in FortiSandbox may allow a privileged attacker to execute unauthorized code or commands via crafted HTTP requests. Revised on 2026-09-08 00:00:00"
     },
     {
       "source": "FortiGuard PSIRT",
@@ -151,7 +151,7 @@
       "title": "Null Pointer Dereference in Log Report",
       "url": "https://fortiguard.fortinet.com/psirt/FG-IR-26-173",
       "date": "2026-09-08T07:00:00+00:00",
-      "summary": "CVSSv3 Score: 2.7 A NULL Pointer Dereference vulnerability [CWE-476] in FortiOS, FortiProxy and FortiPAM may allow an authenticated attacker to crash the httpsd daemon via crafted HTTP requests. Revised on 2026-09-08 00:00:00"
+      "summary": "CVSSv3 Score: 2.5 A NULL Pointer Dereference vulnerability [CWE-476] in FortiOS, FortiProxy and FortiPAM may allow an authenticated attacker to crash the httpsd daemon via crafted HTTP requests. Revised on 2026-09-08 00:00:00"
     },
     {
       "source": "FortiGuard PSIRT",
@@ -163,6 +163,38 @@
     }
   ],
   "cyber": [
+    {
+      "source": "CERT-FR",
+      "label": "CERT-FR",
+      "title": "Multiples vulnérabilités dans Metabase (28 octobre 2026)",
+      "url": "https://www.cert.cyber.gouv.fr/avis/CERTFR-2026-AVI-1403/",
+      "date": "2026-10-28T00:00:00+00:00",
+      "summary": "De multiples vulnérabilités ont été découvertes dans Metabase. Elles permettent à un attaquant de provoquer un problème de sécurité non spécifié par l'éditeur."
+    },
+    {
+      "source": "CERT-FR",
+      "label": "CERT-FR",
+      "title": "Multiples vulnérabilités dans les produits Veeam (28 octobre 2026)",
+      "url": "https://www.cert.cyber.gouv.fr/avis/CERTFR-2026-AVI-1399/",
+      "date": "2026-10-28T00:00:00+00:00",
+      "summary": "De multiples vulnérabilités ont été découvertes dans les produits Veeam. Certaines d'entre elles permettent à un attaquant de provoquer une exécution de code arbitraire à distance, une élévation de privilèges et une atteinte à la confidentialité des données."
+    },
+    {
+      "source": "CERT-FR",
+      "label": "CERT-FR",
+      "title": "Multiples vulnérabilités dans Palo Alto Networks PAN-OS (28 octobre 2026)",
+      "url": "https://www.cert.cyber.gouv.fr/avis/CERTFR-2026-AVI-1402/",
+      "date": "2026-10-28T00:00:00+00:00",
+      "summary": "De multiples vulnérabilités ont été découvertes dans Palo Alto Networks PAN-OS. Elles permettent à un attaquant de provoquer une exécution de code arbitraire à distance. Palo Alto Networks indique que les vulnérabilités CVE-2026-109618 et CVE-2026-109619 sont activement exploitées."
+    },
+    {
+      "source": "CERT-FR",
+      "label": "CERT-FR",
+      "title": "Vulnérabilité dans CPython (28 octobre 2026)",
+      "url": "https://www.cert.cyber.gouv.fr/avis/CERTFR-2026-AVI-1397/",
+      "date": "2026-10-28T00:00:00+00:00",
+      "summary": "Une vulnérabilité a été découverte dans CPython. Elle permet à un attaquant de provoquer un contournement de la politique de sécurité."
+    },
     {
       "source": "FortiGuard Outbreak Alerts",
       "label": "FortiGuard Outbreak Alerts",
@@ -188,6 +220,22 @@
       "summary": "Avis de sécurité CISA publié au format structuré CSAF."
     },
     {
+      "source": "CISA ICS Advisories",
+      "label": "CISA ICS Advisories",
+      "title": "Hitachi Energy CoreTec Product",
+      "url": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2026/icsa-26-302-03.json",
+      "date": "2026-10-27T00:00:00+00:00",
+      "summary": "Avis de sécurité CISA publié au format structuré CSAF."
+    },
+    {
+      "source": "CISA ICS Advisories",
+      "label": "CISA ICS Advisories",
+      "title": "Hitachi Energy TRO600 series products",
+      "url": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2026/icsa-26-302-02.json",
+      "date": "2026-10-27T00:00:00+00:00",
+      "summary": "Avis de sécurité CISA publié au format structuré CSAF."
+    },
+    {
       "source": "CERT-FR",
       "label": "CERT-FR",
       "title": "Multiples vulnérabilités dans Microsoft Edge (27 octobre 2026)",
@@ -206,18 +254,82 @@
     {
       "source": "CERT-FR",
       "label": "CERT-FR",
-      "title": "Bulletin d'actualité CERTFR-2026-ACT-045 (26 octobre 2026)",
-      "url": "https://www.cert.cyber.gouv.fr/actualite/CERTFR-2026-ACT-045/",
-      "date": "2026-10-26T00:00:00+00:00",
-      "summary": "Ce bulletin d'actualité du CERT-FR revient sur les vulnérabilités significatives de la semaine passée pour souligner leurs criticités. Il ne remplace pas l'analyse de l'ensemble des avis et alertes publiés par le CERT-FR dans le cadre d'une analyse de risques pour prioriser l'application des..."
+      "title": "Multiples vulnérabilités dans les produits Nextcloud (27 octobre 2026)",
+      "url": "https://www.cert.cyber.gouv.fr/avis/CERTFR-2026-AVI-1392/",
+      "date": "2026-10-27T00:00:00+00:00",
+      "summary": "De multiples vulnérabilités ont été découvertes dans les produits Nextcloud. Certaines d'entre elles permettent à un attaquant de provoquer un déni de service à distance, une atteinte à la confidentialité des données et un contournement de la politique de sécurité."
     },
     {
       "source": "CERT-FR",
       "label": "CERT-FR",
-      "title": "Multiples vulnérabilités dans les produits Tenable (26 octobre 2026)",
-      "url": "https://www.cert.cyber.gouv.fr/avis/CERTFR-2026-AVI-1381/",
+      "title": "Multiples vulnérabilités dans les produits Moxa (27 octobre 2026)",
+      "url": "https://www.cert.cyber.gouv.fr/avis/CERTFR-2026-AVI-1393/",
+      "date": "2026-10-27T00:00:00+00:00",
+      "summary": "De multiples vulnérabilités ont été découvertes dans les produits Moxa. Certaines d'entre elles permettent à un attaquant de provoquer une exécution de code arbitraire, un déni de service à distance et une atteinte à la confidentialité des données."
+    },
+    {
+      "source": "CERT-FR",
+      "label": "CERT-FR",
+      "title": "Vulnérabilité dans les produits Palo Alto Networks (27 octobre 2026)",
+      "url": "https://www.cert.cyber.gouv.fr/avis/CERTFR-2026-AVI-1396/",
+      "date": "2026-10-27T00:00:00+00:00",
+      "summary": "Une vulnérabilité a été découverte dans les produits Palo Alto Networks. Elle permet à un attaquant de provoquer une exécution de code arbitraire à distance, un déni de service à distance et une atteinte à la confidentialité des données."
+    },
+    {
+      "source": "CERT-FR",
+      "label": "CERT-FR",
+      "title": "Multiples vulnérabilités dans Citrix NetScaler ADC et Gateway (27 octobre 2026)",
+      "url": "https://www.cert.cyber.gouv.fr/avis/CERTFR-2026-AVI-1394/",
+      "date": "2026-10-27T00:00:00+00:00",
+      "summary": "De multiples vulnérabilités ont été découvertes dans Citrix NetScaler ADC et Gateway. Elles permettent à un attaquant de provoquer une exécution de code arbitraire à distance."
+    },
+    {
+      "source": "CERT-FR",
+      "label": "CERT-FR",
+      "title": "Multiples vulnérabilités dans les produits Apple (27 octobre 2026)",
+      "url": "https://www.cert.cyber.gouv.fr/avis/CERTFR-2026-AVI-1387/",
+      "date": "2026-10-27T00:00:00+00:00",
+      "summary": "De multiples vulnérabilités ont été découvertes dans les produits Apple. Certaines d'entre elles permettent à un attaquant de provoquer une exécution de code arbitraire, une élévation de privilèges et une atteinte à la confidentialité des données. Apple indique que la vulnérabilité CVE-2026-86950..."
+    },
+    {
+      "source": "CERT-FR",
+      "label": "CERT-FR",
+      "title": "Multiples vulnérabilités dans Tenable Network Monitor (27 octobre 2026)",
+      "url": "https://www.cert.cyber.gouv.fr/avis/CERTFR-2026-AVI-1390/",
+      "date": "2026-10-27T00:00:00+00:00",
+      "summary": "De multiples vulnérabilités ont été découvertes dans Tenable Network Monitor. Certaines d'entre elles permettent à un attaquant de provoquer une exécution de code arbitraire à distance, un déni de service à distance et une atteinte à la confidentialité des données."
+    },
+    {
+      "source": "CERT-FR",
+      "label": "CERT-FR",
+      "title": "Vulnérabilité dans Mattermost Server (27 octobre 2026)",
+      "url": "https://www.cert.cyber.gouv.fr/avis/CERTFR-2026-AVI-1388/",
+      "date": "2026-10-27T00:00:00+00:00",
+      "summary": "Une vulnérabilité a été découverte dans Mattermost Server. Elle permet à un attaquant de provoquer un déni de service à distance."
+    },
+    {
+      "source": "CERT-FR",
+      "label": "CERT-FR",
+      "title": "Multiples vulnérabilités dans Mozilla Firefox (27 octobre 2026)",
+      "url": "https://www.cert.cyber.gouv.fr/avis/CERTFR-2026-AVI-1391/",
+      "date": "2026-10-27T00:00:00+00:00",
+      "summary": "De multiples vulnérabilités ont été découvertes dans Mozilla Firefox. Elles permettent à un attaquant de provoquer une atteinte à l'intégrité des données et un contournement de la politique de sécurité."
+    },
+    {
+      "source": "CISA ICS Advisories",
+      "label": "CISA ICS Advisories",
+      "title": "Siemens Mendix SAML Module",
+      "url": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2026/icsa-26-302-01.json",
       "date": "2026-10-26T00:00:00+00:00",
-      "summary": "De multiples vulnérabilités ont été découvertes dans les produits Tenable. Elles permettent à un attaquant de provoquer une exécution de code arbitraire à distance."
+      "summary": "Avis de sécurité CISA publié au format structuré CSAF."
+    },
+    {
+      "source": "CERT-FR",
+      "label": "CERT-FR",
+      "title": "Bulletin d'actualité CERTFR-2026-ACT-045 (26 octobre 2026)",
+      "url": "https://www.cert.cyber.gouv.fr/actualite/CERTFR-2026-ACT-045/",
+      "date": "2026-10-26T00:00:00+00:00",
+      "summary": "Ce bulletin d'actualité du CERT-FR revient sur les vulnérabilités significatives de la semaine passée pour souligner leurs criticités. Il ne remplace pas l'analyse de l'ensemble des avis et alertes publiés par le CERT-FR dans le cadre d'une analyse de risques pour prioriser l'application des..."
     },
     {
       "source": "CERT-FR",
@@ -230,26 +342,10 @@
     {
       "source": "CERT-FR",
       "label": "CERT-FR",
-      "title": "Multiples vulnérabilités dans Microsoft .Net (26 octobre 2026)",
-      "url": "https://www.cert.cyber.gouv.fr/avis/CERTFR-2026-AVI-1382/",
-      "date": "2026-10-26T00:00:00+00:00",
-      "summary": "De multiples vulnérabilités ont été découvertes dans Microsoft .Net. Elles permettent à un attaquant de provoquer une élévation de privilèges."
-    },
-    {
-      "source": "CERT-FR",
-      "label": "CERT-FR",
       "title": "Multiples vulnérabilités dans les produits VMware (26 octobre 2026)",
       "url": "https://www.cert.cyber.gouv.fr/avis/CERTFR-2026-AVI-1385/",
       "date": "2026-10-26T00:00:00+00:00",
       "summary": "De multiples vulnérabilités ont été découvertes dans les produits VMware. Elles permettent à un attaquant de provoquer un problème de sécurité non spécifié par l'éditeur."
-    },
-    {
-      "source": "CERT-FR",
-      "label": "CERT-FR",
-      "title": "Vulnérabilité dans Mattermost Server (26 octobre 2026)",
-      "url": "https://www.cert.cyber.gouv.fr/avis/CERTFR-2026-AVI-1380/",
-      "date": "2026-10-26T00:00:00+00:00",
-      "summary": "Une vulnérabilité a été découverte dans Mattermost Server. Elle permet à un attaquant de provoquer un problème de sécurité non spécifié par l'éditeur."
     },
     {
       "source": "CERT-FR",
@@ -266,78 +362,6 @@
       "url": "https://www.cert.cyber.gouv.fr/avis/CERTFR-2026-AVI-1386/",
       "date": "2026-10-26T00:00:00+00:00",
       "summary": "De multiples vulnérabilités ont été découvertes dans les produits MongoDB. Certaines d'entre elles permettent à un attaquant de provoquer une exécution de code arbitraire, une atteinte à la confidentialité des données et une atteinte à l'intégrité des données."
-    },
-    {
-      "source": "CERT-FR",
-      "label": "CERT-FR",
-      "title": "Multiples vulnérabilités dans CPython (26 octobre 2026)",
-      "url": "https://www.cert.cyber.gouv.fr/avis/CERTFR-2026-AVI-1379/",
-      "date": "2026-10-26T00:00:00+00:00",
-      "summary": "De multiples vulnérabilités ont été découvertes dans CPython. Elles permettent à un attaquant de provoquer un contournement de la politique de sécurité."
-    },
-    {
-      "source": "CERT-FR",
-      "label": "CERT-FR",
-      "title": "Multiples vulnérabilités dans les produits Red Hat (23 octobre 2026)",
-      "url": "https://www.cert.cyber.gouv.fr/avis/CERTFR-2026-AVI-1373/",
-      "date": "2026-10-23T00:00:00+00:00",
-      "summary": "De multiples vulnérabilités ont été découvertes dans les produits Red Hat. Certaines d'entre elles permettent à un attaquant de provoquer un contournement de la politique de sécurité, un déni de service et un problème de sécurité non spécifié par l'éditeur."
-    },
-    {
-      "source": "CERT-FR",
-      "label": "CERT-FR",
-      "title": "Multiples vulnérabilités dans Microsoft Edge (23 octobre 2026)",
-      "url": "https://www.cert.cyber.gouv.fr/avis/CERTFR-2026-AVI-1371/",
-      "date": "2026-10-23T00:00:00+00:00",
-      "summary": "De multiples vulnérabilités ont été découvertes dans Microsoft Edge. Elles permettent à un attaquant de provoquer un problème de sécurité non spécifié par l'éditeur."
-    },
-    {
-      "source": "CERT-FR",
-      "label": "CERT-FR",
-      "title": "Multiples vulnérabilités dans le noyau Linux de Debian LTS (23 octobre 2026)",
-      "url": "https://www.cert.cyber.gouv.fr/avis/CERTFR-2026-AVI-1375/",
-      "date": "2026-10-23T00:00:00+00:00",
-      "summary": "De multiples vulnérabilités ont été découvertes dans le noyau Linux de Debian LTS. Certaines d'entre elles permettent à un attaquant de provoquer une élévation de privilèges, une atteinte à la confidentialité des données et un déni de service."
-    },
-    {
-      "source": "CERT-FR",
-      "label": "CERT-FR",
-      "title": "Multiples vulnérabilités dans le noyau Linux de Debian (23 octobre 2026)",
-      "url": "https://www.cert.cyber.gouv.fr/avis/CERTFR-2026-AVI-1374/",
-      "date": "2026-10-23T00:00:00+00:00",
-      "summary": "De multiples vulnérabilités ont été découvertes dans le noyau Linux de Debian. Certaines d'entre elles permettent à un attaquant de provoquer une élévation de privilèges, une atteinte à la confidentialité des données et un déni de service."
-    },
-    {
-      "source": "CERT-FR",
-      "label": "CERT-FR",
-      "title": "Multiples vulnérabilités dans le noyau Linux d'Ubuntu (23 octobre 2026)",
-      "url": "https://www.cert.cyber.gouv.fr/avis/CERTFR-2026-AVI-1376/",
-      "date": "2026-10-23T00:00:00+00:00",
-      "summary": "De multiples vulnérabilités ont été découvertes dans le noyau Linux d'Ubuntu. Certaines d'entre elles permettent à un attaquant de provoquer une exécution de code arbitraire à distance, une élévation de privilèges et un déni de service à distance."
-    },
-    {
-      "source": "CERT-FR",
-      "label": "CERT-FR",
-      "title": "Multiples vulnérabilités dans les produits SUSE (23 octobre 2026)",
-      "url": "https://www.cert.cyber.gouv.fr/avis/CERTFR-2026-AVI-1372/",
-      "date": "2026-10-23T00:00:00+00:00",
-      "summary": "De multiples vulnérabilités ont été découvertes dans les produits SUSE. Certaines d'entre elles permettent à un attaquant de provoquer une exécution de code arbitraire à distance, une élévation de privilèges et une atteinte à la confidentialité des données."
-    },
-    {
-      "source": "CERT-FR",
-      "label": "CERT-FR",
-      "title": "Multiples vulnérabilités dans les produits IBM (23 octobre 2026)",
-      "url": "https://www.cert.cyber.gouv.fr/avis/CERTFR-2026-AVI-1378/",
-      "date": "2026-10-23T00:00:00+00:00",
-      "summary": "De multiples vulnérabilités ont été découvertes dans les produits IBM. Certaines d'entre elles permettent à un attaquant de provoquer une exécution de code arbitraire à distance, une élévation de privilèges et un déni de service à distance."
-    },
-    {
-      "source": "CERT-FR",
-      "label": "CERT-FR",
-      "title": "Multiples vulnérabilités dans les produits Papercut (23 octobre 2026)",
-      "url": "https://www.cert.cyber.gouv.fr/avis/CERTFR-2026-AVI-1377/",
-      "date": "2026-10-23T00:00:00+00:00",
-      "summary": "De multiples vulnérabilités ont été découvertes dans les produits Papercut. Certaines d'entre elles permettent à un attaquant de provoquer une exécution de code arbitraire à distance, une atteinte à la confidentialité des données et une injection de code indirecte à distance (XSS)."
     },
     {
       "source": "CISA Cybersecurity Advisories",
@@ -406,7 +430,7 @@
     {
       "source": "CISA ICS Advisories",
       "label": "CISA ICS Advisories",
-      "title": "Mitsubishi Electric GENESIS, GENESIS64, ICONICS Suite, Hyper Historian, AnalytiX, MobileHMI, IoTWorX, MC Works64, GENESIS32 and BizViz",
+      "title": "Mitsubishi Electric and Mitsubishi Electric Iconics Digital Solutions GENESIS, GENESIS64, ICONICS Suite, Hyper Historian, AnalytiX, MobileHMI, IoTWorX, MC Works64, GENESIS32 and BizViz",
       "url": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2026/icsa-26-300-02.json",
       "date": "2026-10-15T00:00:00+00:00",
       "summary": "Avis de sécurité CISA publié au format structuré CSAF."
@@ -480,54 +504,6 @@
       "label": "CISA ICS Advisories",
       "title": "Siemens SIMATIC S7-1500 CPU 1518(F)-4 PN/DP MFP",
       "url": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2026/icsa-26-295-11.json",
-      "date": "2026-10-13T00:00:00+00:00",
-      "summary": "Avis de sécurité CISA publié au format structuré CSAF."
-    },
-    {
-      "source": "CISA ICS Advisories",
-      "label": "CISA ICS Advisories",
-      "title": "Siemens SIMATIC S7 Webserver API",
-      "url": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2026/icsa-26-295-10.json",
-      "date": "2026-10-13T00:00:00+00:00",
-      "summary": "Avis de sécurité CISA publié au format structuré CSAF."
-    },
-    {
-      "source": "CISA ICS Advisories",
-      "label": "CISA ICS Advisories",
-      "title": "Siemens Industrial Edge Device Kit",
-      "url": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2026/icsa-26-295-09.json",
-      "date": "2026-10-13T00:00:00+00:00",
-      "summary": "Avis de sécurité CISA publié au format structuré CSAF."
-    },
-    {
-      "source": "CISA ICS Advisories",
-      "label": "CISA ICS Advisories",
-      "title": "Siemens APOGEE, TALON and Desigo PXC/PXM Products",
-      "url": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2026/icsa-26-295-08.json",
-      "date": "2026-10-13T00:00:00+00:00",
-      "summary": "Avis de sécurité CISA publié au format structuré CSAF."
-    },
-    {
-      "source": "CISA ICS Advisories",
-      "label": "CISA ICS Advisories",
-      "title": "Siemens SIMATIC IPCs",
-      "url": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2026/icsa-26-295-07.json",
-      "date": "2026-10-13T00:00:00+00:00",
-      "summary": "Avis de sécurité CISA publié au format structuré CSAF."
-    },
-    {
-      "source": "CISA ICS Advisories",
-      "label": "CISA ICS Advisories",
-      "title": "Siemens PSS(R)SINCAL",
-      "url": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2026/icsa-26-295-06.json",
-      "date": "2026-10-13T00:00:00+00:00",
-      "summary": "Avis de sécurité CISA publié au format structuré CSAF."
-    },
-    {
-      "source": "CISA ICS Advisories",
-      "label": "CISA ICS Advisories",
-      "title": "Siemens SENTRON 3NA COM Fuse",
-      "url": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2026/icsa-26-295-05.json",
       "date": "2026-10-13T00:00:00+00:00",
       "summary": "Avis de sécurité CISA publié au format structuré CSAF."
     },
@@ -660,6 +636,14 @@
       "summary": "Avis de sécurité CISA publié au format structuré CSAF."
     },
     {
+      "source": "CISA ICS Advisories",
+      "label": "CISA ICS Advisories",
+      "title": "Siemens Mendix SAML",
+      "url": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2026/icsa-26-258-06.json",
+      "date": "2026-09-03T00:00:00+00:00",
+      "summary": "Avis de sécurité CISA publié au format structuré CSAF."
+    },
+    {
       "source": "CISA Cybersecurity Advisories",
       "label": "CISA Cybersecurity Advisories",
       "title": "Redis TLS pending-data list use-after-free",
@@ -780,6 +764,14 @@
       "summary": "As OT environments face more targeted cyberattacks, CISOs need a threat-informed security strategy built for industrial risk. &#160; &#160; &#160; &#160; &nbsp;&#160;"
     },
     {
+      "source": "CISA ICS Advisories",
+      "label": "CISA ICS Advisories",
+      "title": "Hitachi Energy PCM600 (Update A)",
+      "url": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2026/icsa-26-125-01.json",
+      "date": "2026-04-28T00:00:00+00:00",
+      "summary": "Avis de sécurité CISA publié au format structuré CSAF."
+    },
+    {
       "source": "FortiGuard Outbreak Alerts",
       "label": "FortiGuard Outbreak Alerts",
       "title": "Cisco ASA and FTD Firewall RCE",
@@ -882,9 +874,49 @@
       "url": "https://feeds.fortinet.com/~/927178706/0/fortinet/blog/ciso-collective~CISO-Predictions-for",
       "date": "2025-11-04T14:00:00+00:00",
       "summary": "Explore Fortinet's 2026 cybersecurity predictions from global CISOs. Discover how AI-driven threats, geopolitical tensions, and emerging technologies, such as quantum computing and satellite networks, are reshaping the CISO's mission—from securing data to ensuring resilience. &#160; &#160; &#160; &#160; &nbsp;&#160;"
+    },
+    {
+      "source": "CISA ICS Advisories",
+      "label": "CISA ICS Advisories",
+      "title": "Hitachi Energy MSM Product (Update A)",
+      "url": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2025/icsa-25-275-02.json",
+      "date": "2025-09-30T00:00:00+00:00",
+      "summary": "Avis de sécurité CISA publié au format structuré CSAF."
     }
   ],
   "kev": [
+    {
+      "cveID": "CVE-2026-97229",
+      "vendorProject": "GitLab",
+      "product": "Community Edition and Enterprise Edition",
+      "vulnerabilityName": "GitLab Community Edition and Enterprise Edition Integer Overflow or Wraparound Vulnerability",
+      "dateAdded": "2026-10-29",
+      "shortDescription": "GitLab Community Edition and Enterprise Edition contain a integer overflow or wraparound vulnerability that could allow an unauthenticated user to execute arbitrary code on the GitLab server via a specially crafted regular expression in a CI/CD configuration, due to insufficient regular expression validation.",
+      "requiredAction": "Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA’s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA’s “Forensics Triage Requirements” (see URL in Notes). Follow applicable BOD 26-04 guidance for cloud services or discontinue use of the product if mitigations are unavailable. Stakeholders are responsible for evaluating each asset's internet exposure and ensuring adherence to BOD 26-04 patching guidelines.",
+      "dueDate": "2026-11-01",
+      "knownRansomwareCampaignUse": "Unknown",
+      "forensicTriage": "Yes",
+      "notes": "Other products can potentially be affected by the same underlying Ruby/Onigmo Integer Overflow issue in CI/CD Regular Expression Compiler. For more information please see: https://www.ruby-lang.org/en/news/2026/10/23/regexp-fixes-for-gitlab-cves ; https://docs.gitlab.com/releases/patches/patch-release-gitlab-19-4-2-released/ ; BOD 26-04: https://www.cisa.gov/news-events/directives/bod-26-04-prioritizing-security-updates-based-risk ; Forensics Triage Requirements: https://www.cisa.gov/news-events/directives/bod-26-04-implementation-guidance-prioritizing-security-updates-based-risk ; https://nvd.nist.gov/vuln/detail/CVE-2026-97229",
+      "cwes": [
+        "CWE-190"
+      ]
+    },
+    {
+      "cveID": "CVE-2026-76418",
+      "vendorProject": "Cisco",
+      "product": "Secure Firewall ASA Software and Cisco Secure FTD Software",
+      "vulnerabilityName": "Cisco Secure Firewall ASA Software and Cisco Secure FTD Software Unchecked Return Value to NULL Pointer Dereference Vulnerability",
+      "dateAdded": "2026-10-29",
+      "shortDescription": "Cisco Secure Firewall ASA Software and Cisco Secure FTD Software contains an unchecked return value to NULL pointer dereference vulnerability that could allow an unauthenticated, remote attacker to cause the device to reload unexpectedly, resulting in a denial of service (DoS) condition.",
+      "requiredAction": "Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA’s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA’s “Forensics Triage Requirements” (see URL in Notes). Follow applicable BOD 26-04 guidance for cloud services or discontinue use of the product if mitigations are unavailable. Stakeholders are responsible for evaluating each asset's internet exposure and ensuring adherence to BOD 26-04 patching guidelines.",
+      "dueDate": "2026-11-01",
+      "knownRansomwareCampaignUse": "Unknown",
+      "forensicTriage": "No",
+      "notes": "https://sec.cloudapps.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-asaftd-tunnel-dos-s6mgkb75 ; ; BOD 26-04: https://www.cisa.gov/news-events/directives/bod-26-04-prioritizing-security-updates-based-risk ; Forensics Triage Requirements: https://www.cisa.gov/news-events/directives/bod-26-04-implementation-guidance-prioritizing-security-updates-based-risk ; https://nvd.nist.gov/vuln/detail/CVE-2026-76418",
+      "cwes": [
+        "CWE-690"
+      ]
+    },
     {
       "cveID": "CVE-2026-41709",
       "vendorProject": "Broadcom",
@@ -2464,38 +2496,6 @@
       "notes": "https://sec.cloudapps.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-asaftd-vpn-dos-dzv4mQFF ; BOD 26-04: https://www.cisa.gov/news-events/directives/bod-26-04-prioritizing-security-updates-based-risk ; Forensics Triage Requirements: https://www.cisa.gov/news-events/directives/bod-26-04-implementation-guidance-prioritizing-security-updates-based-risk ; https://nvd.nist.gov/vuln/detail/CVE-2026-20349",
       "cwes": [
         "CWE-244"
-      ]
-    },
-    {
-      "cveID": "CVE-2026-68820",
-      "vendorProject": "Microsoft",
-      "product": "Windows Ancillary Function Driver for WinSock ",
-      "vulnerabilityName": "Microsoft Windows Ancillary Function Driver for WinSock Use-After-Free Vulnerability",
-      "dateAdded": "2026-08-11",
-      "shortDescription": "Microsoft Windows Ancillary Function Driver for WinSock contains a use-after-free vulnerability that allows an authorized attacker to elevate privileges locally.",
-      "requiredAction": "Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA’s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA’s “Forensics Triage Requirements” (see URL in Notes). Follow applicable BOD 26-04 guidance for cloud services or discontinue use of the product if mitigations are unavailable. Stakeholders are responsible for evaluating each asset's internet exposure and ensuring adherence to BOD 26-04 patching guidelines.",
-      "dueDate": "2026-08-25",
-      "knownRansomwareCampaignUse": "Unknown",
-      "forensicTriage": "No",
-      "notes": "https://portal.msrc.microsoft.com/en-US/security-guidance/advisory/CVE-2026-68820 ; BOD 26-04: https://www.cisa.gov/news-events/directives/bod-26-04-prioritizing-security-updates-based-risk ; Forensics Triage Requirements: https://www.cisa.gov/news-events/directives/bod-26-04-implementation-guidance-prioritizing-security-updates-based-risk ; https://nvd.nist.gov/vuln/detail/CVE-2026-68820",
-      "cwes": [
-        "CWE-416"
-      ]
-    },
-    {
-      "cveID": "CVE-2026-72898",
-      "vendorProject": "Metabase",
-      "product": "Metabase",
-      "vulnerabilityName": "Metabase SQL Injection Vulnerability",
-      "dateAdded": "2026-08-11",
-      "shortDescription": "Metabase contains a SQL Injection vulnerability that allows an unauthenticated remote attacker to inject arbitrary SQL into the Metabase application database, which can give them administrator access to the instance. From there, the attacker could change the application configuration, steal stored credentials for the connected databases, read any data accessible through those connections, and export data.",
-      "requiredAction": "Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA’s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA’s “Forensics Triage Requirements” (see URL in Notes). Follow applicable BOD 26-04 guidance for cloud services or discontinue use of the product if mitigations are unavailable. Stakeholders are responsible for evaluating each asset's internet exposure and ensuring adherence to BOD 26-04 patching guidelines.",
-      "dueDate": "2026-08-14",
-      "knownRansomwareCampaignUse": "Unknown",
-      "forensicTriage": "Yes",
-      "notes": "https://www.metabase.com/blog/security-update ; https://github.com/metabase/metabase/security/advisories/GHSA-vwf4-m7j8-wcjf ; BOD 26-04: https://www.cisa.gov/news-events/directives/bod-26-04-prioritizing-security-updates-based-risk ; Forensics Triage Requirements: https://www.cisa.gov/news-events/directives/bod-26-04-implementation-guidance-prioritizing-security-updates-based-risk ; https://nvd.nist.gov/vuln/detail/CVE-2026-72898",
-      "cwes": [
-        "CWE-89"
       ]
     }
   ],
