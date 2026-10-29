@@ -244,47 +244,173 @@ def fetch_topic_products(url: str) -> list[str]:
     return parse_topic_products(payload)
 
 
-def enrich_unclassified_topics(items: list[dict], detail_fetcher, errors: list[str]) -> list[dict]:
+def enrich_unclassified_topics(
+    items: list[dict],
+    detail_fetcher,
+    errors: list[str],
+    known_topics: list[dict] | None = None,
+) -> list[dict]:
+    """Enrichir les sujets non classés sans jamais perdre une entrée faute de métadonnées."""
+    now = datetime.now(timezone.utc)
+    success_cutoff = (now - timedelta(hours=24)).isoformat()
+    failure_cutoff = (now - timedelta(hours=DETAIL_FAILURE_RETRY_HOURS)).isoformat()
+    known_by_url = {
+        str(item.get("url") or item.get("id") or "").rstrip("/"): item
+        for item in (known_topics or [])
+        if isinstance(item, dict) and (item.get("url") or item.get("id"))
+    }
     result = []
     lookups = 0
     deferred = 0
+    pending = 0
+    recently_failed = 0
+    unclassified = 0
+
     for raw in items:
         if not raw.get("needsProductEnrichment"):
             result.append(raw)
             continue
-        if detail_fetcher is None:
+
+        url = str(raw.get("url") or raw.get("id") or "").rstrip("/")
+        known = known_by_url.get(url, {})
+        known_products = known.get("products") or []
+
+        # Reuse a prior successful classification rather than repeatedly fetching the same topic.
+        if known.get("productEnrichmentStatus") == "resolved" and known_products:
+            categories = list(dict.fromkeys([
+                *(raw.get("categories") or []),
+                *(known.get("categories") or []),
+                *known_products,
+            ]))
+            item = {
+                **raw,
+                "categories": categories,
+                "products": list(dict.fromkeys([*(raw.get("products") or []), *known_products])),
+                "productEnrichmentStatus": "resolved",
+            }
+            if known.get("productEnrichmentCheckedAt"):
+                item["productEnrichmentCheckedAt"] = known["productEnrichmentCheckedAt"]
+            item.pop("needsProductEnrichment", None)
+            result.append(item)
             continue
-        if lookups >= MAX_TOPIC_PRODUCT_LOOKUPS:
+
+        status = known.get("productEnrichmentStatus", raw.get("productEnrichmentStatus"))
+        checked_at = str(known.get("productEnrichmentCheckedAt") or raw.get("productEnrichmentCheckedAt") or "")
+        attempted_at = str(known.get("productEnrichmentAttemptedAt") or raw.get("productEnrichmentAttemptedAt") or "")
+        deferred_at = str(known.get("productEnrichmentDeferredAt") or raw.get("productEnrichmentDeferredAt") or "")
+
+        # Respect backoff and retain the record while waiting; a failed lookup is not an absent topic.
+        if status == "unclassified" and checked_at >= success_cutoff:
+            result.append({**raw, "products": [], "productEnrichmentStatus": "unclassified",
+                           "productEnrichmentCheckedAt": checked_at})
+            unclassified += 1
+            continue
+        if status == "failed" and attempted_at >= failure_cutoff:
+            result.append({**raw, "products": [], "productEnrichmentStatus": "failed",
+                           "productEnrichmentAttemptedAt": attempted_at})
+            recently_failed += 1
+            continue
+        if status == "deferred" and deferred_at >= success_cutoff:
+            result.append({**raw, "products": [], "productEnrichmentStatus": "deferred",
+                           "productEnrichmentDeferredAt": deferred_at})
             deferred += 1
             continue
+
+        if detail_fetcher is None:
+            result.append({**raw, "products": raw.get("products") or [],
+                           "productEnrichmentStatus": "pending"})
+            pending += 1
+            continue
+        if lookups >= MAX_TOPIC_PRODUCT_LOOKUPS:
+            result.append({**raw, "products": raw.get("products") or [],
+                           "productEnrichmentStatus": "deferred",
+                           "productEnrichmentDeferredAt": now.isoformat()})
+            deferred += 1
+            continue
+
         lookups += 1
         try:
-            topic_products = detail_fetcher(raw["url"])
-        except (OSError, urllib.error.URLError, TimeoutError, UnicodeError) as exc:
+            topic_products = detail_fetcher(url)
+            if not isinstance(topic_products, (list, tuple)):
+                raise ValueError("les tags produit ne sont pas une liste valide")
+            topic_products = [
+                clean(product) for product in topic_products
+                if isinstance(product, str) and clean(product)
+            ]
+            categories = list(dict.fromkeys([*(raw.get("categories") or []), *topic_products]))
+            text = f"{raw.get('title', '')} {raw.get('summary', '')} {' '.join(categories)}"
+            products = [
+                name for name, patterns in PRODUCT_ALIASES.items()
+                if any(re.search(pattern, text, re.I) for pattern in patterns)
+            ]
+            if "FortiClient EMS" in products:
+                products = [product for product in products if product != "FortiClient"]
+
+            item = {
+                **raw,
+                "categories": categories,
+                "products": products,
+                "productEnrichmentCheckedAt": now.isoformat(),
+            }
+            item.pop("productEnrichmentAttemptedAt", None)
+            item.pop("productEnrichmentDeferredAt", None)
+            if products:
+                item.pop("needsProductEnrichment", None)
+                item["productEnrichmentStatus"] = "resolved"
+            else:
+                item["needsProductEnrichment"] = True
+                item["productEnrichmentStatus"] = "unclassified"
+                unclassified += 1
+            result.append(item)
+        except (OSError, urllib.error.URLError, TimeoutError, UnicodeError, ValueError) as exc:
             errors.append(
-                f"Lecture des tags Community impossible ({raw['url']}): {type(exc).__name__}: {exc}"
+                f"Lecture des tags Community impossible ({url}): {type(exc).__name__}: {exc}"
             )
-            continue
-        categories = list(dict.fromkeys([*raw.get("categories", []), *topic_products]))
-        text = f"{raw.get('title', '')} {raw.get('summary', '')} {' '.join(categories)}"
-        products = [
-            name for name, patterns in PRODUCT_ALIASES.items()
-            if any(re.search(pattern, text, re.I) for pattern in patterns)
-        ]
-        if "FortiClient EMS" in products:
-            products = [product for product in products if product != "FortiClient"]
-        if not products:
-            continue
-        item = {**raw, "categories": categories, "products": products}
-        item.pop("needsProductEnrichment", None)
-        result.append(item)
+            result.append({
+                **raw,
+                "products": raw.get("products") or [],
+                "productEnrichmentStatus": "failed",
+                "productEnrichmentAttemptedAt": now.isoformat(),
+            })
+
+    if pending:
+        errors.append(
+            f"{pending} sujet(s) potentiel(s) conservé(s) sans classification produit, "
+            "car la lecture des tags n'était pas disponible."
+        )
     if deferred:
         errors.append(
-            f"{deferred} sujets potentiels supplémentaires n'ont pas été enrichis "
-            f"(limite de {MAX_TOPIC_PRODUCT_LOOKUPS} pages publiques par collecte)."
+            f"{deferred} sujet(s) potentiel(s) conservé(s) en attente d'enrichissement "
+            f"(limite de {MAX_TOPIC_PRODUCT_LOOKUPS} pages publiques par collecte ou délai de reprise)."
+        )
+    if recently_failed:
+        errors.append(
+            f"{recently_failed} sujet(s) potentiel(s) conservé(s) en attente du délai de reprise "
+            f"de {DETAIL_FAILURE_RETRY_HOURS} heure(s) après un échec de lecture."
+        )
+    if unclassified:
+        errors.append(
+            f"{unclassified} sujet(s) potentiel(s) conservé(s) mais non classé(s): "
+            "les tags publics ne permettent pas encore d'identifier le produit."
         )
     return result
 
+
+def pending_product_enrichment_candidates(previous_topics: list[dict], observed_ids: set[str]) -> list[dict]:
+    """Queue older unresolved RSS topics for a later retry, without duplicating current-feed entries."""
+    candidates = []
+    for raw in previous_topics:
+        if not isinstance(raw, dict) or not raw.get("needsProductEnrichment"):
+            continue
+        if raw.get("products"):
+            continue
+        url = str(raw.get("url") or raw.get("id") or "").rstrip("/")
+        if not url or url in observed_ids:
+            continue
+        if not url.startswith("https://community.fortinet.com/"):
+            continue
+        candidates.append(dict(raw))
+    return candidates
 
 def extract_versions(title: str, summary: str, url: str = "") -> list[str]:
     # RSS/HTML cleanup can concatenate section labels and values, e.g. ScopeFortiOS.
@@ -996,6 +1122,7 @@ def collect(fetcher=fetch_feed, out: Path = OUT, topic_fetcher=None, board_fetch
     raw_feed_count = 0
     feed_url = getattr(fetcher, "last_url", None) or previous.get("feedUrl", FEED_URL)
     fresh: list[dict] = []
+    observed_ids: set[str] = set()
     board_page_count = 0
     board_topic_count = 0
 
@@ -1007,12 +1134,12 @@ def collect(fetcher=fetch_feed, out: Path = OUT, topic_fetcher=None, board_fetch
         raw_feed_count = count_feed_entries(feed_payload)
         parsed = parse_feed(feed_payload)
         observed_ids = {item.get("id") or item.get("url") for item in parsed}
-        fresh = enrich_unclassified_topics(parsed, topic_fetcher, errors)
+        fresh = enrich_unclassified_topics(parsed, topic_fetcher, errors, previous.get("topics", []))
         feed_url = getattr(fetcher, "last_url", None) or FEED_URL
 
         if topic_fetcher:
             stale_candidates = legacy_tag_recheck_candidates(previous, observed_ids)
-            repaired = enrich_unclassified_topics(stale_candidates, topic_fetcher, errors)
+            repaired = enrich_unclassified_topics(stale_candidates, topic_fetcher, errors, previous.get("topics", []))
             fresh = merge_discovered_topics(fresh, repaired)
 
         if not fresh and fetcher is fetch_feed and feed_url == EXTENDED_FEED_URL:
@@ -1022,10 +1149,10 @@ def collect(fetcher=fetch_feed, out: Path = OUT, topic_fetcher=None, board_fetch
             raw_feed_count = count_feed_entries(fallback_payload)
             fallback_parsed = parse_feed(fallback_payload)
             observed_ids.update(item.get("id") or item.get("url") for item in fallback_parsed)
-            fallback = enrich_unclassified_topics(fallback_parsed, topic_fetcher, errors)
+            fallback = enrich_unclassified_topics(fallback_parsed, topic_fetcher, errors, previous.get("topics", []))
             if topic_fetcher:
                 stale_candidates = legacy_tag_recheck_candidates(previous, observed_ids)
-                repaired = enrich_unclassified_topics(stale_candidates, topic_fetcher, errors)
+                repaired = enrich_unclassified_topics(stale_candidates, topic_fetcher, errors, previous.get("topics", []))
                 fallback = merge_discovered_topics(fallback, repaired)
             if fallback:
                 fresh = fallback
@@ -1041,6 +1168,15 @@ def collect(fetcher=fetch_feed, out: Path = OUT, topic_fetcher=None, board_fetch
     except (OSError, urllib.error.URLError, ET.ParseError, ValueError, TimeoutError) as exc:
         errors.extend(getattr(fetcher, "last_errors", []))
         errors.append(f"Flux RSS Fortinet Community indisponible: {type(exc).__name__}: {exc}")
+
+    # Retry older unresolved records even when they have fallen out of the capped RSS feed.
+    if topic_fetcher is not None:
+        pending = pending_product_enrichment_candidates(previous.get("topics", []), observed_ids)
+        if pending:
+            retried = enrich_unclassified_topics(
+                pending, topic_fetcher, errors, previous.get("topics", [])
+            )
+            fresh = merge_discovered_topics(fresh, retried)
 
     if board_fetcher is not None:
         try:
@@ -1124,6 +1260,8 @@ def collect(fetcher=fetch_feed, out: Path = OUT, topic_fetcher=None, board_fetch
             ]))
             for field in ("categories", "status", "statusNote", "source"):
                 record.pop(field, None)
+        if item.get("products") and not item.get("needsProductEnrichment"):
+            record.pop("needsProductEnrichment", None)
         merged[key] = record
 
     topics = sorted(

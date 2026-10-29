@@ -205,8 +205,72 @@ class CommunityFeedTests(unittest.TestCase):
                 out=path,
             )
         self.assertTrue(result["partial"])
-        self.assertEqual(len(result["topics"]), 1)
+        self.assertEqual(len(result["topics"]), 2)
+        unresolved = next(
+            topic for topic in result["topics"]
+            if topic["url"].endswith("after-upgrade-to-7-4-13-many-ap-are-not-connected-230800")
+        )
+        self.assertEqual(unresolved["products"], [])
+        self.assertTrue(unresolved["needsProductEnrichment"])
+        self.assertEqual(unresolved["productEnrichmentStatus"], "failed")
+        self.assertIn("productEnrichmentAttemptedAt", unresolved)
         self.assertTrue(any("Lecture des tags Community impossible" in error for error in result["errors"]))
+
+    def test_unclassified_topic_is_preserved_when_tag_fetcher_is_unavailable(self):
+        topic = {
+            "id": "https://community.fortinet.com/support-forum-92/after-upgrade-230990",
+            "url": "https://community.fortinet.com/support-forum-92/after-upgrade-230990",
+            "title": "After upgrade to 7.4.13 many AP are not connected",
+            "summary": "Many APs no longer connect after the upgrade.",
+            "categories": ["Support Forum"],
+            "products": [],
+            "versions": ["7.4.13"],
+            "needsProductEnrichment": True,
+        }
+        errors = []
+        result = collector.enrich_unclassified_topics([topic], None, errors)
+        self.assertEqual(len(result), 1)
+        self.assertEqual(result[0]["products"], [])
+        self.assertTrue(result[0]["needsProductEnrichment"])
+        self.assertEqual(result[0]["productEnrichmentStatus"], "pending")
+        self.assertTrue(any("conservé(s) sans classification produit" in error for error in errors))
+
+    def test_old_unclassified_topic_is_retried_after_it_leaves_the_rss_window(self):
+        pending_url = "https://community.fortinet.com/support-forum-92/after-upgrade-to-7-4-13-many-ap-are-not-connected-230800"
+        current_payload = b"""<rss version="2.0"><channel>
+          <item><title>FortiGate 7.4.12 VPN disconnects</title><link>https://community.fortinet.com/fortigate-3/known-issue-230001</link><description>VPN drops after update</description></item>
+        </channel></rss>"""
+        attempted_at = (
+            collector.datetime.now(collector.timezone.utc)
+            - collector.timedelta(hours=3)
+        ).isoformat()
+        old_topic = {
+            "id": pending_url,
+            "url": pending_url,
+            "title": "After upgrade to 7.4.13 many AP are not connected",
+            "summary": "Many APs no longer connect after the upgrade.",
+            "categories": ["Support Forum"],
+            "products": [],
+            "versions": ["7.4.13"],
+            "date": "2026-10-24T08:00:00+00:00",
+            "needsProductEnrichment": True,
+            "productEnrichmentStatus": "failed",
+            "productEnrichmentAttemptedAt": attempted_at,
+        }
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "community.json"
+            path.write_text(json.dumps({"topics": [old_topic]}), encoding="utf-8")
+            calls = []
+            result = collector.collect(
+                fetcher=lambda: current_payload,
+                topic_fetcher=lambda url: calls.append(url) or ["FortiGate", "FortiAP"],
+                out=path,
+            )
+        self.assertEqual(calls, [pending_url])
+        retried = next(topic for topic in result["topics"] if topic["url"] == pending_url)
+        self.assertEqual(retried["products"], ["FortiGate", "FortiAP"])
+        self.assertNotIn("needsProductEnrichment", retried)
+        self.assertEqual(retried["productEnrichmentStatus"], "resolved")
 
     def test_extended_feed_falls_back_and_marks_collection_partial(self):
         payload = b"""<rss version="2.0"><channel>
