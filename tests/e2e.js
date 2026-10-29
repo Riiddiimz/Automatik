@@ -150,15 +150,28 @@ const { chromium } = require("playwright");
       payload.errors = ["Source de test en erreur"];
       await route.fulfill({ response, json: payload });
     });
+    await page.route("**/data/health-veille.json*", async route => {
+      const response = await route.fetch();
+      const payload = await response.json();
+      payload.status = "partial";
+      payload.message = "Statut de test actualisé";
+      payload.checkedAt = new Date().toISOString();
+      await route.fulfill({ response, json: payload });
+    });
     await page.locator("#refresh-btn").click();
     await page.waitForFunction(() => {
       const banner = document.querySelector("#data-health");
       return banner && !banner.hidden && banner.textContent.includes("Source de test en erreur");
     });
+    await page.waitForFunction(() =>
+      document.querySelector("#workflow-health")?.textContent.includes("Statut de test actualisé")
+    );
+    assert.match(await page.locator("#workflow-health").innerText(), /Partiel/);
     assert.match(await healthBanner.innerText(), /Actualisation partielle/);
     assert.match(await healthBanner.innerText(), /Source de test en erreur/);
 
     await page.unroute("**/data/veille.json*");
+    await page.unroute("**/data/health-veille.json*");
     await page.locator("#refresh-btn").click();
     await page.waitForFunction((hasBaselineErrors) => {
       const banner = document.querySelector("#data-health");

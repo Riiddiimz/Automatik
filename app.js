@@ -263,7 +263,7 @@ async function loadData() {
     button.innerHTML = "↻ <span>Actualiser</span>";
   }
 }
-$("refresh-btn").addEventListener("click", () => { loadData(); loadCommunity(); });
+$("refresh-btn").addEventListener("click", () => { loadData(); loadCommunity(); loadWorkflowHealth(); });
 $("cve-search").addEventListener("input", () => {
   $("cve-list").innerHTML = renderKev(currentData.kev || [], $("cve-search").value);
 });
