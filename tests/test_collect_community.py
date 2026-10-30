@@ -90,6 +90,19 @@ class CommunityFeedTests(unittest.TestCase):
             ["6.6.11", "8.0.4"],
         )
 
+    def test_permanent_solution_extracts_fix_after_product_transition(self):
+        url = "https://community.fortinet.com/fortigate-3/fortigate-gui-unreachable-acme-230944"
+        summary = (
+            "DescriptionThe FortiGate GUI is unreachable when ACME is bound to a down interface. "
+            "ScopeFortiGate. SolutionSymptomsThe GUI returns HTTP 500. "
+            "Permanent Solution\nUpgrade the FortiGate to FortiOS 7.4.13 or later. "
+            "This version includes a fix for the ACME module."
+        )
+        self.assertEqual(
+            collector.extract_fixed_versions("FortiGate GUI unreachable due to ACME", summary, url),
+            ["7.4.13"],
+        )
+
     def test_client_scope_and_fix_text_keep_multiple_versions(self):
         url = "https://community.fortinet.com/forticlient-4/auto-patch-failure-230934"
         summary = (

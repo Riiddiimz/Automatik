@@ -112,11 +112,14 @@ FIXED_VERSION_CONTEXT_RE = re.compile(
     re.I,
 )
 FIXED_VERSION_UPGRADE_RE = re.compile(
-    r"\b(?:permanent solution|resolution|fix|solution)\s*(?::|is\s+to)\s*"
-    r"(?:update|upgrade)\s+"
+    r"\b(?:permanent solution|resolution|fix|solution)\s*(?::|is\s+to)?\s*"
+    r"(?:update|upgrade)\s+(?:the\s+)?"
     r"(?:(?:fortios|fortigate|fortimanager|fortianalyzer|fortiauthenticator|"
     r"forticlient(?:\s+(?:ems|vpn))?|firmware)\s+)?"
-    r"(?:to\s+)?(?:version\s*)?v?(\d{1,2}\.\d{1,2}(?:\.\d{1,3})?)\b",
+    r"(?:to\s+)?"
+    r"(?:(?:fortios|fortigate|fortimanager|fortianalyzer|fortiauthenticator|"
+    r"forticlient(?:\s+(?:ems|vpn))?|firmware)\s+)?"
+    r"(?:versions?\s*)?v?(\d{1,2}\.\d{1,2}(?:\.\d{1,3})?)\b",
     re.I,
 )
 FIXED_VERSION_LIST_RE = re.compile(

@@ -231,6 +231,22 @@ class CommunitySynthesisTests(unittest.TestCase):
         self.assertEqual(result["incidents"][0]["versions"], ["6.6.10", "8.0.3"])
         self.assertEqual(result["incidents"][0]["fixVersions"], ["6.6.11", "8.0.4"])
 
+    def test_permanent_solution_extracts_fix_after_product_transition(self):
+        item = {
+            "title": "FortiGate GUI unreachable due to ACME interface configuration",
+            "summary": (
+                "DescriptionThe FortiGate GUI is unreachable when ACME is bound to a down interface. "
+                "ScopeFortiGate. SolutionSymptomsThe GUI returns HTTP 500. "
+                "Permanent Solution Upgrade the FortiGate to FortiOS 7.4.13 or later. "
+                "This version includes a fix for the ACME module."
+            ),
+            "url": "https://community.fortinet.com/fortigate-3/fortigate-gui-unreachable-acme-230944",
+        }
+        self.assertEqual(synth.extract_fixed_versions(item), ["7.4.13"])
+        with tempfile.TemporaryDirectory() as directory:
+            result = synth.synthesize({"topics": [item]}, Path(directory) / "community.json")
+        self.assertEqual(result["incidents"][0]["fixVersions"], ["7.4.13"])
+
     def test_official_client_versions_and_fix_versions_are_not_confused(self):
         item = {
             "title": "Troubleshooting Tip: FortiClient auto-patch failure due to certificate validation issues",
