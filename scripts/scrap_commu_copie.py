@@ -6,7 +6,12 @@ scrap_commu.py
 Veille Fortinet Community avec analyse Gemini.
 
 USAGE :
-    python scrap_commu.py VOTRE_CLE_API_GEMINI
+    export GEMINI_API_KEY="VOTRE_CLE_API_GEMINI"
+    python scripts/scrap_commu_copie.py
+
+Sous PowerShell :
+    $env:GEMINI_API_KEY = "VOTRE_CLE_API_GEMINI"
+    python scripts/scrap_commu_copie.py
 
 Le script propose un menu :
   1) Lancer un scraping + analyse complète (Gemini analyse tout)
@@ -203,7 +208,7 @@ def appeler_gemini(cle_api, prompt, modele=MODELE_GEMINI):
     """
     url = (
         f"https://generativelanguage.googleapis.com/v1beta/models/"
-        f"{modele}:generateContent?key={cle_api}"
+        f"{modele}:generateContent"
     )
 
     payload = {
@@ -224,7 +229,10 @@ def appeler_gemini(cle_api, prompt, modele=MODELE_GEMINI):
     req = urllib.request.Request(
         url,
         data=data,
-        headers={"Content-Type": "application/json"},
+        headers={
+            "Content-Type": "application/json",
+            "x-goog-api-key": cle_api,
+        },
         method="POST",
     )
 
@@ -233,6 +241,7 @@ def appeler_gemini(cle_api, prompt, modele=MODELE_GEMINI):
             reponse_brute = json.loads(resp.read().decode("utf-8"))
     except urllib.error.HTTPError as e:
         corps_erreur = e.read().decode("utf-8", errors="replace")
+        corps_erreur = corps_erreur.replace(cle_api, "[redacted]")[:500]
         raise RuntimeError(f"Erreur API Gemini ({e.code}) : {corps_erreur}")
 
     try:
@@ -613,12 +622,19 @@ def afficher_menu():
 
 
 def main():
-    if len(sys.argv) < 2:
-        print("ERREUR : vous devez fournir votre clé API Gemini en argument.")
-        print("Usage : python scrap_commu.py VOTRE_CLE_API_GEMINI")
-        sys.exit(1)
+    if len(sys.argv) > 1:
+        print(
+            "ERREUR : ne passez pas la clé API Gemini en argument. "
+            "Utilisez la variable d'environnement GEMINI_API_KEY."
+        )
+        sys.exit(2)
 
-    cle_api = sys.argv[1]
+    cle_api = os.environ.get("GEMINI_API_KEY", "").strip()
+    if not cle_api:
+        print("ERREUR : la variable d'environnement GEMINI_API_KEY est absente.")
+        print('Usage : export GEMINI_API_KEY="VOTRE_CLE_API_GEMINI"')
+        print("Puis : python scripts/scrap_commu_copie.py")
+        sys.exit(1)
 
     # Si vous voulez filtrer STRICTEMENT sur les versions du scope
     # (exclure aussi les sujets sans version précisée), passez False -> True ici :
