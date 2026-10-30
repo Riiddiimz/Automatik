@@ -23,10 +23,24 @@ BATCH_SIZE = 6
 TEXT_FIELDS = ("summary", "symptom", "impact", "solution")
 
 
+def has_current_review(incident: dict[str, Any]) -> bool:
+    """Return whether the incident already has a review from the configured model."""
+    review = incident.get("aiReview")
+    return (
+        isinstance(review, dict)
+        and bool(review.get("reviewedAt"))
+        and review.get("model") == MODEL
+    )
+
+
 def build_review_input(data: dict[str, Any]) -> list[dict[str, Any]]:
-    """Send only incident evidence needed for wording review, not the entire feed."""
+    """Select the next bounded batch of incidents that still need an AI review."""
     items = []
-    for incident in data.get("incidents", [])[:MAX_INCIDENTS]:
+    for incident in data.get("incidents", []):
+        if has_current_review(incident):
+            continue
+        if len(items) >= MAX_INCIDENTS:
+            break
         sources = []
         for source in incident.get("sources", [])[:5]:
             sources.append({
@@ -51,8 +65,6 @@ def build_review_input(data: dict[str, Any]) -> list[dict[str, Any]]:
             "sources": sources,
         })
     return items
-
-
 def validate_reviews(expected_ids: set[str], payload: Any) -> dict[str, dict[str, str]]:
     """Reject malformed responses, unknown IDs, and non-string fields."""
     if not isinstance(payload, list):
@@ -236,18 +248,31 @@ def main() -> int:
         print(message)
         return 0
 
+    # Process only incidents without a valid review from the configured model.
+    # The next scheduled execution naturally continues with the remaining backlog.
+    items = build_review_input(data)
+    if not items:
+        message = (
+            f"Toutes les {len(incidents)} fiches disposent déjà d'une relecture Gemini valide "
+            f"({MODEL})."
+        )
+        record_review_status(data, "success", message, checked_at)
+        save_data(data)
+        print(message)
+        return 0
+
     api_key = os.environ.get("GEMINI_API_KEY", "").strip()
     if not api_key:
+        pending = sum(not has_current_review(incident) for incident in incidents)
         message = (
-            "GEMINI_API_KEY absente : aucune nouvelle relecture IA. "
-            "Les relectures précédentes ne sont conservées que si les preuves n'ont pas changé."
+            f"GEMINI_API_KEY absente : {pending} fiche(s) attendent une relecture IA. "
+            "Les relectures existantes sont conservées."
         )
         record_review_status(data, "skipped", message, checked_at)
         save_data(data)
         print(message)
         return 0
 
-    items = build_review_input(data)
     expected_ids = {item["id"] for item in items if item.get("id")}
     reviews: dict[str, dict[str, str]] = {}
     try:
@@ -274,10 +299,15 @@ def main() -> int:
 
     reviewed_at = datetime.now(timezone.utc).isoformat()
     apply_reviews(data, reviews, reviewed_at)
-    review_status = "partial" if len(items) < len(incidents) else "success"
-    message = f"Relecture Gemini appliquée à {len(reviews)} fiche(s) sur {len(incidents)}."
-    if review_status == "partial":
-        message += " Les fiches restantes conservent la synthèse déterministe ou une relecture antérieure valide."
+    reviewed_total = sum(has_current_review(incident) for incident in incidents)
+    pending_total = len(incidents) - reviewed_total
+    review_status = "partial" if pending_total else "success"
+    message = (
+        f"Relecture Gemini appliquée à {len(reviews)} nouvelle(s) fiche(s); "
+        f"{reviewed_total}/{len(incidents)} fiches disposent d'une relecture valide."
+    )
+    if pending_total:
+        message += f" {pending_total} fiche(s) seront reprises lors des prochaines exécutions."
     record_review_status(data, review_status, message, reviewed_at)
     save_data(data)
     print(message)
