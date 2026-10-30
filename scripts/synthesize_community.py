@@ -72,6 +72,10 @@ FIXED_VERSION_UPGRADE_RE = re.compile(
     r"(?:to\s+)?(?:version\s*)?v?(\d{1,2}\.\d{1,2}(?:\.\d{1,3})?)\b",
     re.I,
 )
+FIXED_BUILD_RE = re.compile(
+    r"\b(?:special|engineering|hotfix|custom)\s+build\s+(\d{3,6})\b",
+    re.I,
+)
 
 NON_FORTINET_VERSION_RE = re.compile(
     r"\b(?:(?:huawei\s+cloud\s+)?euleros|centos|rhel|red\s+hat\s+enterprise\s+linux|"
@@ -293,6 +297,15 @@ def extract_fixed_versions(item: dict) -> list[str]:
     return sorted(found, key=lambda version: tuple(int(part) for part in version.split(".")))
 
 
+def extract_fixed_builds(item: dict) -> list[str]:
+    """Return explicitly identified special/hotfix builds from Fortinet-authored articles."""
+    if source_type(item) != "fortinet_article":
+        return []
+    return sorted(set(FIXED_BUILD_RE.findall(
+        f"{item.get('title', '')} {item.get('summary', '')}"
+    )))
+
+
 def has_documented_evidence(item: dict) -> bool:
     """Require an explicit, scoped Fortinet issue; missing versions remain explicitly unknown."""
     if source_type(item) != "fortinet_article":
@@ -445,6 +458,7 @@ def synthesize(data: dict, out: Path = DATA) -> dict:
         item["products"] = extract_products(item)
         item["versions"], item["versionFamilies"] = extract_versions(item)
         item["fixVersions"] = extract_fixed_versions(item)
+        item["fixBuilds"] = extract_fixed_builds(item)
         item["potentialProblem"] = looks_like_problem(item)
         enriched.append(item)
 
@@ -464,6 +478,7 @@ def synthesize(data: dict, out: Path = DATA) -> dict:
         exact_versions = sorted({v for item in cluster for v in item.get("versions", [])}, key=lambda v: tuple(int(x) for x in v.split(".")))
         families = sorted({v for item in cluster for v in item.get("versionFamilies", [])}, key=lambda v: tuple(int(x) for x in v.split(".")))
         fixed_versions = sorted({v for item in cluster for v in item.get("fixVersions", [])}, key=lambda v: tuple(int(x) for x in v.split(".")))
+        fixed_builds = sorted({build for item in cluster for build in item.get("fixBuilds", [])})
         sources = [{
             "title": item.get("title", "Sujet sans titre"),
             "url": item.get("url", ""),
@@ -474,6 +489,7 @@ def synthesize(data: dict, out: Path = DATA) -> dict:
             "versionFamilies": item.get("versionFamilies", []),
             "sourceType": source_type(item),
             "fixVersions": extract_fixed_versions(item),
+            "fixBuilds": extract_fixed_builds(item),
             **extract_sections(item),
         } for item in cluster]
         symptom = next((source["symptom"] for source in sources if source.get("symptom")), "")
@@ -497,6 +513,7 @@ def synthesize(data: dict, out: Path = DATA) -> dict:
             "versions": exact_versions,
             "versionFamilies": families,
             "fixVersions": fixed_versions,
+            "fixBuilds": fixed_builds,
             "sourceCount": len(sources),
             "forumReportCount": reports,
             "documentedSourceCount": len(documented_sources),

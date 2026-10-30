@@ -56,7 +56,7 @@ function renderCommunity() {
   const status = $("community-status-filter").value;
   const incidents = (communityData.incidents || []).filter(item => {
     const sourceText = (item.sources || []).map(source => [source.title, source.summary].join(" ")).join(" ");
-    const text = [item.title, item.summary, item.symptom, item.impact, item.solution, item.status, sourceText, ...(item.products || []), ...(item.versions || []), ...(item.versionFamilies || []), ...(item.fixVersions || [])].join(" ").toLowerCase();
+    const text = [item.title, item.summary, item.symptom, item.impact, item.solution, item.status, sourceText, ...(item.products || []), ...(item.versions || []), ...(item.versionFamilies || []), ...(item.fixVersions || []), ...(item.fixBuilds || [])].join(" ").toLowerCase();
     return (!query || text.includes(query))
       && (!product || (item.products || []).includes(product))
       && (!version || (item.versionFamilies || []).includes(version))
@@ -104,6 +104,7 @@ function renderCommunity() {
           <section class="incident-detail"><strong>Impact</strong><p>${escapeHTML(aiReview.impact || item.impact || "Non précisé par la source.")}</p></section>
           <section class="incident-detail"><strong>Solution / correctif</strong><p>${escapeHTML(aiReview.solution || item.solution || "Non précisé dans les sources consultées.")}</p></section>
           <section class="incident-detail"><strong>Version de correctif mentionnée</strong><p>${escapeHTML((item.fixVersions || []).join(", ") || "Non précisée par la source.")}</p></section>
+          ${(item.fixBuilds || []).length ? `<section class="incident-detail"><strong>Build correctif mentionné</strong><p>${escapeHTML(item.fixBuilds.join(", "))}</p></section>` : ""}
         </div>
         <div class="community-meta"><span>${item.forumReportCount ?? 0} signalement(s) utilisateur(s) distinct(s)</span>${item.documentedSourceCount ? `<span>${item.documentedSourceCount} source(s) Fortinet documentée(s)</span>` : ""}${versionMeta}<span>Dernière activité source : ${escapeHTML(safeDate(item.lastSeen))}</span></div>
         <details class="incident-sources"><summary>Consulter les sources (${(item.sources || []).length})</summary><ul>${sources}</ul>${extra ? `<p class="source-extra">Et ${extra} autre(s) source(s) dans ce regroupement.</p>` : ""}</details>

@@ -113,6 +113,18 @@ const { chromium } = require("playwright");
       for (const label of ["Symptôme", "Impact", "Solution / correctif", "Version de correctif mentionnée"]) {
         assert.equal(await firstCard.getByText(label, { exact: true }).count(), 1, `le champ "${label}" doit être affiché`);
       }
+      const buildIncident = (data.incidents || []).slice(0, 100).find(item => (item.fixBuilds || []).length);
+      if (buildIncident) {
+        const buildCard = cards.filter({ hasText: buildIncident.title }).first();
+        assert.equal(
+          await buildCard.getByText("Build correctif mentionné", { exact: true }).count(),
+          1,
+          "un build spécial documenté doit être affiché séparément"
+        );
+        for (const build of buildIncident.fixBuilds) {
+          assert.ok((await buildCard.innerText()).includes(build), "le numéro de build correctif doit être visible");
+        }
+      }
       // Ouvrir la fiche accordéon avant d'interagir avec ses sources imbriquées.
       await firstCard.locator("summary").first().click();
       const firstDetails = page.locator("#community-list .incident-sources").first();

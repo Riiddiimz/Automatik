@@ -235,6 +235,36 @@ class CommunitySynthesisTests(unittest.TestCase):
         self.assertEqual(incident["status"], "Documenté par Fortinet (version non précisée)")
 
 
+    def test_official_special_build_is_separate_from_affected_firmware_version(self):
+        item = {
+            "title": (
+                "1GbE SFP ports may fail to forward traffic on FortiGate 1800F/1801F "
+                "after upgrading to FortiOS version 7.6.8"
+            ),
+            "summary": (
+                "Description This article describes an issue where the 1GbE SFP ports may fail to forward traffic. "
+                "Scope FortiGate 1800F, FortiGate 1801F, FortiOS version 7.6.8. "
+                "Solution Following an internal driver update introduced in FortiOS version 7.6.8, "
+                "the affected platforms are unable to process traffic over their GE SFP slots. "
+                "This issue is tracked in bug ID 1353422. Fortinet has released a special build to address the issue. "
+                "Contact Fortinet Technical Support to validate the impact and obtain the special build 8768. "
+                "As a workaround to stay in GA release FortiOS 7.6.8 build 3744, move connections to ports 21-24."
+            ),
+            "url": "https://community.fortinet.com/fortigate-3/1gbe-sfp-ports-may-fail-to-forward-traffic-on-fortigate-1800f-1801f-after-upgrading-to-fortios-version-7-6-8-230759",
+            "products": ["FortiGate"],
+        }
+        self.assertEqual(synth.extract_versions(item), (["7.6.8"], ["7.6"]))
+        self.assertEqual(synth.extract_fixed_versions(item), [])
+        self.assertEqual(synth.extract_fixed_builds(item), ["8768"])
+        with tempfile.TemporaryDirectory() as directory:
+            result = synth.synthesize({"topics": [item]}, Path(directory) / "community.json")
+        self.assertEqual(result["incidentCount"], 1)
+        incident = result["incidents"][0]
+        self.assertEqual(incident["versions"], ["7.6.8"])
+        self.assertEqual(incident["fixVersions"], [])
+        self.assertEqual(incident["fixBuilds"], ["8768"])
+
+
     def test_permanent_solution_update_records_minimum_fixed_version(self):
         item = {
             "title": (
