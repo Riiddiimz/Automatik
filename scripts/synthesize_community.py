@@ -63,7 +63,9 @@ UPGRADE_TARGET_RE = re.compile(
 ) 
 FIXED_VERSION_RE = re.compile(
     r"\b(?:will\s+be\s+fixed|will\s+be\s+resolved|is\s+scheduled\s+to\s+be\s+fixed|"
-    r"scheduled\s+to\s+be\s+fixed|scheduled\s+for\s+(?:a\s+)?fix|planned\s+fix|fixed|resolved|corrected|addressed|"
+    r"scheduled\s+to\s+be\s+fixed|scheduled\s+for\s+(?:a\s+)?fix|"
+    r"has\s+(?:a\s+)?(?:fix|patch|correction)|have\s+(?:a\s+)?(?:fix|patch|correction)|"
+    r"planned\s+fix|fixed|resolved|corrected|addressed|"
     r"(?:fix|patch|correction)\s+(?:is\s+)?(?:available|included|provided))\s+"
     r"(?:in|with|from)\s+(?:(?:fortios|fortigate|fortimanager|fortianalyzer|"
     r"fortiauthenticator|forticlient(?:\s+(?:ems|vpn))?|fortiswitch|fortiap|firmware)\s*)?"
@@ -190,8 +192,12 @@ def extract_versions(item: dict) -> tuple[list[str], list[str]]:
             r"\bScope\s*:?\s*(.*?)(?=\b(?:Solution|Workaround|Impact|Description)\b|$)",
             summary, re.I | re.S,
         )
+        # "Known issue ... has a fix in 7.6.9" must not make 7.6.9 an affected release.
+        affected_summary = FIXED_VERSION_RE.sub(" ", summary)
+        affected_summary = FIXED_VERSION_CONTEXT_RE.sub(" ", affected_summary)
+        affected_summary = FIXED_VERSION_LIST_RE.sub(" ", affected_summary)
         affected_contexts = [
-            match.group(0) for match in AFFECTED_VERSION_CONTEXT_RE.finditer(summary)
+            match.group(0) for match in AFFECTED_VERSION_CONTEXT_RE.finditer(affected_summary)
         ]
         if scope or affected_contexts:
             scope_text = scope.group(1) if scope else ""
