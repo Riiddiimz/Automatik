@@ -30,7 +30,8 @@ ISSUE_RE = re.compile(
     r"does not work|doesn't work|not responding|does not respond|no response from|rejects? authentication|crash(?:es|ed)?|hang(?:s|ing)?|drop(?:s|ped|ping)?|"
     r"disconnect(?:s|ed|ion)?|intermittent|regression|unexpected|incorrect|wrong|"
     r"no longer|after upgrade|since upgrade|change(?:d|s)? behavior|behavio[u]?r change|"
-    r"not displayed|not shown|not included|not loading|not supported|cannot|can't|cannot save|packet loss|connection reset|bypass(?:es|ed)?|"
+    r"not displayed|not shown|not included|not loading|not supported|unreachable|not reachable|inaccessible|not accessible|"
+    r"cannot|can't|cannot save|packet loss|connection reset|bypass(?:es|ed)?|"
     r"fails to|missing|stuck|timeout|timed out|attributes?\s+(?:of\s+users?\s+)?(?:are\s+)?(?:cleared|deleted|removed))\b",
     re.I,
 )
