@@ -235,6 +235,39 @@ class CommunitySynthesisTests(unittest.TestCase):
         self.assertEqual(incident["status"], "Documenté par Fortinet (version non précisée)")
 
 
+    def test_official_radius_csv_import_issue_keeps_both_fixed_versions(self):
+        item = {
+            "title": "RADIUS attributes of users cleared during CSV file import",
+            "summary": (
+                "DescriptionImporting users via a CSV file with the 'Keep existing user accounts' option enabled "
+                "may clear RADIUS attributes of existing accounts and prevent user authentication."
+                "ScopeFortiAuthenticator."
+                "SolutionRADIUS attributes of users that are not in the CSV file are deleted after importing a new CSV file."
+                "When performing a bulk user import via CSV in FortiAuthenticator, selecting Advanced Options "
+                "clears the Certificate Binding attribute for some existing user accounts. Affected users lose authentication access."
+                "These are known issues tracked under the engineering ticket ID 1208720."
+                "See: FortiAuthenticator 8.0.2 Release Notes. Reported firmware version: 6.6.6."
+                "Resolution: Upgrade FortiAuthenticator to a version where the issue is resolved. "
+                "The fix is available in the following versions:FortiAuthenticator 6.6.8FortiAuthenticator 8.0.2"
+                "Upgrade Procedure and Upgrade Path: Upgrade FortiAuthenticator Firmware"
+            ),
+            "url": "https://community.fortinet.com/fortiauthenticator-8/radius-attributes-of-users-cleared-during-csv-file-import-230887",
+            "products": ["FortiAuthenticator"],
+        }
+        self.assertTrue(synth.looks_like_problem(item))
+        self.assertTrue(synth.has_documented_evidence(item))
+        self.assertEqual(synth.extract_versions(item), ([], []))
+        self.assertEqual(synth.extract_fixed_versions(item), ["6.6.8", "8.0.2"])
+        with tempfile.TemporaryDirectory() as directory:
+            result = synth.synthesize({"topics": [item]}, Path(directory) / "community.json")
+        self.assertEqual(result["incidentCount"], 1)
+        incident = result["incidents"][0]
+        self.assertEqual(incident["products"], ["FortiAuthenticator"])
+        self.assertEqual(incident["versions"], [])
+        self.assertEqual(incident["fixVersions"], ["6.6.8", "8.0.2"])
+        self.assertEqual(incident["status"], "Documenté par Fortinet (version non précisée)")
+
+
     def test_fixed_version_is_separate_from_affected_versions(self):
         item = {
             "title": "Administrator SSO authentication fails after upgrade to FortiOS 7.6.8",

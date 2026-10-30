@@ -31,7 +31,7 @@ ISSUE_RE = re.compile(
     r"disconnect(?:s|ed|ion)?|intermittent|regression|unexpected|incorrect|wrong|"
     r"no longer|after upgrade|since upgrade|change(?:d|s)? behavior|behavio[u]?r change|"
     r"not displayed|not shown|not included|not loading|not supported|cannot|can't|cannot save|packet loss|connection reset|bypass(?:es|ed)?|"
-    r"fails to|missing|stuck|timeout|timed out)\b",
+    r"fails to|missing|stuck|timeout|timed out|attributes?\s+(?:of\s+users?\s+)?(?:are\s+)?(?:cleared|deleted|removed))\b",
     re.I,
 )
 VERSION_CONTEXT_RE = re.compile(
@@ -55,6 +55,14 @@ FIXED_VERSION_RE = re.compile(
     r"fortiauthenticator|forticlient(?:\s+(?:ems|vpn))?|fortiswitch|fortiap|firmware)\s*)?"
     r"(?:version\s*)?v?(\d{1,2}\.\d{1,2}(?:\.\d{1,3})?)\b",
     re.I,
+)
+FIXED_VERSION_LIST_RE = re.compile(
+    r"\b(?:fix|patch|correction)\s+(?:is\s+)?(?:available|included|provided)\s+"
+    r"in\s+the\s+following\s+versions\s*:?\s*(.*?)(?=(?:upgrade procedure|related articles|see:|workaround|note:)|$)",
+    re.I | re.S,
+)
+FIXED_VERSION_LIST_TOKEN_RE = re.compile(
+    r"(?<!\d)(\d{1,2}\.\d{1,2}(?:\.\d{1,3})?)(?=[A-Za-z\s,;:.]|$)"
 )
 
 NON_FORTINET_VERSION_RE = re.compile(
@@ -267,9 +275,12 @@ def extract_fixed_versions(item: dict) -> list[str]:
     """Return explicitly stated fixed releases from Fortinet-authored articles only."""
     if source_type(item) != "fortinet_article":
         return []
-    found = set(FIXED_VERSION_RE.findall(
-        f"{item.get('title', '')} {item.get('summary', '')}"
-    ))
+    text = f"{item.get('title', '')} {item.get('summary', '')}"
+    found = set(FIXED_VERSION_RE.findall(text))
+    # Some official articles list several fixed branches after one shared cue,
+    # and HTML-to-text extraction can concatenate the version and next product name.
+    for match in FIXED_VERSION_LIST_RE.finditer(text):
+        found.update(FIXED_VERSION_LIST_TOKEN_RE.findall(match.group(1)))
     return sorted(found, key=lambda version: tuple(int(part) for part in version.split(".")))
 
 
