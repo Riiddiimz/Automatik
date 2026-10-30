@@ -602,6 +602,26 @@ class CommunityFeedTests(unittest.TestCase):
         self.assertEqual(result["pageCount"], 5)
         self.assertEqual(result["topicCount"], 5)
 
+    def test_support_forum_default_pagination_reaches_tenth_page(self):
+        board = "https://community.fortinet.com/support-forum-92"
+
+        def opener(request, timeout):
+            match = re.search(r"/index(\\d+)\\.html$", request.full_url)
+            page_number = int(match.group(1)) if match else 1
+            url = f"/support-forum-92/fortigate-vpn-fails-after-upgrade-{230000 + page_number}"
+            page = f'<html><body><a href="{url}">FortiGate VPN fails after upgrade</a></body></html>'
+            return io.BytesIO(page.encode())
+
+        result = collector.fetch_board_topics(
+            board_sources={"Support Forum": board},
+            opener=opener,
+        )
+        self.assertEqual(collector.SUPPORT_FORUM_MAX_PAGES, 10)
+        self.assertEqual(result["pageCount"], 10)
+        self.assertEqual(result["topicCount"], 10)
+        self.assertTrue(all(item["products"] == ["FortiGate"] for item in result["topics"]))
+
+
     def test_product_index_pagination_stops_on_repeated_page_and_reports_it(self):
         board = "https://community.fortinet.com/fortigate-3"
         page = b"""<html><body>

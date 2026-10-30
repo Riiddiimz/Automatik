@@ -24,6 +24,9 @@ USER_AGENT = "AutomatikCommunityWatch/1.0 (+https://github.com/Riiddiimz/Automat
 MAX_HISTORY = 1000
 MAX_TOPIC_PRODUCT_LOOKUPS = 8
 MAX_BOARD_PAGES = 5
+# The cross-product Support Forum index is much busier than individual boards.
+# Ten pages reach roughly 25–28 days of discussions in the observed public index.
+SUPPORT_FORUM_MAX_PAGES = 10
 MAX_BOARD_DETAIL_LOOKUPS = 12
 DETAIL_FAILURE_RETRY_HOURS = 2
 BOARD_DETAIL_RE = re.compile(
@@ -946,7 +949,7 @@ def enrich_board_topic_metadata(
 
 def fetch_board_topics(
     board_sources: dict[str, str] | None = None,
-    max_pages: int = MAX_BOARD_PAGES,
+    max_pages: int | None = None,
     opener=None,
 ) -> dict:
     """Read a bounded set of public product-index pages without bypassing access controls."""
@@ -957,8 +960,11 @@ def fetch_board_topics(
     pages: list[str] = []
 
     for product, board_url in sources.items():
+        page_limit = max_pages if max_pages is not None else (
+            SUPPORT_FORUM_MAX_PAGES if product == "Support Forum" else MAX_BOARD_PAGES
+        )
         board_seen: set[str] = set()
-        for page_number in range(1, max_pages + 1):
+        for page_number in range(1, page_limit + 1):
             page_url = (
                 board_url.rstrip("/")
                 if page_number == 1
