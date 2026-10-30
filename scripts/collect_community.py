@@ -28,6 +28,7 @@ MAX_BOARD_PAGES = 5
 # Ten pages reach roughly 25–28 days of discussions in the observed public index.
 SUPPORT_FORUM_MAX_PAGES = 10
 MAX_BOARD_DETAIL_LOOKUPS = 12
+DETAIL_PARSER_VERSION = 2
 DETAIL_FAILURE_RETRY_HOURS = 2
 BOARD_DETAIL_RE = re.compile(
     r"\b(?:fail(?:s|ed|ure)?|not working|not loading|not supported|unsupported|unable|cannot|can\x27t|"
@@ -797,16 +798,23 @@ def parse_board_page(payload: str | bytes, board_url: str, product: str) -> list
 
 
 class TopicMetadataParser(HTMLParser):
-    """Read ordinary public metadata without relying on private endpoints."""
+    """Read public metadata and visible text without relying on private endpoints."""
+
+    IGNORED_TAGS = {"script", "style", "noscript", "svg"}
 
     def __init__(self):
         super().__init__(convert_charrefs=True)
         self.meta: dict[str, str] = {}
         self.time_values: list[str] = []
+        self.text_parts: list[str] = []
+        self.ignored_depth = 0
 
     def handle_starttag(self, tag: str, attrs: list[tuple[str, str | None]]) -> None:
+        tag_name = tag.lower()
+        if tag_name in self.IGNORED_TAGS:
+            self.ignored_depth += 1
         attributes = dict(attrs)
-        if tag.lower() == "meta":
+        if tag_name == "meta":
             key = (
                 attributes.get("property")
                 or attributes.get("name")
@@ -816,24 +824,63 @@ class TopicMetadataParser(HTMLParser):
             value = (attributes.get("content") or "").strip()
             if key and value and key not in self.meta:
                 self.meta[key] = value
-        elif tag.lower() == "time":
+        elif tag_name == "time":
             value = (attributes.get("datetime") or "").strip()
             if value:
                 self.time_values.append(value)
 
+    def handle_endtag(self, tag: str) -> None:
+        if tag.lower() in self.IGNORED_TAGS and self.ignored_depth:
+            self.ignored_depth -= 1
+
+    def handle_data(self, data: str) -> None:
+        if self.ignored_depth == 0 and data.strip():
+            self.text_parts.append(data)
+
+
+def extract_public_article_summary(value: str) -> str:
+    """Extract explicit Description/Scope/Solution sections from a public article body."""
+    text = clean(value)
+    lowered = text.lower()
+    starts = [lowered.find(marker) for marker in ("description", "scope")]
+    starts = [position for position in starts if position >= 0]
+    if not starts:
+        return ""
+    article = text[min(starts):]
+    article_lower = article.lower()
+    if "scope" not in article_lower or "solution" not in article_lower:
+        return ""
+    endings = [
+        article_lower.find(marker)
+        for marker in (
+            "reference articles",
+            "related document",
+            "related articles",
+            "upgrade procedure",
+            "was this article helpful",
+            "did you find this article helpful",
+        )
+    ]
+    endings = [position for position in endings if position > 0]
+    if endings:
+        article = article[:min(endings)]
+    return clean(article)[:5000]
+
 
 def parse_topic_metadata(payload: str | bytes) -> dict:
-    """Extract only explicit public page description and publication/update date."""
+    """Extract public article sections and explicit publication/update dates."""
     if isinstance(payload, bytes):
         payload = payload.decode("utf-8", errors="replace")
     parser = TopicMetadataParser()
     parser.feed(payload)
     parser.close()
-    summary = next((
+    meta_summary = next((
         parser.meta[key]
         for key in ("og:description", "description", "twitter:description", "dc.description")
         if parser.meta.get(key)
     ), "")
+    body_summary = extract_public_article_summary(" ".join(parser.text_parts))
+    summary = body_summary or meta_summary
     date_value = next((
         parser.meta[key]
         for key in (
@@ -892,18 +939,28 @@ def enrich_board_topic_metadata(
         if not url or not BOARD_DETAIL_RE.search(title):
             continue
         known = known_by_url.get(url, {})
-        if known.get("summary") and known.get("date"):
+        if (
+            known.get("summary")
+            and known.get("date")
+            and known.get("detailFetchStatus") != "success"
+        ):
             continue
-        # A successful page fetch is terminal for this index-only enrichment,
-        # even when the public page exposes no metadata. Otherwise the same
-        # first topics would be fetched every 24 hours and starve older entries.
-        if known.get("detailFetchStatus") == "success":
+        # Re-read previously successful pages once when the public-page parser
+        # changes, then keep successful checks terminal for this parser version.
+        if (
+            known.get("detailFetchStatus") == "success"
+            and known.get("detailParserVersion") == DETAIL_PARSER_VERSION
+        ):
             continue
         attempted_at = str(known.get("detailAttemptedAt") or "")
         if attempted_at and attempted_at >= failure_cutoff:
             continue
         checked_at = str(known.get("detailCheckedAt") or "")
-        if checked_at and checked_at >= success_cutoff:
+        if (
+            checked_at
+            and checked_at >= success_cutoff
+            and known.get("detailParserVersion") == DETAIL_PARSER_VERSION
+        ):
             continue
         product = next(iter(item.get("categories") or item.get("products") or ["Autre"]), "Autre")
         grouped.setdefault(product, []).append(item)
@@ -933,6 +990,7 @@ def enrich_board_topic_metadata(
                 item["date"] = details["date"]
             item["detailCheckedAt"] = now.isoformat()
             item["detailFetchStatus"] = "success"
+            item["detailParserVersion"] = DETAIL_PARSER_VERSION
             item.pop("detailAttemptedAt", None)
         except (OSError, urllib.error.URLError, TimeoutError, UnicodeError, ValueError) as exc:
             errors.append(

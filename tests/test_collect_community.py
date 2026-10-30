@@ -474,6 +474,7 @@ class CommunityFeedTests(unittest.TestCase):
             [dict(topic)], [], lambda _url: {}, [], max_lookups=1
         )[0]
         self.assertEqual(checked["detailFetchStatus"], "success")
+        self.assertEqual(checked["detailParserVersion"], collector.DETAIL_PARSER_VERSION)
         self.assertIn("detailCheckedAt", checked)
 
         calls = []
@@ -766,6 +767,71 @@ class CommunityFeedTests(unittest.TestCase):
         result = collector.parse_topic_metadata(page)
         self.assertEqual(result["summary"], "Description: VPN fails after firmware upgrade.")
         self.assertEqual(result["date"], "2026-10-27T10:00:00+00:00")
+
+    def test_public_article_body_sections_override_short_meta_description(self):
+        page = """<html><head>
+          <meta property="og:description" content="Short meta excerpt.">
+          <meta property="article:published_time" content="2026-10-27T10:00:00Z">
+        </head><body>
+          <nav>Fortinet Community Login</nav>
+          <script>const ignored = "special build 9999";</script>
+          <h2>Description</h2><p>1GbE SFP ports may fail after a firmware upgrade.</p>
+          <h2>Scope</h2><p>FortiGate 1800F, FortiOS 7.6.8.</p>
+          <h2>Solution</h2><p>Fortinet released a special build 8768 to address the issue.</p>
+          <h2>Reference articles</h2><p>FortiOS Release Notes</p>
+        </body></html>"""
+        result = collector.parse_topic_metadata(page)
+        self.assertIn("Description", result["summary"])
+        self.assertIn("FortiOS 7.6.8", result["summary"])
+        self.assertIn("special build 8768", result["summary"])
+        self.assertNotIn("Short meta excerpt", result["summary"])
+        self.assertNotIn("Fortinet Community Login", result["summary"])
+        self.assertNotIn("special build 9999", result["summary"])
+        self.assertNotIn("Reference articles", result["summary"])
+        self.assertEqual(result["date"], "2026-10-27T10:00:00+00:00")
+
+    def test_successful_detail_is_marked_with_parser_version(self):
+        url = "https://community.fortinet.com/fortigate-3/vpn-fails-after-upgrade-230001"
+        topic = {
+            "id": url, "url": url, "title": "FortiGate VPN fails after upgrade",
+            "products": ["FortiGate"], "versions": [], "fixVersions": [],
+            "discoverySource": "index produit public",
+        }
+        checked = collector.enrich_board_topic_metadata(
+            [dict(topic)], [], lambda _url: {"summary": "Public article summary."}, [], max_lookups=1
+        )[0]
+        self.assertEqual(checked["detailFetchStatus"], "success")
+        self.assertEqual(checked["detailParserVersion"], collector.DETAIL_PARSER_VERSION)
+
+    def test_successful_detail_from_previous_parser_version_is_refetched(self):
+        url = "https://community.fortinet.com/fortigate-3/1gbe-sfp-ports-fail-after-upgrade-230759"
+        topic = {
+            "id": url, "url": url, "title": "FortiGate 1GbE SFP ports fail after upgrade",
+            "products": ["FortiGate"], "versions": [], "fixVersions": [],
+            "discoverySource": "index produit public",
+        }
+        known = [{
+            **topic,
+            "summary": "Short metadata excerpt without the special build.",
+            "date": "2026-10-24T12:09:00+00:00",
+            "detailFetchStatus": "success",
+            "detailCheckedAt": "2026-10-30T08:00:00+00:00",
+            "detailParserVersion": 1,
+        }]
+        calls = []
+        result = collector.enrich_board_topic_metadata(
+            [dict(topic)],
+            known,
+            lambda requested_url: calls.append(requested_url) or {
+                "summary": "Description Scope FortiGate 1800F, FortiOS 7.6.8. Solution special build 8768.",
+                "date": "2026-10-24T12:09:00+00:00",
+            },
+            [],
+            max_lookups=1,
+        )[0]
+        self.assertEqual(calls, [url])
+        self.assertIn("special build 8768", result["summary"])
+        self.assertEqual(result["detailParserVersion"], collector.DETAIL_PARSER_VERSION)
 
     def test_detail_enrichment_is_bounded_and_fair_across_products(self):
         gate_urls = [
