@@ -81,7 +81,11 @@ function renderCommunity() {
     const sources = (item.sources || []).slice(0, 5).map(source => {
       const url = /^https:\/\//i.test(source.url || "") ? source.url : "https://community.fortinet.com/";
       const sourceLabel = source.sourceType === "fortinet_article" ? "Article Fortinet" : source.sourceType === "forum_discussion" ? "Discussion utilisateur" : "Source";
-      return `<li><a href="${escapeHTML(url)}" target="_blank" rel="noopener noreferrer">${escapeHTML(source.title || "Source")} ↗</a><span>${escapeHTML(sourceLabel)} · ${escapeHTML(safeDate(source.date))}</span></li>`;
+      const publicationDate = source.date ? `Publié ${safeDate(source.date)}` : "Date de publication non précisée";
+      const updatedDate = source.updatedAt && source.updatedAt !== source.date
+        ? ` · mis à jour ${safeDate(source.updatedAt)}`
+        : "";
+      return `<li><a href="${escapeHTML(url)}" target="_blank" rel="noopener noreferrer">${escapeHTML(source.title || "Source")} ↗</a><span>${escapeHTML(sourceLabel)} · ${escapeHTML(publicationDate)}${escapeHTML(updatedDate)}</span></li>`;
     }).join("");
     const extra = Math.max(0, (item.sources || []).length - 5);
     const shortSummary = aiReview.summary || item.summary || item.symptom || "Ouvrir la fiche pour consulter les détails.";

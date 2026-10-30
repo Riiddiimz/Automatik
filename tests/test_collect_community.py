@@ -728,6 +728,7 @@ class CommunityFeedTests(unittest.TestCase):
             "id": url, "url": url,
             "title": "Administrator SSO authentication fails after upgrade to FortiOS 7.6.8",
             "date": "2026-10-24T12:00:00+00:00",
+            "updatedAt": "2026-10-25T09:00:00+00:00",
             "summary": "DescriptionSSO fails. ScopeFortiOS 7.6.8. SolutionUse another administrator authentication method.",
             "products": ["FortiGate"], "categories": ["FortiGate"],
             "versions": ["7.6.8"], "fixVersions": ["7.6.9"],
@@ -753,25 +754,80 @@ class CommunityFeedTests(unittest.TestCase):
             )
         topic = next(item for item in result["topics"] if item["url"] == url)
         self.assertEqual(topic["date"], old_topic["date"])
+        self.assertEqual(topic["updatedAt"], old_topic["updatedAt"])
         self.assertEqual(topic["summary"], old_topic["summary"])
         self.assertEqual(topic["versions"], ["7.6.8"])
         self.assertEqual(topic["fixVersions"], ["7.6.9"])
         self.assertNotIn("statusNote", topic, "la note d’index obsolète ne doit pas rester après fusion")
 
 
+    def test_board_index_detail_refresh_uses_new_metadata_and_keeps_version_history(self):
+        url = "https://community.fortinet.com/fortigate-3/fortigate-vpn-authentication-fails-after-upgrade-230901"
+        old_topic = {
+            "id": url, "url": url,
+            "title": "FortiGate VPN authentication fails after upgrade",
+            "date": "2026-10-24T08:00:00+00:00",
+            "updatedAt": "2026-10-25T08:00:00+00:00",
+            "summary": "Old article summary.",
+            "products": ["FortiGate"], "categories": ["FortiGate"],
+            "versions": ["7.6.7"], "fixVersions": ["7.6.9"],
+            "firstSeen": "2026-10-24T08:00:00+00:00",
+        }
+        board_topic = {
+            "id": url, "url": url, "title": old_topic["title"],
+            "date": "2026-10-28T08:00:00+00:00",
+            "updatedAt": "2026-10-29T08:00:00+00:00",
+            "summary": "Fresh article body with the latest troubleshooting details.",
+            "products": ["FortiGate"], "categories": ["FortiGate"],
+            "versions": ["7.6.8"], "fixVersions": ["7.6.10"],
+            "discoverySource": "index produit public",
+        }
+        feed = b"""<rss version="2.0"><channel>
+          <item><title>FortiGate VPN tunnel fails</title><link>https://community.fortinet.com/fortigate-3/other-vpn-topic-230902</link><description>VPN fails on FortiGate.</description></item>
+        </channel></rss>"""
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "community.json"
+            path.write_text(json.dumps({"topics": [old_topic]}), encoding="utf-8")
+            result = collector.collect(
+                fetcher=lambda: feed,
+                out=path,
+                board_fetcher=lambda: {
+                    "topics": [board_topic], "errors": [], "pages": ["index"], "pageCount": 1,
+                },
+            )
+        refreshed = next(item for item in result["topics"] if item["url"] == url)
+        self.assertEqual(refreshed["date"], board_topic["date"])
+        self.assertEqual(refreshed["updatedAt"], board_topic["updatedAt"])
+        self.assertEqual(refreshed["summary"], board_topic["summary"])
+        self.assertEqual(refreshed["versions"], ["7.6.7", "7.6.8"])
+        self.assertEqual(refreshed["fixVersions"], ["7.6.9", "7.6.10"])
+
+
+    def test_merge_discovered_topics_keeps_latest_update_timestamp(self):
+        url = "https://community.fortinet.com/fortigate-3/vpn-issue-230903"
+        merged = collector.merge_discovered_topics(
+            [{"id": url, "url": url, "title": "VPN issue", "updatedAt": "2026-10-27T08:00:00+00:00"}],
+            [{"id": url, "url": url, "title": "VPN issue", "updatedAt": "2026-10-29T08:00:00+00:00"}],
+        )
+        self.assertEqual(merged[0]["updatedAt"], "2026-10-29T08:00:00+00:00")
+
+
     def test_public_topic_metadata_parser_extracts_description_and_date(self):
         page = """<html><head>
           <meta property="og:description" content="Description: VPN fails after firmware upgrade.">
           <meta property="article:published_time" content="2026-10-27T10:00:00Z">
+          <meta property="article:modified_time" content="2026-10-29T11:30:00Z">
         </head><body></body></html>"""
         result = collector.parse_topic_metadata(page)
         self.assertEqual(result["summary"], "Description: VPN fails after firmware upgrade.")
         self.assertEqual(result["date"], "2026-10-27T10:00:00+00:00")
+        self.assertEqual(result["updatedAt"], "2026-10-29T11:30:00+00:00")
 
     def test_public_article_body_sections_override_short_meta_description(self):
         page = """<html><head>
           <meta property="og:description" content="Short meta excerpt.">
           <meta property="article:published_time" content="2026-10-27T10:00:00Z">
+          <meta property="og:updated_time" content="2026-10-28T12:00:00Z">
         </head><body>
           <nav>Fortinet Community Login</nav>
           <script>const ignored = "special build 9999";</script>
@@ -789,6 +845,7 @@ class CommunityFeedTests(unittest.TestCase):
         self.assertNotIn("special build 9999", result["summary"])
         self.assertNotIn("Reference articles", result["summary"])
         self.assertEqual(result["date"], "2026-10-27T10:00:00+00:00")
+        self.assertEqual(result["updatedAt"], "2026-10-28T12:00:00+00:00")
 
     def test_successful_detail_is_marked_with_parser_version(self):
         url = "https://community.fortinet.com/fortigate-3/vpn-fails-after-upgrade-230001"
@@ -798,10 +855,14 @@ class CommunityFeedTests(unittest.TestCase):
             "discoverySource": "index produit public",
         }
         checked = collector.enrich_board_topic_metadata(
-            [dict(topic)], [], lambda _url: {"summary": "Public article summary."}, [], max_lookups=1
+            [dict(topic)], [], lambda _url: {
+                "summary": "Public article summary.",
+                "updatedAt": "2026-10-29T11:30:00+00:00",
+            }, [], max_lookups=1
         )[0]
         self.assertEqual(checked["detailFetchStatus"], "success")
         self.assertEqual(checked["detailParserVersion"], collector.DETAIL_PARSER_VERSION)
+        self.assertEqual(checked["updatedAt"], "2026-10-29T11:30:00+00:00")
 
     def test_successful_detail_from_previous_parser_version_is_refetched(self):
         url = "https://community.fortinet.com/fortigate-3/1gbe-sfp-ports-fail-after-upgrade-230759"
@@ -816,7 +877,7 @@ class CommunityFeedTests(unittest.TestCase):
             "date": "2026-10-24T12:09:00+00:00",
             "detailFetchStatus": "success",
             "detailCheckedAt": "2026-10-30T08:00:00+00:00",
-            "detailParserVersion": 1,
+            "detailParserVersion": 2,
         }]
         calls = []
         result = collector.enrich_board_topic_metadata(

@@ -424,10 +424,14 @@ class CommunitySynthesisTests(unittest.TestCase):
             "summary": "DescriptionDNS filtering fails to inspect DNS over TLS queries in proxy mode.ScopeFortiGate 7.6.4.SolutionThis known issue occurs because the IPS engine skips DNS decoding.Workaround: add port 853 to the IPS decoder list.",
             "url": "https://community.fortinet.com/fortigate-3/dns-over-tls-example",
             "products": ["FortiGate"],
+            "date": "2026-10-27T10:00:00+00:00",
+            "updatedAt": "2026-10-29T11:30:00+00:00",
         }
         with tempfile.TemporaryDirectory() as directory:
             result = synth.synthesize({"topics": [item]}, Path(directory) / "community.json")
         incident = result["incidents"][0]
+        self.assertEqual(incident["sources"][0]["date"], "2026-10-27T10:00:00+00:00")
+        self.assertEqual(incident["sources"][0]["updatedAt"], "2026-10-29T11:30:00+00:00")
         self.assertIn("DNS filtering fails", incident["symptom"])
         self.assertIn("Contournement : add port 853", incident["solution"])
         self.assertEqual(incident["impact"], "")

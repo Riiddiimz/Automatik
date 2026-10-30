@@ -28,7 +28,7 @@ MAX_BOARD_PAGES = 5
 # Ten pages reach roughly 25–28 days of discussions in the observed public index.
 SUPPORT_FORUM_MAX_PAGES = 10
 MAX_BOARD_DETAIL_LOOKUPS = 12
-DETAIL_PARSER_VERSION = 2
+DETAIL_PARSER_VERSION = 3
 DETAIL_FAILURE_RETRY_HOURS = 2
 BOARD_DETAIL_RE = re.compile(
     r"\b(?:fail(?:s|ed|ure)?|not working|not loading|not supported|unsupported|unable|cannot|can\x27t|"
@@ -880,19 +880,28 @@ def parse_topic_metadata(payload: str | bytes) -> dict:
     ), "")
     body_summary = extract_public_article_summary(" ".join(parser.text_parts))
     summary = body_summary or meta_summary
-    date_value = next((
+    published_value = next((
         parser.meta[key]
         for key in (
             "article:published_time", "datepublished", "datecreated",
-            "dc.date.issued", "date", "og:updated_time", "article:modified_time",
+            "dc.date.issued", "date",
         )
         if parser.meta.get(key)
     ), "")
-    if not date_value and parser.time_values:
-        date_value = parser.time_values[0]
+    updated_value = next((
+        parser.meta[key]
+        for key in (
+            "article:modified_time", "og:updated_time", "datemodified",
+            "dc.date.modified", "date.modified", "last-modified", "updated",
+        )
+        if parser.meta.get(key)
+    ), "")
+    if not published_value and parser.time_values:
+        published_value = parser.time_values[0]
     return {
         "summary": clean(summary)[:5000],
-        "date": parse_date(date_value) if date_value else None,
+        "date": parse_date(published_value) if published_value else None,
+        "updatedAt": parse_date(updated_value) if updated_value else None,
     }
 
 
@@ -974,6 +983,8 @@ def enrich_board_topic_metadata(
                 item["summary"] = clean(str(details["summary"]))[:5000]
             if details.get("date"):
                 item["date"] = details["date"]
+            if details.get("updatedAt"):
+                item["updatedAt"] = details["updatedAt"]
             item["detailCheckedAt"] = now.isoformat()
             item["detailFetchStatus"] = "success"
             item["detailParserVersion"] = DETAIL_PARSER_VERSION
@@ -1113,6 +1124,12 @@ def merge_discovered_topics(primary: list[dict], secondary: list[dict]) -> list[
         for field in ("date", "summary"):
             if not combined.get(field) and normalized.get(field):
                 combined[field] = normalized[field]
+        updated_values = [
+            str(value) for value in (existing.get("updatedAt"), normalized.get("updatedAt"))
+            if value
+        ]
+        if updated_values:
+            combined["updatedAt"] = max(updated_values)
         if existing.get("summary"):
             combined.pop("discoverySource", None)
         elif not combined.get("discoverySource") and normalized.get("discoverySource"):
@@ -1302,9 +1319,21 @@ def collect(fetcher=fetch_feed, out: Path = OUT, topic_fetcher=None, board_fetch
         # A product index only supplies a title and link. It must never erase
         # richer metadata collected earlier from RSS or a detail page.
         if item.get("discoverySource") == "index produit public":
-            for field in ("date", "summary", "versions", "fixVersions"):
-                if old.get(field):
+            for field in ("date", "summary"):
+                if not item.get(field) and old.get(field):
                     record[field] = old[field]
+            updated_values = [
+                str(value) for value in (old.get("updatedAt"), item.get("updatedAt"))
+                if value
+            ]
+            if updated_values:
+                record["updatedAt"] = max(updated_values)
+            for field in ("versions", "fixVersions"):
+                values = set(old.get(field) or []) | set(item.get(field) or [])
+                record[field] = sorted(
+                    values,
+                    key=lambda version: tuple(int(part) for part in str(version).split(".")),
+                )
             record["products"] = list(dict.fromkeys([
                 *(old.get("products") or []),
                 *(item.get("products") or []),

@@ -136,6 +136,25 @@ const { chromium } = require("playwright");
       }
     }
 
+    const updatedSourceIncident = (data.incidents || []).slice(0, 100).find(incident =>
+      (incident.sources || []).slice(0, 5).some(source => source.updatedAt && source.updatedAt !== source.date)
+    );
+    if (updatedSourceIncident) {
+      const updatedSource = updatedSourceIncident.sources.slice(0, 5).find(source =>
+        source.updatedAt && source.updatedAt !== source.date
+      );
+      const updatedCard = cards.filter({ hasText: updatedSourceIncident.title }).first();
+      if (!(await updatedCard.evaluate(element => element.open))) {
+        await updatedCard.locator("summary").first().click();
+      }
+      const updatedSourceDetails = updatedCard.locator(".incident-sources");
+      if (!(await updatedSourceDetails.evaluate(element => element.open))) {
+        await updatedSourceDetails.locator("summary").click();
+      }
+      const updatedSourceRow = updatedSourceDetails.locator("li").filter({ hasText: updatedSource.title }).first();
+      assert.match(await updatedSourceRow.innerText(), /mis à jour/i, "la date de mise à jour d'une source doit être visible");
+    }
+
     const unknownVersionIncident = (data.incidents || []).find(item =>
       !(item.versions || []).length && !(item.versionFamilies || []).length
     );

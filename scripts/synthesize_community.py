@@ -483,6 +483,7 @@ def synthesize(data: dict, out: Path = DATA) -> dict:
             "title": item.get("title", "Sujet sans titre"),
             "url": item.get("url", ""),
             "date": item.get("date"),
+            "updatedAt": item.get("updatedAt"),
             "summary": item.get("summary", "")[:1000],
             "products": item.get("products", []),
             "versions": item.get("versions", []),
@@ -495,7 +496,15 @@ def synthesize(data: dict, out: Path = DATA) -> dict:
         symptom = next((source["symptom"] for source in sources if source.get("symptom")), "")
         impact = next((source["impact"] for source in sources if source.get("impact")), "")
         solution = next((source["solution"] for source in sources if source.get("solution")), "")
-        newest = max((item.get("date") or "" for item in cluster), default="")
+        newest = max(
+            (
+                str(value)
+                for item in cluster
+                for value in (item.get("date"), item.get("updatedAt"))
+                if value
+            ),
+            default="",
+        )
         documented_sources = [item for item in cluster if has_documented_evidence(item)]
         reports = forum_report_count(cluster)
         # Forum-only incidents require at least two distinct user discussions.
