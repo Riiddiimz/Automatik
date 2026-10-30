@@ -27,9 +27,8 @@ class LegacyCommunityScraperSecurityTests(unittest.TestCase):
             result = legacy.appeler_gemini("test-secret-key", "prompt de test")
 
         request = urlopen.call_args.args[0]
-        headers = {name.lower(): value for name, value in request.header_items()}
         self.assertEqual(result, "Analyse terminée")
-        self.assertEqual(headers.get("x-goog-api-key"), "test-secret-key")
+        self.assertEqual(request.get_header("X-goog-api-key"), "test-secret-key")
         self.assertNotIn("test-secret-key", request.full_url)
         self.assertNotIn("?key=", request.full_url)
 
@@ -46,7 +45,7 @@ class LegacyCommunityScraperSecurityTests(unittest.TestCase):
             with self.assertRaises(RuntimeError) as raised:
                 legacy.appeler_gemini(api_key, "prompt de test")
         self.assertNotIn(api_key, str(raised.exception))
-        self.assertIn("[redacted]", str(raised.exception))
+        self.assertIn("détails masqués", str(raised.exception))
 
     def test_main_reads_api_key_from_environment_without_cli_argument(self):
         with patch.dict(os.environ, {"GEMINI_API_KEY": "test-secret-key"}):
