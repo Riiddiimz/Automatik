@@ -260,6 +260,27 @@ class CommunitySynthesisTests(unittest.TestCase):
         self.assertEqual(synth.extract_versions(item), (["7.2", "7.4"], ["7.2", "7.4"]))
         self.assertEqual(synth.extract_fixed_versions(item), ["7.4.9", "8.0.1"])
 
+    def test_official_has_a_fix_in_phrase_is_not_misclassified_as_affected(self):
+        item = {
+            "title": "After upgrading to FortiOS version 7.6.8, FSSO admins cannot authenticate via SAML",
+            "summary": (
+                "DescriptionAfter upgrading the FortiGate to FortiOS version 7.6.8, "
+                "admins with FSSO enabled cannot log in via SAML authentication. "
+                "ScopeFortiGate. "
+                "SolutionThis matches a known issue in FortiOS 7.6.8 that has a fix in firmware version 7.6.9. "
+                "For the time being, use a local administrator account."
+            ),
+            "url": "https://community.fortinet.com/fortigate-3/after-upgrading-to-fortios-version-7-6-8-fsso-admins-cannot-authenticate-via-saml-230931",
+        }
+
+        self.assertEqual(synth.extract_versions(item), (["7.6.8"], ["7.6"]))
+        self.assertEqual(synth.extract_fixed_versions(item), ["7.6.9"])
+        with tempfile.TemporaryDirectory() as directory:
+            result = synth.synthesize({"topics": [item]}, Path(directory) / "community.json")
+        incident = result["incidents"][0]
+        self.assertEqual(incident["versions"], ["7.6.8"])
+        self.assertEqual(incident["fixVersions"], ["7.6.9"])
+
     def test_official_scoped_issue_without_version_is_published_as_unknown(self):
         item = {
             "title": "Troubleshooting Tip: LDAP search 'Timed out' in 5 seconds, ignoring timeout settings",
