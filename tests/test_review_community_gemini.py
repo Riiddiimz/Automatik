@@ -44,6 +44,58 @@ class GeminiReviewTests(unittest.TestCase):
         self.assertEqual(items[0]["versions"], ["7.4.12"])
         self.assertEqual(items[0]["sources"][0]["url"], "https://community.fortinet.com/example")
 
+    def test_build_review_input_skips_current_reviews_and_requeues_stale_models(self):
+        data = {"incidents": [
+            {
+                "id": "already-reviewed",
+                "aiReview": {"reviewedAt": "2026-10-29T10:00:00+00:00", "model": reviewer.MODEL},
+            },
+            {
+                "id": "stale-model",
+                "aiReview": {"reviewedAt": "2026-10-29T10:00:00+00:00", "model": "old-model"},
+            },
+            {"id": "not-reviewed"},
+        ]}
+
+        items = build_review_input(data)
+
+        self.assertEqual([item["id"] for item in items], ["stale-model", "not-reviewed"])
+
+    def test_review_batch_limit_applies_after_skipping_already_reviewed_incidents(self):
+        incidents = []
+        for index in range(90):
+            incident = {"id": f"incident-{index}"}
+            if index < 45:
+                incident["aiReview"] = {
+                    "reviewedAt": "2026-10-29T10:00:00+00:00",
+                    "model": reviewer.MODEL,
+                }
+            incidents.append(incident)
+
+        items = build_review_input({"incidents": incidents})
+
+        self.assertEqual(len(items), reviewer.MAX_INCIDENTS)
+        self.assertEqual(items[0]["id"], "incident-45")
+        self.assertEqual(items[-1]["id"], "incident-84")
+
+    def test_main_marks_review_complete_without_api_key_when_no_incident_is_pending(self):
+        data = json.loads(json.dumps(self.data))
+        data["incidents"][0]["aiReview"] = {
+            "summary": "Relecture existante",
+            "reviewedAt": "2026-10-29T10:00:00+00:00",
+            "model": reviewer.MODEL,
+        }
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "community.json"
+            path.write_text(json.dumps(data), encoding="utf-8")
+            with patch.object(reviewer, "DATA", path), patch.dict(os.environ, {"GEMINI_API_KEY": ""}):
+                self.assertEqual(reviewer.main(), 0)
+            saved = json.loads(path.read_text(encoding="utf-8"))
+
+        self.assertEqual(saved["aiReviewStatus"], "success")
+        self.assertIn("déjà", saved["aiReviewMessage"])
+        self.assertEqual(saved["incidents"][0]["aiReview"]["summary"], "Relecture existante")
+
     def test_parse_gemini_json_accepts_markdown_fence(self):
         fenced = chr(96) * 3 + 'json\n[{"id":"a"}]\n' + chr(96) * 3
         self.assertEqual(parse_gemini_json(fenced), [{"id": "a"}])
@@ -102,7 +154,7 @@ class GeminiReviewTests(unittest.TestCase):
         data["incidents"][0]["aiReview"] = {
             "summary": "Ancienne reformulation",
             "reviewedAt": "2026-10-26T10:00:00+00:00",
-            "model": "gemini-3.5-flash-lite",
+            "model": "old-model",
         }
         with tempfile.TemporaryDirectory() as directory:
             path = Path(directory) / "community.json"
@@ -120,7 +172,7 @@ class GeminiReviewTests(unittest.TestCase):
         data["incidents"][0]["aiReview"] = {
             "summary": "Reformulation toujours valide",
             "reviewedAt": "2026-10-26T10:00:00+00:00",
-            "model": "gemini-3.5-flash-lite",
+            "model": "old-model",
         }
         with tempfile.TemporaryDirectory() as directory:
             path = Path(directory) / "community.json"
