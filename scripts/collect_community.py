@@ -256,7 +256,6 @@ def enrich_unclassified_topics(
 ) -> list[dict]:
     """Enrichir les sujets non classés sans jamais perdre une entrée faute de métadonnées."""
     now = datetime.now(timezone.utc)
-    success_cutoff = (now - timedelta(hours=24)).isoformat()
     failure_cutoff = (now - timedelta(hours=DETAIL_FAILURE_RETRY_HOURS)).isoformat()
     known_by_url = {
         str(item.get("url") or item.get("id") or "").rstrip("/"): item
@@ -939,14 +938,8 @@ def enrich_board_topic_metadata(
         if not url or not BOARD_DETAIL_RE.search(title):
             continue
         known = known_by_url.get(url, {})
-        if (
-            known.get("summary")
-            and known.get("date")
-            and known.get("detailFetchStatus") != "success"
-        ):
-            continue
-        # Re-read previously successful pages once when the public-page parser
-        # changes, then keep successful checks terminal for this parser version.
+        # Re-read every index-discovered topic once for a new parser version,
+        # even when RSS already supplied a title, summary and date.
         if (
             known.get("detailFetchStatus") == "success"
             and known.get("detailParserVersion") == DETAIL_PARSER_VERSION
@@ -954,13 +947,6 @@ def enrich_board_topic_metadata(
             continue
         attempted_at = str(known.get("detailAttemptedAt") or "")
         if attempted_at and attempted_at >= failure_cutoff:
-            continue
-        checked_at = str(known.get("detailCheckedAt") or "")
-        if (
-            checked_at
-            and checked_at >= success_cutoff
-            and known.get("detailParserVersion") == DETAIL_PARSER_VERSION
-        ):
             continue
         product = next(iter(item.get("categories") or item.get("products") or ["Autre"]), "Autre")
         grouped.setdefault(product, []).append(item)
@@ -1002,6 +988,7 @@ def enrich_board_topic_metadata(
             item["detailAttemptedAt"] = now.isoformat()
             item["detailFetchStatus"] = "failed"
             item.pop("detailCheckedAt", None)
+            item.pop("detailParserVersion", None)
     return items
 
 

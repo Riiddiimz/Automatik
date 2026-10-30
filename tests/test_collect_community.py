@@ -833,6 +833,34 @@ class CommunityFeedTests(unittest.TestCase):
         self.assertIn("special build 8768", result["summary"])
         self.assertEqual(result["detailParserVersion"], collector.DETAIL_PARSER_VERSION)
 
+    def test_complete_existing_metadata_is_reenriched_for_new_parser_version(self):
+        url = "https://community.fortinet.com/fortigate-3/1gbe-sfp-ports-fail-after-upgrade-230759"
+        topic = {
+            "id": url, "url": url, "title": "FortiGate 1GbE SFP ports fail after upgrade",
+            "products": ["FortiGate"], "versions": [], "fixVersions": [],
+            "discoverySource": "index produit public",
+        }
+        known = [{
+            **topic,
+            "summary": "Existing RSS summary.",
+            "date": "2026-10-24T12:09:00+00:00",
+            "detailFetchStatus": None,
+        }]
+        calls = []
+        result = collector.enrich_board_topic_metadata(
+            [dict(topic)],
+            known,
+            lambda requested_url: calls.append(requested_url) or {
+                "summary": "Description Scope FortiGate 1800F, FortiOS 7.6.8. Solution special build 8768.",
+                "date": "2026-10-24T12:09:00+00:00",
+            },
+            [],
+            max_lookups=1,
+        )[0]
+        self.assertEqual(calls, [url])
+        self.assertIn("special build 8768", result["summary"])
+        self.assertEqual(result["detailParserVersion"], collector.DETAIL_PARSER_VERSION)
+
     def test_detail_enrichment_is_bounded_and_fair_across_products(self):
         gate_urls = [
             "https://community.fortinet.com/fortigate-3/vpn-fails-after-upgrade-230101",
