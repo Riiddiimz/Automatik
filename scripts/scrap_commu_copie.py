@@ -240,9 +240,8 @@ def appeler_gemini(cle_api, prompt, modele=MODELE_GEMINI):
         with urllib.request.urlopen(req, timeout=120) as resp:
             reponse_brute = json.loads(resp.read().decode("utf-8"))
     except urllib.error.HTTPError as e:
-        corps_erreur = e.read().decode("utf-8", errors="replace")
-        corps_erreur = corps_erreur.replace(cle_api, "[redacted]")[:500]
-        raise RuntimeError(f"Erreur API Gemini ({e.code}) : {corps_erreur}")
+        # Do not include the response body: upstream diagnostics can echo request data.
+        raise RuntimeError(f"Erreur API Gemini ({e.code}); détails masqués.") from None
 
     try:
         candidat = reponse_brute["candidates"][0]
