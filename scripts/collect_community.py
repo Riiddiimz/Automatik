@@ -473,8 +473,9 @@ def extract_versions(title: str, summary: str, url: str = "") -> list[str]:
         affected_contexts = [
             match.group(0) for match in AFFECTED_VERSION_CONTEXT_RE.finditer(summary)
         ]
-        scope_text = scope.group(1) if scope else ""
-        text = f"{title} {scope_text} {' '.join(affected_contexts)}"
+        if scope or affected_contexts:
+            scope_text = scope.group(1) if scope else ""
+            text = f"{title} {scope_text} {' '.join(affected_contexts)}"
     # Exclude fixed releases, IP addresses, platform/tool versions and elapsed-time decimals.
     text = FIXED_VERSION_RE.sub(" ", text)
     text = FIXED_VERSION_CONTEXT_RE.sub(" ", text)
@@ -491,7 +492,7 @@ def extract_versions(title: str, summary: str, url: str = "") -> list[str]:
     found = set()
     for match in VERSION_CONTEXT_RE.finditer(text):
         found.add(match.group(1))
-        sentence_tail = re.split(r"[.!?]", text[match.end():], maxsplit=1)[0]
+        sentence_tail = re.split(r"[!?]|\.(?=\s|$)", text[match.end():], maxsplit=1)[0]
         found.update(VERSION_LIST_TAIL_RE.findall(sentence_tail))
     for version_list in FIRMWARE_VERSION_LIST_RE.findall(text):
         found.update(re.findall(r"\b(\d{1,2}\.\d{1,2}(?:\.\d{1,3})?)\b", version_list))
@@ -515,7 +516,7 @@ def extract_fixed_versions(title: str, summary: str, url: str = "") -> list[str]
     for pattern in (FIXED_VERSION_RE, FIXED_VERSION_UPGRADE_RE):
         for match in pattern.finditer(text):
             found.add(match.group(1))
-            sentence_tail = re.split(r"[.!?]", text[match.end():], maxsplit=1)[0]
+            sentence_tail = re.split(r"[!?]|\.(?=\s|$)", text[match.end():], maxsplit=1)[0]
             found.update(FIXED_VERSION_TAIL_RE.findall(sentence_tail))
     for match in FIXED_VERSION_CONTEXT_RE.finditer(text):
         found.update(re.findall(r"\d{1,2}\.\d{1,2}(?:\.\d{1,3})?", match.group(1)))
