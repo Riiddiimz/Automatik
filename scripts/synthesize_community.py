@@ -57,8 +57,8 @@ FIXED_VERSION_RE = re.compile(
     re.I,
 )
 FIXED_VERSION_LIST_RE = re.compile(
-    r"\b(?:fix|patch|correction)\s+(?:is\s+)?(?:available|included|provided)\s+"
-    r"in\s+the\s+following\s+versions\s*:?\s*(.*?)(?=(?:upgrade procedure|related articles|see:|workaround|note:)|$)",
+    r"\b(?:fix|patch|correction)\s+(?:is\s+)?(?:available|included|provided|expected|planned)\s+"
+    r"in\s+(?:the\s+following\s+versions\s*:?\s*)?(.*?)(?=(?:upgrade procedure|related articles|see:|workaround|note:)|$)",
     re.I | re.S,
 )
 FIXED_VERSION_LIST_TOKEN_RE = re.compile(

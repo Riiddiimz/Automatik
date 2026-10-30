@@ -235,6 +235,28 @@ class CommunitySynthesisTests(unittest.TestCase):
         self.assertEqual(incident["status"], "Documenté par Fortinet (version non précisée)")
 
 
+    def test_fortimanager_expected_fix_extracts_multiple_future_versions(self):
+        item = {
+            "title": "FortiManager version 7.6.8 trying to install SSL-SSH profile settings not supported on 2GB FortiGate devices",
+            "summary": (
+                "Description Troubleshooting steps for installation failure in FortiManager version 7.6.8. "
+                "Scope FortiManager. "
+                "Solution Installing the udp-not-quic option on FortiGate devices with 2GB memory fails. "
+                "This behavior is due to a known issue, with ID 1352524. "
+                "Fix: A fix is expected in FortiManager firmware versions 7.6.9 and 8.0.3. "
+                "Related document: Known issues."
+            ),
+            "url": "https://community.fortinet.com/fortimanager-27/fortimanager-version-7-6-8-trying-to-install-ssl-ssh-profile-settings-that-are-not-supported-on-2gb-fortigate-devices-230815",
+            "products": ["FortiGate", "FortiManager"],
+        }
+        self.assertEqual(synth.extract_versions(item), (["7.6.8"], ["7.6"]))
+        self.assertEqual(synth.extract_fixed_versions(item), ["7.6.9", "8.0.3"])
+        with tempfile.TemporaryDirectory() as directory:
+            result = synth.synthesize({"topics": [item]}, Path(directory) / "community.json")
+        self.assertEqual(result["incidentCount"], 1)
+        self.assertEqual(result["incidents"][0]["fixVersions"], ["7.6.9", "8.0.3"])
+
+
     def test_official_radius_csv_import_issue_keeps_both_fixed_versions(self):
         item = {
             "title": "RADIUS attributes of users cleared during CSV file import",
