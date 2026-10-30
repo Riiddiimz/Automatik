@@ -213,6 +213,37 @@ class CommunitySynthesisTests(unittest.TestCase):
         self.assertEqual(result["incidents"][0]["versionFamilies"], ["7.6"])
 
 
+    def test_official_articles_extract_multiple_affected_and_fixed_versions(self):
+        item = {
+            "title": "CSRF validation error, SAML IdP Proxy with federated domains",
+            "summary": (
+                "DescriptionSAML IdP Proxy authentication fails. ScopeFortiAuthenticator. "
+                "SolutionThis is a known issue in FortiAuthenticator version 6.6.10 and 8.0.3. "
+                "Resolution is to upgrade FortiAuthenticator to version 6.6.11, 8.0.4 or higher. "
+                "This issue is resolved in firmware version 6.6.11 and 8.0.4."
+            ),
+            "url": "https://community.fortinet.com/fortiauthenticator-8/csrf-validation-error-saml-idp-proxy-230933",
+        }
+        self.assertEqual(synth.extract_versions(item), (["6.6.10", "8.0.3"], ["6.6", "8.0"]))
+        self.assertEqual(synth.extract_fixed_versions(item), ["6.6.11", "8.0.4"])
+        with tempfile.TemporaryDirectory() as directory:
+            result = synth.synthesize({"topics": [item]}, Path(directory) / "community.json")
+        self.assertEqual(result["incidents"][0]["versions"], ["6.6.10", "8.0.3"])
+        self.assertEqual(result["incidents"][0]["fixVersions"], ["6.6.11", "8.0.4"])
+
+    def test_official_client_versions_and_fix_versions_are_not_confused(self):
+        item = {
+            "title": "Troubleshooting Tip: FortiClient auto-patch failure due to certificate validation issues",
+            "summary": (
+                "DescriptionFortiClient auto-patch fails. ScopeFortiClient v7.2 and v7.4. "
+                "SolutionAlternatively, upgrade to FortiClient versions 7.4.9 or 8.0.1, "
+                "which include a fix for this behavior."
+            ),
+            "url": "https://community.fortinet.com/forticlient-4/auto-patch-failure-230934",
+        }
+        self.assertEqual(synth.extract_versions(item), (["7.2", "7.4"], ["7.2", "7.4"]))
+        self.assertEqual(synth.extract_fixed_versions(item), ["7.4.9", "8.0.1"])
+
     def test_official_scoped_issue_without_version_is_published_as_unknown(self):
         item = {
             "title": "Troubleshooting Tip: LDAP search 'Timed out' in 5 seconds, ignoring timeout settings",

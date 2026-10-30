@@ -28,7 +28,7 @@ MAX_BOARD_PAGES = 5
 # Ten pages reach roughly 25–28 days of discussions in the observed public index.
 SUPPORT_FORUM_MAX_PAGES = 10
 MAX_BOARD_DETAIL_LOOKUPS = 12
-DETAIL_PARSER_VERSION = 3
+DETAIL_PARSER_VERSION = 4
 DETAIL_FAILURE_RETRY_HOURS = 2
 BOARD_DETAIL_RE = re.compile(
     r"\b(?:fail(?:s|ed|ure)?|not working|not loading|not supported|unsupported|unable|cannot|can\x27t|"
@@ -69,6 +69,19 @@ VERSION_CONTEXT_RE = re.compile(
     r"(?:version\s*)?v?(\d{1,2}\.\d{1,2}(?:\.\d{1,3})?)",
     re.I,
 )
+VERSION_LIST_TAIL_RE = re.compile(
+    r"(?:,|/|\band\b|\bor\b)\s*(?:version\s*)?v?(\d{1,2}\.\d{1,2}(?:\.\d{1,3})?)\b",
+    re.I,
+)
+AFFECTED_VERSION_CONTEXT_RE = re.compile(
+    r"\b(?:known\s+(?:issue|bug|defect)|affected\s+versions?|affected\s+releases?)\b"
+    r"[^.!?]{0,140}?\b(?:in|on|:|affects?)\s*"
+    r"(?:(?:fortios|fortigate|fortimanager|fortianalyzer|fortiauthenticator|"
+    r"forticlient(?:\s+(?:ems|vpn))?|firmware)\s*)?"
+    r"(?:versions?\s*)?v?\d{1,2}\.\d{1,2}(?:\.\d{1,3})?"
+    r"(?:\s*(?:,|and|or|/)\s*v?\d{1,2}\.\d{1,2}(?:\.\d{1,3})?)*",
+    re.I,
+)
 FIRMWARE_VERSION_LIST_RE = re.compile(r"\bfirmware\s*\(([^)]{1,120})\)", re.I)
 UPGRADE_PATH_RE = re.compile(
     r"\b(?:upgrad(?:e|ed|ing|es)|firmware update)\b[^.!?]{0,120}?"
@@ -89,6 +102,30 @@ FIXED_VERSION_RE = re.compile(
     r"fortiauthenticator|forticlient(?:\s+(?:ems|vpn))?|fortiswitch|fortiap|firmware)\s*)?"
     r"(?:version\s*)?v?(\d{1,2}\.\d{1,2}(?:\.\d{1,3})?)\b",
     re.I,
+)
+FIXED_VERSION_TAIL_RE = VERSION_LIST_TAIL_RE
+FIXED_VERSION_CONTEXT_RE = re.compile(
+    r"\b(?:versions?|firmware)\s+"
+    r"((?:v?\d{1,2}\.\d{1,2}(?:\.\d{1,3})?)"
+    r"(?:\s*(?:,|and|or|/)\s*v?\d{1,2}\.\d{1,2}(?:\.\d{1,3})?)*)"
+    r"(?=[^.!?]{0,80}\b(?:include|contain|have)\s+(?:a\s+)?(?:fix|patch|correction)\b)",
+    re.I,
+)
+FIXED_VERSION_UPGRADE_RE = re.compile(
+    r"\b(?:permanent solution|resolution|fix|solution)\s*(?::|is\s+to)\s*"
+    r"(?:update|upgrade)\s+"
+    r"(?:(?:fortios|fortigate|fortimanager|fortianalyzer|fortiauthenticator|"
+    r"forticlient(?:\s+(?:ems|vpn))?|firmware)\s+)?"
+    r"(?:to\s+)?(?:version\s*)?v?(\d{1,2}\.\d{1,2}(?:\.\d{1,3})?)\b",
+    re.I,
+)
+FIXED_VERSION_LIST_RE = re.compile(
+    r"\b(?:fix|patch|correction)\s+(?:is\s+)?(?:available|included|provided|expected|planned)\s+"
+    r"in\s+(?:the\s+following\s+versions\s*:?\s*)?(.*?)(?=(?:upgrade procedure|related articles|see:|workaround|note:)|$)",
+    re.I | re.S,
+)
+FIXED_VERSION_LIST_TOKEN_RE = re.compile(
+    r"(?<!\d)(\d{1,2}\.\d{1,2}(?:\.\d{1,3})?)(?=[A-Za-z\s,;:.]|$)"
 )
 
 NON_FORTINET_VERSION_RE = re.compile(
@@ -433,13 +470,14 @@ def extract_versions(title: str, summary: str, url: str = "") -> list[str]:
             r"\bScope\s*:?\s*(.*?)(?=\b(?:Solution|Workaround|Impact|Description)\b|$)",
             summary, re.I | re.S,
         )
-        if scope:
-            # The title and Scope describe the affected product/release. Never
-            # infer affected versions from a Solution/Workaround (often a fixed release).
-            text = f"{title} {scope.group(1)}"
-    # Exclude IP addresses, platform/tool versions and elapsed-time decimals.
-    # A version explicitly described as fixed is not an affected version.
+        affected_contexts = [
+            match.group(0) for match in AFFECTED_VERSION_CONTEXT_RE.finditer(summary)
+        ]
+        scope_text = scope.group(1) if scope else ""
+        text = f"{title} {scope_text} {' '.join(affected_contexts)}"
+    # Exclude fixed releases, IP addresses, platform/tool versions and elapsed-time decimals.
     text = FIXED_VERSION_RE.sub(" ", text)
+    text = FIXED_VERSION_CONTEXT_RE.sub(" ", text)
     text = re.sub(r"\b(?:\d{1,3}\.){3}\d{1,3}\b", " ", text)
     text = NON_FORTINET_VERSION_RE.sub(" ", text)
     text = re.sub(
@@ -450,7 +488,11 @@ def extract_versions(title: str, summary: str, url: str = "") -> list[str]:
         r"\b(?:dig|openssl|python|curl|wget|iperf3?|ping)\s+v?\d{1,2}\.\d{1,2}(?:\.\d{1,3})?\b",
         " ", text, flags=re.I,
     )
-    found = set(VERSION_CONTEXT_RE.findall(text))
+    found = set()
+    for match in VERSION_CONTEXT_RE.finditer(text):
+        found.add(match.group(1))
+        sentence_tail = re.split(r"[.!?]", text[match.end():], maxsplit=1)[0]
+        found.update(VERSION_LIST_TAIL_RE.findall(sentence_tail))
     for version_list in FIRMWARE_VERSION_LIST_RE.findall(text):
         found.update(re.findall(r"\b(\d{1,2}\.\d{1,2}(?:\.\d{1,3})?)\b", version_list))
     for source_version, target_version in UPGRADE_PATH_RE.findall(text):
@@ -468,7 +510,17 @@ def extract_fixed_versions(title: str, summary: str, url: str = "") -> list[str]
     ))
     if not official_article:
         return []
-    found = set(FIXED_VERSION_RE.findall(f"{title} {summary}"))
+    text = f"{title} {summary}"
+    found = set()
+    for pattern in (FIXED_VERSION_RE, FIXED_VERSION_UPGRADE_RE):
+        for match in pattern.finditer(text):
+            found.add(match.group(1))
+            sentence_tail = re.split(r"[.!?]", text[match.end():], maxsplit=1)[0]
+            found.update(FIXED_VERSION_TAIL_RE.findall(sentence_tail))
+    for match in FIXED_VERSION_CONTEXT_RE.finditer(text):
+        found.update(re.findall(r"\d{1,2}\.\d{1,2}(?:\.\d{1,3})?", match.group(1)))
+    for match in FIXED_VERSION_LIST_RE.finditer(text):
+        found.update(FIXED_VERSION_LIST_TOKEN_RE.findall(match.group(1)))
     return sorted(found, key=lambda version: tuple(int(part) for part in version.split(".")))
 
 
@@ -985,6 +1037,12 @@ def enrich_board_topic_metadata(
                 item["date"] = details["date"]
             if details.get("updatedAt"):
                 item["updatedAt"] = details["updatedAt"]
+            item["versions"] = extract_versions(
+                item.get("title", ""), item.get("summary", ""), item.get("url", "")
+            )
+            item["fixVersions"] = extract_fixed_versions(
+                item.get("title", ""), item.get("summary", ""), item.get("url", "")
+            )
             item["detailCheckedAt"] = now.isoformat()
             item["detailFetchStatus"] = "success"
             item["detailParserVersion"] = DETAIL_PARSER_VERSION

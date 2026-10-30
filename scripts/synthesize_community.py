@@ -38,6 +38,19 @@ VERSION_CONTEXT_RE = re.compile(
     r"\b(?:fortios|fortigate|fortimanager|fortianalyzer|fortiauthenticator|forticlient(?:\s+(?:ems|vpn))?|fortiswitch|fortiap|firmware)\s*[\(:-]?\s*(?:version\s*)?v?(\d{1,2}\.\d{1,2}(?:\.\d{1,3})?)",
     re.I,
 )
+VERSION_LIST_TAIL_RE = re.compile(
+    r"(?:,|/|\band\b|\bor\b)\s*(?:version\s*)?v?(\d{1,2}\.\d{1,2}(?:\.\d{1,3})?)\b",
+    re.I,
+)
+AFFECTED_VERSION_CONTEXT_RE = re.compile(
+    r"\b(?:known\s+(?:issue|bug|defect)|affected\s+versions?|affected\s+releases?)\b"
+    r"[^.!?]{0,140}?\b(?:in|on|:|affects?)\s*"
+    r"(?:(?:fortios|fortigate|fortimanager|fortianalyzer|fortiauthenticator|"
+    r"forticlient(?:\s+(?:ems|vpn))?|firmware)\s*)?"
+    r"(?:versions?\s*)?v?\d{1,2}\.\d{1,2}(?:\.\d{1,3})?"
+    r"(?:\s*(?:,|and|or|/)\s*v?\d{1,2}\.\d{1,2}(?:\.\d{1,3})?)*",
+    re.I,
+)
 FIRMWARE_VERSION_LIST_RE = re.compile(r"\bfirmware\s*\(([^)]{1,120})\)", re.I)
 UPGRADE_PATH_RE = re.compile(
     r"\b(?:upgrad(?:e|ed|ing|es)|firmware update)\b[^.!?]{0,120}?\b(?:from\s+)?(?:version\s*)?v?(\d{1,2}\.\d{1,2}(?:\.\d{1,3})?)\b[^.!?]{0,80}?\bto\s+(?:version\s*)?v?(\d{1,2}\.\d{1,2}(?:\.\d{1,3})?)\b",
@@ -56,6 +69,22 @@ FIXED_VERSION_RE = re.compile(
     r"(?:version\s*)?v?(\d{1,2}\.\d{1,2}(?:\.\d{1,3})?)\b",
     re.I,
 )
+FIXED_VERSION_TAIL_RE = VERSION_LIST_TAIL_RE
+FIXED_VERSION_CONTEXT_RE = re.compile(
+    r"\b(?:versions?|firmware)\s+"
+    r"((?:v?\d{1,2}\.\d{1,2}(?:\.\d{1,3})?)"
+    r"(?:\s*(?:,|and|or|/)\s*v?\d{1,2}\.\d{1,2}(?:\.\d{1,3})?)*)"
+    r"(?=[^.!?]{0,80}\b(?:include|contain|have)\s+(?:a\s+)?(?:fix|patch|correction)\b)",
+    re.I,
+)
+FIXED_VERSION_UPGRADE_RE = re.compile(
+    r"\b(?:permanent solution|resolution|fix|solution)\s*(?::|is\s+to)\s*"
+    r"(?:update|upgrade)\s+"
+    r"(?:(?:fortios|fortigate|fortimanager|fortianalyzer|fortiauthenticator|"
+    r"forticlient(?:\s+(?:ems|vpn))?|firmware)\s+)?"
+    r"(?:to\s+)?(?:version\s*)?v?(\d{1,2}\.\d{1,2}(?:\.\d{1,3})?)\b",
+    re.I,
+)
 FIXED_VERSION_LIST_RE = re.compile(
     r"\b(?:fix|patch|correction)\s+(?:is\s+)?(?:available|included|provided|expected|planned)\s+"
     r"in\s+(?:the\s+following\s+versions\s*:?\s*)?(.*?)(?=(?:upgrade procedure|related articles|see:|workaround|note:)|$)",
@@ -63,14 +92,6 @@ FIXED_VERSION_LIST_RE = re.compile(
 )
 FIXED_VERSION_LIST_TOKEN_RE = re.compile(
     r"(?<!\d)(\d{1,2}\.\d{1,2}(?:\.\d{1,3})?)(?=[A-Za-z\s,;:.]|$)"
-)
-FIXED_VERSION_UPGRADE_RE = re.compile(
-    r"\b(?:permanent solution|resolution|fix|solution)\s*:\s*"
-    r"(?:update|upgrade)\s+"
-    r"(?:(?:fortios|fortigate|fortimanager|fortianalyzer|fortiauthenticator|"
-    r"forticlient(?:\s+(?:ems|vpn))?|firmware)\s+)?"
-    r"(?:to\s+)?(?:version\s*)?v?(\d{1,2}\.\d{1,2}(?:\.\d{1,3})?)\b",
-    re.I,
 )
 FIXED_BUILD_RE = re.compile(
     r"\b(?:special|engineering|hotfix|custom)\s+build\s+(\d{3,6})\b",
@@ -165,14 +186,16 @@ def extract_versions(item: dict) -> tuple[list[str], list[str]]:
             r"\bScope\s*:?\s*(.*?)(?=\b(?:Solution|Workaround|Impact|Description)\b|$)",
             summary, re.I | re.S,
         )
-        if scope:
-            # Use the title and Scope only; Solution/Workaround versions may be fixes,
-            # not releases affected by the problem.
-            text = title + " " + scope.group(1)
+        affected_contexts = [
+            match.group(0) for match in AFFECTED_VERSION_CONTEXT_RE.finditer(summary)
+        ]
+        scope_text = scope.group(1) if scope else ""
+        text = title + " " + scope_text + " " + " ".join(affected_contexts)
     # Remove complete IPv4 addresses before looking for dotted version numbers.
     text_without_ips = re.sub(r"\b(?:\d{1,3}\.){3}\d{1,3}\b", " ", text)
-    # Do not misclassify a documented fixed release as an affected release.
+    # Do not misclassify documented fixed releases as affected releases.
     text_without_ips = FIXED_VERSION_RE.sub(" ", text_without_ips)
+    text_without_ips = FIXED_VERSION_CONTEXT_RE.sub(" ", text_without_ips)
     # Exclude operating-system/platform versions, which are not Fortinet firmware.
     text_without_ips = NON_FORTINET_VERSION_RE.sub(" ", text_without_ips)
     # Exclude elapsed-time decimals such as "0.7 seconds".
@@ -184,7 +207,11 @@ def extract_versions(item: dict) -> tuple[list[str], list[str]]:
         r"\b(?:dig|openssl|python|curl|wget|iperf3?|ping)\s+v?\d{1,2}\.\d{1,2}(?:\.\d{1,3})?\b",
         " ", text_without_ips, flags=re.I,
     )
-    found = set(VERSION_CONTEXT_RE.findall(text_without_ips))
+    found = set()
+    for match in VERSION_CONTEXT_RE.finditer(text_without_ips):
+        found.add(match.group(1))
+        sentence_tail = re.split(r"[.!?]", text_without_ips[match.end():], maxsplit=1)[0]
+        found.update(VERSION_LIST_TAIL_RE.findall(sentence_tail))
     for version_list in FIRMWARE_VERSION_LIST_RE.findall(text_without_ips):
         found.update(re.findall(r"\b(\d{1,2}\.\d{1,2}(?:\.\d{1,3})?)\b", version_list))
     for source_version, target_version in UPGRADE_PATH_RE.findall(text_without_ips):
@@ -288,8 +315,14 @@ def extract_fixed_versions(item: dict) -> list[str]:
     if source_type(item) != "fortinet_article":
         return []
     text = f"{item.get('title', '')} {item.get('summary', '')}"
-    found = set(FIXED_VERSION_RE.findall(text))
-    found.update(FIXED_VERSION_UPGRADE_RE.findall(text))
+    found = set()
+    for pattern in (FIXED_VERSION_RE, FIXED_VERSION_UPGRADE_RE):
+        for match in pattern.finditer(text):
+            found.add(match.group(1))
+            sentence_tail = re.split(r"[.!?]", text[match.end():], maxsplit=1)[0]
+            found.update(FIXED_VERSION_TAIL_RE.findall(sentence_tail))
+    for match in FIXED_VERSION_CONTEXT_RE.finditer(text):
+        found.update(re.findall(r"\d{1,2}\.\d{1,2}(?:\.\d{1,3})?", match.group(1)))
     # Some official articles list several fixed branches after one shared cue,
     # and HTML-to-text extraction can concatenate the version and next product name.
     for match in FIXED_VERSION_LIST_RE.finditer(text):

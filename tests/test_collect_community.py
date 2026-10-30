@@ -73,6 +73,39 @@ class CommunityFeedTests(unittest.TestCase):
         self.assertEqual(items[0]["versions"], [])
         self.assertEqual(items[0]["fixVersions"], ["8.0.4"])
 
+    def test_official_articles_extract_all_affected_and_fixed_versions(self):
+        url = "https://community.fortinet.com/fortiauthenticator-8/csrf-validation-error-saml-idp-proxy-230933"
+        summary = (
+            "DescriptionSAML IdP Proxy authentication fails. ScopeFortiAuthenticator. "
+            "SolutionThis is a known issue in FortiAuthenticator version 6.6.10 and 8.0.3. "
+            "Resolution is to upgrade FortiAuthenticator to version 6.6.11, 8.0.4 or higher. "
+            "This issue is resolved in firmware version 6.6.11 and 8.0.4."
+        )
+        self.assertEqual(
+            collector.extract_versions("CSRF validation error", summary, url),
+            ["6.6.10", "8.0.3"],
+        )
+        self.assertEqual(
+            collector.extract_fixed_versions("CSRF validation error", summary, url),
+            ["6.6.11", "8.0.4"],
+        )
+
+    def test_client_scope_and_fix_text_keep_multiple_versions(self):
+        url = "https://community.fortinet.com/forticlient-4/auto-patch-failure-230934"
+        summary = (
+            "DescriptionFortiClient auto-patch fails. ScopeFortiClient v7.2 and v7.4. "
+            "SolutionAlternatively, upgrade to FortiClient versions 7.4.9 or 8.0.1, "
+            "which include a fix for this behavior."
+        )
+        self.assertEqual(
+            collector.extract_versions("FortiClient auto-patch failure", summary, url),
+            ["7.2", "7.4"],
+        )
+        self.assertEqual(
+            collector.extract_fixed_versions("FortiClient auto-patch failure", summary, url),
+            ["7.4.9", "8.0.1"],
+        )
+
     def test_long_official_summary_keeps_late_fix_version(self):
         description = (
             "DescriptionAdministrator SSO authentication fails. "
@@ -877,7 +910,7 @@ class CommunityFeedTests(unittest.TestCase):
             "date": "2026-10-24T12:09:00+00:00",
             "detailFetchStatus": "success",
             "detailCheckedAt": "2026-10-30T08:00:00+00:00",
-            "detailParserVersion": 2,
+            "detailParserVersion": 3,
         }]
         calls = []
         result = collector.enrich_board_topic_metadata(
