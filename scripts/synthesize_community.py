@@ -64,6 +64,14 @@ FIXED_VERSION_LIST_RE = re.compile(
 FIXED_VERSION_LIST_TOKEN_RE = re.compile(
     r"(?<!\d)(\d{1,2}\.\d{1,2}(?:\.\d{1,3})?)(?=[A-Za-z\s,;:.]|$)"
 )
+FIXED_VERSION_UPGRADE_RE = re.compile(
+    r"\b(?:permanent solution|resolution|fix|solution)\s*:\s*"
+    r"(?:update|upgrade)\s+"
+    r"(?:(?:fortios|fortigate|fortimanager|fortianalyzer|fortiauthenticator|"
+    r"forticlient(?:\s+(?:ems|vpn))?|firmware)\s+)?"
+    r"(?:to\s+)?(?:version\s*)?v?(\d{1,2}\.\d{1,2}(?:\.\d{1,3})?)\b",
+    re.I,
+)
 
 NON_FORTINET_VERSION_RE = re.compile(
     r"\b(?:(?:huawei\s+cloud\s+)?euleros|centos|rhel|red\s+hat\s+enterprise\s+linux|"
@@ -277,6 +285,7 @@ def extract_fixed_versions(item: dict) -> list[str]:
         return []
     text = f"{item.get('title', '')} {item.get('summary', '')}"
     found = set(FIXED_VERSION_RE.findall(text))
+    found.update(FIXED_VERSION_UPGRADE_RE.findall(text))
     # Some official articles list several fixed branches after one shared cue,
     # and HTML-to-text extraction can concatenate the version and next product name.
     for match in FIXED_VERSION_LIST_RE.finditer(text):

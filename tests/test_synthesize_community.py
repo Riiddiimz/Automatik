@@ -235,6 +235,32 @@ class CommunitySynthesisTests(unittest.TestCase):
         self.assertEqual(incident["status"], "Documenté par Fortinet (version non précisée)")
 
 
+    def test_permanent_solution_update_records_minimum_fixed_version(self):
+        item = {
+            "title": (
+                "FortiClient Endpoints fail to match assigned Entra ID group policies "
+                "and fall into the default policy"
+            ),
+            "summary": (
+                "DescriptionFortiClient Endpoints that are members of a specific Entra ID group do not match "
+                "the corresponding group policy in FortiClient EMS. These endpoints are assigned to the default policy."
+                "ScopeFortiClient EMS and FortiClient Endpoint."
+                "SolutionFortiClient EMS cannot correctly retrieve the Azure device object ID for certain users. "
+                "This results in a 404 Not Found error during the Microsoft Graph API call."
+                "Permanent solution: Update FortiClient EMS to version 7.4.8 or above."
+                "If updating is not immediately possible, use computer-based Entra ID groups as a workaround."
+            ),
+            "url": "https://community.fortinet.com/forticlient-4/forticlient-endpoints-fail-to-match-assigned-entra-id-group-policies-and-fall-into-the-default-policy-due-to-a-synchronization-issue-between-the-user-identity-and-the-device-object-230958",
+            "products": ["FortiClient EMS"],
+        }
+        self.assertEqual(synth.extract_versions(item), ([], []))
+        self.assertEqual(synth.extract_fixed_versions(item), ["7.4.8"])
+        with tempfile.TemporaryDirectory() as directory:
+            result = synth.synthesize({"topics": [item]}, Path(directory) / "community.json")
+        self.assertEqual(result["incidentCount"], 1)
+        self.assertEqual(result["incidents"][0]["fixVersions"], ["7.4.8"])
+
+
     def test_fortimanager_expected_fix_extracts_multiple_future_versions(self):
         item = {
             "title": "FortiManager version 7.6.8 trying to install SSL-SSH profile settings not supported on 2GB FortiGate devices",
