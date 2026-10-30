@@ -349,57 +349,6 @@ IMPORTANT : Réponds UNIQUEMENT avec le code HTML complet, sans aucun texte d'ex
 # APPEL À L'API GEMINI
 # ------------------------------------------------------------------
 
-def appeler_gemini(cle_api, prompt, modele=MODELE_GEMINI):
-    """
-    Envoie un prompt à l'API Gemini (REST, sans dépendance externe)
-    et retourne le texte de la réponse.
-    """
-    url = (
-        f"https://generativelanguage.googleapis.com/v1beta/models/"
-        f"{modele}:generateContent?key={cle_api}"
-    )
-
-    payload = {
-        "contents": [
-            {
-                "parts": [
-                    {"text": prompt}
-                ]
-            }
-        ],
-        "generationConfig": {
-            "temperature": 0.3,
-            "maxOutputTokens": 32768,
-        }
-    }
-
-    data = json.dumps(payload).encode("utf-8")
-    req = urllib.request.Request(
-        url,
-        data=data,
-        headers={"Content-Type": "application/json"},
-        method="POST",
-    )
-
-    try:
-        with urllib.request.urlopen(req, timeout=120) as resp:
-            reponse_brute = json.loads(resp.read().decode("utf-8"))
-    except urllib.error.HTTPError as e:
-        corps_erreur = e.read().decode("utf-8", errors="replace")
-        raise RuntimeError(f"Erreur API Gemini ({e.code}) : {corps_erreur}")
-
-    try:
-        candidat = reponse_brute["candidates"][0]
-        texte = candidat["content"]["parts"][0]["text"]
-        raison_fin = candidat.get("finishReason", "")
-    except (KeyError, IndexError):
-        raise RuntimeError(f"Réponse Gemini inattendue : {reponse_brute}")
-
-    if raison_fin == "MAX_TOKENS":
-        print("       ⚠ ATTENTION : la réponse Gemini a été tronquée (limite de tokens atteinte).")
-        print("         Réduisez le nombre de sujets envoyés ou augmentez maxOutputTokens.")
-
-    return texte
 
 # ------------------------------------------------------------------
 # CONSTRUCTION DES PROMPTS
