@@ -606,7 +606,7 @@ class CommunityFeedTests(unittest.TestCase):
         board = "https://community.fortinet.com/support-forum-92"
 
         def opener(request, timeout):
-            match = re.search(r"/index(\\d+)\\.html$", request.full_url)
+            match = re.search(r"/index(\d+)\.html$", request.full_url)
             page_number = int(match.group(1)) if match else 1
             url = f"/support-forum-92/fortigate-vpn-fails-after-upgrade-{230000 + page_number}"
             page = f'<html><body><a href="{url}">FortiGate VPN fails after upgrade</a></body></html>'
