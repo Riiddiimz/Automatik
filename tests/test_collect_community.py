@@ -1004,6 +1004,53 @@ class CommunityFeedTests(unittest.TestCase):
         self.assertIn("special build 8768", result["summary"])
         self.assertEqual(result["detailParserVersion"], collector.DETAIL_PARSER_VERSION)
 
+    def test_board_detail_enrichment_captures_cleared_attributes_and_reported_firmware(self):
+        url = "https://community.fortinet.com/fortiauthenticator-8/radius-attributes-of-users-cleared-during-csv-file-import-230887"
+        topic = {
+            "id": url,
+            "url": url,
+            "title": "RADIUS attributes of users cleared during CSV file import",
+            "products": ["FortiAuthenticator"],
+            "categories": ["FortiAuthenticator"],
+            "versions": [],
+            "fixVersions": [],
+            "discoverySource": "index produit public",
+        }
+        summary = (
+            "Description Importing users via CSV with Keep existing user accounts enabled may clear "
+            "RADIUS attributes and prevent authentication. Scope FortiAuthenticator. "
+            "Solution The issue is tracked by engineering. Reported firmware version: 6.6.6. "
+            "The fix is available in the following versions: FortiAuthenticator 6.6.8 and "
+            "FortiAuthenticator 8.0.2."
+        )
+        calls = []
+        result = collector.enrich_board_topic_metadata(
+            [topic],
+            [],
+            lambda requested_url: calls.append(requested_url) or {
+                "summary": summary,
+                "date": "2026-10-27T10:03:00+00:00",
+            },
+            [],
+            max_lookups=1,
+        )
+
+        self.assertEqual(calls, [url])
+        self.assertEqual(result[0]["versions"], ["6.6.6"])
+        self.assertEqual(result[0]["fixVersions"], ["6.6.8", "8.0.2"])
+        self.assertEqual(result[0]["detailFetchStatus"], "success")
+
+    def test_board_detail_candidate_detection_covers_common_title_variants(self):
+        titles = (
+            "FortiManager user session disconnection issues when using Cloudflare ZTNA",
+            "FortiAnalyzer 8.0.1 all automation playbooks failing after upgrade",
+            "Issues with FortiClient 7.4.8 for macOS",
+            "RADIUS attributes of users cleared during CSV file import",
+        )
+        for title in titles:
+            with self.subTest(title=title):
+                self.assertIsNotNone(collector.BOARD_DETAIL_RE.search(title))
+
     def test_detail_enrichment_is_bounded_and_fair_across_products(self):
         gate_urls = [
             "https://community.fortinet.com/fortigate-3/vpn-fails-after-upgrade-230101",
