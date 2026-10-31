@@ -28,13 +28,14 @@ MAX_BOARD_PAGES = 5
 # Ten pages reach roughly 25–28 days of discussions in the observed public index.
 SUPPORT_FORUM_MAX_PAGES = 10
 MAX_BOARD_DETAIL_LOOKUPS = 12
-DETAIL_PARSER_VERSION = 5
+DETAIL_PARSER_VERSION = 6
 DETAIL_FAILURE_RETRY_HOURS = 2
 BOARD_DETAIL_RE = re.compile(
     r"\b(?:fail(?:s|ed|ing|ure|ures)?|not working|not loading|not supported|unsupported|unable|cannot|can\x27t|"
     r"error|issues?|bugs?|problems?|crash(?:es|ed|ing)?|stuck|disconnect(?:s|ed|ing|ion(?:s)?)?|no longer|wrong|incorrect|"
     r"unavailable|blocked|timeout|missing|regression|does not work|slow|expired|expiration|"
     r"invalid|authentication|certificate|connection reset|cleared|deleted|removed|wiped|erased|lost|"
+    r"conserve\s+mode|high\s+memory|memory\s+(?:usage|pressure|consumption|leak)|"
     r"freez(?:e|es|ing|en))\b",
     re.I,
 )
@@ -165,7 +166,8 @@ PRODUCT_BOARD_SLUGS = {
 ISSUE_CONTEXT_RE = re.compile(
     r"\b(?:not\s+connect(?:ed|ing)?|unable\s+to\s+connect|cannot\s+connect|"
     r"can't\s+connect|disconnect(?:ed|ing|s)?|fail(?:s|ed|ure)?|broken|"
-    r"not\s+working|stuck|offline|does\s+not\s+work|no\s+longer)\b",
+    r"not\s+working|stuck|offline|does\s+not\s+work|no\s+longer|"
+    r"conserve\s+mode|high\s+memory|memory\s+(?:usage|pressure|consumption|leak))\b",
     re.I,
 )
 
