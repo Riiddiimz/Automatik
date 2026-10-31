@@ -36,7 +36,7 @@ Les versions sont extraites lorsqu'elles sont explicitement liées à un produit
 
 La collecte et la synthèse déterministe fonctionnent sans clé IA. Pour activer la relecture facultative, configure `GEMINI_API_KEY` dans les secrets GitHub Actions (jamais dans le dépôt). Le workflow utilise `gemini-3.5-flash-lite` et relit au maximum 40 fiches par exécution. Si la clé manque ou si l'appel échoue, le site affiche l'état de la relecture et conserve la synthèse déterministe; les relectures antérieures ne sont gardées que si leurs sources et champs probatoires n'ont pas changé. Les horodatages de contrôle seuls ne déclenchent pas de publication. Vérifie les quotas et conditions actuelles de Google AI Studio avant d'activer le service.
 
-Le fichier historique `scripts/scrap_commu_copie.py` reste un outil manuel distinct : il demande une clé Gemini en argument et génère ses propres fichiers `historique.json`/rapports HTML. Il n'est appelé ni par le site ni par les workflows. Pour les données publiées dans `data/community.json`, la chaîne active est `scripts/collect_community.py`, puis `scripts/synthesize_community.py`, puis la relecture facultative `scripts/review_community_gemini.py`.
+Le fichier historique `scripts/scrap_commu_copie.py` reste un outil manuel distinct : il lit `GEMINI_API_KEY` depuis l'environnement (et refuse explicitement une clé passée en argument de commande), puis génère ses propres fichiers `historique.json`/rapports HTML. Il n'est appelé ni par le site ni par les workflows. Pour les données publiées dans `data/community.json`, la chaîne active est `scripts/collect_community.py`, puis `scripts/synthesize_community.py`, puis la relecture facultative `scripts/review_community_gemini.py`.
 
 ## Vérifier le projet
 
