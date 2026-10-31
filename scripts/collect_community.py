@@ -487,7 +487,7 @@ def extract_versions(title: str, summary: str, url: str = "") -> list[str]:
         if scope or affected_contexts or reported_versions:
             scope_text = scope.group(1) if scope else ""
             reported_text = " ".join(f"firmware {version}" for version in reported_versions)
-            text = f"{title} {scope_text} {' '.join(affected_contexts)} {reported_text}""
+            text = f"{title} {scope_text} {' '.join(affected_contexts)} {reported_text}"
     # Exclude fixed releases, IP addresses, platform/tool versions and elapsed-time decimals.
     text = FIXED_VERSION_RE.sub(" ", text)
     text = FIXED_VERSION_CONTEXT_RE.sub(" ", text)
