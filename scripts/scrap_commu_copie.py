@@ -352,64 +352,8 @@ IMPORTANT : Réponds UNIQUEMENT avec le code HTML complet, sans aucun texte d'ex
 
 # ------------------------------------------------------------------
 # CONSTRUCTION DES PROMPTS
-# ------------------------------------------------------------------
-
-def construire_prompt_analyse_complete(items_compacts, scope_versions):
-    scope_txt = json.dumps(scope_versions, ensure_ascii=False, indent=2)
-    items_txt = json.dumps(items_compacts, ensure_ascii=False, indent=2)
-
-    prompt = f"""Tu es un expert Fortinet chargé d'analyser des sujets du forum Fortinet Community.
-
-SCOPE DES PRODUITS ET VERSIONS SURVEILLÉS :
-{scope_txt}
-
-VOICI LES SUJETS BRUTS RÉCUPÉRÉS (JSON) :
-{items_txt}
-
-TA MISSION :
-1. Analyse chaque sujet et regroupe-les par CATÉGORIE de problème (ex: "VPN SSL - déconnexions", "GUI - bugs d'affichage", "Performance CPU/mémoire", "DHCP", etc.)
-2. Pour chaque sujet ou groupe de sujets similaires, identifie s'il existe une solution ou un workaround mentionné (dans le résumé ou déductible du contexte). Si aucune solution n'est visible, indique "Non résolu / à surveiller".
-3. Génère une page HTML COMPLÈTE et AUTONOME (avec balises <html>, <head>, <style> inline, <body>) qui présente :
-   - Un titre et un résumé en haut (nombre total de sujets, nombre de catégories)
-   - Une section par catégorie de problème, avec un titre de section clair
-   - Dans chaque section : un tableau ou des cartes listant les sujets concernés, avec :
-     * Titre du sujet (cliquable vers le lien d'origine)
-     * Date
-     * Produit(s) et version(s) concernée(s)
-     * Solution/workaround identifié (ou "Non résolu / à surveiller")
-   - Un design propre, moderne, lisible (utilise des couleurs pour distinguer résolu/non résolu)
-   - Le HTML doit être interactif si possible (ex: sections repliables/dépliables en JavaScript pur, sans dépendance externe)
-
-IMPORTANT : Réponds UNIQUEMENT avec le code HTML complet, sans aucun texte d'explication avant ou après, sans balises Markdown de code (pas de ```html)."""
-
-    return prompt
 
 
-def construire_prompt_recherche_ciblee(items_compacts, consigne):
-    items_txt = json.dumps(items_compacts, ensure_ascii=False, indent=2)
-
-    prompt = f"""Tu es un expert Fortinet. Un technicien te décrit un problème qu'il rencontre.
-Ta mission est de chercher dans la liste de sujets ci-dessous (issus du forum Fortinet Community)
-ceux qui correspondent le mieux à sa description, et de lui indiquer les liens pertinents ainsi
-que les solutions/workarounds identifiés.
-
-DESCRIPTION DU PROBLÈME DU TECHNICIEN :
-"{consigne}"
-
-VOICI LES SUJETS DISPONIBLES (JSON) :
-{items_txt}
-
-TA MISSION :
-1. Identifie les sujets les plus pertinents par rapport à la description (même si les mots ne correspondent pas exactement, cherche par sens).
-2. Si tu trouves des sujets pertinents, génère une page HTML COMPLÈTE et AUTONOME (avec <html>, <head>, <style> inline, <body>) présentant :
-   - La description du problème rappelée en haut
-   - Une liste des sujets pertinents trouvés, classés par pertinence décroissante, avec : titre (cliquable), date, produit/version, résumé, et solution/workaround si identifié
-   - Si aucun sujet pertinent n'est trouvé, affiche clairement un message "Aucun sujet correspondant trouvé dans les données actuelles" avec un design propre
-3. Design moderne et lisible.
-
-IMPORTANT : Réponds UNIQUEMENT avec le code HTML complet, sans aucun texte d'explication avant ou après, sans balises Markdown de code (pas de ```html)."""
-
-    return prompt
 # ------------------------------------------------------------------
 # SAUVEGARDE DU RAPPORT HTML
 # ------------------------------------------------------------------
