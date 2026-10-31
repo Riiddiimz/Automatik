@@ -108,6 +108,10 @@ FIXED_ENGINE_BUILD_RE = re.compile(
     r"\b(?:resolved|fixed|corrected)\s+in\s+IPS\s*Engine\s+v?(\d{1,2}\.\d{5})\b",
     re.I,
 )
+FIXED_ENGINE_BUILD_MENTION_RE = re.compile(
+    r"\b(?:obtain|download|install)\s+IPS\s*Engine\s+v?(\d{1,2}\.\d{4,5})\b",
+    re.I,
+)
 
 NON_FORTINET_VERSION_RE = re.compile(
     r"\b(?:(?:huawei\s+cloud\s+)?euleros|centos|rhel|red\s+hat\s+enterprise\s+linux|"
@@ -352,8 +356,28 @@ def extract_fixed_builds(item: dict) -> list[str]:
         return []
     text = f"{item.get('title', '')} {item.get('summary', '')}"
     return sorted(set(
-        FIXED_BUILD_RE.findall(text) + FIXED_ENGINE_BUILD_RE.findall(text)
+        FIXED_BUILD_RE.findall(text)
+        + FIXED_ENGINE_BUILD_RE.findall(text)
+        + FIXED_ENGINE_BUILD_MENTION_RE.findall(text)
     ))
+
+
+def extract_fixed_build_note(item: dict) -> str:
+    """Flag contradictory IPSEngine build numbers instead of selecting one silently."""
+    if source_type(item) != "fortinet_article":
+        return ""
+    text = f"{item.get('title', '')} {item.get('summary', '')}"
+    builds = sorted(set(
+        FIXED_ENGINE_BUILD_RE.findall(text)
+        + FIXED_ENGINE_BUILD_MENTION_RE.findall(text)
+    ))
+    if len(builds) > 1:
+        return (
+            "La source cite plusieurs builds IPSEngine différents "
+            f"({', '.join(builds)}). Le build exact est à confirmer auprès du support Fortinet "
+            "avant déploiement."
+        )
+    return ""
 
 
 def has_documented_evidence(item: dict) -> bool:
@@ -509,6 +533,7 @@ def synthesize(data: dict, out: Path = DATA) -> dict:
         item["versions"], item["versionFamilies"] = extract_versions(item)
         item["fixVersions"] = extract_fixed_versions(item)
         item["fixBuilds"] = extract_fixed_builds(item)
+        item["fixBuildNote"] = extract_fixed_build_note(item)
         item["potentialProblem"] = looks_like_problem(item)
         enriched.append(item)
 
@@ -541,6 +566,7 @@ def synthesize(data: dict, out: Path = DATA) -> dict:
             "sourceType": source_type(item),
             "fixVersions": extract_fixed_versions(item),
             "fixBuilds": extract_fixed_builds(item),
+            "fixBuildNote": extract_fixed_build_note(item),
             **extract_sections(item),
         } for item in cluster]
         symptom = next((source["symptom"] for source in sources if source.get("symptom")), "")
@@ -573,6 +599,9 @@ def synthesize(data: dict, out: Path = DATA) -> dict:
             "versionFamilies": families,
             "fixVersions": fixed_versions,
             "fixBuilds": fixed_builds,
+            "fixBuildNote": " ".join(dict.fromkeys(
+                item["fixBuildNote"] for item in cluster if item.get("fixBuildNote")
+            )),
             "sourceCount": len(sources),
             "forumReportCount": reports,
             "documentedSourceCount": len(documented_sources),
