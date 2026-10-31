@@ -296,6 +296,7 @@ def enrich_unclassified_topics(
 ) -> list[dict]:
     """Enrichir les sujets non classés sans jamais perdre une entrée faute de métadonnées."""
     now = datetime.now(timezone.utc)
+    success_cutoff = (now - timedelta(hours=24)).isoformat()
     failure_cutoff = (now - timedelta(hours=DETAIL_FAILURE_RETRY_HOURS)).isoformat()
     known_by_url = {
         str(item.get("url") or item.get("id") or "").rstrip("/"): item
