@@ -31,10 +31,11 @@ MAX_BOARD_DETAIL_LOOKUPS = 12
 DETAIL_PARSER_VERSION = 4
 DETAIL_FAILURE_RETRY_HOURS = 2
 BOARD_DETAIL_RE = re.compile(
-    r"\b(?:fail(?:s|ed|ure)?|not working|not loading|not supported|unsupported|unable|cannot|can\x27t|"
-    r"error|issue|bug|crash|stuck|disconnect(?:s|ed|ing)?|no longer|wrong|incorrect|"
+    r"\b(?:fail(?:s|ed|ing|ure|ures)?|not working|not loading|not supported|unsupported|unable|cannot|can\x27t|"
+    r"error|issues?|bugs?|problems?|crash(?:es|ed|ing)?|stuck|disconnect(?:s|ed|ing|ion(?:s)?)?|no longer|wrong|incorrect|"
     r"unavailable|blocked|timeout|missing|regression|does not work|slow|expired|expiration|"
-    r"invalid|authentication|certificate|connection reset)\b",
+    r"invalid|authentication|certificate|connection reset|cleared|deleted|removed|wiped|erased|lost|"
+    r"freez(?:e|es|ing|en))\b",
     re.I,
 )
 
@@ -80,6 +81,11 @@ AFFECTED_VERSION_CONTEXT_RE = re.compile(
     r"forticlient(?:\s+(?:ems|vpn))?|firmware)\s*)?"
     r"(?:versions?\s*)?v?\d{1,2}\.\d{1,2}(?:\.\d{1,3})?"
     r"(?:\s*(?:,|and|or|/)\s*v?\d{1,2}\.\d{1,2}(?:\.\d{1,3})?)*",
+    re.I,
+)
+REPORTED_VERSION_CONTEXT_RE = re.compile(
+    r"\b(?:reported\s+(?:firmware\s+)?version|firmware\s+version\s+reported)\s*[:=]?\s*"
+    r"v?(\d{1,2}\.\d{1,2}(?:\.\d{1,3})?)\b",
     re.I,
 )
 FIRMWARE_VERSION_LIST_RE = re.compile(r"\bfirmware\s*\(([^)]{1,120})\)", re.I)
@@ -477,9 +483,11 @@ def extract_versions(title: str, summary: str, url: str = "") -> list[str]:
         affected_contexts = [
             match.group(0) for match in AFFECTED_VERSION_CONTEXT_RE.finditer(summary)
         ]
-        if scope or affected_contexts:
+        reported_versions = REPORTED_VERSION_CONTEXT_RE.findall(summary)
+        if scope or affected_contexts or reported_versions:
             scope_text = scope.group(1) if scope else ""
-            text = f"{title} {scope_text} {' '.join(affected_contexts)}"
+            reported_text = " ".join(f"firmware {version}" for version in reported_versions)
+            text = f"{title} {scope_text} {' '.join(affected_contexts)} {reported_text}""
     # Exclude fixed releases, IP addresses, platform/tool versions and elapsed-time decimals.
     text = FIXED_VERSION_RE.sub(" ", text)
     text = FIXED_VERSION_CONTEXT_RE.sub(" ", text)
