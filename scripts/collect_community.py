@@ -28,7 +28,7 @@ MAX_BOARD_PAGES = 5
 # Ten pages reach roughly 25–28 days of discussions in the observed public index.
 SUPPORT_FORUM_MAX_PAGES = 10
 MAX_BOARD_DETAIL_LOOKUPS = 12
-DETAIL_PARSER_VERSION = 4
+DETAIL_PARSER_VERSION = 5
 DETAIL_FAILURE_RETRY_HOURS = 2
 BOARD_DETAIL_RE = re.compile(
     r"\b(?:fail(?:s|ed|ing|ure|ures)?|not working|not loading|not supported|unsupported|unable|cannot|can\x27t|"
