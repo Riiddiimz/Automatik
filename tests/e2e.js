@@ -120,10 +120,12 @@ const { chromium } = require("playwright");
         assert.equal(
           await buildCard.getByText("Build correctif mentionné", { exact: true }).count(),
           1,
-          "un build spécial documenté doit être affiché séparément"
+          "un build documenté doit être affiché séparément"
         );
+        await buildCard.locator("summary").first().click();
+        const buildCardText = await buildCard.innerText();
         for (const build of buildIncident.fixBuilds) {
-          assert.ok((await buildCard.innerText()).includes(build), "le numéro de build correctif doit être visible");
+          assert.ok(buildCardText.includes(build), "le numéro de build correctif doit être visible après ouverture de la fiche");
         }
       }
       // Ouvrir la fiche accordéon avant d'interagir avec ses sources imbriquées.
