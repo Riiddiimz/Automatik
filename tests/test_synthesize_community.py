@@ -303,6 +303,38 @@ class CommunitySynthesisTests(unittest.TestCase):
         self.assertEqual(incident["status"], "Documenté par Fortinet (version non précisée)")
 
 
+    def test_official_ipse_engine_fix_build_is_separate_from_fortios_version(self):
+        item = {
+            "title": (
+                "FortiGate enters conserve mode after upgrading to FortiOS 7.6.8 "
+                "(IPSEngine 7.01200)"
+            ),
+            "summary": (
+                "Description This article describes an issue with the default IPSEngine 7.01200. "
+                "Scope FortiOS 7.6.8. "
+                "Solution A FortiGate configured with an IPS profile may enter conserve mode due to "
+                "high memory consumption by IPSEngine. This issue has been resolved in IPSEngine 7.01204. "
+                "Contact Fortinet Support to obtain IPSEngine 7.01204."
+            ),
+            "url": (
+                "https://community.fortinet.com/fortigate-3/"
+                "fortigate-enters-conserve-mode-after-upgrading-to-fortios-7-6-8-ipsengine-7-01200-230996"
+            ),
+            "products": ["FortiGate"],
+        }
+        self.assertEqual(synth.extract_versions(item), (["7.6.8"], ["7.6"]))
+        self.assertEqual(synth.extract_fixed_versions(item), [])
+        self.assertEqual(synth.extract_fixed_builds(item), ["7.01204"])
+
+        with tempfile.TemporaryDirectory() as directory:
+            result = synth.synthesize({"topics": [item]}, Path(directory) / "community.json")
+
+        self.assertEqual(result["incidentCount"], 1)
+        incident = result["incidents"][0]
+        self.assertEqual(incident["versions"], ["7.6.8"])
+        self.assertEqual(incident["fixVersions"], [])
+        self.assertEqual(incident["fixBuilds"], ["7.01204"])
+
     def test_official_special_build_is_separate_from_affected_firmware_version(self):
         item = {
             "title": (
