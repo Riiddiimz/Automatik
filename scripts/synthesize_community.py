@@ -347,7 +347,7 @@ def extract_fixed_versions(item: dict) -> list[str]:
 
 
 def extract_fixed_builds(item: dict) -> list[str]:
-    """Return explicitly identified special/hotfix builds from Fortinet-authored articles."""
+    """Return explicit fix builds, including special builds and IPSEngine builds, from Fortinet articles."""
     if source_type(item) != "fortinet_article":
         return []
     text = f"{item.get('title', '')} {item.get('summary', '')}"
