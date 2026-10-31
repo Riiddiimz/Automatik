@@ -305,7 +305,8 @@ function activatePage(pageId, updateHash = false) {
   if (metrics) metrics.hidden = page !== "overview";
   if (health) health.hidden = page !== "overview" || !health.textContent.trim();
   if (updateHash && location.hash !== `#${page}`) history.pushState(null, "", `#${page}`);
-  window.scrollTo({ top: 0, behavior: "smooth" });
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  window.scrollTo({ top: 0, behavior: reducedMotion ? "auto" : "smooth" });
 }
 document.querySelectorAll(".nav-link").forEach(link => {
   link.addEventListener("click", event => {
@@ -315,6 +316,12 @@ document.querySelectorAll(".nav-link").forEach(link => {
     activatePage(page, true);
   });
 });
-window.addEventListener("hashchange", () => activatePage(location.hash.slice(1)));
-window.addEventListener("popstate", () => activatePage(location.hash.slice(1)));
+function handlePageNavigation() {
+  const pageId = location.hash.slice(1);
+  // The skip link targets the main landmark, not a dashboard page.
+  if (pageId === "main-content") return;
+  activatePage(pageId);
+}
+window.addEventListener("hashchange", handlePageNavigation);
+window.addEventListener("popstate", handlePageNavigation);
 activatePage(location.hash.slice(1) || "overview");

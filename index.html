@@ -12,11 +12,12 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+  <a class="skip-link" href="#main-content">Aller au contenu principal</a>
   <div class="app-shell">
     <aside class="sidebar">
       <a class="brand" href="#" aria-label="Automatik accueil"><span class="brand-mark">A<span>.</span></span><span><strong>AUTOMATIK</strong><small>CYBER INTELLIGENCE</small></span></a>
       <div class="nav-label">ESPACE DE VEILLE</div>
-      <nav class="nav">
+      <nav class="nav" aria-label="Navigation principale">
         <a class="nav-link active" href="#overview"><span>◫</span> Vue d'ensemble</a>
         <a class="nav-link" href="#fortinet"><span>⌁</span> Fortinet & FortiGate</a>
         <a class="nav-link" href="#community"><span>◎</span> Fortinet Community</a>
@@ -30,7 +31,7 @@
       </div>
     </aside>
 
-    <main class="main-content">
+    <main id="main-content" class="main-content" tabindex="-1">
       <header class="topbar">
         <div><div class="eyebrow">CENTRE DE VEILLE / FRANCE</div><h1>Cyber <span>veille.</span></h1></div>
         <div class="topbar-right"><span class="live-indicator"><i></i> FLUX PUBLICS</span><button id="refresh-btn" class="refresh-btn" type="button">↻ <span>Actualiser</span></button></div>

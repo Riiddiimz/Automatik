@@ -89,7 +89,7 @@ body.page-overview .hero[hidden],body.page-overview .metrics[hidden],.hero[hidde
 .content-section.page-visible{animation:page-enter .18s ease-out}
 @keyframes page-enter{from{opacity:.65;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
 .nav-link[aria-current="page"]{box-shadow:inset 2px 0 0 var(--orange)}
-@media(prefers-reduced-motion:reduce){.content-section.page-visible{animation:none}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}.content-section.page-visible{animation:none}}
 
 
 /* État des collectes GitHub Actions */
@@ -108,3 +108,11 @@ body.page-overview .hero[hidden],body.page-overview .metrics[hidden],.hero[hidde
 .workflow-health-card.is-error .workflow-health-badge{border-color:#713b45;background:#321d23;color:#ff9da5}
 .workflow-health-card.is-unknown .workflow-health-badge{border-color:#354457;background:#1a2532;color:#aab8c8}
 @media(max-width:760px){.workflow-health{grid-template-columns:1fr;margin-top:0}}
+
+
+/* Accessibilité clavier */
+.skip-link{position:fixed;top:12px;left:12px;z-index:20;transform:translateY(-160%);padding:10px 14px;border:1px solid var(--orange);border-radius:8px;background:#fff;color:#111;font-weight:800;transition:transform .15s ease}
+.skip-link:focus{transform:translateY(0)}
+:where(a,button,input,select,summary):focus-visible{outline:3px solid var(--orange);outline-offset:3px}
+input:focus-visible{outline:3px solid var(--orange);outline-offset:3px}
+.main-content:focus{outline:none}

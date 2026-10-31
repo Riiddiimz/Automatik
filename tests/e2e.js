@@ -21,6 +21,30 @@ const { chromium } = require("playwright");
     const data = await dataResponse.json();
 
     await page.goto(baseUrl, { waitUntil: "networkidle" });
+    await page.keyboard.press("Tab");
+    assert.equal(
+      await page.evaluate(() => document.activeElement.className),
+      "skip-link",
+      "le premier arrêt clavier doit être le lien d’accès direct au contenu"
+    );
+    const skipLinkBounds = await page.locator(".skip-link").evaluate(element => {
+      const rect = element.getBoundingClientRect();
+      return { top: rect.top, height: rect.height };
+    });
+    assert.ok(skipLinkBounds.top >= 0 && skipLinkBounds.height > 0, "le lien d’accès direct doit devenir visible au clavier");
+    await page.keyboard.press("Enter");
+    assert.equal(
+      await page.evaluate(() => document.activeElement.id),
+      "main-content",
+      "le lien d’accès direct doit focaliser le contenu principal"
+    );
+    await page.emulateMedia({ reducedMotion: "reduce" });
+    assert.equal(
+      await page.evaluate(() => getComputedStyle(document.documentElement).scrollBehavior),
+      "auto",
+      "le défilement fluide doit être désactivé si l’utilisateur réduit les animations"
+    );
+    await page.emulateMedia({ reducedMotion: "no-preference" });
     await page.waitForFunction(() => document.querySelector("#metric-fortinet")?.textContent !== "—");
     assert.equal(await page.locator("#metric-fortinet").innerText(), String(dashboardData.fortinet.length));
     assert.equal(await page.locator("#metric-cyber").innerText(), String(dashboardData.cyber.length));
@@ -57,6 +81,18 @@ const { chromium } = require("playwright");
     if (sourceErrors.length) assert.match(await healthBanner.innerText(), /Actualisation partielle/);
     assert.match(await page.title(), /Automatik/i);
     await page.locator('.nav-link[href="#community"]').click();
+    await page.locator(".skip-link").focus();
+    await page.keyboard.press("Enter");
+    assert.equal(
+      await page.locator("#community").isVisible(),
+      true,
+      "le lien d’accès direct ne doit pas remplacer la rubrique active par la vue d’ensemble"
+    );
+    assert.equal(
+      await page.locator("#overview").isVisible(),
+      false,
+      "le lien d’accès direct doit conserver la rubrique déjà ouverte"
+    );
     await page.locator("#community-status").waitFor();
     await page.waitForFunction(() => {
       const status = document.querySelector("#community-status")?.textContent || "";
