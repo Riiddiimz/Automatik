@@ -33,14 +33,15 @@ const { chromium } = require("playwright");
     const cveProbe = dashboardData.kev.find(item => item.cveID);
     assert.ok(cveProbe, "le catalogue KEV doit fournir un cveID pour tester la recherche");
     await page.locator("#cve-search").fill(cveProbe.cveID);
-    assert.equal(
-      await page.locator("#cve-list .cve-card").count(),
-      1,
-      "la recherche CVE doit retrouver l'entrée CISA par son champ cveID"
-    );
     assert.ok(
-      (await page.locator("#cve-list").innerText()).includes(cveProbe.cveID),
-      "la fiche trouvée doit afficher l'identifiant recherché"
+      await page.locator("#cve-list .cve-card").count() >= 1,
+      "la recherche CVE doit retrouver au moins une fiche correspondante"
+    );
+    const renderedCveIds = (await page.locator("#cve-list .cve-id").allInnerTexts()).map(value => value.trim());
+    assert.equal(
+      renderedCveIds.filter(value => value === cveProbe.cveID).length,
+      1,
+      "la fiche CISA portant exactement le cveID recherché doit apparaître une seule fois"
     );
     await page.locator("#cve-search").fill("");
     await page.locator('.nav-link[href="#overview"]').click();
