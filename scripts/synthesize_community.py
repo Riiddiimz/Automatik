@@ -32,7 +32,8 @@ ISSUE_RE = re.compile(
     r"no longer|after upgrade|since upgrade|change(?:d|s)? behavior|behavio[u]?r change|"
     r"not displayed|not shown|not included|not loading|not supported|unreachable|not reachable|inaccessible|not accessible|"
     r"cannot|can't|cannot save|packet loss|connection reset|bypass(?:es|ed)?|"
-    r"fails to|missing|stuck|timeout|timed out|attributes?\s+(?:of\s+users?\s+)?(?:are\s+)?(?:cleared|deleted|removed))\b",
+    r"fails to|missing|stuck|timeout|timed out|attributes?\s+(?:of\s+users?\s+)?(?:are\s+)?(?:cleared|deleted|removed)|"
+    r"conserve\s+mode|high\s+memory|memory\s+(?:usage|pressure|consumption|leak))\b",
     re.I,
 )
 VERSION_CONTEXT_RE = re.compile(
@@ -101,6 +102,10 @@ FIXED_VERSION_LIST_TOKEN_RE = re.compile(
 )
 FIXED_BUILD_RE = re.compile(
     r"\b(?:special|engineering|hotfix|custom)\s+build\s+(\d{3,6})\b",
+    re.I,
+)
+FIXED_ENGINE_BUILD_RE = re.compile(
+    r"\b(?:resolved|fixed|corrected)\s+in\s+IPS\s*Engine\s+v?(\d{1,2}\.\d{5})\b",
     re.I,
 )
 
@@ -345,9 +350,10 @@ def extract_fixed_builds(item: dict) -> list[str]:
     """Return explicitly identified special/hotfix builds from Fortinet-authored articles."""
     if source_type(item) != "fortinet_article":
         return []
-    return sorted(set(FIXED_BUILD_RE.findall(
-        f"{item.get('title', '')} {item.get('summary', '')}"
-    )))
+    text = f"{item.get('title', '')} {item.get('summary', '')}"
+    return sorted(set(
+        FIXED_BUILD_RE.findall(text) + FIXED_ENGINE_BUILD_RE.findall(text)
+    ))
 
 
 def has_documented_evidence(item: dict) -> bool:
