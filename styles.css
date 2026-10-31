@@ -111,7 +111,7 @@ body.page-overview .hero[hidden],body.page-overview .metrics[hidden],.hero[hidde
 
 
 /* Accessibilité clavier */
-.skip-link{position:fixed;top:12px;left:12px;z-index:20;transform:translateY(-160%);padding:10px 14px;border:1px solid var(--orange);border-radius:8px;background:#fff;color:#111;font-weight:800;transition:transform .15s ease}
+.skip-link{position:fixed;top:12px;left:12px;z-index:20;transform:translateY(-160%);padding:10px 14px;border:1px solid var(--orange);border-radius:8px;background:#fff;color:#111;font-weight:800}
 .skip-link:focus{transform:translateY(0)}
 :where(a,button,input,select,summary):focus-visible{outline:3px solid var(--orange);outline-offset:3px}
 input:focus-visible{outline:3px solid var(--orange);outline-offset:3px}
