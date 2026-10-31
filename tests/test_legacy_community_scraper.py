@@ -1,3 +1,4 @@
+import ast
 import contextlib
 import importlib.util
 import io
@@ -15,6 +16,15 @@ SPEC.loader.exec_module(legacy)
 
 
 class LegacyCommunityScraperSecurityTests(unittest.TestCase):
+    def test_top_level_function_definitions_are_unique(self):
+        tree = ast.parse(MODULE_PATH.read_text(encoding="utf-8"))
+        names = [
+            node.name
+            for node in tree.body
+            if isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef))
+        ]
+        self.assertEqual(len(names), len(set(names)))
+
     def test_gemini_api_key_is_sent_in_header_not_url(self):
         payload = {
             "candidates": [{
