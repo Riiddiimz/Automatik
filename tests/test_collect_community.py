@@ -281,6 +281,42 @@ class CommunityFeedTests(unittest.TestCase):
         self.assertEqual(result[0]["productEnrichmentStatus"], "pending")
         self.assertTrue(any("conservé(s) sans classification produit" in error for error in errors))
 
+    def test_recent_unclassified_and_deferred_topics_respect_backoff(self):
+        checked_at = collector.datetime.now(collector.timezone.utc).isoformat()
+        cases = (
+            ("unclassified", "productEnrichmentCheckedAt"),
+            ("deferred", "productEnrichmentDeferredAt"),
+        )
+
+        for status, timestamp_field in cases:
+            with self.subTest(status=status):
+                url = f"https://community.fortinet.com/support-forum-92/{status}-230991"
+                topic = {
+                    "id": url,
+                    "url": url,
+                    "title": "After upgrade to 7.4.13 many AP are not connected",
+                    "summary": "Many APs no longer connect after the upgrade.",
+                    "categories": ["Support Forum"],
+                    "products": [],
+                    "versions": ["7.4.13"],
+                    "needsProductEnrichment": True,
+                    "productEnrichmentStatus": status,
+                    timestamp_field: checked_at,
+                }
+                calls = []
+                errors = []
+                result = collector.enrich_unclassified_topics(
+                    [topic],
+                    lambda requested_url: calls.append(requested_url) or ["FortiGate"],
+                    errors,
+                    known_topics=[dict(topic)],
+                )
+
+                self.assertEqual(calls, [])
+                self.assertEqual(result[0]["products"], [])
+                self.assertEqual(result[0]["productEnrichmentStatus"], status)
+                self.assertEqual(len(errors), 1)
+
     def test_old_unclassified_topic_is_retried_after_it_leaves_the_rss_window(self):
         pending_url = "https://community.fortinet.com/support-forum-92/after-upgrade-to-7-4-13-many-ap-are-not-connected-230800"
         current_payload = b"""<rss version="2.0"><channel>
