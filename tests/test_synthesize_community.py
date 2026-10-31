@@ -314,7 +314,7 @@ class CommunitySynthesisTests(unittest.TestCase):
                 "Scope FortiOS 7.6.8. "
                 "Solution A FortiGate configured with an IPS profile may enter conserve mode due to "
                 "high memory consumption by IPSEngine. This issue has been resolved in IPSEngine 7.01204. "
-                "Contact Fortinet Support to obtain IPSEngine 7.01204."
+                "Log a ticket with Support to obtain IPSEngine 7.1204 if an IPS profile is used on the FortiGate."
             ),
             "url": (
                 "https://community.fortinet.com/fortigate-3/"
@@ -324,7 +324,8 @@ class CommunitySynthesisTests(unittest.TestCase):
         }
         self.assertEqual(synth.extract_versions(item), (["7.6.8"], ["7.6"]))
         self.assertEqual(synth.extract_fixed_versions(item), [])
-        self.assertEqual(synth.extract_fixed_builds(item), ["7.01204"])
+        self.assertEqual(synth.extract_fixed_builds(item), ["7.01204", "7.1204"])
+        self.assertIn("plusieurs builds IPSEngine", synth.extract_fixed_build_note(item))
 
         with tempfile.TemporaryDirectory() as directory:
             result = synth.synthesize({"topics": [item]}, Path(directory) / "community.json")
@@ -333,7 +334,8 @@ class CommunitySynthesisTests(unittest.TestCase):
         incident = result["incidents"][0]
         self.assertEqual(incident["versions"], ["7.6.8"])
         self.assertEqual(incident["fixVersions"], [])
-        self.assertEqual(incident["fixBuilds"], ["7.01204"])
+        self.assertEqual(incident["fixBuilds"], ["7.01204", "7.1204"])
+        self.assertIn("plusieurs builds IPSEngine", incident["fixBuildNote"])
 
     def test_official_special_build_is_separate_from_affected_firmware_version(self):
         item = {
