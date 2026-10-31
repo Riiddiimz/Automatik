@@ -1046,6 +1046,7 @@ class CommunityFeedTests(unittest.TestCase):
             "FortiAnalyzer 8.0.1 all automation playbooks failing after upgrade",
             "Issues with FortiClient 7.4.8 for macOS",
             "RADIUS attributes of users cleared during CSV file import",
+            "FortiGate enters conserve mode after upgrading to FortiOS 7.6.8 (IPSEngine 7.01200)",
         )
         for title in titles:
             with self.subTest(title=title):
