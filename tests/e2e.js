@@ -127,6 +127,9 @@ const { chromium } = require("playwright");
         for (const build of buildIncident.fixBuilds) {
           assert.ok(buildCardText.includes(build), "le numéro de build correctif doit être visible après ouverture de la fiche");
         }
+        if (buildIncident.fixBuildNote) {
+          assert.ok(buildCardText.includes(buildIncident.fixBuildNote), "une réserve sur des builds contradictoires doit être visible");
+        }
       }
       // Ouvrir la fiche accordéon avant d'interagir avec ses sources imbriquées.
       await firstCard.locator("summary").first().click();
