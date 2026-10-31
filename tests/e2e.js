@@ -148,11 +148,14 @@ const { chromium } = require("playwright");
     assert.ok(ipseIncident, "l'article FortiGate conserve mode 230996 doit être synthétisé");
     assert.deepEqual(ipseIncident.fixBuilds, ["7.01204", "7.1204"], "les deux builds cités par la source doivent être conservés");
     assert.match(ipseIncident.fixBuildNote || "", /plusieurs builds IPSEngine/, "la contradiction de build doit être signalée");
-    const ipseCard = cards.filter({ hasText: ipseIncident.title }).first();
+    await page.locator("#community-search").fill(ipseIncident.title);
+    const ipseCard = page.locator("#community-list .incident-card").filter({ hasText: ipseIncident.title }).first();
+    assert.equal(await ipseCard.count(), 1, "la recherche doit faire remonter la fiche même au-delà des 100 cartes affichées par défaut");
     await ipseCard.locator("summary").first().click();
     const ipseCardText = await ipseCard.innerText();
     assert.ok(ipseCardText.includes("7.01204") && ipseCardText.includes("7.1204"), "les deux builds doivent être visibles dans la fiche");
     assert.ok(ipseCardText.includes(ipseIncident.fixBuildNote), "la réserve de build doit être visible dans la fiche");
+    await page.locator("#community-search").fill("");
 
     const updatedSourceIncident = (data.incidents || []).slice(0, 100).find(incident =>
       (incident.sources || []).slice(0, 5).some(source => source.updatedAt && source.updatedAt !== source.date)
