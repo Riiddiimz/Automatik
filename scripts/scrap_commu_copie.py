@@ -60,18 +60,18 @@ VERSION_SCOPE = {
 PRODUITS_CIBLES = list(VERSION_SCOPE.keys())
  
 VERSION_CONTEXT_RE = re.compile(
-    r"\\b(?:fortios|forti[- ]?gate|fortimanager|fortianalyzer|fortiauthenticator|"
-    r"forticlient(?:\\s+(?:ems|vpn))?|firmware)\\s*[(:-]?\\s*(?:version\\s*)?"
-    r"v?(\\d{1,2}\\.\\d{1,2}(?:\\.\\d{1,3})?)",
+    r"\b(?:fortios|forti[- ]?gate|fortimanager|fortianalyzer|fortiauthenticator|"
+    r"forticlient(?:\s+(?:ems|vpn))?|firmware)\s*[(:-]?\s*(?:version\s*)?"
+    r"v?(\d{1,2}\.\d{1,2}(?:\.\d{1,3})?)",
     re.I,
 )
 VERSION_LIST_TAIL_RE = re.compile(
-    r"(?:,|/|\\band\\b|\\bor\\b)\\s*(?:version\\s*)?v?"
-    r"(\\d{1,2}\\.\\d{1,2}(?:\\.\\d{1,3})?)",
+    r"(?:,|/|\band\b|\bor\b)\s*(?:version\s*)?v?"
+    r"(\d{1,2}\.\d{1,2}(?:\.\d{1,3})?)",
     re.I,
 )
-FIRMWARE_VERSION_LIST_RE = re.compile(r"\\bfirmware\\s*\\(([^)]{1,120})\\)", re.I)
-VERSION_TOKEN_RE = re.compile(r"\\b(\\d{1,2}\\.\\d{1,2}(?:\\.\\d{1,3})?)\\b")
+FIRMWARE_VERSION_LIST_RE = re.compile(r"\bfirmware\s*\(([^)]{1,120})\)", re.I)
+VERSION_TOKEN_RE = re.compile(r"\b(\d{1,2}\.\d{1,2}(?:\.\d{1,3})?)\b")
 
 
 
@@ -143,7 +143,7 @@ def detecter_versions(texte, produits):
     trouvees = set()
     for match in VERSION_CONTEXT_RE.finditer(texte):
         trouvees.add(match.group(1))
-        sentence_tail = re.split(r"[!?]|\\.(?=\\s|$)", texte[match.end():], maxsplit=1)[0]
+        sentence_tail = re.split(r"[!?]|\.(?=\s|$)", texte[match.end():], maxsplit=1)[0]
         trouvees.update(VERSION_LIST_TAIL_RE.findall(sentence_tail))
     for version_list in FIRMWARE_VERSION_LIST_RE.findall(texte):
         trouvees.update(VERSION_TOKEN_RE.findall(version_list))
@@ -165,7 +165,7 @@ def filtrer_items(items, filtrer_par_version=False):
             continue
 
         versions_trouvees = detecter_versions(texte_complet, produits)
-        toute_version_pattern = r"\\b\\d{1,2}\\.\\d{1,2}(?:\\.\\d{1,3})?\\b"
+        toute_version_pattern = r"\b\d{1,2}\.\d{1,2}(?:\.\d{1,3})?\b"
         mention_version_quelconque = bool(re.search(toute_version_pattern, texte_complet))
         scope_versions = {
             version
