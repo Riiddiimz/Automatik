@@ -72,6 +72,12 @@ VERSION_CONTEXT_RE = re.compile(
     r"(?:version\s*)?v?(\d{1,2}\.\d{1,2}(?:\.\d{1,3})?)",
     re.I,
 )
+PRODUCT_VERSION_LABEL_RE = re.compile(
+    r"\\b(?:fortios|fortigate|fortimanager|fortianalyzer|fortiauthenticator|"
+    r"forticlient(?:\\s+(?:ems|vpn))?)\\b[^.!?]{0,80}?\\b(?:version|firmware)\\s*[:=]?\\s*"
+    r"v?(\\d{1,2}\\.\\d{1,2}(?:\\.\\d{1,3})?)",
+    re.I,
+)
 VERSION_LIST_TAIL_RE = re.compile(
     r"(?:,|/|\band\b|\bor\b)\s*(?:version\s*)?v?(\d{1,2}\.\d{1,2}(?:\.\d{1,3})?)\b",
     re.I,
@@ -509,6 +515,9 @@ def extract_versions(title: str, summary: str, url: str = "") -> list[str]:
         found.add(match.group(1))
         sentence_tail = re.split(r"[!?]|\.(?=\s|$)", text[match.end():], maxsplit=1)[0]
         found.update(VERSION_LIST_TAIL_RE.findall(sentence_tail))
+    # Some Community previews place a hardware model between product and version,
+    # e.g. "FortiAnalyzer 1000F version 7.6.8".
+    found.update(PRODUCT_VERSION_LABEL_RE.findall(text))
     for version_list in FIRMWARE_VERSION_LIST_RE.findall(text):
         found.update(re.findall(r"\b(\d{1,2}\.\d{1,2}(?:\.\d{1,3})?)\b", version_list))
     for source_version, target_version in UPGRADE_PATH_RE.findall(text):
