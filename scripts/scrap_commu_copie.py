@@ -66,9 +66,9 @@ VERSION_CONTEXT_RE = re.compile(
     re.I,
 )
 PRODUCT_VERSION_LABEL_RE = re.compile(
-    r"\\b(?:fortios|forti[- ]?gate|fortimanager|fortianalyzer|fortiauthenticator|"
-    r"forticlient(?:\\s+(?:ems|vpn))?)\\b[^.!?]{0,80}?\\b(?:version|firmware)\\s*[:=]?\\s*"
-    r"v?(\\d{1,2}\\.\\d{1,2}(?:\\.\\d{1,3})?)",
+    r"\b(?:fortios|forti[- ]?gate|fortimanager|fortianalyzer|fortiauthenticator|"
+    r"forticlient(?:\s+(?:ems|vpn))?)\b[^.!?]{0,80}?\b(?:version|firmware)\s*[:=]?\s*"
+    r"v?(\d{1,2}\.\d{1,2}(?:\.\d{1,3})?)",
     re.I,
 )
 VERSION_LIST_TAIL_RE = re.compile(
