@@ -15,6 +15,13 @@ SPEC.loader.exec_module(collector)
 
 
 class CommunityFeedTests(unittest.TestCase):
+
+    def test_product_model_between_product_and_version_is_supported(self):
+        title = "FortiAnalyzer - Only Send Mail when report contains results"
+        summary = "I’m using FortiAnalyzer 1000F version 7.6.8 for daily reports."
+        url = "https://community.fortinet.com/support-forum-92/fortianalyzer-only-send-mail-231014"
+        self.assertEqual(collector.extract_versions(title, summary, url), ["7.6.8"])
+
     def test_rss_extracts_multiple_versions_in_parenthesized_firmware_list(self):
         payload = b"""<rss version="2.0"><channel>
           <item>
