@@ -65,6 +65,12 @@ VERSION_CONTEXT_RE = re.compile(
     r"v?(\d{1,2}\.\d{1,2}(?:\.\d{1,3})?)",
     re.I,
 )
+PRODUCT_VERSION_LABEL_RE = re.compile(
+    r"\\b(?:fortios|forti[- ]?gate|fortimanager|fortianalyzer|fortiauthenticator|"
+    r"forticlient(?:\\s+(?:ems|vpn))?)\\b[^.!?]{0,80}?\\b(?:version|firmware)\\s*[:=]?\\s*"
+    r"v?(\\d{1,2}\\.\\d{1,2}(?:\\.\\d{1,3})?)",
+    re.I,
+)
 VERSION_LIST_TAIL_RE = re.compile(
     r"(?:,|/|\band\b|\bor\b)\s*(?:version\s*)?v?"
     r"(\d{1,2}\.\d{1,2}(?:\.\d{1,3})?)",
@@ -145,6 +151,7 @@ def detecter_versions(texte, produits):
         trouvees.add(match.group(1))
         sentence_tail = re.split(r"[!?]|\.(?=\s|$)", texte[match.end():], maxsplit=1)[0]
         trouvees.update(VERSION_LIST_TAIL_RE.findall(sentence_tail))
+    trouvees.update(PRODUCT_VERSION_LABEL_RE.findall(texte))
     for version_list in FIRMWARE_VERSION_LIST_RE.findall(texte):
         trouvees.update(VERSION_TOKEN_RE.findall(version_list))
     return sorted(
