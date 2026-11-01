@@ -20,6 +20,44 @@ const { chromium } = require("playwright");
     assert.equal(dataResponse.status(), 200, "community.json doit être servi");
     const data = await dataResponse.json();
 
+    // Fixture synthétique locale : le test ne dépend pas de la conservation
+    // indéfinie d'un ancien article réel dans l'historique de collecte.
+    const buildFixture = {
+      title: "Automatik E2E — fixture synthétique des builds correctifs",
+      summary: "Donnée synthétique réservée aux tests navigateur ; elle ne décrit aucun incident réel.",
+      symptom: "Symptôme de démonstration pour vérifier l'affichage.",
+      impact: "Aucun impact réel : cette fiche est une fixture de test.",
+      solution: "Aucune action requise : donnée synthétique.",
+      products: ["FortiGate"],
+      versions: ["7.6.8"],
+      versionFamilies: ["7.6"],
+      fixVersions: [],
+      fixBuilds: ["7.01204", "7.1204"],
+      fixBuildNote: "Fixture de test : les deux valeurs doivent rester distinctes.",
+      status: "Fixture de test",
+      forumReportCount: 0,
+      documentedSourceCount: 0,
+      lastSeen: "2026-11-01T00:00:00+00:00",
+      confidence: "Donnée synthétique utilisée uniquement par les tests.",
+      sources: [{
+        sourceType: "test_fixture",
+        title: "Source synthétique de test (non publiée)",
+        url: "https://example.invalid/automatik-e2e-build-fixture",
+        date: "2026-11-01T00:00:00+00:00"
+      }]
+    };
+    data.incidents = Array.isArray(data.incidents) ? data.incidents : [];
+    const fixtureIndex = Math.min(100, data.incidents.length);
+    data.incidents.splice(fixtureIndex, 0, buildFixture);
+    data.incidentCount = data.incidents.length;
+
+    // Le navigateur reçoit le jeu réel augmenté d'une seule fixture non publiée.
+    await page.route("**/data/community.json*", route => route.fulfill({
+      status: 200,
+      contentType: "application/json; charset=utf-8",
+      body: JSON.stringify(data)
+    }));
+
     await page.goto(baseUrl, { waitUntil: "networkidle" });
     await page.keyboard.press("Tab");
     assert.equal(
@@ -178,19 +216,18 @@ const { chromium } = require("playwright");
       }
     }
 
-    const ipseIncident = (data.incidents || []).find(item =>
-      (item.sources || []).some(source => (source.url || "").includes("230996"))
-    );
-    assert.ok(ipseIncident, "l'article FortiGate conserve mode 230996 doit être synthétisé");
-    assert.deepEqual(ipseIncident.fixBuilds, ["7.01204", "7.1204"], "les deux builds cités par la source doivent être conservés");
-    assert.match(ipseIncident.fixBuildNote || "", /plusieurs builds IPSEngine/, "la contradiction de build doit être signalée");
-    await page.locator("#community-search").fill(ipseIncident.title);
-    const ipseCard = page.locator("#community-list .incident-card").filter({ hasText: ipseIncident.title }).first();
-    assert.equal(await ipseCard.count(), 1, "la recherche doit faire remonter la fiche même au-delà des 100 cartes affichées par défaut");
-    await ipseCard.locator("summary").first().click();
-    const ipseCardText = await ipseCard.innerText();
-    assert.ok(ipseCardText.includes("7.01204") && ipseCardText.includes("7.1204"), "les deux builds doivent être visibles dans la fiche");
-    assert.ok(ipseCardText.includes(ipseIncident.fixBuildNote), "la réserve de build doit être visible dans la fiche");
+    const fixtureCard = page.locator("#community-list .incident-card").filter({ hasText: buildFixture.title }).first();
+    if (fixtureIndex === 100) {
+      assert.equal(await fixtureCard.count(), 0, "une fiche située après les 100 premières ne doit pas apparaître avant recherche");
+    }
+    await page.locator("#community-search").fill(buildFixture.title);
+    assert.equal(await fixtureCard.count(), 1, "la recherche doit retrouver une fiche située après la première page");
+    await fixtureCard.locator("summary").first().click();
+    const fixtureCardText = await fixtureCard.innerText();
+    for (const build of buildFixture.fixBuilds) {
+      assert.ok(fixtureCardText.includes(build), "chaque build synthétique doit être visible dans la fiche ouverte");
+    }
+    assert.ok(fixtureCardText.includes(buildFixture.fixBuildNote), "la note de fixture doit être visible dans la fiche");
     await page.locator("#community-search").fill("");
 
     const updatedSourceIncident = (data.incidents || []).slice(0, 100).find(incident =>
