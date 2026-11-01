@@ -25,8 +25,9 @@ MAX_HISTORY = 1000
 MAX_TOPIC_PRODUCT_LOOKUPS = 8
 MAX_BOARD_PAGES = 5
 # The cross-product Support Forum index is much busier than individual boards.
-# Ten pages reach roughly 25–28 days of discussions in the observed public index.
-SUPPORT_FORUM_MAX_PAGES = 10
+# Fifteen pages reach approximately one month of discussions in the observed public index.
+# Coverage remains best-effort because the index does not expose a stable date cursor.
+SUPPORT_FORUM_MAX_PAGES = 15
 MAX_BOARD_DETAIL_LOOKUPS = 12
 DETAIL_PARSER_VERSION = 6
 DETAIL_FAILURE_RETRY_HOURS = 2
