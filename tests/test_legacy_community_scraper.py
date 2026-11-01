@@ -86,6 +86,43 @@ class LegacyCommunityScraperSecurityTests(unittest.TestCase):
         self.assertEqual(raised.exception.code, 1)
         self.assertIn("GEMINI_API_KEY", output.getvalue())
 
+    def test_legacy_scraper_covers_all_six_product_families(self):
+        self.assertEqual(
+            set(legacy.PRODUITS_CIBLES),
+            {
+                "fortigate",
+                "fortimanager",
+                "fortiauthenticator",
+                "fortianalyzer",
+                "forticlient ems",
+                "forticlient",
+            },
+        )
+
+    def test_legacy_scraper_detects_versions_outside_the_manual_scope(self):
+        text = (
+            "FortiGate running FortiOS 7.4.13; FortiClient EMS 7.4.8; "
+            "FortiAuthenticator 6.6.10; Firmware (7.6.8 / 7.4.13)"
+        )
+        products = legacy.detecter_produits(text)
+        self.assertIn("fortiauthenticator", products)
+        self.assertEqual(
+            legacy.detecter_versions(text, products),
+            ["6.6.10", "7.4.8", "7.4.13", "7.6.8"],
+        )
+
+    def test_legacy_scraper_keeps_new_versions_by_default(self):
+        item = {
+            "title": "FortiGate FortiOS 7.4.13 VPN failure",
+            "link": "https://community.fortinet.com/fortigate-3/vpn-failure-230001",
+            "date": "",
+            "summary": "VPN disconnects after upgrade.",
+            "category": "",
+        }
+        result = legacy.filtrer_items([item])
+        self.assertEqual(len(result), 1)
+        self.assertEqual(result[0]["versions_detectees"], ["7.4.13"])
+
 
 if __name__ == "__main__":
     unittest.main()
