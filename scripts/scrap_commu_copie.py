@@ -46,15 +46,33 @@ MODELE_GEMINI = "gemini-3.6-flash"
 # Modifiez librement les listes ci-dessous pour changer le périmètre.
 # ------------------------------------------------------------------
 
+# La liste de versions sert uniquement au filtrage strict facultatif.
+# Le mode normal conserve toutes les versions Fortinet détectées dans les sujets.
 VERSION_SCOPE = {
     "fortigate": ["7.4.12", "7.4.11", "7.6.7", "7.6.6"],
     "fortimanager": ["7.4.11", "7.4.10", "7.6.7", "7.6.6"],
     "fortianalyzer": ["7.4.11", "7.4.10", "7.6.7", "7.6.6"],
+    "fortiauthenticator": [],
     "forticlient ems": ["7.4.8", "7.4.7", "7.6.7", "7.6.6"],
     "forticlient": ["7.4.8", "7.4.7", "7.6.7", "7.6.6"],
 }
 
 PRODUITS_CIBLES = list(VERSION_SCOPE.keys())
+ 
+VERSION_CONTEXT_RE = re.compile(
+    r"\\b(?:fortios|forti[- ]?gate|fortimanager|fortianalyzer|fortiauthenticator|"
+    r"forticlient(?:\\s+(?:ems|vpn))?|firmware)\\s*[(:-]?\\s*(?:version\\s*)?"
+    r"v?(\\d{1,2}\\.\\d{1,2}(?:\\.\\d{1,3})?)",
+    re.I,
+)
+VERSION_LIST_TAIL_RE = re.compile(
+    r"(?:,|/|\\band\\b|\\bor\\b)\\s*(?:version\\s*)?v?"
+    r"(\\d{1,2}\\.\\d{1,2}(?:\\.\\d{1,3})?)",
+    re.I,
+)
+FIRMWARE_VERSION_LIST_RE = re.compile(r"\\bfirmware\\s*\\(([^)]{1,120})\\)", re.I)
+VERSION_TOKEN_RE = re.compile(r"\\b(\\d{1,2}\\.\\d{1,2}(?:\\.\\d{1,3})?)\\b")
+
 
 
 # ------------------------------------------------------------------
@@ -119,22 +137,25 @@ def detecter_produits(texte):
 
 
 def detecter_versions(texte, produits):
-    """Retourne la liste des versions du scope détectées dans le texte,
-    pour les produits déjà identifiés dans cet item."""
-    trouvees = []
-    for produit in produits:
-        for version in VERSION_SCOPE.get(produit, []):
-            if version in texte:
-                trouvees.append(version)
-    return sorted(set(trouvees))
+    """Détecte les versions explicitement liées à un produit ou au firmware Fortinet."""
+    if not produits:
+        return []
+    trouvees = set()
+    for match in VERSION_CONTEXT_RE.finditer(texte):
+        trouvees.add(match.group(1))
+        sentence_tail = re.split(r"[!?]|\\.(?=\\s|$)", texte[match.end():], maxsplit=1)[0]
+        trouvees.update(VERSION_LIST_TAIL_RE.findall(sentence_tail))
+    for version_list in FIRMWARE_VERSION_LIST_RE.findall(texte):
+        trouvees.update(VERSION_TOKEN_RE.findall(version_list))
+    return sorted(
+        trouvees,
+        key=lambda version: tuple(int(part) for part in version.split(".")),
+    )
 
-
-def filtrer_items(items, filtrer_par_version=True):
+def filtrer_items(items, filtrer_par_version=False):
     """
     Filtre les items par produit ciblé.
-    Si filtrer_par_version=True, ne garde que les items dont une version
-    du scope est explicitement mentionnée, OU qui ne mentionnent aucune
-    version du tout (pour ne pas perdre les sujets génériques pertinents).
+    Par défaut, conserve toutes les versions détectées; le scope manuel est facultatif.
     """
     resultat = []
     for it in items:
@@ -144,19 +165,22 @@ def filtrer_items(items, filtrer_par_version=True):
             continue
 
         versions_trouvees = detecter_versions(texte_complet, produits)
-
-        # Détecte si une version quelconque (hors scope) est mentionnée,
-        # pour distinguer "aucune version" de "version hors scope"
-        toute_version_pattern = r"\b\d+\.\d+\.\d+\b"
+        toute_version_pattern = r"\\b\\d{1,2}\\.\\d{1,2}(?:\\.\\d{1,3})?\\b"
         mention_version_quelconque = bool(re.search(toute_version_pattern, texte_complet))
+        scope_versions = {
+            version
+            for produit in produits
+            for version in VERSION_SCOPE.get(produit, [])
+        }
+        has_unscoped_product = any(not VERSION_SCOPE.get(produit) for produit in produits)
 
-        if filtrer_par_version:
-            if versions_trouvees:
+        if filtrer_par_version and scope_versions and not has_unscoped_product:
+            if set(versions_trouvees) & scope_versions:
                 garder = True
             elif not mention_version_quelconque:
-                garder = True  # sujet générique sans version précisée -> on garde par prudence
+                garder = True
             else:
-                garder = False  # une version est mentionnée mais hors scope -> on exclut
+                garder = False
         else:
             garder = True
 
@@ -167,6 +191,7 @@ def filtrer_items(items, filtrer_par_version=True):
             resultat.append(it_copie)
 
     return resultat
+
 # ------------------------------------------------------------------
 # GESTION DE L'HISTORIQUE
 # ------------------------------------------------------------------
@@ -491,10 +516,12 @@ def action_afficher_scope():
     print("SCOPE DE VERSIONS ACTUELLEMENT CONFIGURÉ")
     print("=" * 60)
     for produit, versions in VERSION_SCOPE.items():
-        print(f"  {produit.title()} : {', '.join(versions)}")
+        valeur = ", ".join(versions) if versions else "toutes versions détectées"
+        print(f"  {produit.title()} : {valeur}")
     print("=" * 60)
-    print("Pour modifier ce scope, éditez la variable VERSION_SCOPE")
-    print("en haut du fichier scrap_commu.py, puis relancez le script.")
+    print("La détection de versions est contextuelle et ne dépend pas de cette liste.")
+    print("Le filtrage strict par scope est désactivé par défaut; éditez VERSION_SCOPE")
+    print("et activez filtrer_par_version dans main() uniquement si nécessaire.")
     print("=" * 60)
 
 
@@ -528,9 +555,9 @@ def main():
         print("Puis : python scripts/scrap_commu_copie.py")
         sys.exit(1)
 
-    # Si vous voulez filtrer STRICTEMENT sur les versions du scope
-    # (exclure aussi les sujets sans version précisée), passez False -> True ici :
-    filtrer_par_version = True
+    # Conserver par défaut toutes les versions explicites, y compris les releases récentes.
+    # Le filtre strict du scope manuel peut être activé ponctuellement en passant à True.
+    filtrer_par_version = False
 
     while True:
         afficher_menu()
