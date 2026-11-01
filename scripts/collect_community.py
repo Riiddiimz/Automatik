@@ -29,7 +29,7 @@ MAX_BOARD_PAGES = 5
 # Coverage remains best-effort because the index does not expose a stable date cursor.
 SUPPORT_FORUM_MAX_PAGES = 15
 MAX_BOARD_DETAIL_LOOKUPS = 12
-DETAIL_PARSER_VERSION = 6
+DETAIL_PARSER_VERSION = 7
 DETAIL_FAILURE_RETRY_HOURS = 2
 BOARD_DETAIL_RE = re.compile(
     r"\b(?:fail(?:s|ed|ing|ure|ures)?|not working|not loading|not supported|unsupported|unable|cannot|can\x27t|"
