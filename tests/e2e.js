@@ -19,6 +19,7 @@ const { chromium } = require("playwright");
     const dataResponse = await page.request.get(`${baseUrl}/data/community.json`);
     assert.equal(dataResponse.status(), 200, "community.json doit être servi");
     const data = await dataResponse.json();
+    const originalIncidentCount = Array.isArray(data.incidents) ? data.incidents.length : 0;
 
     // Fixture synthétique locale : le test ne dépend pas de la conservation
     // indéfinie d'un ancien article réel dans l'historique de collecte.
@@ -183,12 +184,12 @@ const { chromium } = require("playwright");
       await statusSelect.selectOption("");
     }
 
-    if ((data.incidents || []).length) {
+    if (originalIncidentCount > 0) {
       const firstCard = cards.first();
       for (const label of ["Symptôme", "Impact", "Solution / correctif", "Version de correctif mentionnée"]) {
         assert.equal(await firstCard.getByText(label, { exact: true }).count(), 1, `le champ "${label}" doit être affiché`);
       }
-      const buildIncident = (data.incidents || []).slice(0, 100).find(item => (item.fixBuilds || []).length);
+      const buildIncident = (data.incidents || []).filter(item => item !== buildFixture).slice(0, 100).find(item => (item.fixBuilds || []).length);
       if (buildIncident) {
         const buildCard = cards.filter({ hasText: buildIncident.title }).first();
         assert.equal(
@@ -222,7 +223,9 @@ const { chromium } = require("playwright");
     }
     await page.locator("#community-search").fill(buildFixture.title);
     assert.equal(await fixtureCard.count(), 1, "la recherche doit retrouver une fiche située après la première page");
-    await fixtureCard.locator("summary").first().click();
+    if (!(await fixtureCard.evaluate(element => element.open))) {
+      await fixtureCard.locator("summary").first().click();
+    }
     const fixtureCardText = await fixtureCard.innerText();
     for (const build of buildFixture.fixBuilds) {
       assert.ok(fixtureCardText.includes(build), "chaque build synthétique doit être visible dans la fiche ouverte");
