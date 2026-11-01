@@ -685,7 +685,7 @@ class CommunityFeedTests(unittest.TestCase):
         self.assertEqual(result["pageCount"], 5)
         self.assertEqual(result["topicCount"], 5)
 
-    def test_support_forum_default_pagination_reaches_tenth_page(self):
+    def test_support_forum_default_pagination_reaches_fifteenth_page(self):
         board = "https://community.fortinet.com/support-forum-92"
 
         def opener(request, timeout):
@@ -699,9 +699,9 @@ class CommunityFeedTests(unittest.TestCase):
             board_sources={"Support Forum": board},
             opener=opener,
         )
-        self.assertEqual(collector.SUPPORT_FORUM_MAX_PAGES, 10)
-        self.assertEqual(result["pageCount"], 10)
-        self.assertEqual(result["topicCount"], 10)
+        self.assertEqual(collector.SUPPORT_FORUM_MAX_PAGES, 15)
+        self.assertEqual(result["pageCount"], 15)
+        self.assertEqual(result["topicCount"], 15)
         self.assertTrue(all(item["products"] == ["FortiGate"] for item in result["topics"]))
 
 
