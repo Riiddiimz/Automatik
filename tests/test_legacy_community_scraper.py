@@ -111,6 +111,12 @@ class LegacyCommunityScraperSecurityTests(unittest.TestCase):
             ["6.6.10", "7.4.8", "7.4.13", "7.6.8"],
         )
 
+
+    def test_legacy_scraper_extracts_version_after_product_model(self):
+        text = "FortiAnalyzer 1000F version 7.6.8 reports are sent even when empty."
+        products = legacy.detecter_produits(text)
+        self.assertEqual(legacy.detecter_versions(text, products), ["7.6.8"])
+
     def test_legacy_scraper_keeps_new_versions_by_default(self):
         item = {
             "title": "FortiGate FortiOS 7.4.13 VPN failure",
