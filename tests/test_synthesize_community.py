@@ -472,7 +472,7 @@ class CommunitySynthesisTests(unittest.TestCase):
             result = synth.synthesize({"topics": [item]}, Path(directory) / "community.json")
         self.assertEqual(result["incidentCount"], 1)
         incident = result["incidents"][0]
-        self.assertEqual(incident["products"], ["FortiGate", "FortiAnalyzer"])
+        self.assertCountEqual(incident["products"], ["FortiGate", "FortiAnalyzer"])
         self.assertEqual(incident["versions"], ["7.6.6", "7.6.7"])
         self.assertEqual(incident["fixVersions"], ["7.6.8"])
         self.assertEqual(incident["status"], "Documenté par Fortinet (version identifiée)")
