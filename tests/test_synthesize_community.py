@@ -449,6 +449,43 @@ class CommunitySynthesisTests(unittest.TestCase):
         self.assertEqual(incident["status"], "Documenté par Fortinet (version identifiée)")
 
 
+    def test_official_fortianalyzer_article_separates_affected_and_fixed_upgrade_versions(self):
+        item = {
+            "title": "Traffic logs generated on FortiGate proxy policies despite logging being disabled",
+            "summary": (
+                "DescriptionFortiGate generates excessive traffic logs for proxy policies even when the logtraffic setting is disabled. "
+                "ScopeFortiGate, FortiAnalyzer. "
+                "SolutionAfter upgrading to FortiOS 7.6.6 or 7.6.7, the volume of daily logs sent to FortiAnalyzer increases significantly. "
+                "Resolution: Upgrade the FortiGate device to FortiOS 7.6.8 or a later version."
+            ),
+            "url": "https://community.fortinet.com/fortigate-3/traffic-logs-generated-on-fortigate-proxy-policies-despite-logging-being-disabled-230984",
+        }
+
+        self.assertEqual(
+            synth.extract_versions(item),
+            (["7.6.6", "7.6.7"], ["7.6"]),
+        )
+        self.assertEqual(synth.extract_fixed_versions(item), ["7.6.8"])
+
+    def test_official_fortimanager_upgrade_article_extracts_both_affected_versions(self):
+        item = {
+            "title": "LDAPS configuration erased after FortiManager upgrade",
+            "summary": (
+                "DescriptionTroubleshooting steps for an issue where LDAPS configurations are erased after a FortiManager upgrade when a ca-cert is not configured. "
+                "ScopeFortiManager. "
+                "DescriptionFortiManager currently permits omitting the ca-cert field when configuring LDAPS. "
+                "These LDAPS configurations will be automatically deleted during the upgrade to FortiManager versions 7.4.12 GA and 7.6.8 GA. "
+                "Workaround: Assign a temporary ca-cert before upgrading FortiManager to keep the configurations."
+            ),
+            "url": "https://community.fortinet.com/fortimanager-27/ldaps-configuration-erased-after-fortimanager-upgrade-230637",
+        }
+
+        self.assertEqual(
+            synth.extract_versions(item),
+            (["7.4.12", "7.6.8"], ["7.4", "7.6"]),
+        )
+        self.assertEqual(synth.extract_fixed_versions(item), [])
+
     def test_fixed_version_is_separate_from_affected_versions(self):
         item = {
             "title": "Administrator SSO authentication fails after upgrade to FortiOS 7.6.8",

@@ -37,7 +37,7 @@ ISSUE_RE = re.compile(
     re.I,
 )
 VERSION_CONTEXT_RE = re.compile(
-    r"\b(?:fortios|fortigate|fortimanager|fortianalyzer|fortiauthenticator|forticlient(?:\s+(?:ems|vpn))?|fortiswitch|fortiap|firmware)\s*[\(:-]?\s*(?:version\s*)?v?(\d{1,2}\.\d{1,2}(?:\.\d{1,3})?)",
+    r"\b(?:fortios|fortigate|fortimanager|fortianalyzer|fortiauthenticator|forticlient(?:\s+(?:ems|vpn))?|fortiswitch|fortiap|firmware)\s*[\(:-]?\s*(?:versions?\s*)?v?(\d{1,2}\.\d{1,2}(?:\.\d{1,3})?)",
     re.I,
 )
 VERSION_LIST_TAIL_RE = re.compile(
@@ -64,6 +64,10 @@ REPORTED_FIRMWARE_VERSION_RE = re.compile(
 UPGRADE_PATH_RE = re.compile(
     r"\b(?:upgrad(?:e|ed|ing|es)|firmware update)\b[^.!?]{0,120}?\b(?:from\s+)?(?:version\s*)?v?(\d{1,2}\.\d{1,2}(?:\.\d{1,3})?)\b[^.!?]{0,80}?\bto\s+(?:version\s*)?v?(\d{1,2}\.\d{1,2}(?:\.\d{1,3})?)\b",
     re.I,
+)
+UPGRADE_SEGMENT_RE = re.compile(
+    r"\b(?:upgrad(?:e|ed|ing|es)|firmware update)\b(.*?)(?=(?:\.(?=\s+[A-Z])|[!?]|$))",
+    re.I | re.S,
 )
 UPGRADE_TARGET_RE = re.compile(
     r"\b(?:upgrad(?:e|ed|ing|es)|firmware update)\b[^.!?]{0,100}?\bto\s+(?:version\s*)?v?(\d{1,2}\.\d{1,2}(?:\.\d{1,3})?)\b",
@@ -92,7 +96,7 @@ FIXED_VERSION_UPGRADE_RE = re.compile(
     r"\b(?:permanent solution|resolution|fix|solution)\s*(?::|is\s+to)?\s*"
     r"(?:update|upgrade)\s+(?:the\s+)?"
     r"(?:(?:fortios|fortigate|fortimanager|fortianalyzer|fortiauthenticator|"
-    r"forticlient(?:\s+(?:ems|vpn))?|firmware)\s+)?"
+    r"forticlient(?:\s+(?:ems|vpn))?|firmware)(?:\s+(?:device|appliance|firewall|unit)s?)?\s+)?"
     r"(?:to\s+)?"
     r"(?:(?:fortios|fortigate|fortimanager|fortianalyzer|fortiauthenticator|"
     r"forticlient(?:\s+(?:ems|vpn))?|firmware)\s+)?"
@@ -204,6 +208,7 @@ def extract_versions(item: dict) -> tuple[list[str], list[str]]:
     )
     text = title + " " + summary
     reported_versions = []
+    affected_upgrade_versions = set()
     if source_type(item) == "fortinet_article":
         scope = re.search(
             r"\bScope\s*:?\s*(.*?)(?=\b(?:Solution|Workaround|Impact|Description)\b|$)",
@@ -213,13 +218,30 @@ def extract_versions(item: dict) -> tuple[list[str], list[str]]:
         affected_summary = FIXED_VERSION_RE.sub(" ", summary)
         affected_summary = FIXED_VERSION_CONTEXT_RE.sub(" ", affected_summary)
         affected_summary = FIXED_VERSION_LIST_RE.sub(" ", affected_summary)
+        # Remove an explicit remediation upgrade before extracting affected upgrade releases.
+        affected_summary = FIXED_VERSION_UPGRADE_RE.sub(" ", affected_summary)
+        for source_version, target_version in UPGRADE_PATH_RE.findall(affected_summary):
+            affected_upgrade_versions.update((source_version, target_version))
+        for upgrade_match in UPGRADE_SEGMENT_RE.finditer(affected_summary):
+            segment = upgrade_match.group(1)
+            context_matches = list(VERSION_CONTEXT_RE.finditer(segment))
+            if context_matches:
+                for context in context_matches:
+                    affected_upgrade_versions.add(context.group(1))
+                    affected_upgrade_versions.update(VERSION_LIST_TAIL_RE.findall(segment[context.end():]))
+            else:
+                target_match = UPGRADE_TARGET_RE.search("upgrade " + segment)
+                if target_match:
+                    affected_upgrade_versions.add(target_match.group(1))
+                    tail = ("upgrade " + segment)[target_match.end():]
+                    affected_upgrade_versions.update(VERSION_LIST_TAIL_RE.findall(tail))
         affected_contexts = [
             match.group(0) for match in AFFECTED_VERSION_CONTEXT_RE.finditer(affected_summary)
         ]
         # Preserve an explicitly reported/tested firmware version even when
         # the article's Scope section names only the product family.
         reported_versions = REPORTED_FIRMWARE_VERSION_RE.findall(affected_summary)
-        if scope or affected_contexts or reported_versions:
+        if scope or affected_contexts or reported_versions or affected_upgrade_versions:
             scope_text = scope.group(1) if scope else ""
             text = title + " " + scope_text + " " + " ".join(affected_contexts)
     # Remove complete IPv4 addresses before looking for dotted version numbers.
@@ -238,7 +260,7 @@ def extract_versions(item: dict) -> tuple[list[str], list[str]]:
         r"\b(?:dig|openssl|python|curl|wget|iperf3?|ping)\s+v?\d{1,2}\.\d{1,2}(?:\.\d{1,3})?\b",
         " ", text_without_ips, flags=re.I,
     )
-    found = set(reported_versions)
+    found = set(reported_versions) | affected_upgrade_versions
     for match in VERSION_CONTEXT_RE.finditer(text_without_ips):
         found.add(match.group(1))
         sentence_tail = re.split(r"[!?]|\.(?=\s|$)", text_without_ips[match.end():], maxsplit=1)[0]
