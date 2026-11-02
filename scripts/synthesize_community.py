@@ -54,6 +54,13 @@ AFFECTED_VERSION_CONTEXT_RE = re.compile(
     re.I,
 )
 FIRMWARE_VERSION_LIST_RE = re.compile(r"\bfirmware\s*\(([^)]{1,120})\)", re.I)
+REPORTED_FIRMWARE_VERSION_RE = re.compile(
+    r"\b(?:reported|tested|observed|reproduced)\s+"
+    r"(?:(?:firmware|software|fortios|fortigate|fortimanager|fortianalyzer|fortiauthenticator|"
+    r"forticlient(?:\s+(?:ems|vpn))?|fortiswitch|fortiap)\s+)?"
+    r"version\s*[:=]?\s*v?(\d{1,2}\.\d{1,2}(?:\.\d{1,3})?)\b",
+    re.I,
+)
 UPGRADE_PATH_RE = re.compile(
     r"\b(?:upgrad(?:e|ed|ing|es)|firmware update)\b[^.!?]{0,120}?\b(?:from\s+)?(?:version\s*)?v?(\d{1,2}\.\d{1,2}(?:\.\d{1,3})?)\b[^.!?]{0,80}?\bto\s+(?:version\s*)?v?(\d{1,2}\.\d{1,2}(?:\.\d{1,3})?)\b",
     re.I,
@@ -196,6 +203,7 @@ def extract_versions(item: dict) -> tuple[list[str], list[str]]:
         summary,
     )
     text = title + " " + summary
+    reported_versions = []
     if source_type(item) == "fortinet_article":
         scope = re.search(
             r"\bScope\s*:?\s*(.*?)(?=\b(?:Solution|Workaround|Impact|Description)\b|$)",
@@ -208,7 +216,10 @@ def extract_versions(item: dict) -> tuple[list[str], list[str]]:
         affected_contexts = [
             match.group(0) for match in AFFECTED_VERSION_CONTEXT_RE.finditer(affected_summary)
         ]
-        if scope or affected_contexts:
+        # Preserve an explicitly reported/tested firmware version even when
+        # the article's Scope section names only the product family.
+        reported_versions = REPORTED_FIRMWARE_VERSION_RE.findall(affected_summary)
+        if scope or affected_contexts or reported_versions:
             scope_text = scope.group(1) if scope else ""
             text = title + " " + scope_text + " " + " ".join(affected_contexts)
     # Remove complete IPv4 addresses before looking for dotted version numbers.
@@ -227,7 +238,7 @@ def extract_versions(item: dict) -> tuple[list[str], list[str]]:
         r"\b(?:dig|openssl|python|curl|wget|iperf3?|ping)\s+v?\d{1,2}\.\d{1,2}(?:\.\d{1,3})?\b",
         " ", text_without_ips, flags=re.I,
     )
-    found = set()
+    found = set(reported_versions)
     for match in VERSION_CONTEXT_RE.finditer(text_without_ips):
         found.add(match.group(1))
         sentence_tail = re.split(r"[!?]|\.(?=\s|$)", text_without_ips[match.end():], maxsplit=1)[0]

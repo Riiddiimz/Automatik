@@ -436,16 +436,17 @@ class CommunitySynthesisTests(unittest.TestCase):
         }
         self.assertTrue(synth.looks_like_problem(item))
         self.assertTrue(synth.has_documented_evidence(item))
-        self.assertEqual(synth.extract_versions(item), ([], []))
+        self.assertEqual(synth.extract_versions(item), (["6.6.6"], ["6.6"]))
         self.assertEqual(synth.extract_fixed_versions(item), ["6.6.8", "8.0.2"])
         with tempfile.TemporaryDirectory() as directory:
             result = synth.synthesize({"topics": [item]}, Path(directory) / "community.json")
         self.assertEqual(result["incidentCount"], 1)
         incident = result["incidents"][0]
         self.assertEqual(incident["products"], ["FortiAuthenticator"])
-        self.assertEqual(incident["versions"], [])
+        self.assertEqual(incident["versions"], ["6.6.6"])
+        self.assertEqual(incident["versionFamilies"], ["6.6"])
         self.assertEqual(incident["fixVersions"], ["6.6.8", "8.0.2"])
-        self.assertEqual(incident["status"], "Documenté par Fortinet (version non précisée)")
+        self.assertEqual(incident["status"], "Documenté par Fortinet (version identifiée)")
 
 
     def test_fixed_version_is_separate_from_affected_versions(self):
