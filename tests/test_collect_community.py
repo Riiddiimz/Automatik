@@ -217,6 +217,99 @@ class CommunityFeedTests(unittest.TestCase):
         self.assertNotIn("needsProductEnrichment", enriched[0])
         self.assertEqual(errors, [])
 
+    def test_support_forum_broad_categories_are_not_treated_as_six_products(self):
+        payload = b"""<rss version="2.0"><channel>
+          <item>
+            <title>Dial-up IPsec VPN PKI User group not working after upgrade to 7.4.13</title>
+            <link>https://community.fortinet.com/support-forum-92/dial-up-ipsec-vpn-pki-user-group-not-working-after-upgrade-to-7-4-13-230987</link>
+            <pubDate>Fri, 30 Oct 2026 05:06:00 GMT</pubDate>
+            <category>Support Forum</category>
+            <category>FortiGate</category>
+            <category>FortiManager</category>
+            <category>FortiAP</category>
+            <category>FortiAuthenticator</category>
+            <category>FortiAnalyzer</category>
+            <category>FortiClient</category>
+            <description>The peers have the CA cert of the EMS server and the subject as part of the peer identifier. After upgrade to 7.4.13 the connection fails with invalid certificate.</description>
+          </item>
+        </channel></rss>"""
+        items = collector.parse_feed(payload)
+
+        self.assertEqual(len(items), 1)
+        self.assertEqual(items[0]["products"], [])
+        self.assertEqual(items[0]["categories"], ["Support Forum"])
+        self.assertTrue(items[0]["needsProductEnrichment"])
+
+    def test_cached_overclassified_support_forum_products_are_rechecked(self):
+        url = "https://community.fortinet.com/support-forum-92/dial-up-ipsec-vpn-pki-user-group-not-working-after-upgrade-to-7-4-13-230987"
+        title = "Dial-up IPsec VPN PKI User group not working after upgrade to 7.4.13"
+        summary = "The peers have the CA cert of the EMS server. After upgrade to 7.4.13 the connection fails with invalid certificate."
+        all_products = [
+            "FortiGate", "FortiManager", "FortiAnalyzer",
+            "FortiAuthenticator", "FortiClient", "FortiAP",
+        ]
+        topic = {
+            "id": url,
+            "url": url,
+            "title": title,
+            "summary": summary,
+            "categories": ["Support Forum"],
+            "products": [],
+            "versions": ["7.4.13"],
+            "needsProductEnrichment": True,
+        }
+        known = {
+            **topic,
+            "categories": ["Support Forum", *all_products],
+            "products": all_products,
+            "productEnrichmentStatus": "resolved",
+            "productEnrichmentCheckedAt": collector.datetime.now(collector.timezone.utc).isoformat(),
+        }
+        calls = []
+        errors = []
+        result = collector.enrich_unclassified_topics(
+            [topic],
+            lambda requested_url: calls.append(requested_url) or all_products,
+            errors,
+            known_topics=[known],
+        )
+
+        self.assertEqual(calls, [url])
+        self.assertEqual(result[0]["products"], [])
+        self.assertEqual(result[0]["categories"], ["Support Forum"])
+        self.assertEqual(result[0]["productEnrichmentStatus"], "unclassified")
+        self.assertTrue(result[0]["needsProductEnrichment"])
+
+    def test_broad_detail_tags_are_reduced_to_explicit_product_mentions(self):
+        url = "https://community.fortinet.com/support-forum-92/fortigate-forticlient-ipsec-vpn-failure-230990"
+        topic = {
+            "id": url,
+            "url": url,
+            "title": "FortiGate and FortiClient IPsec VPN failure after upgrade to 7.4.13",
+            "summary": "FortiGate and FortiClient cannot establish the IPsec VPN after the upgrade.",
+            "categories": ["Support Forum"],
+            "products": [],
+            "versions": ["7.4.13"],
+            "needsProductEnrichment": True,
+        }
+        all_products = [
+            "FortiGate", "FortiManager", "FortiAnalyzer",
+            "FortiAuthenticator", "FortiClient", "FortiAP",
+        ]
+        errors = []
+        result = collector.enrich_unclassified_topics(
+            [topic],
+            lambda requested_url: all_products,
+            errors,
+        )
+
+        self.assertEqual(result[0]["products"], ["FortiGate", "FortiClient"])
+        self.assertEqual(
+            result[0]["categories"],
+            ["Support Forum", "FortiGate", "FortiClient"],
+        )
+        self.assertEqual(errors, [])
+
     def test_stale_overclassified_topic_is_rechecked_from_public_tags(self):
         old_url = "https://community.fortinet.com/support-forum-92/after-upgrade-to-7-4-13-many-ap-are-not-connected-230800"
         old_topic = {
