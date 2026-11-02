@@ -189,6 +189,18 @@ def needs_product_enrichment(title: str, summary: str) -> bool:
     return has_version and bool(ISSUE_CONTEXT_RE.search(text))
 
 
+
+def products_in_text(text: str) -> list[str]:
+    """Return only product families explicitly named in the supplied text."""
+    products = [
+        name for name, patterns in PRODUCT_ALIASES.items()
+        if any(re.search(pattern, text, re.I) for pattern in patterns)
+    ]
+    if "FortiClient EMS" in products:
+        products = [product for product in products if product != "FortiClient"]
+    return products
+
+
 class TopicProductTagParser(HTMLParser):
     """Extract product labels from the topic tags, never from global footer navigation."""
 
@@ -332,10 +344,40 @@ def enrich_unclassified_topics(
 
         url = str(raw.get("url") or raw.get("id") or "").rstrip("/")
         known = known_by_url.get(url, {})
+        is_support_forum = urlparse(url).path.startswith("/support-forum-92/")
+        explicit_products = products_in_text(f"{raw.get('title', '')} {raw.get('summary', '')}")
         known_products = known.get("products") or []
+        raw_products = raw.get("products") or []
+        raw_category_products = products_in_text(" ".join(raw.get("categories") or []))
+        widest_product_set = max(
+            len(set(known_products)),
+            len(set(raw_products)),
+            len(set(raw_category_products)),
+        )
+        ambiguous_support_forum_classification = (
+            is_support_forum
+            and widest_product_set >= 4
+            and len(explicit_products) < widest_product_set
+        )
+        if ambiguous_support_forum_classification:
+            # Never preserve a broad category/navigation list as if it identified the topic.
+            non_product_categories = [
+                category for category in (raw.get("categories") or [])
+                if not products_in_text(category)
+            ]
+            raw = {
+                **raw,
+                "products": explicit_products,
+                "categories": list(dict.fromkeys([*non_product_categories, *explicit_products])),
+            }
 
-        # Reuse a prior successful classification rather than repeatedly fetching the same topic.
-        if known.get("productEnrichmentStatus") == "resolved" and known_products:
+        # Reuse a prior successful classification unless a broad Support Forum
+        # category list may have polluted the product assignment.
+        if (
+            known.get("productEnrichmentStatus") == "resolved"
+            and known_products
+            and not ambiguous_support_forum_classification
+        ):
             categories = list(dict.fromkeys([
                 *(raw.get("categories") or []),
                 *(known.get("categories") or []),
@@ -396,6 +438,13 @@ def enrich_unclassified_topics(
                 clean(product) for product in topic_products
                 if isinstance(product, str) and clean(product)
             ]
+            if is_support_forum and len(set(topic_products)) >= 4:
+                # A large product list is likely forum navigation/category pollution.
+                # Keep only families named in the actual topic text; otherwise leave it unclassified.
+                topic_products = [
+                    product for product in topic_products
+                    if product in explicit_products
+                ]
             categories = list(dict.fromkeys([*(raw.get("categories") or []), *topic_products]))
             text = f"{raw.get('title', '')} {raw.get('summary', '')} {' '.join(categories)}"
             products = [
@@ -711,7 +760,7 @@ def parse_feed(payload: bytes) -> list[dict]:
         # Khoros forum topics can mention products only in their tags/categories.
         # Include those labels for product detection without polluting the symptom summary.
         text = f"{title} {summary} {' '.join(categories)}"
-        products = [name for name, patterns in PRODUCT_ALIASES.items() if any(re.search(pattern, text, re.I) for pattern in patterns)]
+        products = products_in_text(text)
         # The forum board identifies the primary product even when the article body mentions another device.
         board = re.match(r"https?://community\.fortinet\.com/([^/]+)", link, re.I)
         if board:
@@ -725,13 +774,22 @@ def parse_feed(payload: bytes) -> list[dict]:
             primary = next((product for prefix, product in board_products.items() if slug.startswith(prefix)), None)
             if primary:
                 products = list(dict.fromkeys([primary] + [p for p in products if p in title]))
-            elif not slug.startswith("support-forum") and slug != "t5":
+            elif slug.startswith("support-forum"):
+                # Some Support Forum RSS entries expose every product board as a category,
+                # even when the topic concerns only one product. Four or more product
+                # categories are treated as ambiguous: keep only explicit title/body mentions.
+                category_products = products_in_text(" ".join(categories))
+                if len(category_products) >= 4:
+                    products = products_in_text(f"{title} {summary}")
+                    categories = [
+                        category for category in categories
+                        if not products_in_text(category)
+                    ]
+                    categories = list(dict.fromkeys([*categories, *products]))
+            elif slug != "t5":
                 # Non-forum boards can carry broad cross-product tags in RSS.
                 # Trust target products explicitly named in the title, not those tags.
-                products = [
-                    name for name, patterns in PRODUCT_ALIASES.items()
-                    if any(re.search(pattern, title, re.I) for pattern in patterns)
-                ]
+                products = products_in_text(title)
         needs_enrichment = not products and needs_product_enrichment(title, summary)
         if not products and not needs_enrichment:
             continue
