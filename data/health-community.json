@@ -2,8 +2,8 @@
   "source": "community",
   "label": "Fortinet Community",
   "status": "error",
-  "checkedAt": "2026-11-02T09:37:04.972364+00:00",
+  "checkedAt": "2026-11-02T15:07:07.629766+00:00",
   "lastSuccessAt": null,
   "message": "Le workflow GitHub Actions a échoué. Les dernières données publiées sont conservées, mais peuvent être anciennes.",
-  "runUrl": "https://github.com/Riiddiimz/Automatik/actions/runs/41422125319"
+  "runUrl": "https://github.com/Riiddiimz/Automatik/actions/runs/41468386009"
 }
