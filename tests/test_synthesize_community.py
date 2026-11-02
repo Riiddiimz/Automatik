@@ -466,6 +466,16 @@ class CommunitySynthesisTests(unittest.TestCase):
             (["7.6.6", "7.6.7"], ["7.6"]),
         )
         self.assertEqual(synth.extract_fixed_versions(item), ["7.6.8"])
+        self.assertTrue(synth.looks_like_problem(item))
+        self.assertTrue(synth.has_documented_evidence(item))
+        with tempfile.TemporaryDirectory() as directory:
+            result = synth.synthesize({"topics": [item]}, Path(directory) / "community.json")
+        self.assertEqual(result["incidentCount"], 1)
+        incident = result["incidents"][0]
+        self.assertEqual(incident["products"], ["FortiGate", "FortiAnalyzer"])
+        self.assertEqual(incident["versions"], ["7.6.6", "7.6.7"])
+        self.assertEqual(incident["fixVersions"], ["7.6.8"])
+        self.assertEqual(incident["status"], "Documenté par Fortinet (version identifiée)")
 
     def test_official_fortimanager_upgrade_article_extracts_both_affected_versions(self):
         item = {

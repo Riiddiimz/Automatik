@@ -36,6 +36,10 @@ ISSUE_RE = re.compile(
     r"conserve\s+mode|high\s+memory|memory\s+(?:usage|pressure|consumption|leak))\b",
     re.I,
 )
+EXPLICIT_BUG_CAUSE_RE = re.compile(
+    r"\b(?:a|the)\s+bug\b[^.!?]{0,160}\b(?:causes?|causing|results?\s+in|leads?\s+to)\b",
+    re.I,
+)
 VERSION_CONTEXT_RE = re.compile(
     r"\b(?:fortios|fortigate|fortimanager|fortianalyzer|fortiauthenticator|forticlient(?:\s+(?:ems|vpn))?|fortiswitch|fortiap|firmware)\s*[\(:-]?\s*(?:versions?\s*)?v?(\d{1,2}\.\d{1,2}(?:\.\d{1,3})?)",
     re.I,
@@ -282,7 +286,7 @@ def looks_like_problem(item: dict) -> bool:
     # something that cannot be configured. For those articles, require an explicit failure in title.
     if re.match(r"^(technical tip|how to|configuration guide)", title, re.I) and not ISSUE_RE.search(title):
         return False
-    if ISSUE_RE.search(title):
+    if ISSUE_RE.search(title) or EXPLICIT_BUG_CAUSE_RE.search(summary[:1200]):
         return True
     return bool(
         ISSUE_RE.search(summary[:1200])
@@ -439,7 +443,7 @@ def has_documented_evidence(item: dict) -> bool:
         and re.search(r"\bsolution\b", normalized_summary, re.I)
     )
     scoped_issue = bool(
-        ISSUE_RE.search(title)
+        (ISSUE_RE.search(title) or EXPLICIT_BUG_CAUSE_RE.search(normalized_summary))
         and re.search(r"\bScope\b", normalized_summary, re.I)
         and re.search(r"\bSolution\b", normalized_summary, re.I)
     )
