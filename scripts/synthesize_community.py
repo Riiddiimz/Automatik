@@ -40,6 +40,12 @@ EXPLICIT_BUG_CAUSE_RE = re.compile(
     r"\b(?:a|the)\s+bug\b[^.!?]{0,160}\b(?:causes?|causing|results?\s+in|leads?\s+to)\b",
     re.I,
 )
+UNEXPECTED_DISABLED_BEHAVIOR_RE = re.compile(
+    r"\b(?:generat(?:e|es|ed|ing)|produc(?:e|s|ed|ing)|creat(?:e|s|ed|ing)|"
+    r"send(?:s|ing)?|log(?:s|ged|ging)?)\b[^.!?]{0,140}\b(?:despite|even when|although)\b"
+    r"[^.!?]{0,100}\b(?:disabled|turned off|switched off)\b",
+    re.I,
+)
 VERSION_CONTEXT_RE = re.compile(
     r"\b(?:fortios|fortigate|fortimanager|fortianalyzer|fortiauthenticator|forticlient(?:\s+(?:ems|vpn))?|fortiswitch|fortiap|firmware)\s*[\(:-]?\s*(?:versions?\s*)?v?(\d{1,2}\.\d{1,2}(?:\.\d{1,3})?)",
     re.I,
@@ -286,7 +292,11 @@ def looks_like_problem(item: dict) -> bool:
     # something that cannot be configured. For those articles, require an explicit failure in title.
     if re.match(r"^(technical tip|how to|configuration guide)", title, re.I) and not ISSUE_RE.search(title):
         return False
-    if ISSUE_RE.search(title) or EXPLICIT_BUG_CAUSE_RE.search(summary[:1200]):
+    if (
+        ISSUE_RE.search(title)
+        or EXPLICIT_BUG_CAUSE_RE.search(summary[:1200])
+        or UNEXPECTED_DISABLED_BEHAVIOR_RE.search(f"{title} {summary[:1200]}")
+    ):
         return True
     return bool(
         ISSUE_RE.search(summary[:1200])
@@ -443,7 +453,11 @@ def has_documented_evidence(item: dict) -> bool:
         and re.search(r"\bsolution\b", normalized_summary, re.I)
     )
     scoped_issue = bool(
-        (ISSUE_RE.search(title) or EXPLICIT_BUG_CAUSE_RE.search(normalized_summary))
+        (
+            ISSUE_RE.search(title)
+            or EXPLICIT_BUG_CAUSE_RE.search(normalized_summary)
+            or UNEXPECTED_DISABLED_BEHAVIOR_RE.search(f"{title} {normalized_summary}")
+        )
         and re.search(r"\bScope\b", normalized_summary, re.I)
         and re.search(r"\bSolution\b", normalized_summary, re.I)
     )
