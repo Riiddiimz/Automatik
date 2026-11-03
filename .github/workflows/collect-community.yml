@@ -31,11 +31,11 @@ jobs:
     timeout-minutes: 7
     steps:
       - name: Récupérer main
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           ref: main
       - name: Installer Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v7
         with:
           python-version: "3.12"
       - name: Tester la collecte et la synthèse
