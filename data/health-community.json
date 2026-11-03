@@ -1,9 +1,9 @@
 {
   "source": "community",
   "label": "Fortinet Community",
-  "status": "error",
-  "checkedAt": "2026-11-03T09:44:39.087109+00:00",
+  "status": "partial",
+  "checkedAt": "2026-11-03T09:45:16.223399+00:00",
   "lastSuccessAt": null,
-  "message": "Le workflow GitHub Actions a échoué. Les dernières données publiées sont conservées, mais peuvent être anciennes.",
-  "runUrl": "https://github.com/Riiddiimz/Automatik/actions/runs/41613476501"
+  "message": "La collecte s'est exécutée, mais certaines sources sont incomplètes : 1 sujet(s) potentiel(s) conservé(s) mais non classé(s): les tags publics ne permettent pas encore d'identifier le produit. Le flux Community ignore le paramètre start à 100; les sujets précédents se répètent.",
+  "runUrl": "https://github.com/Riiddiimz/Automatik/actions/runs/41613528457"
 }
