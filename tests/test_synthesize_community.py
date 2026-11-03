@@ -588,7 +588,8 @@ class CommunitySynthesisTests(unittest.TestCase):
         self.assertEqual(incident["versions"], ["6.6.6"])
         self.assertEqual(incident["versionFamilies"], ["6.6"])
         self.assertEqual(incident["fixVersions"], ["6.6.8", "8.0.2"])
-        self.assertEqual(incident["status"], "Documenté par Fortinet (version identifiée)")
+        self.assertEqual(incident["status"], "Correctif documenté par Fortinet")
+        self.assertEqual(incident["evidenceType"], "official_fix_documented")
 
 
     def test_official_fortianalyzer_article_separates_affected_and_fixed_upgrade_versions(self):
@@ -617,7 +618,8 @@ class CommunitySynthesisTests(unittest.TestCase):
         self.assertCountEqual(incident["products"], ["FortiGate", "FortiAnalyzer"])
         self.assertEqual(incident["versions"], ["7.6.6", "7.6.7"])
         self.assertEqual(incident["fixVersions"], ["7.6.8"])
-        self.assertEqual(incident["status"], "Documenté par Fortinet (version identifiée)")
+        self.assertEqual(incident["status"], "Correctif documenté par Fortinet")
+        self.assertEqual(incident["evidenceType"], "official_fix_documented")
 
     def test_official_fortimanager_upgrade_article_extracts_both_affected_versions(self):
         item = {
