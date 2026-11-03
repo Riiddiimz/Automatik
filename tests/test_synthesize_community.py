@@ -454,6 +454,40 @@ class CommunitySynthesisTests(unittest.TestCase):
         self.assertEqual(incident["fixVersions"], ["7.6.7", "8.0.1"])
 
 
+    def test_fortimanager_firmware_preview_platform_mismatch_is_configuration(self):
+        item = {
+            "title": 'FortiManager firmware upgrade preview shows "No record found" even with an assigned device',
+            "summary": (
+                "DescriptionAn explanation for a 'No record found' message in the Firmware Upgrade Preview "
+                "of a Firmware Template in FortiManager even when a device is assigned. "
+                "ScopeFortiManager. FortiGate. "
+                "SolutionThe Firmware Upgrade Preview only lists devices that match the platform selected in the template. "
+                "If the template platform is different from the platform of the assigned device, the preview has nothing "
+                "to calculate and shows 'No record found'. No other error is shown, and the device still appears under "
+                "'Assigned to Device/Group'. The device platform shows in the FortiGate CLI: "
+                "Version: FortiGate-VM64-KVM v7.4.9,build2829,250924 (GA.M). "
+                "To avoid this, set the template Platform to 'GA Versions' instead of a specific platform."
+            ),
+            "url": "https://community.fortinet.com/fortimanager-27/fortimanager-firmware-upgrade-preview-shows-no-record-found-even-with-an-assigned-device-230925",
+            "products": ["FortiManager", "FortiGate"],
+        }
+
+        # 7.4.9 is an example firmware line in CLI output, not an affected release.
+        self.assertEqual(synth.extract_versions(item), ([], []))
+        self.assertTrue(synth.looks_like_problem(item))
+        self.assertTrue(synth.has_documented_evidence(item))
+        self.assertTrue(synth.is_configuration_guidance(item))
+
+        with tempfile.TemporaryDirectory() as directory:
+            result = synth.synthesize({"topics": [item]}, Path(directory) / "community.json")
+
+        incident = result["incidents"][0]
+        self.assertEqual(incident["versions"], [])
+        self.assertEqual(incident["fixVersions"], [])
+        self.assertEqual(incident["status"], "Configuration documentée par Fortinet")
+        self.assertEqual(incident["evidenceType"], "official_configuration")
+
+
     def test_official_wildcard_scope_is_a_family_not_an_exact_release(self):
         item = {
             "title": "IPS Engine Crash after upgrading to FortiOS 7.4.12",
