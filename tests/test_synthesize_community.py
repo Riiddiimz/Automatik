@@ -454,6 +454,88 @@ class CommunitySynthesisTests(unittest.TestCase):
         self.assertEqual(incident["fixVersions"], ["7.6.7", "8.0.1"])
 
 
+    def test_fortigate_zip_stream_scan_bug_extracts_fixed_release_after_upgrade_to_resolve(self):
+        item = {
+            "title": "Zip file downloads blocked when Antivirus profile is in Proxy mode with stream scan",
+            "summary": (
+                "DescriptionZip file downloads are blocked on FortiGate version 8.0.0 when the Antivirus profile is configured in Proxy mode and uses stream scan. "
+                "ScopeFortiGate. "
+                "SolutionSymptoms Zip file downloads are blocked when the following conditions are met: The FortiGate runs version 8.0.0. "
+                "The Antivirus profile is configured in Proxy mode. The scan mode is set to stream scan (default setting). "
+                "Root cause. Bug ID 1260804 in FortiGate version 8.0.0 causes ZIP file downloads to be blocked when the Antivirus profile uses stream scan in Proxy mode. "
+                "Resolution.Option 1: Upgrade FortiGate.Upgrade the FortiGate to version 8.0.1 or later to resolve this issue. "
+                "Option 2: Workaround.Change the Antivirus scan mode from stream scan to legacy scan."
+            ),
+            "url": "https://community.fortinet.com/fortigate-3/zip-file-downloads-blocked-when-antivirus-profile-is-in-proxy-mode-with-stream-scan-231053",
+            "products": ["FortiGate"],
+        }
+
+        self.assertEqual(synth.extract_versions(item), (["8.0.0"], ["8.0"]))
+        self.assertEqual(synth.extract_fixed_versions(item), ["8.0.1"])
+        self.assertTrue(synth.looks_like_problem(item))
+        self.assertTrue(synth.has_documented_evidence(item))
+
+        with tempfile.TemporaryDirectory() as directory:
+            result = synth.synthesize({"topics": [item]}, Path(directory) / "community.json")
+
+        incident = result["incidents"][0]
+        self.assertEqual(incident["versions"], ["8.0.0"])
+        self.assertEqual(incident["fixVersions"], ["8.0.1"])
+        self.assertEqual(incident["status"], "Correctif documenté par Fortinet")
+        self.assertEqual(incident["evidenceType"], "official_fix_documented")
+
+
+    def test_versioned_ems_connector_certificate_issue_is_configuration_not_firmware_bug(self):
+        item = {
+            "title": "FortiGate EMS fabric connector fails to validate CA certificate",
+            "summary": (
+                "DescriptionThe FortiClient/EMS fabric connector on FortiGate version 7.4.12 rejects a valid publicly signed "
+                "FortiClient/EMS web server certificate with a CA not recognized error. "
+                "ScopeFortiGate, FortiClient EMS. "
+                "SolutionAfter upgrading FortiOS, the FortiGate EMS fabric connector may fail to validate a valid EMS server certificate. "
+                "The issue may occur even when the certificate chain is valid and the required CA certificates are installed. "
+                "The issue occurs when the EMS Fabric Connector retains stale certificate-verification settings. "
+                "The verified-cn and/or certificate-fingerprint fields may remain configured after the verifying-ca entry has been removed. "
+                "WorkaroundReview the EMS connector configuration. Unset the certificate fingerprint and verified common name, "
+                "then re-verify the EMS connection: unset certificate-fingerprint; unset verified-cn."
+            ),
+            "url": "https://community.fortinet.com/fortigate-3/fortigate-ems-fabric-connector-fails-to-validate-ca-certificate-231032",
+            "products": ["FortiGate", "FortiClient EMS"],
+        }
+
+        self.assertEqual(synth.extract_versions(item), (["7.4.12"], ["7.4"]))
+        self.assertTrue(synth.looks_like_problem(item))
+        self.assertTrue(synth.has_documented_evidence(item))
+        self.assertTrue(synth.is_configuration_guidance(item))
+
+        with tempfile.TemporaryDirectory() as directory:
+            result = synth.synthesize({"topics": [item]}, Path(directory) / "community.json")
+
+        incident = result["incidents"][0]
+        self.assertEqual(incident["versions"], ["7.4.12"])
+        self.assertEqual(incident["fixVersions"], [])
+        self.assertEqual(incident["status"], "Configuration documentée par Fortinet")
+        self.assertEqual(incident["evidenceType"], "official_configuration")
+
+
+    def test_firmware_issue_under_investigation_is_not_misclassified_as_configuration(self):
+        item = {
+            "title": "Unable to configure IP address in VPN tunnel interface in FortiOS 7.6.8",
+            "summary": (
+                "DescriptionAfter upgrading to FortiOS 7.6.8, administrators may be unable to configure an IP address for new VPN tunnels via the GUI. "
+                "ScopeFortiOS 7.6.8. "
+                "SolutionIf only the IP address is configured, the tunnel interface remains at 0.0.0.0. "
+                "The issue is under investigation, and a permanent fix is not available yet. "
+                "WorkaroundConfigure the IP address and remote address via CLI with set ip <ipaddress> and set remote-ip <remoteIP>."
+            ),
+            "url": "https://community.fortinet.com/fortigate-3/unable-to-configure-ip-address-in-vpn-tunnel-interface-in-fortios-7-6-8-231009",
+            "products": ["FortiGate"],
+        }
+
+        self.assertEqual(synth.extract_versions(item), (["7.6.8"], ["7.6"]))
+        self.assertFalse(synth.is_configuration_guidance(item))
+
+
     def test_fortimanager_firmware_preview_platform_mismatch_is_configuration(self):
         item = {
             "title": 'FortiManager firmware upgrade preview shows "No record found" even with an assigned device',

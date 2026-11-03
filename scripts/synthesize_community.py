@@ -65,7 +65,7 @@ AFFECTED_VERSION_CONTEXT_RE = re.compile(
 )
 FIRMWARE_VERSION_LIST_RE = re.compile(r"\bfirmware\s*\(([^)]{1,120})\)", re.I)
 REPORTED_FIRMWARE_VERSION_RE = re.compile(
-    r"\b(?:reported|tested|observed|reproduced)\s+"
+    r"\b(?:reported|tested|observed|reproduced|running|runs|on)\s+"
     r"(?:(?:firmware|software|fortios|fortigate|fortimanager|fortianalyzer|fortiauthenticator|"
     r"forticlient(?:\s+(?:ems|vpn))?|fortiswitch|fortiap)\s+)?"
     r"version\s*[:=]?\s*v?(\d{1,2}\.\d{1,2}(?:\.\d{1,3})?)\b",
@@ -125,6 +125,15 @@ FIXED_VERSION_UPGRADE_RE = re.compile(
     r"(?:versions?\s*)?v?(\d{1,2}\.\d{1,2}(?:\.\d{1,3})?)\b",
     re.I,
 )
+FIXED_VERSION_UPGRADE_TO_RESOLVE_RE = re.compile(
+    r"\b(?:upgrade|update)\b[^.!?]{0,120}?\bto\s+"
+    r"(?:(?:fortios|fortigate|fortimanager|fortianalyzer|fortiauthenticator|"
+    r"forticlient(?:\s+(?:ems|vpn))?|firmware)\s+)?"
+    r"(?:version\s*)?v?(\d{1,2}\.\d{1,2}(?:\.\d{1,3})?)\b"
+    r"[^.!?]{0,120}\bto\s+(?:resolve|fix|address)\s+(?:this|the)\s+(?:issue|problem)\b",
+    re.I,
+)
+
 FIXED_VERSION_LIST_RE = re.compile(
     r"\b(?:fix|patch|correction)\s+(?:is\s+)?(?:available|included|provided|expected|planned)\s+"
     r"in\s+(?:the\s+following\s+versions\s*:?\s*)?(.*?)(?=(?:upgrade procedure|related articles|see:|workaround|note:)|$)",
@@ -325,6 +334,7 @@ def extract_versions(item: dict) -> tuple[list[str], list[str]]:
         affected_summary = FIXED_VERSIONS_SECTION_RE.sub(" ", affected_summary)
         # Remove an explicit remediation upgrade before extracting affected upgrade releases.
         affected_summary = FIXED_VERSION_UPGRADE_RE.sub(" ", affected_summary)
+        affected_summary = FIXED_VERSION_UPGRADE_TO_RESOLVE_RE.sub(" ", affected_summary)
         for source_version, target_version in UPGRADE_PATH_RE.findall(affected_summary):
             affected_upgrade_versions.update((source_version, target_version))
         for upgrade_match in UPGRADE_SEGMENT_RE.finditer(affected_summary):
@@ -356,6 +366,7 @@ def extract_versions(item: dict) -> tuple[list[str], list[str]]:
     # Do not misclassify documented fixed releases as affected releases.
     text_without_ips = FIXED_VERSION_RE.sub(" ", text_without_ips)
     text_without_ips = FIXED_VERSION_CONTEXT_RE.sub(" ", text_without_ips)
+    text_without_ips = FIXED_VERSION_UPGRADE_TO_RESOLVE_RE.sub(" ", text_without_ips)
     # Exclude operating-system/platform versions, which are not Fortinet firmware.
     text_without_ips = NON_FORTINET_VERSION_RE.sub(" ", text_without_ips)
     # Exclude elapsed-time decimals such as "0.7 seconds".
@@ -483,7 +494,7 @@ def extract_fixed_versions(item: dict) -> list[str]:
         return []
     text = normalize_article_sections(f"{item.get('title', '')} {item.get('summary', '')}")
     found = set()
-    for pattern in (FIXED_VERSION_RE, FIXED_VERSION_UPGRADE_RE):
+    for pattern in (FIXED_VERSION_RE, FIXED_VERSION_UPGRADE_RE, FIXED_VERSION_UPGRADE_TO_RESOLVE_RE):
         for match in pattern.finditer(text):
             found.add(match.group(1))
             sentence_tail = re.split(r"[!?]|\.(?=\s|$)", text[match.end():], maxsplit=1)[0]
@@ -607,11 +618,11 @@ def is_configuration_guidance(item: dict) -> bool:
     """Identify official configuration workarounds that should not be labelled as confirmed firmware bugs."""
     if source_type(item) != "fortinet_article":
         return False
-    if extract_versions(item)[0] or extract_fixed_versions(item) or extract_fixed_engine_releases(item):
+    if extract_fixed_versions(item) or extract_fixed_engine_releases(item):
         return False
     text = normalize_article_sections(item.get("summary", ""))
     if re.search(
-        r"\b(?:known issue|known bug|bug id|engineering ticket|permanent fix|resolved in|fixed in|corrected in|affected versions?)\b",
+        r"\b(?:known issue|known bug|bug id|engineering ticket|permanent fix|resolved in|fixed in|corrected in|affected versions?|under investigation)\b",
         text,
         re.I,
     ):
@@ -619,7 +630,7 @@ def is_configuration_guidance(item: dict) -> bool:
     title = item.get("title", "")
     return bool(
         re.search(
-            r"\b(?:set\s+[a-z0-9_-]+\s+(?:enable|disable|block|allow)|"
+            r"\b(?:unset\s+[a-z0-9_-]+|set\s+[a-z0-9_-]+\s+(?:enable|disable|block|allow)|"
             r"configure\b[^.!?]{0,180}\b(?:bypass|disable|enable|ignore)|"
             r"to resolve this issue\b[^.!?]{0,120}\bconfigure)\b",
             text,
