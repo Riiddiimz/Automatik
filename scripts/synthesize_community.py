@@ -274,7 +274,7 @@ def extract_labeled_versions(text: str, pattern: re.Pattern) -> set[str]:
 def normalize_article_sections(text: str) -> str:
     """Separate section labels and IPS Engine releases concatenated by HTML text extraction."""
     text = re.sub(
-        r"(?<=[A-Za-z0-9])(?i:Description|Scope|Solution|Workaround|Impact|Resolution|Affected Versions|Resolved Versions|Fixed Versions)(?=[A-Z])",
+        r"(?<!\s)(?i:Description|Scope|Solution|Workaround|Impact|Resolution|Affected Versions|Resolved Versions|Fixed Versions)(?=[A-Z])",
         lambda match: " " + match.group(0) + " ",
         text,
     )
