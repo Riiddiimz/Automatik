@@ -239,12 +239,13 @@ const { chromium } = require("playwright");
       await fixtureCard.locator("summary").first().click();
     }
     const fixtureCardText = await fixtureCard.innerText();
+    const fixtureCardHtml = await fixtureCard.evaluate(element => element.outerHTML);
     for (const build of buildFixture.fixBuilds) {
       assert.ok(fixtureCardText.includes(build), "chaque build synthétique doit être visible dans la fiche ouverte");
     }
     assert.ok(fixtureCardText.includes(buildFixture.fixBuildNote), "la note de fixture doit être visible dans la fiche");
     for (const value of ["Correctifs du moteur IPS", "7.6.9", "1202", "8.0.3", "0053"]) {
-      assert.ok(fixtureCardText.includes(value), "valeur IPS manquante : " + value + " ; fiche rendue : " + fixtureCardText);
+      assert.ok(fixtureCardText.includes(value), "valeur IPS manquante : " + value + " ; fiche rendue : " + fixtureCardText + " ; HTML : " + fixtureCardHtml);
     }
     const fixtureSources = fixtureCard.locator(".incident-sources");
     await fixtureSources.locator("summary").click();
