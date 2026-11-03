@@ -121,6 +121,20 @@ FIXED_VERSION_LIST_RE = re.compile(
 FIXED_VERSION_LIST_TOKEN_RE = re.compile(
     r"(?<!\d)(\d{1,2}\.\d{1,2}(?:\.\d{1,3})?)(?=[A-Za-z\s,;:.]|$)"
 )
+# A wildcard such as 7.4.x identifies a release family, not an exact firmware.
+VERSION_FAMILY_RE = re.compile(r"(?<!\d)(\d{1,2}\.\d{1,2})\.x\b", re.I)
+AFFECTED_VERSIONS_SECTION_RE = re.compile(
+    r"\b(?:affected\s+versions?|affected\s+releases?)\s*:?\s*(.*?)"
+    r"(?=\b(?:resolved\s+versions?|fixed\s+versions?|corrected\s+versions?|"
+    r"resolved\s+releases?|fixed\s+releases?|workaround|related\s+articles|note)\b|$)",
+    re.I | re.S,
+)
+FIXED_VERSIONS_SECTION_RE = re.compile(
+    r"\b(?:resolved\s+versions?|fixed\s+versions?|corrected\s+versions?|"
+    r"resolved\s+releases?|fixed\s+releases?)\s*:?\s*(.*?)"
+    r"(?=\b(?:affected\s+versions?|workaround|related\s+articles|note|scope|description|impact)\b|$)",
+    re.I | re.S,
+)
 FIXED_BUILD_RE = re.compile(
     r"\b(?:special|engineering|hotfix|custom)\s+build\s+(\d{3,6})\b",
     re.I,
@@ -216,6 +230,18 @@ def extract_products(item: dict) -> list[str]:
     return found or ([] if unwatched_product_board else item.get("products", []))
 
 
+def extract_labeled_versions(text: str, pattern: re.Pattern) -> set[str]:
+    """Extract firmware numbers from an explicitly labelled affected/fixed-version section."""
+    found = set()
+    for match in pattern.finditer(text):
+        section = re.sub(r"\b(?:\d{1,3}\.){3}\d{1,3}\b", " ", match.group(1))
+        section = NON_FORTINET_VERSION_RE.sub(" ", section)
+        found.update(
+            re.findall(r"(?<!\d)(\d{1,2}\.\d{1,2}(?:\.\d{1,3})?)(?!\d)", section)
+        )
+    return found
+
+
 def extract_versions(item: dict) -> tuple[list[str], list[str]]:
     title = item.get("title", "")
     summary = item.get("summary", "")
@@ -228,6 +254,8 @@ def extract_versions(item: dict) -> tuple[list[str], list[str]]:
     text = title + " " + summary
     reported_versions = []
     affected_upgrade_versions = set()
+    scope_text = ""
+    scope_families = set()
     if source_type(item) == "fortinet_article":
         scope = re.search(
             r"\bScope\s*:?\s*(.*?)(?=\b(?:Solution|Workaround|Impact|Description)\b|$)",
@@ -262,7 +290,9 @@ def extract_versions(item: dict) -> tuple[list[str], list[str]]:
         reported_versions = REPORTED_FIRMWARE_VERSION_RE.findall(affected_summary)
         if scope or affected_contexts or reported_versions or affected_upgrade_versions:
             scope_text = scope.group(1) if scope else ""
+            scope_families = set(VERSION_FAMILY_RE.findall(scope_text))
             text = title + " " + scope_text + " " + " ".join(affected_contexts)
+    affected_section_versions = extract_labeled_versions(summary, AFFECTED_VERSIONS_SECTION_RE)
     # Remove complete IPv4 addresses before looking for dotted version numbers.
     text_without_ips = re.sub(r"\b(?:\d{1,3}\.){3}\d{1,3}\b", " ", text)
     # Do not misclassify documented fixed releases as affected releases.
@@ -279,7 +309,7 @@ def extract_versions(item: dict) -> tuple[list[str], list[str]]:
         r"\b(?:dig|openssl|python|curl|wget|iperf3?|ping)\s+v?\d{1,2}\.\d{1,2}(?:\.\d{1,3})?\b",
         " ", text_without_ips, flags=re.I,
     )
-    found = set(reported_versions) | affected_upgrade_versions
+    found = set(reported_versions) | affected_upgrade_versions | affected_section_versions
     for match in VERSION_CONTEXT_RE.finditer(text_without_ips):
         found.add(match.group(1))
         sentence_tail = re.split(r"[!?]|\.(?=\s|$)", text_without_ips[match.end():], maxsplit=1)[0]
@@ -289,8 +319,11 @@ def extract_versions(item: dict) -> tuple[list[str], list[str]]:
     for source_version, target_version in UPGRADE_PATH_RE.findall(text_without_ips):
         found.update((source_version, target_version))
     found.update(UPGRADE_TARGET_RE.findall(text_without_ips))
-    exact = sorted(found, key=lambda v: tuple(int(x) for x in v.split(".")))
-    families = sorted({ ".".join(v.split(".")[:2]) for v in exact }, key=lambda v: tuple(int(x) for x in v.split(".")))
+    exact = sorted(found - scope_families, key=lambda v: tuple(int(x) for x in v.split(".")))
+    families = sorted(
+        {".".join(v.split(".")[:2]) for v in exact} | scope_families,
+        key=lambda v: tuple(int(x) for x in v.split(".")),
+    )
     return exact, families
 
 
@@ -403,6 +436,7 @@ def extract_fixed_versions(item: dict) -> list[str]:
     # and HTML-to-text extraction can concatenate the version and next product name.
     for match in FIXED_VERSION_LIST_RE.finditer(text):
         found.update(FIXED_VERSION_LIST_TOKEN_RE.findall(match.group(1)))
+    found.update(extract_labeled_versions(text, FIXED_VERSIONS_SECTION_RE))
     return sorted(found, key=lambda version: tuple(int(part) for part in version.split(".")))
 
 
