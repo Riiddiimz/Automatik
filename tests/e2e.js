@@ -248,7 +248,7 @@ const { chromium } = require("playwright");
       assert.ok(normalizedFixtureCardText.includes(value.toLowerCase()), "valeur IPS manquante : " + value + " ; fiche rendue : " + fixtureCardText);
     }
     const fixtureSources = fixtureCard.locator(".incident-sources");
-    await fixtureSources.locator("summary").click();
+    await fixtureSources.locator("summary").first().click();
     const fixtureReplies = fixtureSources.locator(".source-replies");
     assert.equal(await fixtureReplies.count(), 1, "les réponses structurées doivent être proposées dans les sources");
     await fixtureReplies.locator("summary").click();
