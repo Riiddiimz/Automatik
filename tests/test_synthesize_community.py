@@ -497,7 +497,8 @@ class CommunitySynthesisTests(unittest.TestCase):
                 "DescriptionFortiClient version 7.4 fails to establish a VPN connection before user logon using Windows credentials. "
                 "ScopeFortiClient version 7.4. "
                 "SolutionSymptomsUsers cannot connect to SSL VPN or IPsec VPN using VPN Before Logon after upgrading to FortiClient 7.4. "
-                "Permanent solution.This behavior is not present in FortiClient version 8.0.0 and above."
+                "Permanent solution.This behavior is not present in FortiClient version 8.0.0 and above. "
+                "Upgrade the FortiClient installation to FortiClient version 8.0.0 or above to restore the VPN Before Logon behavior."
             ),
             "url": "https://community.fortinet.com/forticlient-4/troubleshooting-tip-forticlient-vpn-before-logon-fails-to-connect-when-using-windows-credentials-230990",
             "products": ["FortiClient"],
