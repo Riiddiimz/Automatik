@@ -32,6 +32,8 @@ jobs:
         run: |
           python -m json.tool data/veille.json > /dev/null
           python -m json.tool data/community.json > /dev/null
+          python -m json.tool data/health-veille.json > /dev/null
+          python -m json.tool data/health-community.json > /dev/null
       - name: Vérifier la syntaxe JavaScript
         run: |
           node --check app.js
