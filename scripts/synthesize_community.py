@@ -862,6 +862,7 @@ def synthesize(data: dict, out: Path = DATA) -> dict:
         version_behavior_change = bool(documented_sources) and all(
             is_version_behavior_change(item) for item in documented_sources
         )
+        has_documented_fix = bool(fixed_versions or fixed_builds or fixed_engine_releases)
         incidents.append({
             "id": "incident-" + hashlib.sha1((" ".join(sorted(words(cluster[0].get("title", "")))) + "|" + "|".join(products)).encode("utf-8")).hexdigest()[:12],
             "title": cluster[0].get("title", "Problème potentiel Fortinet"),
@@ -898,6 +899,9 @@ def synthesize(data: dict, out: Path = DATA) -> dict:
                 else "Configuration documentée par Fortinet + récurrent" if configuration_only
                 else "Changement de comportement / incompatibilité documenté par Fortinet" if version_behavior_change and reports < 2
                 else "Changement de comportement / incompatibilité documenté par Fortinet + récurrent" if version_behavior_change
+                else "Correctif documenté par Fortinet" if documented and has_documented_fix and exact_versions and reports < 2
+                else "Correctif documenté par Fortinet (version affectée non précisée)" if documented and has_documented_fix and not exact_versions and reports < 2
+                else "Correctif documenté par Fortinet + récurrent" if documented and has_documented_fix
                 else "Documenté par Fortinet (version identifiée)" if documented and reports < 2 and exact_versions
                 else "Documenté par Fortinet (version non précisée)" if documented and reports < 2
                 else "Documenté par Fortinet + récurrent" if documented
@@ -906,6 +910,7 @@ def synthesize(data: dict, out: Path = DATA) -> dict:
             "confidence": (
                 "Documentation Fortinet (configuration)" if configuration_only
                 else "Documentation Fortinet (changement de comportement)" if version_behavior_change
+                else "Documentation Fortinet (correctif indiqué)" if documented and has_documented_fix
                 else "Documentation Fortinet versionnée" if documented and exact_versions
                 else "Documentation Fortinet (version non précisée)" if documented
                 else "Plusieurs discussions distinctes"
@@ -913,6 +918,7 @@ def synthesize(data: dict, out: Path = DATA) -> dict:
             "evidenceType": (
                 "official_configuration" if configuration_only
                 else "official_version_behavior" if version_behavior_change
+                else "official_fix_documented" if documented and has_documented_fix
                 else "official_documentation" if documented
                 else "repeated_reports"
             ),
