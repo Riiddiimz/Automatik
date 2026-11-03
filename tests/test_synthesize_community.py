@@ -415,6 +415,61 @@ class CommunitySynthesisTests(unittest.TestCase):
         self.assertEqual(result["incidents"][0]["fixVersions"], ["7.6.9", "8.0.3"])
 
 
+    def test_official_affected_and_resolved_version_sections_are_separated(self):
+        item = {
+            "title": "Fields missing in Antivirus Log ID 8195 when using Content-Type: multipart/form-data",
+            "summary": (
+                "DescriptionCertain fields are missing from Antivirus logs when multipart/form-data is used. "
+                "ScopeFortiGate. "
+                "SolutionSymptomsThe Antivirus logs omit agent, httpmethod and referralurl. "
+                "Root CauseBug ID 1281140 in FortiOS causes these fields to be omitted. "
+                "ResolutionAffected VersionsFortiOS 7.6.6FortiOS 8.0.0 "
+                "Resolved VersionsFortiOS 7.6.7FortiOS 8.0.1 "
+                "Upgrade the FortiGate to FortiOS 7.6.7 or FortiOS 8.0.1. "
+                "WorkaroundChange the inspection mode from proxy-based to flow-based."
+            ),
+            "url": "https://community.fortinet.com/fortigate-3/fields-missing-in-antivirus-log-id-8195-when-using-content-type-multipart-form-data-231050",
+            "products": ["FortiGate"],
+        }
+
+        self.assertEqual(
+            synth.extract_versions(item),
+            (["7.6.6", "8.0.0"], ["7.6", "8.0"]),
+        )
+        self.assertEqual(synth.extract_fixed_versions(item), ["7.6.7", "8.0.1"])
+        self.assertTrue(synth.looks_like_problem(item))
+        self.assertTrue(synth.has_documented_evidence(item))
+
+
+    def test_official_wildcard_scope_is_a_family_not_an_exact_release(self):
+        item = {
+            "title": "IPS Engine Crash after upgrading to FortiOS 7.4.12",
+            "summary": (
+                "DescriptionThe ipsengine daemon crashes repeatedly when FortiSandbox scanning is enabled. "
+                "ScopeFortiGate 7.4.x, 7.6.x. ipsengine 07.004.604. "
+                "SolutionThe permanent fix for this Known Issue is already included in "
+                "IPS engine 7.4.13 and 7.6.7. "
+                "The issue has been resolved in: IPS engine 7.6.9 (Build 1202) on the 7.6 branch "
+                "and IPS engine 8.0.3 (Build 0053) on the 8.0 branch. "
+                "After upgrading to a fixed IPS engine build, automatic updates can be re-enabled."
+            ),
+            "url": "https://community.fortinet.com/fortigate-3/ips-engine-crash-after-upgrading-to-fortios-7-4-12-231000",
+            "products": ["FortiGate"],
+        }
+
+        self.assertEqual(
+            synth.extract_versions(item),
+            (["7.4.12"], ["7.4", "7.6"]),
+        )
+        self.assertEqual(
+            synth.extract_fixed_engine_releases(item),
+            [
+                {"engine": "IPS Engine", "version": "7.6.9", "build": "1202"},
+                {"engine": "IPS Engine", "version": "8.0.3", "build": "0053"},
+            ],
+        )
+
+
     def test_official_radius_csv_import_issue_keeps_both_fixed_versions(self):
         item = {
             "title": "RADIUS attributes of users cleared during CSV file import",
