@@ -55,8 +55,12 @@ function renderCommunity() {
   const version = $("community-version").value;
   const status = $("community-status-filter").value;
   const incidents = (communityData.incidents || []).filter(item => {
-    const sourceText = (item.sources || []).map(source => [source.title, source.summary].join(" ")).join(" ");
-    const text = [item.title, item.summary, item.symptom, item.impact, item.solution, item.status, sourceText, ...(item.products || []), ...(item.versions || []), ...(item.versionFamilies || []), ...(item.fixVersions || []), ...(item.fixBuilds || []), item.fixBuildNote || ""].join(" ").toLowerCase();
+    const sourceText = (item.sources || []).map(source => [
+      source.title,
+      source.summary,
+      ...(Array.isArray(source.replies) ? source.replies.flatMap(reply => [reply.author, reply.authorRole, reply.text]) : [])
+    ].join(" ")).join(" ");
+    const text = [item.title, item.summary, item.symptom, item.impact, item.solution, item.status, sourceText, ...(item.products || []), ...(item.versions || []), ...(item.versionFamilies || []), ...(item.fixVersions || []), ...(item.fixBuilds || []), ...(item.fixEngineReleases || []).flatMap(release => [release.engine, release.version, release.build]), item.fixBuildNote || ""].join(" ").toLowerCase();
     return (!query || text.includes(query))
       && (!product || (item.products || []).includes(product))
       && (!version || (item.versionFamilies || []).includes(version))
@@ -81,13 +85,31 @@ function renderCommunity() {
     const sources = (item.sources || []).slice(0, 5).map(source => {
       const url = /^https:\/\//i.test(source.url || "") ? source.url : "https://community.fortinet.com/";
       const sourceLabel = source.sourceType === "fortinet_article" ? "Article Fortinet" : source.sourceType === "forum_discussion" ? "Discussion utilisateur" : "Source";
-      const publicationDate = source.date ? `Publié ${safeDate(source.date)}` : "Date de publication non précisée";
+      const publicationDate = source.date ? "Publié " + safeDate(source.date) : "Date de publication non précisée";
       const updatedDate = source.updatedAt && source.updatedAt !== source.date
-        ? ` · mis à jour ${safeDate(source.updatedAt)}`
+        ? " · mis à jour " + safeDate(source.updatedAt)
         : "";
-      return `<li><a href="${escapeHTML(url)}" target="_blank" rel="noopener noreferrer">${escapeHTML(source.title || "Source")} ↗</a><span>${escapeHTML(sourceLabel)} · ${escapeHTML(publicationDate)}${escapeHTML(updatedDate)}</span></li>`;
+      const replies = Array.isArray(source.replies) ? source.replies.slice(0, 5) : [];
+      const replyItems = replies.map(reply => {
+        const role = reply.authorRole ? "Rôle indiqué : " + escapeHTML(reply.authorRole) : "Rôle non précisé";
+        const replyDate = reply.date ? " · " + escapeHTML(safeDate(reply.date)) : "";
+        return "<li><strong>" + escapeHTML(reply.author || "Auteur non précisé") + "</strong><span>" + role + replyDate + "</span><p>" + escapeHTML(reply.text || "") + "</p></li>";
+      }).join("");
+      const replyDetails = replyItems
+        ? "<details class=\"source-replies\"><summary>Réponses structurées (" + replies.length + ")</summary><ul>" + replyItems + "</ul><small>Le rôle est repris de la page publique; il ne constitue pas une confirmation technique.</small></details>"
+        : "";
+      return "<li><a href=\"" + escapeHTML(url) + "\" target=\"_blank\" rel=\"noopener noreferrer\">" + escapeHTML(source.title || "Source") + " ↗</a><span>" + escapeHTML(sourceLabel) + " · " + escapeHTML(publicationDate) + escapeHTML(updatedDate) + "</span>" + replyDetails + "</li>";
     }).join("");
     const extra = Math.max(0, (item.sources || []).length - 5);
+    const engineReleases = (item.fixEngineReleases || []).map(release => {
+      const engine = release.engine || "IPS Engine";
+      const version = release.version || "version non précisée";
+      const build = release.build ? " (Build " + release.build + ")" : " (build non précisé)";
+      return "<li>" + escapeHTML(engine) + " " + escapeHTML(version) + escapeHTML(build) + "</li>";
+    }).join("");
+    const engineReleasePanel = engineReleases
+      ? "<section class=\"incident-detail\"><strong>Correctifs du moteur IPS (distincts du firmware FortiOS)</strong><ul>" + engineReleases + "</ul></section>"
+      : "";
     const shortSummary = aiReview.summary || item.summary || item.symptom || "Ouvrir la fiche pour consulter les détails.";
     return `<details class="community-card incident-card incident-accordion">
       <summary class="incident-accordion-summary">
@@ -109,6 +131,7 @@ function renderCommunity() {
           <section class="incident-detail"><strong>Solution / correctif</strong><p>${escapeHTML(aiReview.solution || item.solution || "Non précisé dans les sources consultées.")}</p></section>
           <section class="incident-detail"><strong>Version de correctif mentionnée</strong><p>${escapeHTML((item.fixVersions || []).join(", ") || "Non précisée par la source.")}</p></section>
           ${(item.fixBuilds || []).length ? `<section class="incident-detail"><strong>Build correctif mentionné</strong><p>${escapeHTML(item.fixBuilds.join(", "))}</p>${item.fixBuildNote ? `<p>${escapeHTML(item.fixBuildNote)}</p>` : ""}</section>` : ""}
+          ${engineReleasePanel}
         </div>
         <div class="community-meta"><span>${item.forumReportCount ?? 0} signalement(s) utilisateur(s) distinct(s)</span>${item.documentedSourceCount ? `<span>${item.documentedSourceCount} source(s) Fortinet documentée(s)</span>` : ""}${versionMeta}<span>Dernière activité source : ${escapeHTML(safeDate(item.lastSeen))}</span></div>
         <details class="incident-sources"><summary>Consulter les sources (${(item.sources || []).length})</summary><ul>${sources}</ul>${extra ? `<p class="source-extra">Et ${extra} autre(s) source(s) dans ce regroupement.</p>` : ""}</details>
