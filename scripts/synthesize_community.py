@@ -274,7 +274,7 @@ def extract_labeled_versions(text: str, pattern: re.Pattern) -> set[str]:
 def normalize_article_sections(text: str) -> str:
     """Separate section labels and IPS Engine releases concatenated by HTML text extraction."""
     text = re.sub(
-        r"(?<=[A-Za-z0-9])(?i:Resolution|Affected Versions|Resolved Versions|Fixed Versions)(?=[A-Z])",
+        r"(?<=[A-Za-z0-9])(?i:Description|Scope|Solution|Workaround|Impact|Resolution|Affected Versions|Resolved Versions|Fixed Versions)(?=[A-Z])",
         lambda match: " " + match.group(0) + " ",
         text,
     )
@@ -465,12 +465,7 @@ def extract_sections(item: dict) -> dict:
     if source_type(item) != "fortinet_article":
         return empty
 
-    text = re.sub(r"\s+", " ", item.get("summary", "")).strip()
-    text = re.sub(
-        r"\b(?i:Description|Scope|Solution|Workaround|Impact)(?=[A-Z])",
-        lambda match: match.group(0) + " ",
-        text,
-    )
+    text = re.sub(r"\s+", " ", normalize_article_sections(item.get("summary", ""))).strip()
 
     def section(label: str, stop_labels: str) -> str:
         match = re.search(rf"{label}\s*:?\s*(.*?)(?={stop_labels}|$)", text, re.S)
@@ -592,10 +587,7 @@ def has_documented_evidence(item: dict) -> bool:
         r"will be disabled|requires? .*certificate|must be signed)",
         text, re.I,
     )
-    normalized_summary = re.sub(
-        r"\b(?i:Description|Scope|Solution|Workaround|Impact)(?=[A-Z])",
-        lambda match: match.group(0) + " ", item.get("summary", ""),
-    )
+    normalized_summary = normalize_article_sections(item.get("summary", ""))
     troubleshooting = bool(
         re.search(r"\btroubleshooting tip\b", title, re.I)
         and ISSUE_RE.search(title)

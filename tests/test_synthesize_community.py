@@ -454,6 +454,39 @@ class CommunitySynthesisTests(unittest.TestCase):
         self.assertEqual(incident["fixVersions"], ["7.6.7", "8.0.1"])
 
 
+    def test_versioned_firmware_issue_with_concatenated_scope_is_kept_and_not_treated_as_configuration(self):
+        item = {
+            "title": "Unable to configure IP address in VPN tunnel interface in FortiOS 7.6.8",
+            "summary": (
+                "DescriptionAfter upgrading to FortiOS 7.6.8, administrators may be unable to configure an IP address for new VPN tunnels via the GUI"
+                "ScopeFortiOS 7.6.8."
+                "SolutionIf you try to configure only the IP address, the following behavior is observed: The FortiGate will not display any error message, "
+                "but the Tunnel interface will remain with the default IP address 0.0.0.0/0.0.0.0. "
+                "If you try to configure the tunnel IP address and the Remote IP address at the same time, the IP field will revert back to 0.0.0.0. "
+                "The issue is under investigation, and a permanent fix is not available yet."
+                "WorkaroundConfigure the IP address and remote address via the CLI with set ip <ipaddress> and set remote-ip <remoteIP>."
+            ),
+            "url": "https://community.fortinet.com/fortigate-3/unable-to-configure-ip-address-in-vpn-tunnel-interface-in-fortios-7-6-8-231009",
+            "products": ["FortiGate"],
+        }
+
+        self.assertEqual(synth.extract_versions(item), (["7.6.8"], ["7.6"]))
+        self.assertTrue(synth.looks_like_problem(item))
+        self.assertTrue(synth.has_documented_evidence(item))
+        self.assertFalse(synth.is_configuration_guidance(item))
+        sections = synth.extract_sections(item)
+        self.assertIn("After upgrading to FortiOS 7.6.8", sections["symptom"])
+        self.assertIn("under investigation", sections["solution"].lower())
+
+        with tempfile.TemporaryDirectory() as directory:
+            result = synth.synthesize({"topics": [item]}, Path(directory) / "community.json")
+
+        incident = result["incidents"][0]
+        self.assertEqual(incident["versions"], ["7.6.8"])
+        self.assertEqual(incident["status"], "Documenté par Fortinet (version identifiée)")
+        self.assertEqual(incident["evidenceType"], "official_documentation")
+
+
     def test_fortigate_zip_stream_scan_bug_extracts_fixed_release_after_upgrade_to_resolve(self):
         item = {
             "title": "Zip file downloads blocked when Antivirus profile is in Proxy mode with stream scan",
