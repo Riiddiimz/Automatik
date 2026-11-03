@@ -423,9 +423,8 @@ class CommunitySynthesisTests(unittest.TestCase):
                 "ScopeFortiGate. "
                 "SolutionSymptomsThe Antivirus logs omit agent, httpmethod and referralurl. "
                 "Root CauseBug ID 1281140 in FortiOS causes these fields to be omitted. "
-                "ResolutionAffected VersionsFortiOS 7.6.6FortiOS 8.0.0 "
-                "Resolved VersionsFortiOS 7.6.7FortiOS 8.0.1 "
-                "Upgrade the FortiGate to FortiOS 7.6.7 or FortiOS 8.0.1. "
+                "ResolutionAffected VersionsFortiOS 7.6.6FortiOS 8.0.0Resolved Versions"
+                "FortiOS 7.6.7FortiOS 8.0.1 Upgrade the FortiGate to FortiOS 7.6.7 or FortiOS 8.0.1. "
                 "WorkaroundChange the inspection mode from proxy-based to flow-based."
             ),
             "url": "https://community.fortinet.com/fortigate-3/fields-missing-in-antivirus-log-id-8195-when-using-content-type-multipart-form-data-231050",
@@ -439,6 +438,11 @@ class CommunitySynthesisTests(unittest.TestCase):
         self.assertEqual(synth.extract_fixed_versions(item), ["7.6.7", "8.0.1"])
         self.assertTrue(synth.looks_like_problem(item))
         self.assertTrue(synth.has_documented_evidence(item))
+        with tempfile.TemporaryDirectory() as directory:
+            result = synth.synthesize({"topics": [item]}, Path(directory) / "community.json")
+        incident = result["incidents"][0]
+        self.assertEqual(incident["versions"], ["7.6.6", "8.0.0"])
+        self.assertEqual(incident["fixVersions"], ["7.6.7", "8.0.1"])
 
 
     def test_official_wildcard_scope_is_a_family_not_an_exact_release(self):
