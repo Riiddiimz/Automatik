@@ -629,6 +629,23 @@ def is_configuration_guidance(item: dict) -> bool:
     )
 
 
+def is_version_behavior_change(item: dict) -> bool:
+    """Identify a documented release-behavior change separately from a confirmed bug."""
+    if source_type(item) != "fortinet_article":
+        return False
+    text = normalize_article_sections(item.get("summary", ""))
+    if re.search(r"\b(?:known issue|known bug|bug id|engineering ticket)\b", text, re.I):
+        return False
+    has_behavior_cue = re.search(
+        r"\b(?:change in behavior|change in behaviour|behavior change|behaviour change|"
+        r"differs from|not present in)\b",
+        text,
+        re.I,
+    )
+    has_version_evidence = bool(extract_versions(item)[0] or extract_fixed_versions(item))
+    return bool(has_behavior_cue and has_version_evidence)
+
+
 def forum_report_count(items: list[dict]) -> int:
     """Count distinct user-discussion URLs, not editor-authored articles."""
     return len({
@@ -842,6 +859,9 @@ def synthesize(data: dict, out: Path = DATA) -> dict:
         configuration_only = bool(documented_sources) and all(
             is_configuration_guidance(item) for item in documented_sources
         )
+        version_behavior_change = bool(documented_sources) and all(
+            is_version_behavior_change(item) for item in documented_sources
+        )
         incidents.append({
             "id": "incident-" + hashlib.sha1((" ".join(sorted(words(cluster[0].get("title", "")))) + "|" + "|".join(products)).encode("utf-8")).hexdigest()[:12],
             "title": cluster[0].get("title", "Problème potentiel Fortinet"),
@@ -876,6 +896,8 @@ def synthesize(data: dict, out: Path = DATA) -> dict:
             "status": (
                 "Configuration documentée par Fortinet" if configuration_only and reports < 2
                 else "Configuration documentée par Fortinet + récurrent" if configuration_only
+                else "Changement de comportement / incompatibilité documenté par Fortinet" if version_behavior_change and reports < 2
+                else "Changement de comportement / incompatibilité documenté par Fortinet + récurrent" if version_behavior_change
                 else "Documenté par Fortinet (version identifiée)" if documented and reports < 2 and exact_versions
                 else "Documenté par Fortinet (version non précisée)" if documented and reports < 2
                 else "Documenté par Fortinet + récurrent" if documented
@@ -883,12 +905,14 @@ def synthesize(data: dict, out: Path = DATA) -> dict:
             ),
             "confidence": (
                 "Documentation Fortinet (configuration)" if configuration_only
+                else "Documentation Fortinet (changement de comportement)" if version_behavior_change
                 else "Documentation Fortinet versionnée" if documented and exact_versions
                 else "Documentation Fortinet (version non précisée)" if documented
                 else "Plusieurs discussions distinctes"
             ),
             "evidenceType": (
                 "official_configuration" if configuration_only
+                else "official_version_behavior" if version_behavior_change
                 else "official_documentation" if documented
                 else "repeated_reports"
             ),
