@@ -244,7 +244,7 @@ const { chromium } = require("playwright");
     }
     assert.ok(fixtureCardText.includes(buildFixture.fixBuildNote), "la note de fixture doit être visible dans la fiche");
     for (const value of ["Correctifs du moteur IPS", "7.6.9", "1202", "8.0.3", "0053"]) {
-      assert.ok(fixtureCardText.includes(value), "les versions/builds du moteur IPS doivent être affichés séparément");
+      assert.ok(fixtureCardText.includes(value), "valeur IPS manquante : " + value + " ; fiche rendue : " + fixtureCardText);
     }
     const fixtureSources = fixtureCard.locator(".incident-sources");
     await fixtureSources.locator("summary").click();
