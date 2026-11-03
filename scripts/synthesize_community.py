@@ -133,6 +133,15 @@ FIXED_ENGINE_BUILD_MENTION_RE = re.compile(
     r"\b(?:obtain|download|install)\s+IPS\s*Engine\s+v?(\d{1,2}\.\d{4,5})\b",
     re.I,
 )
+FIXED_ENGINE_RELEASE_CUE_RE = re.compile(
+    r"\b(?:resolved|fixed|corrected)\s+in\s*:?",
+    re.I,
+)
+IPS_ENGINE_RELEASE_RE = re.compile(
+    r"\bIPS\s*Engine\s+v?(\d{1,2}\.\d{1,2}\.\d{1,3})\s*"
+    r"(?:\(\s*Build\s*(\d{1,6})\s*\)|Build\s*(\d{1,6}))?",
+    re.I,
+)
 
 NON_FORTINET_VERSION_RE = re.compile(
     r"\b(?:(?:huawei\s+cloud\s+)?euleros|centos|rhel|red\s+hat\s+enterprise\s+linux|"
@@ -409,6 +418,38 @@ def extract_fixed_builds(item: dict) -> list[str]:
     ))
 
 
+def extract_fixed_engine_releases(item: dict) -> list[dict]:
+    """Return IPS Engine releases only when an official article explicitly marks them as fixed."""
+    if source_type(item) != "fortinet_article":
+        return []
+    text = f"{item.get('title', '')} {item.get('summary', '')}"
+    releases = {}
+    for cue in FIXED_ENGINE_RELEASE_CUE_RE.finditer(text):
+        tail = text[cue.end():]
+        boundary = re.search(
+            r"\b(?:after upgrading|once the|workaround|note:|related articles|like|follow)\b",
+            tail,
+            re.I,
+        )
+        section = tail[:boundary.start()] if boundary else tail[:700]
+        for match in IPS_ENGINE_RELEASE_RE.finditer(section):
+            version = match.group(1)
+            build = match.group(2) or match.group(3) or None
+            key = (version, build or "")
+            releases[key] = {
+                "engine": "IPS Engine",
+                "version": version,
+                "build": build,
+            }
+    return sorted(
+        releases.values(),
+        key=lambda release: (
+            tuple(int(part) for part in release["version"].split(".")),
+            release.get("build") or "",
+        ),
+    )
+
+
 def extract_fixed_build_note(item: dict) -> str:
     """Flag contradictory IPSEngine build numbers instead of selecting one silently."""
     if source_type(item) != "fortinet_article":
@@ -543,6 +584,26 @@ def review_evidence_signature(incident: dict) -> tuple:
             tuple(sorted(str(value) for value in (source.get("products", []) or []))),
             tuple(sorted(str(value) for value in (source.get("versions", []) or []))),
             tuple(sorted(str(value) for value in (source.get("fixVersions", []) or []))),
+            tuple(sorted(str(value) for value in (source.get("fixBuilds", []) or []))),
+            tuple(sorted(
+                (
+                    str(reply.get("author", "") or ""),
+                    str(reply.get("authorRole", "") or ""),
+                    str(reply.get("date", "") or ""),
+                    str(reply.get("text", "") or ""),
+                )
+                for reply in (source.get("replies", []) or [])
+                if isinstance(reply, dict)
+            )),
+            tuple(sorted(
+                (
+                    str(release.get("engine", "") or ""),
+                    str(release.get("version", "") or ""),
+                    str(release.get("build", "") or ""),
+                )
+                for release in (source.get("fixEngineReleases", []) or [])
+                if isinstance(release, dict)
+            )),
         ))
     return (
         str(incident.get("title", "") or ""),
@@ -584,6 +645,7 @@ def synthesize(data: dict, out: Path = DATA) -> dict:
         item["versions"], item["versionFamilies"] = extract_versions(item)
         item["fixVersions"] = extract_fixed_versions(item)
         item["fixBuilds"] = extract_fixed_builds(item)
+        item["fixEngineReleases"] = extract_fixed_engine_releases(item)
         item["fixBuildNote"] = extract_fixed_build_note(item)
         item["potentialProblem"] = looks_like_problem(item)
         enriched.append(item)
@@ -605,6 +667,16 @@ def synthesize(data: dict, out: Path = DATA) -> dict:
         families = sorted({v for item in cluster for v in item.get("versionFamilies", [])}, key=lambda v: tuple(int(x) for x in v.split(".")))
         fixed_versions = sorted({v for item in cluster for v in item.get("fixVersions", [])}, key=lambda v: tuple(int(x) for x in v.split(".")))
         fixed_builds = sorted({build for item in cluster for build in item.get("fixBuilds", [])})
+        fixed_engine_releases = {
+            (
+                str(release.get("engine", "IPS Engine")),
+                str(release.get("version", "")),
+                str(release.get("build") or ""),
+            )
+            for item in cluster
+            for release in item.get("fixEngineReleases", [])
+            if isinstance(release, dict) and release.get("version")
+        }
         sources = [{
             "title": item.get("title", "Sujet sans titre"),
             "url": item.get("url", ""),
@@ -617,7 +689,13 @@ def synthesize(data: dict, out: Path = DATA) -> dict:
             "sourceType": source_type(item),
             "fixVersions": extract_fixed_versions(item),
             "fixBuilds": extract_fixed_builds(item),
+            "fixEngineReleases": extract_fixed_engine_releases(item),
             "fixBuildNote": extract_fixed_build_note(item),
+            "replies": [
+                reply for reply in (item.get("replies", []) or [])
+                if isinstance(reply, dict)
+            ][:20],
+            "replyExtractionStatus": item.get("replyExtractionStatus", ""),
             **extract_sections(item),
         } for item in cluster]
         symptom = next((source["symptom"] for source in sources if source.get("symptom")), "")
@@ -650,6 +728,17 @@ def synthesize(data: dict, out: Path = DATA) -> dict:
             "versionFamilies": families,
             "fixVersions": fixed_versions,
             "fixBuilds": fixed_builds,
+            "fixEngineReleases": [
+                {"engine": engine, "version": version, "build": build or None}
+                for engine, version, build in sorted(
+                    fixed_engine_releases,
+                    key=lambda value: (
+                        tuple(int(part) for part in value[1].split(".")),
+                        value[2],
+                    ),
+                )
+            ],
+            "replyCount": sum(len(source.get("replies", [])) for source in sources),
             "fixBuildNote": " ".join(dict.fromkeys(
                 item["fixBuildNote"] for item in cluster if item.get("fixBuildNote")
             )),
