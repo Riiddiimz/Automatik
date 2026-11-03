@@ -1201,5 +1201,83 @@ class CommunityFeedTests(unittest.TestCase):
         self.assertEqual(collector.parse_feed(payload), [])
 
 
+    def test_public_jsonld_comments_extract_author_role_date_and_text(self):
+        payload = """<html><head>
+          <script type="application/ld+json">
+          {
+            "@context": "https://schema.org",
+            "@type": "DiscussionForumPosting",
+            "headline": "FortiGate VPN failure",
+            "comment": [{
+              "@type": "Comment",
+              "author": {"@type": "Person", "name": "Example Engineer", "jobTitle": "Staff"},
+              "datePublished": "2026-11-03T08:30:00Z",
+              "text": "The workaround is to collect the IKE debug before changing firmware."
+            }]
+          }
+          </script>
+        </head><body><p>Visible page text.</p></body></html>"""
+        result = collector.parse_topic_metadata(payload)
+        self.assertEqual(result["replyCount"], 1)
+        self.assertEqual(result["replyExtractionStatus"], "structured_replies_found")
+        self.assertEqual(result["replies"][0]["author"], "Example Engineer")
+        self.assertEqual(result["replies"][0]["authorRole"], "Staff")
+        self.assertEqual(result["replies"][0]["date"], "2026-11-03T08:30:00+00:00")
+        self.assertIn("workaround", result["replies"][0]["text"])
+
+    def test_jsonld_main_post_and_comment_count_are_not_misreported_as_replies(self):
+        payload = """<script type="application/ld+json">
+        {"@type":"DiscussionForumPosting","headline":"Question only","commentCount":4}
+        </script>"""
+        result = collector.parse_topic_metadata(payload)
+        self.assertEqual(result["replies"], [])
+        self.assertEqual(result["replyCount"], 0)
+        self.assertEqual(result["replyExtractionStatus"], "no_structured_replies")
+
+    def test_board_detail_enrichment_preserves_old_replies_when_new_markup_has_none(self):
+        url = "https://community.fortinet.com/support-forum-92/fortigate-vpn-failures-231001"
+        topic = {
+            "id": url,
+            "url": url,
+            "title": "FortiGate VPN failures after upgrade",
+            "summary": "The VPN fails after upgrade.",
+            "products": ["FortiGate"],
+            "versions": ["7.6.7"],
+            "discoverySource": "index produit public",
+        }
+        previous_reply = {
+            "type": "Commentaire",
+            "author": "Example Engineer",
+            "authorRole": "Staff",
+            "date": "2026-11-02T10:00:00+00:00",
+            "text": "Previously extracted public reply.",
+            "url": "",
+        }
+        known = {
+            **topic,
+            "replies": [previous_reply],
+            "replyCount": 1,
+            "replyExtractionStatus": "structured_replies_found",
+            "detailFetchStatus": "success",
+            "detailParserVersion": collector.DETAIL_PARSER_VERSION - 1,
+        }
+        result = collector.enrich_board_topic_metadata(
+            [topic],
+            [known],
+            lambda requested_url: {
+                "summary": "Description VPN fails. Scope FortiGate. Solution Check logs.",
+                "replies": [],
+                "replyExtractionStatus": "no_structured_replies",
+            },
+            [],
+            max_lookups=1,
+        )
+        self.assertEqual(result[0]["replies"], [previous_reply])
+        self.assertEqual(result[0]["replyCount"], 1)
+        self.assertEqual(result[0]["replyExtractionStatus"], "structured_replies_found")
+
+
+
+
 if __name__ == "__main__":
     unittest.main()
