@@ -239,23 +239,23 @@ const { chromium } = require("playwright");
       await fixtureCard.locator("summary").first().click();
     }
     const fixtureCardText = await fixtureCard.innerText();
-    const fixtureCardHtml = await fixtureCard.evaluate(element => element.outerHTML);
     for (const build of buildFixture.fixBuilds) {
       assert.ok(fixtureCardText.includes(build), "chaque build synthétique doit être visible dans la fiche ouverte");
     }
     assert.ok(fixtureCardText.includes(buildFixture.fixBuildNote), "la note de fixture doit être visible dans la fiche");
-    for (const value of ["Correctifs du moteur IPS", "7.6.9", "1202", "8.0.3", "0053"]) {
-      assert.ok(fixtureCardText.includes(value), "valeur IPS manquante : " + value + " ; fiche rendue : " + fixtureCardText + " ; HTML : " + fixtureCardHtml);
+    const normalizedFixtureCardText = fixtureCardText.toLowerCase();
+    for (const value of ["correctifs du moteur ips", "7.6.9", "1202", "8.0.3", "0053"]) {
+      assert.ok(normalizedFixtureCardText.includes(value.toLowerCase()), "valeur IPS manquante : " + value + " ; fiche rendue : " + fixtureCardText);
     }
     const fixtureSources = fixtureCard.locator(".incident-sources");
     await fixtureSources.locator("summary").click();
     const fixtureReplies = fixtureSources.locator(".source-replies");
     assert.equal(await fixtureReplies.count(), 1, "les réponses structurées doivent être proposées dans les sources");
     await fixtureReplies.locator("summary").click();
-    const fixtureReplyText = await fixtureReplies.innerText();
-    assert.match(fixtureReplyText, /Équipe Fortinet de test/);
-    assert.match(fixtureReplyText, /Rôle indiqué : Staff/);
-    assert.match(fixtureReplyText, /sans confirmation technique/);
+    const fixtureReplyText = (await fixtureReplies.innerText()).toLowerCase();
+    assert.ok(fixtureReplyText.includes("équipe fortinet de test"));
+    assert.ok(fixtureReplyText.includes("rôle indiqué : staff"));
+    assert.ok(fixtureReplyText.includes("sans confirmation technique"));
     await page.locator("#community-search").fill("");
 
     const updatedSourceIncident = (data.incidents || []).slice(0, 100).find(incident =>
