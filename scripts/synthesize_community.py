@@ -121,6 +121,14 @@ FIXED_VERSION_LIST_RE = re.compile(
 FIXED_VERSION_LIST_TOKEN_RE = re.compile(
     r"(?<!\d)(\d{1,2}\.\d{1,2}(?:\.\d{1,3})?)(?=[A-Za-z\s,;:.]|$)"
 )
+PERMANENT_FIX_VERSION_RE = re.compile(
+    r"\b(?:permanent|final|long[- ]term)\s+fix\b[^.!?]{0,180}?"
+    r"\b(?:included|available|provided)\s+in\s+"
+    r"(?:(?:fortios|fortigate|fortimanager|fortianalyzer|fortiauthenticator|"
+    r"forticlient(?:\s+(?:ems|vpn))?|firmware)\s+)?"
+    r"(?:versions?\s*)?v?(\d{1,2}\.\d{1,2}(?:\.\d{1,3})?)\b",
+    re.I,
+)
 # A wildcard such as 7.4.x identifies a release family, not an exact firmware.
 VERSION_FAMILY_RE = re.compile(r"(?<!\d)(\d{1,2}\.\d{1,2})\.x\b", re.I)
 AFFECTED_VERSIONS_SECTION_RE = re.compile(
@@ -242,21 +250,28 @@ def extract_labeled_versions(text: str, pattern: re.Pattern) -> set[str]:
     return found
 
 
-def extract_versions(item: dict) -> tuple[list[str], list[str]]:
-    title = item.get("title", "")
-    summary = item.get("summary", "")
-    # RSS/HTML cleanup can concatenate section labels and their values.
-    # Some HTML-to-text responses concatenate the previous version token and the next heading.
-    summary = re.sub(
+def normalize_article_sections(text: str) -> str:
+    """Separate section labels and IPS Engine releases concatenated by HTML text extraction."""
+    text = re.sub(
         r"(?<=[A-Za-z0-9])(?i:Resolution|Affected Versions|Resolved Versions|Fixed Versions)(?=[A-Z])",
         lambda match: " " + match.group(0) + " ",
-        summary,
+        text,
     )
-    summary = re.sub(
+    text = re.sub(
         r"\b(?i:Description|Scope|Solution|Workaround|Impact|Resolution|Affected Versions|Resolved Versions|Fixed Versions)(?=[A-Z])",
         lambda match: match.group(0) + " ",
-        summary,
+        text,
     )
+    return re.sub(
+        r"(?<=[A-Za-z0-9])(?i:IPS\s*Engine)(?=\s+\d)",
+        lambda match: " " + match.group(0),
+        text,
+    )
+
+
+def extract_versions(item: dict) -> tuple[list[str], list[str]]:
+    title = item.get("title", "")
+    summary = normalize_article_sections(item.get("summary", ""))
     text = title + " " + summary
     reported_versions = []
     affected_upgrade_versions = set()
@@ -271,6 +286,7 @@ def extract_versions(item: dict) -> tuple[list[str], list[str]]:
         affected_summary = FIXED_VERSION_RE.sub(" ", summary)
         affected_summary = FIXED_VERSION_CONTEXT_RE.sub(" ", affected_summary)
         affected_summary = FIXED_VERSION_LIST_RE.sub(" ", affected_summary)
+        affected_summary = PERMANENT_FIX_VERSION_RE.sub(" ", affected_summary)
         # Explicit resolved/fixed sections must never leak into the affected-version list.
         affected_summary = FIXED_VERSIONS_SECTION_RE.sub(" ", affected_summary)
         # Remove an explicit remediation upgrade before extracting affected upgrade releases.
@@ -431,7 +447,7 @@ def extract_fixed_versions(item: dict) -> list[str]:
     """Return explicitly stated fixed releases from Fortinet-authored articles only."""
     if source_type(item) != "fortinet_article":
         return []
-    text = f"{item.get('title', '')} {item.get('summary', '')}"
+    text = normalize_article_sections(f"{item.get('title', '')} {item.get('summary', '')}")
     found = set()
     for pattern in (FIXED_VERSION_RE, FIXED_VERSION_UPGRADE_RE):
         for match in pattern.finditer(text):
@@ -444,6 +460,10 @@ def extract_fixed_versions(item: dict) -> list[str]:
     # and HTML-to-text extraction can concatenate the version and next product name.
     for match in FIXED_VERSION_LIST_RE.finditer(text):
         found.update(FIXED_VERSION_LIST_TOKEN_RE.findall(match.group(1)))
+    for match in PERMANENT_FIX_VERSION_RE.finditer(text):
+        found.add(match.group(1))
+        sentence_tail = re.split(r"[!?]|\.(?=\s|$)", text[match.end():], maxsplit=1)[0]
+        found.update(FIXED_VERSION_TAIL_RE.findall(sentence_tail))
     found.update(extract_labeled_versions(text, FIXED_VERSIONS_SECTION_RE))
     return sorted(found, key=lambda version: tuple(int(part) for part in version.split(".")))
 
@@ -464,7 +484,7 @@ def extract_fixed_engine_releases(item: dict) -> list[dict]:
     """Return IPS Engine releases only when an official article explicitly marks them as fixed."""
     if source_type(item) != "fortinet_article":
         return []
-    text = f"{item.get('title', '')} {item.get('summary', '')}"
+    text = normalize_article_sections(f"{item.get('title', '')} {item.get('summary', '')}")
     releases = {}
     for cue in FIXED_ENGINE_RELEASE_CUE_RE.finditer(text):
         tail = text[cue.end():]
