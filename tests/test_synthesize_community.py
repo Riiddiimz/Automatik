@@ -511,6 +511,11 @@ class CommunitySynthesisTests(unittest.TestCase):
         incident = result["incidents"][0]
         self.assertEqual(incident["versions"], ["7.4"])
         self.assertEqual(incident["fixVersions"], ["8.0.0"])
+        self.assertEqual(
+            incident["status"],
+            "Changement de comportement / incompatibilité documenté par Fortinet",
+        )
+        self.assertEqual(incident["evidenceType"], "official_version_behavior")
 
 
     def test_official_session_ip_bypass_is_classified_as_configuration(self):
