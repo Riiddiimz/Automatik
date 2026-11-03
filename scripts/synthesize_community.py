@@ -269,6 +269,24 @@ def normalize_article_sections(text: str) -> str:
     )
 
 
+def permanent_fix_evidence(text: str) -> tuple[set[str], list[tuple[int, int]]]:
+    """Return fixed versions and sentence spans explicitly introduced as permanent fixes."""
+    versions = set()
+    spans = []
+    for match in PERMANENT_FIX_VERSION_RE.finditer(text):
+        tail = text[match.start():]
+        sentence_end = re.search(r"[.!?](?=\s|$)", tail)
+        end = match.start() + (sentence_end.end() if sentence_end else len(tail))
+        sentence = text[match.start():end]
+        clause = re.search(r"\b(?:included|available|provided)\s+in\b(.*)", sentence, re.I)
+        if clause:
+            versions.update(
+                re.findall(r"(?<!\d)(\d{1,2}\.\d{1,2}(?:\.\d{1,3})?)(?!\d)", clause.group(1))
+            )
+        spans.append((match.start(), end))
+    return versions, spans
+
+
 def extract_versions(item: dict) -> tuple[list[str], list[str]]:
     title = item.get("title", "")
     summary = normalize_article_sections(item.get("summary", ""))
@@ -286,7 +304,9 @@ def extract_versions(item: dict) -> tuple[list[str], list[str]]:
         affected_summary = FIXED_VERSION_RE.sub(" ", summary)
         affected_summary = FIXED_VERSION_CONTEXT_RE.sub(" ", affected_summary)
         affected_summary = FIXED_VERSION_LIST_RE.sub(" ", affected_summary)
-        affected_summary = PERMANENT_FIX_VERSION_RE.sub(" ", affected_summary)
+        _, permanent_fix_spans = permanent_fix_evidence(affected_summary)
+        for start, end in reversed(permanent_fix_spans):
+            affected_summary = affected_summary[:start] + " " + affected_summary[end:]
         # Explicit resolved/fixed sections must never leak into the affected-version list.
         affected_summary = FIXED_VERSIONS_SECTION_RE.sub(" ", affected_summary)
         # Remove an explicit remediation upgrade before extracting affected upgrade releases.
@@ -460,10 +480,8 @@ def extract_fixed_versions(item: dict) -> list[str]:
     # and HTML-to-text extraction can concatenate the version and next product name.
     for match in FIXED_VERSION_LIST_RE.finditer(text):
         found.update(FIXED_VERSION_LIST_TOKEN_RE.findall(match.group(1)))
-    for match in PERMANENT_FIX_VERSION_RE.finditer(text):
-        found.add(match.group(1))
-        sentence_tail = re.split(r"[!?]|\.(?=\s|$)", text[match.end():], maxsplit=1)[0]
-        found.update(FIXED_VERSION_TAIL_RE.findall(sentence_tail))
+    permanent_versions, _ = permanent_fix_evidence(text)
+    found.update(permanent_versions)
     found.update(extract_labeled_versions(text, FIXED_VERSIONS_SECTION_RE))
     return sorted(found, key=lambda version: tuple(int(part) for part in version.split(".")))
 
