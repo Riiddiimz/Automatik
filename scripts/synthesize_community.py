@@ -94,6 +94,13 @@ FIXED_VERSION_RE = re.compile(
     r"(?:version\s*)?v?(\d{1,2}\.\d{1,2}(?:\.\d{1,3})?)\b",
     re.I,
 )
+NOT_PRESENT_VERSION_RE = re.compile(
+    r"\b(?:behavior|behaviour|issue|problem)\s+is\s+not\s+present\s+in\s+"
+    r"(?:(?:fortios|fortigate|fortimanager|fortianalyzer|fortiauthenticator|"
+    r"forticlient(?:\s+(?:ems|vpn))?|firmware)\s*)?"
+    r"(?:versions?\s*)?v?(\d{1,2}\.\d{1,2}(?:\.\d{1,3})?)\b",
+    re.I,
+)
 FIXED_VERSION_TAIL_RE = VERSION_LIST_TAIL_RE
 FIXED_VERSION_CONTEXT_RE = re.compile(
     r"\b(?:versions?|firmware)\s+"
@@ -304,6 +311,7 @@ def extract_versions(item: dict) -> tuple[list[str], list[str]]:
         affected_summary = FIXED_VERSION_RE.sub(" ", summary)
         affected_summary = FIXED_VERSION_CONTEXT_RE.sub(" ", affected_summary)
         affected_summary = FIXED_VERSION_LIST_RE.sub(" ", affected_summary)
+        affected_summary = NOT_PRESENT_VERSION_RE.sub(" ", affected_summary)
         _, permanent_fix_spans = permanent_fix_evidence(affected_summary)
         for start, end in reversed(permanent_fix_spans):
             affected_summary = affected_summary[:start] + " " + affected_summary[end:]
@@ -476,6 +484,8 @@ def extract_fixed_versions(item: dict) -> list[str]:
             found.update(FIXED_VERSION_TAIL_RE.findall(sentence_tail))
     for match in FIXED_VERSION_CONTEXT_RE.finditer(text):
         found.update(re.findall(r"\d{1,2}\.\d{1,2}(?:\.\d{1,3})?", match.group(1)))
+    for match in NOT_PRESENT_VERSION_RE.finditer(text):
+        found.add(match.group(1))
     # Some official articles list several fixed branches after one shared cue,
     # and HTML-to-text extraction can concatenate the version and next product name.
     for match in FIXED_VERSION_LIST_RE.finditer(text):
@@ -584,6 +594,32 @@ def has_documented_evidence(item: dict) -> bool:
     )
     has_version = bool(extract_versions(item)[0])
     return bool(scoped_issue or (has_version and (known_issue or behavior_change or troubleshooting)))
+
+
+def is_configuration_guidance(item: dict) -> bool:
+    """Identify official configuration workarounds that should not be labelled as confirmed firmware bugs."""
+    if source_type(item) != "fortinet_article":
+        return False
+    if extract_versions(item)[0] or extract_fixed_versions(item) or extract_fixed_engine_releases(item):
+        return False
+    text = normalize_article_sections(item.get("summary", ""))
+    if re.search(
+        r"\b(?:known issue|known bug|bug id|engineering ticket|permanent fix|resolved in|fixed in|corrected in|affected versions?)\b",
+        text,
+        re.I,
+    ):
+        return False
+    title = item.get("title", "")
+    return bool(
+        re.search(
+            r"\b(?:set\s+[a-z0-9_-]+\s+(?:enable|disable|block|allow)|"
+            r"configure\b[^.!?]{0,180}\b(?:bypass|disable|enable|ignore)|"
+            r"to resolve this issue\b[^.!?]{0,120}\bconfigure)\b",
+            text,
+            re.I,
+        )
+        or re.match(r"^(?:technical tip|troubleshooting tip|how to|configuration guide)\b", title, re.I)
+    )
 
 
 def forum_report_count(items: list[dict]) -> int:
@@ -796,6 +832,9 @@ def synthesize(data: dict, out: Path = DATA) -> dict:
         if reports < 2 and not documented_sources:
             continue
         documented = bool(documented_sources)
+        configuration_only = bool(documented_sources) and all(
+            is_configuration_guidance(item) for item in documented_sources
+        )
         incidents.append({
             "id": "incident-" + hashlib.sha1((" ".join(sorted(words(cluster[0].get("title", "")))) + "|" + "|".join(products)).encode("utf-8")).hexdigest()[:12],
             "title": cluster[0].get("title", "Problème potentiel Fortinet"),
@@ -828,17 +867,24 @@ def synthesize(data: dict, out: Path = DATA) -> dict:
             "sources": sources,
             "lastSeen": newest or None,
             "status": (
-                "Documenté par Fortinet (version identifiée)" if documented and reports < 2 and exact_versions
+                "Configuration documentée par Fortinet" if configuration_only and reports < 2
+                else "Configuration documentée par Fortinet + récurrent" if configuration_only
+                else "Documenté par Fortinet (version identifiée)" if documented and reports < 2 and exact_versions
                 else "Documenté par Fortinet (version non précisée)" if documented and reports < 2
                 else "Documenté par Fortinet + récurrent" if documented
                 else f"Récurrent — {reports} discussions distinctes"
             ),
             "confidence": (
-                "Documentation Fortinet versionnée" if documented and exact_versions
+                "Documentation Fortinet (configuration)" if configuration_only
+                else "Documentation Fortinet versionnée" if documented and exact_versions
                 else "Documentation Fortinet (version non précisée)" if documented
                 else "Plusieurs discussions distinctes"
             ),
-            "evidenceType": "official_documentation" if documented else "repeated_reports",
+            "evidenceType": (
+                "official_configuration" if configuration_only
+                else "official_documentation" if documented
+                else "repeated_reports"
+            ),
             "synthesisMethod": "Règles de preuve : article Fortinet versionné et explicite, ou au moins deux discussions distinctes; pas d'IA générative.",
         })
     incidents.sort(key=lambda x: (x["sourceCount"], x.get("lastSeen") or ""), reverse=True)
