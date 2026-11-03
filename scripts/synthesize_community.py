@@ -101,6 +101,11 @@ NOT_PRESENT_VERSION_RE = re.compile(
     r"(?:versions?\s*)?v?(\d{1,2}\.\d{1,2}(?:\.\d{1,3})?)\b",
     re.I,
 )
+PERMANENT_SOLUTION_SECTION_RE = re.compile(
+    r"\bpermanent\s+solution\b\s*[:.]?\s*(.*?)"
+    r"(?=\b(?:workaround|related\s+articles|note|scope|description|impact)\b|$)",
+    re.I | re.S,
+)
 FIXED_VERSION_TAIL_RE = VERSION_LIST_TAIL_RE
 FIXED_VERSION_CONTEXT_RE = re.compile(
     r"\b(?:versions?|firmware)\s+"
@@ -312,6 +317,7 @@ def extract_versions(item: dict) -> tuple[list[str], list[str]]:
         affected_summary = FIXED_VERSION_CONTEXT_RE.sub(" ", affected_summary)
         affected_summary = FIXED_VERSION_LIST_RE.sub(" ", affected_summary)
         affected_summary = NOT_PRESENT_VERSION_RE.sub(" ", affected_summary)
+        affected_summary = PERMANENT_SOLUTION_SECTION_RE.sub(" ", affected_summary)
         _, permanent_fix_spans = permanent_fix_evidence(affected_summary)
         for start, end in reversed(permanent_fix_spans):
             affected_summary = affected_summary[:start] + " " + affected_summary[end:]
@@ -486,6 +492,7 @@ def extract_fixed_versions(item: dict) -> list[str]:
         found.update(re.findall(r"\d{1,2}\.\d{1,2}(?:\.\d{1,3})?", match.group(1)))
     for match in NOT_PRESENT_VERSION_RE.finditer(text):
         found.add(match.group(1))
+    found.update(extract_labeled_versions(text, PERMANENT_SOLUTION_SECTION_RE))
     # Some official articles list several fixed branches after one shared cue,
     # and HTML-to-text extraction can concatenate the version and next product name.
     for match in FIXED_VERSION_LIST_RE.finditer(text):
