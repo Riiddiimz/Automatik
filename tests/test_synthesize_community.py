@@ -703,5 +703,93 @@ class CommunitySynthesisTests(unittest.TestCase):
         self.assertEqual(result["incidentCount"], 0)
 
 
+    def test_ips_engine_fixed_releases_keep_engine_versions_and_builds_separate(self):
+        item = {
+            "title": "Intermittent SSL/TLS failures with Deep SSL Inspection and IPS",
+            "summary": (
+                "DescriptionHTTPS sessions can fail mid-session. Scope FortiOS 7.6.7. "
+                "Solution The issue has been resolved in: "
+                "IPS engine 7.6.9 (Build 1202) on the 7.6 branch and "
+                "IPS engine 8.0.3 (Build 0053) on the 8.0 branch. "
+                "After upgrading to a fixed IPS engine build, automatic updates can be re-enabled."
+            ),
+            "url": "https://community.fortinet.com/fortigate-3/intermittent-ssl-tls-failures-231052",
+            "products": ["FortiGate"],
+        }
+        self.assertEqual(synth.extract_versions(item), (["7.6.7"], ["7.6"]))
+        self.assertEqual(synth.extract_fixed_versions(item), [])
+        self.assertEqual(
+            synth.extract_fixed_engine_releases(item),
+            [
+                {"engine": "IPS Engine", "version": "7.6.9", "build": "1202"},
+                {"engine": "IPS Engine", "version": "8.0.3", "build": "0053"},
+            ],
+        )
+        self.assertEqual(synth.extract_fixed_builds(item), [])
+
+    def test_synthesis_carries_structured_replies_and_ips_engine_fixes_to_source(self):
+        item = {
+            "title": "Troubleshooting Tip: FortiGate VPN fails during authentication",
+            "summary": (
+                "DescriptionFortiGate VPN authentication fails. ScopeFortiOS 7.6.7. "
+                "SolutionKnown issue: check the group attribute and the IKE debug output. "
+                "The issue has been resolved in: IPS engine 7.6.9 (Build 1202)."
+            ),
+            "url": "https://community.fortinet.com/fortigate-3/troubleshooting-tip-fortigate-vpn-fails-231053",
+            "products": ["FortiGate"],
+            "versions": ["7.6.7"],
+            "replies": [{
+                "type": "Commentaire",
+                "author": "Example Engineer",
+                "authorRole": "Staff",
+                "date": "2026-11-03T08:30:00+00:00",
+                "text": "Collect the IKE debug before changing firmware.",
+                "url": "",
+            }],
+            "replyExtractionStatus": "structured_replies_found",
+        }
+        with tempfile.TemporaryDirectory() as directory:
+            result = synth.synthesize({"topics": [item]}, Path(directory) / "community.json")
+        self.assertEqual(result["incidentCount"], 1)
+        incident = result["incidents"][0]
+        self.assertEqual(incident["replyCount"], 1)
+        self.assertEqual(incident["fixEngineReleases"], [
+            {"engine": "IPS Engine", "version": "7.6.9", "build": "1202"}
+        ])
+        self.assertEqual(incident["sources"][0]["replies"][0]["authorRole"], "Staff")
+
+    def test_changed_structured_reply_invalidates_carried_ai_review(self):
+        old = {
+            "id": "incident-test",
+            "title": "FortiGate VPN failure",
+            "products": ["FortiGate"],
+            "versions": ["7.6.7"],
+            "fixVersions": [],
+            "sources": [{
+                "url": "https://community.fortinet.com/support-forum-92/fortigate-vpn-failure-231054",
+                "title": "FortiGate VPN failure",
+                "summary": "VPN fails.",
+                "replies": [{"author": "User A", "authorRole": "Staff", "date": "", "text": "Workaround A"}],
+                "fixEngineReleases": [],
+            }],
+            "aiReview": {"summary": "Old wording"},
+        }
+        new = {
+            "id": old["id"],
+            "title": old["title"],
+            "products": old["products"],
+            "versions": old["versions"],
+            "fixVersions": old["fixVersions"],
+            "sources": [{
+                **old["sources"][0],
+                "replies": [{"author": "User A", "authorRole": "Staff", "date": "", "text": "Workaround B"}],
+            }],
+        }
+        self.assertEqual(synth.preserve_unchanged_ai_reviews([new], [old]), 0)
+        self.assertNotIn("aiReview", new)
+
+
+
+
 if __name__ == "__main__":
     unittest.main()
