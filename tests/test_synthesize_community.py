@@ -390,7 +390,13 @@ class CommunitySynthesisTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as directory:
             result = synth.synthesize({"topics": [item]}, Path(directory) / "community.json")
         self.assertEqual(result["incidentCount"], 1)
-        self.assertEqual(result["incidents"][0]["fixVersions"], ["7.4.8"])
+        incident = result["incidents"][0]
+        self.assertEqual(incident["fixVersions"], ["7.4.8"])
+        self.assertEqual(
+            incident["status"],
+            "Correctif documenté par Fortinet (version affectée non précisée)",
+        )
+        self.assertEqual(incident["evidenceType"], "official_fix_documented")
 
 
     def test_fortimanager_expected_fix_extracts_multiple_future_versions(self):
@@ -412,7 +418,10 @@ class CommunitySynthesisTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as directory:
             result = synth.synthesize({"topics": [item]}, Path(directory) / "community.json")
         self.assertEqual(result["incidentCount"], 1)
-        self.assertEqual(result["incidents"][0]["fixVersions"], ["7.6.9", "8.0.3"])
+        incident = result["incidents"][0]
+        self.assertEqual(incident["fixVersions"], ["7.6.9", "8.0.3"])
+        self.assertEqual(incident["status"], "Correctif documenté par Fortinet")
+        self.assertEqual(incident["evidenceType"], "official_fix_documented")
 
 
     def test_official_affected_and_resolved_version_sections_are_separated(self):
@@ -489,6 +498,11 @@ class CommunitySynthesisTests(unittest.TestCase):
                 {"engine": "IPS Engine", "version": "8.0.3", "build": "0053"},
             ],
         )
+        with tempfile.TemporaryDirectory() as directory:
+            result = synth.synthesize({"topics": [item]}, Path(directory) / "community.json")
+        self.assertEqual(result["incidents"][0]["status"], "Correctif documenté par Fortinet")
+        self.assertEqual(result["incidents"][0]["evidenceType"], "official_fix_documented")
+
 
     def test_official_not_present_in_release_is_fixed_not_affected(self):
         item = {
