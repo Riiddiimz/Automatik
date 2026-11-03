@@ -490,6 +490,53 @@ class CommunitySynthesisTests(unittest.TestCase):
             ],
         )
 
+    def test_official_not_present_in_release_is_fixed_not_affected(self):
+        item = {
+            "title": "Troubleshooting Tip: FortiClient VPN before logon fails to connect when using windows credentials",
+            "summary": (
+                "DescriptionFortiClient version 7.4 fails to establish a VPN connection before user logon using Windows credentials. "
+                "ScopeFortiClient version 7.4. "
+                "SolutionSymptomsUsers cannot connect to SSL VPN or IPsec VPN using VPN Before Logon after upgrading to FortiClient 7.4. "
+                "Permanent solution.This behavior is not present in FortiClient version 8.0.0 and above."
+            ),
+            "url": "https://community.fortinet.com/forticlient-4/troubleshooting-tip-forticlient-vpn-before-logon-fails-to-connect-when-using-windows-credentials-230990",
+            "products": ["FortiClient"],
+        }
+
+        self.assertEqual(synth.extract_versions(item), (["7.4"], ["7.4"]))
+        self.assertEqual(synth.extract_fixed_versions(item), ["8.0.0"])
+        with tempfile.TemporaryDirectory() as directory:
+            result = synth.synthesize({"topics": [item]}, Path(directory) / "community.json")
+        incident = result["incidents"][0]
+        self.assertEqual(incident["versions"], ["7.4"])
+        self.assertEqual(incident["fixVersions"], ["8.0.0"])
+
+
+    def test_official_session_ip_bypass_is_classified_as_configuration(self):
+        item = {
+            "title": "FortiManager user session disconnection issues when using Cloudflare ZTNA",
+            "summary": (
+                "DescriptionWhen administrators access the FortiManager GUI via Cloudflare ZTNA, "
+                "the login session may automatically terminate roughly 30 seconds after logging in. "
+                "ScopeFortiManager, FortiAnalyzer. "
+                "SolutionTo resolve this issue, configure FortiManager to bypass strict source IP validation "
+                "checks for active sessions. Run: config system global set skip-ip-check-in-session enable end."
+            ),
+            "url": "https://community.fortinet.com/fortimanager-27/fortimanager-user-session-disconnection-issues-when-using-cloudflare-ztna-230917",
+            "products": ["FortiManager", "FortiAnalyzer"],
+        }
+
+        self.assertTrue(synth.looks_like_problem(item))
+        self.assertTrue(synth.has_documented_evidence(item))
+        self.assertTrue(synth.is_configuration_guidance(item))
+        with tempfile.TemporaryDirectory() as directory:
+            result = synth.synthesize({"topics": [item]}, Path(directory) / "community.json")
+        incident = result["incidents"][0]
+        self.assertEqual(incident["status"], "Configuration documentée par Fortinet")
+        self.assertEqual(incident["confidence"], "Documentation Fortinet (configuration)")
+        self.assertEqual(incident["evidenceType"], "official_configuration")
+
+
     def test_official_radius_csv_import_issue_keeps_both_fixed_versions(self):
         item = {
             "title": "RADIUS attributes of users cleared during CSV file import",
