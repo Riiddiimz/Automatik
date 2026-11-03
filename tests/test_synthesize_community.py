@@ -450,12 +450,10 @@ class CommunitySynthesisTests(unittest.TestCase):
             "title": "IPS Engine Crash after upgrading to FortiOS 7.4.12",
             "summary": (
                 "DescriptionThe ipsengine daemon crashes repeatedly when FortiSandbox scanning is enabled. "
-                "ScopeFortiGate 7.4.x, 7.6.x. ipsengine 07.004.604. "
-                "SolutionThe permanent fix for this Known Issue is already included in "
-                "IPS engine 7.4.13 and 7.6.7. "
-                "The issue has been resolved in: IPS engine 7.6.9 (Build 1202) on the 7.6 branch "
-                "and IPS engine 8.0.3 (Build 0053) on the 8.0 branch. "
-                "After upgrading to a fixed IPS engine build, automatic updates can be re-enabled."
+                "ScopeFortiGate 7.4.x, 7.6.xipsengine 07.004.604 FortiSandBox FortiSandBox-Cloud. "
+                "SolutionSymptomAfter upgrading to FortiOS 7.4.x or 7.6.x, the ipsengine daemon has been observed to crash repeatedly. "
+                "The permanent fix for this Known Issue is already included in FortiOS 7.4.13, 7.6.7, and 8.0.0. "
+                "Resolved issues FortiGate / FortiOS 7.4.13, 7.6.7 and 8.0.0."
             ),
             "url": "https://community.fortinet.com/fortigate-3/ips-engine-crash-after-upgrading-to-fortios-7-4-12-231000",
             "products": ["FortiGate"],
@@ -465,6 +463,25 @@ class CommunitySynthesisTests(unittest.TestCase):
             synth.extract_versions(item),
             (["7.4.12"], ["7.4", "7.6"]),
         )
+        self.assertEqual(synth.extract_fixed_versions(item), ["7.4.13", "7.6.7", "8.0.0"])
+        self.assertEqual(synth.extract_fixed_engine_releases(item), [])
+
+
+    def test_official_ips_engine_fixed_releases_keep_both_branches_when_html_concatenates_text(self):
+        item = {
+            "title": "Intermittent SSL/TLS failures on website portals with Deep SSL Inspection and IPS",
+            "summary": (
+                "DescriptionAn HTTPS application can intermittently fail mid-session. "
+                "Scope FortiOS 7.6.7. "
+                "SolutionThe issue has been resolved in: IPS engine 7.6.9 (Build 1202) on the 7.6 branch"
+                "IPS engine 8.0.3 (Build 0053) on the 8.0 branch. "
+                "After upgrading to a fixed IPS engine build, FortiGuard automatic updates can be re-enabled."
+            ),
+            "url": "https://community.fortinet.com/fortigate-3/intermittent-ssl-tls-failures-on-website-portals-with-deep-ssl-inspection-and-ips-flow-based-blank-page-err-ssl-protocol-error-231052",
+            "products": ["FortiGate"],
+        }
+
+        self.assertEqual(synth.extract_versions(item), (["7.6.7"], ["7.6"]))
         self.assertEqual(
             synth.extract_fixed_engine_releases(item),
             [
@@ -472,7 +489,6 @@ class CommunitySynthesisTests(unittest.TestCase):
                 {"engine": "IPS Engine", "version": "8.0.3", "build": "0053"},
             ],
         )
-
 
     def test_official_radius_csv_import_issue_keeps_both_fixed_versions(self):
         item = {
