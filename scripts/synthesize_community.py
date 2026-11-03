@@ -265,6 +265,8 @@ def extract_versions(item: dict) -> tuple[list[str], list[str]]:
         affected_summary = FIXED_VERSION_RE.sub(" ", summary)
         affected_summary = FIXED_VERSION_CONTEXT_RE.sub(" ", affected_summary)
         affected_summary = FIXED_VERSION_LIST_RE.sub(" ", affected_summary)
+        # Explicit resolved/fixed sections must never leak into the affected-version list.
+        affected_summary = FIXED_VERSIONS_SECTION_RE.sub(" ", affected_summary)
         # Remove an explicit remediation upgrade before extracting affected upgrade releases.
         affected_summary = FIXED_VERSION_UPGRADE_RE.sub(" ", affected_summary)
         for source_version, target_version in UPGRADE_PATH_RE.findall(affected_summary):
