@@ -29,7 +29,7 @@ MAX_BOARD_PAGES = 5
 # Coverage remains best-effort because the index does not expose a stable date cursor.
 SUPPORT_FORUM_MAX_PAGES = 15
 MAX_BOARD_DETAIL_LOOKUPS = 12
-DETAIL_PARSER_VERSION = 7
+DETAIL_PARSER_VERSION = 8
 DETAIL_FAILURE_RETRY_HOURS = 2
 BOARD_DETAIL_RE = re.compile(
     r"\b(?:fail(?:s|ed|ing|ure|ures)?|not working|not loading|not supported|unsupported|unable|cannot|can\x27t|"
@@ -932,7 +932,7 @@ def parse_board_page(payload: str | bytes, board_url: str, product: str) -> list
 
 
 class TopicMetadataParser(HTMLParser):
-    """Read public metadata and visible text without relying on private endpoints."""
+    """Read public metadata, visible text and explicit JSON-LD reply records."""
 
     IGNORED_TAGS = {"script", "style", "noscript", "svg"}
 
@@ -941,13 +941,20 @@ class TopicMetadataParser(HTMLParser):
         self.meta: dict[str, str] = {}
         self.time_values: list[str] = []
         self.text_parts: list[str] = []
+        self.jsonld_scripts: list[str] = []
+        self.jsonld_buffer: list[str] | None = None
         self.ignored_depth = 0
 
     def handle_starttag(self, tag: str, attrs: list[tuple[str, str | None]]) -> None:
         tag_name = tag.lower()
+        attributes = dict(attrs)
+        if (
+            tag_name == "script"
+            and (attributes.get("type") or "").split(";", 1)[0].strip().lower() == "application/ld+json"
+        ):
+            self.jsonld_buffer = []
         if tag_name in self.IGNORED_TAGS:
             self.ignored_depth += 1
-        attributes = dict(attrs)
         if tag_name == "meta":
             key = (
                 attributes.get("property")
@@ -964,10 +971,16 @@ class TopicMetadataParser(HTMLParser):
                 self.time_values.append(value)
 
     def handle_endtag(self, tag: str) -> None:
-        if tag.lower() in self.IGNORED_TAGS and self.ignored_depth:
+        tag_name = tag.lower()
+        if tag_name == "script" and self.jsonld_buffer is not None:
+            self.jsonld_scripts.append("".join(self.jsonld_buffer))
+            self.jsonld_buffer = None
+        if tag_name in self.IGNORED_TAGS and self.ignored_depth:
             self.ignored_depth -= 1
 
     def handle_data(self, data: str) -> None:
+        if self.jsonld_buffer is not None:
+            self.jsonld_buffer.append(data)
         if self.ignored_depth == 0 and data.strip():
             self.text_parts.append(data)
 
@@ -1001,6 +1014,84 @@ def extract_public_article_summary(value: str) -> str:
     return clean(article)[:5000]
 
 
+def _iter_json_objects(value):
+    """Yield nested JSON objects without depending on a provider-specific API."""
+    if isinstance(value, dict):
+        yield value
+        for nested in value.values():
+            yield from _iter_json_objects(nested)
+    elif isinstance(value, list):
+        for nested in value:
+            yield from _iter_json_objects(nested)
+
+
+def extract_structured_replies(jsonld_scripts: list[str]) -> list[dict]:
+    """Extract only explicit Schema.org Comment/Answer nodes; never infer a confirmation."""
+    replies = []
+    seen = set()
+    for raw_script in jsonld_scripts:
+        try:
+            payload = json.loads(raw_script)
+        except (TypeError, json.JSONDecodeError):
+            continue
+        for node in _iter_json_objects(payload):
+            raw_type = node.get("@type")
+            types = raw_type if isinstance(raw_type, list) else [raw_type]
+            normalized_types = {
+                str(value).rsplit("/", 1)[-1].rsplit(":", 1)[-1].casefold()
+                for value in types if value
+            }
+            if not normalized_types.intersection({"comment", "answer"}):
+                continue
+            raw_text = node.get("text") or node.get("articleBody") or node.get("commentText")
+            if isinstance(raw_text, list):
+                raw_text = " ".join(str(value) for value in raw_text if value)
+            elif isinstance(raw_text, dict):
+                raw_text = raw_text.get("text") or raw_text.get("value") or ""
+            reply_text = clean(str(raw_text or ""))[:1200]
+            if not reply_text:
+                continue
+
+            author = node.get("author") or {}
+            if isinstance(author, dict):
+                author_name = author.get("name") or author.get("alternateName") or ""
+                author_role = (
+                    author.get("jobTitle")
+                    or author.get("role")
+                    or author.get("rank")
+                    or author.get("memberType")
+                    or ""
+                )
+                if isinstance(author_role, dict):
+                    author_role = author_role.get("name") or ""
+                elif isinstance(author_role, list):
+                    author_role = ", ".join(str(value) for value in author_role if value)
+            else:
+                author_name = str(author)
+                author_role = ""
+            author_name = clean(str(author_name))[:120]
+            author_role = clean(str(author_role))[:80]
+            raw_date = node.get("datePublished") or node.get("dateCreated") or ""
+            reply_date = parse_date(str(raw_date)) if raw_date else None
+            reply_url = str(node.get("url") or node.get("@id") or "")
+            reply_type = "Réponse" if "answer" in normalized_types else "Commentaire"
+            key = (author_name.casefold(), author_role.casefold(), reply_date or "", reply_text.casefold(), reply_url)
+            if key in seen:
+                continue
+            seen.add(key)
+            replies.append({
+                "type": reply_type,
+                "author": author_name,
+                "authorRole": author_role,
+                "date": reply_date,
+                "text": reply_text,
+                "url": reply_url[:500],
+            })
+            if len(replies) >= 20:
+                return replies
+    return replies
+
+
 def parse_topic_metadata(payload: str | bytes) -> dict:
     """Extract public article sections and explicit publication/update dates."""
     if isinstance(payload, bytes):
@@ -1008,6 +1099,9 @@ def parse_topic_metadata(payload: str | bytes) -> dict:
     parser = TopicMetadataParser()
     parser.feed(payload)
     parser.close()
+    if parser.jsonld_buffer is not None:
+        parser.jsonld_scripts.append("".join(parser.jsonld_buffer))
+    replies = extract_structured_replies(parser.jsonld_scripts)
     meta_summary = next((
         parser.meta[key]
         for key in ("og:description", "description", "twitter:description", "dc.description")
@@ -1037,6 +1131,11 @@ def parse_topic_metadata(payload: str | bytes) -> dict:
         "summary": clean(summary)[:5000],
         "date": parse_date(published_value) if published_value else None,
         "updatedAt": parse_date(updated_value) if updated_value else None,
+        "replies": replies,
+        "replyCount": len(replies),
+        "replyExtractionStatus": (
+            "structured_replies_found" if replies else "no_structured_replies"
+        ),
     }
 
 
@@ -1110,6 +1209,7 @@ def enrich_board_topic_metadata(
 
     for item in selected:
         url = item["url"]
+        known = known_by_url.get(url, {})
         try:
             details = detail_fetcher(url)
             if not isinstance(details, dict):
@@ -1120,6 +1220,39 @@ def enrich_board_topic_metadata(
                 item["date"] = details["date"]
             if details.get("updatedAt"):
                 item["updatedAt"] = details["updatedAt"]
+
+            raw_replies = details.get("replies")
+            normalized_replies = []
+            if isinstance(raw_replies, list):
+                for reply in raw_replies[:20]:
+                    if not isinstance(reply, dict):
+                        continue
+                    reply_text = clean(str(reply.get("text") or ""))[:1200]
+                    if not reply_text:
+                        continue
+                    normalized_replies.append({
+                        "type": clean(str(reply.get("type") or "Commentaire"))[:40],
+                        "author": clean(str(reply.get("author") or ""))[:120],
+                        "authorRole": clean(str(reply.get("authorRole") or ""))[:80],
+                        "date": reply.get("date") if isinstance(reply.get("date"), str) else None,
+                        "text": reply_text,
+                        "url": str(reply.get("url") or "")[:500],
+                    })
+            if normalized_replies:
+                item["replies"] = normalized_replies
+                item["replyCount"] = len(normalized_replies)
+                item["replyExtractionStatus"] = "structured_replies_found"
+            elif known.get("replies"):
+                item["replies"] = known["replies"]
+                item["replyCount"] = len(known["replies"])
+                item["replyExtractionStatus"] = known.get(
+                    "replyExtractionStatus", "structured_replies_found"
+                )
+            else:
+                item["replyExtractionStatus"] = details.get(
+                    "replyExtractionStatus", "no_structured_replies"
+                )
+
             item["versions"] = extract_versions(
                 item.get("title", ""), item.get("summary", ""), item.get("url", "")
             )
@@ -1135,6 +1268,12 @@ def enrich_board_topic_metadata(
                 f"Enrichissement de la fiche Community impossible ({url}): "
                 f"{type(exc).__name__}: {exc}; le titre et le lien d’index sont conservés."
             )
+            if known.get("replies"):
+                item["replies"] = known["replies"]
+                item["replyCount"] = len(known["replies"])
+                item["replyExtractionStatus"] = known.get(
+                    "replyExtractionStatus", "structured_replies_found"
+                )
             # A failed request is not a successful check. Retry after a short
             # backoff rather than suppressing this URL for a full day.
             item["detailAttemptedAt"] = now.isoformat()
