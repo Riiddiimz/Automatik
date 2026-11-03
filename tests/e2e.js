@@ -34,6 +34,10 @@ const { chromium } = require("playwright");
       versionFamilies: ["7.6"],
       fixVersions: [],
       fixBuilds: ["7.01204", "7.1204"],
+      fixEngineReleases: [
+        { engine: "IPS Engine", version: "7.6.9", build: "1202" },
+        { engine: "IPS Engine", version: "8.0.3", build: "0053" }
+      ],
       fixBuildNote: "Fixture de test : les deux valeurs doivent rester distinctes.",
       status: "Fixture de test",
       forumReportCount: 0,
@@ -44,7 +48,15 @@ const { chromium } = require("playwright");
         sourceType: "test_fixture",
         title: "Source synthétique de test (non publiée)",
         url: "https://example.invalid/automatik-e2e-build-fixture",
-        date: "2026-11-01T00:00:00+00:00"
+        date: "2026-11-01T00:00:00+00:00",
+        replies: [{
+          type: "Commentaire",
+          author: "Équipe Fortinet de test",
+          authorRole: "Staff",
+          date: "2026-11-01T01:00:00+00:00",
+          text: "Réponse structurée de test, sans confirmation technique.",
+          url: ""
+        }]
       }]
     };
     data.incidents = Array.isArray(data.incidents) ? data.incidents : [];
@@ -231,6 +243,18 @@ const { chromium } = require("playwright");
       assert.ok(fixtureCardText.includes(build), "chaque build synthétique doit être visible dans la fiche ouverte");
     }
     assert.ok(fixtureCardText.includes(buildFixture.fixBuildNote), "la note de fixture doit être visible dans la fiche");
+    for (const value of ["Correctifs du moteur IPS", "7.6.9", "1202", "8.0.3", "0053"]) {
+      assert.ok(fixtureCardText.includes(value), "les versions/builds du moteur IPS doivent être affichés séparément");
+    }
+    const fixtureSources = fixtureCard.locator(".incident-sources");
+    await fixtureSources.locator("summary").click();
+    const fixtureReplies = fixtureSources.locator(".source-replies");
+    assert.equal(await fixtureReplies.count(), 1, "les réponses structurées doivent être proposées dans les sources");
+    await fixtureReplies.locator("summary").click();
+    const fixtureReplyText = await fixtureReplies.innerText();
+    assert.match(fixtureReplyText, /Équipe Fortinet de test/);
+    assert.match(fixtureReplyText, /Rôle indiqué : Staff/);
+    assert.match(fixtureReplyText, /sans confirmation technique/);
     await page.locator("#community-search").fill("");
 
     const updatedSourceIncident = (data.incidents || []).slice(0, 100).find(incident =>
