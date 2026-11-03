@@ -247,7 +247,7 @@ def extract_versions(item: dict) -> tuple[list[str], list[str]]:
     summary = item.get("summary", "")
     # RSS/HTML cleanup can concatenate section labels and their values.
     summary = re.sub(
-        r"\b(?i:Description|Scope|Solution|Workaround|Impact)(?=[A-Z])",
+        r"\b(?i:Description|Scope|Solution|Workaround|Impact|Resolution|Affected Versions|Resolved Versions|Fixed Versions)(?=[A-Z])",
         lambda match: match.group(0) + " ",
         summary,
     )
