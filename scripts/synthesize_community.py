@@ -316,6 +316,7 @@ def extract_versions(item: dict) -> tuple[list[str], list[str]]:
     affected_upgrade_versions = set()
     scope_text = ""
     scope_families = set()
+    description_versions = set()
     if source_type(item) == "fortinet_article":
         scope = re.search(
             r"\bScope\s*:?\s*(.*?)(?=\b(?:Solution|Workaround|Impact|Description)\b|$)",
