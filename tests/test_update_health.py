@@ -140,6 +140,35 @@ class UpdateHealthTests(unittest.TestCase):
         self.assertIn("incidents", result["message"])
         self.assertNotIn("lastSuccessAt", result)
 
+    def test_partial_community_health_message_includes_feed_coverage_detail(self):
+        result = self.run_health(
+            "success",
+            {
+                "topics": [],
+                "incidents": [],
+                "partial": True,
+                "errors": [
+                    "1 sujet potentiel reste non classé.",
+                    "Le flux Community ignore le paramètre start à 100; les sujets précédents se répètent.",
+                    "Le flux Community a renvoyé 100 entrées brutes sur 500 demandées; la couverture des 30 derniers jours n'est pas garantie.",
+                ],
+            },
+            source="community",
+        )
+        self.assertEqual(result["status"], "partial")
+        self.assertIn("100 entrées brutes sur 500 demandées", result["message"])
+        self.assertIsNone(result.get("lastSuccessAt"))
+
+    def test_partial_health_message_reports_omitted_details(self):
+        errors = [f"Source {index} indisponible." for index in range(5)]
+        result = self.run_health(
+            "success",
+            {"topics": [], "incidents": [], "partial": True, "errors": errors},
+            source="community",
+        )
+        self.assertIn("2 autre(s) détail(s) omis.", result["message"])
+        self.assertLess(len(result["message"]), 1000)
+
     def test_unknown_source_is_rejected(self):
         with patch.object(sys, "argv", ["update_health.py", "unknown"]):
             with self.assertRaises(SystemExit):

@@ -59,7 +59,7 @@ PRODUCT_ALIASES = {
     "FortiManager": (r"\bfortimanagers?\b",),
     "FortiAnalyzer": (r"\bfortianalyzers?\b",),
     "FortiAuthenticator": (r"\bfortiauthenticators?\b",),
-    "FortiClient EMS": (r"\bforticlient\s*ems\b", r"\bfcems\b"),
+    "FortiClient EMS": (r"\bforticlient\s*(?:[/&-]\s*)?ems\b", r"\bfcems\b"),
     "FortiClient": (r"\bforticlients?\b",),
     "FortiSwitch": (r"\bfortiswitch(?:es)?\b",),
     "FortiAP": (r"\bforti[- ]?aps?\b",),
@@ -68,13 +68,13 @@ PRODUCT_ALIASES = {
 # product/firmware marker or appears in an explicit upgrade path.
 VERSION_CONTEXT_RE = re.compile(
     r"\b(?:fortios|fortigate|fortimanager|fortianalyzer|fortiauthenticator|"
-    r"forticlient(?:\s+(?:ems|vpn))?|fortiswitch|fortiap|firmware)\s*[\(:-]?\s*"
+    r"forticlient(?:\s*(?:[/&-]\s*)?(?:ems|vpn))?|fortiswitch|fortiap|firmware)\s*[\(:-]?\s*"
     r"(?:version\s*)?v?(\d{1,2}\.\d{1,2}(?:\.\d{1,3})?)",
     re.I,
 )
 PRODUCT_VERSION_LABEL_RE = re.compile(
     r"\b(?:fortios|fortigate|fortimanager|fortianalyzer|fortiauthenticator|"
-    r"forticlient(?:\s+(?:ems|vpn))?)\b[^.!?]{0,80}?\b(?:version|firmware)\s*[:=]?\s*"
+    r"forticlient(?:\s*(?:[/&-]\s*)?(?:ems|vpn))?)\b[^.!?]{0,80}?\b(?:version|firmware)\s*[:=]?\s*"
     r"v?(\d{1,2}\.\d{1,2}(?:\.\d{1,3})?)",
     re.I,
 )
@@ -86,7 +86,7 @@ AFFECTED_VERSION_CONTEXT_RE = re.compile(
     r"\b(?:known\s+(?:issue|bug|defect)|affected\s+versions?|affected\s+releases?)\b"
     r"[^.!?]{0,140}?\b(?:in|on|:|affects?)\s*"
     r"(?:(?:fortios|fortigate|fortimanager|fortianalyzer|fortiauthenticator|"
-    r"forticlient(?:\s+(?:ems|vpn))?|firmware)\s*)?"
+    r"forticlient(?:\s*(?:[/&-]\s*)?(?:ems|vpn))?|firmware)\s*)?"
     r"(?:versions?\s*)?v?\d{1,2}\.\d{1,2}(?:\.\d{1,3})?"
     r"(?:\s*(?:,|and|or|/)\s*v?\d{1,2}\.\d{1,2}(?:\.\d{1,3})?)*",
     re.I,
@@ -113,7 +113,7 @@ FIXED_VERSION_RE = re.compile(
     r"scheduled\s+to\s+be\s+fixed|scheduled\s+for\s+(?:a\s+)?fix|planned\s+fix|fixed|resolved|corrected|addressed|"
     r"(?:fix|patch|correction)\s+(?:is\s+)?(?:available|included|provided))\s+"
     r"(?:in|with|from)\s+(?:(?:fortios|fortigate|fortimanager|fortianalyzer|"
-    r"fortiauthenticator|forticlient(?:\s+(?:ems|vpn))?|fortiswitch|fortiap|firmware)\s*)?"
+    r"fortiauthenticator|forticlient(?:\s*(?:[/&-]\s*)?(?:ems|vpn))?|fortiswitch|fortiap|firmware)\s*)?"
     r"(?:version\s*)?v?(\d{1,2}\.\d{1,2}(?:\.\d{1,3})?)\b",
     re.I,
 )
@@ -129,10 +129,10 @@ FIXED_VERSION_UPGRADE_RE = re.compile(
     r"\b(?:permanent solution|resolution|fix|solution)\s*(?::|is\s+to)?\s*"
     r"(?:update|upgrade)\s+(?:the\s+)?"
     r"(?:(?:fortios|fortigate|fortimanager|fortianalyzer|fortiauthenticator|"
-    r"forticlient(?:\s+(?:ems|vpn))?|firmware)\s+)?"
+    r"forticlient(?:\s*(?:[/&-]\s*)?(?:ems|vpn))?|firmware)\s+)?"
     r"(?:to\s+)?"
     r"(?:(?:fortios|fortigate|fortimanager|fortianalyzer|fortiauthenticator|"
-    r"forticlient(?:\s+(?:ems|vpn))?|firmware)\s+)?"
+    r"forticlient(?:\s*(?:[/&-]\s*)?(?:ems|vpn))?|firmware)\s+)?"
     r"(?:versions?\s*)?v?(\d{1,2}\.\d{1,2}(?:\.\d{1,3})?)\b",
     re.I,
 )
@@ -542,9 +542,22 @@ def extract_versions(title: str, summary: str, url: str = "") -> list[str]:
             match.group(0) for match in AFFECTED_VERSION_CONTEXT_RE.finditer(summary)
         ]
         reported_versions = REPORTED_VERSION_CONTEXT_RE.findall(summary)
-        if scope or affected_contexts or reported_versions:
+        description = re.search(
+            r"\bDescription\s*(.*?)(?=\b(?:Scope|Solution|Workaround|Impact)\b|$)",
+            summary, re.I | re.S,
+        )
+        description_versions = []
+        if description:
+            description_text = description.group(1)
+            for match in VERSION_CONTEXT_RE.finditer(description_text):
+                description_versions.append(match.group(1))
+                tail = re.split(r"[!?]|\.(?=\s|$)", description_text[match.end():], maxsplit=1)[0]
+                description_versions.extend(VERSION_LIST_TAIL_RE.findall(tail))
+            description_versions.extend(PRODUCT_VERSION_LABEL_RE.findall(description_text))
+        if scope or affected_contexts or reported_versions or description_versions:
             scope_text = scope.group(1) if scope else ""
-            reported_text = " ".join(f"firmware {version}" for version in reported_versions)
+            explicit_versions = [*reported_versions, *description_versions]
+            reported_text = " ".join(f"firmware {version}" for version in explicit_versions)
             text = f"{title} {scope_text} {' '.join(affected_contexts)} {reported_text}"
     # Exclude fixed releases, IP addresses, platform/tool versions and elapsed-time decimals.
     text = FIXED_VERSION_RE.sub(" ", text)
@@ -773,7 +786,15 @@ def parse_feed(payload: bytes) -> list[dict]:
             }
             primary = next((product for prefix, product in board_products.items() if slug.startswith(prefix)), None)
             if primary:
-                products = list(dict.fromkeys([primary] + [p for p in products if p in title]))
+                # An official article's explicit Scope can name another product.
+                scope_match = re.search(
+                    r"\bScope\s*[:\-]?\s*(.*?)(?=\b(?:Solution|Workaround|Impact|Description)\b|$)",
+                    summary, re.I | re.S,
+                )
+                scoped_products = products_in_text(scope_match.group(1)) if scope_match else []
+                products = list(dict.fromkeys(
+                    [primary] + [p for p in products if p in title] + scoped_products
+                ))
             elif slug.startswith("support-forum"):
                 # Some Support Forum RSS entries expose every product board as a category,
                 # even when the topic concerns only one product. Four or more product

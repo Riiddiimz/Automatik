@@ -61,13 +61,13 @@ PRODUITS_CIBLES = list(VERSION_SCOPE.keys())
  
 VERSION_CONTEXT_RE = re.compile(
     r"\b(?:fortios|forti[- ]?gate|fortimanager|fortianalyzer|fortiauthenticator|"
-    r"forticlient(?:\s+(?:ems|vpn))?|firmware)\s*[(:-]?\s*(?:version\s*)?"
+    r"forticlient(?:\s*(?:[/&-]\s*)?(?:ems|vpn))?|firmware)\s*[(:-]?\s*(?:version\s*)?"
     r"v?(\d{1,2}\.\d{1,2}(?:\.\d{1,3})?)",
     re.I,
 )
 PRODUCT_VERSION_LABEL_RE = re.compile(
     r"\b(?:fortios|forti[- ]?gate|fortimanager|fortianalyzer|fortiauthenticator|"
-    r"forticlient(?:\s+(?:ems|vpn))?)\b[^.!?]{0,80}?\b(?:version|firmware)\s*[:=]?\s*"
+    r"forticlient(?:\s*(?:[/&-]\s*)?(?:ems|vpn))?)\b[^.!?]{0,80}?\b(?:version|firmware)\s*[:=]?\s*"
     r"v?(\d{1,2}\.\d{1,2}(?:\.\d{1,3})?)",
     re.I,
 )
@@ -133,9 +133,10 @@ def parser_flux(xml_text):
 
 def detecter_produits(texte):
     texte_lower = texte.lower()
+    texte_normalise = re.sub(r"\bforticlient\s*[/&-]\s*ems\b", "forticlient ems", texte_lower)
     trouves = []
     for produit in PRODUITS_CIBLES:
-        if produit in texte_lower:
+        if produit in texte_normalise:
             trouves.append(produit)
     if "forticlient ems" in trouves and "forticlient" in trouves:
         trouves.remove("forticlient")

@@ -112,6 +112,16 @@ class LegacyCommunityScraperSecurityTests(unittest.TestCase):
         )
 
 
+    def test_legacy_scraper_recognizes_forticlient_ems_slash_alias_and_version(self):
+        text = (
+            "FortiGate version 7.4.12 and FortiClient/EMS version 7.4.8 "
+            "are used by the connector."
+        )
+        products = legacy.detecter_produits(text)
+        self.assertIn("forticlient ems", products)
+        self.assertNotIn("forticlient", products)
+        self.assertEqual(legacy.detecter_versions(text, products), ["7.4.8", "7.4.12"])
+
     def test_legacy_scraper_extracts_version_after_product_model(self):
         text = "FortiAnalyzer 1000F version 7.6.8 reports are sent even when empty."
         products = legacy.detecter_produits(text)

@@ -33,6 +33,31 @@ def read_json(path):
     return payload if isinstance(payload, dict) else None
 
 
+MAX_HEALTH_ERROR_DETAILS = 3
+MAX_HEALTH_ERROR_LENGTH = 280
+
+
+def summarize_errors(errors):
+    """Deduplicate and bound health details while reporting omitted warnings."""
+    unique = []
+    seen = set()
+    for error in errors:
+        message = " ".join(str(error).split())
+        if not message or message in seen:
+            continue
+        seen.add(message)
+        unique.append(message)
+    details = []
+    for message in unique[:MAX_HEALTH_ERROR_DETAILS]:
+        if len(message) > MAX_HEALTH_ERROR_LENGTH:
+            message = message[:MAX_HEALTH_ERROR_LENGTH - 1].rstrip() + "…"
+        details.append(message)
+    omitted = len(unique) - len(details)
+    if omitted:
+        details.append(f"{omitted} autre(s) détail(s) omis.")
+    return " ".join(details)
+
+
 def main():
     if len(sys.argv) != 2 or sys.argv[1] not in SOURCE_FILES:
         raise SystemExit("Usage: update_health.py veille|community")
@@ -81,7 +106,7 @@ def main():
         message = "Le workflow a terminé, mais le jeu de données est invalide : " + " ".join(schema_errors)
     elif is_partial:
         status = "partial"
-        details = " ".join(errors[:2]) or "la collecte a signalé un état partiel."
+        details = summarize_errors(errors) or "la collecte a signalé un état partiel."
         message = "La collecte s'est exécutée, mais certaines sources sont incomplètes : " + details
     else:
         status = "ok"

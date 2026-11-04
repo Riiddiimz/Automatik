@@ -11,6 +11,21 @@ SPEC.loader.exec_module(synth)
 
 
 class CommunitySynthesisTests(unittest.TestCase):
+    def test_official_fortigate_scope_recognizes_forticlient_ems_slash_and_description_version(self):
+        item = {
+            "title": "FortiGate EMS fabric connector fails to validate CA certificate",
+            "summary": (
+                "Description The FortiClient/EMS fabric connector on FortiGate version 7.4.12 "
+                "rejects a valid publicly signed EMS certificate. "
+                "Scope FortiGate, FortiClient/EMS. "
+                "Solution Revalidate the certificate chain and review stale connector settings."
+            ),
+            "url": "https://community.fortinet.com/fortigate-3/fortigate-ems-fabric-connector-fails-to-validate-ca-certificate-231032",
+            "products": ["FortiGate"],
+        }
+        self.assertEqual(synth.extract_products(item), ["FortiGate", "FortiClient EMS"])
+        self.assertEqual(synth.extract_versions(item), (["7.4.12"], ["7.4"]))
+
     def test_versions_ignore_ip_addresses_and_keep_major_minor_family(self):
         item = {"title": "DNS over TLS broken in Proxy Mode", "summary": "Issue in FortiOS version 7.6.4. IP 208.91.112.55; upgrade to 8.0.1. Upgrade path from versions 7.2.13 to 7.4.12. Example command output: DiG 9.17.12. Resolver IP 1.1.1.1."}
         exact, families = synth.extract_versions(item)

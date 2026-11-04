@@ -22,6 +22,25 @@ class CommunityFeedTests(unittest.TestCase):
         url = "https://community.fortinet.com/support-forum-92/fortianalyzer-only-send-mail-231014"
         self.assertEqual(collector.extract_versions(title, summary, url), ["7.6.8"])
 
+    def test_forticlient_ems_slash_scope_and_description_version_are_detected(self):
+        payload = b"""<rss version="2.0"><channel>
+          <item>
+            <title>FortiGate EMS fabric connector fails to validate CA certificate</title>
+            <link>https://community.fortinet.com/fortigate-3/fortigate-ems-fabric-connector-fails-to-validate-ca-certificate-231032</link>
+            <description><![CDATA[
+              Description The FortiClient/EMS fabric connector on FortiGate version 7.4.12
+              rejects a valid publicly signed EMS certificate.
+              Scope FortiGate, FortiClient/EMS.
+              Solution Revalidate the certificate chain and review stale connector settings.
+            ]]></description>
+          </item>
+        </channel></rss>"""
+        items = collector.parse_feed(payload)
+        self.assertEqual(len(items), 1)
+        self.assertEqual(items[0]["products"], ["FortiGate", "FortiClient EMS"])
+        self.assertNotIn("FortiClient", items[0]["products"])
+        self.assertEqual(items[0]["versions"], ["7.4.12"])
+
     def test_rss_extracts_multiple_versions_in_parenthesized_firmware_list(self):
         payload = b"""<rss version="2.0"><channel>
           <item>
