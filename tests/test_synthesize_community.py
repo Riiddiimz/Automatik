@@ -295,6 +295,7 @@ class CommunitySynthesisTests(unittest.TestCase):
         incident = result["incidents"][0]
         self.assertEqual(incident["versions"], ["7.6.8"])
         self.assertEqual(incident["fixVersions"], ["7.6.9"])
+        self.assertEqual(incident["fixStatus"], "available")
 
     def test_official_scoped_issue_without_version_is_published_as_unknown(self):
         item = {
@@ -435,8 +436,10 @@ class CommunitySynthesisTests(unittest.TestCase):
         self.assertEqual(result["incidentCount"], 1)
         incident = result["incidents"][0]
         self.assertEqual(incident["fixVersions"], ["7.6.9", "8.0.3"])
-        self.assertEqual(incident["status"], "Correctif documenté par Fortinet")
-        self.assertEqual(incident["evidenceType"], "official_fix_documented")
+        self.assertEqual(incident["fixStatus"], "planned")
+        self.assertEqual(incident["status"], "Correctif annoncé (à venir) par Fortinet")
+        self.assertEqual(incident["confidence"], "Documentation Fortinet (correctif annoncé; disponibilité à confirmer)")
+        self.assertEqual(incident["evidenceType"], "official_fix_planned")
 
 
     def test_official_affected_and_resolved_version_sections_are_separated(self):
@@ -529,6 +532,7 @@ class CommunitySynthesisTests(unittest.TestCase):
         incident = result["incidents"][0]
         self.assertEqual(incident["versions"], ["8.0.0"])
         self.assertEqual(incident["fixVersions"], ["8.0.1"])
+        self.assertEqual(incident["fixStatus"], "available")
         self.assertEqual(incident["status"], "Correctif documenté par Fortinet")
         self.assertEqual(incident["evidenceType"], "official_fix_documented")
 
@@ -1161,6 +1165,89 @@ class CommunitySynthesisTests(unittest.TestCase):
         self.assertEqual(incident["versions"], ["7.4", "7.6"])
         self.assertEqual(incident["fixVersions"], ["7.6.7", "8.0.0"])
         self.assertIn("no fix yet for the 7.4", incident["solution"].lower())
+
+
+    def test_scope_version_qualifiers_do_not_turn_boundaries_into_exact_releases(self):
+        below = {
+            "title": "Intermittent HA heartbeat packet loss after high session synchronization",
+            "summary": (
+                "DescriptionFortiGate HA heartbeat packets are lost under high softirq utilization. "
+                "ScopeFortiOS versions below 7.6.8. "
+                "SolutionInvestigate the source of high softirq utilization."
+            ),
+            "url": "https://community.fortinet.com/fortigate-3/ha-heartbeat-packet-loss-231057",
+        }
+        self.assertEqual(synth.extract_versions(below), ([], ["7.6"]))
+        self.assertEqual(synth.extract_version_scope(below), "FortiOS versions below 7.6.8")
+
+        above = {
+            "title": "After upgrading to FortiOS 7.6.8, GUI HTTPS stops working",
+            "summary": (
+                "DescriptionThe web administration interface may become unavailable. "
+                "ScopeFortiGate 7.6.6 and above. "
+                "SolutionRoot causeIf the FortiGate belongs to the security fabric, the root is running 7.4.x, "
+                "and the leaf FortiGate version is 7.6.8. Upgrade the root to the leaf version or disable fabric sync."
+            ),
+            "url": "https://community.fortinet.com/fortigate-3/gui-https-stops-working-231092",
+        }
+        self.assertEqual(synth.extract_versions(above), (["7.6.8"], ["7.6"]))
+        self.assertEqual(synth.extract_version_scope(above), "FortiGate 7.6.6 and above")
+
+        ranged = {
+            "title": "FortiOS release range affected by an issue",
+            "summary": (
+                "DescriptionA behavior is observed on the affected release range. "
+                "ScopeFortiOS versions 7.4.0 to 7.4.12. "
+                "SolutionConsult the official release guidance."
+            ),
+            "url": "https://community.fortinet.com/fortigate-3/release-range-issue-231099",
+        }
+        self.assertEqual(synth.extract_versions(ranged), ([], ["7.4"]))
+        self.assertEqual(synth.extract_version_scope(ranged), "FortiOS versions 7.4.0 to 7.4.12")
+
+    def test_fabric_root_leaf_version_mismatch_is_not_misclassified_as_configuration(self):
+        item = {
+            "title": "After upgrading to FortiOS 7.6.8, GUI HTTPS stops working",
+            "summary": (
+                "DescriptionUpgrading a FortiGate device to version 7.6.8 may cause the web administration interface "
+                "to become unavailable. ScopeFortiGate 7.6.6 and above. "
+                "SolutionRoot causeIf the FortiGate belongs to the security fabric, the root is running 7.4.x, "
+                "and the leaf FortiGate version is 7.6.8: the stability of the web administration service will be affected. "
+                "ResolutionUpgrade the root to the same version as the leaf, or set fabric-sync disable."
+            ),
+            "url": "https://community.fortinet.com/fortigate-3/gui-https-stops-working-231092",
+        }
+        self.assertTrue(synth.is_version_behavior_change(item))
+        self.assertFalse(synth.is_configuration_guidance(item))
+        with tempfile.TemporaryDirectory() as directory:
+            result = synth.synthesize({"topics": [item]}, Path(directory) / "community.json")
+        incident = result["incidents"][0]
+        self.assertEqual(incident["versions"], ["7.6.8"])
+        self.assertEqual(incident["versionScopes"], ["FortiGate 7.6.6 and above"])
+        self.assertEqual(
+            incident["status"],
+            "Changement de comportement / incompatibilité documenté par Fortinet",
+        )
+
+    def test_available_fix_is_distinguished_from_a_planned_fix(self):
+        planned = {
+            "title": "FortiManager 7.6.8 policy installation fails on 2GB FortiGate devices",
+            "summary": (
+                "DescriptionThe policy installation fails. ScopeFortiManager. "
+                "SolutionThis is a known issue. A fix is expected in FortiManager firmware versions 7.6.9 and 8.0.3."
+            ),
+            "url": "https://community.fortinet.com/fortimanager-27/policy-installation-fails-231098",
+        }
+        available = {
+            "title": "FortiGate ZIP downloads are blocked with proxy inspection",
+            "summary": (
+                "DescriptionZIP downloads are blocked. ScopeFortiGate 8.0.0. "
+                "SolutionUpgrade to FortiOS version 8.0.1 or later to resolve this issue."
+            ),
+            "url": "https://community.fortinet.com/fortigate-3/zip-downloads-blocked-231053",
+        }
+        self.assertEqual(synth.extract_fix_status(planned), "planned")
+        self.assertEqual(synth.extract_fix_status(available), "available")
 
 if __name__ == "__main__":
     unittest.main()

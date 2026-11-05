@@ -47,6 +47,27 @@ UNEXPECTED_DISABLED_BEHAVIOR_RE = re.compile(
     re.I,
 )
 SCOPE_EXACT_VERSION_RE = re.compile(r"(?<!\d)(\d{1,2}\.\d{1,2}\.\d{1,3})(?!\d)")
+VERSION_SCOPE_BELOW_RE = re.compile(
+    r"\b(?:below|less\s+than|earlier\s+than|prior\s+to|before)\s+"
+    r"(?:version\s*)?v?(\d{1,2}\.\d{1,2}(?:\.\d{1,3})?)\b",
+    re.I,
+)
+VERSION_SCOPE_ABOVE_RE = re.compile(
+    r"\b(?:version\s*)?v?(\d{1,2}\.\d{1,2}(?:\.\d{1,3})?)\s+"
+    r"(?:(?:and|or)\s+)?(?:above|higher|later|newer)\b",
+    re.I,
+)
+VERSION_SCOPE_RANGE_RE = re.compile(
+    r"\b(\d{1,2}\.\d{1,2}(?:\.\d{1,3})?)\s*"
+    r"(?:-|–|—|\bto\b|\bthrough\b)\s*"
+    r"(\d{1,2}\.\d{1,2}(?:\.\d{1,3})?)\b",
+    re.I,
+)
+VERSIONED_ROOT_LEAF_CONTEXT_RE = re.compile(
+    r"\b(?:root|parent|master)\b[^.!?]{0,140}\b(?:running|version)\b"
+    r"[^.!?]{0,140}\b(?:leaf|child|secondary)\b[^.!?]{0,100}\bversion\b",
+    re.I,
+)
 VERSION_CONTEXT_RE = re.compile(
     r"\b(?:fortios|fortigate|fortimanager|fortianalyzer|fortiauthenticator|forticlient(?:\s*(?:[/&-]\s*)?(?:ems|vpn))?|fortiswitch|fortiap|firmware)\s*[\(:-]?\s*(?:versions?\s*)?v?(\d{1,2}\.\d{1,2}(?:\.\d{1,3})?)",
     re.I,
@@ -273,6 +294,16 @@ def extract_labeled_versions(text: str, pattern: re.Pattern) -> set[str]:
     return found
 
 
+def scope_version_boundaries(text: str) -> set[str]:
+    """Return version numbers used as range boundaries, not exact affected releases."""
+    boundaries = set()
+    for pattern in (VERSION_SCOPE_BELOW_RE, VERSION_SCOPE_ABOVE_RE):
+        boundaries.update(match.group(1) for match in pattern.finditer(text))
+    for match in VERSION_SCOPE_RANGE_RE.finditer(text):
+        boundaries.update(match.groups())
+    return boundaries
+
+
 def normalize_article_sections(text: str) -> str:
     """Separate section labels and IPS Engine releases concatenated by HTML text extraction."""
     text = re.sub(
@@ -319,6 +350,7 @@ def extract_versions(item: dict) -> tuple[list[str], list[str]]:
     scope_text = ""
     scope_families = set()
     scope_exact_versions = set()
+    scope_boundary_versions = set()
     description_versions = set()
     if source_type(item) == "fortinet_article":
         scope = re.search(
@@ -377,7 +409,14 @@ def extract_versions(item: dict) -> tuple[list[str], list[str]]:
         if scope or affected_contexts or reported_versions or affected_upgrade_versions or description_versions:
             scope_text = scope.group(1) if scope else ""
             scope_families = set(VERSION_FAMILY_RE.findall(scope_text))
-            scope_exact_versions = set(SCOPE_EXACT_VERSION_RE.findall(scope_text))
+            scope_boundary_versions = scope_version_boundaries(scope_text)
+            scope_families.update(
+                ".".join(version.split(".")[:2])
+                for version in scope_boundary_versions
+            )
+            scope_exact_versions = (
+                set(SCOPE_EXACT_VERSION_RE.findall(scope_text)) - scope_boundary_versions
+            )
             if scope_exact_versions:
                 # An exact Scope range is authoritative. Do not classify the
                 # source version in a title's upgrade path as affected as well.
@@ -415,6 +454,9 @@ def extract_versions(item: dict) -> tuple[list[str], list[str]]:
     for source_version, target_version in UPGRADE_PATH_RE.findall(text_without_ips):
         found.update((source_version, target_version))
     found.update(UPGRADE_TARGET_RE.findall(text_without_ips))
+    # A lower/upper bound or range endpoint describes the scope; it is not an exact
+    # affected release. Keep its branch family, and expose the original scope separately.
+    found.difference_update(scope_boundary_versions)
     exact = sorted(found - scope_families, key=lambda v: tuple(int(x) for x in v.split(".")))
     families = sorted(
         {".".join(v.split(".")[:2]) for v in exact} | scope_families,
@@ -486,6 +528,21 @@ def source_type(item: dict) -> str:
     return "unknown"
 
 
+def extract_version_scope(item: dict) -> str:
+    """Keep Fortinet's original Scope wording so comparators and ranges stay unambiguous."""
+    if source_type(item) != "fortinet_article":
+        return ""
+    summary = normalize_article_sections(item.get("summary", ""))
+    match = re.search(
+        r"\bScope\s*:?\s*(.*?)(?=\b(?:Solution|Workaround|Impact|Description)\b|$)",
+        summary,
+        re.I | re.S,
+    )
+    if not match:
+        return ""
+    return re.sub(r"\s+", " ", match.group(1)).strip(" \t\r\n:.-")[:500]
+
+
 def extract_sections(item: dict) -> dict:
     """Extract only explicitly labelled sections from Fortinet-authored articles."""
     empty = {"symptom": "", "impact": "", "solution": ""}
@@ -534,6 +591,50 @@ def extract_fixed_versions(item: dict) -> list[str]:
     found.update(permanent_versions)
     found.update(extract_labeled_versions(text, FIXED_VERSIONS_SECTION_RE))
     return sorted(found, key=lambda version: tuple(int(part) for part in version.split(".")))
+
+
+def extract_fix_status(item: dict) -> str:
+    """Distinguish an available fix from a future fix announcement."""
+    if source_type(item) != "fortinet_article":
+        return ""
+    fixed_versions = extract_fixed_versions(item)
+    fixed_engines = extract_fixed_engine_releases(item)
+    if not fixed_versions and not fixed_engines:
+        return ""
+
+    text = normalize_article_sections(f"{item.get('title', '')} {item.get('summary', '')}")
+    planned = bool(
+        re.search(
+            r"\b(?:expected|planned|scheduled)\b[^.!?]{0,120}\b(?:fix|patch|correction)\b"
+            r"|\b(?:fix|patch|correction)\b[^.!?]{0,120}\b(?:expected|planned|scheduled)\b"
+            r"|\bwill\s+be\s+(?:fixed|resolved|corrected)\b",
+            text,
+            re.I,
+        )
+    )
+    available = bool(
+        re.search(
+            r"\b(?:fixed|resolved|corrected|addressed)\s+in\b"
+            r"|\b(?:has|have)\s+(?:a\s+)?(?:fix|patch|correction)\s+in\b"
+            r"|\b(?:fix|patch|correction)\s+(?:is\s+)?(?:available|included|provided)\s+in\b"
+            r"|\b(?:versions?|releases?)\b[^.!?]{0,120}\b(?:include|contain|have)\s+(?:a\s+)?(?:fix|patch|correction)\b",
+            text,
+            re.I,
+        )
+        or FIXED_VERSION_UPGRADE_RE.search(text)
+        or FIXED_VERSION_UPGRADE_TO_RESOLVE_RE.search(text)
+        or NOT_PRESENT_VERSION_RE.search(text)
+        or PERMANENT_FIX_VERSION_RE.search(text)
+        or FIXED_VERSIONS_SECTION_RE.search(text)
+        or FIXED_ENGINE_RELEASE_CUE_RE.search(text)
+    )
+    # An explicit "expected/planned" cue wins over a generic upgrade instruction:
+    # do not publish a future release as an available fix.
+    if planned:
+        return "planned"
+    if available:
+        return "available"
+    return "mentioned"
 
 
 def extract_fixed_builds(item: dict) -> list[str]:
@@ -646,6 +747,8 @@ def is_configuration_guidance(item: dict) -> bool:
         re.I,
     ):
         return False
+    if VERSIONED_ROOT_LEAF_CONTEXT_RE.search(text):
+        return False
     title = item.get("title", "")
     return bool(
         re.search(
@@ -678,7 +781,7 @@ def is_version_behavior_change(item: dict) -> bool:
         r"differs from|not present in)\b",
         text,
         re.I,
-    )
+    ) or VERSIONED_ROOT_LEAF_CONTEXT_RE.search(text)
     has_version_evidence = bool(extract_versions(item)[0] or extract_fixed_versions(item))
     return bool(has_behavior_cue and has_version_evidence)
 
@@ -758,6 +861,8 @@ def review_evidence_signature(incident: dict) -> tuple:
             str(source.get("impact", "") or ""),
             str(source.get("solution", "") or ""),
             str(source.get("sourceType", "") or ""),
+            str(source.get("versionScope", "") or ""),
+            str(source.get("fixStatus", "") or ""),
             tuple(sorted(str(value) for value in (source.get("products", []) or []))),
             tuple(sorted(str(value) for value in (source.get("versions", []) or []))),
             tuple(sorted(str(value) for value in (source.get("fixVersions", []) or []))),
@@ -787,6 +892,8 @@ def review_evidence_signature(incident: dict) -> tuple:
         tuple(sorted(sources)),
         tuple(sorted(str(value) for value in (incident.get("products", []) or []))),
         tuple(sorted(str(value) for value in (incident.get("versions", []) or []))),
+        tuple(sorted(str(value) for value in (incident.get("versionScopes", []) or []))),
+        str(incident.get("fixStatus", "") or ""),
         tuple(sorted(str(value) for value in (incident.get("fixVersions", []) or []))),
     )
 
@@ -820,7 +927,9 @@ def synthesize(data: dict, out: Path = DATA) -> dict:
         item = dict(raw)
         item["products"] = extract_products(item)
         item["versions"], item["versionFamilies"] = extract_versions(item)
+        item["versionScope"] = extract_version_scope(item)
         item["fixVersions"] = extract_fixed_versions(item)
+        item["fixStatus"] = extract_fix_status(item)
         item["fixBuilds"] = extract_fixed_builds(item)
         item["fixEngineReleases"] = extract_fixed_engine_releases(item)
         item["fixBuildNote"] = extract_fixed_build_note(item)
@@ -843,6 +952,16 @@ def synthesize(data: dict, out: Path = DATA) -> dict:
         exact_versions = sorted({v for item in cluster for v in item.get("versions", [])}, key=lambda v: tuple(int(x) for x in v.split(".")))
         families = sorted({v for item in cluster for v in item.get("versionFamilies", [])}, key=lambda v: tuple(int(x) for x in v.split(".")))
         fixed_versions = sorted({v for item in cluster for v in item.get("fixVersions", [])}, key=lambda v: tuple(int(x) for x in v.split(".")))
+        version_scopes = list(dict.fromkeys(
+            item.get("versionScope", "") for item in cluster if item.get("versionScope")
+        ))
+        fix_statuses = {item.get("fixStatus") for item in cluster if item.get("fixStatus")}
+        fix_status = (
+            "available" if "available" in fix_statuses
+            else "planned" if "planned" in fix_statuses
+            else "mentioned" if "mentioned" in fix_statuses
+            else ""
+        )
         fixed_builds = sorted({build for item in cluster for build in item.get("fixBuilds", [])})
         fixed_engine_releases = {
             (
@@ -863,8 +982,10 @@ def synthesize(data: dict, out: Path = DATA) -> dict:
             "products": item.get("products", []),
             "versions": item.get("versions", []),
             "versionFamilies": item.get("versionFamilies", []),
+            "versionScope": item.get("versionScope", ""),
             "sourceType": source_type(item),
             "fixVersions": extract_fixed_versions(item),
+            "fixStatus": item.get("fixStatus", ""),
             "fixBuilds": extract_fixed_builds(item),
             "fixEngineReleases": extract_fixed_engine_releases(item),
             "fixBuildNote": extract_fixed_build_note(item),
@@ -900,6 +1021,7 @@ def synthesize(data: dict, out: Path = DATA) -> dict:
             is_version_behavior_change(item) for item in documented_sources
         )
         has_documented_fix = bool(fixed_versions or fixed_builds or fixed_engine_releases)
+        has_version_scope = bool(exact_versions or families)
         incidents.append({
             "id": "incident-" + hashlib.sha1((" ".join(sorted(words(cluster[0].get("title", "")))) + "|" + "|".join(products)).encode("utf-8")).hexdigest()[:12],
             "title": cluster[0].get("title", "Problème potentiel Fortinet"),
@@ -910,7 +1032,9 @@ def synthesize(data: dict, out: Path = DATA) -> dict:
             "products": products,
             "versions": exact_versions,
             "versionFamilies": families,
+            "versionScopes": version_scopes,
             "fixVersions": fixed_versions,
+            "fixStatus": fix_status,
             "fixBuilds": fixed_builds,
             "fixEngineReleases": [
                 {"engine": engine, "version": version, "build": build or None}
@@ -936,9 +1060,14 @@ def synthesize(data: dict, out: Path = DATA) -> dict:
                 else "Configuration documentée par Fortinet + récurrent" if configuration_only
                 else "Changement de comportement / incompatibilité documenté par Fortinet" if version_behavior_change and reports < 2
                 else "Changement de comportement / incompatibilité documenté par Fortinet + récurrent" if version_behavior_change
-                else "Correctif documenté par Fortinet" if documented and has_documented_fix and exact_versions and reports < 2
-                else "Correctif documenté par Fortinet (version affectée non précisée)" if documented and has_documented_fix and not exact_versions and reports < 2
-                else "Correctif documenté par Fortinet + récurrent" if documented and has_documented_fix
+                else "Correctif annoncé (à venir) par Fortinet" if documented and has_documented_fix and fix_status == "planned" and has_version_scope and reports < 2
+                else "Correctif annoncé (à venir) par Fortinet (version affectée non précisée)" if documented and has_documented_fix and fix_status == "planned" and not has_version_scope and reports < 2
+                else "Correctif annoncé (à venir) par Fortinet + récurrent" if documented and has_documented_fix and fix_status == "planned"
+                else "Correctif documenté par Fortinet" if documented and has_documented_fix and fix_status == "available" and has_version_scope and reports < 2
+                else "Correctif documenté par Fortinet (version affectée non précisée)" if documented and has_documented_fix and fix_status == "available" and not has_version_scope and reports < 2
+                else "Correctif documenté par Fortinet + récurrent" if documented and has_documented_fix and fix_status == "available"
+                else "Version corrective mentionnée par Fortinet (disponibilité à confirmer)" if documented and has_documented_fix and fix_status == "mentioned" and reports < 2
+                else "Version corrective mentionnée par Fortinet + récurrent" if documented and has_documented_fix and fix_status == "mentioned"
                 else "Documenté par Fortinet (version identifiée)" if documented and reports < 2 and exact_versions
                 else "Documenté par Fortinet (version non précisée)" if documented and reports < 2
                 else "Documenté par Fortinet + récurrent" if documented
@@ -947,7 +1076,9 @@ def synthesize(data: dict, out: Path = DATA) -> dict:
             "confidence": (
                 "Documentation Fortinet (configuration)" if configuration_only
                 else "Documentation Fortinet (changement de comportement)" if version_behavior_change
-                else "Documentation Fortinet (correctif indiqué)" if documented and has_documented_fix
+                else "Documentation Fortinet (correctif annoncé; disponibilité à confirmer)" if documented and has_documented_fix and fix_status == "planned"
+                else "Documentation Fortinet (correctif indiqué)" if documented and has_documented_fix and fix_status == "available"
+                else "Documentation Fortinet (version corrective mentionnée; disponibilité à confirmer)" if documented and has_documented_fix and fix_status == "mentioned"
                 else "Documentation Fortinet versionnée" if documented and exact_versions
                 else "Documentation Fortinet (version non précisée)" if documented
                 else "Plusieurs discussions distinctes"
@@ -955,7 +1086,9 @@ def synthesize(data: dict, out: Path = DATA) -> dict:
             "evidenceType": (
                 "official_configuration" if configuration_only
                 else "official_version_behavior" if version_behavior_change
-                else "official_fix_documented" if documented and has_documented_fix
+                else "official_fix_planned" if documented and has_documented_fix and fix_status == "planned"
+                else "official_fix_documented" if documented and has_documented_fix and fix_status == "available"
+                else "official_fix_mentioned" if documented and has_documented_fix and fix_status == "mentioned"
                 else "official_documentation" if documented
                 else "repeated_reports"
             ),
@@ -976,7 +1109,13 @@ def synthesize(data: dict, out: Path = DATA) -> dict:
     data["incidents"] = incidents
     data["incidentCount"] = len(incidents)
     data["synthesisGeneratedAt"] = datetime.now(timezone.utc).isoformat()
-    data["synthesisNote"] = "Un point n'est affiché que s'il est documenté par un article Fortinet versionné et explicite, ou décrit dans au moins deux discussions distinctes d'utilisateurs. Les articles officiels ne comptent pas comme des personnes supplémentaires. Les signalements isolés non documentés sont exclus."
+    data["synthesisNote"] = (
+        "Un point n'est affiché que s'il est documenté par un article Fortinet versionné et explicite, "
+        "ou décrit dans au moins deux discussions distinctes d'utilisateurs. Les articles officiels ne comptent pas "
+        "comme des personnes supplémentaires. Les signalements isolés non documentés sont exclus. "
+        "Les bornes et plages de versions restent affichées comme périmètre source, pas comme versions exactes. "
+        "Un correctif annoncé comme attendu n'est pas présenté comme déjà disponible."
+    )
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(json.dumps(data, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
     return data

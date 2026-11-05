@@ -94,7 +94,7 @@ function renderCommunity() {
       source.summary,
       ...(Array.isArray(source.replies) ? source.replies.flatMap(reply => [reply.author, reply.authorRole, reply.text]) : [])
     ].join(" ")).join(" ");
-    const text = [item.title, item.summary, item.symptom, item.impact, item.solution, item.status, sourceText, ...(item.products || []), ...(item.versions || []), ...(item.versionFamilies || []), ...(item.fixVersions || []), ...(item.fixBuilds || []), ...(item.fixEngineReleases || []).flatMap(release => [release.engine, release.version, release.build]), item.fixBuildNote || ""].join(" ").toLowerCase();
+    const text = [item.title, item.summary, item.symptom, item.impact, item.solution, item.status, item.fixStatus || "", sourceText, ...(item.products || []), ...(item.versions || []), ...(item.versionFamilies || []), ...(item.versionScopes || []), ...(item.fixVersions || []), ...(item.fixBuilds || []), ...(item.fixEngineReleases || []).flatMap(release => [release.engine, release.version, release.build]), item.fixBuildNote || ""].join(" ").toLowerCase();
     return (!query || text.includes(query))
       && (!product || (item.products || []).includes(product))
       && (!version || (item.versionFamilies || []).includes(version))
@@ -113,15 +113,20 @@ function renderCommunity() {
     const products = (item.products || []).map(escapeHTML).join(" · ") || "Produit à confirmer";
     const families = (item.versionFamilies || []).map(v => escapeHTML(v) + ".x").join(", ");
     const exact = (item.versions || []).map(v => escapeHTML(v)).join(", ");
+    const scopes = (item.versionScopes || []).map(escapeHTML).join(" · ");
+    const scopeMeta = scopes ? `<span>Périmètre indiqué par la source : ${scopes}</span>` : "";
     const versionMeta = families
-      ? `<span>Famille(s) : ${families}</span>${exact ? `<span>Versions exactes : ${exact}</span>` : ""}`
-      : `<span>Version : non précisée par la source</span>`;
+      ? `<span>Famille(s) : ${families}</span>${exact ? `<span>Versions exactes : ${exact}</span>` : ""}${scopeMeta}`
+      : `${scopeMeta || "<span>Version : non précisée par la source</span>"}`;
     const sources = (item.sources || []).slice(0, 5).map(source => {
       const url = /^https:\/\//i.test(source.url || "") ? source.url : "https://community.fortinet.com/";
       const sourceLabel = source.sourceType === "fortinet_article" ? "Article Fortinet" : source.sourceType === "forum_discussion" ? "Discussion utilisateur" : "Source";
       const publicationDate = source.date ? "Publié " + safeDate(source.date) : "Date de publication non précisée";
       const updatedDate = source.updatedAt && source.updatedAt !== source.date
         ? " · mis à jour " + safeDate(source.updatedAt)
+        : "";
+      const versionScope = source.versionScope
+        ? "<span>Périmètre de version : " + escapeHTML(source.versionScope) + "</span>"
         : "";
       const replies = Array.isArray(source.replies) ? source.replies.slice(0, 5) : [];
       const replyItems = replies.map(reply => {
@@ -132,7 +137,7 @@ function renderCommunity() {
       const replyDetails = replyItems
         ? "<details class=\"source-replies\"><summary>Réponses structurées (" + replies.length + ")</summary><ul>" + replyItems + "</ul><small>Le rôle est repris de la page publique; il ne constitue pas une confirmation technique.</small></details>"
         : "";
-      return "<li><a href=\"" + escapeHTML(url) + "\" target=\"_blank\" rel=\"noopener noreferrer\">" + escapeHTML(source.title || "Source") + " ↗</a><span>" + escapeHTML(sourceLabel) + " · " + escapeHTML(publicationDate) + escapeHTML(updatedDate) + "</span>" + replyDetails + "</li>";
+      return "<li><a href=\"" + escapeHTML(url) + "\" target=\"_blank\" rel=\"noopener noreferrer\">" + escapeHTML(source.title || "Source") + " ↗</a><span>" + escapeHTML(sourceLabel) + " · " + escapeHTML(publicationDate) + escapeHTML(updatedDate) + "</span>" + versionScope + replyDetails + "</li>";
     }).join("");
     const extra = Math.max(0, (item.sources || []).length - 5);
     const engineReleases = (item.fixEngineReleases || []).map(release => {
@@ -144,6 +149,13 @@ function renderCommunity() {
     const engineReleasePanel = engineReleases
       ? "<section class=\"incident-detail\"><strong>Correctifs du moteur IPS (distincts du firmware FortiOS)</strong><ul>" + engineReleases + "</ul></section>"
       : "";
+    const fixVersionLabel = item.fixStatus === "planned"
+      ? "Correctif annoncé (non encore disponible)"
+      : item.fixStatus === "available"
+        ? "Version corrective indiquée comme disponible"
+        : item.fixStatus === "mentioned"
+          ? "Version corrective mentionnée (disponibilité à confirmer)"
+          : "Version de correctif mentionnée";
     const shortSummary = aiReview.summary || item.summary || item.symptom || "Ouvrir la fiche pour consulter les détails.";
     return `<details class="community-card incident-card incident-accordion">
       <summary class="incident-accordion-summary">
@@ -163,7 +175,7 @@ function renderCommunity() {
           <section class="incident-detail"><strong>Symptôme</strong><p>${escapeHTML(aiReview.symptom || item.symptom || item.summary || "Résumé indisponible : consulter les sources.")}</p></section>
           <section class="incident-detail"><strong>Impact</strong><p>${escapeHTML(aiReview.impact || item.impact || "Non précisé par la source.")}</p></section>
           <section class="incident-detail"><strong>Solution / correctif</strong><p>${escapeHTML(aiReview.solution || item.solution || "Non précisé dans les sources consultées.")}</p></section>
-          <section class="incident-detail"><strong>Version de correctif mentionnée</strong><p>${escapeHTML((item.fixVersions || []).join(", ") || "Non précisée par la source.")}</p></section>
+          <section class="incident-detail"><strong>${escapeHTML(fixVersionLabel)}</strong><p>${escapeHTML((item.fixVersions || []).join(", ") || "Non précisée par la source.")}</p></section>
           ${(item.fixBuilds || []).length ? `<section class="incident-detail"><strong>Build correctif mentionné</strong><p>${escapeHTML(item.fixBuilds.join(", "))}</p>${item.fixBuildNote ? `<p>${escapeHTML(item.fixBuildNote)}</p>` : ""}</section>` : ""}
           ${engineReleasePanel}
         </div>
