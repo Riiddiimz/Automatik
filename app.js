@@ -1,5 +1,5 @@
 const DATA_URL = "data/veille.json";
-const fallback = { generatedAt: null, fortinet: [], cyber: [], kev: [], errors: [] };
+const fallback = { generatedAt: null, fortinet: [], cyber: [], kev: [], errors: [], fortinetSecurityUpdates: null };
 const $ = (id) => document.getElementById(id);
 let currentData = fallback;
 
@@ -24,6 +24,40 @@ function renderArticles(items) {
       <div class="article-copy"><h3>${escapeHTML(item.title || "Publication sans titre")}</h3><p>${escapeHTML(item.summary || "Ouvrir la source pour consulter les détails et les recommandations de l'éditeur.")}</p></div>
       <span class="article-meta">${escapeHTML(safeDate(item.date))} ↗</span>
     </a>`).join("");
+}
+
+function renderFortinetSecurityMatrix(matrix) {
+  const items = Array.isArray(matrix && matrix.items) ? matrix.items : [];
+  if (!items.length) return "";
+  const sourceUrl = /^https:\/\//i.test(matrix.source || "")
+    ? matrix.source
+    : "https://www.fortinet.com/blog/ciso-collective";
+  let disclosureStatus = "Date de publication des avis PSIRT détaillés non précisée.";
+  if (matrix.disclosureDate) {
+    const date = new Date(matrix.disclosureDate + "T00:00:00Z");
+    disclosureStatus = !Number.isNaN(date.getTime()) && date.getTime() > Date.now()
+      ? "Avis PSIRT détaillés annoncés pour le " + safeDate(matrix.disclosureDate) + "."
+      : "Échéance annoncée (" + safeDate(matrix.disclosureDate) + ") atteinte ou dépassée : vérifier le portail PSIRT.";
+  }
+  const cards = items.map(item => {
+    const product = item.product === "FortiOS" ? "FortiOS · FortiGate" : item.product;
+    const availability = item.availableAt ? safeDate(item.availableAt) : (item.availability || "Non précisée");
+    return '<article class="security-matrix-item">' +
+      '<div class="security-matrix-product"><strong>' + escapeHTML(product || "Produit non précisé") +
+      '</strong><span>Branche ' + escapeHTML(item.branch || "non précisée") + '</span></div>' +
+      '<dl><div><dt>Versions affectées</dt><dd>' + escapeHTML(item.affectedVersions || "Non précisées") + '</dd></div>' +
+      '<div><dt>Version corrigée annoncée</dt><dd>' + escapeHTML(item.fixedVersion || "Non précisée") + '</dd></div>' +
+      '<div><dt>Disponibilité annoncée</dt><dd>' + escapeHTML(availability) + '</dd></div></dl></article>';
+  }).join("");
+  return '<section class="security-matrix-card" aria-label="Matrice officielle des versions Fortinet affectées et corrigées">' +
+    '<div class="security-matrix-heading"><div><span class="security-matrix-eyebrow">ANNONCE OFFICIELLE FORTINET</span>' +
+    '<h3>' + escapeHTML(matrix.title || "Mises à jour de sécurité Fortinet") + '</h3>' +
+    '<p>' + (matrix.publishedAt ? "Publié le " + escapeHTML(safeDate(matrix.publishedAt)) : "Date de publication non précisée") + '</p></div>' +
+    '<a href="' + escapeHTML(sourceUrl) + '" target="_blank" rel="noopener noreferrer">Lire l’annonce ↗</a></div>' +
+    '<p class="security-matrix-note">' + escapeHTML(matrix.note || "Consulter les avis PSIRT détaillés avant toute décision de remédiation.") + '</p>' +
+    '<div class="security-matrix-grid">' + cards + '</div>' +
+    '<div class="security-matrix-meta">' + escapeHTML(matrix.severityNote || "") + ' <span>·</span> ' +
+    escapeHTML(disclosureStatus) + ' <span>·</span> Vérifiée le ' + escapeHTML(safeDate(matrix.checkedAt)) + '</div></section>';
 }
 function renderCyber(items) {
   if (!items.length) return '<div class="empty-card">Aucune actualité chargée pour le moment.</div>';
@@ -207,6 +241,7 @@ function updateDashboard(data) {
   $("metric-updated").textContent = updated ? new Intl.DateTimeFormat("fr-FR", { hour: "2-digit", minute: "2-digit" }).format(new Date(updated)) : "—";
   $("metric-updated-detail").textContent = updated ? `Données du ${safeDate(updated)}` : "Pas encore de synchronisation";
   $("sync-status").textContent = updated ? `Mis à jour le ${safeDate(updated)}` : "Données en attente";
+  $("fortinet-security-matrix").innerHTML = renderFortinetSecurityMatrix(currentData.fortinetSecurityUpdates);
   $("fortinet-list").innerHTML = renderArticles(fortinet);
   $("cyber-list").innerHTML = renderCyber(cyber);
   $("cve-list").innerHTML = renderKev(kev, $("cve-search").value);

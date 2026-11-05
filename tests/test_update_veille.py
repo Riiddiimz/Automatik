@@ -8,6 +8,20 @@ import unittest
 from unittest.mock import patch
 import urllib.error
 
+MATRIX_HTML = b"""<!doctype html><html><body>
+<p>These releases include critical and high-severity fixes.</p>
+<table><thead><tr><th>Product</th><th>Affected Versions</th><th>Fixed Version</th><th>Availability</th></tr></thead>
+<tbody>
+<tr><td>FortiOS 8.0</td><td>8.0.0–8.0.1</td><td>8.0.2 or above</td><td>October 22</td></tr>
+<tr><td>FortiOS 7.6</td><td>7.6.0–7.6.7</td><td>7.6.8 or above</td><td>October 22</td></tr>
+<tr><td>FortiManager 7.4</td><td>7.4.0–7.4.11</td><td>7.4.12 or above</td><td>October 22</td></tr>
+<tr><td>FortiAnalyzer 7.4</td><td>7.4.0–7.4.11</td><td>7.4.12 or above</td><td>October 22</td></tr>
+<tr><td>FortiMail 8.0</td><td>8.0.0–8.0.1</td><td>8.0.2 or above</td><td>Today</td></tr>
+<tr><td>FortiAuthenticator 6.6</td><td>6.6.0–6.6.10</td><td>6.6.11 or above</td><td>Today</td></tr>
+</tbody></table>
+<p>Note that public advisories will be made available at the next Patch Tuesday on November 10 as part of Fortinet's ongoing commitment.</p>
+</body></html>"""
+
 MODULE_PATH = Path(__file__).resolve().parents[1] / "scripts" / "update_veille.py"
 SPEC = importlib.util.spec_from_file_location("update_veille", MODULE_PATH)
 updater = importlib.util.module_from_spec(SPEC)
@@ -74,6 +88,28 @@ class FeedParserTests(unittest.TestCase):
         with self.assertRaises(Exception):
             updater.parse_rss(b"<rss><channel>", "Example", "Test")
 
+    def test_fortinet_security_matrix_extracts_products_versions_and_disclosure_date(self):
+        result = updater.parse_fortinet_security_matrix(
+            MATRIX_HTML,
+            published_at="2026-10-21T13:00:00+00:00",
+            checked_at="2026-11-05T08:00:00+00:00",
+        )
+        self.assertEqual(len(result["items"]), 6)
+        fortios = next(item for item in result["items"] if item["product"] == "FortiOS" and item["branch"] == "7.6")
+        self.assertEqual(fortios["affectedVersions"], "7.6.0–7.6.7")
+        self.assertEqual(fortios["fixedVersion"], "7.6.8 or above")
+        self.assertEqual(fortios["availableAt"], "2026-10-22")
+        fortiauth = next(item for item in result["items"] if item["product"] == "FortiAuthenticator")
+        self.assertEqual(fortiauth["availableAt"], "2026-10-21")
+        self.assertEqual(result["disclosureDate"], "2026-11-10")
+        self.assertIn("critiques et élevés", result["severityNote"])
+
+    def test_fortinet_security_matrix_rejects_missing_or_unrecognized_table(self):
+        with self.assertRaises(ValueError):
+            updater.parse_fortinet_security_matrix(
+                b"<html><body><p>No matrix here</p></body></html>"
+            )
+
 
 class UpdatePreservationTests(unittest.TestCase):
     def test_failed_feed_keeps_previous_items_and_updates_other_sources(self):
@@ -92,7 +128,7 @@ class UpdatePreservationTests(unittest.TestCase):
         ciso_rss = b"""<rss version="2.0"><channel><item><title>Fortinet security hardening release</title><link>https://www.fortinet.com/blog/ciso-collective/fortinet-releases-security-hardening-release-for-multiple-products</link><description>Fixed FortiOS and FortiManager versions</description></item></channel></rss>"""
         cert_fr_rss = b"""<rss version="2.0"><channel><item><title>Fresh CERT-FR advisory</title><link>https://www.cert.ssi.gouv.fr/alerte/new</link><description>Fresh CERT-FR item</description></item></channel></rss>"""
         kev = json.dumps({"vulnerabilities": [{"cveID": "CVE-2026-0002", "shortDescription": "New vulnerability"}]}).encode()
-        responses = [rss, urllib.error.URLError("temporary outage"), cisa_rss, cisa_rss, cert_fr_rss, ciso_rss, kev]
+        responses = [rss, urllib.error.URLError("temporary outage"), cisa_rss, cisa_rss, cert_fr_rss, ciso_rss, MATRIX_HTML, kev]
 
         with tempfile.TemporaryDirectory() as directory:
             out_path = Path(directory) / "veille.json"
@@ -105,6 +141,8 @@ class UpdatePreservationTests(unittest.TestCase):
         self.assertIn("Last known alert", [item["title"] for item in result["cyber"]])
         self.assertIn("Fresh CISA advisory", [item["title"] for item in result["cyber"]])
         self.assertIn("Fortinet security hardening release", [item["title"] for item in result["cyber"]])
+        self.assertEqual(len(result["fortinetSecurityUpdates"]["items"]), 6)
+        self.assertEqual(result["fortinetSecurityUpdates"]["disclosureDate"], "2026-11-10")
         self.assertEqual(result["kev"][0]["cveID"], "CVE-2026-0002")
         self.assertTrue(any("FortiGuard Outbreak Alerts" in error for error in result["errors"]))
 
@@ -124,7 +162,7 @@ class UpdatePreservationTests(unittest.TestCase):
         cert_fr = b"""<rss version="2.0"><channel><item><title>CERT-FR security advisory</title><link>https://www.cert.ssi.gouv.fr/alerte/example</link></item></channel></rss>"""
         ciso_rss = b"""<rss version="2.0"><channel><item><title>Fortinet security hardening release</title><link>https://www.fortinet.com/blog/ciso-collective/fortinet-releases-security-hardening-release-for-multiple-products</link><description>Fixed FortiOS and FortiManager versions</description></item></channel></rss>"""
         kev = json.dumps({"vulnerabilities": [{"cveID": "CVE-2026-0100"}]}).encode()
-        responses = [psirt, outbreak, cisa_it, cisa_ot, cert_fr, ciso_rss, kev]
+        responses = [psirt, outbreak, cisa_it, cisa_ot, cert_fr, ciso_rss, MATRIX_HTML, kev]
         old = {
             "fortinet": [],
             "cyber": [{
@@ -162,7 +200,7 @@ class UpdatePreservationTests(unittest.TestCase):
         cisa = b"""<rss version="2.0"><channel><item><title>Advisory</title><link>https://example.com/advisory</link></item></channel></rss>"""
         ciso_rss = b"""<rss version="2.0"><channel><item><title>Fortinet security hardening release</title><link>https://www.fortinet.com/blog/ciso-collective/fortinet-releases-security-hardening-release-for-multiple-products</link><description>Fixed FortiOS and FortiManager versions</description></item></channel></rss>"""
         cert_fr = b"""<rss version="2.0"><channel><item><title>CERT-FR advisory</title><link>https://www.cert.ssi.gouv.fr/alerte/cert</link></item></channel></rss>"""
-        responses = [rss, outbreak, cisa, cisa, cert_fr, ciso_rss, urllib.error.URLError("temporary outage")]
+        responses = [rss, outbreak, cisa, cisa, cert_fr, ciso_rss, MATRIX_HTML, urllib.error.URLError("temporary outage")]
         with tempfile.TemporaryDirectory() as directory:
             out_path = Path(directory) / "veille.json"
             out_path.write_text(json.dumps(old), encoding="utf-8")
@@ -170,8 +208,37 @@ class UpdatePreservationTests(unittest.TestCase):
                 updater.main()
             result = json.loads(out_path.read_text(encoding="utf-8"))
         self.assertEqual(result["kev"][0]["cveID"], "CVE-2026-0009")
+        self.assertEqual(len(result["fortinetSecurityUpdates"]["items"]), 6)
 
 
+
+    def test_failed_security_matrix_fetch_preserves_previous_matrix(self):
+        previous_matrix = {
+            "source": updater.FORTINET_SECURITY_MATRIX_URL,
+            "items": [{"product": "FortiOS", "branch": "7.6", "fixedVersion": "7.6.8 or above"}],
+        }
+        old = {
+            "fortinet": [],
+            "cyber": [],
+            "kev": [],
+            "fortinetSecurityUpdates": previous_matrix,
+            "errors": [],
+        }
+        psirt = b"""<rss version="2.0"><channel><item><title>PSIRT</title><link>https://example.com/psirt</link></item></channel></rss>"""
+        outbreak = b"""<rss version="2.0"><channel><item><title>Outbreak</title><link>https://example.com/outbreak</link></item></channel></rss>"""
+        cisa = b"""<rss version="2.0"><channel><item><title>Advisory</title><link>https://example.com/advisory</link></item></channel></rss>"""
+        cert_fr = b"""<rss version="2.0"><channel><item><title>CERT-FR advisory</title><link>https://www.cert.ssi.gouv.fr/alerte/cert</link></item></channel></rss>"""
+        ciso_rss = b"""<rss version="2.0"><channel><item><title>Fortinet Releases Security Hardening Release for Multiple Products</title><link>https://example.com/ciso</link></item></channel></rss>"""
+        kev = json.dumps({"vulnerabilities": [{"cveID": "CVE-2026-0198"}]}).encode()
+        responses = [psirt, outbreak, cisa, cisa, cert_fr, ciso_rss, urllib.error.URLError("temporary article outage"), kev]
+        with tempfile.TemporaryDirectory() as directory:
+            out_path = Path(directory) / "veille.json"
+            out_path.write_text(json.dumps(old), encoding="utf-8")
+            with patch.object(updater, "OUT", out_path), patch.object(updater, "fetch", side_effect=responses):
+                updater.main()
+            result = json.loads(out_path.read_text(encoding="utf-8"))
+        self.assertEqual(result["fortinetSecurityUpdates"], previous_matrix)
+        self.assertTrue(any("Matrice de sécurité Fortinet" in error for error in result["errors"]))
 
     def test_failed_ciso_feed_preserves_previous_ciso_items(self):
         old = {
@@ -182,6 +249,7 @@ class UpdatePreservationTests(unittest.TestCase):
                 "url": "https://www.fortinet.com/blog/ciso-collective/old-notice"
             }],
             "kev": [],
+            "fortinetSecurityUpdates": {"items": [{"product": "FortiAuthenticator", "fixedVersion": "6.6.11 or above"}]},
             "errors": []
         }
         psirt = b"""<rss version="2.0"><channel><item><title>PSIRT</title><link>https://example.com/psirt</link></item></channel></rss>"""
@@ -197,6 +265,7 @@ class UpdatePreservationTests(unittest.TestCase):
                 updater.main()
             result = json.loads(out_path.read_text(encoding="utf-8"))
         self.assertIn("Old Fortinet hardening notice", [item["title"] for item in result["cyber"]])
+        self.assertEqual(result["fortinetSecurityUpdates"]["items"][0]["product"], "FortiAuthenticator")
         self.assertTrue(any("Fortinet CISO Collective" in error for error in result["errors"]))
 
 if __name__ == "__main__":

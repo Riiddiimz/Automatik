@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Fetch official public security feeds and write a normalized JSON file."""
 from datetime import datetime, timezone
+from html.parser import HTMLParser
 from email.utils import parsedate_to_datetime
 import json
 import re
@@ -28,6 +29,7 @@ FEEDS = [
     ("cyber", "Fortinet CISO Collective", "https://feeds.fortinet.com/fortinet/blog/ciso-collective"),
 ]
 KEV_URL = "https://www.cisa.gov/sites/default/files/feeds/known_exploited_vulnerabilities.json"
+FORTINET_SECURITY_MATRIX_URL = "https://www.fortinet.com/blog/ciso-collective/fortinet-releases-security-hardening-release-for-multiple-products"
 
 
 def fetch(url, timeout=25):
@@ -48,6 +50,156 @@ def clean_html(value):
     value = re.sub(r"<(script|style)[^>]*>.*?</\1>", " ", value or "", flags=re.I | re.S)
     value = re.sub(r"<[^>]+>", " ", value)
     return re.sub(r"\s+", " ", value).strip()
+
+
+class SecurityMatrixTableParser(HTMLParser):
+    """Extract table rows without depending on third-party HTML libraries."""
+
+    def __init__(self):
+        super().__init__(convert_charrefs=True)
+        self.rows = []
+        self.current_row = None
+        self.current_cell = None
+
+    def handle_starttag(self, tag, attrs):
+        if tag == "tr":
+            if self.current_row is not None:
+                self._finish_row()
+            self.current_row = []
+        elif tag in ("td", "th") and self.current_row is not None:
+            self.current_cell = []
+
+    def handle_data(self, data):
+        if self.current_cell is not None:
+            self.current_cell.append(data)
+
+    def handle_endtag(self, tag):
+        if tag in ("td", "th") and self.current_cell is not None and self.current_row is not None:
+            self.current_row.append(re.sub(r"\s+", " ", " ".join(self.current_cell)).strip())
+            self.current_cell = None
+        elif tag == "tr":
+            self._finish_row()
+
+    def _finish_row(self):
+        if self.current_cell is not None and self.current_row is not None:
+            self.current_row.append(re.sub(r"\s+", " ", " ".join(self.current_cell)).strip())
+        if self.current_row:
+            self.rows.append(self.current_row)
+        self.current_row = None
+        self.current_cell = None
+
+
+def _published_year(published_at):
+    if published_at:
+        try:
+            return datetime.fromisoformat(published_at.replace("Z", "+00:00")).year
+        except (AttributeError, TypeError, ValueError):
+            pass
+    return datetime.now(timezone.utc).year
+
+
+def _availability_date(value, published_at):
+    year = _published_year(published_at)
+    if value.strip().lower() == "today":
+        try:
+            return datetime.fromisoformat(published_at.replace("Z", "+00:00")).date().isoformat()
+        except (AttributeError, TypeError, ValueError):
+            return None
+    try:
+        return datetime.strptime(f"{value.strip()} {year}", "%B %d %Y").date().isoformat()
+    except (TypeError, ValueError):
+        return None
+
+
+def parse_fortinet_security_matrix(payload, published_at=None, checked_at=None):
+    """Parse Fortinet's published affected/fixed-version matrix from its CISO article."""
+    if isinstance(payload, bytes):
+        html_document = payload.decode("utf-8", errors="replace")
+    else:
+        html_document = str(payload or "")
+
+    parser = SecurityMatrixTableParser()
+    parser.feed(html_document)
+    parser.close()
+
+    header_index = None
+    for index, row in enumerate(parser.rows):
+        normalized = [
+            re.sub(r"[^a-z]+", " ", cell.lower()).strip()
+            for cell in row[:4]
+        ]
+        if (
+            len(normalized) == 4
+            and normalized[0] == "product"
+            and normalized[1] == "affected versions"
+            and normalized[2] == "fixed version"
+            and normalized[3] == "availability"
+        ):
+            header_index = index
+            break
+
+    if header_index is None:
+        raise ValueError("tableau officiel des versions affectées/corrigées introuvable")
+
+    items = []
+    for row in parser.rows[header_index + 1:]:
+        if len(row) < 4:
+            continue
+        product_match = re.match(r"^(Forti[A-Za-z]+)\s+(\d{1,2}\.\d{1,2})$", row[0], re.I)
+        if not product_match:
+            continue
+        product, branch = product_match.groups()
+        affected_versions, fixed_version, availability = (value.strip() for value in row[1:4])
+        if not affected_versions or not fixed_version or not availability:
+            continue
+        items.append({
+            "product": product,
+            "branch": branch,
+            "affectedVersions": affected_versions,
+            "fixedVersion": fixed_version,
+            "availability": availability,
+            "availableAt": _availability_date(availability, published_at),
+        })
+
+    if not items:
+        raise ValueError("le tableau officiel a été trouvé mais aucune ligne produit exploitable n'a été extraite")
+
+    plain_text = clean_html(html_document)
+    disclosure_match = re.search(
+        r"public advisories will be made available at the next Patch Tuesday on\s+([A-Za-z]+\s+\d{1,2})",
+        plain_text,
+        re.I,
+    )
+    disclosure_date = None
+    if disclosure_match:
+        try:
+            disclosure_date = datetime.strptime(
+                f"{disclosure_match.group(1)} {_published_year(published_at)}",
+                "%B %d %Y",
+            ).date().isoformat()
+        except ValueError:
+            pass
+
+    severity_note = (
+        "Fortinet qualifie globalement ces mises à jour de correctifs critiques et élevés; "
+        "la sévérité par CVE n'est pas détaillée dans cette annonce."
+        if re.search(r"critical and high-severity fixes", plain_text, re.I)
+        else "Le niveau de sévérité n'est pas précisé dans cette annonce."
+    )
+    return {
+        "title": "Fortinet Releases Security Hardening Release for Multiple Products",
+        "source": FORTINET_SECURITY_MATRIX_URL,
+        "publishedAt": published_at,
+        "checkedAt": checked_at or datetime.now(timezone.utc).isoformat(),
+        "disclosureDate": disclosure_date,
+        "severityNote": severity_note,
+        "note": (
+            "Cette matrice indique les plages affectées et les versions correctives annoncées. "
+            "Les identifiants CVE et les détails techniques par vulnérabilité ne figurent pas dans cette page; "
+            "consulter les avis PSIRT détaillés avant toute décision de remédiation."
+        ),
+        "items": items,
+    }
 
 
 def parse_date(value):
@@ -135,7 +287,7 @@ def main():
         # First run or invalid old data: continue with empty fallbacks.
         pass
 
-    data = {"generatedAt": datetime.now(timezone.utc).isoformat(), "fortinet": [], "cyber": [], "kev": [], "errors": []}
+    data = {"generatedAt": datetime.now(timezone.utc).isoformat(), "fortinet": [], "cyber": [], "kev": [], "errors": [], "fortinetSecurityUpdates": previous.get("fortinetSecurityUpdates")}
     for section, source, configured_urls in FEEDS:
         urls = configured_urls if isinstance(configured_urls, (tuple, list)) else (configured_urls,)
         last_error = None
@@ -160,6 +312,28 @@ def main():
             # Keep the last known records from this specific feed instead of erasing them.
             stale_items = [item for item in previous.get(section, []) if item.get("source") == source]
             data[section].extend(stale_items)
+
+    hardening_notice = next(
+        (
+            item for item in data["cyber"]
+            if item.get("source") == "Fortinet CISO Collective"
+            and "security hardening release" in (item.get("title") or "").lower()
+        ),
+        None,
+    )
+    if hardening_notice:
+        try:
+            article_payload = fetch(FORTINET_SECURITY_MATRIX_URL)
+            data["fortinetSecurityUpdates"] = parse_fortinet_security_matrix(
+                article_payload,
+                published_at=hardening_notice.get("date"),
+                checked_at=data["generatedAt"],
+            )
+        except (urllib.error.URLError, TimeoutError, OSError, ValueError, UnicodeError) as exc:
+            data["errors"].append(
+                f"Matrice de sécurité Fortinet: {type(exc).__name__}: {exc}; "
+                "la dernière matrice valide est conservée."
+            )
 
     try:
         payload = json.loads(fetch(KEV_URL).decode("utf-8"))

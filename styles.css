@@ -116,3 +116,26 @@ body.page-overview .hero[hidden],body.page-overview .metrics[hidden],.hero[hidde
 :where(a,button,input,select,summary):focus-visible{outline:3px solid var(--orange);outline-offset:3px}
 input:focus-visible{outline:3px solid var(--orange);outline-offset:3px}
 .main-content:focus{outline:none}
+
+
+/* Matrice officielle des versions Fortinet affectées et corrigées */
+.security-matrix-card{border:1px solid #65472f;background:linear-gradient(145deg,#211d1a,#151c25);border-radius:12px;padding:18px;margin:0 0 16px}
+.security-matrix-heading{display:flex;align-items:flex-start;justify-content:space-between;gap:16px}
+.security-matrix-eyebrow{font:9px 'DM Mono',monospace;letter-spacing:1px;color:var(--orange)}
+.security-matrix-heading h3{font-size:15px;line-height:1.45;margin:5px 0}
+.security-matrix-heading p{font-size:10px;color:var(--muted);margin:0}
+.security-matrix-heading>a{flex:0 0 auto;color:#ffad79;font-size:10px;font-weight:800}
+.security-matrix-note{font-size:11px;line-height:1.6;color:#c3b5a8;margin:13px 0}
+.security-matrix-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px}
+.security-matrix-item{min-width:0;border:1px solid #3b3b3a;background:#111923;border-radius:9px;padding:12px}
+.security-matrix-product{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:10px}
+.security-matrix-product strong{font-size:11px}
+.security-matrix-product span{font:9px 'DM Mono',monospace;color:#aab7c5;white-space:nowrap}
+.security-matrix-item dl{display:grid;gap:8px;margin:0}
+.security-matrix-item dl>div{display:grid;gap:2px}
+.security-matrix-item dt{font:9px 'DM Mono',monospace;color:#8797aa}
+.security-matrix-item dd{margin:0;font-size:10px;color:#e2e9f0;overflow-wrap:anywhere}
+.security-matrix-meta{border-top:1px solid #3b342e;margin-top:13px;padding-top:10px;font-size:9px;line-height:1.6;color:#b8a28e}
+.security-matrix-meta span{padding:0 4px;color:var(--orange)}
+@media(max-width:1050px){.security-matrix-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:760px){.security-matrix-card{padding:14px}.security-matrix-heading{flex-direction:column}.security-matrix-grid{grid-template-columns:1fr}}
