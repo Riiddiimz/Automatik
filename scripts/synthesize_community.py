@@ -90,8 +90,9 @@ FIXED_VERSION_RE = re.compile(
     r"has\s+(?:a\s+)?(?:fix|patch|correction)|have\s+(?:a\s+)?(?:fix|patch|correction)|"
     r"planned\s+fix|fixed|resolved|corrected|addressed|"
     r"(?:fix|patch|correction)\s+(?:is\s+)?(?:available|included|provided))\s+"
-    r"(?:in|with|from)\s+(?:(?:fortios|fortigate|fortimanager|fortianalyzer|"
-    r"fortiauthenticator|forticlient(?:\s*(?:[/&-]\s*)?(?:ems|vpn))?|fortiswitch|fortiap|firmware)\s*)?"
+    r"(?:in|with|from)\s+(?:(?:the\s+)?(?:upcoming|next|future|forthcoming)\s+)?"
+    r"(?:(?:fortios|fortigate|fortimanager|fortianalyzer|fortiauthenticator|"
+    r"forticlient(?:\s*(?:[/&-]\s*)?(?:ems|vpn))?|fortiswitch|fortiap|firmware)\s*)?"
     r"(?:version\s*)?v?(\d{1,2}\.\d{1,2}(?:\.\d{1,3})?)\b",
     re.I,
 )
