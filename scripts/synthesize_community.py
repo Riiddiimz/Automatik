@@ -57,15 +57,9 @@ VERSION_SCOPE_ABOVE_RE = re.compile(
     r"(?:(?:and|or)\s+)?(?:above|higher|later|newer)\b",
     re.I,
 )
-VERSION_SCOPE_RANGE_RE = re.compile(
-    r"\b(\d{1,2}\.\d{1,2}(?:\.\d{1,3})?)\s*"
-    r"(?:-|–|—|\bto\b|\bthrough\b)\s*"
-    r"(\d{1,2}\.\d{1,2}(?:\.\d{1,3})?)\b",
-    re.I,
-)
 VERSIONED_ROOT_LEAF_CONTEXT_RE = re.compile(
-    r"\b(?:root|parent|master)\b[^.!?]{0,140}\b(?:running|version)\b"
-    r"[^.!?]{0,140}\b(?:leaf|child|secondary)\b[^.!?]{0,100}\bversion\b",
+    r"\b(?:root|parent|master)\b[^!?]{0,140}\b(?:running|version)\b"
+    r"[^!?]{0,140}\b(?:leaf|child|secondary)\b[^!?]{0,100}\bversion\b",
     re.I,
 )
 VERSION_CONTEXT_RE = re.compile(
@@ -299,8 +293,6 @@ def scope_version_boundaries(text: str) -> set[str]:
     boundaries = set()
     for pattern in (VERSION_SCOPE_BELOW_RE, VERSION_SCOPE_ABOVE_RE):
         boundaries.update(match.group(1) for match in pattern.finditer(text))
-    for match in VERSION_SCOPE_RANGE_RE.finditer(text):
-        boundaries.update(match.groups())
     return boundaries
 
 
@@ -454,8 +446,8 @@ def extract_versions(item: dict) -> tuple[list[str], list[str]]:
     for source_version, target_version in UPGRADE_PATH_RE.findall(text_without_ips):
         found.update((source_version, target_version))
     found.update(UPGRADE_TARGET_RE.findall(text_without_ips))
-    # A lower/upper bound or range endpoint describes the scope; it is not an exact
-    # affected release. Keep its branch family, and expose the original scope separately.
+    # A lower/upper comparator describes the scope; its boundary is not an exact
+    # affected release. Inclusive range endpoints remain visible alongside the raw scope.
     found.difference_update(scope_boundary_versions)
     exact = sorted(found - scope_families, key=lambda v: tuple(int(x) for x in v.split(".")))
     families = sorted(

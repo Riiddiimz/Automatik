@@ -1202,7 +1202,7 @@ class CommunitySynthesisTests(unittest.TestCase):
             ),
             "url": "https://community.fortinet.com/fortigate-3/release-range-issue-231099",
         }
-        self.assertEqual(synth.extract_versions(ranged), ([], ["7.4"]))
+        self.assertEqual(synth.extract_versions(ranged), (["7.4.0", "7.4.12"], ["7.4"]))
         self.assertEqual(synth.extract_version_scope(ranged), "FortiOS versions 7.4.0 to 7.4.12")
 
     def test_fabric_root_leaf_version_mismatch_is_not_misclassified_as_configuration(self):

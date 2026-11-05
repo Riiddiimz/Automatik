@@ -116,7 +116,7 @@ function renderCommunity() {
     const scopes = (item.versionScopes || []).map(escapeHTML).join(" · ");
     const scopeMeta = scopes ? `<span>Périmètre indiqué par la source : ${scopes}</span>` : "";
     const versionMeta = families
-      ? `<span>Famille(s) : ${families}</span>${exact ? `<span>Versions exactes : ${exact}</span>` : ""}${scopeMeta}`
+      ? `<span>Famille(s) : ${families}</span>${exact ? `<span>Versions citées : ${exact}</span>` : ""}${scopeMeta}`
       : `${scopeMeta || "<span>Version : non précisée par la source</span>"}`;
     const sources = (item.sources || []).slice(0, 5).map(source => {
       const url = /^https:\/\//i.test(source.url || "") ? source.url : "https://community.fortinet.com/";
