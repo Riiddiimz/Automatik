@@ -46,6 +46,7 @@ UNEXPECTED_DISABLED_BEHAVIOR_RE = re.compile(
     r"[^.!?]{0,100}\b(?:disabled|turned off|switched off)\b",
     re.I,
 )
+SCOPE_EXACT_VERSION_RE = re.compile(r"(?<!\\d)(\\d{1,2}\\.\\d{1,2}\\.\\d{1,3})(?!\\d)")
 VERSION_CONTEXT_RE = re.compile(
     r"\b(?:fortios|fortigate|fortimanager|fortianalyzer|fortiauthenticator|forticlient(?:\s*(?:[/&-]\s*)?(?:ems|vpn))?|fortiswitch|fortiap|firmware)\s*[\(:-]?\s*(?:versions?\s*)?v?(\d{1,2}\.\d{1,2}(?:\.\d{1,3})?)",
     re.I,
@@ -316,6 +317,7 @@ def extract_versions(item: dict) -> tuple[list[str], list[str]]:
     affected_upgrade_versions = set()
     scope_text = ""
     scope_families = set()
+    scope_exact_versions = set()
     description_versions = set()
     if source_type(item) == "fortinet_article":
         scope = re.search(
@@ -374,7 +376,16 @@ def extract_versions(item: dict) -> tuple[list[str], list[str]]:
         if scope or affected_contexts or reported_versions or affected_upgrade_versions or description_versions:
             scope_text = scope.group(1) if scope else ""
             scope_families = set(VERSION_FAMILY_RE.findall(scope_text))
-            text = title + " " + scope_text + " " + " ".join(affected_contexts)
+            scope_exact_versions = set(SCOPE_EXACT_VERSION_RE.findall(scope_text))
+            if scope_exact_versions:
+                # An exact Scope range is authoritative. Do not classify the
+                # source version in a title's upgrade path as affected as well.
+                reported_versions = [version for version in reported_versions if version in scope_exact_versions]
+                affected_upgrade_versions.intersection_update(scope_exact_versions)
+                description_versions.intersection_update(scope_exact_versions)
+                text = scope_text
+            else:
+                text = title + " " + scope_text + " " + " ".join(affected_contexts)
     affected_section_versions = extract_labeled_versions(summary, AFFECTED_VERSIONS_SECTION_RE)
     # Remove complete IPv4 addresses before looking for dotted version numbers.
     text_without_ips = re.sub(r"\b(?:\d{1,3}\.){3}\d{1,3}\b", " ", text)
@@ -393,7 +404,7 @@ def extract_versions(item: dict) -> tuple[list[str], list[str]]:
         r"\b(?:dig|openssl|python|curl|wget|iperf3?|ping)\s+v?\d{1,2}\.\d{1,2}(?:\.\d{1,3})?\b",
         " ", text_without_ips, flags=re.I,
     )
-    found = set(reported_versions) | affected_upgrade_versions | affected_section_versions | description_versions
+    found = scope_exact_versions | set(reported_versions) | affected_upgrade_versions | affected_section_versions | description_versions
     for match in VERSION_CONTEXT_RE.finditer(text_without_ips):
         found.add(match.group(1))
         sentence_tail = re.split(r"[!?]|\.(?=\s|$)", text_without_ips[match.end():], maxsplit=1)[0]
