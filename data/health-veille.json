@@ -1,9 +1,9 @@
 {
   "source": "veille",
   "label": "Veille cyber officielle",
-  "status": "error",
-  "checkedAt": "2026-11-05T09:04:11.409371+00:00",
-  "lastSuccessAt": "2026-11-05T06:44:31.474199+00:00",
-  "message": "Le workflow GitHub Actions a échoué. Les dernières données publiées sont conservées, mais peuvent être anciennes.",
-  "runUrl": "https://github.com/Riiddiimz/Automatik/actions/runs/41999328136"
+  "status": "ok",
+  "checkedAt": "2026-11-05T09:05:03.688087+00:00",
+  "lastSuccessAt": "2026-11-05T09:05:03.688087+00:00",
+  "message": "La collecte s'est terminée sans erreur.",
+  "runUrl": "https://github.com/Riiddiimz/Automatik/actions/runs/41999436814"
 }
