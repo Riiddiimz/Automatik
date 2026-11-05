@@ -338,7 +338,7 @@ class CommunitySynthesisTests(unittest.TestCase):
             "products": ["FortiGate"],
         }
         self.assertEqual(synth.extract_versions(item), (["7.6.8"], ["7.6"]))
-        self.assertEqual(synth.extract_fixed_versions(item), ["7.6.10"])
+        self.assertEqual(synth.extract_fixed_versions(item), [])
         self.assertEqual(synth.extract_fixed_builds(item), ["7.01204", "7.1204"])
         self.assertIn("plusieurs builds IPSEngine", synth.extract_fixed_build_note(item))
 
@@ -1120,7 +1120,7 @@ class CommunitySynthesisTests(unittest.TestCase):
             synth.extract_versions(item),
             (["7.6.0", "7.6.8"], ["7.6"]),
         )
-        self.assertEqual(synth.extract_fixed_versions(item), [])
+        self.assertEqual(synth.extract_fixed_versions(item), ["7.6.10"])
         self.assertTrue(synth.has_documented_evidence(item))
 
         with tempfile.TemporaryDirectory() as directory:
