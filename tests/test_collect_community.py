@@ -41,6 +41,22 @@ class CommunityFeedTests(unittest.TestCase):
         self.assertNotIn("FortiClient", items[0]["products"])
         self.assertEqual(items[0]["versions"], ["7.4.12"])
 
+    def test_fortimanager_adom_upgrade_article_extracts_both_versions_without_inventing_a_fix(self):
+        title = "FortiManager ADOM upgrade from 7.4 to 7.6 fails with remote certificate invalid error"
+        summary = (
+            "DescriptionInstructions to fix ADOM upgrade failure due to a remote certificate invalid error. "
+            "ScopeFortiManager. SolutionAn Administrative Domain (ADOM) upgrade from version 7.4 to 7.6 "
+            "fails because a remote certificate is missing its PEM wrapper. Restore the PEM wrapper, "
+            "then retry the ADOM upgrade."
+        )
+        url = (
+            "https://community.fortinet.com/fortimanager-27/"
+            "fortimanager-adom-upgrade-from-7-4-to-7-6-fails-with-remote-certificate-invalid-error-231084"
+        )
+        self.assertEqual(collector.products_in_text(title + " " + summary), ["FortiManager"])
+        self.assertEqual(collector.extract_versions(title, summary, url), ["7.4", "7.6"])
+        self.assertEqual(collector.extract_fixed_versions(title, summary, url), [])
+
     def test_rss_extracts_multiple_versions_in_parenthesized_firmware_list(self):
         payload = b"""<rss version="2.0"><channel>
           <item>
