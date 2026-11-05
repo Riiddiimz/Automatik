@@ -8,7 +8,7 @@ import unittest
 from unittest.mock import patch
 import urllib.error
 
-MATRIX_HTML = b"""<!doctype html><html><body>
+MATRIX_HTML = """<!doctype html><html><body>
 <p>These releases include critical and high-severity fixes.</p>
 <table><thead><tr><th>Product</th><th>Affected Versions</th><th>Fixed Version</th><th>Availability</th></tr></thead>
 <tbody>
@@ -20,7 +20,7 @@ MATRIX_HTML = b"""<!doctype html><html><body>
 <tr><td>FortiAuthenticator 6.6</td><td>6.6.0–6.6.10</td><td>6.6.11 or above</td><td>Today</td></tr>
 </tbody></table>
 <p>Note that public advisories will be made available at the next Patch Tuesday on November 10 as part of Fortinet's ongoing commitment.</p>
-</body></html>"""
+</body></html>""".encode("utf-8")
 
 MODULE_PATH = Path(__file__).resolve().parents[1] / "scripts" / "update_veille.py"
 SPEC = importlib.util.spec_from_file_location("update_veille", MODULE_PATH)
