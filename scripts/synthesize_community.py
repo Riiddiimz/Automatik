@@ -46,7 +46,7 @@ UNEXPECTED_DISABLED_BEHAVIOR_RE = re.compile(
     r"[^.!?]{0,100}\b(?:disabled|turned off|switched off)\b",
     re.I,
 )
-SCOPE_EXACT_VERSION_RE = re.compile(r"(?<!\\d)(\\d{1,2}\\.\\d{1,2}\\.\\d{1,3})(?!\\d)")
+SCOPE_EXACT_VERSION_RE = re.compile(r"(?<!\d)(\d{1,2}\.\d{1,2}\.\d{1,3})(?!\d)")
 VERSION_CONTEXT_RE = re.compile(
     r"\b(?:fortios|fortigate|fortimanager|fortianalyzer|fortiauthenticator|forticlient(?:\s*(?:[/&-]\s*)?(?:ems|vpn))?|fortiswitch|fortiap|firmware)\s*[\(:-]?\s*(?:versions?\s*)?v?(\d{1,2}\.\d{1,2}(?:\.\d{1,3})?)",
     re.I,
@@ -153,6 +153,8 @@ PERMANENT_FIX_VERSION_RE = re.compile(
 )
 # A wildcard such as 7.4.x identifies a release family, not an exact firmware.
 VERSION_FAMILY_RE = re.compile(r"(?<!\d)(\d{1,2}\.\d{1,2})\.x\b", re.I)
+# Bare major.minor entries in an official Scope identify branches, not exact patches.
+SCOPE_BRANCH_VERSION_RE = re.compile(r"(?<![\d.])(\d{1,2}\.\d{1,2})(?![\d.])")
 AFFECTED_VERSIONS_SECTION_RE = re.compile(
     r"\b(?:affected\s+versions?|affected\s+releases?)\s*:?\s*(.*?)"
     r"(?=\b(?:resolved\s+versions?|fixed\s+versions?|corrected\s+versions?|"
@@ -375,7 +377,7 @@ def extract_versions(item: dict) -> tuple[list[str], list[str]]:
                 description_versions.update(VERSION_LIST_TAIL_RE.findall(tail))
         if scope or affected_contexts or reported_versions or affected_upgrade_versions or description_versions:
             scope_text = scope.group(1) if scope else ""
-            scope_families = set(VERSION_FAMILY_RE.findall(scope_text))
+            scope_families = set(VERSION_FAMILY_RE.findall(scope_text)) | set(SCOPE_BRANCH_VERSION_RE.findall(scope_text))
             scope_exact_versions = set(SCOPE_EXACT_VERSION_RE.findall(scope_text))
             if scope_exact_versions:
                 # An exact Scope range is authoritative. Do not classify the
