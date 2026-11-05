@@ -1147,7 +1147,7 @@ class CommunitySynthesisTests(unittest.TestCase):
             "products": ["FortiGate"],
         }
 
-        self.assertEqual(synth.extract_versions(item), ([], ["7.4", "7.6"]))
+        self.assertEqual(synth.extract_versions(item), (["7.4", "7.6"], ["7.4", "7.6"]))
         self.assertEqual(synth.extract_fixed_versions(item), ["7.6.7", "8.0.0"])
         self.assertTrue(synth.has_documented_evidence(item))
 
@@ -1156,7 +1156,7 @@ class CommunitySynthesisTests(unittest.TestCase):
 
         incident = result["incidents"][0]
         self.assertEqual(incident["versionFamilies"], ["7.4", "7.6"])
-        self.assertEqual(incident["versions"], [])
+        self.assertEqual(incident["versions"], ["7.4", "7.6"])
         self.assertEqual(incident["fixVersions"], ["7.6.7", "8.0.0"])
         self.assertIn("no fix yet for the 7.4", incident["solution"].lower())
 
