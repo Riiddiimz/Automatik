@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-06T06:41:26.756820+00:00",
+  "generatedAt": "2026-11-06T19:23:45.803519+00:00",
   "fortinet": [
     {
       "source": "FortiGuard PSIRT",
@@ -180,6 +180,102 @@
       "summary": "De multiples vulnérabilités ont été découvertes dans Apache Zookeeper. Elles permettent à un attaquant de provoquer un déni de service à distance et un contournement de la politique de sécurité."
     },
     {
+      "source": "CERT-FR",
+      "label": "CERT-FR",
+      "title": "Multiples vulnérabilités dans les produits SonicWall (04 novembre 2026)",
+      "url": "https://www.cert.cyber.gouv.fr/avis/CERTFR-2026-AVI-1456/",
+      "date": "2026-11-04T00:00:00+00:00",
+      "summary": "De multiples vulnérabilités ont été découvertes dans les produits SonicWall. Elles permettent à un attaquant de provoquer une atteinte à la confidentialité des données et une injection SQL (SQLi)."
+    },
+    {
+      "source": "CERT-FR",
+      "label": "CERT-FR",
+      "title": "Vulnérabilité dans MongoDB (04 novembre 2026)",
+      "url": "https://www.cert.cyber.gouv.fr/avis/CERTFR-2026-AVI-1454/",
+      "date": "2026-11-04T00:00:00+00:00",
+      "summary": "Une vulnérabilité a été découverte dans MongoDB. Elle permet à un attaquant de provoquer une atteinte à la confidentialité des données et une atteinte à l'intégrité des données."
+    },
+    {
+      "source": "CERT-FR",
+      "label": "CERT-FR",
+      "title": "Multiples vulnérabilités dans les produits Mattermost (04 novembre 2026)",
+      "url": "https://www.cert.cyber.gouv.fr/avis/CERTFR-2026-AVI-1458/",
+      "date": "2026-11-04T00:00:00+00:00",
+      "summary": "De multiples vulnérabilités ont été découvertes dans les produits Mattermost. Elles permettent à un attaquant de provoquer un problème de sécurité non spécifié par l'éditeur."
+    },
+    {
+      "source": "CERT-FR",
+      "label": "CERT-FR",
+      "title": "Vulnérabilité dans Laravel (04 novembre 2026)",
+      "url": "https://www.cert.cyber.gouv.fr/avis/CERTFR-2026-AVI-1457/",
+      "date": "2026-11-04T00:00:00+00:00",
+      "summary": "Une vulnérabilité a été découverte dans Laravel. Elle permet à un attaquant de provoquer une exécution de code arbitraire à distance."
+    },
+    {
+      "source": "CERT-FR",
+      "label": "CERT-FR",
+      "title": "Multiples vulnérabilités dans les produits HPE Aruba Networking (04 novembre 2026)",
+      "url": "https://www.cert.cyber.gouv.fr/avis/CERTFR-2026-AVI-1451/",
+      "date": "2026-11-04T00:00:00+00:00",
+      "summary": "De multiples vulnérabilités ont été découvertes dans les produits HPE Aruba Networking. Certaines d'entre elles permettent à un attaquant de provoquer une exécution de code arbitraire à distance, une élévation de privilèges et un déni de service à distance."
+    },
+    {
+      "source": "CERT-FR",
+      "label": "CERT-FR",
+      "title": "Multiples vulnérabilités dans Google Chrome (04 novembre 2026)",
+      "url": "https://www.cert.cyber.gouv.fr/avis/CERTFR-2026-AVI-1450/",
+      "date": "2026-11-04T00:00:00+00:00",
+      "summary": "De multiples vulnérabilités ont été découvertes dans Google Chrome. Elles permettent à un attaquant de provoquer un problème de sécurité non spécifié par l'éditeur."
+    },
+    {
+      "source": "CERT-FR",
+      "label": "CERT-FR",
+      "title": "Vulnérabilité dans Mozilla Firefox (04 novembre 2026)",
+      "url": "https://www.cert.cyber.gouv.fr/avis/CERTFR-2026-AVI-1455/",
+      "date": "2026-11-04T00:00:00+00:00",
+      "summary": "Une vulnérabilité a été découverte dans Mozilla Firefox. Elle permet à un attaquant de provoquer un problème de sécurité non spécifié par l'éditeur."
+    },
+    {
+      "source": "CERT-FR",
+      "label": "CERT-FR",
+      "title": "Multiples vulnérabilités dans les produits Citrix (04 novembre 2026)",
+      "url": "https://www.cert.cyber.gouv.fr/avis/CERTFR-2026-AVI-1449/",
+      "date": "2026-11-04T00:00:00+00:00",
+      "summary": "De multiples vulnérabilités ont été découvertes dans les produits Citrix. Elles permettent à un attaquant de provoquer une exécution de code arbitraire à distance et une élévation de privilèges."
+    },
+    {
+      "source": "CERT-FR",
+      "label": "CERT-FR",
+      "title": "Multiples vulnérabilités dans NetApp StorageGRID (04 novembre 2026)",
+      "url": "https://www.cert.cyber.gouv.fr/avis/CERTFR-2026-AVI-1453/",
+      "date": "2026-11-04T00:00:00+00:00",
+      "summary": "De multiples vulnérabilités ont été découvertes dans NetApp StorageGRID. Elles permettent à un attaquant de provoquer une atteinte à la confidentialité des données et une atteinte à l'intégrité des données."
+    },
+    {
+      "source": "CERT-FR",
+      "label": "CERT-FR",
+      "title": "Multiples vulnérabilités dans les produits Elastic (04 novembre 2026)",
+      "url": "https://www.cert.cyber.gouv.fr/avis/CERTFR-2026-AVI-1461/",
+      "date": "2026-11-04T00:00:00+00:00",
+      "summary": "De multiples vulnérabilités ont été découvertes dans les produits Elastic. Certaines d'entre elles permettent à un attaquant de provoquer une exécution de code arbitraire à distance, un déni de service à distance et une atteinte à la confidentialité des données."
+    },
+    {
+      "source": "CERT-FR",
+      "label": "CERT-FR",
+      "title": "Multiples vulnérabilités dans SolarWinds Dameware (04 novembre 2026)",
+      "url": "https://www.cert.cyber.gouv.fr/avis/CERTFR-2026-AVI-1459/",
+      "date": "2026-11-04T00:00:00+00:00",
+      "summary": "De multiples vulnérabilités ont été découvertes dans SolarWinds Dameware. Elles permettent à un attaquant de provoquer une exécution de code arbitraire à distance et un contournement de la politique de sécurité."
+    },
+    {
+      "source": "CERT-FR",
+      "label": "CERT-FR",
+      "title": "Multiples vulnérabilités dans Ruby on Rails (04 novembre 2026)",
+      "url": "https://www.cert.cyber.gouv.fr/avis/CERTFR-2026-AVI-1452/",
+      "date": "2026-11-04T00:00:00+00:00",
+      "summary": "De multiples vulnérabilités ont été découvertes dans Ruby on Rails. Certaines d'entre elles permettent à un attaquant de provoquer une exécution de code arbitraire à distance, un déni de service à distance et une atteinte à la confidentialité des données."
+    },
+    {
       "source": "CISA ICS Advisories",
       "label": "CISA ICS Advisories",
       "title": "Subnet Solutions PowerSYSTEM Center",
@@ -226,86 +322,6 @@
       "url": "https://www.cert.cyber.gouv.fr/avis/CERTFR-2026-AVI-1443/",
       "date": "2026-11-03T00:00:00+00:00",
       "summary": "De multiples vulnérabilités ont été découvertes dans Google Android. Certaines d'entre elles permettent à un attaquant de provoquer une exécution de code arbitraire à distance, une élévation de privilèges et une atteinte à la confidentialité des données."
-    },
-    {
-      "source": "CERT-FR",
-      "label": "CERT-FR",
-      "title": "Bulletin d'actualité CERTFR-2026-ACT-046 (02 novembre 2026)",
-      "url": "https://www.cert.cyber.gouv.fr/actualite/CERTFR-2026-ACT-046/",
-      "date": "2026-11-02T00:00:00+00:00",
-      "summary": "Ce bulletin d'actualité du CERT-FR revient sur les vulnérabilités significatives de la semaine passée pour souligner leurs criticités. Il ne remplace pas l'analyse de l'ensemble des avis et alertes publiés par le CERT-FR dans le cadre d'une analyse de risques pour prioriser l'application des..."
-    },
-    {
-      "source": "CERT-FR",
-      "label": "CERT-FR",
-      "title": "Multiples vulnérabilités dans Tenable Identity Exposure (02 novembre 2026)",
-      "url": "https://www.cert.cyber.gouv.fr/avis/CERTFR-2026-AVI-1436/",
-      "date": "2026-11-02T00:00:00+00:00",
-      "summary": "De multiples vulnérabilités ont été découvertes dans Tenable Identity Exposure. Certaines d'entre elles permettent à un attaquant de provoquer une exécution de code arbitraire à distance, un déni de service à distance et une atteinte à la confidentialité des données."
-    },
-    {
-      "source": "CERT-FR",
-      "label": "CERT-FR",
-      "title": "Multiples vulnérabilités dans les produits Synology (02 novembre 2026)",
-      "url": "https://www.cert.cyber.gouv.fr/avis/CERTFR-2026-AVI-1435/",
-      "date": "2026-11-02T00:00:00+00:00",
-      "summary": "De multiples vulnérabilités ont été découvertes dans les produits Synology. Elles permettent à un attaquant de provoquer une exécution de code arbitraire à distance."
-    },
-    {
-      "source": "CERT-FR",
-      "label": "CERT-FR",
-      "title": "Multiples vulnérabilités dans Redmine (02 novembre 2026)",
-      "url": "https://www.cert.cyber.gouv.fr/avis/CERTFR-2026-AVI-1434/",
-      "date": "2026-11-02T00:00:00+00:00",
-      "summary": "De multiples vulnérabilités ont été découvertes dans Redmine. Certaines d'entre elles permettent à un attaquant de provoquer une injection de code indirecte à distance (XSS), un contournement de la politique de sécurité et un déni de service."
-    },
-    {
-      "source": "CERT-FR",
-      "label": "CERT-FR",
-      "title": "Multiples vulnérabilités dans Microsoft Edge (02 novembre 2026)",
-      "url": "https://www.cert.cyber.gouv.fr/avis/CERTFR-2026-AVI-1440/",
-      "date": "2026-11-02T00:00:00+00:00",
-      "summary": "De multiples vulnérabilités ont été découvertes dans Microsoft Edge. Elles permettent à un attaquant de provoquer un problème de sécurité non spécifié par l'éditeur."
-    },
-    {
-      "source": "CERT-FR",
-      "label": "CERT-FR",
-      "title": "Multiples vulnérabilités dans Ivanti Connect Secure (02 novembre 2026)",
-      "url": "https://www.cert.cyber.gouv.fr/avis/CERTFR-2026-AVI-1442/",
-      "date": "2026-11-02T00:00:00+00:00",
-      "summary": "De multiples vulnérabilités ont été découvertes dans Ivanti Connect Secure. Elles permettent à un attaquant de provoquer une exécution de code arbitraire à distance, une élévation de privilèges et un contournement de la politique de sécurité. Ivanti indique que les vulnérabilités CVE-2026-104935,..."
-    },
-    {
-      "source": "CERT-FR",
-      "label": "CERT-FR",
-      "title": "Multiples vulnérabilités dans Qnap QNE (02 novembre 2026)",
-      "url": "https://www.cert.cyber.gouv.fr/avis/CERTFR-2026-AVI-1437/",
-      "date": "2026-11-02T00:00:00+00:00",
-      "summary": "De multiples vulnérabilités ont été découvertes dans Qnap QNE. Elles permettent à un attaquant de provoquer une exécution de code arbitraire à distance."
-    },
-    {
-      "source": "CERT-FR",
-      "label": "CERT-FR",
-      "title": "Multiples vulnérabilités dans macmon et NRSW (02 novembre 2026)",
-      "url": "https://www.cert.cyber.gouv.fr/avis/CERTFR-2026-AVI-1438/",
-      "date": "2026-11-02T00:00:00+00:00",
-      "summary": "De multiples vulnérabilités ont été découvertes dans Belden macmon et NRSW. Elles permettent à un attaquant de provoquer une exécution de code arbitraire à distance."
-    },
-    {
-      "source": "CERT-FR",
-      "label": "CERT-FR",
-      "title": "Vulnérabilité dans Microsoft Visual Studio (02 novembre 2026)",
-      "url": "https://www.cert.cyber.gouv.fr/avis/CERTFR-2026-AVI-1441/",
-      "date": "2026-11-02T00:00:00+00:00",
-      "summary": "Une vulnérabilité a été découverte dans Microsoft Visual Studio. Elle permet à un attaquant de provoquer un contournement de la politique de sécurité."
-    },
-    {
-      "source": "CERT-FR",
-      "label": "CERT-FR",
-      "title": "Vulnérabilité dans Traefik (02 novembre 2026)",
-      "url": "https://www.cert.cyber.gouv.fr/avis/CERTFR-2026-AVI-1439/",
-      "date": "2026-11-02T00:00:00+00:00",
-      "summary": "Une vulnérabilité a été découverte dans Traefik. Elle permet à un attaquant de provoquer un déni de service à distance."
     },
     {
       "source": "FortiGuard Outbreak Alerts",
@@ -434,14 +450,6 @@
       "url": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2026/icsa-26-295-03.json",
       "date": "2026-10-15T00:00:00+00:00",
       "summary": "Avis de sécurité CISA publié au format structuré CSAF."
-    },
-    {
-      "source": "CERT-FR",
-      "label": "CERT-FR",
-      "title": "[MàJ] Multiples vulnérabilités dans Ivanti Connect Secure (ICS) (14 octobre 2026)",
-      "url": "https://www.cert.cyber.gouv.fr/alerte/CERTFR-2026-ALE-013/",
-      "date": "2026-10-14T00:00:00+00:00",
-      "summary": "[Mise à jour du 2 novembre 2026] Le 29 octobre 2026, Ivanti a mis à jour son avis de sécurité du 13 octobre 2026 pour ajouter deux vulnérabilités (CVE-2026-111357 et CVE-2026-118527). Celles-ci permettent à un attaquant authentifié d'élever ses privilèges et de téléverser un fichier arbitraire..."
     },
     {
       "source": "CISA ICS Advisories",
@@ -874,14 +882,6 @@
       "url": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2025/icsa-25-275-02.json",
       "date": "2025-09-30T00:00:00+00:00",
       "summary": "Avis de sécurité CISA publié au format structuré CSAF."
-    },
-    {
-      "source": "CERT-FR",
-      "label": "CERT-FR",
-      "title": "Campagne de notifications de menace envoyée par Apple (11 septembre 2025)",
-      "url": "https://www.cert.cyber.gouv.fr/cti/CERTFR-2025-CTI-010/",
-      "date": "2025-09-11T00:00:00+00:00",
-      "summary": "Depuis 2021, Apple envoie des campagnes de notifications aux individus ciblés par des attaques menées à l’aide de logiciels espions. Ces logiciels, tels que Pegasus, Predator, Graphite ou Triangulation sont particulièrement sophistiqués et difficiles à détecter. Ces attaques complexes ciblent des..."
     }
   ],
   "kev": [
@@ -2505,7 +2505,7 @@
     "title": "Fortinet Releases Security Hardening Release for Multiple Products",
     "source": "https://www.fortinet.com/blog/ciso-collective/fortinet-releases-security-hardening-release-for-multiple-products",
     "publishedAt": "2026-10-21T13:00:00+00:00",
-    "checkedAt": "2026-11-06T06:41:26.756820+00:00",
+    "checkedAt": "2026-11-06T19:23:45.803519+00:00",
     "disclosureDate": "2026-11-10",
     "severityNote": "Fortinet qualifie globalement ces mises à jour de correctifs critiques et élevés; la sévérité par CVE n'est pas détaillée dans cette annonce.",
     "note": "Cette matrice indique les plages affectées et les versions correctives annoncées. Les identifiants CVE et les détails techniques par vulnérabilité ne figurent pas dans cette page; consulter les avis PSIRT détaillés avant toute décision de remédiation.",
