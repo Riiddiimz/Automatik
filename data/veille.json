@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-05T19:55:57.774371+00:00",
+  "generatedAt": "2026-11-06T06:41:26.756820+00:00",
   "fortinet": [
     {
       "source": "FortiGuard PSIRT",
@@ -2505,7 +2505,7 @@
     "title": "Fortinet Releases Security Hardening Release for Multiple Products",
     "source": "https://www.fortinet.com/blog/ciso-collective/fortinet-releases-security-hardening-release-for-multiple-products",
     "publishedAt": "2026-10-21T13:00:00+00:00",
-    "checkedAt": "2026-11-05T19:55:57.774371+00:00",
+    "checkedAt": "2026-11-06T06:41:26.756820+00:00",
     "disclosureDate": "2026-11-10",
     "severityNote": "Fortinet qualifie globalement ces mises à jour de correctifs critiques et élevés; la sévérité par CVE n'est pas détaillée dans cette annonce.",
     "note": "Cette matrice indique les plages affectées et les versions correctives annoncées. Les identifiants CVE et les détails techniques par vulnérabilité ne figurent pas dans cette page; consulter les avis PSIRT détaillés avant toute décision de remédiation.",
