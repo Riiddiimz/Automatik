@@ -1,165 +1,165 @@
 {
-  "generatedAt": "2026-11-10T19:42:28.766931+00:00",
+  "generatedAt": "2026-11-11T06:15:11.696535+00:00",
   "fortinet": [
     {
       "source": "FortiGuard PSIRT",
       "label": "PSIRT",
-      "title": "Linux kernel RCE CVE-2026-98432",
-      "url": "https://fortiguard.fortinet.com/psirt/FG-IR-26-188",
-      "date": "2026-11-02T08:00:00+00:00",
-      "summary": "CVSSv3 Score: 9.8 CVE-2026-98432:ipv4: free inet_opt and ireq_opt after an RCU grace period tcp_v4_syn_recv_sock() transfers ownership of ireq-&gt;ireq_opt to the child socket (newinet-&gt;inet_opt) without copying it. Another cpu can concurrently process a retransmitted SYN for the same request socket, and send a SYNACK from tcp_check_req(). tcp_v4_send_syn"
+      "title": "Allocation of resources without limits or throttling in fastapi",
+      "url": "https://fortiguard.fortinet.com/psirt/FG-IR-26-258",
+      "date": "2026-11-10T08:00:00+00:00",
+      "summary": "CVSSv3 Score: 7.5 An Allocation of Resources Without Limits or Throttling vulnerability [CWE-770] in FortiAuthenticator may allow an unauthenticated attacker to exhaust system resources, potentially resulting in a denial of service (DoS). Revised on 2026-11-10 00:00:00"
     },
     {
       "source": "FortiGuard PSIRT",
       "label": "PSIRT",
-      "title": "Node2Shell CVEs",
-      "url": "https://fortiguard.fortinet.com/psirt/FG-IR-26-187",
-      "date": "2026-10-26T07:00:00+00:00",
-      "summary": "CVSSv3 Score: 9.8 CVE-2026-105482 - (high)This vulnerability affects Node.js 26.x, 24.x, and 22.x.CVE-2026-105483 - (high)This vulnerability affects Node.js 26.x and 24.x.CVE-2026-106069 - (high)This vulnerability affects Node.js 26.x, 24.x, and 22.x.CVE-2026-111497 - (high)A flaw in Node.js can cause Node.js Brotli decoder out-of-bounds write permits remote"
+      "title": "Arbitrary file write and delete in JSON API",
+      "url": "https://fortiguard.fortinet.com/psirt/FG-IR-26-190",
+      "date": "2026-11-10T08:00:00+00:00",
+      "summary": "CVSSv3 Score: 7.3 An improper limitation of a pathname to a restricted directory ('Path Traversal') vulnerability [CWE-22] in FortiManager and FortiAnalyzer API may allow an authenticated attacker whose profile only has read permission to write and delete files from the underlying filesystem via crafted HTTP or HTTPs requests. Revised on 2026-11-10 00:00:00"
     },
     {
       "source": "FortiGuard PSIRT",
       "label": "PSIRT",
-      "title": "PHP2Shell core RCE vulnerability patches (CVE-2026-109618 and CVE-2026-109619)",
-      "url": "https://fortiguard.fortinet.com/psirt/FG-IR-26-186",
-      "date": "2026-10-21T07:00:00+00:00",
-      "summary": "CVSSv3 Score: 5.3 CVE-2026-109618PHP uses longjmp() for out-of-memory (OOM) errors to exit the current context and abort handling of the request. Some contexts may not properly account for this scenario and leave request memory in an uninitialized state before performing an allocation. The subsequent request cleanup procedure may read or branch on this memor"
+      "title": "Authentication bypass",
+      "url": "https://fortiguard.fortinet.com/psirt/FG-IR-26-271",
+      "date": "2026-11-10T08:00:00+00:00",
+      "summary": "CVSSv3 Score: 9.0 A Use of Hard-coded Password [CWE-259] vulnerability in FortiAuthenticator may allow an unauthenticated attacker to bypass credential validation in certain circumstances outside of the attacker's control and gain unauthorized access. Revised on 2026-11-10 00:00:00"
     },
     {
       "source": "FortiGuard PSIRT",
       "label": "PSIRT",
-      "title": "Arbitrary file write in grpc phQueryMaster",
-      "url": "https://fortiguard.fortinet.com/psirt/FG-IR-26-180",
-      "date": "2026-10-13T07:00:00+00:00",
-      "summary": "CVSSv3 Score: 9.4 An Improper limitation of a pathname to a restricted directory ('path traversal') [CWE-22] in FortiSIEM may allow an unauthenticated attacker to execute unauthorized code or commands via specially crafted packets. Revised on 2026-10-13 00:00:00"
+      "title": "Authentication bypass by primary weakness",
+      "url": "https://fortiguard.fortinet.com/psirt/FG-IR-26-267",
+      "date": "2026-11-10T08:00:00+00:00",
+      "summary": "CVSSv3 Score: 9.3 An Authentication Bypass by Primary Weakness vulnerability [cwe-305] in FortiOS and FortiSASE ospf daemon may allow an unauthenticated attacker to broadcast LSA via specially crafted request Revised on 2026-11-10 00:00:00"
     },
     {
       "source": "FortiGuard PSIRT",
       "label": "PSIRT",
-      "title": "Broken authorization",
-      "url": "https://fortiguard.fortinet.com/psirt/FG-IR-26-183",
-      "date": "2026-10-13T07:00:00+00:00",
-      "summary": "CVSSv3 Score: 3.4 A missing authorization vulnerability [CWE-862] in FortiSIEM GUI may allow an authenticated attacker to execute unauthorized code or commands via Specially crafted HTTP requests Revised on 2026-10-13 00:00:00"
+      "title": "Authentication bypass by spoofing",
+      "url": "https://fortiguard.fortinet.com/psirt/FG-IR-26-229",
+      "date": "2026-11-10T08:00:00+00:00",
+      "summary": "CVSSv3 Score: 8.2 An authentication bypass by spoofing vulnerability (CWE-290) in FortiAnalyzer, FortiAnalyzer Cloud, FortiAnalyzer-BigData, FortiManager, FortiManager Cloud, FortiSASE-Sovereign fortilogd may allow an attacker to disrupt the HA state. Revised on 2026-11-10 00:00:00"
     },
     {
       "source": "FortiGuard PSIRT",
       "label": "PSIRT",
-      "title": "Double free in signal handler",
-      "url": "https://fortiguard.fortinet.com/psirt/FG-IR-26-182",
-      "date": "2026-10-13T07:00:00+00:00",
-      "summary": "CVSSv3 Score: 2.1 A Double Free vulnerability [CWE-415] in FortiOS, FortiProxy and FortiSwitch may allow a local authenticated attacker to crash the newcli daemon via crafted CLI commands. Revised on 2026-10-13 00:00:00"
+      "title": "Authorization bypass through user-controlled key",
+      "url": "https://fortiguard.fortinet.com/psirt/FG-IR-26-208",
+      "date": "2026-11-10T08:00:00+00:00",
+      "summary": "CVSSv3 Score: 9.1 An Authorization Bypass Through User-Controlled Key vulnerability [CWE-639] in FortiMail may allow an unauthenticated remote attacker to take over an arbitrary IBE recipient account via crafted HTTP requests. Revised on 2026-11-10 00:00:00"
     },
     {
       "source": "FortiGuard PSIRT",
       "label": "PSIRT",
-      "title": "Fabric API Authentication bypass",
-      "url": "https://fortiguard.fortinet.com/psirt/FG-IR-26-179",
-      "date": "2026-10-13T07:00:00+00:00",
-      "summary": "CVSSv3 Score: 4.9 A Use of Hard-coded Cryptographic Key [CWE-321] in FortiSandbox and FortiSandbox Cloud API may allow an unauthenticated attacker to access some endpoints via specially crafted HTTP requests Revised on 2026-10-13 00:00:00"
+      "title": "Authorization bypass through user-controlled key",
+      "url": "https://fortiguard.fortinet.com/psirt/FG-IR-26-235",
+      "date": "2026-11-10T08:00:00+00:00",
+      "summary": "CVSSv3 Score: 8.2 An Authorization Bypass Through User-Controlled Key vulnerability [CWE-639] in FortiManager may allow a remote authenticated attacker with admin permission to elevate their privileges to root via crafted HTTP requests. Revised on 2026-11-10 00:00:00"
     },
     {
       "source": "FortiGuard PSIRT",
       "label": "PSIRT",
-      "title": "GUI Denial of Service",
-      "url": "https://fortiguard.fortinet.com/psirt/FG-IR-26-181",
-      "date": "2026-10-13T07:00:00+00:00",
-      "summary": "CVSSv3 Score: 6.7 An Improper Locking vulnerability [CWE-667] in FortiOS may allow an unauthenticated attacker with network access to the device to cause a denial of service of the HTTPS management interface via crafted HTTP requests. Revised on 2026-10-13 00:00:00"
+      "title": "Authorization bypass through user-controlled key",
+      "url": "https://fortiguard.fortinet.com/psirt/FG-IR-26-204",
+      "date": "2026-11-10T08:00:00+00:00",
+      "summary": "CVSSv3 Score: 8.1 An Authorization Bypass Through User-Controlled Key vulnerability [CWE-639] in FortiMail may allow an authenticated remote attacker to delete arbitrary directories as root, or to access or delete other users' calendar and mailbox data across tenant domains, via crafted HTTP requests to the webmail and administrative interfaces. Revised on 2"
     },
     {
       "source": "FortiGuard PSIRT",
       "label": "PSIRT",
-      "title": "Improper access control and session management in the web management interface",
-      "url": "https://fortiguard.fortinet.com/psirt/FG-IR-26-185",
-      "date": "2026-10-13T07:00:00+00:00",
-      "summary": "CVSSv3 Score: 9.6 An Authentication Bypass Using an Alternate Path or Channel vulnerability [CWE-288] in FortiSandbox GUI may allow a remote unauthenticated attacker to bypass authentication via crafted HTTP requests. Revised on 2026-10-13 00:00:00"
+      "title": "Authorization bypass through user-controlled key",
+      "url": "https://fortiguard.fortinet.com/psirt/FG-IR-26-211",
+      "date": "2026-11-10T08:00:00+00:00",
+      "summary": "CVSSv3 Score: 7.5 An Authorization Bypass Through User-Controlled Key vulnerability [CWE-639] in FortiMail may allow an unauthenticated attacker to release or delete quarantined messages for arbitrary mailboxes via a crafted quarantine release request. Revised on 2026-11-10 00:00:00"
     },
     {
       "source": "FortiGuard PSIRT",
       "label": "PSIRT",
-      "title": "Multiple Arbitrary File Read/Write via SQL Injection",
-      "url": "https://fortiguard.fortinet.com/psirt/FG-IR-26-178",
-      "date": "2026-10-13T07:00:00+00:00",
-      "summary": "CVSSv3 Score: 7.9 An Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection') vulnerability [CWE-89] in FortiAnalyzer, FortiManager, FortiManager Cloud and FortiAnalyzer Cloud may allow a low privileged user to execute arbitrary commands via crafted requests. Revised on 2026-10-13 00:00:00"
+      "title": "Authorization bypass through user-controlled key in GUI",
+      "url": "https://fortiguard.fortinet.com/psirt/FG-IR-26-228",
+      "date": "2026-11-10T08:00:00+00:00",
+      "summary": "CVSSv3 Score: 8.7 An Authorization Bypass Through User-Controlled Key vulnerability [cwe-639] in FortiManager, FortiManager Cloud and FortiSase-Sovereign GUI may allow an authenticated attacker to execute commands outside of the expected scope via specially crafted HTTP request. Revised on 2026-11-10 00:00:00"
     },
     {
       "source": "FortiGuard PSIRT",
       "label": "PSIRT",
-      "title": "Persistent Denial of Service in Admin Profile",
-      "url": "https://fortiguard.fortinet.com/psirt/FG-IR-26-176",
-      "date": "2026-10-13T07:00:00+00:00",
-      "summary": "CVSSv3 Score: 4.8 An Uncaught Exception vulnerability [CWE-248] in FortiSandbox may allow a privileged attacker to deny access to the GUI and CLI persistently via crafted HTTP requests. Revised on 2026-10-13 00:00:00"
+      "title": "Authorization bypass through user-controlled key in dmserver",
+      "url": "https://fortiguard.fortinet.com/psirt/FG-IR-26-244",
+      "date": "2026-11-10T08:00:00+00:00",
+      "summary": "CVSSv3 Score: 9.1 An Authorization Bypass Through User-Controlled Key [CWE-639] in FortiManager, FortiAnalyzer, FortiManager Cloud and FortiAnalyzer Cloud could allow an authenticated administrator to access to other VDOMs via specially crafted HTTP requests. Revised on 2026-11-10 00:00:00"
     },
     {
       "source": "FortiGuard PSIRT",
       "label": "PSIRT",
-      "title": "SQL command injection in webmail",
-      "url": "https://fortiguard.fortinet.com/psirt/FG-IR-26-184",
-      "date": "2026-10-13T07:00:00+00:00",
-      "summary": "CVSSv3 Score: 7.7 An improper neutralization of special elements used in an SQL Command (\"SQL Injection\") vulnerability [CWE-89] in FortiMail webmail may allow an authenticated attacker to execute unauthorized code or commands via specifically crafted HTTP requests. Revised on 2026-10-13 00:00:00"
+      "title": "Broken Access Control in Two-Factor-Authentication",
+      "url": "https://fortiguard.fortinet.com/psirt/FG-IR-26-195",
+      "date": "2026-11-10T08:00:00+00:00",
+      "summary": "CVSSv3 Score: 5.9 An Improper Authentication vulnerability [CWE-287] in the FortiOS Remote Radius Type Admin Two-Factor (TFA) Authentication may allow a remote authenticated attacker with at least read-only permission to log in to the FortiOS GUI with an invalid token after entering a valid username and password, in scenarios where the RADIUS server returns "
     },
     {
       "source": "FortiGuard PSIRT",
       "label": "PSIRT",
-      "title": "arbitrary command execution in fgfmsd daemon",
-      "url": "https://fortiguard.fortinet.com/psirt/FG-IR-26-177",
-      "date": "2026-10-13T07:00:00+00:00",
-      "summary": "CVSSv3 Score: 5.3 An improper neutralization of special elements used in an OS command ('OS Command Injection') vulnerability [CWE-78] in FortiManager fgfmd daemon may allow a remote attacker impersonating a fortimanager cluster node to execute unauthorized code or commands via specially crafted packets. Impersonation of a Fortimanager cluster node requires "
+      "title": "FGFM elevation before registration password is verified",
+      "url": "https://fortiguard.fortinet.com/psirt/FG-IR-26-275",
+      "date": "2026-11-10T08:00:00+00:00",
+      "summary": "CVSSv3 Score: 9.0 An improper authorization vulnerability in FortiManager FGFM may allow an unauthenticated attacker that can reach the FGFM port to execute code or commands via crafted FGFM packets. Revised on 2026-11-10 00:00:00"
+    },
+    {
+      "source": "FortiGuard PSIRT",
+      "label": "PSIRT",
+      "title": "Heap-based buffer overflow",
+      "url": "https://fortiguard.fortinet.com/psirt/FG-IR-26-232",
+      "date": "2026-11-10T08:00:00+00:00",
+      "summary": "CVSSv3 Score: 7.2 A Heap-based Buffer Overflow vulnerability [CWE-122] in FortiManager, FortiManager Cloud, FortiAnalyzer and FortiAnalyzer Cloud may allow an authenticated administrator to execute unauthorized code or commands or cause a denial of service via specially crafted JSON-RPC requests. Revised on 2026-11-10 00:00:00"
+    },
+    {
+      "source": "FortiGuard PSIRT",
+      "label": "PSIRT",
+      "title": "Heap-based buffer overflow",
+      "url": "https://fortiguard.fortinet.com/psirt/FG-IR-26-223",
+      "date": "2026-11-10T08:00:00+00:00",
+      "summary": "CVSSv3 Score: 7.2 A Heap-based Buffer Overflow vulnerability [CWE-122] in FortiManager, FortiAnalyzer, FortiManager Cloud and FortiAnalyzer Cloud may allow an authenticated attacker with admin privileges to execute unauthorized code or commands via a crafted request. Revised on 2026-11-10 00:00:00"
+    },
+    {
+      "source": "FortiGuard PSIRT",
+      "label": "PSIRT",
+      "title": "Improper authentication in releasecontrol",
+      "url": "https://fortiguard.fortinet.com/psirt/FG-IR-26-212",
+      "date": "2026-11-10T08:00:00+00:00",
+      "summary": "CVSSv3 Score: 8.2 An Improper Authentication vulnerability [CWE-287] in FortiMail may allow an unauthenticated attacker to escalate privileges and release or delete quarantined messages for arbitrary mailboxes via a crafted quarantine release requests. Revised on 2026-11-10 00:00:00"
+    },
+    {
+      "source": "FortiGuard PSIRT",
+      "label": "PSIRT",
+      "title": "Improper certificate validation in RADIUS protocol",
+      "url": "https://fortiguard.fortinet.com/psirt/FG-IR-26-247",
+      "date": "2026-11-10T08:00:00+00:00",
+      "summary": "CVSSv3 Score: 7.5 An Improper Certificate Validation vulnerability [CWE-295] in FortiSASE Sovereign, FortiManager, Fortianalyzer, FortiManager Cloud and FortiAnalyzer Cloud RADIUS protocol may allow a MITM attacker to impersonate the radius server via a rogue RADIUS server. Revised on 2026-11-10 00:00:00"
+    },
+    {
+      "source": "FortiGuard PSIRT",
+      "label": "PSIRT",
+      "title": "Improper control of generation of code",
+      "url": "https://fortiguard.fortinet.com/psirt/FG-IR-26-230",
+      "date": "2026-11-10T08:00:00+00:00",
+      "summary": "CVSSv3 Score: 7.2 A Code Injection vulnerability [CWE-94] in FortiManager, FortiManager Cloud, FortiAnalyzer and FortiAnalyzer Cloud may allow an authenticated administrator to execute unauthorized code or commands via specially crafted requests. Revised on 2026-11-10 00:00:00"
+    },
+    {
+      "source": "FortiGuard PSIRT",
+      "label": "PSIRT",
+      "title": "Improper control of generation of code in GUI",
+      "url": "https://fortiguard.fortinet.com/psirt/FG-IR-26-227",
+      "date": "2026-11-10T08:00:00+00:00",
+      "summary": "CVSSv3 Score: 7.2 An Improper Control of Generation of Code ('Code Injection') vulnerability [CWE-94] and a Buffer Copy without Checking Size of Input ('Classic Buffer Overflow') vulnerability [CWE-120] in FortiManager, FortiAnalyzer, FortiManager Cloud, and FortiAnalyzer Cloud may allow a remote authenticated attacker to execute unauthorized code or command"
     },
     {
       "source": "FortiGuard PSIRT",
       "label": "PSIRT",
       "title": "Improper limitation of a pathname to a restricted directory",
-      "url": "https://fortiguard.fortinet.com/psirt/FG-IR-26-175",
-      "date": "2026-10-01T07:00:00+00:00",
-      "summary": "CVSSv3 Score: 9.8 An Improper Limitation of a Pathname to a Restricted Directory ('Path Traversal') [CWE-22] and Improper Neutralization of NULL Byte or NULL Character [CWE-158] vulnerability may allow an unauthenticated attacker to write arbitrary files on the underlying system via crafted HTTP or HTTPS requests.This has been reported to be exploited in the"
-    },
-    {
-      "source": "FortiGuard PSIRT",
-      "label": "PSIRT",
-      "title": "Arbitrary process termination from exposed minifilter communication port",
-      "url": "https://fortiguard.fortinet.com/psirt/FG-IR-26-165",
-      "date": "2026-09-08T07:00:00+00:00",
-      "summary": "CVSSv3 Score: 5.1 An Unverified Ownership Vulnerability [CWE-283] in FortiClient Windows fortimon3 driver may allow an authenticated attacker to terminate arbitrary processes via an exposed minifilter communication port. Revised on 2026-09-08 00:00:00"
-    },
-    {
-      "source": "FortiGuard PSIRT",
-      "label": "PSIRT",
-      "title": "Broken Access control on Websocket streams",
-      "url": "https://fortiguard.fortinet.com/psirt/FG-IR-26-164",
-      "date": "2026-09-08T07:00:00+00:00",
-      "summary": "CVSSv3 Score: 5.4 An Improper Access control vulnerability [CWE-284] in FortiSOAR may allow an authenticated attacker with zero permissions to subscribe to websocket streams and topics and to inject broadcast messages to the stream via crafted websocket requests Revised on 2026-09-08 00:00:00"
-    },
-    {
-      "source": "FortiGuard PSIRT",
-      "label": "PSIRT",
-      "title": "Cron Job Injection in Remote Backup",
-      "url": "https://fortiguard.fortinet.com/psirt/FG-IR-26-167",
-      "date": "2026-09-08T07:00:00+00:00",
-      "summary": "CVSSv3 Score: 6.7 An Improper Neutralization of Special Elements used in a Command ('Command Injection') vulnerability [CWE-77] in FortiSandbox may allow a privileged attacker to execute unauthorized code or commands via crafted HTTP requests. Revised on 2026-09-08 00:00:00"
-    },
-    {
-      "source": "FortiGuard PSIRT",
-      "label": "PSIRT",
-      "title": "Improper Authentication of FortiPAM Server",
-      "url": "https://fortiguard.fortinet.com/psirt/FG-IR-26-168",
-      "date": "2026-09-08T07:00:00+00:00",
-      "summary": "CVSSv3 Score: 9.6 An improper authentication vulnerability [CWE-287] in the Fortinet Privileged Access Agent Chrome Extension may allow a remote unauthenticated attacker to proxy a user's browser traffic through attacker controlled servers if the user visits a malicious website. Revised on 2026-09-08 00:00:00"
-    },
-    {
-      "source": "FortiGuard PSIRT",
-      "label": "PSIRT",
-      "title": "JWT used for authentication in web GUI signed with static key",
-      "url": "https://fortiguard.fortinet.com/psirt/FG-IR-26-170",
-      "date": "2026-09-08T07:00:00+00:00",
-      "summary": "CVSSv3 Score: 9.8 An Inclusion of Sensitive Information in Source Code vulnerability [CWE-540] in FortiMonitorOnSight web portal may allow a remote unauthenticated attacker to bypass authentication via forged or reused JWT Revised on 2026-09-08 00:00:00"
-    },
-    {
-      "source": "FortiGuard PSIRT",
-      "label": "PSIRT",
-      "title": "HTML injection in WebUI",
-      "url": "https://fortiguard.fortinet.com/psirt/FG-IR-20-005",
-      "date": "2020-09-21T07:00:00+00:00",
-      "summary": "CVSSv3 Score: 4.9 An improper neutralization of script-related HTML tags in a web page in FortiManager and FortiAnalyzer may allow an attacker to perform a cross site scripting (XSS) attack via the Identify Provider name field. Revised on 2026-10-13 00:00:00"
+      "url": "https://fortiguard.fortinet.com/psirt/FG-IR-26-237",
+      "date": "2026-11-10T08:00:00+00:00",
+      "summary": "CVSSv3 Score: 7.2 An Improper Limitation of a Pathname to a Restricted Directory (CWE-22) vulnerability in FortiManager, FortiAnalyzer, FortiManager Cloud and FortiAnalyzer Cloud may allow an authenticated attacker with admin privileges to execute unauthorized code or commands via crafted requests. Revised on 2026-11-10 00:00:00"
     }
   ],
   "cyber": [
@@ -2511,7 +2511,7 @@
     "title": "Fortinet Releases Security Hardening Release for Multiple Products",
     "source": "https://www.fortinet.com/blog/ciso-collective/fortinet-releases-security-hardening-release-for-multiple-products",
     "publishedAt": "2026-10-21T13:00:00+00:00",
-    "checkedAt": "2026-11-10T19:42:28.766931+00:00",
+    "checkedAt": "2026-11-11T06:15:11.696535+00:00",
     "disclosureDate": "2026-11-10",
     "severityNote": "Fortinet qualifie globalement ces mises à jour de correctifs critiques et élevés; la sévérité par CVE n'est pas détaillée dans cette annonce.",
     "note": "Cette matrice indique les plages affectées et les versions correctives annoncées. Les identifiants CVE et les détails techniques par vulnérabilité ne figurent pas dans cette page; consulter les avis PSIRT détaillés avant toute décision de remédiation.",
