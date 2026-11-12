@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-12T00:41:45.554597+00:00",
+  "generatedAt": "2026-11-12T15:12:42.879862+00:00",
   "fortinet": [
     {
       "source": "FortiGuard PSIRT",
@@ -164,6 +164,30 @@
   ],
   "cyber": [
     {
+      "source": "CISA Cybersecurity Advisories",
+      "label": "CISA Cybersecurity Advisories",
+      "title": "AsiaInfo BSS multiple vulnerabilities",
+      "url": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/IT/white/2026/va-26-313-03.json",
+      "date": "2026-11-10T21:40:20+00:00",
+      "summary": "Avis de sécurité CISA publié au format structuré CSAF."
+    },
+    {
+      "source": "CISA Cybersecurity Advisories",
+      "label": "CISA Cybersecurity Advisories",
+      "title": "BeeS ERP administrative console IDOR",
+      "url": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/IT/white/2026/va-26-313-04.json",
+      "date": "2026-11-10T19:44:23+00:00",
+      "summary": "Avis de sécurité CISA publié au format structuré CSAF."
+    },
+    {
+      "source": "CISA Cybersecurity Advisories",
+      "label": "CISA Cybersecurity Advisories",
+      "title": "Chargemap Web Platform multiple vulnerabilities",
+      "url": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/IT/white/2026/va-26-313-01.json",
+      "date": "2026-11-10T19:36:29+00:00",
+      "summary": "Avis de sécurité CISA publié au format structuré CSAF."
+    },
+    {
       "source": "CERT-FR",
       "label": "CERT-FR",
       "title": "Multiples vulnérabilités dans le noyau Linux de SUSE (06 novembre 2026)",
@@ -254,6 +278,14 @@
     {
       "source": "CERT-FR",
       "label": "CERT-FR",
+      "title": "Multiples vulnérabilités dans Mattermost Server (06 novembre 2026)",
+      "url": "https://www.cert.cyber.gouv.fr/avis/CERTFR-2026-AVI-1479/",
+      "date": "2026-11-06T00:00:00+00:00",
+      "summary": "De multiples vulnérabilités ont été découvertes dans Mattermost Server. Elles permettent à un attaquant de provoquer un problème de sécurité non spécifié par l'éditeur."
+    },
+    {
+      "source": "CERT-FR",
+      "label": "CERT-FR",
       "title": "Multiples vulnérabilités dans Microsoft Edge (05 novembre 2026)",
       "url": "https://www.cert.cyber.gouv.fr/avis/CERTFR-2026-AVI-1466/",
       "date": "2026-11-05T00:00:00+00:00",
@@ -298,14 +330,6 @@
       "url": "https://www.cert.cyber.gouv.fr/avis/CERTFR-2026-AVI-1465/",
       "date": "2026-11-05T00:00:00+00:00",
       "summary": "De multiples vulnérabilités ont été découvertes dans SPIP. Certaines d'entre elles permettent à un attaquant de provoquer une exécution de code arbitraire à distance, une élévation de privilèges et une atteinte à l'intégrité des données."
-    },
-    {
-      "source": "CERT-FR",
-      "label": "CERT-FR",
-      "title": "Multiples vulnérabilités dans MongoDB (05 novembre 2026)",
-      "url": "https://www.cert.cyber.gouv.fr/avis/CERTFR-2026-AVI-1462/",
-      "date": "2026-11-05T00:00:00+00:00",
-      "summary": "De multiples vulnérabilités ont été découvertes dans MongoDB. Certaines d'entre elles permettent à un attaquant de provoquer une exécution de code arbitraire à distance, un déni de service à distance et une atteinte à la confidentialité des données."
     },
     {
       "source": "CERT-FR",
@@ -644,36 +668,12 @@
       "summary": "Avis de sécurité CISA publié au format structuré CSAF."
     },
     {
-      "source": "CISA Cybersecurity Advisories",
-      "label": "CISA Cybersecurity Advisories",
-      "title": "ComfyUI stored XSS and path traversal vulnerabilities",
-      "url": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/IT/white/2026/va-26-238-01.json",
-      "date": "2026-08-26T15:21:45+00:00",
-      "summary": "Avis de sécurité CISA publié au format structuré CSAF."
-    },
-    {
       "source": "Fortinet CISO Collective",
       "label": "Fortinet CISO Collective",
       "title": "Secure by Design: Fortinet’s Continued Commitment and the Work Ahead",
       "url": "https://feeds.fortinet.com/~/968263118/0/fortinet/blog/ciso-collective~Secure-by-Design-Fortinets-Continued-Commitment-and-the-Work-Ahead",
       "date": "2026-08-26T13:00:00+00:00",
       "summary": "Fortinet CISO Carl Windsor shares progress on CISA's Secure by Design Pledge, from automatic updates and product hardening to greater transparency. &#160; &#160; &#160; &#160; &nbsp;&#160;"
-    },
-    {
-      "source": "CISA Cybersecurity Advisories",
-      "label": "CISA Cybersecurity Advisories",
-      "title": "Webkul QloApps multiple vulnerabilities",
-      "url": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/IT/white/2026/va-26-237-01.json",
-      "date": "2026-08-25T16:12:44+00:00",
-      "summary": "Avis de sécurité CISA publié au format structuré CSAF."
-    },
-    {
-      "source": "CISA Cybersecurity Advisories",
-      "label": "CISA Cybersecurity Advisories",
-      "title": "ONNX symlink-following and path-traversal arbitrary file write",
-      "url": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/IT/white/2026/va-26-233-01.json",
-      "date": "2026-08-21T15:41:33+00:00",
-      "summary": "Avis de sécurité CISA publié au format structuré CSAF."
     },
     {
       "source": "FortiGuard Outbreak Alerts",
@@ -2511,7 +2511,7 @@
     "title": "Fortinet Releases Security Hardening Release for Multiple Products",
     "source": "https://www.fortinet.com/blog/ciso-collective/fortinet-releases-security-hardening-release-for-multiple-products",
     "publishedAt": "2026-10-21T13:00:00+00:00",
-    "checkedAt": "2026-11-12T00:41:45.554597+00:00",
+    "checkedAt": "2026-11-12T15:12:42.879862+00:00",
     "disclosureDate": "2026-11-10",
     "severityNote": "Fortinet qualifie globalement ces mises à jour de correctifs critiques et élevés; la sévérité par CVE n'est pas détaillée dans cette annonce.",
     "note": "Cette matrice indique les plages affectées et les versions correctives annoncées. Les identifiants CVE et les détails techniques par vulnérabilité ne figurent pas dans cette page; consulter les avis PSIRT détaillés avant toute décision de remédiation.",
