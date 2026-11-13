@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-13T06:42:59.137787+00:00",
+  "generatedAt": "2026-11-13T19:40:37.450735+00:00",
   "fortinet": [
     {
       "source": "FortiGuard PSIRT",
@@ -8,6 +8,14 @@
       "url": "https://fortiguard.fortinet.com/psirt/FG-IR-26-268",
       "date": "2026-11-10T08:00:00+00:00",
       "summary": "CVSSv3 Score: 9.6 A Numeric Truncation Error vulnerability [cwe-197] in FortiOS and FortiSASE bgp daemon may allow a configured ibgp neighbor to send malicious/malformed attributes to all connected routers via a specially crafted request Revised on 2026-11-13 00:00:00"
+    },
+    {
+      "source": "FortiGuard PSIRT",
+      "label": "PSIRT",
+      "title": "SSLVPN Improper Certificate Validation",
+      "url": "https://fortiguard.fortinet.com/psirt/FG-IR-26-193",
+      "date": "2026-11-10T08:00:00+00:00",
+      "summary": "CVSSv3 Score: 7.7 An improper certificate validation vulnerability [CWE-295] in FortiOS SSLVPN may allow a remote and unauthenticated attacker to perform a Man-in-the-Middle attack on the communication channel between the SSLVPN web portal and the backend destination website. Revised on 2026-11-12 00:00:00"
     },
     {
       "source": "FortiGuard PSIRT",
@@ -148,21 +156,37 @@
     {
       "source": "FortiGuard PSIRT",
       "label": "PSIRT",
-      "title": "Improper control of generation of code",
-      "url": "https://fortiguard.fortinet.com/psirt/FG-IR-26-230",
-      "date": "2026-11-10T08:00:00+00:00",
-      "summary": "CVSSv3 Score: 7.2 A Code Injection vulnerability [CWE-94] in FortiManager, FortiManager Cloud, FortiAnalyzer and FortiAnalyzer Cloud may allow an authenticated administrator to execute unauthorized code or commands via specially crafted requests. Revised on 2026-11-10 00:00:00"
-    },
-    {
-      "source": "FortiGuard PSIRT",
-      "label": "PSIRT",
-      "title": "Improper control of generation of code in GUI",
-      "url": "https://fortiguard.fortinet.com/psirt/FG-IR-26-227",
-      "date": "2026-11-10T08:00:00+00:00",
-      "summary": "CVSSv3 Score: 7.2 An Improper Control of Generation of Code ('Code Injection') vulnerability [CWE-94] and a Buffer Copy without Checking Size of Input ('Classic Buffer Overflow') vulnerability [CWE-120] in FortiManager, FortiAnalyzer, FortiManager Cloud, and FortiAnalyzer Cloud may allow a remote authenticated attacker to execute unauthorized code or command"
+      "title": "Node2Shell CVEs",
+      "url": "https://fortiguard.fortinet.com/psirt/FG-IR-26-187",
+      "date": "2026-10-26T07:00:00+00:00",
+      "summary": "CVSSv3 Score: 9.8 CVE-2026-105482 - (high)This vulnerability affects Node.js 26.x, 24.x, and 22.x.CVE-2026-105483 - (high)This vulnerability affects Node.js 26.x and 24.x.CVE-2026-106069 - (high)This vulnerability affects Node.js 26.x, 24.x, and 22.x.CVE-2026-111497 - (high)A flaw in Node.js can cause Node.js Brotli decoder out-of-bounds write permits remote"
     }
   ],
   "cyber": [
+    {
+      "source": "CISA Cybersecurity Advisories",
+      "label": "CISA Cybersecurity Advisories",
+      "title": "Jet Admin Cloud Platform Prompt Injection",
+      "url": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/IT/white/2026/va-26-317-01.json",
+      "date": "2026-11-13T16:45:20+00:00",
+      "summary": "Avis de sécurité CISA publié au format structuré CSAF."
+    },
+    {
+      "source": "CISA Cybersecurity Advisories",
+      "label": "CISA Cybersecurity Advisories",
+      "title": "Catalis WebPro SQLi",
+      "url": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/IT/white/2026/va-26-310-01.json",
+      "date": "2026-11-13T16:33:18+00:00",
+      "summary": "Avis de sécurité CISA publié au format structuré CSAF."
+    },
+    {
+      "source": "CISA Cybersecurity Advisories",
+      "label": "CISA Cybersecurity Advisories",
+      "title": "iDentalSoft website information exposure",
+      "url": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/IT/white/2026/va-26-314-01.json",
+      "date": "2026-11-13T16:27:48+00:00",
+      "summary": "Avis de sécurité CISA publié au format structuré CSAF."
+    },
     {
       "source": "CERT-FR",
       "label": "CERT-FR",
@@ -222,18 +246,106 @@
     {
       "source": "CERT-FR",
       "label": "CERT-FR",
-      "title": "Multiples vulnérabilités dans les produits Fortinet (12 novembre 2026)",
-      "url": "https://www.cert.cyber.gouv.fr/avis/CERTFR-2026-AVI-1499/",
-      "date": "2026-11-12T00:00:00+00:00",
-      "summary": "De multiples vulnérabilités ont été découvertes dans les produits Fortinet. Certaines d'entre elles permettent à un attaquant de provoquer une exécution de code arbitraire, une élévation de privilèges et une atteinte à la confidentialité des données."
-    },
-    {
-      "source": "CERT-FR",
-      "label": "CERT-FR",
       "title": "Multiples vulnérabilités dans les produits Palo Alto Networks (12 novembre 2026)",
       "url": "https://www.cert.cyber.gouv.fr/avis/CERTFR-2026-AVI-1521/",
       "date": "2026-11-12T00:00:00+00:00",
       "summary": "De multiples vulnérabilités ont été découvertes dans les produits Palo Alto Networks. Certaines d'entre elles permettent à un attaquant de provoquer une exécution de code arbitraire à distance, une élévation de privilèges et un déni de service à distance."
+    },
+    {
+      "source": "CERT-FR",
+      "label": "CERT-FR",
+      "title": "Multiples vulnérabilités dans Citrix Secure Access client (12 novembre 2026)",
+      "url": "https://www.cert.cyber.gouv.fr/avis/CERTFR-2026-AVI-1519/",
+      "date": "2026-11-12T00:00:00+00:00",
+      "summary": "De multiples vulnérabilités ont été découvertes dans Citrix Secure Access client. Elles permettent à un attaquant de provoquer une élévation de privilèges."
+    },
+    {
+      "source": "CERT-FR",
+      "label": "CERT-FR",
+      "title": "Multiples vulnérabilités dans Citrix XenServer (12 novembre 2026)",
+      "url": "https://www.cert.cyber.gouv.fr/avis/CERTFR-2026-AVI-1502/",
+      "date": "2026-11-12T00:00:00+00:00",
+      "summary": "De multiples vulnérabilités ont été découvertes dans Citrix XenServer. Certaines d'entre elles permettent à un attaquant de provoquer une élévation de privilèges, une atteinte à la confidentialité des données et un contournement de la politique de sécurité."
+    },
+    {
+      "source": "CERT-FR",
+      "label": "CERT-FR",
+      "title": "Multiples vulnérabilités dans les processeurs Intel (12 novembre 2026)",
+      "url": "https://www.cert.cyber.gouv.fr/avis/CERTFR-2026-AVI-1509/",
+      "date": "2026-11-12T00:00:00+00:00",
+      "summary": "De multiples vulnérabilités ont été découvertes dans les processeurs Intel. Certaines d'entre elles permettent à un attaquant de provoquer une exécution de code arbitraire, une élévation de privilèges et une atteinte à la confidentialité des données."
+    },
+    {
+      "source": "CERT-FR",
+      "label": "CERT-FR",
+      "title": "Multiples vulnérabilités dans HPE Aruba Networking Private 5G Core (12 novembre 2026)",
+      "url": "https://www.cert.cyber.gouv.fr/avis/CERTFR-2026-AVI-1503/",
+      "date": "2026-11-12T00:00:00+00:00",
+      "summary": "De multiples vulnérabilités ont été découvertes dans HPE Aruba Networking Private 5G Core. Certaines d'entre elles permettent à un attaquant de provoquer une atteinte à la confidentialité des données, une atteinte à l'intégrité des données et un contournement de la politique de sécurité."
+    },
+    {
+      "source": "CERT-FR",
+      "label": "CERT-FR",
+      "title": "Vulnérabilité dans GitLab (12 novembre 2026)",
+      "url": "https://www.cert.cyber.gouv.fr/avis/CERTFR-2026-AVI-1520/",
+      "date": "2026-11-12T00:00:00+00:00",
+      "summary": "Une vulnérabilité a été découverte dans GitLab. Elle permet à un attaquant de provoquer une exécution de code arbitraire à distance."
+    },
+    {
+      "source": "CERT-FR",
+      "label": "CERT-FR",
+      "title": "Multiples vulnérabilités dans MongoDB Core Server (12 novembre 2026)",
+      "url": "https://www.cert.cyber.gouv.fr/avis/CERTFR-2026-AVI-1522/",
+      "date": "2026-11-12T00:00:00+00:00",
+      "summary": "De multiples vulnérabilités ont été découvertes dans MongoDB Core Server. Certaines d'entre elles permettent à un attaquant de provoquer une exécution de code arbitraire, une atteinte à la confidentialité des données et une atteinte à l'intégrité des données."
+    },
+    {
+      "source": "CERT-FR",
+      "label": "CERT-FR",
+      "title": "Multiples vulnérabilités dans Traefik (12 novembre 2026)",
+      "url": "https://www.cert.cyber.gouv.fr/avis/CERTFR-2026-AVI-1517/",
+      "date": "2026-11-12T00:00:00+00:00",
+      "summary": "De multiples vulnérabilités ont été découvertes dans Traefik. Certaines d'entre elles permettent à un attaquant de provoquer un déni de service à distance, une atteinte à la confidentialité des données et une atteinte à l'intégrité des données."
+    },
+    {
+      "source": "CERT-FR",
+      "label": "CERT-FR",
+      "title": "Multiples vulnérabilités dans les produits Microsoft (12 novembre 2026)",
+      "url": "https://www.cert.cyber.gouv.fr/avis/CERTFR-2026-AVI-1515/",
+      "date": "2026-11-12T00:00:00+00:00",
+      "summary": "De multiples vulnérabilités ont été découvertes dans les produits Microsoft. Certaines d'entre elles permettent à un attaquant de provoquer une exécution de code arbitraire à distance, une élévation de privilèges et un déni de service à distance."
+    },
+    {
+      "source": "CERT-FR",
+      "label": "CERT-FR",
+      "title": "Multiples vulnérabilités dans Xen (12 novembre 2026)",
+      "url": "https://www.cert.cyber.gouv.fr/avis/CERTFR-2026-AVI-1508/",
+      "date": "2026-11-12T00:00:00+00:00",
+      "summary": "De multiples vulnérabilités ont été découvertes dans Xen. Certaines d'entre elles permettent à un attaquant de provoquer une élévation de privilèges, une atteinte à la confidentialité des données et un contournement de la politique de sécurité."
+    },
+    {
+      "source": "CERT-FR",
+      "label": "CERT-FR",
+      "title": "Multiples vulnérabilités dans Google Pixel (12 novembre 2026)",
+      "url": "https://www.cert.cyber.gouv.fr/avis/CERTFR-2026-AVI-1525/",
+      "date": "2026-11-12T00:00:00+00:00",
+      "summary": "De multiples vulnérabilités ont été découvertes dans Google Pixel. Certaines d'entre elles permettent à un attaquant de provoquer une exécution de code arbitraire à distance, une élévation de privilèges et une atteinte à la confidentialité des données."
+    },
+    {
+      "source": "CERT-FR",
+      "label": "CERT-FR",
+      "title": "Multiples vulnérabilités dans Microsoft Office (12 novembre 2026)",
+      "url": "https://www.cert.cyber.gouv.fr/avis/CERTFR-2026-AVI-1511/",
+      "date": "2026-11-12T00:00:00+00:00",
+      "summary": "De multiples vulnérabilités ont été découvertes dans Microsoft Office. Certaines d'entre elles permettent à un attaquant de provoquer une exécution de code arbitraire à distance, une élévation de privilèges et une atteinte à la confidentialité des données. Microsoft indique que la vulnérabilité..."
+    },
+    {
+      "source": "CERT-FR",
+      "label": "CERT-FR",
+      "title": "Multiples vulnérabilités dans Laravel (12 novembre 2026)",
+      "url": "https://www.cert.cyber.gouv.fr/avis/CERTFR-2026-AVI-1504/",
+      "date": "2026-11-12T00:00:00+00:00",
+      "summary": "De multiples vulnérabilités ont été découvertes dans Laravel. Elles permettent à un attaquant de provoquer un contournement de la politique de sécurité."
     },
     {
       "source": "CISA Cybersecurity Advisories",
@@ -258,94 +370,6 @@
       "url": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/IT/white/2026/va-26-313-01.json",
       "date": "2026-11-10T19:36:29+00:00",
       "summary": "Avis de sécurité CISA publié au format structuré CSAF."
-    },
-    {
-      "source": "CERT-FR",
-      "label": "CERT-FR",
-      "title": "Multiples vulnérabilités dans les produits SAP (10 novembre 2026)",
-      "url": "https://www.cert.cyber.gouv.fr/avis/CERTFR-2026-AVI-1497/",
-      "date": "2026-11-10T00:00:00+00:00",
-      "summary": "De multiples vulnérabilités ont été découvertes dans les produits SAP. Certaines d'entre elles permettent à un attaquant de provoquer une exécution de code arbitraire à distance, un déni de service à distance et une atteinte à la confidentialité des données."
-    },
-    {
-      "source": "CERT-FR",
-      "label": "CERT-FR",
-      "title": "Vulnérabilité dans Atlassian Confluence Data Center (10 novembre 2026)",
-      "url": "https://www.cert.cyber.gouv.fr/avis/CERTFR-2026-AVI-1492/",
-      "date": "2026-11-10T00:00:00+00:00",
-      "summary": "Une vulnérabilité a été découverte dans Atlassian Confluence Data Center. Elle permet à un attaquant de provoquer une exécution de code arbitraire à distance."
-    },
-    {
-      "source": "CERT-FR",
-      "label": "CERT-FR",
-      "title": "Multiples vulnérabilités dans Roundcube (10 novembre 2026)",
-      "url": "https://www.cert.cyber.gouv.fr/avis/CERTFR-2026-AVI-1489/",
-      "date": "2026-11-10T00:00:00+00:00",
-      "summary": "De multiples vulnérabilités ont été découvertes dans Roundcube. Certaines d'entre elles permettent à un attaquant de provoquer une exécution de code arbitraire, une falsification de requêtes côté serveur (SSRF) et une injection de requêtes illégitimes par rebond (CSRF)."
-    },
-    {
-      "source": "CERT-FR",
-      "label": "CERT-FR",
-      "title": "Multiples vulnérabilités dans Synology DSM (10 novembre 2026)",
-      "url": "https://www.cert.cyber.gouv.fr/avis/CERTFR-2026-AVI-1493/",
-      "date": "2026-11-10T00:00:00+00:00",
-      "summary": "De multiples vulnérabilités ont été découvertes dans Synology DSM. Certaines d'entre elles permettent à un attaquant de provoquer un déni de service à distance, une atteinte à la confidentialité des données et une falsification de requêtes côté serveur (SSRF)."
-    },
-    {
-      "source": "CERT-FR",
-      "label": "CERT-FR",
-      "title": "Multiples vulnérabilités dans Siemens SIMATIC (10 novembre 2026)",
-      "url": "https://www.cert.cyber.gouv.fr/avis/CERTFR-2026-AVI-1495/",
-      "date": "2026-11-10T00:00:00+00:00",
-      "summary": "De multiples vulnérabilités ont été découvertes dans Siemens SIMATIC. Elles permettent à un attaquant de provoquer une exécution de code arbitraire à distance et un contournement de la politique de sécurité."
-    },
-    {
-      "source": "CERT-FR",
-      "label": "CERT-FR",
-      "title": "Multiples vulnérabilités dans les produits Apple (10 novembre 2026)",
-      "url": "https://www.cert.cyber.gouv.fr/avis/CERTFR-2026-AVI-1487/",
-      "date": "2026-11-10T00:00:00+00:00",
-      "summary": "De multiples vulnérabilités ont été découvertes dans les produits Apple. Certaines d'entre elles permettent à un attaquant de provoquer une atteinte à la confidentialité des données, une atteinte à l'intégrité des données et un contournement de la politique de sécurité."
-    },
-    {
-      "source": "CERT-FR",
-      "label": "CERT-FR",
-      "title": "Multiples vulnérabilités dans Mozilla Firefox (10 novembre 2026)",
-      "url": "https://www.cert.cyber.gouv.fr/avis/CERTFR-2026-AVI-1490/",
-      "date": "2026-11-10T00:00:00+00:00",
-      "summary": "De multiples vulnérabilités ont été découvertes dans Mozilla Firefox. Elles permettent à un attaquant de provoquer une élévation de privilèges et un problème de sécurité non spécifié par l'éditeur."
-    },
-    {
-      "source": "CERT-FR",
-      "label": "CERT-FR",
-      "title": "Multiples vulnérabilités dans OpenSSL (10 novembre 2026)",
-      "url": "https://www.cert.cyber.gouv.fr/avis/CERTFR-2026-AVI-1496/",
-      "date": "2026-11-10T00:00:00+00:00",
-      "summary": "De multiples vulnérabilités ont été découvertes dans OpenSSL. Certaines d'entre elles permettent à un attaquant de provoquer un déni de service à distance, une atteinte à la confidentialité des données et un contournement de la politique de sécurité."
-    },
-    {
-      "source": "CERT-FR",
-      "label": "CERT-FR",
-      "title": "Vulnérabilité dans Schneider Electric EcoStruxure (10 novembre 2026)",
-      "url": "https://www.cert.cyber.gouv.fr/avis/CERTFR-2026-AVI-1494/",
-      "date": "2026-11-10T00:00:00+00:00",
-      "summary": "Une vulnérabilité a été découverte dans Schneider Electric EcoStruxure. Elle permet à un attaquant de provoquer une exécution de code arbitraire."
-    },
-    {
-      "source": "CERT-FR",
-      "label": "CERT-FR",
-      "title": "Multiples vulnérabilités dans le greffon OpenID Connect OpenID Provider (OIDC OP) pour Shibboleth (10 novembre 2026)",
-      "url": "https://www.cert.cyber.gouv.fr/avis/CERTFR-2026-AVI-1491/",
-      "date": "2026-11-10T00:00:00+00:00",
-      "summary": "De multiples vulnérabilités ont été découvertes dans le greffon OpenID Connect OpenID Provider (OIDC OP) pour Shibboleth. Elles permettent à un attaquant de provoquer un contournement de la politique de sécurité."
-    },
-    {
-      "source": "CERT-FR",
-      "label": "CERT-FR",
-      "title": "Multiples vulnérabilités dans Google Chrome (10 novembre 2026)",
-      "url": "https://www.cert.cyber.gouv.fr/avis/CERTFR-2026-AVI-1488/",
-      "date": "2026-11-10T00:00:00+00:00",
-      "summary": "De multiples vulnérabilités ont été découvertes dans Google Chrome. Elles permettent à un attaquant de provoquer un problème de sécurité non spécifié par l'éditeur. Google indique que la vulnérabilité CVE-2026-125350 est activement exploitée."
     },
     {
       "source": "CISA ICS Advisories",
@@ -620,35 +644,11 @@
       "summary": "Attackers are actively targeting Orkes Conductor servers vulnerable to CVE-2026-58138, a critical unauthenticated remote code execution vulnerability in its GraalVM script evaluators. FortiGuard telemetry is observing active attack attempts targeting vulnerable Orkes Conductor deployments. The vulnerability allows an unauthenticated attacker to submit a mali"
     },
     {
-      "source": "CISA Cybersecurity Advisories",
-      "label": "CISA Cybersecurity Advisories",
-      "title": "Waves Central local privilege escalation via Improper XPC Client Authentication in macOS",
-      "url": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/IT/white/2026/va-26-251-02.json",
-      "date": "2026-09-08T18:44:30+00:00",
-      "summary": "Avis de sécurité CISA publié au format structuré CSAF."
-    },
-    {
-      "source": "CISA Cybersecurity Advisories",
-      "label": "CISA Cybersecurity Advisories",
-      "title": "Maono Link local privilege escalation",
-      "url": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/IT/white/2026/va-26-251-01.json",
-      "date": "2026-09-08T18:36:54+00:00",
-      "summary": "Avis de sécurité CISA publié au format structuré CSAF."
-    },
-    {
       "source": "CISA ICS Advisories",
       "label": "CISA ICS Advisories",
       "title": "Siemens Mendix SAML",
       "url": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2026/icsa-26-258-06.json",
       "date": "2026-09-03T00:00:00+00:00",
-      "summary": "Avis de sécurité CISA publié au format structuré CSAF."
-    },
-    {
-      "source": "CISA Cybersecurity Advisories",
-      "label": "CISA Cybersecurity Advisories",
-      "title": "Redis TLS pending-data list use-after-free",
-      "url": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/IT/white/2026/va-26-239-01.json",
-      "date": "2026-08-27T19:51:09+00:00",
       "summary": "Avis de sécurité CISA publié au format structuré CSAF."
     },
     {
@@ -885,6 +885,39 @@
     }
   ],
   "kev": [
+    {
+      "cveID": "CVE-2026-114713",
+      "vendorProject": "UnrealIRCd",
+      "product": "UnrealIRCd",
+      "vulnerabilityName": "UnrealIRCd Improper Neutralization of Delimiters Vulnerability",
+      "dateAdded": "2026-11-13",
+      "shortDescription": "UnrealIRCd UnrealIRCd contains an improper neutralization of delimiters vulnerability that allows any user on a network with two or more linked servers to inject server-to-server commands that are executed with server authority.",
+      "requiredAction": "Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA’s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA’s “Forensics Triage Requirements” (see URL in Notes). Follow applicable BOD 26-04 guidance for cloud services or discontinue use of the product if mitigations are unavailable. Stakeholders are responsible for evaluating each asset's internet exposure and ensuring adherence to BOD 26-04 patching guidelines.",
+      "dueDate": "2026-11-16",
+      "knownRansomwareCampaignUse": "Unknown",
+      "forensicTriage": "Yes",
+      "notes": "https://forums.unrealircd.org/viewtopic.php?t=9487 ; BOD 26-04: https://www.cisa.gov/news-events/directives/bod-26-04-prioritizing-security-updates-based-risk ; Forensics Triage Requirements: https://www.cisa.gov/news-events/directives/bod-26-04-implementation-guidance-prioritizing-security-updates-based-risk ; https://nvd.nist.gov/vuln/detail/CVE-2026-114713",
+      "cwes": [
+        "CWE-140"
+      ]
+    },
+    {
+      "cveID": "CVE-2026-123039",
+      "vendorProject": "Check Point",
+      "product": "Multiple Products",
+      "vulnerabilityName": "Check Point Multiple Products Incorrect Permission Assignment for Critical Resource Vulnerability",
+      "dateAdded": "2026-11-13",
+      "shortDescription": "Check Point Firewall, Multi-Domain Security Management Server, Scalable Platforms, Security Gateway, and Security Management Server contain an incorrect permissions assignment for critical resources vulnerability when the Gaia OS DynamicCLI daemon runs as root and listens on a world-writable local socket without authenticating connecting processes. An authenticated local user can send a command to the socket and have it executed as root.",
+      "requiredAction": "Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA’s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA’s “Forensics Triage Requirements” (see URL in Notes). Follow applicable BOD 26-04 guidance for cloud services or discontinue use of the product if mitigations are unavailable. Stakeholders are responsible for evaluating each asset's internet exposure and ensuring adherence to BOD 26-04 patching guidelines.",
+      "dueDate": "2026-11-16",
+      "knownRansomwareCampaignUse": "Unknown",
+      "forensicTriage": "Yes",
+      "notes": "https://support.checkpoint.com/results/sk/sk1000362 ; BOD 26-04: https://www.cisa.gov/news-events/directives/bod-26-04-prioritizing-security-updates-based-risk ; Forensics Triage Requirements: https://www.cisa.gov/news-events/directives/bod-26-04-implementation-guidance-prioritizing-security-updates-based-risk ; https://nvd.nist.gov/vuln/detail/CVE-2026-123039",
+      "cwes": [
+        "CWE-732",
+        "CWE-862"
+      ]
+    },
     {
       "cveID": "CVE-2026-124194",
       "vendorProject": "Microsoft",
@@ -2476,34 +2509,6 @@
       "cwes": [
         "CWE-502"
       ]
-    },
-    {
-      "cveID": "CVE-2015-3246",
-      "vendorProject": "Red Hat",
-      "product": "Libuser",
-      "vulnerabilityName": "Red Hat Libuser Race Condition Vulnerability",
-      "dateAdded": "2026-08-26",
-      "shortDescription": "Red Hat libuser contains a race condition vulnerability that allows authenticated local users to corrupt the /etc/passwd file to cause a denial of service or privilege escalation. ",
-      "requiredAction": "Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA’s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA’s “Forensics Triage Requirements” (see URL in Notes). Follow applicable BOD 26-04 guidance for cloud services or discontinue use of the product if mitigations are unavailable. Stakeholders are responsible for evaluating each asset's internet exposure and ensuring adherence to BOD 26-04 patching guidelines.",
-      "dueDate": "2026-09-09",
-      "knownRansomwareCampaignUse": "Unknown",
-      "forensicTriage": "No",
-      "notes": "This vulnerability affects an open-source component, third-party library, protocol, or proprietary implementation that could be used by different products. For more information, please see: https://access.redhat.com/articles/1537873 ; BOD 26-04: https://www.cisa.gov/news-events/directives/bod-26-04-prioritizing-security-updates-based-risk ; Forensics Triage Requirements: https://www.cisa.gov/news-events/directives/bod-26-04-implementation-guidance-prioritizing-security-updates-based-risk ; https://nvd.nist.gov/vuln/detail/CVE-2015-3246",
-      "cwes": []
-    },
-    {
-      "cveID": "CVE-2015-5287",
-      "vendorProject": "Red Hat",
-      "product": "Automatic Bug Reporting Tool",
-      "vulnerabilityName": "Red Hat Automatic Bug Reporting Tool Privilege Escalation Vulnerability",
-      "dateAdded": "2026-08-26",
-      "shortDescription": "Red Hat Automatic Bug Reporting Tool (ABRT) contains a privilege escalation vulnerability that could allow local users with certain permissions to gain privileges via a symlink attack on a file with a predictable name. The impacted product(s) could be end-of-life (EoL) and/or end-of-service (EoS). Users are advised to discontinue use and/or transition to a supported version.",
-      "requiredAction": "Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA’s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA’s “Forensics Triage Requirements” (see URL in Notes). Follow applicable BOD 26-04 guidance for cloud services or discontinue use of the product if mitigations are unavailable. Stakeholders are responsible for evaluating each asset's internet exposure and ensuring adherence to BOD 26-04 patching guidelines.",
-      "dueDate": "2026-09-09",
-      "knownRansomwareCampaignUse": "Unknown",
-      "forensicTriage": "No",
-      "notes": "This vulnerability affects an open-source component, third-party library, protocol, or proprietary implementation that could be used by different products. For more information, please see: https://github.com/abrt/abrt/commit/3c1b60cfa62d39e5fff5a53a5bc53dae189e740e ; BOD 26-04: https://www.cisa.gov/news-events/directives/bod-26-04-prioritizing-security-updates-based-risk ; Forensics Triage Requirements: https://www.cisa.gov/news-events/directives/bod-26-04-implementation-guidance-prioritizing-security-updates-based-risk ; https://nvd.nist.gov/vuln/detail/CVE-2015-5287",
-      "cwes": []
     }
   ],
   "errors": [],
@@ -2511,7 +2516,7 @@
     "title": "Fortinet Releases Security Hardening Release for Multiple Products",
     "source": "https://www.fortinet.com/blog/ciso-collective/fortinet-releases-security-hardening-release-for-multiple-products",
     "publishedAt": "2026-10-21T13:00:00+00:00",
-    "checkedAt": "2026-11-13T06:42:59.137787+00:00",
+    "checkedAt": "2026-11-13T19:40:37.450735+00:00",
     "disclosureDate": "2026-11-10",
     "severityNote": "Fortinet qualifie globalement ces mises à jour de correctifs critiques et élevés; la sévérité par CVE n'est pas détaillée dans cette annonce.",
     "note": "Cette matrice indique les plages affectées et les versions correctives annoncées. Les identifiants CVE et les détails techniques par vulnérabilité ne figurent pas dans cette page; consulter les avis PSIRT détaillés avant toute décision de remédiation.",
