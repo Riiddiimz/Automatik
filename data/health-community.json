@@ -2,8 +2,8 @@
   "source": "community",
   "label": "Fortinet Community",
   "status": "partial",
-  "checkedAt": "2026-11-13T06:41:50.786988+00:00",
+  "checkedAt": "2026-11-13T19:40:37.010375+00:00",
   "lastSuccessAt": null,
-  "message": "La collecte s'est exécutée, mais certaines sources sont incomplètes : 1 sujet(s) potentiel(s) conservé(s) mais non classé(s): les tags publics ne permettent pas encore d'identifier le produit. Le flux Community ignore le paramètre start à 100; les sujets précédents se répètent. Le flux Community a renvoyé 100 entrées brutes sur 500 demandées; la couverture complète des 30 derniers jours n'est pas garantie.",
-  "runUrl": "https://github.com/Riiddiimz/Automatik/actions/runs/43380413939"
+  "message": "La collecte s'est exécutée, mais certaines sources sont incomplètes : Le flux Community ignore le paramètre start à 100; les sujets précédents se répètent. Le flux Community a renvoyé 100 entrées brutes sur 500 demandées; la couverture complète des 30 derniers jours n'est pas garantie. 1 sujet(s) potentiel(s) conservé(s) mais non classé(s): les tags publics ne permettent pas encore d'identifier le produit.",
+  "runUrl": "https://github.com/Riiddiimz/Automatik/actions/runs/43494266783"
 }
