@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-16T21:59:55.693618+00:00",
+  "generatedAt": "2026-11-17T07:53:13.824401+00:00",
   "fortinet": [
     {
       "source": "FortiGuard PSIRT",
@@ -85,17 +85,17 @@
       "source": "FortiGuard PSIRT",
       "label": "PSIRT",
       "title": "Authorization bypass through user-controlled key",
-      "url": "https://fortiguard.fortinet.com/psirt/FG-IR-26-204",
+      "url": "https://fortiguard.fortinet.com/psirt/FG-IR-26-211",
       "date": "2026-11-10T08:00:00+00:00",
-      "summary": "CVSSv3 Score: 8.1 An Authorization Bypass Through User-Controlled Key vulnerability [CWE-639] in FortiMail may allow an authenticated remote attacker to delete arbitrary directories as root, or to access or delete other users' calendar and mailbox data across tenant domains, via crafted HTTP requests to the webmail and administrative interfaces. Revised on 2"
+      "summary": "CVSSv3 Score: 7.5 An Authorization Bypass Through User-Controlled Key vulnerability [CWE-639] in FortiMail may allow an unauthenticated attacker to release or delete quarantined messages for arbitrary mailboxes via a crafted quarantine release request. Revised on 2026-11-10 00:00:00"
     },
     {
       "source": "FortiGuard PSIRT",
       "label": "PSIRT",
       "title": "Authorization bypass through user-controlled key",
-      "url": "https://fortiguard.fortinet.com/psirt/FG-IR-26-211",
+      "url": "https://fortiguard.fortinet.com/psirt/FG-IR-26-204",
       "date": "2026-11-10T08:00:00+00:00",
-      "summary": "CVSSv3 Score: 7.5 An Authorization Bypass Through User-Controlled Key vulnerability [CWE-639] in FortiMail may allow an unauthenticated attacker to release or delete quarantined messages for arbitrary mailboxes via a crafted quarantine release request. Revised on 2026-11-10 00:00:00"
+      "summary": "CVSSv3 Score: 8.1 An Authorization Bypass Through User-Controlled Key vulnerability [CWE-639] in FortiMail may allow an authenticated remote attacker to delete arbitrary directories as root, or to access or delete other users' calendar and mailbox data across tenant domains, via crafted HTTP requests to the webmail and administrative interfaces. Revised on 2"
     },
     {
       "source": "FortiGuard PSIRT",
@@ -2516,7 +2516,7 @@
     "title": "Fortinet Releases Security Hardening Release for Multiple Products",
     "source": "https://www.fortinet.com/blog/ciso-collective/fortinet-releases-security-hardening-release-for-multiple-products",
     "publishedAt": "2026-10-21T13:00:00+00:00",
-    "checkedAt": "2026-11-16T21:59:55.693618+00:00",
+    "checkedAt": "2026-11-17T07:53:13.824401+00:00",
     "disclosureDate": "2026-11-10",
     "severityNote": "Fortinet qualifie globalement ces mises à jour de correctifs critiques et élevés; la sévérité par CVE n'est pas détaillée dans cette annonce.",
     "note": "Cette matrice indique les plages affectées et les versions correctives annoncées. Les identifiants CVE et les détails techniques par vulnérabilité ne figurent pas dans cette page; consulter les avis PSIRT détaillés avant toute décision de remédiation.",
