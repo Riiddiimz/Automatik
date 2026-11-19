@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-19T07:22:32.790231+00:00",
+  "generatedAt": "2026-11-19T20:34:16.218180+00:00",
   "fortinet": [
     {
       "source": "FortiGuard PSIRT",
@@ -166,10 +166,98 @@
     {
       "source": "FortiGuard Outbreak Alerts",
       "label": "FortiGuard Outbreak Alerts",
+      "title": "PHP2Shell Remote Code Execution Vulnerabilities",
+      "url": "https://fortiguard.fortinet.com/outbreak-alert/php2shell",
+      "date": "2026-11-19T08:00:00+00:00",
+      "summary": "Successful exploitation could allow attackers to execute arbitrary code within the PHP application process, potentially compromising the affected server and exposing sensitive data, application files, or connected databases, depending on the process privileges and system configuration. FortiGuard Labs is monitoring the PHP2Shell vulnerabilities and related t"
+    },
+    {
+      "source": "CISA ICS Advisories",
+      "label": "CISA ICS Advisories",
+      "title": "libumqtt",
+      "url": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2026/icsa-26-323-03.json",
+      "date": "2026-11-19T06:00:00+00:00",
+      "summary": "Avis de sécurité CISA publié au format structuré CSAF."
+    },
+    {
+      "source": "CISA ICS Advisories",
+      "label": "CISA ICS Advisories",
+      "title": "Elecbrakes EB2, VM1, ELBC2000",
+      "url": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2026/icsa-26-323-02.json",
+      "date": "2026-11-19T06:00:00+00:00",
+      "summary": "Avis de sécurité CISA publié au format structuré CSAF."
+    },
+    {
+      "source": "CISA ICS Advisories",
+      "label": "CISA ICS Advisories",
+      "title": "Autonomy Logic OpenPLC Runtime",
+      "url": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2026/icsa-26-323-01.json",
+      "date": "2026-11-19T06:00:00+00:00",
+      "summary": "Avis de sécurité CISA publié au format structuré CSAF."
+    },
+    {
+      "source": "FortiGuard Outbreak Alerts",
+      "label": "FortiGuard Outbreak Alerts",
       "title": "Refrigeration Control Systems Attack",
       "url": "https://fortiguard.fortinet.com/outbreak-alert/refrigeration-control-systems-attack",
       "date": "2026-11-18T08:00:00+00:00",
       "summary": "Threat actors are targeting internet-accessible refrigeration management interfaces and industrial temperature controllers, exploiting vulnerabilities, authentication weaknesses and insecure configurations to gain unauthorized access. The affected technologies include: - Danfoss AK-SM and AK-SC refrigeration controllers. - Copeland XWEB refrigeration managem"
+    },
+    {
+      "source": "CERT-FR",
+      "label": "CERT-FR",
+      "title": "Multiples vulnérabilités dans Oracle Java SE (18 novembre 2026)",
+      "url": "https://www.cert.cyber.gouv.fr/avis/CERTFR-2026-AVI-1562/",
+      "date": "2026-11-18T00:00:00+00:00",
+      "summary": "De multiples vulnérabilités ont été découvertes dans Oracle Java SE. Certaines d'entre elles permettent à un attaquant de provoquer une exécution de code arbitraire à distance, un déni de service à distance et une atteinte à la confidentialité des données."
+    },
+    {
+      "source": "CERT-FR",
+      "label": "CERT-FR",
+      "title": "Multiples vulnérabilités dans les produits F5 (18 novembre 2026)",
+      "url": "https://www.cert.cyber.gouv.fr/avis/CERTFR-2026-AVI-1567/",
+      "date": "2026-11-18T00:00:00+00:00",
+      "summary": "De multiples vulnérabilités ont été découvertes dans les produits F5. Elles permettent à un attaquant de provoquer une exécution de code arbitraire à distance, un déni de service à distance et un contournement de la politique de sécurité."
+    },
+    {
+      "source": "CERT-FR",
+      "label": "CERT-FR",
+      "title": "Multiples vulnérabilités dans les produits Tenable (18 novembre 2026)",
+      "url": "https://www.cert.cyber.gouv.fr/avis/CERTFR-2026-AVI-1556/",
+      "date": "2026-11-18T00:00:00+00:00",
+      "summary": "De multiples vulnérabilités ont été découvertes dans les produits Tenable. Elles permettent à un attaquant de provoquer un déni de service à distance, une atteinte à la confidentialité des données et une atteinte à l'intégrité des données."
+    },
+    {
+      "source": "CERT-FR",
+      "label": "CERT-FR",
+      "title": "Multiples vulnérabilités dans Oracle Weblogic (18 novembre 2026)",
+      "url": "https://www.cert.cyber.gouv.fr/avis/CERTFR-2026-AVI-1565/",
+      "date": "2026-11-18T00:00:00+00:00",
+      "summary": "De multiples vulnérabilités ont été découvertes dans Oracle Weblogic. Certaines d'entre elles permettent à un attaquant de provoquer une exécution de code arbitraire à distance, un déni de service à distance et une atteinte à la confidentialité des données."
+    },
+    {
+      "source": "CERT-FR",
+      "label": "CERT-FR",
+      "title": "Multiples vulnérabilités dans Oracle MySQL (18 novembre 2026)",
+      "url": "https://www.cert.cyber.gouv.fr/avis/CERTFR-2026-AVI-1563/",
+      "date": "2026-11-18T00:00:00+00:00",
+      "summary": "De multiples vulnérabilités ont été découvertes dans Oracle MySQL. Elles permettent à un attaquant de provoquer un déni de service à distance, une atteinte à la confidentialité des données et une atteinte à l'intégrité des données."
+    },
+    {
+      "source": "CERT-FR",
+      "label": "CERT-FR",
+      "title": "Multiples vulnérabilités dans Google Chrome (18 novembre 2026)",
+      "url": "https://www.cert.cyber.gouv.fr/avis/CERTFR-2026-AVI-1559/",
+      "date": "2026-11-18T00:00:00+00:00",
+      "summary": "De multiples vulnérabilités ont été découvertes dans Google Chrome. Elles permettent à un attaquant de provoquer un problème de sécurité non spécifié par l'éditeur."
+    },
+    {
+      "source": "CERT-FR",
+      "label": "CERT-FR",
+      "title": "Multiples vulnérabilités dans Oracle PeopleSoft (18 novembre 2026)",
+      "url": "https://www.cert.cyber.gouv.fr/avis/CERTFR-2026-AVI-1564/",
+      "date": "2026-11-18T00:00:00+00:00",
+      "summary": "De multiples vulnérabilités ont été découvertes dans Oracle PeopleSoft. Elles permettent à un attaquant de provoquer une exécution de code arbitraire à distance, une atteinte à la confidentialité des données et une atteinte à l'intégrité des données."
     },
     {
       "source": "CERT-FR",
@@ -198,6 +286,54 @@
     {
       "source": "CERT-FR",
       "label": "CERT-FR",
+      "title": "Multiples vulnérabilités dans Tenable Identity Exposure (17 novembre 2026)",
+      "url": "https://www.cert.cyber.gouv.fr/avis/CERTFR-2026-AVI-1550/",
+      "date": "2026-11-17T00:00:00+00:00",
+      "summary": "De multiples vulnérabilités ont été découvertes dans Tenable Identity Exposure. Elles permettent à un attaquant de provoquer un problème de sécurité non spécifié par l'éditeur."
+    },
+    {
+      "source": "CERT-FR",
+      "label": "CERT-FR",
+      "title": "Vulnérabilité dans Axis OS (17 novembre 2026)",
+      "url": "https://www.cert.cyber.gouv.fr/avis/CERTFR-2026-AVI-1549/",
+      "date": "2026-11-17T00:00:00+00:00",
+      "summary": "Une vulnérabilité a été découverte dans Axis OS. Elle permet à un attaquant de provoquer une exécution de code arbitraire à distance."
+    },
+    {
+      "source": "CERT-FR",
+      "label": "CERT-FR",
+      "title": "Multiples vulnérabilités dans Microsoft SharePoint (17 novembre 2026)",
+      "url": "https://www.cert.cyber.gouv.fr/avis/CERTFR-2026-AVI-1555/",
+      "date": "2026-11-17T00:00:00+00:00",
+      "summary": "De multiples vulnérabilités ont été découvertes dans Microsoft SharePoint. Elles permettent à un attaquant de provoquer une exécution de code arbitraire à distance et une élévation de privilèges."
+    },
+    {
+      "source": "CERT-FR",
+      "label": "CERT-FR",
+      "title": "Multiples vulnérabilités dans OpenSSL (17 novembre 2026)",
+      "url": "https://www.cert.cyber.gouv.fr/avis/CERTFR-2026-AVI-1554/",
+      "date": "2026-11-17T00:00:00+00:00",
+      "summary": "De multiples vulnérabilités ont été découvertes dans OpenSSL. Elles permettent à un attaquant de provoquer un déni de service à distance."
+    },
+    {
+      "source": "CERT-FR",
+      "label": "CERT-FR",
+      "title": "Vulnérabilité dans GLPI (17 novembre 2026)",
+      "url": "https://www.cert.cyber.gouv.fr/avis/CERTFR-2026-AVI-1548/",
+      "date": "2026-11-17T00:00:00+00:00",
+      "summary": "Une vulnérabilité a été découverte dans GLPI. Elle permet à un attaquant de provoquer une atteinte à l'intégrité des données."
+    },
+    {
+      "source": "CERT-FR",
+      "label": "CERT-FR",
+      "title": "Multiples vulnérabilités dans GitLab (17 novembre 2026)",
+      "url": "https://www.cert.cyber.gouv.fr/avis/CERTFR-2026-AVI-1552/",
+      "date": "2026-11-17T00:00:00+00:00",
+      "summary": "De multiples vulnérabilités ont été découvertes dans GitLab. Certaines d'entre elles permettent à un attaquant de provoquer un déni de service à distance, une atteinte à la confidentialité des données et une falsification de requêtes côté serveur (SSRF)."
+    },
+    {
+      "source": "CERT-FR",
+      "label": "CERT-FR",
       "title": "Bulletin d'actualité CERTFR-2026-ACT-048 (16 novembre 2026)",
       "url": "https://www.cert.cyber.gouv.fr/actualite/CERTFR-2026-ACT-048/",
       "date": "2026-11-16T00:00:00+00:00",
@@ -210,54 +346,6 @@
       "url": "https://www.cert.cyber.gouv.fr/avis/CERTFR-2026-AVI-1546/",
       "date": "2026-11-16T00:00:00+00:00",
       "summary": "De multiples vulnérabilités ont été découvertes dans Microsoft Edge. Elles permettent à un attaquant de provoquer un problème de sécurité non spécifié par l'éditeur."
-    },
-    {
-      "source": "CERT-FR",
-      "label": "CERT-FR",
-      "title": "Multiples vulnérabilités dans Kerberos (16 novembre 2026)",
-      "url": "https://www.cert.cyber.gouv.fr/avis/CERTFR-2026-AVI-1540/",
-      "date": "2026-11-16T00:00:00+00:00",
-      "summary": "De multiples vulnérabilités ont été découvertes dans Kerberos. Certaines d'entre elles permettent à un attaquant de provoquer une exécution de code arbitraire à distance, un déni de service à distance et une atteinte à la confidentialité des données."
-    },
-    {
-      "source": "CERT-FR",
-      "label": "CERT-FR",
-      "title": "Vulnérabilité dans Citrix App Layering (16 novembre 2026)",
-      "url": "https://www.cert.cyber.gouv.fr/avis/CERTFR-2026-AVI-1545/",
-      "date": "2026-11-16T00:00:00+00:00",
-      "summary": "Une vulnérabilité a été découverte dans Citrix App Layering. Elle permet à un attaquant de provoquer un contournement de la politique de sécurité."
-    },
-    {
-      "source": "CERT-FR",
-      "label": "CERT-FR",
-      "title": "Multiples vulnérabilités dans MongoDB (16 novembre 2026)",
-      "url": "https://www.cert.cyber.gouv.fr/avis/CERTFR-2026-AVI-1544/",
-      "date": "2026-11-16T00:00:00+00:00",
-      "summary": "De multiples vulnérabilités ont été découvertes dans MongoDB. Certaines d'entre elles permettent à un attaquant de provoquer une exécution de code arbitraire à distance, une atteinte à la confidentialité des données et un contournement de la politique de sécurité."
-    },
-    {
-      "source": "CERT-FR",
-      "label": "CERT-FR",
-      "title": "Multiples vulnérabilités dans les produits Trend Micro (16 novembre 2026)",
-      "url": "https://www.cert.cyber.gouv.fr/avis/CERTFR-2026-AVI-1542/",
-      "date": "2026-11-16T00:00:00+00:00",
-      "summary": "De multiples vulnérabilités ont été découvertes dans les produits Trend Micro. Certaines d'entre elles permettent à un attaquant de provoquer une exécution de code arbitraire à distance, une élévation de privilèges et une atteinte à la confidentialité des données."
-    },
-    {
-      "source": "CERT-FR",
-      "label": "CERT-FR",
-      "title": "Vulnérabilité dans Git (16 novembre 2026)",
-      "url": "https://www.cert.cyber.gouv.fr/avis/CERTFR-2026-AVI-1541/",
-      "date": "2026-11-16T00:00:00+00:00",
-      "summary": "Une vulnérabilité a été découverte dans Git. Elle permet à un attaquant de provoquer une exécution de code arbitraire à distance."
-    },
-    {
-      "source": "CERT-FR",
-      "label": "CERT-FR",
-      "title": "Vulnérabilité dans VMware Tanzu (16 novembre 2026)",
-      "url": "https://www.cert.cyber.gouv.fr/avis/CERTFR-2026-AVI-1543/",
-      "date": "2026-11-16T00:00:00+00:00",
-      "summary": "Une vulnérabilité a été découverte dans VMware Tanzu. Elle permet à un attaquant de provoquer une exécution de code arbitraire à distance."
     },
     {
       "source": "CISA Cybersecurity Advisories",
@@ -284,70 +372,6 @@
       "summary": "Avis de sécurité CISA publié au format structuré CSAF."
     },
     {
-      "source": "CERT-FR",
-      "label": "CERT-FR",
-      "title": "Multiples vulnérabilités dans Progress Telerik (13 novembre 2026)",
-      "url": "https://www.cert.cyber.gouv.fr/avis/CERTFR-2026-AVI-1533/",
-      "date": "2026-11-13T00:00:00+00:00",
-      "summary": "De multiples vulnérabilités ont été découvertes dans Progress Telerik. Certaines d'entre elles permettent à un attaquant de provoquer un déni de service à distance, une atteinte à la confidentialité des données et une atteinte à l'intégrité des données."
-    },
-    {
-      "source": "CERT-FR",
-      "label": "CERT-FR",
-      "title": "Vulnérabilité dans les produits Axis (13 novembre 2026)",
-      "url": "https://www.cert.cyber.gouv.fr/avis/CERTFR-2026-AVI-1534/",
-      "date": "2026-11-13T00:00:00+00:00",
-      "summary": "Une vulnérabilité a été découverte dans les produits Axis. Elle permet à un attaquant de provoquer une exécution de code arbitraire à distance."
-    },
-    {
-      "source": "CERT-FR",
-      "label": "CERT-FR",
-      "title": "Multiples vulnérabilités dans le noyau Linux de Debian (13 novembre 2026)",
-      "url": "https://www.cert.cyber.gouv.fr/avis/CERTFR-2026-AVI-1538/",
-      "date": "2026-11-13T00:00:00+00:00",
-      "summary": "De multiples vulnérabilités ont été découvertes dans le noyau Linux de Debian. Certaines d'entre elles permettent à un attaquant de provoquer une élévation de privilèges, une atteinte à la confidentialité des données et un contournement de la politique de sécurité."
-    },
-    {
-      "source": "CERT-FR",
-      "label": "CERT-FR",
-      "title": "Vulnérabilité dans Opera Neon (13 novembre 2026)",
-      "url": "https://www.cert.cyber.gouv.fr/avis/CERTFR-2026-AVI-1532/",
-      "date": "2026-11-13T00:00:00+00:00",
-      "summary": "Une vulnérabilité a été découverte dans Opera Neon. Elle permet à un attaquant de provoquer un contournement de la politique de sécurité."
-    },
-    {
-      "source": "CERT-FR",
-      "label": "CERT-FR",
-      "title": "Multiples vulnérabilités dans le noyau Linux de Red Hat (13 novembre 2026)",
-      "url": "https://www.cert.cyber.gouv.fr/avis/CERTFR-2026-AVI-1536/",
-      "date": "2026-11-13T00:00:00+00:00",
-      "summary": "De multiples vulnérabilités ont été découvertes dans le noyau Linux de Red Hat. Certaines d'entre elles permettent à un attaquant de provoquer une exécution de code arbitraire à distance, une élévation de privilèges et un déni de service à distance."
-    },
-    {
-      "source": "CERT-FR",
-      "label": "CERT-FR",
-      "title": "Multiples vulnérabilités dans le noyau Linux d'Ubuntu (13 novembre 2026)",
-      "url": "https://www.cert.cyber.gouv.fr/avis/CERTFR-2026-AVI-1537/",
-      "date": "2026-11-13T00:00:00+00:00",
-      "summary": "De multiples vulnérabilités ont été découvertes dans le noyau Linux d'Ubuntu. Certaines d'entre elles permettent à un attaquant de provoquer une exécution de code arbitraire, une atteinte à l'intégrité des données et un contournement de la politique de sécurité."
-    },
-    {
-      "source": "CERT-FR",
-      "label": "CERT-FR",
-      "title": "Multiples vulnérabilités dans le noyau Linux de SUSE (13 novembre 2026)",
-      "url": "https://www.cert.cyber.gouv.fr/avis/CERTFR-2026-AVI-1535/",
-      "date": "2026-11-13T00:00:00+00:00",
-      "summary": "De multiples vulnérabilités ont été découvertes dans le noyau Linux de SUSE. Certaines d'entre elles permettent à un attaquant de provoquer une atteinte à la confidentialité des données, une atteinte à l'intégrité des données et un contournement de la politique de sécurité."
-    },
-    {
-      "source": "CERT-FR",
-      "label": "CERT-FR",
-      "title": "Multiples vulnérabilités dans les produits IBM (13 novembre 2026)",
-      "url": "https://www.cert.cyber.gouv.fr/avis/CERTFR-2026-AVI-1539/",
-      "date": "2026-11-13T00:00:00+00:00",
-      "summary": "De multiples vulnérabilités ont été découvertes dans les produits IBM. Certaines d'entre elles permettent à un attaquant de provoquer une exécution de code arbitraire à distance, un déni de service à distance et une atteinte à la confidentialité des données."
-    },
-    {
       "source": "CISA Cybersecurity Advisories",
       "label": "CISA Cybersecurity Advisories",
       "title": "AsiaInfo BSS multiple vulnerabilities",
@@ -372,20 +396,20 @@
       "summary": "Avis de sécurité CISA publié au format structuré CSAF."
     },
     {
+      "source": "CERT-FR",
+      "label": "CERT-FR",
+      "title": "Multiples vulnérabilités dans les produits Mattermost (04 novembre 2026)",
+      "url": "https://www.cert.cyber.gouv.fr/avis/CERTFR-2026-AVI-1458/",
+      "date": "2026-11-04T00:00:00+00:00",
+      "summary": "De multiples vulnérabilités ont été découvertes dans les produits Mattermost. Elles permettent à un attaquant de provoquer un déni de service à distance et un problème de sécurité non spécifié par l'éditeur."
+    },
+    {
       "source": "FortiGuard Outbreak Alerts",
       "label": "FortiGuard Outbreak Alerts",
       "title": "Node2Shell Remote Code Execution",
       "url": "https://fortiguard.fortinet.com/outbreak-alert/node2shell",
       "date": "2026-10-27T07:00:00+00:00",
       "summary": "CVE-2026-111497 is an out-of-bounds write vulnerability in Google's Brotli decoder, a component used to decompress data encoded with the Brotli compression algorithm. Brotli is widely used in web communications and is incorporated into software libraries, runtimes, and HTTP clients, including Node.js."
-    },
-    {
-      "source": "FortiGuard Outbreak Alerts",
-      "label": "FortiGuard Outbreak Alerts",
-      "title": "PHP2Shell Remote Code Execution Vulnerabilities",
-      "url": "https://fortiguard.fortinet.com/outbreak-alert/php2shell",
-      "date": "2026-10-27T07:00:00+00:00",
-      "summary": "Successful exploitation could allow attackers to execute arbitrary code within the PHP application process, potentially compromising the affected server and exposing sensitive data, application files, or connected databases, depending on the process privileges and system configuration. FortiGuard Labs is monitoring the PHP2Shell vulnerabilities and related t"
     },
     {
       "source": "CISA Cybersecurity Advisories",
@@ -418,6 +442,14 @@
       "url": "https://feeds.fortinet.com/~/971845082/0/fortinet/blog/ciso-collective~Fortinet-Releases-Security-Hardening-Release-for-Multiple-Products",
       "date": "2026-10-21T13:00:00+00:00",
       "summary": "Fortinet announces frontier AI hardening releases for a range of products including FortiOS, FortiManager, FortiAnalyzer, FortiMail, and FortiAuthenticator. &#160; &#160; &#160; &#160; &nbsp;&#160;"
+    },
+    {
+      "source": "CERT-FR",
+      "label": "CERT-FR",
+      "title": "Multiples vulnérabilités dans Mattermost Server (20 octobre 2026)",
+      "url": "https://www.cert.cyber.gouv.fr/avis/CERTFR-2026-AVI-1344/",
+      "date": "2026-10-20T00:00:00+00:00",
+      "summary": "De multiples vulnérabilités ont été découvertes dans Mattermost Server. Elles permettent à un attaquant de provoquer un déni de service à distance, une atteinte à la confidentialité des données et un contournement de la politique de sécurité."
     },
     {
       "source": "FortiGuard Outbreak Alerts",
@@ -482,14 +514,6 @@
       "url": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/IT/white/2026/va-26-274-01.json",
       "date": "2026-09-30T18:58:55+00:00",
       "summary": "Avis de sécurité CISA publié au format structuré CSAF."
-    },
-    {
-      "source": "CERT-FR",
-      "label": "CERT-FR",
-      "title": "Multiples vulnérabilités dans Citrix NetScaler ADC et Gateway (28 septembre 2026)",
-      "url": "https://www.cert.cyber.gouv.fr/alerte/CERTFR-2026-ALE-011/",
-      "date": "2026-09-28T00:00:00+00:00",
-      "summary": "**[Mise à jour du 05 octobre 2026]** Le 4 octobre 2026, Citrix a publié un avis concernant une nouvelle vulnérabilité (CVE-2026-88779) permettant un déni de service à distance. La CISA indique que cette vulnérabilité est activement exploitée. **[Mise à jour du 30 septembre 2026]** Dans un billet..."
     },
     {
       "source": "CISA Cybersecurity Advisories",
@@ -857,30 +881,6 @@
       "title": "LCDS - Leão Consultoria e Desenvolvimento de Sistemas Ltda ME LAquis SCADA ELS Files",
       "url": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2019/icsa-19-073-01.json",
       "date": "2019-03-14T00:00:00+00:00",
-      "summary": "Avis de sécurité CISA publié au format structuré CSAF."
-    },
-    {
-      "source": "CISA ICS Advisories",
-      "label": "CISA ICS Advisories",
-      "title": "LCDS - Leão Consultoria e Desenvolvimento de Sistemas Ltda ME LAquis SCADA",
-      "url": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2019/icsa-19-015-01.json",
-      "date": "2019-01-15T00:00:00+00:00",
-      "summary": "Avis de sécurité CISA publié au format structuré CSAF."
-    },
-    {
-      "source": "CISA ICS Advisories",
-      "label": "CISA ICS Advisories",
-      "title": "Geutebrück GmbH E2 Series IP Cameras",
-      "url": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2018/icsa-18-347-03.json",
-      "date": "2018-12-13T00:00:00+00:00",
-      "summary": "Avis de sécurité CISA publié au format structuré CSAF."
-    },
-    {
-      "source": "CISA ICS Advisories",
-      "label": "CISA ICS Advisories",
-      "title": "LCDS - Leão Consultoria e Desenvolvimento de Sistemas Ltda ME LAquis SCADA",
-      "url": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2018/icsa-18-289-01.json",
-      "date": "2018-10-16T00:00:00+00:00",
       "summary": "Avis de sécurité CISA publié au format structuré CSAF."
     }
   ],
@@ -2520,7 +2520,7 @@
     "title": "Fortinet Releases Security Hardening Release for Multiple Products",
     "source": "https://www.fortinet.com/blog/ciso-collective/fortinet-releases-security-hardening-release-for-multiple-products",
     "publishedAt": "2026-10-21T13:00:00+00:00",
-    "checkedAt": "2026-11-19T07:22:32.790231+00:00",
+    "checkedAt": "2026-11-19T20:34:16.218180+00:00",
     "disclosureDate": "2026-11-10",
     "severityNote": "Fortinet qualifie globalement ces mises à jour de correctifs critiques et élevés; la sévérité par CVE n'est pas détaillée dans cette annonce.",
     "note": "Cette matrice indique les plages affectées et les versions correctives annoncées. Les identifiants CVE et les détails techniques par vulnérabilité ne figurent pas dans cette page; consulter les avis PSIRT détaillés avant toute décision de remédiation.",
