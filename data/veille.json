@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-18T20:29:51.377542+00:00",
+  "generatedAt": "2026-11-19T07:22:32.790231+00:00",
   "fortinet": [
     {
       "source": "FortiGuard PSIRT",
@@ -170,14 +170,6 @@
       "url": "https://fortiguard.fortinet.com/outbreak-alert/refrigeration-control-systems-attack",
       "date": "2026-11-18T08:00:00+00:00",
       "summary": "Threat actors are targeting internet-accessible refrigeration management interfaces and industrial temperature controllers, exploiting vulnerabilities, authentication weaknesses and insecure configurations to gain unauthorized access. The affected technologies include: - Danfoss AK-SM and AK-SC refrigeration controllers. - Copeland XWEB refrigeration managem"
-    },
-    {
-      "source": "CISA ICS Advisories",
-      "label": "CISA ICS Advisories",
-      "title": "Dorsett Controls InfoScan",
-      "url": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2026/icsa-26-321-01.json",
-      "date": "2026-11-17T06:00:00+00:00",
-      "summary": "Avis de sécurité CISA publié au format structuré CSAF."
     },
     {
       "source": "CERT-FR",
@@ -380,78 +372,6 @@
       "summary": "Avis de sécurité CISA publié au format structuré CSAF."
     },
     {
-      "source": "CISA ICS Advisories",
-      "label": "CISA ICS Advisories",
-      "title": "Siemens meta-iot2050",
-      "url": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2026/icsa-26-321-11.json",
-      "date": "2026-11-10T00:00:00+00:00",
-      "summary": "Avis de sécurité CISA publié au format structuré CSAF."
-    },
-    {
-      "source": "CISA ICS Advisories",
-      "label": "CISA ICS Advisories",
-      "title": "Siemens Simcenter Femap",
-      "url": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2026/icsa-26-321-10.json",
-      "date": "2026-11-10T00:00:00+00:00",
-      "summary": "Avis de sécurité CISA publié au format structuré CSAF."
-    },
-    {
-      "source": "CISA ICS Advisories",
-      "label": "CISA ICS Advisories",
-      "title": "Siemens SIMATIC WinCC",
-      "url": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2026/icsa-26-321-09.json",
-      "date": "2026-11-10T00:00:00+00:00",
-      "summary": "Avis de sécurité CISA publié au format structuré CSAF."
-    },
-    {
-      "source": "CISA ICS Advisories",
-      "label": "CISA ICS Advisories",
-      "title": "Siemens SIMATIC",
-      "url": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2026/icsa-26-321-08.json",
-      "date": "2026-11-10T00:00:00+00:00",
-      "summary": "Avis de sécurité CISA publié au format structuré CSAF."
-    },
-    {
-      "source": "CISA ICS Advisories",
-      "label": "CISA ICS Advisories",
-      "title": "Siemens RUGGEDCOM APE1808",
-      "url": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2026/icsa-26-321-07.json",
-      "date": "2026-11-10T00:00:00+00:00",
-      "summary": "Avis de sécurité CISA publié au format structuré CSAF."
-    },
-    {
-      "source": "CISA ICS Advisories",
-      "label": "CISA ICS Advisories",
-      "title": "Siemens ROS#",
-      "url": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2026/icsa-26-321-06.json",
-      "date": "2026-11-10T00:00:00+00:00",
-      "summary": "Avis de sécurité CISA publié au format structuré CSAF."
-    },
-    {
-      "source": "CISA ICS Advisories",
-      "label": "CISA ICS Advisories",
-      "title": "Siemens Mendix Studio Pro",
-      "url": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2026/icsa-26-321-05.json",
-      "date": "2026-11-10T00:00:00+00:00",
-      "summary": "Avis de sécurité CISA publié au format structuré CSAF."
-    },
-    {
-      "source": "CISA ICS Advisories",
-      "label": "CISA ICS Advisories",
-      "title": "Siemens Industrial Software Products",
-      "url": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2026/icsa-26-321-04.json",
-      "date": "2026-11-10T00:00:00+00:00",
-      "summary": "Avis de sécurité CISA publié au format structuré CSAF."
-    },
-    {
-      "source": "CISA ICS Advisories",
-      "label": "CISA ICS Advisories",
-      "title": "Siemens Industrial Automation Software Products",
-      "url": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2026/icsa-26-321-03.json",
-      "date": "2026-11-10T00:00:00+00:00",
-      "summary": "Avis de sécurité CISA publié au format structuré CSAF."
-    },
-    {
       "source": "FortiGuard Outbreak Alerts",
       "label": "FortiGuard Outbreak Alerts",
       "title": "Node2Shell Remote Code Execution",
@@ -506,22 +426,6 @@
       "url": "https://fortiguard.fortinet.com/outbreak-alert/atlassian-arbitrary-file-access",
       "date": "2026-10-19T07:00:00+00:00",
       "summary": "CVE-2026-21589 is a critical arbitrary file access vulnerability affecting multiple Atlassian Data Center products, including Bitbucket, Confluence, Jira Software, Jira Service Management, Bamboo, Crowd, Crucible, and Fisheye. The vulnerability allows an unauthenticated remote attacker to access specific files within an affected application's web root direct"
-    },
-    {
-      "source": "CISA ICS Advisories",
-      "label": "CISA ICS Advisories",
-      "title": "Siemens .NET Client Library for SIMATIC S7 Webserver API",
-      "url": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2026/icsa-26-321-02.json",
-      "date": "2026-10-13T00:00:00+00:00",
-      "summary": "Avis de sécurité CISA publié au format structuré CSAF."
-    },
-    {
-      "source": "CISA ICS Advisories",
-      "label": "CISA ICS Advisories",
-      "title": "Siemens SIMATIC S7-1500 CPU 1518(F)-4 PN/DP MFP",
-      "url": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2026/icsa-26-295-11.json",
-      "date": "2026-10-13T00:00:00+00:00",
-      "summary": "Avis de sécurité CISA publié au format structuré CSAF."
     },
     {
       "source": "CISA Cybersecurity Advisories",
@@ -644,14 +548,6 @@
       "summary": "Fortinet CISO Carl Windsor shares progress on CISA's Secure by Design Pledge, from automatic updates and product hardening to greater transparency. &#160; &#160; &#160; &#160; &nbsp;&#160;"
     },
     {
-      "source": "CISA ICS Advisories",
-      "label": "CISA ICS Advisories",
-      "title": "Siemens RUGGEDCOM APE1808",
-      "url": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2026/icsa-26-225-06.json",
-      "date": "2026-08-11T00:00:00+00:00",
-      "summary": "Avis de sécurité CISA publié au format structuré CSAF."
-    },
-    {
       "source": "FortiGuard Outbreak Alerts",
       "label": "FortiGuard Outbreak Alerts",
       "title": "QuickFox Supply Chain Attack",
@@ -682,14 +578,6 @@
       "url": "https://fortiguard.fortinet.com/outbreak-alert/joomla-sp-page-builder-rce",
       "date": "2026-07-17T07:00:00+00:00",
       "summary": "FortiGuard Labs continues to observe active exploitation of CVE-2026-48908, a critical unauthenticated remote code execution vulnerability affecting the JoomShaper SP Page Builder extension for Joomla. At the time of release, FortiGuard telemetry recorded 1,210 blocked exploitation attempts in the last 24 hours and 15,626 attempts over the past 7 days."
-    },
-    {
-      "source": "CISA ICS Advisories",
-      "label": "CISA ICS Advisories",
-      "title": "Siemens RUGGEDCOM APE1808 with Palo Alto Networks Virtual NGFW",
-      "url": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2026/icsa-26-202-02.json",
-      "date": "2026-07-14T00:00:00+00:00",
-      "summary": "Avis de sécurité CISA publié au format structuré CSAF."
     },
     {
       "source": "FortiGuard Outbreak Alerts",
@@ -724,14 +612,6 @@
       "summary": "Security researchers have disclosed a new denial-of-service (DoS) attack technique dubbed HTTP/2 Bomb, tracked as CVE-2026-49975, that affects multiple major HTTP/2 server implementations. Unlike traditional volumetric DDoS attacks, HTTP/2 Bomb does not require a large botnet. Researchers demonstrated that a single attacker operating from a modest internet c"
     },
     {
-      "source": "CISA ICS Advisories",
-      "label": "CISA ICS Advisories",
-      "title": "Siemens Products using OpenSSL",
-      "url": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2026/icsa-26-174-03.json",
-      "date": "2026-06-09T00:00:00+00:00",
-      "summary": "Avis de sécurité CISA publié au format structuré CSAF."
-    },
-    {
       "source": "FortiGuard Outbreak Alerts",
       "label": "FortiGuard Outbreak Alerts",
       "title": "Citrix NetScaler Memory Overread Vulnerability",
@@ -746,14 +626,6 @@
       "url": "https://feeds.fortinet.com/~/956879882/0/fortinet/blog/ciso-collective~Defending-Critical-Infrastructure-Why-OT-Security-Demands-a-ThreatInformed-Approach",
       "date": "2026-05-21T13:00:00+00:00",
       "summary": "As OT environments face more targeted cyberattacks, CISOs need a threat-informed security strategy built for industrial risk. &#160; &#160; &#160; &#160; &nbsp;&#160;"
-    },
-    {
-      "source": "CISA ICS Advisories",
-      "label": "CISA ICS Advisories",
-      "title": "Siemens Industrial Devices",
-      "url": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2026/icsa-26-134-06.json",
-      "date": "2026-05-12T00:00:00+00:00",
-      "summary": "Avis de sécurité CISA publié au format structuré CSAF."
     },
     {
       "source": "FortiGuard Outbreak Alerts",
@@ -802,14 +674,6 @@
       "url": "https://fortiguard.fortinet.com/outbreak-alert/interlock-ransomware",
       "date": "2026-03-19T07:00:00+00:00",
       "summary": "An active Interlock ransomware campaign is exploiting a critical vulnerability (CVE-2026-20131) in Cisco Secure Firewall Management Center (FMC), enabling unauthenticated remote code execution as root. The campaign combines edge-device exploitation, custom malware tooling, and double extortion tactics, indicating a mature and targeted ransomware operation."
-    },
-    {
-      "source": "CISA ICS Advisories",
-      "label": "CISA ICS Advisories",
-      "title": "Mitsubishi Electric CNC Series (Update B)",
-      "url": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2026/icsa-26-078-05.json",
-      "date": "2026-03-10T00:00:00+00:00",
-      "summary": "Avis de sécurité CISA publié au format structuré CSAF."
     },
     {
       "source": "FortiGuard Outbreak Alerts",
@@ -862,25 +726,161 @@
     {
       "source": "CISA ICS Advisories",
       "label": "CISA ICS Advisories",
-      "title": "Siemens Web Installer",
-      "url": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2025/icsa-25-226-22.json",
-      "date": "2025-08-12T00:00:00+00:00",
+      "title": "Schneider Electric Enerlin'X IFE and eIFE",
+      "url": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2025/icsa-25-079-02.json",
+      "date": "2025-02-11T06:00:00+00:00",
       "summary": "Avis de sécurité CISA publié au format structuré CSAF."
     },
     {
       "source": "CISA ICS Advisories",
       "label": "CISA ICS Advisories",
-      "title": "Siemens SIMATIC S7-PLCSIM",
-      "url": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2025/icsa-25-226-11.json",
-      "date": "2025-08-12T00:00:00+00:00",
+      "title": "Siemens Teamcenter Visualization",
+      "url": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2024/icsa-24-347-09.json",
+      "date": "2024-12-10T00:00:00+00:00",
       "summary": "Avis de sécurité CISA publié au format structuré CSAF."
     },
     {
       "source": "CISA ICS Advisories",
       "label": "CISA ICS Advisories",
-      "title": "Siemens Engineering Platforms",
-      "url": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2025/icsa-25-226-03.json",
-      "date": "2025-08-12T00:00:00+00:00",
+      "title": "Siemens COMOS",
+      "url": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2024/icsa-24-347-08.json",
+      "date": "2024-12-10T00:00:00+00:00",
+      "summary": "Avis de sécurité CISA publié au format structuré CSAF."
+    },
+    {
+      "source": "CISA ICS Advisories",
+      "label": "CISA ICS Advisories",
+      "title": "Siemens RUGGEDCOM ROX II",
+      "url": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2024/icsa-24-347-03.json",
+      "date": "2024-12-10T00:00:00+00:00",
+      "summary": "Avis de sécurité CISA publié au format structuré CSAF."
+    },
+    {
+      "source": "CISA ICS Advisories",
+      "label": "CISA ICS Advisories",
+      "title": "Siemens CPCI85 Central Processing/Communication",
+      "url": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2024/icsa-24-347-01.json",
+      "date": "2024-12-10T00:00:00+00:00",
+      "summary": "Avis de sécurité CISA publié au format structuré CSAF."
+    },
+    {
+      "source": "CISA ICS Advisories",
+      "label": "CISA ICS Advisories",
+      "title": "Schneider Electric Vijeo Designer and EcoStruxure Machine Expert (Update A)",
+      "url": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2025/icsa-25-014-02.json",
+      "date": "2024-09-10T00:00:00+00:00",
+      "summary": "Avis de sécurité CISA publié au format structuré CSAF."
+    },
+    {
+      "source": "CISA ICS Advisories",
+      "label": "CISA ICS Advisories",
+      "title": "Siemens Software Center",
+      "url": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2023/icsa-23-222-04.json",
+      "date": "2023-08-08T00:00:00+00:00",
+      "summary": "Avis de sécurité CISA publié au format structuré CSAF."
+    },
+    {
+      "source": "CISA ICS Advisories",
+      "label": "CISA ICS Advisories",
+      "title": "Siemens JT Open, JT Utilities, and Parasolid",
+      "url": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2023/icsa-23-222-03.json",
+      "date": "2023-08-08T00:00:00+00:00",
+      "summary": "Avis de sécurité CISA publié au format structuré CSAF."
+    },
+    {
+      "source": "CISA ICS Advisories",
+      "label": "CISA ICS Advisories",
+      "title": "Hitachi Energy's AFS65x, AFS67x, AFR67x and AFF66x Products",
+      "url": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2023/icsa-23-143-01.json",
+      "date": "2023-05-31T20:26:29.765074+00:00",
+      "summary": "Avis de sécurité CISA publié au format structuré CSAF."
+    },
+    {
+      "source": "CISA ICS Advisories",
+      "label": "CISA ICS Advisories",
+      "title": "Hitachi Energy's MicroSCADA Pro/X SYS600 Products",
+      "url": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2023/icsa-23-138-03.json",
+      "date": "2023-05-18T19:01:59.415885+00:00",
+      "summary": "Avis de sécurité CISA publié au format structuré CSAF."
+    },
+    {
+      "source": "CISA ICS Advisories",
+      "label": "CISA ICS Advisories",
+      "title": "JTEKT ELECTRONICS Kostac PLC Programming Software",
+      "url": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2023/icsa-23-096-03.json",
+      "date": "2023-04-10T16:34:33.527289+00:00",
+      "summary": "Avis de sécurité CISA publié au format structuré CSAF."
+    },
+    {
+      "source": "CISA ICS Advisories",
+      "label": "CISA ICS Advisories",
+      "title": "Geutebrück G-Cam E2 and G-Code",
+      "url": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2021/icsa-21-208-03.json",
+      "date": "2021-07-27T00:00:00+00:00",
+      "summary": "Avis de sécurité CISA publié au format structuré CSAF."
+    },
+    {
+      "source": "CISA ICS Advisories",
+      "label": "CISA ICS Advisories",
+      "title": "Innokas Yhtymä Oy Vital Signs Monitor",
+      "url": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2021/icsma-21-007-01.json",
+      "date": "2021-01-07T00:00:00+00:00",
+      "summary": "Avis de sécurité CISA publié au format structuré CSAF."
+    },
+    {
+      "source": "CISA ICS Advisories",
+      "label": "CISA ICS Advisories",
+      "title": "Johnson Controls Sensormatic Electronics American Dynamics victor Web Client and Software House C•CURE Web Client (Update A)",
+      "url": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2020/icsa-20-282-01.json",
+      "date": "2020-10-08T00:00:00+00:00",
+      "summary": "Avis de sécurité CISA publié au format structuré CSAF."
+    },
+    {
+      "source": "CISA ICS Advisories",
+      "label": "CISA ICS Advisories",
+      "title": "Geutebrück G-Cam and G-Code",
+      "url": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2020/icsa-20-219-03.json",
+      "date": "2020-08-06T00:00:00+00:00",
+      "summary": "Avis de sécurité CISA publié au format structuré CSAF."
+    },
+    {
+      "source": "CISA ICS Advisories",
+      "label": "CISA ICS Advisories",
+      "title": "Geutebrück G-Cam and G-Code",
+      "url": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2019/icsa-19-155-03.json",
+      "date": "2019-06-04T00:00:00+00:00",
+      "summary": "Avis de sécurité CISA publié au format structuré CSAF."
+    },
+    {
+      "source": "CISA ICS Advisories",
+      "label": "CISA ICS Advisories",
+      "title": "LCDS - Leão Consultoria e Desenvolvimento de Sistemas Ltda ME LAquis SCADA ELS Files",
+      "url": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2019/icsa-19-073-01.json",
+      "date": "2019-03-14T00:00:00+00:00",
+      "summary": "Avis de sécurité CISA publié au format structuré CSAF."
+    },
+    {
+      "source": "CISA ICS Advisories",
+      "label": "CISA ICS Advisories",
+      "title": "LCDS - Leão Consultoria e Desenvolvimento de Sistemas Ltda ME LAquis SCADA",
+      "url": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2019/icsa-19-015-01.json",
+      "date": "2019-01-15T00:00:00+00:00",
+      "summary": "Avis de sécurité CISA publié au format structuré CSAF."
+    },
+    {
+      "source": "CISA ICS Advisories",
+      "label": "CISA ICS Advisories",
+      "title": "Geutebrück GmbH E2 Series IP Cameras",
+      "url": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2018/icsa-18-347-03.json",
+      "date": "2018-12-13T00:00:00+00:00",
+      "summary": "Avis de sécurité CISA publié au format structuré CSAF."
+    },
+    {
+      "source": "CISA ICS Advisories",
+      "label": "CISA ICS Advisories",
+      "title": "LCDS - Leão Consultoria e Desenvolvimento de Sistemas Ltda ME LAquis SCADA",
+      "url": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2018/icsa-18-289-01.json",
+      "date": "2018-10-16T00:00:00+00:00",
       "summary": "Avis de sécurité CISA publié au format structuré CSAF."
     }
   ],
@@ -2520,7 +2520,7 @@
     "title": "Fortinet Releases Security Hardening Release for Multiple Products",
     "source": "https://www.fortinet.com/blog/ciso-collective/fortinet-releases-security-hardening-release-for-multiple-products",
     "publishedAt": "2026-10-21T13:00:00+00:00",
-    "checkedAt": "2026-11-18T20:29:51.377542+00:00",
+    "checkedAt": "2026-11-19T07:22:32.790231+00:00",
     "disclosureDate": "2026-11-10",
     "severityNote": "Fortinet qualifie globalement ces mises à jour de correctifs critiques et élevés; la sévérité par CVE n'est pas détaillée dans cette annonce.",
     "note": "Cette matrice indique les plages affectées et les versions correctives annoncées. Les identifiants CVE et les détails techniques par vulnérabilité ne figurent pas dans cette page; consulter les avis PSIRT détaillés avant toute décision de remédiation.",
