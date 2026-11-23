@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-23T07:35:29.778248+00:00",
+  "generatedAt": "2026-11-23T23:51:44.420433+00:00",
   "fortinet": [
     {
       "source": "FortiGuard PSIRT",
@@ -172,6 +172,70 @@
       "summary": "Avis de sécurité CISA publié au format structuré CSAF."
     },
     {
+      "source": "CERT-FR",
+      "label": "CERT-FR",
+      "title": "Multiples vulnérabilités dans les produits VMware (20 novembre 2026)",
+      "url": "https://www.cert.cyber.gouv.fr/avis/CERTFR-2026-AVI-1598/",
+      "date": "2026-11-20T00:00:00+00:00",
+      "summary": "De multiples vulnérabilités ont été découvertes dans les produits VMware. Certaines d'entre elles permettent à un attaquant de provoquer une exécution de code arbitraire à distance, une élévation de privilèges et une injection SQL (SQLi). Google et Mandiant indiquent que la vulnérabilité..."
+    },
+    {
+      "source": "CERT-FR",
+      "label": "CERT-FR",
+      "title": "Multiples vulnérabilités dans Siemens Industrial Edge  (20 novembre 2026)",
+      "url": "https://www.cert.cyber.gouv.fr/avis/CERTFR-2026-AVI-1590/",
+      "date": "2026-11-20T00:00:00+00:00",
+      "summary": "De multiples vulnérabilités ont été découvertes dans Siemens Industrial Edge. Elles permettent à un attaquant de provoquer une exécution de code arbitraire à distance."
+    },
+    {
+      "source": "CERT-FR",
+      "label": "CERT-FR",
+      "title": "Multiples vulnérabilités dans les produits IBM (20 novembre 2026)",
+      "url": "https://www.cert.cyber.gouv.fr/avis/CERTFR-2026-AVI-1597/",
+      "date": "2026-11-20T00:00:00+00:00",
+      "summary": "De multiples vulnérabilités ont été découvertes dans les produits IBM. Certaines d'entre elles permettent à un attaquant de provoquer une exécution de code arbitraire à distance, une élévation de privilèges et un déni de service à distance."
+    },
+    {
+      "source": "CERT-FR",
+      "label": "CERT-FR",
+      "title": "Multiples vulnérabilités dans le noyau Linux de Red Hat (20 novembre 2026)",
+      "url": "https://www.cert.cyber.gouv.fr/avis/CERTFR-2026-AVI-1592/",
+      "date": "2026-11-20T00:00:00+00:00",
+      "summary": "De multiples vulnérabilités ont été découvertes dans le noyau Linux de Red Hat. Certaines d'entre elles permettent à un attaquant de provoquer une exécution de code arbitraire à distance, une élévation de privilèges et un déni de service à distance."
+    },
+    {
+      "source": "CERT-FR",
+      "label": "CERT-FR",
+      "title": "Multiples vulnérabilités dans le noyau Linux de SUSE (20 novembre 2026)",
+      "url": "https://www.cert.cyber.gouv.fr/avis/CERTFR-2026-AVI-1593/",
+      "date": "2026-11-20T00:00:00+00:00",
+      "summary": "De multiples vulnérabilités ont été découvertes dans le noyau Linux de SUSE. Certaines d'entre elles permettent à un attaquant de provoquer une exécution de code arbitraire, une atteinte à la confidentialité des données et une atteinte à l'intégrité des données."
+    },
+    {
+      "source": "CERT-FR",
+      "label": "CERT-FR",
+      "title": "Multiples vulnérabilités dans les produits Mattermost (20 novembre 2026)",
+      "url": "https://www.cert.cyber.gouv.fr/avis/CERTFR-2026-AVI-1588/",
+      "date": "2026-11-20T00:00:00+00:00",
+      "summary": "De multiples vulnérabilités ont été découvertes dans les produits Mattermost. Certaines d'entre elles permettent à un attaquant de provoquer un déni de service à distance, une atteinte à la confidentialité des données et un contournement de la politique de sécurité."
+    },
+    {
+      "source": "CERT-FR",
+      "label": "CERT-FR",
+      "title": "Multiples vulnérabilités dans Apache Tomcat (20 novembre 2026)",
+      "url": "https://www.cert.cyber.gouv.fr/avis/CERTFR-2026-AVI-1587/",
+      "date": "2026-11-20T00:00:00+00:00",
+      "summary": "De multiples vulnérabilités ont été découvertes dans Apache Tomcat. Certaines d'entre elles permettent à un attaquant de provoquer un déni de service à distance, une atteinte à la confidentialité des données et une atteinte à l'intégrité des données."
+    },
+    {
+      "source": "CERT-FR",
+      "label": "CERT-FR",
+      "title": "Vulnérabilité dans GitLab (20 novembre 2026)",
+      "url": "https://www.cert.cyber.gouv.fr/avis/CERTFR-2026-AVI-1591/",
+      "date": "2026-11-20T00:00:00+00:00",
+      "summary": "Une vulnérabilité a été découverte dans GitLab. Elle permet à un attaquant de provoquer une exécution de code arbitraire à distance."
+    },
+    {
       "source": "CISA Cybersecurity Advisories",
       "label": "CISA Cybersecurity Advisories",
       "title": "OpenJDK Base64 decoding heap corruption with AVX-512 enabled",
@@ -226,14 +290,6 @@
       "url": "https://www.cert.cyber.gouv.fr/avis/CERTFR-2026-AVI-1575/",
       "date": "2026-11-19T00:00:00+00:00",
       "summary": "De multiples vulnérabilités ont été découvertes dans Wireshark. Elles permettent à un attaquant de provoquer un déni de service à distance."
-    },
-    {
-      "source": "CERT-FR",
-      "label": "CERT-FR",
-      "title": "Vulnérabilité dans VMware Tanzu (19 novembre 2026)",
-      "url": "https://www.cert.cyber.gouv.fr/avis/CERTFR-2026-AVI-1568/",
-      "date": "2026-11-19T00:00:00+00:00",
-      "summary": "Une vulnérabilité a été découverte dans VMware Tanzu. Elle permet à un attaquant de provoquer une exécution de code arbitraire à distance."
     },
     {
       "source": "CERT-FR",
@@ -300,68 +356,28 @@
       "summary": "Une vulnérabilité a été découverte dans les produits Elastic. Elle permet à un attaquant de provoquer une exécution de code arbitraire à distance et un déni de service à distance."
     },
     {
+      "source": "CERT-FR",
+      "label": "CERT-FR",
+      "title": "Multiples vulnérabilités dans Laravel (19 novembre 2026)",
+      "url": "https://www.cert.cyber.gouv.fr/avis/CERTFR-2026-AVI-1571/",
+      "date": "2026-11-19T00:00:00+00:00",
+      "summary": "De multiples vulnérabilités ont été découvertes dans Laravel. Certaines d'entre elles permettent à un attaquant de provoquer un déni de service à distance, une injection de code indirecte à distance (XSS) et un contournement de la politique de sécurité."
+    },
+    {
+      "source": "CERT-FR",
+      "label": "CERT-FR",
+      "title": "Multiples vulnérabilités dans les produits NetApp (19 novembre 2026)",
+      "url": "https://www.cert.cyber.gouv.fr/avis/CERTFR-2026-AVI-1577/",
+      "date": "2026-11-19T00:00:00+00:00",
+      "summary": "De multiples vulnérabilités ont été découvertes dans les produits NetApp. Elles permettent à un attaquant de provoquer un déni de service à distance, une atteinte à la confidentialité des données et une atteinte à l'intégrité des données."
+    },
+    {
       "source": "FortiGuard Outbreak Alerts",
       "label": "FortiGuard Outbreak Alerts",
       "title": "Refrigeration Control Systems Attack",
       "url": "https://fortiguard.fortinet.com/outbreak-alert/refrigeration-control-systems-attack",
       "date": "2026-11-18T08:00:00+00:00",
       "summary": "Threat actors are targeting internet-accessible refrigeration management interfaces and industrial temperature controllers, exploiting vulnerabilities, authentication weaknesses and insecure configurations to gain unauthorized access. The affected technologies include: - Danfoss AK-SM and AK-SC refrigeration controllers. - Copeland XWEB refrigeration managem"
-    },
-    {
-      "source": "CERT-FR",
-      "label": "CERT-FR",
-      "title": "Multiples vulnérabilités dans les produits F5 (18 novembre 2026)",
-      "url": "https://www.cert.cyber.gouv.fr/avis/CERTFR-2026-AVI-1567/",
-      "date": "2026-11-18T00:00:00+00:00",
-      "summary": "De multiples vulnérabilités ont été découvertes dans les produits F5. Elles permettent à un attaquant de provoquer une exécution de code arbitraire à distance, un déni de service à distance et un contournement de la politique de sécurité."
-    },
-    {
-      "source": "CERT-FR",
-      "label": "CERT-FR",
-      "title": "Multiples vulnérabilités dans Oracle Weblogic (18 novembre 2026)",
-      "url": "https://www.cert.cyber.gouv.fr/avis/CERTFR-2026-AVI-1565/",
-      "date": "2026-11-18T00:00:00+00:00",
-      "summary": "De multiples vulnérabilités ont été découvertes dans Oracle Weblogic. Certaines d'entre elles permettent à un attaquant de provoquer une exécution de code arbitraire à distance, un déni de service à distance et une atteinte à la confidentialité des données."
-    },
-    {
-      "source": "CERT-FR",
-      "label": "CERT-FR",
-      "title": "Multiples vulnérabilités dans Oracle MySQL (18 novembre 2026)",
-      "url": "https://www.cert.cyber.gouv.fr/avis/CERTFR-2026-AVI-1563/",
-      "date": "2026-11-18T00:00:00+00:00",
-      "summary": "De multiples vulnérabilités ont été découvertes dans Oracle MySQL. Elles permettent à un attaquant de provoquer un déni de service à distance, une atteinte à la confidentialité des données et une atteinte à l'intégrité des données."
-    },
-    {
-      "source": "CERT-FR",
-      "label": "CERT-FR",
-      "title": "Multiples vulnérabilités dans Oracle PeopleSoft (18 novembre 2026)",
-      "url": "https://www.cert.cyber.gouv.fr/avis/CERTFR-2026-AVI-1564/",
-      "date": "2026-11-18T00:00:00+00:00",
-      "summary": "De multiples vulnérabilités ont été découvertes dans Oracle PeopleSoft. Elles permettent à un attaquant de provoquer une exécution de code arbitraire à distance, une atteinte à la confidentialité des données et une atteinte à l'intégrité des données."
-    },
-    {
-      "source": "CERT-FR",
-      "label": "CERT-FR",
-      "title": "Multiples vulnérabilités dans Oracle Virtualization (18 novembre 2026)",
-      "url": "https://www.cert.cyber.gouv.fr/avis/CERTFR-2026-AVI-1566/",
-      "date": "2026-11-18T00:00:00+00:00",
-      "summary": "De multiples vulnérabilités ont été découvertes dans Oracle Virtualization. Certaines d'entre elles permettent à un attaquant de provoquer une exécution de code arbitraire à distance, un déni de service à distance et une atteinte à la confidentialité des données."
-    },
-    {
-      "source": "CERT-FR",
-      "label": "CERT-FR",
-      "title": "Multiples vulnérabilités dans F5 NGINX (18 novembre 2026)",
-      "url": "https://www.cert.cyber.gouv.fr/alerte/CERTFR-2026-ALE-017/",
-      "date": "2026-11-18T00:00:00+00:00",
-      "summary": "Le 18 novembre 2026, F5 a publié deux avis de sécurité concernant les vulnérabilités CVE-2026-123633 et CVE-2026-123007. Celles-ci affectent NGINX Open Source et NGINX Plus permettent à un attaquant non authentifié d'exécuter du code à distance, en utilisant le protocole HTTP en version 2. Le..."
-    },
-    {
-      "source": "CERT-FR",
-      "label": "CERT-FR",
-      "title": "Vulnérabilité dans Oracle Java SE (18 novembre 2026)",
-      "url": "https://www.cert.cyber.gouv.fr/alerte/CERTFR-2026-ALE-016/",
-      "date": "2026-11-18T00:00:00+00:00",
-      "summary": "Le 17 novembre 2026, Oracle a publié un avis de sécurité concernant la vulnérabilité CVE-2026-114938, surnommée *java4shell*, qui affecte le décodeur Base64 de OpenJDK sur les processeurs x86-64 supportant AVX-512 VBMI. Celle-ci permet à un attaquant de provoquer une exécution de code arbitraire..."
     },
     {
       "source": "CISA Cybersecurity Advisories",
@@ -412,14 +428,6 @@
       "summary": "Avis de sécurité CISA publié au format structuré CSAF."
     },
     {
-      "source": "CERT-FR",
-      "label": "CERT-FR",
-      "title": "Multiples vulnérabilités dans les produits Mattermost (04 novembre 2026)",
-      "url": "https://www.cert.cyber.gouv.fr/avis/CERTFR-2026-AVI-1458/",
-      "date": "2026-11-04T00:00:00+00:00",
-      "summary": "De multiples vulnérabilités ont été découvertes dans les produits Mattermost. Elles permettent à un attaquant de provoquer un déni de service à distance et un problème de sécurité non spécifié par l'éditeur."
-    },
-    {
       "source": "FortiGuard Outbreak Alerts",
       "label": "FortiGuard Outbreak Alerts",
       "title": "Node2Shell Remote Code Execution",
@@ -458,14 +466,6 @@
       "url": "https://feeds.fortinet.com/~/971845082/0/fortinet/blog/ciso-collective~Fortinet-Releases-Security-Hardening-Release-for-Multiple-Products",
       "date": "2026-10-21T13:00:00+00:00",
       "summary": "Fortinet announces frontier AI hardening releases for a range of products including FortiOS, FortiManager, FortiAnalyzer, FortiMail, and FortiAuthenticator. &#160; &#160; &#160; &#160; &nbsp;&#160;"
-    },
-    {
-      "source": "CERT-FR",
-      "label": "CERT-FR",
-      "title": "Multiples vulnérabilités dans Mattermost Server (20 octobre 2026)",
-      "url": "https://www.cert.cyber.gouv.fr/avis/CERTFR-2026-AVI-1344/",
-      "date": "2026-10-20T00:00:00+00:00",
-      "summary": "De multiples vulnérabilités ont été découvertes dans Mattermost Server. Elles permettent à un attaquant de provoquer un déni de service à distance, une atteinte à la confidentialité des données et un contournement de la politique de sécurité."
     },
     {
       "source": "FortiGuard Outbreak Alerts",
@@ -886,6 +886,38 @@
   ],
   "kev": [
     {
+      "cveID": "CVE-2026-133968",
+      "vendorProject": "Project MONAI",
+      "product": "MONAI Label",
+      "vulnerabilityName": "Project MONAI MONAI Label Path Traversal Vulnerability",
+      "dateAdded": "2026-11-23",
+      "shortDescription": "Project MONAI MONAI Label contains a path traversal vulnerability that allows an unauthenticated remote attacker to write arbitrary files outside the intended datastore directory, potentially resulting in remote code execution.",
+      "requiredAction": "Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA’s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA’s “Forensics Triage Requirements” (see URL in Notes). Follow applicable BOD 26-04 guidance for cloud services or discontinue use of the product if mitigations are unavailable. Stakeholders are responsible for evaluating each asset's internet exposure and ensuring adherence to BOD 26-04 patching guidelines.",
+      "dueDate": "2026-11-26",
+      "knownRansomwareCampaignUse": "Unknown",
+      "forensicTriage": "Yes",
+      "notes": "https://github.com/Project-MONAI/MONAILabel/security/advisories/GHSA-qc22-rmgc-vg94 ; https://github.com/Project-MONAI/MONAILabel/pull/1915 ; BOD 26-04: https://www.cisa.gov/news-events/directives/bod-26-04-prioritizing-security-updates-based-risk ; Forensics Triage Requirements: https://www.cisa.gov/news-events/directives/bod-26-04-implementation-guidance-prioritizing-security-updates-based-risk ; https://nvd.nist.gov/vuln/detail/CVE-2026-133968",
+      "cwes": [
+        "CWE-24"
+      ]
+    },
+    {
+      "cveID": "CVE-2026-134624",
+      "vendorProject": "N-able",
+      "product": "MailAssure",
+      "vulnerabilityName": "N-able MailAssure (SpamExperts) Server-Side Request Forgery (SSRF) Vulnerability",
+      "dateAdded": "2026-11-23",
+      "shortDescription": "N-able MailAssure (SpamExperts) contains a server-side request forgery vulnerability in the LDAP synchronization connection check that allows an authenticated API user to connect to arbitrary internal hosts and ports, determine which are reachable, and send crafted data to internal services.",
+      "requiredAction": "Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA’s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA’s “Forensics Triage Requirements” (see URL in Notes). Follow applicable BOD 26-04 guidance for cloud services or discontinue use of the product if mitigations are unavailable. Stakeholders are responsible for evaluating each asset's internet exposure and ensuring adherence to BOD 26-04 patching guidelines.",
+      "dueDate": "2026-11-26",
+      "knownRansomwareCampaignUse": "Unknown",
+      "forensicTriage": "Yes",
+      "notes": "https://me.n-able.com/s/security-advisory/aArVy0000002mrlKAA ; BOD 26-04: https://www.cisa.gov/news-events/directives/bod-26-04-prioritizing-security-updates-based-risk ; Forensics Triage Requirements: https://www.cisa.gov/news-events/directives/bod-26-04-implementation-guidance-prioritizing-security-updates-based-risk ; https://nvd.nist.gov/vuln/detail/CVE-2026-134624",
+      "cwes": [
+        "CWE-918"
+      ]
+    },
+    {
       "cveID": "CVE-2026-129448",
       "vendorProject": "Apache",
       "product": "Roller",
@@ -958,7 +990,7 @@
       "shortDescription": "Synology DSM contains an improper encoding or escaping of output vulnerability in the system plugin daemon in Synology BeeStation OS (BSM) that could allow a remote attacker to execute arbitrary code via unspecified vectors.",
       "requiredAction": "Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA’s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA’s “Forensics Triage Requirements” (see URL in Notes). Follow applicable BOD 26-04 guidance for cloud services or discontinue use of the product if mitigations are unavailable. Stakeholders are responsible for evaluating each asset's internet exposure and ensuring adherence to BOD 26-04 patching guidelines.",
       "dueDate": "2026-11-21",
-      "knownRansomwareCampaignUse": "Unknown",
+      "knownRansomwareCampaignUse": "Known",
       "forensicTriage": "Yes",
       "notes": "https://www.synology.com/zh-tw/security/advisory/Synology_SA_24_20 ; BOD 26-04: https://www.cisa.gov/news-events/directives/bod-26-04-prioritizing-security-updates-based-risk ; Forensics Triage Requirements: https://www.cisa.gov/news-events/directives/bod-26-04-implementation-guidance-prioritizing-security-updates-based-risk ; https://nvd.nist.gov/vuln/detail/CVE-2024-10441",
       "cwes": [
@@ -2477,41 +2509,6 @@
       "cwes": [
         "CWE-444"
       ]
-    },
-    {
-      "cveID": "CVE-2026-49869",
-      "vendorProject": "Kestra",
-      "product": "Kestra OSS",
-      "vulnerabilityName": "Kestra OSS OS Command Injection Vulnerability",
-      "dateAdded": "2026-09-02",
-      "shortDescription": "Kestra OSS contains an OS command injection vulnerability that could allow an unauthenticated remote attacker to create and execute arbitrary workflows without credentials.",
-      "requiredAction": "Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA’s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA’s “Forensics Triage Requirements” (see URL in Notes). Follow applicable BOD 26-04 guidance for cloud services or discontinue use of the product if mitigations are unavailable. Stakeholders are responsible for evaluating each asset's internet exposure and ensuring adherence to BOD 26-04 patching guidelines.",
-      "dueDate": "2026-09-05",
-      "knownRansomwareCampaignUse": "Unknown",
-      "forensicTriage": "Yes",
-      "notes": "This vulnerability affects an open-source component, third-party library, protocol, or proprietary implementation that could be used by different products. For more information, please see: https://github.com/kestra-io/kestra/security/advisories/GHSA-5vc5-wxxq-3fjx ; BOD 26-04: https://www.cisa.gov/news-events/directives/bod-26-04-prioritizing-security-updates-based-risk ; Forensics Triage Requirements: https://www.cisa.gov/news-events/directives/bod-26-04-implementation-guidance-prioritizing-security-updates-based-risk ; https://nvd.nist.gov/vuln/detail/CVE-2026-49869",
-      "cwes": [
-        "CWE-78",
-        "CWE-184",
-        "CWE-287",
-        "CWE-918"
-      ]
-    },
-    {
-      "cveID": "CVE-2026-82329",
-      "vendorProject": "JFrog",
-      "product": "Artifactory",
-      "vulnerabilityName": "JFrog Artifactory Improper Authentication Vulnerability",
-      "dateAdded": "2026-09-02",
-      "shortDescription": "JFrog Artifactory contains an improper authentication vulnerability that under default configuration can allow an unauthenticated attacker with network access to obtain administrative privileges.",
-      "requiredAction": "Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA’s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA’s “Forensics Triage Requirements” (see URL in Notes). Follow applicable BOD 26-04 guidance for cloud services or discontinue use of the product if mitigations are unavailable. Stakeholders are responsible for evaluating each asset's internet exposure and ensuring adherence to BOD 26-04 patching guidelines.",
-      "dueDate": "2026-09-05",
-      "knownRansomwareCampaignUse": "Unknown",
-      "forensicTriage": "Yes",
-      "notes": "https://docs.jfrog.com/releases/docs/jfrog-security-advisories ; https://docs.jfrog.com/releases/docs/artifactory-self-managed-releases ; BOD 26-04: https://www.cisa.gov/news-events/directives/bod-26-04-prioritizing-security-updates-based-risk ; Forensics Triage Requirements: https://www.cisa.gov/news-events/directives/bod-26-04-implementation-guidance-prioritizing-security-updates-based-risk ; https://nvd.nist.gov/vuln/detail/CVE-2026-82329",
-      "cwes": [
-        "CWE-287"
-      ]
     }
   ],
   "errors": [],
@@ -2519,7 +2516,7 @@
     "title": "Fortinet Releases Security Hardening Release for Multiple Products",
     "source": "https://www.fortinet.com/blog/ciso-collective/fortinet-releases-security-hardening-release-for-multiple-products",
     "publishedAt": "2026-10-21T13:00:00+00:00",
-    "checkedAt": "2026-11-23T07:35:29.778248+00:00",
+    "checkedAt": "2026-11-23T23:51:44.420433+00:00",
     "disclosureDate": "2026-11-10",
     "severityNote": "Fortinet qualifie globalement ces mises à jour de correctifs critiques et élevés; la sévérité par CVE n'est pas détaillée dans cette annonce.",
     "note": "Cette matrice indique les plages affectées et les versions correctives annoncées. Les identifiants CVE et les détails techniques par vulnérabilité ne figurent pas dans cette page; consulter les avis PSIRT détaillés avant toute décision de remédiation.",
