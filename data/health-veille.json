@@ -2,8 +2,8 @@
   "source": "veille",
   "label": "Veille cyber officielle",
   "status": "ok",
-  "checkedAt": "2026-11-25T21:40:39.439695+00:00",
-  "lastSuccessAt": "2026-11-25T21:40:39.439695+00:00",
+  "checkedAt": "2026-11-26T08:14:34.390939+00:00",
+  "lastSuccessAt": "2026-11-26T08:14:34.390939+00:00",
   "message": "La collecte s'est terminée sans erreur.",
-  "runUrl": "https://github.com/Riiddiimz/Automatik/actions/runs/45706485003"
+  "runUrl": "https://github.com/Riiddiimz/Automatik/actions/runs/45781476880"
 }
